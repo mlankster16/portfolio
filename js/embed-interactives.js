@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const embeds = [
     { id: 'iframe-predictive-generative', src: 'assets/interactives/predictive-vs-generative.html' },
     { id: 'iframe-features-labels', src: 'assets/interactives/features-vs-labels.html' },
+    { id: 'iframe-interactivity-generator', src: 'assets/interactives/interactivity-generator-mockup.html' },
   ];
 
   // Fixed pixel heights can't fit content that reflows this much between a

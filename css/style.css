@@ -384,6 +384,18 @@ p {
   line-height: 1.4;
 }
 
+.course-card .course-desc {
+  margin: 8px 0 0;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.two-part-grid {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 560px;
+}
+
 @media (max-width: 600px) {
   .course-grid {
     grid-template-columns: 1fr;

@@ -29,10 +29,103 @@
 </header>
 
 <main class="wrap">
-  <div class="stub-page">
-    <h1>Interactivity Generator</h1>
-    <p>This project page hasn't been drafted yet.</p>
+
+  <div class="project-hero">
+    <span class="icon-badge accent-sage">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+        <polyline points="2 17 12 22 22 17"/>
+        <polyline points="2 12 12 17 22 12"/>
+      </svg>
+    </span>
+    <div>
+      <p class="project-hero-eyebrow">Tool</p>
+      <h1 class="project-hero-title">Interactivity Generator</h1>
+      <p class="project-hero-sub">A two-part workflow tool built for Duke's LX Design team</p>
+    </div>
   </div>
+
+  <p class="framing-line">
+    This one is different. Instead of designing a course, I designed and built a tool that helps our
+    team design courses.
+  </p>
+
+  <h2>I kept running into the same limit</h2>
+  <p>
+    Throughout our Coursera courses, we've always looked for new ways to help learners access and
+    explore content. For a long time, we were limited by the tools available to us. Interactive
+    formats we wanted to build had no clear path into the Coursera environment, so good ideas stayed
+    ideas.
+  </p>
+  <p>
+    With what AI makes possible now, I decided to build our own.
+  </p>
+
+  <h2>I built it in two parts</h2>
+  <p>
+    First, a Coursera plugin. Then, a generator that our own LX design team could use on their own
+    projects.
+  </p>
+
+  <div class="course-grid two-part-grid">
+    <div class="course-card">
+      <span class="icon-badge accent-clay">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 18 22 12 16 6"/>
+          <polyline points="8 6 2 12 8 18"/>
+        </svg>
+      </span>
+      <p class="course-kicker">Part 1</p>
+      <h4>The Coursera Plugin</h4>
+      <p class="course-desc">Takes HTML and JSON and embeds it directly into the Coursera course environment.</p>
+    </div>
+    <div class="course-card">
+      <span class="icon-badge accent-sage">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+          <polyline points="2 17 12 22 22 17"/>
+          <polyline points="2 12 12 17 22 12"/>
+        </svg>
+      </span>
+      <p class="course-kicker">Part 2</p>
+      <h4>The Interactivity Generator</h4>
+      <p class="course-desc">Turns a learning design challenge into a set of interactive format options, ready to edit and export.</p>
+    </div>
+  </div>
+
+  <p>
+    A designer describes a learning design challenge from a project they're working on, and the tool
+    proposes a set of interactive formats that could fit it. They pick one, edit the learner-facing
+    text on a dedicated edit screen, and confirm it. The tool then renders the HTML and JSON, ready to
+    paste straight into the plugin.
+  </p>
+
+  <h2>I'll show you how it works</h2>
+  <p>
+    The real tool calls an AI model live and works from whatever content a designer brings to it. What
+    follows is a mockup built around one fixed example, so you can walk through the same four steps
+    without needing an API key of your own.
+  </p>
+
+  <p class="try-it-label">Try it — describe a challenge, get an interactive</p>
+  <div class="interactive-embed">
+    <iframe id="iframe-interactivity-generator"
+            title="Interactivity Generator workflow tool mockup"
+            height="700"
+            loading="lazy"></iframe>
+  </div>
+
+  <h2>Why this one matters to me</h2>
+  <p>
+    What I like about this project is that it proves two things at once: the learning design judgment
+    to know what kind of interactive actually helps, and the technical skill to build a tool that
+    generates it.
+  </p>
+  <p>
+    This was built for Coursera and for Duke's specific needs, but the underlying skill set travels.
+    I'm looking for new places to put it to work.
+  </p>
+
 </main>
 
 <footer class="site">
@@ -41,6 +134,8 @@
     <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
   </div>
 </footer>
+
+<script src="js/embed-interactives.js?v=4"></script>
 
 </body>
 </html>

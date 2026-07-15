@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactivity Generator — Coursera Interaction Design Workflow Tool</title>
+<style>
+  :root {
+    --navy: #012169;
+    --navy-dark: #010f38;
+    --teal: #339898;
+    --teal-dark: #267575;
+    --bg: #F3F2F1;
+    --card: #FFFFFF;
+    --border: #E1DFDB;
+    --ink: #262626;
+    --muted: #6b6b6b;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Open Sans", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+  }
+
+  .app-header {
+    background: var(--navy);
+    color: #fff;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-left { display: flex; align-items: center; gap: 12px; }
+
+  .logo-mark {
+    width: 36px;
+    height: 36px;
+    background: #fff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--navy);
+    font-weight: 800;
+    font-size: 19px;
+    flex-shrink: 0;
+  }
+
+  .header-title strong { display: block; font-size: 15px; letter-spacing: 0.03em; }
+  .header-title span { display: block; font-size: 11.5px; opacity: 0.8; margin-top: 1px; }
+
+  .step-indicator {
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    white-space: nowrap;
+  }
+
+  .container { max-width: 780px; margin: 0 auto; padding: 28px 20px 56px; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+
+  h1.page-title { font-size: 22px; color: var(--navy); margin: 0 0 4px; }
+  p.page-subtitle { font-size: 14px; color: var(--muted); margin: 0 0 20px; }
+
+  .back-link {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    text-decoration: none;
+    margin-bottom: 14px;
+    cursor: pointer;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  label.field-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  textarea, input[type="text"] {
+    width: 100%;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--ink);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    resize: vertical;
+    background: #fff;
+  }
+  textarea:focus, input[type="text"]:focus { outline: 2px solid var(--teal); outline-offset: 1px; }
+
+  .toggle-row { display: flex; gap: 8px; margin-bottom: 14px; }
+  .toggle-btn {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--ink);
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .toggle-btn.active { background: var(--teal); border-color: var(--teal); color: #fff; }
+
+  .example-link {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--teal-dark);
+    font-weight: 600;
+    cursor: pointer;
+    margin: 10px 0 18px;
+    text-decoration: underline;
+  }
+
+  .btn-primary {
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 22px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--navy-dark); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .btn-secondary {
+    background: #fff;
+    color: var(--navy);
+    border: 1.5px solid var(--navy);
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .btn-secondary:hover { background: #f0f4fa; }
+
+  .inline-note {
+    font-size: 12.5px;
+    color: var(--muted);
+    background: #F6F5F3;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-top: 4px;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    border-radius: 999px;
+    padding: 5px 14px;
+    margin-bottom: 14px;
+  }
+
+  .rationale {
+    font-style: italic;
+    color: #444;
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin: 0 0 18px;
+  }
+
+  .progress-track {
+    height: 8px;
+    background: #E6E4E1;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 18px 0 8px;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--teal);
+    border-radius: 4px;
+    transition: width 2s ease;
+  }
+  .progress-label {
+    font-size: 12.5px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  /* live preview tabs */
+  .preview-shell {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+    background: #FCFCFB;
+  }
+  .preview-title { font-size: 17px; color: var(--navy); margin: 0 0 4px; font-weight: 700; }
+  .preview-instructions { font-size: 13.5px; color: var(--muted); margin: 0 0 14px; }
+  .tabs-nav { display: flex; gap: 6px; flex-wrap: wrap; border-bottom: 2px solid #eee; margin-bottom: 16px; }
+  .tab-btn {
+    padding: 9px 14px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 13px;
+    color: #666;
+    border-bottom: 3px solid transparent;
+    font-family: inherit;
+  }
+  .tab-btn.active { color: var(--teal); border-bottom-color: var(--teal); }
+  .tab-panel h4 { color: var(--navy); font-size: 15.5px; margin: 0 0 10px; }
+  .field-row { margin-bottom: 10px; font-size: 13.5px; line-height: 1.55; }
+  .field-row strong { color: var(--ink); }
+
+  .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 8px; }
+  .pill-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 22px 0 8px;
+  }
+  .pill {
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 999px;
+    padding: 7px 14px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--ink);
+    font-family: inherit;
+  }
+  .pill.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+  .summary-card {
+    background: #EFF6F6;
+    border: 1px solid #cfe6e6;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-top: 18px;
+  }
+  .summary-card .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--teal-dark);
+    margin-bottom: 6px;
+  }
+  .summary-card p { margin: 0; font-size: 13.5px; line-height: 1.55; color: #333; }
+
+  .actions-row { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; }
+
+  /* step 3 edit form */
+  .edit-block { border-top: 1px solid var(--border); padding-top: 16px; margin-top: 16px; }
+  .edit-block:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+  .edit-block h3 { font-size: 13px; color: var(--navy); text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 12px; }
+  .field-group { margin-bottom: 12px; }
+
+  /* step 4 output */
+  .theme-card { display: flex; gap: 12px; align-items: flex-start; }
+  .swatch { width: 28px; height: 28px; border-radius: 6px; background: var(--teal); flex-shrink: 0; margin-top: 2px; border: 1px solid #2a7f7f; }
+  .theme-card p { font-style: italic; font-size: 13.5px; color: #444; line-height: 1.55; margin: 0; }
+
+  .code-block {
+    background: #10151f;
+    color: #cfe3e3;
+    border-radius: 8px;
+    padding: 16px;
+    font-family: "SFMono-Regular", Consolas, Menlo, monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    overflow: auto;
+    max-height: 320px;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .copy-row { display: flex; justify-content: flex-end; margin: 10px 0 0; }
+  .copy-btn {
+    background: var(--teal);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 7px 14px;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .copy-btn.copied { background: #2a7f2a; }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin: 0 0 10px;
+  }
+
+  .accessible-text-block {
+    background: #FAFAF9;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #333;
+  }
+</style>
+</head>
+<body>
+
+<div class="app-header">
+  <div class="header-left">
+    <div class="logo-mark">D</div>
+    <div class="header-title">
+      <strong>DUKE</strong>
+      <span>LX Design Team</span>
+    </div>
+  </div>
+  <div class="step-indicator" id="stepIndicator">STEP 1 OF 4</div>
+</div>
+
+<div class="container">
+
+  <!-- STEP 1 -->
+  <div id="step1">
+    <div class="card">
+      <h1 class="page-title">Interactivity Generator</h1>
+      <p class="page-subtitle">Describe a learning design challenge and get a working interactive component, ready to paste into your course.</p>
+
+      <div class="toggle-row">
+        <button class="toggle-btn active" id="toggleRecommend">Recommend for me</button>
+        <button class="toggle-btn" id="toggleKnow">I know what I want</button>
+      </div>
+
+      <label class="field-label" for="challengeText">Describe your challenge</label>
+      <textarea id="challengeText" rows="6" placeholder="I have a module on nursing assessment frameworks that lists five different tools, SBAR, HEAD-TO-TOE, OLDCARTS, ABCDE, and CIWA-Ar. Right now it's just five paragraphs of text. Learners need to know when and why to use each one, but the content feels dense and hard to scan. Most learners will already know at least one or two of these frameworks."></textarea>
+      <span class="example-link" id="tryExampleLink">Try the example</span>
+
+      <div class="actions-row">
+        <span></span>
+        <button class="btn-primary" id="analyzeBtn">Analyze Challenge</button>
+      </div>
+      <div class="inline-note" id="step1Note" style="display:none; margin-top:12px;">Please describe your challenge, or click "Try the example" above.</div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div id="step2" style="display:none;">
+    <span class="back-link" id="startOverLink">‹ Start over</span>
+    <div class="card">
+      <div id="generatingPanel">
+        <span class="badge">Recommended: Tabbed explorer</span>
+        <p class="progress-label" id="progressLabel">Generating Tabbed explorer...</p>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+
+      <div id="recommendationPanel" style="display:none;">
+        <span class="badge">Recommended: Tabbed explorer</span>
+        <p class="rationale">Five assessment frameworks are exactly parallel in structure and serve distinct clinical contexts. A tabbed layout lets learners quickly scan all five at once, compare when each is appropriate, and turn a dense wall of text into an immediately navigable reference that supports both initial learning and later lookup.</p>
+
+        <div class="preview-shell" id="previewShell"></div>
+
+        <p class="pill-label">Explore other approaches for this content</p>
+        <div class="pill-row" id="pillRow"></div>
+        <div class="inline-note" id="pillNote" style="display:none;"></div>
+
+        <div class="summary-card">
+          <p class="label">COMPREHEND AND COMPARE FRAMEWORKS</p>
+          <p>Five parallel tools of equal weight. Tabs let learners see the full landscape at a glance, compare contexts, and understand why one tool beats another in a given situation.</p>
+        </div>
+
+        <div class="actions-row">
+          <span></span>
+          <button class="btn-primary" id="confirmBtn">Confirm this recommendation →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div id="step3" style="display:none;">
+    <span class="back-link" id="backToRecLink">← Back to recommendation</span>
+    <div class="card">
+      <h1 class="page-title">Refine Your Interaction</h1>
+      <p class="page-subtitle">Edit the text your learners will see. Changes are applied to the interaction automatically, no code required.</p>
+      <div id="editFormContainer"></div>
+    </div>
+    <div class="actions-row">
+      <span></span>
+      <button class="btn-primary" id="generateBtn">Generate output →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div id="step4" style="display:none;">
+    <span class="back-link" id="backToEditLink">← Back to edit</span>
+    <div class="card">
+      <h1 class="page-title">Your Plugin Configuration</h1>
+      <span class="badge">Tabbed explorer</span>
+
+      <p class="section-label" style="margin-top:18px;">Visual theme</p>
+      <div class="theme-card">
+        <div class="swatch"></div>
+        <p>Health sciences theme using Eno accent (#339898) for active tabs and highlights, Duke Navy headers, and clean card-based panels with generous whitespace to reduce cognitive load when comparing frameworks.</p>
+      </div>
+
+      <p class="section-label" style="margin-top:22px;">Plugin JSON configuration</p>
+      <div class="code-block" id="jsonOutput"></div>
+      <div class="copy-row"><button class="copy-btn" id="copyJsonBtn">Copy JSON</button></div>
+
+      <p class="section-label" style="margin-top:22px;">Accessible static text</p>
+      <div class="accessible-text-block" id="staticTextOutput"></div>
+      <div class="copy-row"><button class="copy-btn" id="copyTextBtn">Copy Text</button></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  /* ---------------- state ---------------- */
+  const EXAMPLE_TEXT = "I have a module on nursing assessment frameworks that lists five different tools, SBAR, HEAD-TO-TOE, OLDCARTS, ABCDE, and CIWA-Ar. Right now it's just five paragraphs of text. Learners need to know when and why to use each one, but the content feels dense and hard to scan. Most learners will already know at least one or two of these frameworks.";
+
+  const data = {
+    title: "Nursing Assessment Frameworks",
+    instructions: "Select a framework to see when and how to use it in practice.",
+    frameworks: [
+      {
+        tabLabel: "SBAR",
+        heading: "SBAR",
+        when: "Communicating urgent clinical changes to providers or during handoffs. SBAR structures verbal and written reports to ensure critical information is delivered clearly and completely.",
+        structure: "Situation (what is happening now), Background (relevant clinical history), Assessment (your clinical judgment), Recommendation (what you think should happen next).",
+        example: "Calling a physician about a post-operative patient with sudden onset chest pain and tachycardia."
+      },
+      {
+        tabLabel: "HEAD-TO-TOE",
+        heading: "Head-to-Toe Assessment",
+        when: "Comprehensive physical examination during admission or routine shift assessments. Ensures systematic coverage of all body systems without missing findings.",
+        structure: "Progress sequentially from head (neurological, HEENT) through chest (cardiac, respiratory), abdomen, extremities, and skin. Document findings by region.",
+        example: "Admitting a patient with pneumonia, you assess mental status, lung sounds, work of breathing, skin color, and peripheral perfusion in one organized pass."
+      },
+      {
+        tabLabel: "OLDCARTS",
+        heading: "OLDCARTS",
+        when: "Investigating a patient's chief complaint or new symptom. Guides symptom history-taking so you characterize the problem thoroughly before intervening.",
+        structure: "Onset, Location, Duration, Character, Aggravating/alleviating factors, Radiation, Timing, Severity. Each dimension adds diagnostic clarity.",
+        example: "A patient reports abdominal pain. You ask when it started, exactly where it hurts, what makes it worse, whether it moves to the back, how long episodes last, and rate the intensity."
+      },
+      {
+        tabLabel: "ABCDE",
+        heading: "ABCDE",
+        when: "Rapid assessment in emergency or deteriorating patient situations. Prioritizes life-threatening problems in physiological order, addressing each step before moving to the next.",
+        structure: "Airway, Breathing, Circulation, Disability (neurological status), Exposure (full-body survey for injuries or signs). Intervene at each level if abnormalities are found.",
+        example: "Responding to a code blue or trauma, you check airway patency, assess breathing effort and oxygen saturation, check pulse and perfusion, evaluate consciousness, then expose the patient to identify bleeding or other injuries."
+      },
+      {
+        tabLabel: "CIWA-Ar",
+        heading: "CIWA-Ar",
+        when: "Monitoring patients undergoing alcohol withdrawal. Provides objective scoring of withdrawal severity to guide benzodiazepine dosing and escalation of care.",
+        structure: "Ten items scored 0-7: nausea/vomiting, tremor, sweating, anxiety, agitation, tactile/auditory/visual disturbances, headache, orientation. Total score determines intervention thresholds.",
+        example: "A patient admitted with alcohol use disorder begins showing tremors and reports feeling anxious. You complete a CIWA-Ar assessment every 4 hours; a score above 10 triggers scheduled medication per protocol."
+      }
+    ],
+    staticText: "This module covers five clinical assessment frameworks used in nursing practice. SBAR (Situation, Background, Assessment, Recommendation) structures urgent communication with providers during handoffs or sudden clinical changes. The head-to-toe assessment is a systematic physical exam performed at admission or during routine shift checks, moving from neurological and HEENT findings through the chest, abdomen, extremities, and skin. OLDCARTS (Onset, Location, Duration, Character, Aggravating/alleviating factors, Radiation, Timing, Severity) guides a thorough history of a patient's chief complaint or new symptom. ABCDE (Airway, Breathing, Circulation, Disability, Exposure) prioritizes life-threatening problems in emergency or rapidly deteriorating situations, addressing each step before moving to the next. CIWA-Ar is a ten-item scoring tool used to monitor alcohol withdrawal severity and guide medication dosing, typically reassessed every four hours. Together these frameworks give nurses a structured approach for communication, routine exams, symptom investigation, emergency response, and withdrawal monitoring."
+  };
+
+  const OTHER_PILLS = ["Drag-to-classify", "Click-to-reveal", "Annotated text", "Sequencing", "Inline quiz"];
+
+  let previewActiveTab = 0;
+  let currentStep = 1;
+
+  /* ---------------- helpers ---------------- */
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function showStep(n) {
+    currentStep = n;
+    [1, 2, 3, 4].forEach(i => {
+      document.getElementById("step" + i).style.display = (i === n) ? "" : "none";
+    });
+    document.getElementById("stepIndicator").textContent = "STEP " + n + " OF 4";
+    reportHeight();
+  }
+
+  /* ---------------- STEP 1 ---------------- */
+  document.getElementById("toggleRecommend").addEventListener("click", () => {
+    document.getElementById("toggleRecommend").classList.add("active");
+    document.getElementById("toggleKnow").classList.remove("active");
+  });
+  document.getElementById("toggleKnow").addEventListener("click", () => {
+    document.getElementById("toggleKnow").classList.add("active");
+    document.getElementById("toggleRecommend").classList.remove("active");
+  });
+
+  document.getElementById("tryExampleLink").addEventListener("click", () => {
+    document.getElementById("challengeText").value = EXAMPLE_TEXT;
+    document.getElementById("step1Note").style.display = "none";
+  });
+
+  document.getElementById("analyzeBtn").addEventListener("click", () => {
+    const text = document.getElementById("challengeText").value.trim();
+    if (!text) {
+      document.getElementById("step1Note").style.display = "";
+      reportHeight();
+      return;
+    }
+    beginAnalysis();
+  });
+
+  function beginAnalysis() {
+    showStep(2);
+    document.getElementById("generatingPanel").style.display = "";
+    document.getElementById("recommendationPanel").style.display = "none";
+    const fill = document.getElementById("progressFill");
+    fill.style.transition = "none";
+    fill.style.width = "0%";
+    // force reflow so the transition re-triggers each time
+    void fill.offsetWidth;
+    fill.style.transition = "width 2s ease";
+    requestAnimationFrame(() => { fill.style.width = "100%"; });
+
+    setTimeout(() => {
+      document.getElementById("generatingPanel").style.display = "none";
+      document.getElementById("recommendationPanel").style.display = "";
+      renderPreview();
+      renderPills();
+      reportHeight();
+    }, 2000);
+  }
+
+  document.getElementById("startOverLink").addEventListener("click", () => {
+    document.getElementById("challengeText").value = "";
+    document.getElementById("step1Note").style.display = "none";
+    showStep(1);
+  });
+
+  /* ---------------- STEP 2: live preview ---------------- */
+  function renderPreview() {
+    const shell = document.getElementById("previewShell");
+    let html = '<p class="preview-title">' + escapeHtml(data.title) + '</p>';
+    html += '<p class="preview-instructions">' + escapeHtml(data.instructions) + '</p>';
+    html += '<div class="tabs-nav">';
+    data.frameworks.forEach((f, i) => {
+      html += '<button type="button" class="tab-btn' + (i === previewActiveTab ? ' active' : '') + '" data-tab-index="' + i + '">' + escapeHtml(f.tabLabel) + '</button>';
+    });
+    html += '</div>';
+    const f = data.frameworks[previewActiveTab];
+    html += '<div class="tab-panel">';
+    html += '<h4>' + escapeHtml(f.heading) + '</h4>';
+    html += '<div class="field-row"><strong>When to use:</strong> ' + escapeHtml(f.when) + '</div>';
+    html += '<div class="field-row"><strong>Structure:</strong> ' + escapeHtml(f.structure) + '</div>';
+    html += '<div class="field-row"><strong>Example context:</strong> ' + escapeHtml(f.example) + '</div>';
+    html += '</div>';
+    shell.innerHTML = html;
+
+    shell.querySelectorAll(".tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        previewActiveTab = parseInt(btn.dataset.tabIndex, 10);
+        renderPreview();
+        reportHeight();
+      });
+    });
+    reportHeight();
+  }
+
+  function renderPills() {
+    const row = document.getElementById("pillRow");
+    row.innerHTML = "";
+    const activePill = document.createElement("button");
+    activePill.type = "button";
+    activePill.className = "pill active";
+    activePill.textContent = "Tabbed explorer";
+    activePill.addEventListener("click", () => {
+      document.getElementById("pillNote").style.display = "none";
+      reportHeight();
+    });
+    row.appendChild(activePill);
+
+    OTHER_PILLS.forEach(name => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "pill";
+      btn.textContent = name;
+      btn.addEventListener("click", () => {
+        const note = document.getElementById("pillNote");
+        note.textContent = 'This mockup walks through the Tabbed explorer path end to end. In the real tool, clicking "' + name + '" would generate its own live preview here.';
+        note.style.display = "";
+        reportHeight();
+      });
+      row.appendChild(btn);
+    });
+  }
+
+  document.getElementById("confirmBtn").addEventListener("click", () => {
+    renderEditForm();
+    showStep(3);
+  });
+
+  /* ---------------- STEP 3: edit form ---------------- */
+  function renderEditForm() {
+    const container = document.getElementById("editFormContainer");
+    let html = '<div class="edit-block">';
+    html += '<h3>Component text</h3>';
+    html += '<div class="field-group"><label class="field-label" for="editTitle">Title</label><input type="text" id="editTitle" value="' + escapeHtml(data.title) + '"></div>';
+    html += '<div class="field-group"><label class="field-label" for="editInstructions">Instructions</label><textarea id="editInstructions" rows="2">' + escapeHtml(data.instructions) + '</textarea></div>';
+
+    data.frameworks.forEach((f, i) => {
+      html += '<div class="field-group"><label class="field-label" for="editTabLabel' + i + '">Tab ' + (i + 1) + ' label</label><input type="text" id="editTabLabel' + i + '" data-idx="' + i + '" data-field="tabLabel" value="' + escapeHtml(f.tabLabel) + '"></div>';
+    });
+    html += '</div>';
+
+    data.frameworks.forEach((f, i) => {
+      html += '<div class="edit-block">';
+      html += '<h3>' + escapeHtml(f.tabLabel) + ' panel</h3>';
+      html += '<div class="field-group"><label class="field-label">Panel heading</label><input type="text" data-idx="' + i + '" data-field="heading" value="' + escapeHtml(f.heading) + '"></div>';
+      html += '<div class="field-group"><label class="field-label">When to use</label><textarea rows="3" data-idx="' + i + '" data-field="when">' + escapeHtml(f.when) + '</textarea></div>';
+      html += '<div class="field-group"><label class="field-label">Structure</label><textarea rows="3" data-idx="' + i + '" data-field="structure">' + escapeHtml(f.structure) + '</textarea></div>';
+      html += '<div class="field-group"><label class="field-label">Example</label><textarea rows="3" data-idx="' + i + '" data-field="example">' + escapeHtml(f.example) + '</textarea></div>';
+      html += '</div>';
+    });
+
+    html += '<div class="edit-block"><h3>Static companion text</h3>';
+    html += '<div class="field-group"><label class="field-label" for="editStaticText">Plain-prose accessible fallback</label><textarea id="editStaticText" rows="6">' + escapeHtml(data.staticText) + '</textarea></div>';
+    html += '</div>';
+
+    container.innerHTML = html;
+
+    document.getElementById("editTitle").addEventListener("input", e => { data.title = e.target.value; });
+    document.getElementById("editInstructions").addEventListener("input", e => { data.instructions = e.target.value; });
+    document.getElementById("editStaticText").addEventListener("input", e => { data.staticText = e.target.value; });
+
+    container.querySelectorAll("[data-idx][data-field]").forEach(el => {
+      el.addEventListener("input", e => {
+        const idx = parseInt(e.target.dataset.idx, 10);
+        const field = e.target.dataset.field;
+        data.frameworks[idx][field] = e.target.value;
+      });
+    });
+    reportHeight();
+  }
+
+  document.getElementById("backToRecLink").addEventListener("click", () => {
+    renderPreview();
+    showStep(2);
+  });
+
+  document.getElementById("generateBtn").addEventListener("click", () => {
+    renderOutput();
+    showStep(4);
+  });
+
+  /* ---------------- STEP 4: generated output ---------------- */
+  function buildComponentHtml() {
+    let html = '<div style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
+    html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(data.title) + '</h3>';
+    html += '<p style="color:#555;font-size:14px;margin:0 0 16px;">' + escapeHtml(data.instructions) + '</p>';
+    html += '<div style="display:flex;gap:6px;flex-wrap:wrap;border-bottom:2px solid #eee;margin-bottom:16px;">';
+    data.frameworks.forEach((f, i) => {
+      html += '<button onclick="showPanel(' + i + ')" style="padding:9px 14px;border:none;background:none;cursor:pointer;font-weight:700;font-size:13px;color:' + (i === 0 ? '#339898' : '#666') + ';border-bottom:3px solid ' + (i === 0 ? '#339898' : 'transparent') + ';">' + escapeHtml(f.tabLabel) + '</button>';
+    });
+    html += '</div>';
+    data.frameworks.forEach((f, i) => {
+      html += '<div id="panel-' + i + '" style="display:' + (i === 0 ? 'block' : 'none') + ';">';
+      html += '<h4 style="color:#012169;font-size:15.5px;margin:0 0 10px;">' + escapeHtml(f.heading) + '</h4>';
+      html += '<p style="font-size:13.5px;line-height:1.55;margin:0 0 10px;"><strong>When to use:</strong> ' + escapeHtml(f.when) + '</p>';
+      html += '<p style="font-size:13.5px;line-height:1.55;margin:0 0 10px;"><strong>Structure:</strong> ' + escapeHtml(f.structure) + '</p>';
+      html += '<p style="font-size:13.5px;line-height:1.55;margin:0;"><strong>Example context:</strong> ' + escapeHtml(f.example) + '</p>';
+      html += '</div>';
+    });
+    html += '</div>';
+    return html;
+  }
+
+  function renderOutput() {
+    const config = { html: buildComponentHtml() };
+    document.getElementById("jsonOutput").textContent = JSON.stringify(config, null, 2);
+    document.getElementById("staticTextOutput").textContent = data.staticText;
+    reportHeight();
+  }
+
+  document.getElementById("backToEditLink").addEventListener("click", () => {
+    renderEditForm();
+    showStep(3);
+  });
+
+  async function copyText(text, btn) {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (err) {
+      /* clipboard may be blocked in this embed context; show success state regardless */
+    }
+    const original = btn.textContent;
+    btn.textContent = "Copied!";
+    btn.classList.add("copied");
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.classList.remove("copied");
+    }, 1500);
+  }
+
+  document.getElementById("copyJsonBtn").addEventListener("click", () => {
+    copyText(document.getElementById("jsonOutput").textContent, document.getElementById("copyJsonBtn"));
+  });
+  document.getElementById("copyTextBtn").addEventListener("click", () => {
+    copyText(document.getElementById("staticTextOutput").textContent, document.getElementById("copyTextBtn"));
+  });
+
+  /* ---- Report height to parent so an embedding iframe can auto-size ---- */
+  function reportHeight() {
+    if (window.parent !== window) {
+      window.parent.postMessage({ type: 'embed-resize', height: document.body.scrollHeight }, '*');
+    }
+  }
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(reportHeight).observe(document.body);
+  }
+  window.addEventListener('load', reportHeight);
+  reportHeight();
+</script>
+
+</body>
+</html>
