@@ -81,10 +81,48 @@
      background: var(--gap-border);
    }
 
-   .columns {
+   .tabs {
+     display: flex;
+     gap: 8px;
+     margin-bottom: 16px;
+   }
+
+   .tab-btn {
+     flex: 1;
+     font-size: 12px;
+     font-weight: 600;
+     letter-spacing: 0.06em;
+     text-transform: uppercase;
+     padding: 10px 14px;
+     border-radius: 2px;
+     border: 1px solid var(--limestone);
+     background: white;
+     color: var(--graphite);
+     cursor: pointer;
+   }
+
+   .tab-btn.active-model {
+     background: var(--cast-iron);
+     border-color: var(--cast-iron);
+     color: white;
+   }
+
+   .tab-btn.active-nurse {
+     background: var(--copper);
+     border-color: var(--copper);
+     color: white;
+   }
+
+   .feature-pair {
      display: grid;
      grid-template-columns: 1fr 1fr;
-     gap: 20px;
+     gap: 12px;
+   }
+
+   @media (max-width: 400px) {
+     .feature-pair {
+       grid-template-columns: 1fr;
+     }
    }
 
    .panel {
@@ -456,6 +494,15 @@
      color: var(--copper);
    }
 
+   .tool-note {
+     font-size: 12.5px;
+     line-height: 1.6;
+     color: var(--graphite);
+     border-top: 1px solid var(--limestone);
+     padding-top: 12px;
+     margin-top: 18px;
+   }
+
    @media print {
      body {
        background: white;
@@ -473,9 +520,12 @@
 <div class="legend-item">
 <div class="legend-swatch swatch-gap"></div> Not in model </div>
 </div>
-<div class="columns">
-<!-- Left: what the model sees -->
-<div class="panel">
+<div class="tabs">
+<button class="tab-btn active-model" id="modelTab"> What The Model Used </button>
+<button class="tab-btn" id="nurseTab"> What The Nurse Knows </button>
+</div>
+<!-- What the model sees -->
+<div class="panel" id="modelPanel">
 <div class="panel-topbar panel-topbar-model">
 <span class="panel-topbar-title"> What the model used </span>
 <button class="reset-btn" id="resetBtn"> Reset </button>
@@ -497,6 +547,7 @@
 </div>
 </div>
 <p class="features-label"> Features the model was trained on — adjust and watch the score move </p>
+<div class="feature-pair">
 <div class="feature-row">
 <div class="feature-row-top">
 <span class="feature-name"> Age </span>
@@ -509,17 +560,6 @@
 </div>
 <div class="feature-row">
 <div class="feature-row-top">
-<span class="feature-name"> Prior fall history </span>
-<span class="feature-contrib" id="fallContrib"> +0 </span>
-</div>
-<div class="pill-group" id="fallGroup">
-<button class="pill-btn active" data-value="none"> None on record </button>
-<button class="pill-btn" data-value="one"> One prior fall </button>
-<button class="pill-btn" data-value="multiple"> Multiple falls </button>
-</div>
-</div>
-<div class="feature-row">
-<div class="feature-row-top">
 <span class="feature-name"> Number of medications </span>
 <span style="display:flex; align-items:center; gap:8px;">
 <span class="feature-value" id="medsValue"> 6 </span>
@@ -528,6 +568,19 @@
 </div>
 <input type="range" class="slider" id="medsSlider" min="0" max="15" value="6">
 </div>
+</div>
+<div class="feature-pair" style="margin-top: 6px;">
+<div class="feature-row">
+<div class="feature-row-top">
+<span class="feature-name"> Prior fall history </span>
+<span class="feature-contrib" id="fallContrib"> +0 </span>
+</div>
+<div class="pill-group" id="fallGroup">
+<button class="pill-btn active" data-value="none"> None on record </button>
+<button class="pill-btn" data-value="one"> One fall </button>
+<button class="pill-btn" data-value="multiple"> Multiple </button>
+</div>
+</div>
 <div class="feature-row">
 <div class="feature-row-top">
 <span class="feature-name"> Mobility status </span>
@@ -535,24 +588,9 @@
 </div>
 <div class="pill-group" id="mobilityGroup">
 <button class="pill-btn active" data-value="ambulatory"> Ambulatory </button>
-<button class="pill-btn" data-value="device"> Uses assistive device </button>
-<button class="pill-btn" data-value="dependent"> Dependent for mobility </button>
+<button class="pill-btn" data-value="device"> Assistive device </button>
+<button class="pill-btn" data-value="dependent"> Dependent </button>
 </div>
-</div>
-<div class="feature-row">
-<div class="feature-row-top">
-<span class="feature-name"> Length of stay </span>
-<span style="display:flex; align-items:center; gap:8px;">
-<span class="feature-value" id="losValue"> 2 days </span>
-<span class="feature-contrib" id="losContrib"> +3 </span>
-</span>
-</div>
-<input type="range" class="slider" id="losSlider" min="1" max="14" value="2">
-</div>
-<div class="feature-row" style="background: var(--feature-bg);">
-<div class="feature-row-top" style="margin-bottom: 0;">
-<span class="feature-name"> Diagnosis </span>
-<span class="feature-value"> I50.9 CHF </span>
 </div>
 </div>
 <div class="label-strip">
@@ -563,9 +601,10 @@
 <p class="label-strip-note"> What the model learned to predict, based on thousands of past patients </p>
 </div>
 </div>
+<p class="tool-note">Move the sliders and pills. The score updates because age, prior falls, medications, and mobility are the four features this model was trained on.</p>
 </div>
-<!-- Right: what the nurse knows -->
-<div class="panel">
+<!-- What the nurse knows -->
+<div class="panel" id="nursePanel" style="display: none;">
 <div class="panel-topbar panel-topbar-nurse">
 <span class="panel-topbar-title"> What the nurse knows </span>
 <span class="panel-topbar-meta"> M. Okafor &nbsp;|&nbsp; Shift assessment </span>
@@ -580,10 +619,6 @@
 <span class="known-row-icon"> &#10003; </span>
 <span class="known-row-text"> No fall events coded in this admission or prior records </span>
 </div>
-<div class="known-row">
-<span class="known-row-icon"> &#10003; </span>
-<span class="known-row-text"> Six medications on reconciliation list </span>
-</div>
 <p class="nurse-section-label" style="margin-top: 14px;"> Observed this shift — not in model </p>
 <div class="gap-row">
 <span class="gap-tag"> Not a feature </span>
@@ -597,16 +632,12 @@
 <span class="gap-tag"> Not a feature </span>
 <span class="gap-row-text"> Lives alone — no one at home to assist with mobility after discharge </span>
 </div>
-<div class="gap-row">
-<span class="gap-tag"> Not a feature </span>
-<span class="gap-row-text"> New diuretic started yesterday; orthostatic hypotension not yet assessed </span>
-</div>
 <div class="verdict-strip">
 <span class="verdict-icon"> ! </span>
-<p class="verdict-text"><strong> Try changing the score on the left. </strong> No matter what the model says, none of this shifts — because none of it was ever a feature the model could see. </p>
+<p class="verdict-text"><strong> Go back and change the score. </strong> No matter what the model says, none of this shifts, because none of it was ever a feature the model could see. </p>
 </div>
 </div>
-</div>
+<p class="tool-note">This is everything the nurse knows that the model doesn't. Switch back to the other tab and change the score. Nothing here moves, because none of it was ever a feature.</p>
 </div>
 
 <script>
@@ -614,8 +645,7 @@
      age: 76,
      priorFall: 'none',
      meds: 6,
-     mobility: 'ambulatory',
-     los: 2
+     mobility: 'ambulatory'
    };
    const defaults = {
      ...state
@@ -636,11 +666,10 @@
        age: (state.age - 60) * 0.4,
        fall: fallWeights[state.priorFall],
        meds: state.meds * 2.5,
-       mobility: mobilityWeights[state.mobility],
-       los: state.los * 1.5
+       mobility: mobilityWeights[state.mobility]
      };
      const base = -3;
-     let total = base + contrib.age + contrib.fall + contrib.meds + contrib.mobility + contrib.los;
+     let total = base + contrib.age + contrib.fall + contrib.meds + contrib.mobility;
      total = Math.max(0, Math.min(100, total));
      return {
        total,
@@ -682,8 +711,6 @@
      document.getElementById('ageContrib').textContent = fmt(contrib.age);
      document.getElementById('medsValue').textContent = state.meds;
      document.getElementById('medsContrib').textContent = fmt(contrib.meds);
-     document.getElementById('losValue').textContent = state.los + (state.los === 1 ? ' day' : ' days');
-     document.getElementById('losContrib').textContent = fmt(contrib.los);
      document.getElementById('fallContrib').textContent = fmt(contrib.fall);
      document.getElementById('mobilityContrib').textContent = fmt(contrib.mobility);
    }
@@ -695,11 +722,6 @@
      state.meds = parseInt(e.target.value, 10);
      render();
    });
-   document.getElementById('losSlider').addEventListener('input', e => {
-     state.los = parseInt(e.target.value, 10);
-     render();
-   });
-
    function wirePillGroup(groupId, stateKey) {
      const group = document.getElementById(groupId);
      group.querySelectorAll('.pill-btn').forEach(btn => {
@@ -713,16 +735,45 @@
    }
    wirePillGroup('fallGroup', 'priorFall');
    wirePillGroup('mobilityGroup', 'mobility');
+   const modelTab = document.getElementById('modelTab');
+   const nurseTab = document.getElementById('nurseTab');
+   const modelPanel = document.getElementById('modelPanel');
+   const nursePanel = document.getElementById('nursePanel');
+   modelTab.addEventListener('click', () => {
+     modelPanel.style.display = '';
+     nursePanel.style.display = 'none';
+     modelTab.classList.add('active-model');
+     nurseTab.classList.remove('active-nurse');
+     reportHeight();
+   });
+   nurseTab.addEventListener('click', () => {
+     modelPanel.style.display = 'none';
+     nursePanel.style.display = '';
+     nurseTab.classList.add('active-nurse');
+     modelTab.classList.remove('active-model');
+     reportHeight();
+   });
    document.getElementById('resetBtn').addEventListener('click', () => {
      Object.assign(state, defaults);
      document.getElementById('ageSlider').value = state.age;
      document.getElementById('medsSlider').value = state.meds;
-     document.getElementById('losSlider').value = state.los;
      document.querySelectorAll('#fallGroup .pill-btn').forEach(b => b.classList.toggle('active', b.dataset.value === state.priorFall));
      document.querySelectorAll('#mobilityGroup .pill-btn').forEach(b => b.classList.toggle('active', b.dataset.value === state.mobility));
      render();
    });
    render();
+
+   /* ---- Report height to parent so an embedding iframe can auto-size ---- */
+   function reportHeight() {
+     if (window.parent !== window) {
+       window.parent.postMessage({ type: 'embed-resize', height: document.body.scrollHeight }, '*');
+     }
+   }
+   if ('ResizeObserver' in window) {
+     new ResizeObserver(reportHeight).observe(document.body);
+   }
+   window.addEventListener('load', reportHeight);
+   reportHeight();
 </script>
 
 </body>

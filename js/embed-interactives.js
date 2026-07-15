@@ -11,6 +11,22 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 'iframe-features-labels', src: 'assets/interactives/features-vs-labels.html' },
   ];
 
+  // Fixed pixel heights can't fit content that reflows this much between a
+  // wide desktop layout and a stacked mobile one (900px+ swings). Each tool
+  // reports its own body height via postMessage (a same-realm ResizeObserver
+  // inside the iframe, which is reliable, unlike observing a child
+  // document's box from the parent's realm) whenever it changes, including
+  // on tab switches, and the matching iframe is resized to fit.
+  window.addEventListener('message', (e) => {
+    if (!e.data || e.data.type !== 'embed-resize') return;
+    embeds.forEach(({ id }) => {
+      const iframe = document.getElementById(id);
+      if (iframe && iframe.contentWindow === e.source) {
+        iframe.style.height = e.data.height + 'px';
+      }
+    });
+  });
+
   embeds.forEach(({ id, src }) => {
     const iframe = document.getElementById(id);
     if (!iframe) return;

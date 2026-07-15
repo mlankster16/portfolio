@@ -377,12 +377,14 @@
     generativePanel.style.display = 'none';
     predictiveTab.classList.add('active-predictive');
     generativeTab.classList.remove('active-generative');
+    reportHeight();
   });
   generativeTab.addEventListener('click', () => {
     predictivePanel.style.display = 'none';
     generativePanel.style.display = '';
     generativeTab.classList.add('active-generative');
     predictiveTab.classList.remove('active-predictive');
+    reportHeight();
   }); /* ---- Generative tab ---- */
   const scenarios = [{
     patient: 'M. Okafor',
@@ -455,6 +457,18 @@
     loadScenario(next);
   });
   loadScenario(0);
+
+  /* ---- Report height to parent so an embedding iframe can auto-size ---- */
+  function reportHeight() {
+    if (window.parent !== window) {
+      window.parent.postMessage({ type: 'embed-resize', height: document.body.scrollHeight }, '*');
+    }
+  }
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(reportHeight).observe(document.body);
+  }
+  window.addEventListener('load', reportHeight);
+  reportHeight();
 </script>
 
 </body>
