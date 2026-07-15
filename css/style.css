@@ -553,6 +553,18 @@ p {
   border: 0;
 }
 
+.screenshot-frame {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.screenshot-frame img {
+  display: block;
+  width: 100%;
+}
+
 /* placeholder box for a real asset not yet supplied */
 
 .asset-placeholder {
