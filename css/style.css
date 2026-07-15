@@ -185,6 +185,16 @@ p {
   margin-bottom: 12px;
 }
 
+.hero-cta {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  margin: 20px 0 40px;
+}
+
+.hero-cta a {
+  color: var(--clay);
+}
+
 .hero .hero-text {
   flex: 1 1 380px;
 }
