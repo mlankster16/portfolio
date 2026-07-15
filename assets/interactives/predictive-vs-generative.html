@@ -1,0 +1,461 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Predictive AI vs. Generative AI</title> <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400;1,8..60,600&family=Source+Sans+3:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --duke-navy: #012169;
+    --copper: #C84E00;
+    --persimmon: #E89923;
+    --eno: #339898;
+    --magnolia: #1D6363;
+    --prussian: #005587;
+    --hatteras: #E2E6ED;
+    --whisper: #F3F2F1;
+    --cast-iron: #262626;
+    --graphite: #666666;
+    --limestone: #E5E5E5;
+    --feature-bg: #E8F0FA;
+    --feature-border: #00539B;
+    --label-bg: #E6F4F4;
+    --label-border: #339898;
+    --gap-bg: #FEF0E6;
+    --gap-border: #C84E00;
+    --gap-text: #7A2F00;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--whisper);
+    color: var(--cast-iron);
+    padding: 32px 32px 48px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .tab-btn {
+    flex: 1;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    border-radius: 2px;
+    border: 1px solid var(--limestone);
+    background: white;
+    color: var(--graphite);
+    cursor: pointer;
+  }
+
+  .tab-btn.active-predictive {
+    background: var(--cast-iron);
+    border-color: var(--cast-iron);
+    color: white;
+  }
+
+  .tab-btn.active-generative {
+    background: var(--copper);
+    border-color: var(--copper);
+    color: white;
+  }
+
+  .panel {
+    background: white;
+    border: 1px solid var(--limestone);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .panel-topbar {
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .panel-topbar-model {
+    background: var(--cast-iron);
+  }
+
+  .panel-topbar-gen {
+    background: var(--copper);
+  }
+
+  .panel-topbar-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: white;
+  }
+
+  .panel-topbar-meta {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 300;
+    font-family: 'Source Code Pro', monospace;
+  }
+
+  .panel-body {
+    padding: 18px 18px 16px;
+  }
+
+  /* Predictive tab */
+  .score-block {
+    background: var(--cast-iron);
+    border-radius: 2px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+  }
+
+  .score-block-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--hatteras);
+    margin-bottom: 6px;
+  }
+
+  .score-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .score-number {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 40px;
+    font-weight: 500;
+    color: white;
+    line-height: 1;
+    transition: color 0.15s ease;
+  }
+
+  .score-descriptor {
+    font-size: 13px;
+    color: var(--hatteras);
+    font-weight: 500;
+  }
+
+  .score-bar-track {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .score-bar-fill {
+    height: 6px;
+    width: 22%;
+    background: var(--magnolia);
+    border-radius: 3px;
+    transition: width 0.4s ease, background 0.4s ease;
+  }
+
+  .feature-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .feature-chip {
+    font-size: 12px;
+    color: var(--duke-navy);
+    background: var(--feature-bg);
+    border: 1px solid #c5d8f0;
+    border-radius: 2px;
+    padding: 5px 10px;
+  }
+
+  .feature-chip span {
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 600;
+  }
+
+  .action-btn {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: white;
+    background: var(--prussian);
+    border: none;
+    border-radius: 2px;
+    padding: 9px 16px;
+    cursor: pointer;
+  }
+
+  .action-btn:hover {
+    background: var(--duke-navy);
+  }
+
+  .action-btn.copper {
+    background: var(--copper);
+  }
+
+  .action-btn.copper:hover {
+    background: #a34000;
+  }
+
+  /* Generative tab */
+  .doc-body {
+    font-family: 'Source Serif 4', serif;
+    font-size: 14.5px;
+    line-height: 1.9;
+    color: var(--cast-iron);
+    margin-bottom: 16px;
+  }
+
+  .sentence {
+    cursor: pointer;
+    padding: 1px 2px;
+    border-radius: 2px;
+  }
+
+  .sentence:hover:not(.answered) {
+    background: var(--feature-bg);
+  }
+
+  .sentence.correct-guess {
+    background: var(--label-bg);
+    border-bottom: 2px solid var(--label-border);
+  }
+
+  .sentence.wrong-guess {
+    background: var(--gap-bg);
+    border-bottom: 2px solid var(--gap-border);
+  }
+
+  .sentence.reveal-fabricated {
+    background: var(--gap-bg);
+    border-bottom: 2px solid var(--gap-border);
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 1px 6px;
+    border-radius: 2px;
+    margin-left: 4px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  .tag-fabricated {
+    background: var(--gap-border);
+    color: white;
+  }
+
+  .tag-accurate {
+    background: var(--label-border);
+    color: white;
+  }
+
+  .prompt-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .prompt-text {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--graphite);
+  }
+
+  .tool-note {
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--graphite);
+    border-top: 1px solid var(--limestone);
+    padding-top: 12px;
+    margin-top: 14px;
+  }
+
+  @media print {
+    body {
+      background: white;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="tabs">
+<button class="tab-btn active-predictive" id="predictiveTab">Predictive AI</button>
+<button class="tab-btn" id="generativeTab">Generative AI</button>
+</div>
+<!-- Predictive panel -->
+<div class="panel" id="predictivePanel">
+<div class="panel-topbar panel-topbar-model">
+<span class="panel-topbar-title">Fall risk model</span>
+<span class="panel-topbar-meta">M. Okafor</span>
+</div>
+<div class="panel-body">
+<div class="score-block">
+<p class="score-block-label">Fall risk score</p>
+<div class="score-row">
+<span class="score-number" id="scoreNumber">22</span>
+<span class="score-descriptor" id="scoreDescriptor">Low risk</span>
+</div>
+<div class="score-bar-track">
+<div class="score-bar-fill" id="scoreBarFill"></div>
+</div>
+</div>
+<div class="feature-chips">
+<div class="feature-chip">Age <span>76</span></div>
+<div class="feature-chip">Medications <span>6</span></div>
+<div class="feature-chip">Mobility <span>Ambulatory</span></div>
+</div>
+<button class="action-btn" id="recalcBtn">Run model again</button>
+<p class="tool-note">Click Run model again a few times. The score changes. Age, medications, and mobility never do. The number looks confident, but it doesn't show its work, and it doesn't tie back to anything you can see change on screen.</p>
+</div>
+</div>
+<!-- Generative panel -->
+<div class="panel" id="generativePanel" style="display: none;">
+<div class="panel-topbar panel-topbar-gen">
+<span class="panel-topbar-title">Draft discharge summary</span>
+<span class="panel-topbar-meta" id="genMeta">M. Okafor</span>
+</div>
+<div class="panel-body">
+<div class="prompt-row" style="margin-bottom: 12px;">
+<span class="prompt-text" id="promptText">Click the sentence you think is made up</span>
+<button class="action-btn copper" id="newPatientBtn">New patient</button>
+</div>
+<p class="doc-body" id="docBody"></p>
+<p class="tool-note">One sentence in this summary was invented, not pulled from the record. Click the one you think is fabricated. A generated sentence can sound just as confident whether it's accurate or made up.</p>
+</div>
+</div>
+
+<script>
+  /* ---- Predictive tab ---- */
+  function setScore(value) {
+    const rounded = Math.round(value);
+    let descriptor, color;
+    if (rounded < 30) {
+      descriptor = 'Low risk';
+      color = 'var(--magnolia)';
+    } else if (rounded < 60) {
+      descriptor = 'Moderate risk';
+      color = 'var(--persimmon)';
+    } else {
+      descriptor = 'High risk';
+      color = 'var(--copper)';
+    }
+    document.getElementById('scoreNumber').textContent = rounded;
+    document.getElementById('scoreDescriptor').textContent = descriptor;
+    document.getElementById('scoreBarFill').style.width = rounded + '%';
+    document.getElementById('scoreBarFill').style.background = color;
+  }
+  document.getElementById('recalcBtn').addEventListener('click', () => {
+    setScore(Math.floor(Math.random() * 100));
+  }); /* ---- Tab switching ---- */
+  const predictiveTab = document.getElementById('predictiveTab');
+  const generativeTab = document.getElementById('generativeTab');
+  const predictivePanel = document.getElementById('predictivePanel');
+  const generativePanel = document.getElementById('generativePanel');
+  predictiveTab.addEventListener('click', () => {
+    predictivePanel.style.display = '';
+    generativePanel.style.display = 'none';
+    predictiveTab.classList.add('active-predictive');
+    generativeTab.classList.remove('active-generative');
+  });
+  generativeTab.addEventListener('click', () => {
+    predictivePanel.style.display = 'none';
+    generativePanel.style.display = '';
+    generativeTab.classList.add('active-generative');
+    predictiveTab.classList.remove('active-predictive');
+  }); /* ---- Generative tab ---- */
+  const scenarios = [{
+    patient: 'M. Okafor',
+    fabricatedIndex: 2,
+    sentences: ['Mrs. Okafor was admitted for management of decompensated heart failure and responded well to diuresis.', 'She remains ambulatory with a steady gait and required no assistive device during this admission.', 'Her cardiology follow-up appointment is scheduled for July 22nd at the Duke Heart Clinic.', 'She was started on a new diuretic yesterday and should be monitored for dizziness upon standing.', 'Discharge medications include lisinopril, metoprolol, and furosemide, reconciled with her home list.']
+  }, {
+    patient: 'J. Alvarez',
+    fabricatedIndex: 3,
+    sentences: ['Mr. Alvarez was treated for community-acquired pneumonia with a five-day course of IV antibiotics.', 'His oxygen saturation remained above 94% on room air for the final 24 hours prior to discharge.', 'Discharge instructions include incentive spirometer use and a follow-up chest X-ray in six weeks.', 'Pulmonology was consulted and recommended two months of home oxygen therapy after discharge.', 'He was educated on recognizing signs of worsening infection, including fever and shortness of breath.']
+  }, {
+    patient: 'R. Chen',
+    fabricatedIndex: 1,
+    sentences: ['Ms. Chen underwent a left total knee arthroplasty without intraoperative complication.', 'Her physical therapist documented that she can safely climb stairs unsupervised at home.', 'Physical therapy noted she ambulated 150 feet with a walker on postoperative day two.', 'Pain was managed with a multimodal regimen, and she reported pain scores of 3 out of 10 at rest.', 'She was discharged with a walker and instructions to follow up with orthopedics in two weeks.']
+  }];
+  let currentIdx = 0;
+  let answered = false;
+
+  function loadScenario(idx) {
+    currentIdx = idx;
+    answered = false;
+    const scenario = scenarios[idx];
+    document.getElementById('genMeta').textContent = scenario.patient;
+    document.getElementById('promptText').textContent = 'Click the sentence you think is made up';
+    const doc = document.getElementById('docBody');
+    doc.innerHTML = '';
+    scenario.sentences.forEach((text, i) => {
+      const span = document.createElement('span');
+      span.className = 'sentence';
+      span.textContent = text + ' ';
+      span.dataset.index = i;
+      span.addEventListener('click', () => handleGuess(i));
+      doc.appendChild(span);
+    });
+  }
+
+  function handleGuess(i) {
+    if (answered) return;
+    answered = true;
+    const scenario = scenarios[currentIdx];
+    const spans = document.querySelectorAll('#docBody .sentence');
+    spans.forEach(s => s.classList.add('answered'));
+    const clicked = spans[i];
+    const fabricated = spans[scenario.fabricatedIndex];
+    if (i === scenario.fabricatedIndex) {
+      clicked.classList.add('correct-guess');
+      const tag = document.createElement('span');
+      tag.className = 'tag tag-fabricated';
+      tag.textContent = 'Fabricated';
+      clicked.appendChild(tag);
+      document.getElementById('promptText').textContent = 'Correct — that detail was invented';
+    } else {
+      clicked.classList.add('wrong-guess');
+      const wrongTag = document.createElement('span');
+      wrongTag.className = 'tag tag-accurate';
+      wrongTag.textContent = 'Actually accurate';
+      clicked.appendChild(wrongTag);
+      fabricated.classList.add('reveal-fabricated');
+      const rightTag = document.createElement('span');
+      rightTag.className = 'tag tag-fabricated';
+      rightTag.textContent = 'Fabricated';
+      fabricated.appendChild(rightTag);
+      document.getElementById('promptText').textContent = 'Not quite — here is the one that was invented';
+    }
+  }
+  document.getElementById('newPatientBtn').addEventListener('click', () => {
+    let next = currentIdx;
+    while (next === currentIdx) {
+      next = Math.floor(Math.random() * scenarios.length);
+    }
+    loadScenario(next);
+  });
+  loadScenario(0);
+</script>
+
+</body>
+</html>

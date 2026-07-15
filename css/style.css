@@ -1,0 +1,337 @@
+/*
+  Sitewide visual direction: light, earthy palette with icon-style accents,
+  in the spirit of a clean Adobe Portfolio template. Serif for headings
+  (Fraunces), sans for body (Inter). This is the agreed direction, not a
+  placeholder.
+*/
+
+:root {
+  --cream: #FBF7F0;
+  --cream-card: #F4EEE3;
+  --ink: #33302B;
+  --ink-soft: #6B655B;
+  --line: #E4DCCC;
+
+  --clay: #C1633D;
+  --sage: #7D8F6A;
+  --ochre: #C79A3D;
+  --umber: #8C6448;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .site-name {
+  font-family: 'Fraunces', Georgia, serif;
+}
+
+.wrap {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* header / nav */
+
+header.site {
+  border-bottom: 1px solid var(--line);
+}
+
+header.site .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.site-name {
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.site-name .role {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
+
+nav.primary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+nav.primary a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+
+nav.primary a:hover,
+nav.primary a.current {
+  color: var(--clay);
+}
+
+/* main content */
+
+main {
+  padding: 48px 0 64px;
+}
+
+main.wrap {
+  padding-top: 48px;
+  padding-bottom: 64px;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 0 0 28px;
+}
+
+h2 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 44px 0 14px;
+}
+
+p {
+  margin: 0 0 16px;
+  color: var(--ink);
+}
+
+.lede {
+  font-size: 1.2rem;
+  color: var(--ink);
+  max-width: 56ch;
+}
+
+.lede a {
+  color: var(--clay);
+}
+
+.framing-line {
+  font-size: 1.1rem;
+  font-family: 'Fraunces', Georgia, serif;
+  color: var(--ink-soft);
+  border-left: 3px solid var(--clay);
+  padding-left: 18px;
+  margin-bottom: 44px;
+}
+
+/* hero (home + about) */
+
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.hero .hero-text {
+  flex: 1 1 380px;
+}
+
+.headshot {
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 15%;
+  border: 3px solid var(--cream-card);
+  outline: 1px solid var(--line);
+  flex-shrink: 0;
+}
+
+.headshot-large {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 15%;
+  border: 4px solid var(--cream-card);
+  outline: 1px solid var(--line);
+  flex-shrink: 0;
+}
+
+.headshot-placeholder {
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  background: var(--cream-card);
+  border: 1px dashed var(--line);
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* featured project cards */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.project-card {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  border: 1px solid var(--line);
+  background: var(--cream-card);
+  border-radius: 10px;
+  padding: 22px 24px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.project-card:hover {
+  border-color: var(--clay);
+  transform: translateY(-1px);
+}
+
+.icon-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 1.5px solid var(--accent, var(--clay));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-badge svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--accent, var(--clay));
+}
+
+.project-card.accent-clay { --accent: var(--clay); }
+.project-card.accent-sage { --accent: var(--sage); }
+.project-card.accent-ochre { --accent: var(--ochre); }
+.project-card.accent-umber { --accent: var(--umber); }
+
+.project-card .card-body h3 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.project-card .card-body p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+.project-card .status {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #A79F8F;
+}
+
+/* run-in labels above interactive embeds */
+
+.try-it-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--clay);
+  margin: 32px 0 10px;
+}
+
+.interactive-embed {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.interactive-embed iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+}
+
+/* placeholder box for a real asset not yet supplied */
+
+.asset-placeholder {
+  border: 1px dashed var(--line);
+  background: var(--cream-card);
+  color: var(--ink-soft);
+  padding: 32px 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-style: italic;
+  border-radius: 8px;
+  margin-bottom: 32px;
+}
+
+/* stub / TBD pages */
+
+.stub-page {
+  padding: 64px 0;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+/* footer / persistent contact */
+
+footer.site {
+  border-top: 1px solid var(--line);
+  margin-top: 40px;
+}
+
+footer.site .wrap {
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+footer.site a {
+  color: var(--ink);
+}
+
+@media (max-width: 600px) {
+  h1 { font-size: 1.6rem; }
+  .hero { flex-direction: column; align-items: flex-start; }
+}

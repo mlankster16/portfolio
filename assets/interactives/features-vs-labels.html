@@ -1,0 +1,729 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title> What the model scored. What the nurse knows. </title> <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400;1,8..60,600&family=Source+Sans+3:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet"> 
+<style>
+   :root {
+     --duke-navy: #012169;
+     --duke-royal: #00539B;
+     --copper: #C84E00;
+     --persimmon: #E89923;
+     --dandelion: #FFD960;
+     --eno: #339898;
+     --magnolia: #1D6363;
+     --prussian: #005587;
+     --shale: #0577B1;
+     --hatteras: #E2E6ED;
+     --whisper: #F3F2F1;
+     --cast-iron: #262626;
+     --graphite: #666666;
+     --granite: #B5B5B5;
+     --limestone: #E5E5E5;
+     --feature-bg: #E8F0FA;
+     --feature-border: #00539B;
+     --feature-text: #012169;
+     --label-bg: #E6F4F4;
+     --label-border: #339898;
+     --label-text: #1D6363;
+     --gap-bg: #FEF0E6;
+     --gap-border: #C84E00;
+     --gap-text: #7A2F00;
+     --warn-bg: #FFF8E6;
+     --warn-border: #E89923;
+   }
+
+   * {
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+   }
+
+   body {
+     font-family: 'Source Sans 3', sans-serif;
+     background: var(--whisper);
+     color: var(--cast-iron);
+     padding: 32px 32px 48px;
+     max-width: 920px;
+     margin: 0 auto;
+   }
+
+   .legend {
+     display: flex;
+     gap: 16px;
+     align-items: center;
+     justify-content: flex-end;
+     margin-bottom: 16px;
+   }
+
+   .legend-item {
+     display: flex;
+     align-items: center;
+     gap: 7px;
+     font-size: 12px;
+     font-weight: 500;
+     color: var(--cast-iron);
+     white-space: nowrap;
+   }
+
+   .legend-swatch {
+     width: 14px;
+     height: 14px;
+     border-radius: 2px;
+     flex-shrink: 0;
+   }
+
+   .swatch-feature {
+     background: var(--feature-border);
+   }
+
+   .swatch-label {
+     background: var(--label-border);
+   }
+
+   .swatch-gap {
+     background: var(--gap-border);
+   }
+
+   .columns {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 20px;
+   }
+
+   .panel {
+     background: white;
+     border: 1px solid var(--limestone);
+     border-radius: 2px;
+     overflow: hidden;
+   }
+
+   .panel-topbar {
+     padding: 10px 16px;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+   }
+
+   .panel-topbar-model {
+     background: var(--cast-iron);
+   }
+
+   .panel-topbar-nurse {
+     background: var(--copper);
+   }
+
+   .panel-topbar-title {
+     font-size: 11px;
+     font-weight: 600;
+     letter-spacing: 0.08em;
+     text-transform: uppercase;
+     color: white;
+   }
+
+   .panel-topbar-meta {
+     font-size: 11px;
+     color: rgba(255, 255, 255, 0.65);
+     font-weight: 300;
+     font-family: 'Source Code Pro', monospace;
+   }
+
+   .reset-btn {
+     font-size: 10px;
+     font-weight: 600;
+     letter-spacing: 0.05em;
+     text-transform: uppercase;
+     color: white;
+     background: rgba(255, 255, 255, 0.12);
+     border: 1px solid rgba(255, 255, 255, 0.25);
+     border-radius: 2px;
+     padding: 4px 9px;
+     cursor: pointer;
+   }
+
+   .reset-btn:hover {
+     background: rgba(255, 255, 255, 0.22);
+   }
+
+   .panel-body {
+     padding: 16px;
+   }
+
+   .score-block {
+     background: var(--cast-iron);
+     border-radius: 2px;
+     padding: 14px 16px;
+     margin-bottom: 14px;
+   }
+
+   .score-block-output-tag {
+     font-size: 9px;
+     font-weight: 600;
+     letter-spacing: 0.1em;
+     text-transform: uppercase;
+     color: var(--persimmon);
+     margin-bottom: 4px;
+   }
+
+   .score-block-label {
+     font-size: 10px;
+     font-weight: 600;
+     letter-spacing: 0.1em;
+     text-transform: uppercase;
+     color: var(--hatteras);
+     margin-bottom: 6px;
+   }
+
+   .score-row {
+     display: flex;
+     align-items: baseline;
+     gap: 10px;
+     margin-bottom: 8px;
+   }
+
+   .score-number {
+     font-family: 'Source Code Pro', monospace;
+     font-size: 40px;
+     font-weight: 500;
+     color: white;
+     line-height: 1;
+     transition: color 0.2s ease;
+   }
+
+   .score-descriptor {
+     font-size: 13px;
+     color: var(--hatteras);
+     font-weight: 500;
+   }
+
+   .score-bar-track {
+     height: 6px;
+     background: rgba(255, 255, 255, 0.2);
+     border-radius: 3px;
+     margin-bottom: 4px;
+     overflow: hidden;
+   }
+
+   .score-bar-fill {
+     height: 6px;
+     width: 22%;
+     background: var(--magnolia);
+     border-radius: 3px;
+     transition: width 0.2s ease, background 0.2s ease;
+   }
+
+   .score-range {
+     display: flex;
+     justify-content: space-between;
+     font-size: 10px;
+     color: rgba(255, 255, 255, 0.5);
+     font-family: 'Source Code Pro', monospace;
+   }
+
+   .features-label {
+     font-size: 10px;
+     font-weight: 600;
+     letter-spacing: 0.09em;
+     text-transform: uppercase;
+     color: var(--graphite);
+     margin-bottom: 8px;
+   }
+
+   .feature-row {
+     padding: 8px 10px;
+     border-radius: 2px;
+     margin-bottom: 6px;
+     background: var(--feature-bg);
+     border: 1px solid #c5d8f0;
+   }
+
+   .feature-row-top {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     margin-bottom: 6px;
+   }
+
+   .feature-name {
+     font-size: 12.5px;
+     color: var(--cast-iron);
+     font-weight: 400;
+   }
+
+   .feature-value {
+     font-family: 'Source Code Pro', monospace;
+     font-size: 12px;
+     color: var(--duke-navy);
+     font-weight: 500;
+   }
+
+   .feature-contrib {
+     font-family: 'Source Code Pro', monospace;
+     font-size: 10px;
+     color: var(--prussian);
+     font-weight: 600;
+     background: white;
+     border: 1px solid #c5d8f0;
+     padding: 1px 7px;
+     border-radius: 2px;
+     white-space: nowrap;
+   }
+
+   .slider {
+     width: 100%;
+     height: 4px;
+     -webkit-appearance: none;
+     appearance: none;
+     background: #c5d8f0;
+     border-radius: 2px;
+     outline: none;
+   }
+
+   .slider::-webkit-slider-thumb {
+     -webkit-appearance: none;
+     width: 15px;
+     height: 15px;
+     border-radius: 50%;
+     background: var(--duke-navy);
+     cursor: pointer;
+     border: 2px solid white;
+     box-shadow: 0 0 0 1px #c5d8f0;
+   }
+
+   .slider::-moz-range-thumb {
+     width: 15px;
+     height: 15px;
+     border-radius: 50%;
+     background: var(--duke-navy);
+     cursor: pointer;
+     border: 2px solid white;
+   }
+
+   .pill-group {
+     display: flex;
+     gap: 6px;
+     flex-wrap: wrap;
+   }
+
+   .pill-btn {
+     font-size: 11px;
+     font-weight: 500;
+     color: var(--duke-navy);
+     background: white;
+     border: 1px solid #c5d8f0;
+     border-radius: 12px;
+     padding: 4px 10px;
+     cursor: pointer;
+   }
+
+   .pill-btn.active {
+     background: var(--duke-navy);
+     color: white;
+     border-color: var(--duke-navy);
+   }
+
+   .pill-btn:hover:not(.active) {
+     background: #dbe8f8;
+   }
+
+   .label-strip {
+     margin-top: 14px;
+     background: var(--label-bg);
+     border: 1px solid #a8d8d8;
+     border-left: 4px solid var(--label-border);
+     border-radius: 2px;
+     padding: 10px 14px;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+   }
+
+   .label-strip-label {
+     font-size: 10px;
+     font-weight: 600;
+     letter-spacing: 0.09em;
+     text-transform: uppercase;
+     color: var(--label-text);
+     margin-bottom: 3px;
+   }
+
+   .label-strip-value {
+     font-size: 13px;
+     font-weight: 500;
+     color: var(--cast-iron);
+   }
+
+   .label-strip-note {
+     font-size: 11px;
+     color: var(--magnolia);
+     font-weight: 300;
+     text-align: right;
+     max-width: 160px;
+     line-height: 1.5;
+   }
+
+   .nurse-section-label {
+     font-size: 10px;
+     font-weight: 600;
+     letter-spacing: 0.09em;
+     text-transform: uppercase;
+     color: var(--graphite);
+     margin-bottom: 8px;
+   }
+
+   .known-row {
+     display: flex;
+     align-items: flex-start;
+     gap: 10px;
+     padding: 8px 10px;
+     border-radius: 2px;
+     margin-bottom: 6px;
+     border: 1px solid var(--limestone);
+     background: var(--whisper);
+   }
+
+   .known-row-icon {
+     font-size: 13px;
+     flex-shrink: 0;
+     margin-top: 1px;
+   }
+
+   .known-row-text {
+     font-size: 12.5px;
+     color: var(--cast-iron);
+     font-weight: 300;
+     line-height: 1.5;
+   }
+
+   .gap-row {
+     display: flex;
+     align-items: flex-start;
+     gap: 10px;
+     padding: 8px 10px;
+     border-radius: 2px;
+     margin-bottom: 6px;
+     border: 1px solid #f5c4a0;
+     background: var(--gap-bg);
+   }
+
+   .gap-tag {
+     flex-shrink: 0;
+     font-size: 9.5px;
+     font-weight: 600;
+     letter-spacing: 0.06em;
+     text-transform: uppercase;
+     color: var(--gap-text);
+     background: white;
+     border: 1px solid #f5c4a0;
+     padding: 2px 7px;
+     border-radius: 2px;
+     margin-top: 1px;
+     white-space: nowrap;
+   }
+
+   .gap-row-text {
+     font-size: 12.5px;
+     color: var(--cast-iron);
+     font-weight: 300;
+     line-height: 1.5;
+   }
+
+   .verdict-strip {
+     margin-top: 14px;
+     background: var(--warn-bg);
+     border: 1px solid var(--warn-border);
+     border-left: 4px solid var(--warn-border);
+     border-radius: 2px;
+     padding: 10px 14px;
+     display: flex;
+     gap: 10px;
+     align-items: flex-start;
+   }
+
+   .verdict-icon {
+     font-size: 14px;
+     color: var(--persimmon);
+     flex-shrink: 0;
+     font-weight: 600;
+     line-height: 1.6;
+   }
+
+   .verdict-text {
+     font-size: 12.5px;
+     line-height: 1.6;
+     color: var(--cast-iron);
+     font-weight: 300;
+   }
+
+   .verdict-text strong {
+     font-weight: 600;
+     color: var(--copper);
+   }
+
+   @media print {
+     body {
+       background: white;
+     }
+   }
+</style>
+</head>
+<body>
+
+<div class="legend">
+<div class="legend-item">
+<div class="legend-swatch swatch-feature"></div> Features </div>
+<div class="legend-item">
+<div class="legend-swatch swatch-label"></div> Label </div>
+<div class="legend-item">
+<div class="legend-swatch swatch-gap"></div> Not in model </div>
+</div>
+<div class="columns">
+<!-- Left: what the model sees -->
+<div class="panel">
+<div class="panel-topbar panel-topbar-model">
+<span class="panel-topbar-title"> What the model used </span>
+<button class="reset-btn" id="resetBtn"> Reset </button>
+</div>
+<div class="panel-body">
+<div class="score-block">
+<p class="score-block-output-tag"> Model Output </p>
+<p class="score-block-label"> Fall risk score </p>
+<div class="score-row">
+<span class="score-number" id="scoreNumber"> 22 </span>
+<span class="score-descriptor" id="scoreDescriptor"> Low risk </span>
+</div>
+<div class="score-bar-track">
+<div class="score-bar-fill" id="scoreBarFill"></div>
+</div>
+<div class="score-range">
+<span> 0 — Low </span>
+<span> 100 — High </span>
+</div>
+</div>
+<p class="features-label"> Features the model was trained on — adjust and watch the score move </p>
+<div class="feature-row">
+<div class="feature-row-top">
+<span class="feature-name"> Age </span>
+<span style="display:flex; align-items:center; gap:8px;">
+<span class="feature-value" id="ageValue"> 76 </span>
+<span class="feature-contrib" id="ageContrib"> +6 </span>
+</span>
+</div>
+<input type="range" class="slider" id="ageSlider" min="18" max="95" value="76">
+</div>
+<div class="feature-row">
+<div class="feature-row-top">
+<span class="feature-name"> Prior fall history </span>
+<span class="feature-contrib" id="fallContrib"> +0 </span>
+</div>
+<div class="pill-group" id="fallGroup">
+<button class="pill-btn active" data-value="none"> None on record </button>
+<button class="pill-btn" data-value="one"> One prior fall </button>
+<button class="pill-btn" data-value="multiple"> Multiple falls </button>
+</div>
+</div>
+<div class="feature-row">
+<div class="feature-row-top">
+<span class="feature-name"> Number of medications </span>
+<span style="display:flex; align-items:center; gap:8px;">
+<span class="feature-value" id="medsValue"> 6 </span>
+<span class="feature-contrib" id="medsContrib"> +15 </span>
+</span>
+</div>
+<input type="range" class="slider" id="medsSlider" min="0" max="15" value="6">
+</div>
+<div class="feature-row">
+<div class="feature-row-top">
+<span class="feature-name"> Mobility status </span>
+<span class="feature-contrib" id="mobilityContrib"> +0 </span>
+</div>
+<div class="pill-group" id="mobilityGroup">
+<button class="pill-btn active" data-value="ambulatory"> Ambulatory </button>
+<button class="pill-btn" data-value="device"> Uses assistive device </button>
+<button class="pill-btn" data-value="dependent"> Dependent for mobility </button>
+</div>
+</div>
+<div class="feature-row">
+<div class="feature-row-top">
+<span class="feature-name"> Length of stay </span>
+<span style="display:flex; align-items:center; gap:8px;">
+<span class="feature-value" id="losValue"> 2 days </span>
+<span class="feature-contrib" id="losContrib"> +3 </span>
+</span>
+</div>
+<input type="range" class="slider" id="losSlider" min="1" max="14" value="2">
+</div>
+<div class="feature-row" style="background: var(--feature-bg);">
+<div class="feature-row-top" style="margin-bottom: 0;">
+<span class="feature-name"> Diagnosis </span>
+<span class="feature-value"> I50.9 CHF </span>
+</div>
+</div>
+<div class="label-strip">
+<div class="label-strip-left">
+<p class="label-strip-label"> Label — training outcome </p>
+<p class="label-strip-value"> Fell / Did not fall </p>
+</div>
+<p class="label-strip-note"> What the model learned to predict, based on thousands of past patients </p>
+</div>
+</div>
+</div>
+<!-- Right: what the nurse knows -->
+<div class="panel">
+<div class="panel-topbar panel-topbar-nurse">
+<span class="panel-topbar-title"> What the nurse knows </span>
+<span class="panel-topbar-meta"> M. Okafor &nbsp;|&nbsp; Shift assessment </span>
+</div>
+<div class="panel-body">
+<p class="nurse-section-label"> In the record and consistent with the score </p>
+<div class="known-row">
+<span class="known-row-icon"> &#10003; </span>
+<span class="known-row-text"> Ambulatory with steady gait documented on admission </span>
+</div>
+<div class="known-row">
+<span class="known-row-icon"> &#10003; </span>
+<span class="known-row-text"> No fall events coded in this admission or prior records </span>
+</div>
+<div class="known-row">
+<span class="known-row-icon"> &#10003; </span>
+<span class="known-row-text"> Six medications on reconciliation list </span>
+</div>
+<p class="nurse-section-label" style="margin-top: 14px;"> Observed this shift — not in model </p>
+<div class="gap-row">
+<span class="gap-tag"> Not a feature </span>
+<span class="gap-row-text"> Patient attempted to get up without calling for assistance twice this morning </span>
+</div>
+<div class="gap-row">
+<span class="gap-tag"> Not a feature </span>
+<span class="gap-row-text"> Reported dizziness when standing during morning care, not yet documented </span>
+</div>
+<div class="gap-row">
+<span class="gap-tag"> Not a feature </span>
+<span class="gap-row-text"> Lives alone — no one at home to assist with mobility after discharge </span>
+</div>
+<div class="gap-row">
+<span class="gap-tag"> Not a feature </span>
+<span class="gap-row-text"> New diuretic started yesterday; orthostatic hypotension not yet assessed </span>
+</div>
+<div class="verdict-strip">
+<span class="verdict-icon"> ! </span>
+<p class="verdict-text"><strong> Try changing the score on the left. </strong> No matter what the model says, none of this shifts — because none of it was ever a feature the model could see. </p>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+   const state = {
+     age: 76,
+     priorFall: 'none',
+     meds: 6,
+     mobility: 'ambulatory',
+     los: 2
+   };
+   const defaults = {
+     ...state
+   };
+   const fallWeights = {
+     none: 0,
+     one: 18,
+     multiple: 32
+   };
+   const mobilityWeights = {
+     ambulatory: 0,
+     device: 10,
+     dependent: 20
+   };
+
+   function computeScore() {
+     const contrib = {
+       age: (state.age - 60) * 0.4,
+       fall: fallWeights[state.priorFall],
+       meds: state.meds * 2.5,
+       mobility: mobilityWeights[state.mobility],
+       los: state.los * 1.5
+     };
+     const base = -3;
+     let total = base + contrib.age + contrib.fall + contrib.meds + contrib.mobility + contrib.los;
+     total = Math.max(0, Math.min(100, total));
+     return {
+       total,
+       contrib
+     };
+   }
+
+   function fmt(n) {
+     const rounded = Math.round(n);
+     return (rounded >= 0 ? '+' : '') + rounded;
+   }
+
+   function render() {
+     const {
+       total,
+       contrib
+     } = computeScore();
+     const rounded = Math.round(total);
+     document.getElementById('scoreNumber').textContent = rounded;
+     document.getElementById('scoreBarFill').style.width = rounded + '%';
+     let descriptor, barColor, numberColor;
+     if (rounded < 30) {
+       descriptor = 'Low risk';
+       barColor = 'var(--magnolia)';
+       numberColor = 'white';
+     } else if (rounded < 60) {
+       descriptor = 'Moderate risk';
+       barColor = 'var(--persimmon)';
+       numberColor = 'white';
+     } else {
+       descriptor = 'High risk';
+       barColor = 'var(--copper)';
+       numberColor = 'white';
+     }
+     document.getElementById('scoreDescriptor').textContent = descriptor;
+     document.getElementById('scoreBarFill').style.background = barColor;
+     document.getElementById('scoreNumber').style.color = numberColor;
+     document.getElementById('ageValue').textContent = state.age;
+     document.getElementById('ageContrib').textContent = fmt(contrib.age);
+     document.getElementById('medsValue').textContent = state.meds;
+     document.getElementById('medsContrib').textContent = fmt(contrib.meds);
+     document.getElementById('losValue').textContent = state.los + (state.los === 1 ? ' day' : ' days');
+     document.getElementById('losContrib').textContent = fmt(contrib.los);
+     document.getElementById('fallContrib').textContent = fmt(contrib.fall);
+     document.getElementById('mobilityContrib').textContent = fmt(contrib.mobility);
+   }
+   document.getElementById('ageSlider').addEventListener('input', e => {
+     state.age = parseInt(e.target.value, 10);
+     render();
+   });
+   document.getElementById('medsSlider').addEventListener('input', e => {
+     state.meds = parseInt(e.target.value, 10);
+     render();
+   });
+   document.getElementById('losSlider').addEventListener('input', e => {
+     state.los = parseInt(e.target.value, 10);
+     render();
+   });
+
+   function wirePillGroup(groupId, stateKey) {
+     const group = document.getElementById(groupId);
+     group.querySelectorAll('.pill-btn').forEach(btn => {
+       btn.addEventListener('click', () => {
+         group.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+         btn.classList.add('active');
+         state[stateKey] = btn.dataset.value;
+         render();
+       });
+     });
+   }
+   wirePillGroup('fallGroup', 'priorFall');
+   wirePillGroup('mobilityGroup', 'mobility');
+   document.getElementById('resetBtn').addEventListener('click', () => {
+     Object.assign(state, defaults);
+     document.getElementById('ageSlider').value = state.age;
+     document.getElementById('medsSlider').value = state.meds;
+     document.getElementById('losSlider').value = state.los;
+     document.querySelectorAll('#fallGroup .pill-btn').forEach(b => b.classList.toggle('active', b.dataset.value === state.priorFall));
+     document.querySelectorAll('#mobilityGroup .pill-btn').forEach(b => b.classList.toggle('active', b.dataset.value === state.mobility));
+     render();
+   });
+   render();
+</script>
+
+</body>
+</html>
