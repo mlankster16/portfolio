@@ -98,7 +98,7 @@
     margin-bottom: 6px;
   }
 
-  textarea, input[type="text"] {
+  textarea, input[type="text"], select {
     width: 100%;
     font-family: inherit;
     font-size: 14px;
@@ -109,7 +109,7 @@
     resize: vertical;
     background: #fff;
   }
-  textarea:focus, input[type="text"]:focus { outline: 2px solid var(--teal); outline-offset: 1px; }
+  textarea:focus, input[type="text"]:focus, select:focus { outline: 2px solid var(--teal); outline-offset: 1px; }
 
   .toggle-row { display: flex; gap: 8px; margin-bottom: 14px; }
   .toggle-btn {
@@ -159,6 +159,7 @@
     cursor: pointer;
   }
   .btn-secondary:hover { background: #f0f4fa; }
+  .btn-secondary:disabled { opacity: 0.5; cursor: not-allowed; }
 
   .inline-note {
     font-size: 12.5px;
@@ -210,7 +211,7 @@
     font-weight: 600;
   }
 
-  /* live preview tabs */
+  /* live preview shell */
   .preview-shell {
     border: 1px solid var(--border);
     border-radius: 10px;
@@ -219,6 +220,8 @@
   }
   .preview-title { font-size: 17px; color: var(--navy); margin: 0 0 4px; font-weight: 700; }
   .preview-instructions { font-size: 13.5px; color: var(--muted); margin: 0 0 14px; }
+
+  /* tabbed explorer */
   .tabs-nav { display: flex; gap: 6px; flex-wrap: wrap; border-bottom: 2px solid #eee; margin-bottom: 16px; }
   .tab-btn {
     padding: 9px 14px;
@@ -235,6 +238,63 @@
   .tab-panel h4 { color: var(--navy); font-size: 15.5px; margin: 0 0 10px; }
   .field-row { margin-bottom: 10px; font-size: 13.5px; line-height: 1.55; }
   .field-row strong { color: var(--ink); }
+
+  /* drag-to-classify */
+  .drag-zones { display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: 10px; margin-bottom: 18px; }
+  .drag-zone { border: 2px dashed #ccc; border-radius: 10px; padding: 10px; min-height: 96px; transition: border-color 0.15s, background 0.15s; }
+  .drag-zone.drop-hover { border-color: var(--teal); background: #eef7f7; }
+  .drag-zone-label { font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--navy); margin-bottom: 8px; }
+  .drag-zone-slot { display: flex; flex-direction: column; gap: 6px; }
+  .drag-chip-pool { display: flex; flex-wrap: wrap; gap: 8px; min-height: 20px; }
+  .drag-chip {
+    background: #fff;
+    border: 1.5px solid #ccc;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 12.5px;
+    line-height: 1.4;
+    cursor: grab;
+    max-width: 230px;
+    user-select: none;
+    touch-action: none;
+  }
+  .drag-chip.placed { border-color: #2a7f2a; background: #eaf7ea; cursor: default; max-width: none; }
+  .drag-chip.incorrect-flash { border-color: #b23a3a; background: #fbeaea; }
+  .drag-chip.dragging-ghost { box-shadow: 0 6px 18px rgba(0,0,0,0.18); }
+
+  /* click-to-reveal */
+  .reveal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+  .reveal-card { border: 1px solid var(--border); border-radius: 10px; padding: 12px; cursor: pointer; background: #fff; }
+  .reveal-card.open { background: #EFF6F6; border-color: var(--teal); }
+  .reveal-card .rc-name { font-weight: 700; color: var(--navy); font-size: 14px; }
+  .reveal-card .rc-detail { display: none; font-size: 12.5px; margin-top: 8px; line-height: 1.55; color: #333; }
+  .reveal-card.open .rc-detail { display: block; }
+
+  /* annotated text */
+  .annotated-para { font-size: 14.5px; line-height: 1.95; margin: 0; }
+  mark.ann { background: #fff2b8; cursor: pointer; border-radius: 3px; padding: 0 2px; }
+  mark.ann.active { background: var(--teal); color: #fff; }
+  .ann-popover { margin-top: 14px; border: 1px solid var(--teal); background: #EFF6F6; border-radius: 8px; padding: 10px 12px; font-size: 13px; line-height: 1.55; color: #234; }
+
+  /* sequencing */
+  .seq-list { list-style: none; margin: 0 0 14px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .seq-item { display: flex; align-items: center; gap: 10px; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; background: #fff; font-size: 13px; }
+  .seq-item.correct { border-color: #2a7f2a; background: #eaf7ea; }
+  .seq-item.incorrect { border-color: #b23a3a; background: #fbeaea; }
+  .seq-num { font-weight: 700; color: var(--navy); }
+  .seq-controls { display: flex; gap: 4px; }
+  .seq-btn { border: 1px solid var(--border); background: #fff; border-radius: 4px; width: 26px; height: 24px; cursor: pointer; font-size: 11px; line-height: 1; }
+  .seq-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  /* inline quiz */
+  .quiz-scenario { font-size: 13.5px; line-height: 1.6; margin-bottom: 14px; background: #FAFAF9; border: 1px solid var(--border); border-radius: 8px; padding: 12px; }
+  .quiz-option { display: flex; gap: 8px; align-items: flex-start; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; cursor: pointer; font-size: 13.5px; line-height: 1.5; }
+  .quiz-option input { margin-top: 3px; width: auto; }
+  .quiz-option.correct { border-color: #2a7f2a; background: #eaf7ea; }
+  .quiz-option.incorrect { border-color: #b23a3a; background: #fbeaea; }
+  .quiz-feedback { margin-top: 12px; padding: 10px 12px; border-radius: 8px; font-size: 13px; line-height: 1.55; }
+  .quiz-feedback.correct { background: #eaf7ea; border: 1px solid #2a7f2a; color: #215c21; }
+  .quiz-feedback.incorrect { background: #fbeaea; border: 1px solid #b23a3a; color: #7a1f1f; }
 
   .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 8px; }
   .pill-label {
@@ -361,7 +421,7 @@
       </div>
 
       <label class="field-label" for="challengeText">Describe your challenge</label>
-      <textarea id="challengeText" rows="6" placeholder="I have a module on nursing assessment frameworks that lists five different tools, SBAR, HEAD-TO-TOE, OLDCARTS, ABCDE, and CIWA-Ar. Right now it's just five paragraphs of text. Learners need to know when and why to use each one, but the content feels dense and hard to scan. Most learners will already know at least one or two of these frameworks."></textarea>
+      <textarea id="challengeText" rows="6" placeholder="I have a module introducing five ESG reporting frameworks, GRI, SASB, TCFD, CDP, and the EU CSRD. Right now it's a dense comparison table. Learners need to understand what each framework measures, who requires or uses it, and when a company would reach for it, but most learners have only encountered one or two of these in practice."></textarea>
       <span class="example-link" id="tryExampleLink">Try the example</span>
 
       <div class="actions-row">
@@ -384,17 +444,16 @@
 
       <div id="recommendationPanel" style="display:none;">
         <span class="badge">Recommended: Tabbed explorer</span>
-        <p class="rationale">Five assessment frameworks are exactly parallel in structure and serve distinct clinical contexts. A tabbed layout lets learners quickly scan all five at once, compare when each is appropriate, and turn a dense wall of text into an immediately navigable reference that supports both initial learning and later lookup.</p>
+        <p class="rationale" id="rationaleArea"></p>
 
         <div class="preview-shell" id="previewShell"></div>
 
         <p class="pill-label">Explore other approaches for this content</p>
         <div class="pill-row" id="pillRow"></div>
-        <div class="inline-note" id="pillNote" style="display:none;"></div>
 
         <div class="summary-card">
-          <p class="label">COMPREHEND AND COMPARE FRAMEWORKS</p>
-          <p>Five parallel tools of equal weight. Tabs let learners see the full landscape at a glance, compare contexts, and understand why one tool beats another in a given situation.</p>
+          <p class="label" id="whyCardLabel"></p>
+          <p id="whyCardText"></p>
         </div>
 
         <div class="actions-row">
@@ -445,58 +504,173 @@
 </div>
 
 <script>
-  /* ---------------- state ---------------- */
-  const EXAMPLE_TEXT = "I have a module on nursing assessment frameworks that lists five different tools, SBAR, HEAD-TO-TOE, OLDCARTS, ABCDE, and CIWA-Ar. Right now it's just five paragraphs of text. Learners need to know when and why to use each one, but the content feels dense and hard to scan. Most learners will already know at least one or two of these frameworks.";
+  /* ==================================================================
+     STATE
+     ================================================================== */
+  const EXAMPLE_TEXT = "I have a module introducing five ESG reporting frameworks, GRI, SASB, TCFD, CDP, and the EU CSRD. Right now it's a dense comparison table. Learners need to understand what each framework measures, who requires or uses it, and when a company would reach for it, but most learners have only encountered one or two of these in practice.";
 
-  const data = {
-    title: "Nursing Assessment Frameworks",
-    instructions: "Select a framework to see when and how to use it in practice.",
-    frameworks: [
-      {
-        tabLabel: "SBAR",
-        heading: "SBAR",
-        when: "Communicating urgent clinical changes to providers or during handoffs. SBAR structures verbal and written reports to ensure critical information is delivered clearly and completely.",
-        structure: "Situation (what is happening now), Background (relevant clinical history), Assessment (your clinical judgment), Recommendation (what you think should happen next).",
-        example: "Calling a physician about a post-operative patient with sudden onset chest pain and tachycardia."
-      },
-      {
-        tabLabel: "HEAD-TO-TOE",
-        heading: "Head-to-Toe Assessment",
-        when: "Comprehensive physical examination during admission or routine shift assessments. Ensures systematic coverage of all body systems without missing findings.",
-        structure: "Progress sequentially from head (neurological, HEENT) through chest (cardiac, respiratory), abdomen, extremities, and skin. Document findings by region.",
-        example: "Admitting a patient with pneumonia, you assess mental status, lung sounds, work of breathing, skin color, and peripheral perfusion in one organized pass."
-      },
-      {
-        tabLabel: "OLDCARTS",
-        heading: "OLDCARTS",
-        when: "Investigating a patient's chief complaint or new symptom. Guides symptom history-taking so you characterize the problem thoroughly before intervening.",
-        structure: "Onset, Location, Duration, Character, Aggravating/alleviating factors, Radiation, Timing, Severity. Each dimension adds diagnostic clarity.",
-        example: "A patient reports abdominal pain. You ask when it started, exactly where it hurts, what makes it worse, whether it moves to the back, how long episodes last, and rate the intensity."
-      },
-      {
-        tabLabel: "ABCDE",
-        heading: "ABCDE",
-        when: "Rapid assessment in emergency or deteriorating patient situations. Prioritizes life-threatening problems in physiological order, addressing each step before moving to the next.",
-        structure: "Airway, Breathing, Circulation, Disability (neurological status), Exposure (full-body survey for injuries or signs). Intervene at each level if abnormalities are found.",
-        example: "Responding to a code blue or trauma, you check airway patency, assess breathing effort and oxygen saturation, check pulse and perfusion, evaluate consciousness, then expose the patient to identify bleeding or other injuries."
-      },
-      {
-        tabLabel: "CIWA-Ar",
-        heading: "CIWA-Ar",
-        when: "Monitoring patients undergoing alcohol withdrawal. Provides objective scoring of withdrawal severity to guide benzodiazepine dosing and escalation of care.",
-        structure: "Ten items scored 0-7: nausea/vomiting, tremor, sweating, anxiety, agitation, tactile/auditory/visual disturbances, headache, orientation. Total score determines intervention thresholds.",
-        example: "A patient admitted with alcohol use disorder begins showing tremors and reports feeling anxious. You complete a CIWA-Ar assessment every 4 hours; a score above 10 triggers scheduled medication per protocol."
-      }
-    ],
-    staticText: "This module covers five clinical assessment frameworks used in nursing practice. SBAR (Situation, Background, Assessment, Recommendation) structures urgent communication with providers during handoffs or sudden clinical changes. The head-to-toe assessment is a systematic physical exam performed at admission or during routine shift checks, moving from neurological and HEENT findings through the chest, abdomen, extremities, and skin. OLDCARTS (Onset, Location, Duration, Character, Aggravating/alleviating factors, Radiation, Timing, Severity) guides a thorough history of a patient's chief complaint or new symptom. ABCDE (Airway, Breathing, Circulation, Disability, Exposure) prioritizes life-threatening problems in emergency or rapidly deteriorating situations, addressing each step before moving to the next. CIWA-Ar is a ten-item scoring tool used to monitor alcohol withdrawal severity and guide medication dosing, typically reassessed every four hours. Together these frameworks give nurses a structured approach for communication, routine exams, symptom investigation, emergency response, and withdrawal monitoring."
+  const TYPES = ["tabs", "drag", "reveal", "annotated", "sequencing", "quiz"];
+
+  const PILL_LABEL = {
+    tabs: "Tabbed explorer",
+    drag: "Drag-to-classify",
+    reveal: "Click-to-reveal",
+    annotated: "Annotated text",
+    sequencing: "Sequencing",
+    quiz: "Inline quiz"
   };
 
-  const OTHER_PILLS = ["Drag-to-classify", "Click-to-reveal", "Annotated text", "Sequencing", "Inline quiz"];
+  const RATIONALE_TABS = "Five reporting frameworks are exactly parallel in structure and serve distinct audiences. A tabbed layout lets learners quickly scan all five at once, compare who each one is for, and turn a dense comparison table into an immediately navigable reference.";
 
-  let previewActiveTab = 0;
+  const FRAMING = {
+    drag: "A matching exercise checks whether learners can recognize each framework from real disclosure language, not just recall a definition.",
+    reveal: "A click-to-reveal grid gives learners a fast, low-stakes way to check what each framework covers.",
+    annotated: "Annotating a real disclosure paragraph tests the hardest version of this skill: connecting language to framework with no labels given.",
+    sequencing: "A sequencing exercise models the actual decision process a company follows when choosing a framework.",
+    quiz: "A scenario-based question forces learners to apply the distinction, not just recognize it."
+  };
+
+  const WHY_CARDS = {
+    tabs: { label: "COMPARE PARALLEL CONCEPTS", text: "Perfect fit: five frameworks at the threshold of tab capacity; learners benefit from seeing all labels at once and flipping between scope, audience, and use case to build decision-making schema." },
+    drag: { label: "TEST RECOGNITION, NOT RECALL", text: "Learners aren't picking a definition from a list. They're matching real disclosure language to the framework that produced it, the same skill they'll need on the job." },
+    reveal: { label: "LOW-STAKES RECALL CHECK", text: "Good for a quick refresher before the graded assessment, or for learners who already know a couple of these frameworks and just need to fill the gaps." },
+    annotated: { label: "CONNECT LANGUAGE TO FRAMEWORK", text: "This is the hardest and most realistic version of the skill: no framework names, just the language a real disclosure would use." },
+    sequencing: { label: "MODEL THE DECISION PROCESS", text: "This mirrors how a sustainability team actually approaches framework selection: audience first, then legal requirement, then materiality, then the framework itself." },
+    quiz: { label: "APPLY THE DISTINCTION", text: "The scenario forces learners to notice the detail that matters, EU operations above a size threshold, and connect it to the one framework that responds to legal requirement rather than audience or industry." }
+  };
+
+  let SHARED_STATIC_TEXT = "Companies choose among five major ESG reporting frameworks depending on their audience and legal obligations. GRI offers the broadest, most widely adopted approach to public-facing sustainability reporting, covering many topics for a wide range of stakeholders. SASB narrows the focus to financially material ESG metrics specific to each industry, aimed at investors. TCFD focuses specifically on climate-related risk, organized around governance, strategy, risk management, and metrics. CDP structures environmental disclosure, especially emissions, water, and deforestation, as an annual scored questionnaire, often required by customers or investors. The EU's CSRD is the only mandatory framework among the five, requiring companies above a size threshold operating in the EU to report using double materiality, audited and filed alongside financial statements.";
+
+  const dataStore = {
+    tabs: {
+      title: "Five ESG Reporting Frameworks",
+      instructions: "Select a framework to see what it measures, who uses it, and when a company would reach for it.",
+      frameworks: [
+        {
+          tabLabel: "GRI",
+          heading: "GRI",
+          when: "Publishing a voluntary sustainability report for a broad audience, not just investors. GRI is the most widely adopted framework worldwide for public-facing disclosure.",
+          structure: "Universal Standards (organizational context, governance, stakeholder engagement) plus Topic Standards covering specific issues like emissions, labor practices, and water use.",
+          example: "A multinational consumer goods company publishing its annual sustainability report for the public, NGOs, and community stakeholders."
+        },
+        {
+          tabLabel: "SASB",
+          heading: "SASB",
+          when: "Communicating financially material ESG information to investors. SASB standards are industry-specific, focused only on issues likely to affect financial performance.",
+          structure: "77 industry-specific standards, each identifying a small set of financially material topics and metrics for that industry alone.",
+          example: "A software company disclosing data security and workforce metrics because those are the ESG issues material to its industry, not the land-use metrics that matter more to agriculture."
+        },
+        {
+          tabLabel: "TCFD",
+          heading: "TCFD",
+          when: "Disclosing climate-related risk to investors and lenders. TCFD is built specifically around climate risk, not ESG broadly.",
+          structure: "Four pillars: Governance, Strategy, Risk Management, and Metrics and Targets, addressing how climate risk is identified, managed, and measured.",
+          example: "A bank assessing how rising sea levels could affect the value of coastal real estate in its loan portfolio, and disclosing that exposure to shareholders."
+        },
+        {
+          tabLabel: "CDP",
+          heading: "CDP",
+          when: "Responding to investor or customer requests for detailed environmental data, especially carbon emissions, water security, and deforestation.",
+          structure: "Annual questionnaires scored on a letter grade, A to D-, covering climate change, water security, and forests as separate tracks.",
+          example: "A retailer's supply chain team completing the CDP climate questionnaire because a major customer requires a CDP score from all its suppliers."
+        },
+        {
+          tabLabel: "CSRD",
+          heading: "CSRD",
+          when: "Mandatory reporting for companies operating in the EU above a certain size threshold. Unlike the other four, CSRD isn't voluntary.",
+          structure: "Requires double materiality: both how sustainability issues affect the company financially, and how the company affects society and the environment. Audited and filed with financial statements.",
+          example: "A US-based manufacturer with a large enough EU subsidiary now has to prepare CSRD-compliant sustainability statements for the first time, even though reporting at home is still voluntary."
+        }
+      ]
+    },
+
+    drag: {
+      title: "Sort the Disclosure by Framework",
+      instructions: "Drag each statement into the framework it belongs to.",
+      zones: ["GRI", "SASB", "TCFD", "CDP", "CSRD"],
+      statements: [
+        { text: "As a qualifying EU company, we're now legally required to file audited sustainability statements.", zone: "CSRD" },
+        { text: "Our annual sustainability report covers labor practices across our global supply chain for a broad public audience.", zone: "GRI" },
+        { text: "We completed the annual questionnaire and received a B grade for our climate disclosures.", zone: "CDP" },
+        { text: "We disclose only the ESG metrics considered financially material to the software industry.", zone: "SASB" },
+        { text: "We modeled how a 2°C warming scenario would affect our real estate loan portfolio.", zone: "TCFD" }
+      ]
+    },
+
+    reveal: {
+      title: "Five Frameworks at a Glance",
+      instructions: "Click each framework to reveal what it's for.",
+      cards: [
+        { name: "GRI", measures: "broad ESG impact across many topics.", usedBy: "any company publishing a public sustainability report." },
+        { name: "SASB", measures: "financially material ESG metrics for one specific industry.", usedBy: "companies reporting to investors." },
+        { name: "TCFD", measures: "climate-related risk across governance, strategy, risk, and metrics.", usedBy: "banks, insurers, and companies disclosing climate exposure." },
+        { name: "CDP", measures: "emissions, water security, and deforestation via a scored questionnaire.", usedBy: "companies responding to investor or customer requests." },
+        { name: "CSRD", measures: "double materiality, financial and societal impact.", usedBy: "companies operating in the EU above a size threshold (mandatory)." }
+      ]
+    },
+
+    annotated: {
+      title: "Reading a Real Disclosure Statement",
+      instructions: "Click the highlighted phrases to see which framework they reference.",
+      segments: [
+        { type: "text", text: "In our fiscal year 2025 report, we completed our first " },
+        { type: "ann", phrase: "double materiality assessment", annotation: "CSRD: Double materiality, impact on the company and impact on society and the environment, is the defining requirement of the EU's CSRD." },
+        { type: "text", text: " for our EU operations, published " },
+        { type: "ann", phrase: "emissions data scored by an independent environmental disclosure body", annotation: "CDP: This describes CDP's annual questionnaire and letter-grade scoring." },
+        { type: "text", text: ", and continued our voluntary " },
+        { type: "ann", phrase: "sustainability report for community and public stakeholders", annotation: "GRI: Broad, public-facing sustainability reporting is GRI's core use case." },
+        { type: "text", text: ". Our board now reviews " },
+        { type: "ann", phrase: "climate-related risk to our loan portfolio", annotation: "TCFD: Assessing and disclosing climate risk to lenders and investors is TCFD's specific focus." },
+        { type: "text", text: " each quarter, and our investor-facing filings include " },
+        { type: "ann", phrase: "financially material metrics specific to our industry", annotation: "SASB: Industry-specific, investor-facing, financially material metrics describe SASB." },
+        { type: "text", text: "." }
+      ]
+    },
+
+    sequencing: {
+      title: "Choosing a Reporting Framework",
+      instructions: "Put these steps in the order a company would actually take them.",
+      steps: [
+        "Identify your primary audience: investors, regulators, or the general public.",
+        "Check whether any framework is legally required for your size and location.",
+        "Identify which ESG topics are financially material to your industry.",
+        "Select the framework or frameworks that match your audience and materiality profile.",
+        "Gather data and publish, on the cycle your chosen framework requires."
+      ]
+    },
+
+    quiz: {
+      title: "Which Framework Fits?",
+      instructions: "Read the scenario and choose the best answer.",
+      scenario: "A mid-sized US manufacturer just opened a subsidiary in Germany large enough to trigger EU reporting thresholds. Its finance team wants to know which framework they're now legally required to comply with.",
+      options: [
+        { text: "GRI, because it's the most widely recognized framework globally.", correct: false },
+        { text: "SASB, because investors will expect industry-specific metrics.", correct: false },
+        { text: "CDP, because their customers likely require a climate questionnaire.", correct: false },
+        { text: "CSRD, because operating in the EU above the size threshold makes reporting mandatory, not optional.", correct: true }
+      ],
+      correctFeedback: "Right. CSRD is the only framework here that's a legal requirement rather than a voluntary choice, and it's triggered by the EU subsidiary's size, not the parent company's location.",
+      incorrectFeedback: "Not quite. The others are strong voluntary choices, but only one framework here is a mandatory legal requirement once a company crosses the EU's size threshold."
+    }
+  };
+
+  let activeType = "tabs";
+  let confirmedType = null;
   let currentStep = 1;
 
-  /* ---------------- helpers ---------------- */
+  // per-interaction preview state
+  let tabsActiveIndex = 0;
+  let dragPreviewState = null;      // array of {placed, correct} keyed by statement index
+  let revealOpenSet = new Set();
+  let annotatedActiveIndex = null;
+  let sequencingOrder = null;       // array of step indices, current displayed order
+  let sequencingChecked = false;
+  let quizSelectedIndex = null;
+  let quizSubmitted = false;
+
+  /* ==================================================================
+     HELPERS
+     ================================================================== */
   function escapeHtml(str) {
     return String(str)
       .replace(/&/g, "&amp;")
@@ -504,6 +678,17 @@
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#39;");
+  }
+
+  function resetAllPreviewState() {
+    tabsActiveIndex = 0;
+    dragPreviewState = null;
+    revealOpenSet = new Set();
+    annotatedActiveIndex = null;
+    sequencingOrder = null;
+    sequencingChecked = false;
+    quizSelectedIndex = null;
+    quizSubmitted = false;
   }
 
   function showStep(n) {
@@ -515,7 +700,9 @@
     reportHeight();
   }
 
-  /* ---------------- STEP 1 ---------------- */
+  /* ==================================================================
+     STEP 1
+     ================================================================== */
   document.getElementById("toggleRecommend").addEventListener("click", () => {
     document.getElementById("toggleRecommend").classList.add("active");
     document.getElementById("toggleKnow").classList.remove("active");
@@ -542,6 +729,8 @@
 
   function beginAnalysis() {
     showStep(2);
+    activeType = "tabs";
+    confirmedType = null;
     document.getElementById("generatingPanel").style.display = "";
     document.getElementById("recommendationPanel").style.display = "none";
     const fill = document.getElementById("progressFill");
@@ -555,7 +744,9 @@
     setTimeout(() => {
       document.getElementById("generatingPanel").style.display = "none";
       document.getElementById("recommendationPanel").style.display = "";
+      renderRationaleArea();
       renderPreview();
+      renderWhyCard();
       renderPills();
       reportHeight();
     }, 2000);
@@ -564,20 +755,72 @@
   document.getElementById("startOverLink").addEventListener("click", () => {
     document.getElementById("challengeText").value = "";
     document.getElementById("step1Note").style.display = "none";
+    activeType = "tabs";
+    confirmedType = null;
+    resetAllPreviewState();
     showStep(1);
   });
 
-  /* ---------------- STEP 2: live preview ---------------- */
+  /* ==================================================================
+     STEP 2: recommendation panel (rationale, preview, why-card, pills)
+     ================================================================== */
+  function renderRationaleArea() {
+    const el = document.getElementById("rationaleArea");
+    el.textContent = (activeType === "tabs") ? RATIONALE_TABS : FRAMING[activeType];
+    reportHeight();
+  }
+
+  function renderWhyCard() {
+    const card = WHY_CARDS[activeType];
+    document.getElementById("whyCardLabel").textContent = card.label;
+    document.getElementById("whyCardText").textContent = card.text;
+    reportHeight();
+  }
+
+  function renderPills() {
+    const row = document.getElementById("pillRow");
+    row.innerHTML = "";
+    TYPES.forEach(t => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "pill" + (t === activeType ? " active" : "");
+      btn.textContent = PILL_LABEL[t];
+      btn.addEventListener("click", () => {
+        if (activeType === t) return;
+        activeType = t;
+        renderRationaleArea();
+        renderPreview();
+        renderWhyCard();
+        renderPills();
+        reportHeight();
+      });
+      row.appendChild(btn);
+    });
+    reportHeight();
+  }
+
   function renderPreview() {
     const shell = document.getElementById("previewShell");
-    let html = '<p class="preview-title">' + escapeHtml(data.title) + '</p>';
-    html += '<p class="preview-instructions">' + escapeHtml(data.instructions) + '</p>';
+    if (activeType === "tabs") renderTabsPreview(shell);
+    else if (activeType === "drag") renderDragPreview(shell);
+    else if (activeType === "reveal") renderRevealPreview(shell);
+    else if (activeType === "annotated") renderAnnotatedPreview(shell);
+    else if (activeType === "sequencing") renderSequencingPreview(shell);
+    else if (activeType === "quiz") renderQuizPreview(shell);
+    reportHeight();
+  }
+
+  /* ---- 1. Tabbed explorer ---- */
+  function renderTabsPreview(shell) {
+    const d = dataStore.tabs;
+    let html = '<p class="preview-title">' + escapeHtml(d.title) + '</p>';
+    html += '<p class="preview-instructions">' + escapeHtml(d.instructions) + '</p>';
     html += '<div class="tabs-nav">';
-    data.frameworks.forEach((f, i) => {
-      html += '<button type="button" class="tab-btn' + (i === previewActiveTab ? ' active' : '') + '" data-tab-index="' + i + '">' + escapeHtml(f.tabLabel) + '</button>';
+    d.frameworks.forEach((f, i) => {
+      html += '<button type="button" class="tab-btn' + (i === tabsActiveIndex ? ' active' : '') + '" data-i="' + i + '">' + escapeHtml(f.tabLabel) + '</button>';
     });
     html += '</div>';
-    const f = data.frameworks[previewActiveTab];
+    const f = d.frameworks[tabsActiveIndex];
     html += '<div class="tab-panel">';
     html += '<h4>' + escapeHtml(f.heading) + '</h4>';
     html += '<div class="field-row"><strong>When to use:</strong> ' + escapeHtml(f.when) + '</div>';
@@ -588,133 +831,665 @@
 
     shell.querySelectorAll(".tab-btn").forEach(btn => {
       btn.addEventListener("click", () => {
-        previewActiveTab = parseInt(btn.dataset.tabIndex, 10);
-        renderPreview();
+        tabsActiveIndex = parseInt(btn.dataset.i, 10);
+        renderTabsPreview(shell);
         reportHeight();
       });
     });
     reportHeight();
   }
 
-  function renderPills() {
-    const row = document.getElementById("pillRow");
-    row.innerHTML = "";
-    const activePill = document.createElement("button");
-    activePill.type = "button";
-    activePill.className = "pill active";
-    activePill.textContent = "Tabbed explorer";
-    activePill.addEventListener("click", () => {
-      document.getElementById("pillNote").style.display = "none";
-      reportHeight();
+  /* ---- 2. Drag-to-classify ---- */
+  function renderDragPreview(shell) {
+    const d = dataStore.drag;
+    if (!dragPreviewState) {
+      dragPreviewState = d.statements.map(() => ({ placed: false }));
+    }
+    let html = '<p class="preview-title">' + escapeHtml(d.title) + '</p>';
+    html += '<p class="preview-instructions">' + escapeHtml(d.instructions) + '</p>';
+    html += '<div class="drag-zones">';
+    d.zones.forEach(z => {
+      html += '<div class="drag-zone" data-zone="' + escapeHtml(z) + '">';
+      html += '<div class="drag-zone-label">' + escapeHtml(z) + '</div>';
+      html += '<div class="drag-zone-slot" data-zone-slot="' + escapeHtml(z) + '"></div>';
+      html += '</div>';
     });
-    row.appendChild(activePill);
+    html += '</div>';
+    html += '<p class="pill-label" style="margin:0 0 8px;">Statements</p>';
+    html += '<div class="drag-chip-pool" id="dragChipPool">';
+    d.statements.forEach((s, i) => {
+      if (!dragPreviewState[i].placed) {
+        html += '<div class="drag-chip" data-i="' + i + '">' + escapeHtml(s.text) + '</div>';
+      }
+    });
+    html += '</div>';
+    const allPlaced = dragPreviewState.every(st => st.placed);
+    if (allPlaced) {
+      html += '<div class="inline-note" style="margin-top:12px;">All five statements are correctly sorted.</div>';
+    }
+    shell.innerHTML = html;
 
-    OTHER_PILLS.forEach(name => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "pill";
-      btn.textContent = name;
-      btn.addEventListener("click", () => {
-        const note = document.getElementById("pillNote");
-        note.textContent = 'This mockup walks through the Tabbed explorer path end to end. In the real tool, clicking "' + name + '" would generate its own live preview here.';
-        note.style.display = "";
-        reportHeight();
-      });
-      row.appendChild(btn);
+    // re-insert already-placed chips into their zone slots
+    d.statements.forEach((s, i) => {
+      if (dragPreviewState[i].placed) {
+        const slot = shell.querySelector('.drag-zone-slot[data-zone-slot="' + s.zone + '"]');
+        if (slot) {
+          const chip = document.createElement("div");
+          chip.className = "drag-chip placed";
+          chip.textContent = s.text;
+          slot.appendChild(chip);
+        }
+      }
     });
+
+    wireDragChips(shell, d);
+    reportHeight();
   }
 
+  function wireDragChips(shell, d) {
+    shell.querySelectorAll(".drag-chip[data-i]").forEach(chip => {
+      chip.addEventListener("mousedown", onDragStart);
+      chip.addEventListener("touchstart", onDragStart, { passive: false });
+    });
+
+    function onDragStart(e) {
+      e.preventDefault();
+      const chip = e.currentTarget;
+      const idx = parseInt(chip.dataset.i, 10);
+      const rect = chip.getBoundingClientRect();
+      const point = e.touches ? e.touches[0] : e;
+      const offsetX = point.clientX - rect.left;
+      const offsetY = point.clientY - rect.top;
+
+      const ghost = chip.cloneNode(true);
+      ghost.classList.add("dragging-ghost");
+      ghost.style.position = "fixed";
+      ghost.style.zIndex = "9999";
+      ghost.style.width = rect.width + "px";
+      ghost.style.left = rect.left + "px";
+      ghost.style.top = rect.top + "px";
+      ghost.style.pointerEvents = "none";
+      document.body.appendChild(ghost);
+      chip.style.visibility = "hidden";
+
+      shell.querySelectorAll(".drag-zone").forEach(z => z.classList.remove("drop-hover"));
+
+      function move(ev) {
+        ev.preventDefault && ev.preventDefault();
+        const p = ev.touches ? ev.touches[0] : ev;
+        ghost.style.left = (p.clientX - offsetX) + "px";
+        ghost.style.top = (p.clientY - offsetY) + "px";
+        ghost.style.display = "none";
+        const under = document.elementFromPoint(p.clientX, p.clientY);
+        ghost.style.display = "";
+        shell.querySelectorAll(".drag-zone").forEach(z => z.classList.remove("drop-hover"));
+        const zoneEl = under ? under.closest(".drag-zone") : null;
+        if (zoneEl) zoneEl.classList.add("drop-hover");
+      }
+
+      function end(ev) {
+        document.removeEventListener("mousemove", move);
+        document.removeEventListener("mouseup", end);
+        document.removeEventListener("touchmove", move);
+        document.removeEventListener("touchend", end);
+        const p = ev.changedTouches ? ev.changedTouches[0] : ev;
+        ghost.style.display = "none";
+        const dropTarget = document.elementFromPoint(p.clientX, p.clientY);
+        ghost.remove();
+        chip.style.visibility = "";
+        shell.querySelectorAll(".drag-zone").forEach(z => z.classList.remove("drop-hover"));
+
+        const zoneEl = dropTarget ? dropTarget.closest(".drag-zone") : null;
+        if (zoneEl) {
+          const targetZone = zoneEl.dataset.zone;
+          const statement = d.statements[idx];
+          if (targetZone === statement.zone) {
+            dragPreviewState[idx] = { placed: true };
+            renderDragPreview(shell);
+            return;
+          } else {
+            chip.classList.add("incorrect-flash");
+            setTimeout(() => { chip.classList.remove("incorrect-flash"); }, 550);
+          }
+        }
+        reportHeight();
+      }
+
+      document.addEventListener("mousemove", move);
+      document.addEventListener("mouseup", end);
+      document.addEventListener("touchmove", move, { passive: false });
+      document.addEventListener("touchend", end);
+    }
+  }
+
+  /* ---- 3. Click-to-reveal ---- */
+  function renderRevealPreview(shell) {
+    const d = dataStore.reveal;
+    let html = '<p class="preview-title">' + escapeHtml(d.title) + '</p>';
+    html += '<p class="preview-instructions">' + escapeHtml(d.instructions) + '</p>';
+    html += '<div class="reveal-grid">';
+    d.cards.forEach((c, i) => {
+      const open = revealOpenSet.has(i);
+      html += '<div class="reveal-card' + (open ? ' open' : '') + '" data-i="' + i + '">';
+      html += '<div class="rc-name">' + escapeHtml(c.name) + '</div>';
+      html += '<div class="rc-detail"><strong>Measures:</strong> ' + escapeHtml(c.measures) + '<br><strong>Used by:</strong> ' + escapeHtml(c.usedBy) + '</div>';
+      html += '</div>';
+    });
+    html += '</div>';
+    shell.innerHTML = html;
+
+    shell.querySelectorAll(".reveal-card").forEach(card => {
+      card.addEventListener("click", () => {
+        const i = parseInt(card.dataset.i, 10);
+        if (revealOpenSet.has(i)) revealOpenSet.delete(i); else revealOpenSet.add(i);
+        renderRevealPreview(shell);
+        reportHeight();
+      });
+    });
+    reportHeight();
+  }
+
+  /* ---- 4. Annotated text ---- */
+  function renderAnnotatedPreview(shell) {
+    const d = dataStore.annotated;
+    let html = '<p class="preview-title">' + escapeHtml(d.title) + '</p>';
+    html += '<p class="preview-instructions">' + escapeHtml(d.instructions) + '</p>';
+    html += '<p class="annotated-para">';
+    let annCounter = -1;
+    d.segments.forEach(s => {
+      if (s.type === "text") {
+        html += escapeHtml(s.text);
+      } else {
+        annCounter++;
+        html += '<mark class="ann' + (annotatedActiveIndex === annCounter ? ' active' : '') + '" data-ann-i="' + annCounter + '">' + escapeHtml(s.phrase) + '</mark>';
+      }
+    });
+    html += '</p>';
+    if (annotatedActiveIndex !== null) {
+      const annSegs = d.segments.filter(s => s.type === "ann");
+      const seg = annSegs[annotatedActiveIndex];
+      if (seg) {
+        html += '<div class="ann-popover">' + escapeHtml(seg.annotation) + '</div>';
+      }
+    }
+    shell.innerHTML = html;
+
+    shell.querySelectorAll(".ann").forEach(m => {
+      m.addEventListener("click", () => {
+        const i = parseInt(m.dataset.annI, 10);
+        annotatedActiveIndex = (annotatedActiveIndex === i) ? null : i;
+        renderAnnotatedPreview(shell);
+        reportHeight();
+      });
+    });
+    reportHeight();
+  }
+
+  /* ---- 5. Sequencing ---- */
+  function renderSequencingPreview(shell) {
+    const d = dataStore.sequencing;
+    if (!sequencingOrder) {
+      sequencingOrder = [2, 0, 4, 1, 3]; // shuffled starting order, deliberately not correct
+    }
+    const allCorrect = sequencingOrder.every((stepIdx, pos) => stepIdx === pos);
+    let html = '<p class="preview-title">' + escapeHtml(d.title) + '</p>';
+    html += '<p class="preview-instructions">' + escapeHtml(d.instructions) + '</p>';
+    html += '<ul class="seq-list">';
+    sequencingOrder.forEach((stepIdx, pos) => {
+      let stateClass = "";
+      if (sequencingChecked) stateClass = (stepIdx === pos) ? " correct" : " incorrect";
+      html += '<li class="seq-item' + stateClass + '" data-pos="' + pos + '">';
+      html += '<span class="seq-num">' + (pos + 1) + '.</span>';
+      html += '<span style="flex:1;">' + escapeHtml(d.steps[stepIdx]) + '</span>';
+      html += '<span class="seq-controls">';
+      html += '<button type="button" class="seq-btn" data-move="up" data-pos="' + pos + '"' + (pos === 0 ? ' disabled' : '') + '>▲</button>';
+      html += '<button type="button" class="seq-btn" data-move="down" data-pos="' + pos + '"' + (pos === sequencingOrder.length - 1 ? ' disabled' : '') + '>▼</button>';
+      html += '</span>';
+      html += '</li>';
+    });
+    html += '</ul>';
+    html += '<div class="actions-row"><span></span><button type="button" class="btn-secondary" id="seqCheckBtn">Check order</button></div>';
+    if (sequencingChecked) {
+      html += '<div class="inline-note" style="margin-top:12px;">' + (allCorrect ? "Correct order!" : "Not quite, the highlighted steps are out of place. Try again.") + '</div>';
+    }
+    shell.innerHTML = html;
+
+    shell.querySelectorAll(".seq-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const pos = parseInt(btn.dataset.pos, 10);
+        const swapWith = btn.dataset.move === "up" ? pos - 1 : pos + 1;
+        if (swapWith < 0 || swapWith >= sequencingOrder.length) return;
+        const tmp = sequencingOrder[pos];
+        sequencingOrder[pos] = sequencingOrder[swapWith];
+        sequencingOrder[swapWith] = tmp;
+        sequencingChecked = false;
+        renderSequencingPreview(shell);
+        reportHeight();
+      });
+    });
+    const checkBtn = document.getElementById("seqCheckBtn");
+    if (checkBtn) {
+      checkBtn.addEventListener("click", () => {
+        sequencingChecked = true;
+        renderSequencingPreview(shell);
+        reportHeight();
+      });
+    }
+    reportHeight();
+  }
+
+  /* ---- 6. Inline quiz ---- */
+  function renderQuizPreview(shell) {
+    const d = dataStore.quiz;
+    let html = '<p class="preview-title">' + escapeHtml(d.title) + '</p>';
+    html += '<p class="preview-instructions">' + escapeHtml(d.instructions) + '</p>';
+    html += '<div class="quiz-scenario">' + escapeHtml(d.scenario) + '</div>';
+    d.options.forEach((o, i) => {
+      let cls = "quiz-option";
+      if (quizSubmitted) {
+        if (i === quizSelectedIndex) cls += o.correct ? " correct" : " incorrect";
+        else if (o.correct) cls += " correct";
+      }
+      html += '<label class="' + cls + '" data-i="' + i + '">';
+      html += '<input type="radio" name="quizOpt" value="' + i + '"' + (quizSelectedIndex === i ? ' checked' : '') + (quizSubmitted ? ' disabled' : '') + '>';
+      html += '<span>' + escapeHtml(o.text) + '</span>';
+      html += '</label>';
+    });
+    html += '<div class="actions-row"><span></span><button type="button" class="btn-secondary" id="quizSubmitBtn"' + (quizSelectedIndex === null || quizSubmitted ? ' disabled' : '') + '>Submit answer</button></div>';
+    if (quizSubmitted && quizSelectedIndex !== null) {
+      const chosen = d.options[quizSelectedIndex];
+      const fbClass = chosen.correct ? "correct" : "incorrect";
+      const fbText = chosen.correct ? d.correctFeedback : d.incorrectFeedback;
+      html += '<div class="quiz-feedback ' + fbClass + '">' + escapeHtml(fbText) + '</div>';
+    }
+    shell.innerHTML = html;
+
+    shell.querySelectorAll('input[name="quizOpt"]').forEach(inp => {
+      inp.addEventListener("change", e => {
+        quizSelectedIndex = parseInt(e.target.value, 10);
+        renderQuizPreview(shell);
+        reportHeight();
+      });
+    });
+    const submitBtn = document.getElementById("quizSubmitBtn");
+    if (submitBtn) {
+      submitBtn.addEventListener("click", () => {
+        quizSubmitted = true;
+        renderQuizPreview(shell);
+        reportHeight();
+      });
+    }
+    reportHeight();
+  }
+
+  /* ==================================================================
+     STEP 2 -> STEP 3
+     ================================================================== */
   document.getElementById("confirmBtn").addEventListener("click", () => {
+    confirmedType = activeType;
     renderEditForm();
     showStep(3);
   });
 
-  /* ---------------- STEP 3: edit form ---------------- */
-  function renderEditForm() {
-    const container = document.getElementById("editFormContainer");
-    let html = '<div class="edit-block">';
-    html += '<h3>Component text</h3>';
-    html += '<div class="field-group"><label class="field-label" for="editTitle">Title</label><input type="text" id="editTitle" value="' + escapeHtml(data.title) + '"></div>';
-    html += '<div class="field-group"><label class="field-label" for="editInstructions">Instructions</label><textarea id="editInstructions" rows="2">' + escapeHtml(data.instructions) + '</textarea></div>';
+  document.getElementById("backToRecLink").addEventListener("click", () => {
+    if (confirmedType) activeType = confirmedType;
+    renderRationaleArea();
+    renderPreview();
+    renderWhyCard();
+    renderPills();
+    showStep(2);
+  });
 
-    data.frameworks.forEach((f, i) => {
-      html += '<div class="field-group"><label class="field-label" for="editTabLabel' + i + '">Tab ' + (i + 1) + ' label</label><input type="text" id="editTabLabel' + i + '" data-idx="' + i + '" data-field="tabLabel" value="' + escapeHtml(f.tabLabel) + '"></div>';
+  /* ==================================================================
+     STEP 3: edit form
+     ================================================================== */
+  function fieldTitleInstructions(d) {
+    return '<div class="field-group"><label class="field-label" for="editTitle">Title</label><input type="text" id="editTitle" value="' + escapeHtml(d.title) + '"></div>' +
+      '<div class="field-group"><label class="field-label" for="editInstructions">Instructions</label><textarea id="editInstructions" rows="2">' + escapeHtml(d.instructions) + '</textarea></div>';
+  }
+
+  function staticTextBlockHtml() {
+    return '<div class="edit-block"><h3>Static companion text</h3>' +
+      '<div class="field-group"><label class="field-label" for="editStaticText">Plain-prose accessible fallback</label><textarea id="editStaticText" rows="6">' + escapeHtml(SHARED_STATIC_TEXT) + '</textarea></div></div>';
+  }
+
+  function editFormTabs() {
+    const d = dataStore.tabs;
+    let html = '<div class="edit-block"><h3>Component text</h3>';
+    html += fieldTitleInstructions(d);
+    d.frameworks.forEach((f, i) => {
+      html += '<div class="field-group"><label class="field-label">Tab ' + (i + 1) + ' label</label><input type="text" data-arr="frameworks" data-idx="' + i + '" data-field="tabLabel" value="' + escapeHtml(f.tabLabel) + '"></div>';
     });
     html += '</div>';
-
-    data.frameworks.forEach((f, i) => {
-      html += '<div class="edit-block">';
-      html += '<h3>' + escapeHtml(f.tabLabel) + ' panel</h3>';
-      html += '<div class="field-group"><label class="field-label">Panel heading</label><input type="text" data-idx="' + i + '" data-field="heading" value="' + escapeHtml(f.heading) + '"></div>';
-      html += '<div class="field-group"><label class="field-label">When to use</label><textarea rows="3" data-idx="' + i + '" data-field="when">' + escapeHtml(f.when) + '</textarea></div>';
-      html += '<div class="field-group"><label class="field-label">Structure</label><textarea rows="3" data-idx="' + i + '" data-field="structure">' + escapeHtml(f.structure) + '</textarea></div>';
-      html += '<div class="field-group"><label class="field-label">Example</label><textarea rows="3" data-idx="' + i + '" data-field="example">' + escapeHtml(f.example) + '</textarea></div>';
+    d.frameworks.forEach((f, i) => {
+      html += '<div class="edit-block"><h3>' + escapeHtml(f.tabLabel) + ' panel</h3>';
+      html += '<div class="field-group"><label class="field-label">Panel heading</label><input type="text" data-arr="frameworks" data-idx="' + i + '" data-field="heading" value="' + escapeHtml(f.heading) + '"></div>';
+      html += '<div class="field-group"><label class="field-label">When to use</label><textarea rows="3" data-arr="frameworks" data-idx="' + i + '" data-field="when">' + escapeHtml(f.when) + '</textarea></div>';
+      html += '<div class="field-group"><label class="field-label">Structure</label><textarea rows="3" data-arr="frameworks" data-idx="' + i + '" data-field="structure">' + escapeHtml(f.structure) + '</textarea></div>';
+      html += '<div class="field-group"><label class="field-label">Example</label><textarea rows="3" data-arr="frameworks" data-idx="' + i + '" data-field="example">' + escapeHtml(f.example) + '</textarea></div>';
       html += '</div>';
     });
+    return html;
+  }
 
-    html += '<div class="edit-block"><h3>Static companion text</h3>';
-    html += '<div class="field-group"><label class="field-label" for="editStaticText">Plain-prose accessible fallback</label><textarea id="editStaticText" rows="6">' + escapeHtml(data.staticText) + '</textarea></div>';
-    html += '</div>';
-
-    container.innerHTML = html;
-
-    document.getElementById("editTitle").addEventListener("input", e => { data.title = e.target.value; });
-    document.getElementById("editInstructions").addEventListener("input", e => { data.instructions = e.target.value; });
-    document.getElementById("editStaticText").addEventListener("input", e => { data.staticText = e.target.value; });
-
-    container.querySelectorAll("[data-idx][data-field]").forEach(el => {
-      el.addEventListener("input", e => {
-        const idx = parseInt(e.target.dataset.idx, 10);
-        const field = e.target.dataset.field;
-        data.frameworks[idx][field] = e.target.value;
-      });
+  function editFormDrag() {
+    const d = dataStore.drag;
+    let html = '<div class="edit-block"><h3>Component text</h3>';
+    html += fieldTitleInstructions(d);
+    d.zones.forEach((z, i) => {
+      html += '<div class="field-group"><label class="field-label">Zone ' + (i + 1) + ' label</label><input type="text" data-arr="zones" data-idx="' + i + '" data-field="_self" value="' + escapeHtml(z) + '"></div>';
     });
+    html += '</div>';
+    html += '<div class="edit-block"><h3>Statements</h3>';
+    d.statements.forEach((s, i) => {
+      html += '<div class="field-group"><label class="field-label">Statement ' + (i + 1) + ' text</label><textarea rows="2" data-arr="statements" data-idx="' + i + '" data-field="text">' + escapeHtml(s.text) + '</textarea></div>';
+      html += '<div class="field-group"><label class="field-label">Statement ' + (i + 1) + ' correct zone</label><select data-arr="statements" data-idx="' + i + '" data-field="zone">';
+      d.zones.forEach(z => {
+        html += '<option value="' + escapeHtml(z) + '"' + (s.zone === z ? ' selected' : '') + '>' + escapeHtml(z) + '</option>';
+      });
+      html += '</select></div>';
+    });
+    html += '</div>';
+    return html;
+  }
+
+  function editFormReveal() {
+    const d = dataStore.reveal;
+    let html = '<div class="edit-block"><h3>Component text</h3>';
+    html += fieldTitleInstructions(d);
+    html += '</div>';
+    d.cards.forEach((c, i) => {
+      html += '<div class="edit-block"><h3>Card ' + (i + 1) + '</h3>';
+      html += '<div class="field-group"><label class="field-label">Framework name</label><input type="text" data-arr="cards" data-idx="' + i + '" data-field="name" value="' + escapeHtml(c.name) + '"></div>';
+      html += '<div class="field-group"><label class="field-label">Measures</label><textarea rows="2" data-arr="cards" data-idx="' + i + '" data-field="measures">' + escapeHtml(c.measures) + '</textarea></div>';
+      html += '<div class="field-group"><label class="field-label">Used by</label><textarea rows="2" data-arr="cards" data-idx="' + i + '" data-field="usedBy">' + escapeHtml(c.usedBy) + '</textarea></div>';
+      html += '</div>';
+    });
+    return html;
+  }
+
+  function annotatedFullText(d) {
+    return d.segments.map(s => s.type === "ann" ? s.phrase : s.text).join("");
+  }
+
+  function editFormAnnotated() {
+    const d = dataStore.annotated;
+    let html = '<div class="edit-block"><h3>Component text</h3>';
+    html += fieldTitleInstructions(d);
+    html += '<div class="field-group"><label class="field-label">Full paragraph (reference)</label><textarea id="editAnnotatedParagraph" rows="4">' + escapeHtml(annotatedFullText(d)) + '</textarea></div>';
+    html += '</div>';
+    let annIdx = -1;
+    d.segments.forEach((s) => {
+      if (s.type !== "ann") return;
+      annIdx++;
+      html += '<div class="edit-block"><h3>Highlighted phrase ' + (annIdx + 1) + '</h3>';
+      html += '<div class="field-group"><label class="field-label">Phrase text</label><input type="text" data-ann-idx="' + annIdx + '" data-field="phrase" value="' + escapeHtml(s.phrase) + '"></div>';
+      html += '<div class="field-group"><label class="field-label">Annotation text</label><textarea rows="2" data-ann-idx="' + annIdx + '" data-field="annotation">' + escapeHtml(s.annotation) + '</textarea></div>';
+      html += '</div>';
+    });
+    return html;
+  }
+
+  function editFormSequencing() {
+    const d = dataStore.sequencing;
+    let html = '<div class="edit-block"><h3>Component text</h3>';
+    html += fieldTitleInstructions(d);
+    html += '</div><div class="edit-block"><h3>Steps (in correct order)</h3>';
+    d.steps.forEach((s, i) => {
+      html += '<div class="field-group"><label class="field-label">Step ' + (i + 1) + '</label><textarea rows="2" data-arr="steps" data-idx="' + i + '" data-field="_self">' + escapeHtml(s) + '</textarea></div>';
+    });
+    html += '</div>';
+    return html;
+  }
+
+  function editFormQuiz() {
+    const d = dataStore.quiz;
+    let html = '<div class="edit-block"><h3>Component text</h3>';
+    html += fieldTitleInstructions(d);
+    html += '<div class="field-group"><label class="field-label">Scenario</label><textarea rows="3" id="editScenario">' + escapeHtml(d.scenario) + '</textarea></div>';
+    html += '</div>';
+    d.options.forEach((o, i) => {
+      html += '<div class="edit-block"><h3>Option ' + String.fromCharCode(65 + i) + '</h3>';
+      html += '<div class="field-group"><label class="field-label">Option text</label><textarea rows="2" data-arr="options" data-idx="' + i + '" data-field="text">' + escapeHtml(o.text) + '</textarea></div>';
+      html += '<div class="field-group"><label style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--navy);"><input type="radio" name="correctOption" data-correct-idx="' + i + '"' + (o.correct ? ' checked' : '') + ' style="width:auto;"> Correct answer</label></div>';
+      html += '</div>';
+    });
+    html += '<div class="edit-block"><h3>Feedback</h3>';
+    html += '<div class="field-group"><label class="field-label">Correct feedback</label><textarea rows="2" id="editCorrectFeedback">' + escapeHtml(d.correctFeedback) + '</textarea></div>';
+    html += '<div class="field-group"><label class="field-label">Incorrect feedback</label><textarea rows="2" id="editIncorrectFeedback">' + escapeHtml(d.incorrectFeedback) + '</textarea></div>';
+    html += '</div>';
+    return html;
+  }
+
+  function renderEditForm() {
+    const container = document.getElementById("editFormContainer");
+    let html = "";
+    if (confirmedType === "tabs") html = editFormTabs();
+    else if (confirmedType === "drag") html = editFormDrag();
+    else if (confirmedType === "reveal") html = editFormReveal();
+    else if (confirmedType === "annotated") html = editFormAnnotated();
+    else if (confirmedType === "sequencing") html = editFormSequencing();
+    else if (confirmedType === "quiz") html = editFormQuiz();
+    html += staticTextBlockHtml();
+    container.innerHTML = html;
+    wireEditForm();
     reportHeight();
   }
 
-  document.getElementById("backToRecLink").addEventListener("click", () => {
-    renderPreview();
-    showStep(2);
-  });
+  function wireEditForm() {
+    const d = dataStore[confirmedType];
+
+    const titleEl = document.getElementById("editTitle");
+    if (titleEl) titleEl.addEventListener("input", e => { d.title = e.target.value; });
+
+    const instrEl = document.getElementById("editInstructions");
+    if (instrEl) instrEl.addEventListener("input", e => { d.instructions = e.target.value; });
+
+    const staticEl = document.getElementById("editStaticText");
+    if (staticEl) staticEl.addEventListener("input", e => { SHARED_STATIC_TEXT = e.target.value; });
+
+    document.querySelectorAll("#editFormContainer [data-arr]").forEach(el => {
+      el.addEventListener("input", e => {
+        const arrName = e.target.dataset.arr;
+        const idx = parseInt(e.target.dataset.idx, 10);
+        const field = e.target.dataset.field;
+        if (field === "_self") {
+          d[arrName][idx] = e.target.value;
+        } else {
+          d[arrName][idx][field] = e.target.value;
+        }
+      });
+      if (el.tagName === "SELECT") {
+        el.addEventListener("change", e => {
+          const arrName = e.target.dataset.arr;
+          const idx = parseInt(e.target.dataset.idx, 10);
+          const field = e.target.dataset.field;
+          d[arrName][idx][field] = e.target.value;
+        });
+      }
+    });
+
+    if (confirmedType === "annotated") {
+      document.querySelectorAll("#editFormContainer [data-ann-idx]").forEach(el => {
+        el.addEventListener("input", e => {
+          const annI = parseInt(e.target.dataset.annIdx, 10);
+          const field = e.target.dataset.field;
+          const annSegs = d.segments.filter(s => s.type === "ann");
+          const seg = annSegs[annI];
+          if (seg) seg[field] = e.target.value;
+        });
+      });
+    }
+
+    if (confirmedType === "quiz") {
+      const scEl = document.getElementById("editScenario");
+      if (scEl) scEl.addEventListener("input", e => { d.scenario = e.target.value; });
+      const cfEl = document.getElementById("editCorrectFeedback");
+      if (cfEl) cfEl.addEventListener("input", e => { d.correctFeedback = e.target.value; });
+      const ifEl = document.getElementById("editIncorrectFeedback");
+      if (ifEl) ifEl.addEventListener("input", e => { d.incorrectFeedback = e.target.value; });
+      document.querySelectorAll("#editFormContainer [data-correct-idx]").forEach(el => {
+        el.addEventListener("change", e => {
+          const idx = parseInt(e.target.dataset.correctIdx, 10);
+          d.options.forEach((o, i) => { o.correct = (i === idx); });
+        });
+      });
+    }
+  }
 
   document.getElementById("generateBtn").addEventListener("click", () => {
     renderOutput();
     showStep(4);
   });
 
-  /* ---------------- STEP 4: generated output ---------------- */
-  function buildComponentHtml() {
-    let html = '<div style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
-    html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(data.title) + '</h3>';
-    html += '<p style="color:#555;font-size:14px;margin:0 0 16px;">' + escapeHtml(data.instructions) + '</p>';
-    html += '<div style="display:flex;gap:6px;flex-wrap:wrap;border-bottom:2px solid #eee;margin-bottom:16px;">';
-    data.frameworks.forEach((f, i) => {
-      html += '<button onclick="showPanel(' + i + ')" style="padding:9px 14px;border:none;background:none;cursor:pointer;font-weight:700;font-size:13px;color:' + (i === 0 ? '#339898' : '#666') + ';border-bottom:3px solid ' + (i === 0 ? '#339898' : 'transparent') + ';">' + escapeHtml(f.tabLabel) + '</button>';
+  document.getElementById("backToEditLink").addEventListener("click", () => {
+    renderEditForm();
+    showStep(3);
+  });
+
+  /* ==================================================================
+     STEP 4: generated output
+     ================================================================== */
+  function buildTabsHtml() {
+    const d = dataStore.tabs;
+    let html = '<div class="esg-tabs-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
+    html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
+    html += '<p style="color:#555;font-size:14px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
+    html += '<div class="esg-tabs-nav" style="display:flex;gap:6px;flex-wrap:wrap;border-bottom:2px solid #eee;margin-bottom:16px;">';
+    d.frameworks.forEach((f, i) => {
+      html += '<button type="button" class="esg-tab-btn" data-i="' + i + '" style="padding:9px 14px;border:none;background:none;cursor:pointer;font-weight:700;font-size:13px;color:' + (i === 0 ? '#339898' : '#666') + ';border-bottom:3px solid ' + (i === 0 ? '#339898' : 'transparent') + ';">' + escapeHtml(f.tabLabel) + '</button>';
     });
     html += '</div>';
-    data.frameworks.forEach((f, i) => {
-      html += '<div id="panel-' + i + '" style="display:' + (i === 0 ? 'block' : 'none') + ';">';
+    d.frameworks.forEach((f, i) => {
+      html += '<div class="esg-tab-panel" data-i="' + i + '" style="display:' + (i === 0 ? 'block' : 'none') + ';">';
       html += '<h4 style="color:#012169;font-size:15.5px;margin:0 0 10px;">' + escapeHtml(f.heading) + '</h4>';
       html += '<p style="font-size:13.5px;line-height:1.55;margin:0 0 10px;"><strong>When to use:</strong> ' + escapeHtml(f.when) + '</p>';
       html += '<p style="font-size:13.5px;line-height:1.55;margin:0 0 10px;"><strong>Structure:</strong> ' + escapeHtml(f.structure) + '</p>';
       html += '<p style="font-size:13.5px;line-height:1.55;margin:0;"><strong>Example context:</strong> ' + escapeHtml(f.example) + '</p>';
       html += '</div>';
     });
+    html += '<script>(function(){var root=document.currentScript.parentElement;var btns=root.querySelectorAll(".esg-tab-btn");var panels=root.querySelectorAll(".esg-tab-panel");btns.forEach(function(b){b.addEventListener("click",function(){var i=b.getAttribute("data-i");btns.forEach(function(x){x.style.color="#666";x.style.borderBottomColor="transparent";});b.style.color="#339898";b.style.borderBottomColor="#339898";panels.forEach(function(p){p.style.display=(p.getAttribute("data-i")===i)?"block":"none";});});});})();<\/script>';
+    html += '</div>';
+    return html;
+  }
+
+  function buildDragHtml() {
+    const d = dataStore.drag;
+    let html = '<div class="esg-drag-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
+    html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
+    html += '<p style="color:#555;font-size:14px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
+    html += '<div class="esg-zones" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:16px;">';
+    d.zones.forEach(z => {
+      html += '<div class="esg-zone" data-zone="' + escapeHtml(z) + '" style="border:2px dashed #ccc;border-radius:10px;padding:10px;min-height:90px;font-size:12px;">';
+      html += '<div style="font-weight:700;font-size:11px;text-transform:uppercase;color:#012169;margin-bottom:8px;">' + escapeHtml(z) + '</div>';
+      html += '<div class="esg-zone-slot"></div>';
+      html += '</div>';
+    });
+    html += '</div>';
+    html += '<div class="esg-chip-pool" style="display:flex;flex-wrap:wrap;gap:8px;">';
+    d.statements.forEach((s, i) => {
+      html += '<div class="esg-chip" draggable="true" data-zone="' + escapeHtml(s.zone) + '" data-i="' + i + '" style="background:#fff;border:1px solid #ccc;border-radius:8px;padding:8px 10px;font-size:12.5px;cursor:grab;max-width:220px;">' + escapeHtml(s.text) + '</div>';
+    });
+    html += '</div>';
+    html += '<script>(function(){var root=document.currentScript.parentElement;var chips=root.querySelectorAll(".esg-chip");var zones=root.querySelectorAll(".esg-zone");chips.forEach(function(c){c.addEventListener("dragstart",function(e){e.dataTransfer.setData("text/plain",c.getAttribute("data-i"));});});zones.forEach(function(z){z.addEventListener("dragover",function(e){e.preventDefault();});z.addEventListener("drop",function(e){e.preventDefault();var i=e.dataTransfer.getData("text/plain");var chip=root.querySelector(\'.esg-chip[data-i="\'+i+\'"]\');if(!chip)return;if(chip.getAttribute("data-zone")===z.getAttribute("data-zone")){chip.style.opacity="0.6";chip.style.borderColor="#2a7f2a";chip.setAttribute("draggable","false");z.querySelector(".esg-zone-slot").appendChild(chip);}else{chip.style.borderColor="#b23a3a";setTimeout(function(){chip.style.borderColor="#ccc";},600);}});});})();<\/script>';
+    html += '</div>';
+    return html;
+  }
+
+  function buildRevealHtml() {
+    const d = dataStore.reveal;
+    let html = '<div class="esg-reveal-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
+    html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
+    html += '<p style="color:#555;font-size:14px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
+    html += '<div class="esg-reveal-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;">';
+    d.cards.forEach((c, i) => {
+      html += '<div class="esg-reveal-card" data-i="' + i + '" style="border:1px solid #E1DFDB;border-radius:10px;padding:12px;cursor:pointer;background:#fff;">';
+      html += '<div style="font-weight:700;color:#012169;font-size:14px;">' + escapeHtml(c.name) + '</div>';
+      html += '<div class="esg-reveal-detail" style="display:none;font-size:12.5px;margin-top:8px;line-height:1.55;"><strong>Measures:</strong> ' + escapeHtml(c.measures) + '<br><strong>Used by:</strong> ' + escapeHtml(c.usedBy) + '</div>';
+      html += '</div>';
+    });
+    html += '</div>';
+    html += '<script>(function(){var root=document.currentScript.parentElement;root.querySelectorAll(".esg-reveal-card").forEach(function(card){card.addEventListener("click",function(){var detail=card.querySelector(".esg-reveal-detail");var open=detail.style.display==="block";detail.style.display=open?"none":"block";card.style.background=open?"#fff":"#EFF6F6";card.style.borderColor=open?"#E1DFDB":"#339898";});});})();<\/script>';
+    html += '</div>';
+    return html;
+  }
+
+  function buildAnnotatedHtml() {
+    const d = dataStore.annotated;
+    let html = '<div class="esg-annotated-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
+    html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
+    html += '<p style="color:#555;font-size:14px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
+    html += '<p style="font-size:14.5px;line-height:1.95;">';
+    let annIdx = -1;
+    d.segments.forEach(s => {
+      if (s.type === "text") {
+        html += escapeHtml(s.text);
+      } else {
+        annIdx++;
+        html += '<mark class="esg-ann" data-ann-i="' + annIdx + '" data-note="' + escapeHtml(s.annotation) + '" style="background:#fff2b8;cursor:pointer;border-radius:3px;padding:0 2px;">' + escapeHtml(s.phrase) + '</mark>';
+      }
+    });
+    html += '</p>';
+    html += '<div class="esg-ann-popover" style="display:none;margin-top:14px;border:1px solid #339898;background:#EFF6F6;border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.55;"></div>';
+    html += '<script>(function(){var root=document.currentScript.parentElement;var pop=root.querySelector(".esg-ann-popover");root.querySelectorAll(".esg-ann").forEach(function(m){m.addEventListener("click",function(){pop.textContent=m.getAttribute("data-note");pop.style.display="block";});});})();<\/script>';
+    html += '</div>';
+    return html;
+  }
+
+  function buildSequencingHtml() {
+    const d = dataStore.sequencing;
+    let html = '<div class="esg-seq-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
+    html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
+    html += '<p style="color:#555;font-size:14px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
+    html += '<ul class="esg-seq-list" style="list-style:none;margin:0 0 14px;padding:0;display:flex;flex-direction:column;gap:8px;">';
+    d.steps.forEach((s, i) => {
+      html += '<li class="esg-seq-item" data-correct-pos="' + i + '" style="display:flex;align-items:center;gap:10px;border:1px solid #E1DFDB;border-radius:8px;padding:10px 12px;background:#fff;font-size:13px;">';
+      html += '<span style="flex:1;">' + escapeHtml(s) + '</span>';
+      html += '<span><button type="button" class="esg-seq-up" style="border:1px solid #E1DFDB;background:#fff;border-radius:4px;width:26px;height:24px;cursor:pointer;">&#9650;</button> <button type="button" class="esg-seq-down" style="border:1px solid #E1DFDB;background:#fff;border-radius:4px;width:26px;height:24px;cursor:pointer;">&#9660;</button></span>';
+      html += '</li>';
+    });
+    html += '</ul>';
+    html += '<button type="button" class="esg-seq-check" style="background:#fff;color:#012169;border:1.5px solid #012169;border-radius:8px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer;">Check order</button>';
+    html += '<div class="esg-seq-result" style="display:none;margin-top:10px;font-size:12.5px;color:#6b6b6b;background:#F6F5F3;border:1px dashed #E1DFDB;border-radius:8px;padding:10px 12px;"></div>';
+    html += '<script>(function(){var root=document.currentScript.parentElement;var list=root.querySelector(".esg-seq-list");function items(){return Array.prototype.slice.call(list.querySelectorAll(".esg-seq-item"));}root.querySelectorAll(".esg-seq-up").forEach(function(btn){btn.addEventListener("click",function(){var li=btn.closest(".esg-seq-item");var prev=li.previousElementSibling;if(prev)list.insertBefore(li,prev);});});root.querySelectorAll(".esg-seq-down").forEach(function(btn){btn.addEventListener("click",function(){var li=btn.closest(".esg-seq-item");var next=li.nextElementSibling;if(next)list.insertBefore(next,li);});});root.querySelector(".esg-seq-check").addEventListener("click",function(){var all=items();var ok=all.every(function(li,pos){return parseInt(li.getAttribute("data-correct-pos"),10)===pos;});all.forEach(function(li,pos){var correct=parseInt(li.getAttribute("data-correct-pos"),10)===pos;li.style.borderColor=correct?"#2a7f2a":"#b23a3a";li.style.background=correct?"#eaf7ea":"#fbeaea";});var result=root.querySelector(".esg-seq-result");result.style.display="block";result.textContent=ok?"Correct order!":"Not quite, check the highlighted steps and try again.";});})();<\/script>';
+    html += '</div>';
+    return html;
+  }
+
+  function buildQuizHtml() {
+    const d = dataStore.quiz;
+    let html = '<div class="esg-quiz-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
+    html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
+    html += '<p style="color:#555;font-size:14px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
+    html += '<div style="font-size:13.5px;line-height:1.6;margin-bottom:14px;background:#FAFAF9;border:1px solid #E1DFDB;border-radius:8px;padding:12px;">' + escapeHtml(d.scenario) + '</div>';
+    d.options.forEach((o, i) => {
+      html += '<label class="esg-quiz-option" data-correct="' + (o.correct ? "1" : "0") + '" style="display:flex;gap:8px;align-items:flex-start;border:1px solid #E1DFDB;border-radius:8px;padding:10px 12px;margin-bottom:8px;cursor:pointer;font-size:13.5px;">';
+      html += '<input type="radio" name="esgQuizOpt" value="' + i + '" style="margin-top:3px;">';
+      html += '<span>' + escapeHtml(o.text) + '</span>';
+      html += '</label>';
+    });
+    html += '<button type="button" class="esg-quiz-submit" disabled style="background:#fff;color:#012169;border:1.5px solid #012169;border-radius:8px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer;">Submit answer</button>';
+    html += '<div class="esg-quiz-feedback" style="display:none;margin-top:12px;padding:10px 12px;border-radius:8px;font-size:13px;line-height:1.55;"></div>';
+    html += '<script>(function(){var root=document.currentScript.parentElement;var submit=root.querySelector(".esg-quiz-submit");var radios=root.querySelectorAll(\'input[name="esgQuizOpt"]\');radios.forEach(function(r){r.addEventListener("change",function(){submit.disabled=false;});});submit.addEventListener("click",function(){var checked=root.querySelector(\'input[name="esgQuizOpt"]:checked\');if(!checked)return;var label=checked.closest(".esg-quiz-option");var correct=label.getAttribute("data-correct")==="1";var fb=root.querySelector(".esg-quiz-feedback");fb.style.display="block";fb.textContent=correct?' + JSON.stringify(dataStore.quiz.correctFeedback) + ':' + JSON.stringify(dataStore.quiz.incorrectFeedback) + ';fb.style.background=correct?"#eaf7ea":"#fbeaea";fb.style.border="1px solid "+(correct?"#2a7f2a":"#b23a3a");fb.style.color=correct?"#215c21":"#7a1f1f";root.querySelectorAll(".esg-quiz-option").forEach(function(l){var isCorrectOpt=l.getAttribute("data-correct")==="1";var isChosen=l===label;if(isChosen||isCorrectOpt){l.style.borderColor=isCorrectOpt?"#2a7f2a":"#b23a3a";l.style.background=isCorrectOpt?"#eaf7ea":"#fbeaea";}});});})();<\/script>';
     html += '</div>';
     return html;
   }
 
   function renderOutput() {
-    const config = { html: buildComponentHtml() };
+    let html = "";
+    if (confirmedType === "tabs") html = buildTabsHtml();
+    else if (confirmedType === "drag") html = buildDragHtml();
+    else if (confirmedType === "reveal") html = buildRevealHtml();
+    else if (confirmedType === "annotated") html = buildAnnotatedHtml();
+    else if (confirmedType === "sequencing") html = buildSequencingHtml();
+    else if (confirmedType === "quiz") html = buildQuizHtml();
+
+    const config = { html: html };
     document.getElementById("jsonOutput").textContent = JSON.stringify(config, null, 2);
-    document.getElementById("staticTextOutput").textContent = data.staticText;
+    document.getElementById("staticTextOutput").textContent = SHARED_STATIC_TEXT;
+    document.querySelector("#step4 .badge").textContent = PILL_LABEL[confirmedType];
     reportHeight();
   }
-
-  document.getElementById("backToEditLink").addEventListener("click", () => {
-    renderEditForm();
-    showStep(3);
-  });
 
   async function copyText(text, btn) {
     try {
