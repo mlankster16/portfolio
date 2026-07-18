@@ -4,27 +4,42 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Interactivity Generator — Coursera Interaction Design Workflow Tool</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --navy: #012169;
-    --navy-dark: #010f38;
-    --teal: #339898;
-    --teal-dark: #267575;
+    --royal: #00539B;
     --bg: #F3F2F1;
     --card: #FFFFFF;
-    --border: #E1DFDB;
+    --border: #E2E6ED;
     --ink: #262626;
-    --muted: #6b6b6b;
+    --muted: #666666;
+    --accent: #005587;
+    --accent-dark: #003f66;
+    --accent-tint: #EAF2F6;
+    --accent-tint-border: #BFD9E6;
+    --focus: #E89923;
+    --code-bg: #1E1E1E;
+    --code-fg: #D4D4D4;
   }
 
   * { box-sizing: border-box; }
 
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Open Sans", Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Open Sans', Arial, sans-serif;
     background: var(--bg);
     color: var(--ink);
   }
+
+  h1, h4, .badge, .field-label, .toggle-btn, .btn-primary, .pill-label,
+  .drag-zone-label, .summary-card .label, .section-label, .seq-num,
+  .header-title strong {
+    font-family: 'Montserrat', Arial, sans-serif;
+  }
+
+  .code-block, .code-block pre { font-family: 'Roboto Mono', 'Courier New', monospace; }
 
   .app-header {
     background: var(--navy);
@@ -87,6 +102,7 @@
     cursor: pointer;
   }
   .back-link:hover { text-decoration: underline; }
+  .back-link:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
   label.field-label {
     display: block;
@@ -108,8 +124,12 @@
     padding: 10px 12px;
     resize: vertical;
     background: #fff;
+    outline: none;
   }
-  textarea:focus, input[type="text"]:focus, select:focus { outline: 2px solid var(--teal); outline-offset: 1px; }
+  textarea:focus, input[type="text"]:focus, select:focus {
+    border-color: var(--royal);
+    box-shadow: 0 0 0 3px rgba(0, 83, 155, 0.15);
+  }
 
   .toggle-row { display: flex; gap: 8px; margin-bottom: 14px; }
   .toggle-btn {
@@ -123,17 +143,20 @@
     font-weight: 600;
     cursor: pointer;
   }
-  .toggle-btn.active { background: var(--teal); border-color: var(--teal); color: #fff; }
+  .toggle-btn.active { background: var(--navy); border-color: var(--navy); color: #fff; }
+  .toggle-btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
   .example-link {
     display: inline-block;
     font-size: 13px;
-    color: var(--teal-dark);
+    color: var(--royal);
     font-weight: 600;
     cursor: pointer;
     margin: 10px 0 18px;
     text-decoration: underline;
   }
+  .example-link:hover { color: var(--navy); }
+  .example-link:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
   .btn-primary {
     background: var(--navy);
@@ -145,8 +168,9 @@
     font-weight: 600;
     cursor: pointer;
   }
-  .btn-primary:hover { background: var(--navy-dark); }
+  .btn-primary:hover:not(:disabled) { background: var(--royal); }
   .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-primary:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
   .btn-secondary {
     background: #fff;
@@ -158,8 +182,9 @@
     font-weight: 600;
     cursor: pointer;
   }
-  .btn-secondary:hover { background: #f0f4fa; }
+  .btn-secondary:hover:not(:disabled) { background: #f0f4fa; }
   .btn-secondary:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-secondary:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
   .inline-note {
     font-size: 12.5px;
@@ -201,7 +226,7 @@
   .progress-fill {
     height: 100%;
     width: 0%;
-    background: var(--teal);
+    background: var(--accent);
     border-radius: 4px;
     transition: width 2s ease;
   }
@@ -234,7 +259,8 @@
     border-bottom: 3px solid transparent;
     font-family: inherit;
   }
-  .tab-btn.active { color: var(--teal); border-bottom-color: var(--teal); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
   .tab-panel h4 { color: var(--navy); font-size: 15.5px; margin: 0 0 10px; }
   .field-row { margin-bottom: 10px; font-size: 13.5px; line-height: 1.55; }
   .field-row strong { color: var(--ink); }
@@ -242,7 +268,7 @@
   /* drag-to-classify */
   .drag-zones { display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: 10px; margin-bottom: 18px; }
   .drag-zone { border: 2px dashed #ccc; border-radius: 10px; padding: 10px; min-height: 96px; transition: border-color 0.15s, background 0.15s; }
-  .drag-zone.drop-hover { border-color: var(--teal); background: #eef7f7; }
+  .drag-zone.drop-hover { border-color: var(--accent); background: var(--accent-tint); }
   .drag-zone-label { font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--navy); margin-bottom: 8px; }
   .drag-zone-slot { display: flex; flex-direction: column; gap: 6px; }
   .drag-chip-pool { display: flex; flex-wrap: wrap; gap: 8px; min-height: 20px; }
@@ -266,7 +292,7 @@
   /* click-to-reveal */
   .reveal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
   .reveal-card { border: 1px solid var(--border); border-radius: 10px; padding: 12px; cursor: pointer; background: #fff; }
-  .reveal-card.open { background: #EFF6F6; border-color: var(--teal); }
+  .reveal-card.open { background: var(--accent-tint); border-color: var(--accent); }
   .reveal-card .rc-name { font-weight: 700; color: var(--navy); font-size: 14px; }
   .reveal-card .rc-detail { display: none; font-size: 12.5px; margin-top: 8px; line-height: 1.55; color: #333; }
   .reveal-card.open .rc-detail { display: block; }
@@ -274,8 +300,8 @@
   /* annotated text */
   .annotated-para { font-size: 14.5px; line-height: 1.95; margin: 0; }
   mark.ann { background: #fff2b8; cursor: pointer; border-radius: 3px; padding: 0 2px; }
-  mark.ann.active { background: var(--teal); color: #fff; }
-  .ann-popover { margin-top: 14px; border: 1px solid var(--teal); background: #EFF6F6; border-radius: 8px; padding: 10px 12px; font-size: 13px; line-height: 1.55; color: #234; }
+  mark.ann.active { background: var(--accent); color: #fff; }
+  .ann-popover { margin-top: 14px; border: 1px solid var(--accent); background: var(--accent-tint); border-radius: 8px; padding: 10px 12px; font-size: 13px; line-height: 1.55; color: #234; }
 
   /* sequencing */
   .seq-list { list-style: none; margin: 0 0 14px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
@@ -286,6 +312,7 @@
   .seq-controls { display: flex; gap: 4px; }
   .seq-btn { border: 1px solid var(--border); background: #fff; border-radius: 4px; width: 26px; height: 24px; cursor: pointer; font-size: 11px; line-height: 1; }
   .seq-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .seq-btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
   /* inline quiz */
   .quiz-scenario { font-size: 13.5px; line-height: 1.6; margin-bottom: 14px; background: #FAFAF9; border: 1px solid var(--border); border-radius: 8px; padding: 12px; }
@@ -318,10 +345,11 @@
     font-family: inherit;
   }
   .pill.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .pill:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
   .summary-card {
-    background: #EFF6F6;
-    border: 1px solid #cfe6e6;
+    background: var(--accent-tint);
+    border: 1px solid var(--accent-tint-border);
     border-radius: 10px;
     padding: 16px 18px;
     margin-top: 18px;
@@ -330,7 +358,7 @@
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.06em;
-    color: var(--teal-dark);
+    color: var(--accent-dark);
     margin-bottom: 6px;
   }
   .summary-card p { margin: 0; font-size: 13.5px; line-height: 1.55; color: #333; }
@@ -340,20 +368,19 @@
   /* step 3 edit form */
   .edit-block { border-top: 1px solid var(--border); padding-top: 16px; margin-top: 16px; }
   .edit-block:first-child { border-top: none; padding-top: 0; margin-top: 0; }
-  .edit-block h3 { font-size: 13px; color: var(--navy); text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 12px; }
+  .edit-block h3 { font-family: 'Montserrat', Arial, sans-serif; font-size: 13px; color: var(--navy); text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 12px; }
   .field-group { margin-bottom: 12px; }
 
   /* step 4 output */
   .theme-card { display: flex; gap: 12px; align-items: flex-start; }
-  .swatch { width: 28px; height: 28px; border-radius: 6px; background: var(--teal); flex-shrink: 0; margin-top: 2px; border: 1px solid #2a7f7f; }
+  .swatch { width: 28px; height: 28px; border-radius: 6px; background: var(--accent); flex-shrink: 0; margin-top: 2px; border: 1px solid var(--accent-dark); }
   .theme-card p { font-style: italic; font-size: 13.5px; color: #444; line-height: 1.55; margin: 0; }
 
   .code-block {
-    background: #10151f;
-    color: #cfe3e3;
+    background: var(--code-bg);
+    color: var(--code-fg);
     border-radius: 8px;
     padding: 16px;
-    font-family: "SFMono-Regular", Consolas, Menlo, monospace;
     font-size: 12px;
     line-height: 1.5;
     overflow: auto;
@@ -364,7 +391,7 @@
 
   .copy-row { display: flex; justify-content: flex-end; margin: 10px 0 0; }
   .copy-btn {
-    background: var(--teal);
+    background: var(--accent);
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -374,6 +401,7 @@
     cursor: pointer;
   }
   .copy-btn.copied { background: #2a7f2a; }
+  .copy-btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
   .section-label {
     font-size: 12px;
@@ -422,7 +450,7 @@
       </div>
 
       <label class="field-label" for="challengeText">Describe your challenge</label>
-      <textarea id="challengeText" rows="6" placeholder="I have a module introducing five ESG reporting frameworks, GRI, SASB, TCFD, CDP, and the EU CSRD. Right now it's a dense comparison table. Learners need to understand what each framework measures, who requires or uses it, and when a company would reach for it, but most learners have only encountered one or two of these in practice."></textarea>
+      <textarea id="challengeText" rows="6" placeholder="I'm building a module on common Python error types for students who've finished an intro programming course. The reading covers five exceptions, TypeError, ValueError, IndexError, KeyError, and AttributeError, each with a paragraph explaining what it means. Students can define each one but freeze the first time they see a real traceback, and can't reliably connect a bug to the error it will raise."></textarea>
       <span class="example-link" id="tryExampleLink">Try the example</span>
 
       <div class="actions-row">
@@ -489,7 +517,7 @@
       <p class="section-label" style="margin-top:18px;">Visual theme</p>
       <div class="theme-card">
         <div class="swatch"></div>
-        <p>Health sciences theme using Eno accent (#339898) for active tabs and highlights, Duke Navy headers, and clean card-based panels with generous whitespace to reduce cognitive load when comparing frameworks.</p>
+        <p>Technical theme using Prussian Blue accent (#005587) for active tabs and highlights, Duke Navy headers, and Roboto Mono for any code snippets, a clean, high-contrast layout suited to comparing five distinct error types at a glance.</p>
       </div>
 
       <p class="section-label" style="margin-top:22px;">Plugin JSON configuration</p>
@@ -508,7 +536,7 @@
   /* ==================================================================
      STATE
      ================================================================== */
-  const EXAMPLE_TEXT = "I have a module introducing five ESG reporting frameworks, GRI, SASB, TCFD, CDP, and the EU CSRD. Right now it's a dense comparison table. Learners need to understand what each framework measures, who requires or uses it, and when a company would reach for it, but most learners have only encountered one or two of these in practice.";
+  const EXAMPLE_TEXT = "I'm building a module on common Python error types for students who've finished an intro programming course. The reading covers five exceptions, TypeError, ValueError, IndexError, KeyError, and AttributeError, each with a paragraph explaining what it means. The problem is that students finish the reading able to define each one but freeze the first time they see a real traceback. They can't reliably connect a bug to the error it will raise, or reason backward from an error message to the fix. Most students already recognize TypeError and IndexError from earlier debugging exercises, but ValueError, KeyError, and AttributeError still trip them up. I want something that helps them connect each error type to the kind of mistake that causes it, without just repeating the definitions.";
 
   const TYPES = ["tabs", "drag", "reveal", "annotated", "sequencing", "quiz"];
 
@@ -521,137 +549,143 @@
     quiz: "Inline quiz"
   };
 
-  const RATIONALE_TABS = "Five reporting frameworks are exactly parallel in structure and serve distinct audiences. A tabbed layout lets learners quickly scan all five at once, compare who each one is for, and turn a dense comparison table into an immediately navigable reference.";
+  const RATIONALE_TABS = "Five exception types are exactly parallel in structure, and each one is defined by a different kind of mistake. A tabbed layout lets students compare all five side by side instead of reading five stacked paragraphs, and comparison is exactly the skill they're missing after the reading alone.";
 
   const FRAMING = {
-    drag: "A matching exercise checks whether learners can recognize each framework from real disclosure language, not just recall a definition.",
-    reveal: "A click-to-reveal grid gives learners a fast, low-stakes way to check what each framework covers.",
-    annotated: "Annotating a real disclosure paragraph tests the hardest version of this skill: connecting language to framework with no labels given.",
-    sequencing: "A sequencing exercise models the actual decision process a company follows when choosing a framework.",
-    quiz: "A scenario-based question forces learners to apply the distinction, not just recognize it."
+    drag: "A sorting exercise checks whether students can recognize an error from a bug scenario, not just recall its definition.",
+    reveal: "A click-to-reveal grid gives students a fast, low-stakes way to check what each error means and how to spot it.",
+    annotated: "Annotating a paragraph that compares all five errors at once tests the hardest version of this skill: telling related error types apart with no labels given in advance.",
+    sequencing: "A sequencing exercise models the actual process of reading a traceback and fixing the bug it points to.",
+    quiz: "A scenario-based question forces students to reason about one concrete bug, not just recognize a definition."
   };
 
   const WHY_CARDS = {
-    tabs: { label: "COMPARE PARALLEL CONCEPTS", text: "Perfect fit: five frameworks at the threshold of tab capacity; learners benefit from seeing all labels at once and flipping between scope, audience, and use case to build decision-making schema." },
-    drag: { label: "TEST RECOGNITION, NOT RECALL", text: "Learners aren't picking a definition from a list. They're matching real disclosure language to the framework that produced it, the same skill they'll need on the job." },
-    reveal: { label: "LOW-STAKES RECALL CHECK", text: "Good for a quick refresher before the graded assessment, or for learners who already know a couple of these frameworks and just need to fill the gaps." },
-    annotated: { label: "CONNECT LANGUAGE TO FRAMEWORK", text: "This is the hardest and most realistic version of the skill: no framework names, just the language a real disclosure would use." },
-    sequencing: { label: "MODEL THE DECISION PROCESS", text: "This mirrors how a sustainability team actually approaches framework selection: audience first, then legal requirement, then materiality, then the framework itself." },
-    quiz: { label: "APPLY THE DISTINCTION", text: "The scenario forces learners to notice the detail that matters, EU operations above a size threshold, and connect it to the one framework that responds to legal requirement rather than audience or industry." }
+    tabs: { label: "COMPARE PARALLEL CONCEPTS", text: "Good fit: five exceptions at the edge of tab capacity, and students benefit from flipping between what triggers each one and what its message looks like to build a mental map they can use later." },
+    drag: { label: "TEST RECOGNITION, NOT RECALL", text: "Students aren't picking a definition from a list. They're matching a bug scenario to the error it would actually raise, the same judgment call they'll make while debugging their own code." },
+    reveal: { label: "LOW-STAKES RECALL CHECK", text: "Good for a quick refresher before a debugging exercise, or for students who already know a couple of these errors and just need to fill the gaps." },
+    annotated: { label: "CONNECT RELATED CONCEPTS", text: "This is the hardest and most realistic version of the skill: no error names given upfront, just a paragraph that has to be read closely to tell them apart." },
+    sequencing: { label: "MODEL THE DEBUGGING PROCESS", text: "This mirrors how a student actually works through a traceback: find where it failed, read the message, form a hypothesis, then confirm it." },
+    quiz: { label: "APPLY THE DISTINCTION", text: "The scenario forces students to notice that a dictionary key is missing, not a data type problem, and connect that detail to the one error built for exactly that situation." }
   };
 
-  let SHARED_STATIC_TEXT = "Companies choose among five major ESG reporting frameworks depending on their audience and legal obligations. GRI offers the broadest, most widely adopted approach to public-facing sustainability reporting, covering many topics for a wide range of stakeholders. SASB narrows the focus to financially material ESG metrics specific to each industry, aimed at investors. TCFD focuses specifically on climate-related risk, organized around governance, strategy, risk management, and metrics. CDP structures environmental disclosure, especially emissions, water, and deforestation, as an annual scored questionnaire, often required by customers or investors. The EU's CSRD is the only mandatory framework among the five, requiring companies above a size threshold operating in the EU to report using double materiality, audited and filed alongside financial statements.";
+  let SHARED_STATIC_TEXT = "Python raises different exceptions depending on what went wrong, and the exception name is a clue to the fix. TypeError means an operation was used on a value of the wrong type, like adding a number to a string. ValueError means the type was right but the value itself wasn't usable, like trying to convert the word twenty-five into a number. IndexError means you asked a list, tuple, or string for a position that doesn't exist. KeyError means you asked a dictionary for a key it doesn't have. AttributeError means you tried to use a method or property that the object doesn't support, often because the object turned out to be a different type than expected, including None. Reading the exception name first narrows down what kind of mistake to look for before reading the rest of the traceback.";
 
   const dataStore = {
     tabs: {
-      title: "Five ESG Reporting Frameworks",
-      instructions: "Select a framework to see what it measures, who uses it, and when a company would reach for it.",
+      title: "Five Common Python Exceptions",
+      instructions: "Select an exception to see what it means, when it shows up, and a quick example.",
       frameworks: [
         {
-          tabLabel: "GRI",
-          heading: "GRI",
-          when: "Publishing a voluntary sustainability report for a broad audience, not just investors. GRI is the most widely adopted framework worldwide for public-facing disclosure.",
-          structure: "Universal Standards (organizational context, governance, stakeholder engagement) plus Topic Standards covering specific issues like emissions, labor practices, and water use.",
-          example: "A multinational consumer goods company publishing its annual sustainability report for the public, NGOs, and community stakeholders."
+          tabLabel: "TypeError",
+          heading: "TypeError",
+          when: "An operation or function is used on a value of the wrong type, like adding a number to a string instead of another number.",
+          structure: "The message usually names the two types that don't work together, phrases like \"can only concatenate str (not int) to str\" or \"unsupported operand type(s)\".",
+          example: "age = \"25\" then age + 5 raises: TypeError: can only concatenate str (not \"int\") to str"
         },
         {
-          tabLabel: "SASB",
-          heading: "SASB",
-          when: "Communicating financially material ESG information to investors. SASB standards are industry-specific, focused only on issues likely to affect financial performance.",
-          structure: "77 industry-specific standards, each identifying a small set of financially material topics and metrics for that industry alone.",
-          example: "A software company disclosing data security and workforce metrics because those are the ESG issues material to its industry, not the land-use metrics that matter more to agriculture."
+          tabLabel: "ValueError",
+          heading: "ValueError",
+          when: "The value is the right type but isn't valid for what you're asking Python to do with it, most often converting text that isn't a number.",
+          structure: "The message usually names the exact value that failed, phrases like \"invalid literal for int() with base 10\".",
+          example: "int(\"twenty-five\") raises: ValueError: invalid literal for int() with base 10: 'twenty-five'"
         },
         {
-          tabLabel: "TCFD",
-          heading: "TCFD",
-          when: "Disclosing climate-related risk to investors and lenders. TCFD is built specifically around climate risk, not ESG broadly.",
-          structure: "Four pillars: Governance, Strategy, Risk Management, and Metrics and Targets, addressing how climate risk is identified, managed, and measured.",
-          example: "A bank assessing how rising sea levels could affect the value of coastal real estate in its loan portfolio, and disclosing that exposure to shareholders."
+          tabLabel: "IndexError",
+          heading: "IndexError",
+          when: "You ask a list, tuple, or string for a position that doesn't exist, often from looping one step too far or assuming a list has items when it might be empty.",
+          structure: "The message is short and specific to sequences: \"index out of range\".",
+          example: "names = [\"Ana\", \"Ben\"] then names[5] raises: IndexError: list index out of range"
         },
         {
-          tabLabel: "CDP",
-          heading: "CDP",
-          when: "Responding to investor or customer requests for detailed environmental data, especially carbon emissions, water security, and deforestation.",
-          structure: "Annual questionnaires scored on a letter grade, A to D-, covering climate change, water security, and forests as separate tracks.",
-          example: "A retailer's supply chain team completing the CDP climate questionnaire because a major customer requires a CDP score from all its suppliers."
+          tabLabel: "KeyError",
+          heading: "KeyError",
+          when: "You ask a dictionary for a key it doesn't have, often from assuming a field in a form, file, or API response is always present.",
+          structure: "The message is just the missing key itself, in quotes, with no other explanation.",
+          example: "student = {\"name\": \"Ana\"} then student[\"age\"] raises: KeyError: 'age'"
         },
         {
-          tabLabel: "CSRD",
-          heading: "CSRD",
-          when: "Mandatory reporting for companies operating in the EU above a certain size threshold. Unlike the other four, CSRD isn't voluntary.",
-          structure: "Requires double materiality: both how sustainability issues affect the company financially, and how the company affects society and the environment. Audited and filed with financial statements.",
-          example: "A US-based manufacturer with a large enough EU subsidiary now has to prepare CSRD-compliant sustainability statements for the first time, even though reporting at home is still voluntary."
+          tabLabel: "AttributeError",
+          heading: "AttributeError",
+          when: "You try to use a method or property that the object doesn't have, often because the object turned out to be a different type than expected, including None.",
+          structure: "The message names the object's actual type, phrases like \"'NoneType' object has no attribute\" or \"'list' object has no attribute\".",
+          example: "roster.find(\"Ana\") raises: AttributeError: 'list' object has no attribute 'find'"
         }
       ]
     },
 
     drag: {
-      title: "Sort the Disclosure by Framework",
-      instructions: "Drag each statement into the framework it belongs to.",
-      zones: ["GRI", "SASB", "TCFD", "CDP", "CSRD"],
+      title: "Sort Each Bug by the Error It Raises",
+      instructions: "Drag each statement into the exception it would actually raise.",
+      zones: ["TypeError", "ValueError", "IndexError", "KeyError", "AttributeError"],
       statements: [
-        { text: "As a qualifying EU company, we're now legally required to file audited sustainability statements.", zone: "CSRD" },
-        { text: "Our annual sustainability report covers labor practices across our global supply chain for a broad public audience.", zone: "GRI" },
-        { text: "We completed the annual questionnaire and received a B grade for our climate disclosures.", zone: "CDP" },
-        { text: "We disclose only the ESG metrics considered financially material to the software industry.", zone: "SASB" },
-        { text: "We modeled how a 2°C warming scenario would affect our real estate loan portfolio.", zone: "TCFD" }
+        { text: "Adding a number to a string without converting it first.", zone: "TypeError" },
+        { text: "Passing three arguments to a function defined to take two.", zone: "TypeError" },
+        { text: "Calling int() on a string that isn't a valid number, like 'twenty-five'.", zone: "ValueError" },
+        { text: "Reading a blank form field and converting it straight to an int.", zone: "ValueError" },
+        { text: "Looping through a list with range(len(list)) but going one step too far.", zone: "IndexError" },
+        { text: "Accessing the last item of a list right after removing one, using the old length.", zone: "IndexError" },
+        { text: "Looking up a dictionary key that was never added to it.", zone: "KeyError" },
+        { text: "Assuming an API response always includes an optional field.", zone: "KeyError" },
+        { text: "Calling a string method on a variable that's actually a list.", zone: "AttributeError" },
+        { text: "Calling a method on a variable that turned out to be None because an earlier function didn't return anything.", zone: "AttributeError" }
       ]
     },
 
     reveal: {
-      title: "Five Frameworks at a Glance",
-      instructions: "Click each framework to reveal what it's for.",
+      title: "Five Exceptions at a Glance",
+      instructions: "Click each exception to reveal what it means and how to spot it.",
       cards: [
-        { name: "GRI", measures: "broad ESG impact across many topics.", usedBy: "any company publishing a public sustainability report." },
-        { name: "SASB", measures: "financially material ESG metrics for one specific industry.", usedBy: "companies reporting to investors." },
-        { name: "TCFD", measures: "climate-related risk across governance, strategy, risk, and metrics.", usedBy: "banks, insurers, and companies disclosing climate exposure." },
-        { name: "CDP", measures: "emissions, water security, and deforestation via a scored questionnaire.", usedBy: "companies responding to investor or customer requests." },
-        { name: "CSRD", measures: "double materiality, financial and societal impact.", usedBy: "companies operating in the EU above a size threshold (mandatory)." }
+        { name: "TypeError", measures: "an operation used on the wrong type, like adding a number to a string.", usedBy: "the message names two mismatched types, like \"str\" and \"int\"." },
+        { name: "ValueError", measures: "the right type, but a value Python can't actually use, like text that isn't a number.", usedBy: "the message quotes the exact bad value." },
+        { name: "IndexError", measures: "a position in a list, tuple, or string that doesn't exist.", usedBy: "the message just says \"index out of range\"." },
+        { name: "KeyError", measures: "a dictionary key that isn't there.", usedBy: "the message is only the missing key, in quotes." },
+        { name: "AttributeError", measures: "a method or property the object doesn't have, often because it's a different type than expected.", usedBy: "the message names the object's real type, like \"NoneType\"." }
       ]
     },
 
     annotated: {
-      title: "Reading a Real Disclosure Statement",
-      instructions: "Click the highlighted phrases to see which framework they reference.",
+      title: "Telling the Five Errors Apart",
+      instructions: "Click the highlighted terms to see what distinguishes each one.",
       segments: [
-        { type: "text", text: "In our fiscal year 2025 report, we completed our first " },
-        { type: "ann", phrase: "double materiality assessment", annotation: "CSRD: Double materiality, impact on the company and impact on society and the environment, is the defining requirement of the EU's CSRD." },
-        { type: "text", text: " for our EU operations, published " },
-        { type: "ann", phrase: "emissions data scored by an independent environmental disclosure body", annotation: "CDP: This describes CDP's annual questionnaire and letter-grade scoring." },
-        { type: "text", text: ", and continued our voluntary " },
-        { type: "ann", phrase: "sustainability report for community and public stakeholders", annotation: "GRI: Broad, public-facing sustainability reporting is GRI's core use case." },
-        { type: "text", text: ". Our board now reviews " },
-        { type: "ann", phrase: "climate-related risk to our loan portfolio", annotation: "TCFD: Assessing and disclosing climate risk to lenders and investors is TCFD's specific focus." },
-        { type: "text", text: " each quarter, and our investor-facing filings include " },
-        { type: "ann", phrase: "financially material metrics specific to our industry", annotation: "SASB: Industry-specific, investor-facing, financially material metrics describe SASB." },
-        { type: "text", text: "." }
+        { type: "text", text: "A " },
+        { type: "ann", phrase: "KeyError", annotation: "Raised only by dictionaries, when the specific key you asked for was never added." },
+        { type: "text", text: " means the dictionary you're working with doesn't have the key you asked for. It's easy to confuse with an " },
+        { type: "ann", phrase: "IndexError", annotation: "Raised only by lists, tuples, and strings, when the numbered position you asked for doesn't exist." },
+        { type: "text", text: ", since both are about something you asked for not being there, but index errors only apply to sequences with numbered positions instead of named keys. A " },
+        { type: "ann", phrase: "ValueError", annotation: "Raised when a value is the right type but isn't usable, like text that isn't a number." },
+        { type: "text", text: " can look similar too, especially when the bad data comes from a form or file, but a value error means the type was right and the value inside it wasn't usable, not that anything was missing. When you see an " },
+        { type: "ann", phrase: "AttributeError", annotation: "Raised when an object doesn't have the method or property you tried to use." },
+        { type: "text", text: ", check whether the object is unexpectedly " },
+        { type: "ann", phrase: "None", annotation: "Python's version of \"nothing here,\" often returned silently by a function that didn't hit a return statement." },
+        { type: "text", text: " first, that's the most common hidden cause, not a typo in the method name." }
       ]
     },
 
     sequencing: {
-      title: "Choosing a Reporting Framework",
-      instructions: "Put these steps in the order a company would actually take them.",
+      title: "Debug a Python Error Using Its Traceback",
+      instructions: "Put these steps in the order you'd actually take them.",
       steps: [
-        "Identify your primary audience: investors, regulators, or the general public.",
-        "Check whether any framework is legally required for your size and location.",
-        "Identify which ESG topics are financially material to your industry.",
-        "Select the framework or frameworks that match your audience and materiality profile.",
-        "Gather data and publish, on the cycle your chosen framework requires."
+        "Find the last line of the traceback, that's where the error actually happened.",
+        "Read the exception name and message on that last line.",
+        "Form a hypothesis about which value is the wrong type, unusable, missing, or out of range.",
+        "Check that variable's actual value right before the line that failed.",
+        "Fix the assumption that caused the bad value, not just the line that crashed.",
+        "Rerun the code to confirm the fix instead of assuming it from reading alone."
       ]
     },
 
     quiz: {
-      title: "Which Framework Fits?",
+      title: "Which Error Fits This Bug?",
       instructions: "Read the scenario and choose the best answer.",
-      scenario: "A mid-sized US manufacturer just opened a subsidiary in Germany large enough to trigger EU reporting thresholds. Its finance team wants to know which framework they're now legally required to comply with.",
+      scenario: "A function looks up a customer's shipping address from a dictionary called orders, using an order ID the customer typed into a form. On one particular order, the code raises an exception. Which error is most likely, and why?",
       options: [
-        { text: "GRI, because it's the most widely recognized framework globally.", correct: false },
-        { text: "SASB, because investors will expect industry-specific metrics.", correct: false },
-        { text: "CDP, because their customers likely require a climate questionnaire.", correct: false },
-        { text: "CSRD, because operating in the EU above the size threshold makes reporting mandatory, not optional.", correct: true }
+        { text: "IndexError, because the customer typed the order ID as a string instead of a number.", correct: false },
+        { text: "KeyError, because the order ID the customer typed doesn't exist in the orders dictionary.", correct: true },
+        { text: "TypeError, because you can't look up a dictionary using a value that came from a form.", correct: false },
+        { text: "ValueError, because the order ID is the wrong length.", correct: false }
       ],
-      correctFeedback: "Right. CSRD is the only framework here that's a legal requirement rather than a voluntary choice, and it's triggered by the EU subsidiary's size, not the parent company's location.",
-      incorrectFeedback: "Not quite. The others are strong voluntary choices, but only one framework here is a mandatory legal requirement once a company crosses the EU's size threshold."
+      correctFeedback: "Right. The order ID is a valid string, Python just never received that specific key in the orders dictionary, and a missing key is exactly what raises a KeyError.",
+      incorrectFeedback: "Not quite. The order ID's type and shape aren't the problem here, the issue is that the dictionary was never given that specific key. That's what a KeyError is built for."
     }
   };
 
@@ -826,9 +860,9 @@
     const f = d.frameworks[tabsActiveIndex];
     html += '<div class="tab-panel">';
     html += '<h4>' + escapeHtml(f.heading) + '</h4>';
-    html += '<div class="field-row"><strong>When to use:</strong> ' + escapeHtml(f.when) + '</div>';
-    html += '<div class="field-row"><strong>Structure:</strong> ' + escapeHtml(f.structure) + '</div>';
-    html += '<div class="field-row"><strong>Example context:</strong> ' + escapeHtml(f.example) + '</div>';
+    html += '<div class="field-row"><strong>When it shows up:</strong> ' + escapeHtml(f.when) + '</div>';
+    html += '<div class="field-row"><strong>What the message looks like:</strong> ' + escapeHtml(f.structure) + '</div>';
+    html += '<div class="field-row"><strong>Quick example:</strong> ' + escapeHtml(f.example) + '</div>';
     html += '</div>';
     shell.innerHTML = html;
 
@@ -875,8 +909,8 @@
       const allCorrect = correctCount === d.statements.length;
       const fbClass = allCorrect ? "correct" : "incorrect";
       const fbText = allCorrect
-        ? "All five, sorted correctly. You matched disclosure language to the framework that actually produced it, not just a definition."
-        : "You correctly matched " + correctCount + " of " + d.statements.length + ". The highlighted statements show where the language pointed to a different framework than the one chosen.";
+        ? "All ten, sorted correctly. You matched each bug to the error it would actually raise, not just a definition."
+        : "You correctly matched " + correctCount + " of " + d.statements.length + ". The highlighted statements show which bugs point to a different error than the one chosen.";
       html += '<div class="quiz-feedback ' + fbClass + '">' + fbText + '</div>';
     }
 
@@ -991,7 +1025,7 @@
       const open = revealOpenSet.has(i);
       html += '<div class="reveal-card' + (open ? ' open' : '') + '" data-i="' + i + '">';
       html += '<div class="rc-name">' + escapeHtml(c.name) + '</div>';
-      html += '<div class="rc-detail"><strong>Measures:</strong> ' + escapeHtml(c.measures) + '<br><strong>Used by:</strong> ' + escapeHtml(c.usedBy) + '</div>';
+      html += '<div class="rc-detail"><strong>Means:</strong> ' + escapeHtml(c.measures) + '<br><strong>Telltale sign:</strong> ' + escapeHtml(c.usedBy) + '</div>';
       html += '</div>';
     });
     html += '</div>';
@@ -1048,7 +1082,7 @@
   function renderSequencingPreview(shell) {
     const d = dataStore.sequencing;
     if (!sequencingOrder) {
-      sequencingOrder = [2, 0, 4, 1, 3]; // shuffled starting order, deliberately not correct
+      sequencingOrder = [1, 2, 3, 4, 5, 0]; // shuffled starting order, deliberately not correct
     }
     const allCorrect = sequencingOrder.every((stepIdx, pos) => stepIdx === pos);
     let html = '<p class="preview-title">' + escapeHtml(d.title) + '</p>';
@@ -1183,9 +1217,9 @@
     d.frameworks.forEach((f, i) => {
       html += '<div class="edit-block"><h3>' + escapeHtml(f.tabLabel) + ' panel</h3>';
       html += '<div class="field-group"><label class="field-label">Panel heading</label><input type="text" data-arr="frameworks" data-idx="' + i + '" data-field="heading" value="' + escapeHtml(f.heading) + '"></div>';
-      html += '<div class="field-group"><label class="field-label">When to use</label><textarea rows="3" data-arr="frameworks" data-idx="' + i + '" data-field="when">' + escapeHtml(f.when) + '</textarea></div>';
-      html += '<div class="field-group"><label class="field-label">Structure</label><textarea rows="3" data-arr="frameworks" data-idx="' + i + '" data-field="structure">' + escapeHtml(f.structure) + '</textarea></div>';
-      html += '<div class="field-group"><label class="field-label">Example</label><textarea rows="3" data-arr="frameworks" data-idx="' + i + '" data-field="example">' + escapeHtml(f.example) + '</textarea></div>';
+      html += '<div class="field-group"><label class="field-label">When it shows up</label><textarea rows="3" data-arr="frameworks" data-idx="' + i + '" data-field="when">' + escapeHtml(f.when) + '</textarea></div>';
+      html += '<div class="field-group"><label class="field-label">What the message looks like</label><textarea rows="3" data-arr="frameworks" data-idx="' + i + '" data-field="structure">' + escapeHtml(f.structure) + '</textarea></div>';
+      html += '<div class="field-group"><label class="field-label">Quick example</label><textarea rows="3" data-arr="frameworks" data-idx="' + i + '" data-field="example">' + escapeHtml(f.example) + '</textarea></div>';
       html += '</div>';
     });
     return html;
@@ -1219,9 +1253,9 @@
     html += '</div>';
     d.cards.forEach((c, i) => {
       html += '<div class="edit-block"><h3>Card ' + (i + 1) + '</h3>';
-      html += '<div class="field-group"><label class="field-label">Framework name</label><input type="text" data-arr="cards" data-idx="' + i + '" data-field="name" value="' + escapeHtml(c.name) + '"></div>';
-      html += '<div class="field-group"><label class="field-label">Measures</label><textarea rows="2" data-arr="cards" data-idx="' + i + '" data-field="measures">' + escapeHtml(c.measures) + '</textarea></div>';
-      html += '<div class="field-group"><label class="field-label">Used by</label><textarea rows="2" data-arr="cards" data-idx="' + i + '" data-field="usedBy">' + escapeHtml(c.usedBy) + '</textarea></div>';
+      html += '<div class="field-group"><label class="field-label">Exception name</label><input type="text" data-arr="cards" data-idx="' + i + '" data-field="name" value="' + escapeHtml(c.name) + '"></div>';
+      html += '<div class="field-group"><label class="field-label">What it means</label><textarea rows="2" data-arr="cards" data-idx="' + i + '" data-field="measures">' + escapeHtml(c.measures) + '</textarea></div>';
+      html += '<div class="field-group"><label class="field-label">Telltale sign</label><textarea rows="2" data-arr="cards" data-idx="' + i + '" data-field="usedBy">' + escapeHtml(c.usedBy) + '</textarea></div>';
       html += '</div>';
     });
     return html;
@@ -1371,74 +1405,74 @@
      ================================================================== */
   function buildTabsHtml() {
     const d = dataStore.tabs;
-    let html = '<div class="esg-tabs-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
+    let html = '<div class="pyx-tabs-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
     html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
     html += '<p style="color:#555;font-size:14px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
-    html += '<div class="esg-tabs-nav" style="display:flex;gap:6px;flex-wrap:wrap;border-bottom:2px solid #eee;margin-bottom:16px;">';
+    html += '<div class="pyx-tabs-nav" style="display:flex;gap:6px;flex-wrap:wrap;border-bottom:2px solid #eee;margin-bottom:16px;">';
     d.frameworks.forEach((f, i) => {
-      html += '<button type="button" class="esg-tab-btn" data-i="' + i + '" style="padding:9px 14px;border:none;background:none;cursor:pointer;font-weight:700;font-size:13px;color:' + (i === 0 ? '#339898' : '#666') + ';border-bottom:3px solid ' + (i === 0 ? '#339898' : 'transparent') + ';">' + escapeHtml(f.tabLabel) + '</button>';
+      html += '<button type="button" class="pyx-tab-btn" data-i="' + i + '" style="padding:9px 14px;border:none;background:none;cursor:pointer;font-weight:700;font-size:13px;color:' + (i === 0 ? '#005587' : '#666') + ';border-bottom:3px solid ' + (i === 0 ? '#005587' : 'transparent') + ';">' + escapeHtml(f.tabLabel) + '</button>';
     });
     html += '</div>';
     d.frameworks.forEach((f, i) => {
-      html += '<div class="esg-tab-panel" data-i="' + i + '" style="display:' + (i === 0 ? 'block' : 'none') + ';">';
+      html += '<div class="pyx-tab-panel" data-i="' + i + '" style="display:' + (i === 0 ? 'block' : 'none') + ';">';
       html += '<h4 style="color:#012169;font-size:15.5px;margin:0 0 10px;">' + escapeHtml(f.heading) + '</h4>';
-      html += '<p style="font-size:13.5px;line-height:1.55;margin:0 0 10px;"><strong>When to use:</strong> ' + escapeHtml(f.when) + '</p>';
-      html += '<p style="font-size:13.5px;line-height:1.55;margin:0 0 10px;"><strong>Structure:</strong> ' + escapeHtml(f.structure) + '</p>';
-      html += '<p style="font-size:13.5px;line-height:1.55;margin:0;"><strong>Example context:</strong> ' + escapeHtml(f.example) + '</p>';
+      html += '<p style="font-size:13.5px;line-height:1.55;margin:0 0 10px;"><strong>When it shows up:</strong> ' + escapeHtml(f.when) + '</p>';
+      html += '<p style="font-size:13.5px;line-height:1.55;margin:0 0 10px;"><strong>What the message looks like:</strong> ' + escapeHtml(f.structure) + '</p>';
+      html += '<p style="font-size:13.5px;line-height:1.55;margin:0;"><strong>Quick example:</strong> ' + escapeHtml(f.example) + '</p>';
       html += '</div>';
     });
-    html += '<script>(function(){var root=document.currentScript.parentElement;var btns=root.querySelectorAll(".esg-tab-btn");var panels=root.querySelectorAll(".esg-tab-panel");btns.forEach(function(b){b.addEventListener("click",function(){var i=b.getAttribute("data-i");btns.forEach(function(x){x.style.color="#666";x.style.borderBottomColor="transparent";});b.style.color="#339898";b.style.borderBottomColor="#339898";panels.forEach(function(p){p.style.display=(p.getAttribute("data-i")===i)?"block":"none";});});});})();<\/script>';
+    html += '<script>(function(){var root=document.currentScript.parentElement;var btns=root.querySelectorAll(".pyx-tab-btn");var panels=root.querySelectorAll(".pyx-tab-panel");btns.forEach(function(b){b.addEventListener("click",function(){var i=b.getAttribute("data-i");btns.forEach(function(x){x.style.color="#666";x.style.borderBottomColor="transparent";});b.style.color="#005587";b.style.borderBottomColor="#005587";panels.forEach(function(p){p.style.display=(p.getAttribute("data-i")===i)?"block":"none";});});});})();<\/script>';
     html += '</div>';
     return html;
   }
 
   function buildDragHtml() {
     const d = dataStore.drag;
-    let html = '<div class="esg-drag-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
+    let html = '<div class="pyx-drag-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
     html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
     html += '<p style="color:#555;font-size:14px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
-    html += '<div class="esg-zones" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:16px;">';
+    html += '<div class="pyx-zones" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:16px;">';
     d.zones.forEach(z => {
-      html += '<div class="esg-zone" data-zone="' + escapeHtml(z) + '" style="border:2px dashed #ccc;border-radius:10px;padding:10px;min-height:90px;font-size:12px;">';
+      html += '<div class="pyx-zone" data-zone="' + escapeHtml(z) + '" style="border:2px dashed #ccc;border-radius:10px;padding:10px;min-height:90px;font-size:12px;">';
       html += '<div style="font-weight:700;font-size:11px;text-transform:uppercase;color:#012169;margin-bottom:8px;">' + escapeHtml(z) + '</div>';
-      html += '<div class="esg-zone-slot"></div>';
+      html += '<div class="pyx-zone-slot"></div>';
       html += '</div>';
     });
     html += '</div>';
     html += '<p style="font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.04em;color:#666;margin:0 0 8px;">Statements</p>';
-    html += '<div class="esg-chip-pool" style="display:flex;flex-wrap:wrap;gap:8px;min-height:20px;">';
+    html += '<div class="pyx-chip-pool" style="display:flex;flex-wrap:wrap;gap:8px;min-height:20px;">';
     d.statements.forEach((s, i) => {
-      html += '<div class="esg-chip" draggable="true" data-zone="' + escapeHtml(s.zone) + '" data-i="' + i + '" style="background:#fff;border:1px solid #ccc;border-radius:8px;padding:8px 10px;font-size:12.5px;cursor:grab;max-width:220px;">' + escapeHtml(s.text) + '</div>';
+      html += '<div class="pyx-chip" draggable="true" data-zone="' + escapeHtml(s.zone) + '" data-i="' + i + '" style="background:#fff;border:1px solid #ccc;border-radius:8px;padding:8px 10px;font-size:12.5px;cursor:grab;max-width:220px;">' + escapeHtml(s.text) + '</div>';
     });
     html += '</div>';
-    html += '<div style="display:flex;justify-content:flex-end;margin-top:18px;"><button type="button" class="esg-drag-submit" disabled style="background:#fff;color:#012169;border:1.5px solid #012169;border-radius:8px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer;opacity:0.5;">Submit</button></div>';
-    html += '<div class="esg-drag-feedback" style="display:none;margin-top:12px;padding:10px 12px;border-radius:8px;font-size:13px;line-height:1.55;"></div>';
-    html += '<script>(function(){var root=document.currentScript.parentElement;var chips=root.querySelectorAll(".esg-chip");var zones=root.querySelectorAll(".esg-zone");var submitBtn=root.querySelector(".esg-drag-submit");var feedback=root.querySelector(".esg-drag-feedback");var total=' + d.statements.length + ';function checkAllPlaced(){var placed=0;chips.forEach(function(c){if(c.closest(".esg-zone"))placed++;});submitBtn.disabled=(placed<total);submitBtn.style.opacity=(placed<total)?"0.5":"1";}chips.forEach(function(c){c.addEventListener("dragstart",function(e){e.dataTransfer.setData("text/plain",c.getAttribute("data-i"));});});zones.forEach(function(z){z.addEventListener("dragover",function(e){e.preventDefault();});z.addEventListener("drop",function(e){e.preventDefault();var i=e.dataTransfer.getData("text/plain");var chip=root.querySelector(\'.esg-chip[data-i="\'+i+\'"]\');if(!chip)return;chip.setAttribute("draggable","false");chip.style.cursor="default";z.querySelector(".esg-zone-slot").appendChild(chip);checkAllPlaced();});});submitBtn.addEventListener("click",function(){var correct=0;chips.forEach(function(c){var zoneEl=c.closest(".esg-zone");var isCorrect=zoneEl&&zoneEl.getAttribute("data-zone")===c.getAttribute("data-zone");if(isCorrect)correct++;c.style.borderColor=isCorrect?"#2a7f2a":"#b23a3a";c.style.background=isCorrect?"#eaf7ea":"#fbeaea";});submitBtn.disabled=true;submitBtn.style.opacity="0.5";var allCorrect=(correct===total);feedback.style.display="block";feedback.textContent=allCorrect?' + JSON.stringify("All five, sorted correctly. You matched disclosure language to the framework that actually produced it, not just a definition.") + ':("You correctly matched "+correct+" of "+total+". The highlighted statements show where the language pointed to a different framework than the one chosen.");feedback.style.background=allCorrect?"#eaf7ea":"#fbeaea";feedback.style.border="1px solid "+(allCorrect?"#2a7f2a":"#b23a3a");feedback.style.color=allCorrect?"#215c21":"#7a1f1f";});})();<\/script>';
+    html += '<div style="display:flex;justify-content:flex-end;margin-top:18px;"><button type="button" class="pyx-drag-submit" disabled style="background:#fff;color:#012169;border:1.5px solid #012169;border-radius:8px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer;opacity:0.5;">Submit</button></div>';
+    html += '<div class="pyx-drag-feedback" style="display:none;margin-top:12px;padding:10px 12px;border-radius:8px;font-size:13px;line-height:1.55;"></div>';
+    html += '<script>(function(){var root=document.currentScript.parentElement;var chips=root.querySelectorAll(".pyx-chip");var zones=root.querySelectorAll(".pyx-zone");var submitBtn=root.querySelector(".pyx-drag-submit");var feedback=root.querySelector(".pyx-drag-feedback");var total=' + d.statements.length + ';function checkAllPlaced(){var placed=0;chips.forEach(function(c){if(c.closest(".pyx-zone"))placed++;});submitBtn.disabled=(placed<total);submitBtn.style.opacity=(placed<total)?"0.5":"1";}chips.forEach(function(c){c.addEventListener("dragstart",function(e){e.dataTransfer.setData("text/plain",c.getAttribute("data-i"));});});zones.forEach(function(z){z.addEventListener("dragover",function(e){e.preventDefault();});z.addEventListener("drop",function(e){e.preventDefault();var i=e.dataTransfer.getData("text/plain");var chip=root.querySelector(\'.pyx-chip[data-i="\'+i+\'"]\');if(!chip)return;chip.setAttribute("draggable","false");chip.style.cursor="default";z.querySelector(".pyx-zone-slot").appendChild(chip);checkAllPlaced();});});submitBtn.addEventListener("click",function(){var correct=0;chips.forEach(function(c){var zoneEl=c.closest(".pyx-zone");var isCorrect=zoneEl&&zoneEl.getAttribute("data-zone")===c.getAttribute("data-zone");if(isCorrect)correct++;c.style.borderColor=isCorrect?"#2a7f2a":"#b23a3a";c.style.background=isCorrect?"#eaf7ea":"#fbeaea";});submitBtn.disabled=true;submitBtn.style.opacity="0.5";var allCorrect=(correct===total);feedback.style.display="block";feedback.textContent=allCorrect?' + JSON.stringify("All ten, sorted correctly. You matched each bug to the error it would actually raise, not just a definition.") + ':("You correctly matched "+correct+" of "+total+". The highlighted statements show which bugs point to a different error than the one chosen.");feedback.style.background=allCorrect?"#eaf7ea":"#fbeaea";feedback.style.border="1px solid "+(allCorrect?"#2a7f2a":"#b23a3a");feedback.style.color=allCorrect?"#215c21":"#7a1f1f";});})();<\/script>';
     html += '</div>';
     return html;
   }
 
   function buildRevealHtml() {
     const d = dataStore.reveal;
-    let html = '<div class="esg-reveal-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
+    let html = '<div class="pyx-reveal-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
     html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
     html += '<p style="color:#555;font-size:14px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
-    html += '<div class="esg-reveal-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;">';
+    html += '<div class="pyx-reveal-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;">';
     d.cards.forEach((c, i) => {
-      html += '<div class="esg-reveal-card" data-i="' + i + '" style="border:1px solid #E1DFDB;border-radius:10px;padding:12px;cursor:pointer;background:#fff;">';
+      html += '<div class="pyx-reveal-card" data-i="' + i + '" style="border:1px solid #E1DFDB;border-radius:10px;padding:12px;cursor:pointer;background:#fff;">';
       html += '<div style="font-weight:700;color:#012169;font-size:14px;">' + escapeHtml(c.name) + '</div>';
-      html += '<div class="esg-reveal-detail" style="display:none;font-size:12.5px;margin-top:8px;line-height:1.55;"><strong>Measures:</strong> ' + escapeHtml(c.measures) + '<br><strong>Used by:</strong> ' + escapeHtml(c.usedBy) + '</div>';
+      html += '<div class="pyx-reveal-detail" style="display:none;font-size:12.5px;margin-top:8px;line-height:1.55;"><strong>Means:</strong> ' + escapeHtml(c.measures) + '<br><strong>Telltale sign:</strong> ' + escapeHtml(c.usedBy) + '</div>';
       html += '</div>';
     });
     html += '</div>';
-    html += '<script>(function(){var root=document.currentScript.parentElement;root.querySelectorAll(".esg-reveal-card").forEach(function(card){card.addEventListener("click",function(){var detail=card.querySelector(".esg-reveal-detail");var open=detail.style.display==="block";detail.style.display=open?"none":"block";card.style.background=open?"#fff":"#EFF6F6";card.style.borderColor=open?"#E1DFDB":"#339898";});});})();<\/script>';
+    html += '<script>(function(){var root=document.currentScript.parentElement;root.querySelectorAll(".pyx-reveal-card").forEach(function(card){card.addEventListener("click",function(){var detail=card.querySelector(".pyx-reveal-detail");var open=detail.style.display==="block";detail.style.display=open?"none":"block";card.style.background=open?"#fff":"#EAF2F6";card.style.borderColor=open?"#E1DFDB":"#005587";});});})();<\/script>';
     html += '</div>';
     return html;
   }
 
   function buildAnnotatedHtml() {
     const d = dataStore.annotated;
-    let html = '<div class="esg-annotated-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
+    let html = '<div class="pyx-annotated-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
     html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
     html += '<p style="color:#555;font-size:14px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
     html += '<p style="font-size:14.5px;line-height:1.95;">';
@@ -1448,51 +1482,51 @@
         html += escapeHtml(s.text);
       } else {
         annIdx++;
-        html += '<mark class="esg-ann" data-ann-i="' + annIdx + '" data-note="' + escapeHtml(s.annotation) + '" style="background:#fff2b8;cursor:pointer;border-radius:3px;padding:0 2px;">' + escapeHtml(s.phrase) + '</mark>';
+        html += '<mark class="pyx-ann" data-ann-i="' + annIdx + '" data-note="' + escapeHtml(s.annotation) + '" style="background:#fff2b8;cursor:pointer;border-radius:3px;padding:0 2px;">' + escapeHtml(s.phrase) + '</mark>';
       }
     });
     html += '</p>';
-    html += '<div class="esg-ann-popover" style="display:none;margin-top:14px;border:1px solid #339898;background:#EFF6F6;border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.55;"></div>';
-    html += '<script>(function(){var root=document.currentScript.parentElement;var pop=root.querySelector(".esg-ann-popover");root.querySelectorAll(".esg-ann").forEach(function(m){m.addEventListener("click",function(){pop.textContent=m.getAttribute("data-note");pop.style.display="block";});});})();<\/script>';
+    html += '<div class="pyx-ann-popover" style="display:none;margin-top:14px;border:1px solid #005587;background:#EAF2F6;border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.55;"></div>';
+    html += '<script>(function(){var root=document.currentScript.parentElement;var pop=root.querySelector(".pyx-ann-popover");root.querySelectorAll(".pyx-ann").forEach(function(m){m.addEventListener("click",function(){pop.textContent=m.getAttribute("data-note");pop.style.display="block";});});})();<\/script>';
     html += '</div>';
     return html;
   }
 
   function buildSequencingHtml() {
     const d = dataStore.sequencing;
-    let html = '<div class="esg-seq-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
+    let html = '<div class="pyx-seq-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
     html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
     html += '<p style="color:#555;font-size:14px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
-    html += '<ul class="esg-seq-list" style="list-style:none;margin:0 0 14px;padding:0;display:flex;flex-direction:column;gap:8px;">';
+    html += '<ul class="pyx-seq-list" style="list-style:none;margin:0 0 14px;padding:0;display:flex;flex-direction:column;gap:8px;">';
     d.steps.forEach((s, i) => {
-      html += '<li class="esg-seq-item" data-correct-pos="' + i + '" style="display:flex;align-items:center;gap:10px;border:1px solid #E1DFDB;border-radius:8px;padding:10px 12px;background:#fff;font-size:13px;">';
+      html += '<li class="pyx-seq-item" data-correct-pos="' + i + '" style="display:flex;align-items:center;gap:10px;border:1px solid #E1DFDB;border-radius:8px;padding:10px 12px;background:#fff;font-size:13px;">';
       html += '<span style="flex:1;">' + escapeHtml(s) + '</span>';
-      html += '<span><button type="button" class="esg-seq-up" style="border:1px solid #E1DFDB;background:#fff;border-radius:4px;width:26px;height:24px;cursor:pointer;">&#9650;</button> <button type="button" class="esg-seq-down" style="border:1px solid #E1DFDB;background:#fff;border-radius:4px;width:26px;height:24px;cursor:pointer;">&#9660;</button></span>';
+      html += '<span><button type="button" class="pyx-seq-up" style="border:1px solid #E1DFDB;background:#fff;border-radius:4px;width:26px;height:24px;cursor:pointer;">&#9650;</button> <button type="button" class="pyx-seq-down" style="border:1px solid #E1DFDB;background:#fff;border-radius:4px;width:26px;height:24px;cursor:pointer;">&#9660;</button></span>';
       html += '</li>';
     });
     html += '</ul>';
-    html += '<button type="button" class="esg-seq-check" style="background:#fff;color:#012169;border:1.5px solid #012169;border-radius:8px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer;">Check order</button>';
-    html += '<div class="esg-seq-result" style="display:none;margin-top:10px;font-size:12.5px;color:#6b6b6b;background:#F6F5F3;border:1px dashed #E1DFDB;border-radius:8px;padding:10px 12px;"></div>';
-    html += '<script>(function(){var root=document.currentScript.parentElement;var list=root.querySelector(".esg-seq-list");function items(){return Array.prototype.slice.call(list.querySelectorAll(".esg-seq-item"));}root.querySelectorAll(".esg-seq-up").forEach(function(btn){btn.addEventListener("click",function(){var li=btn.closest(".esg-seq-item");var prev=li.previousElementSibling;if(prev)list.insertBefore(li,prev);});});root.querySelectorAll(".esg-seq-down").forEach(function(btn){btn.addEventListener("click",function(){var li=btn.closest(".esg-seq-item");var next=li.nextElementSibling;if(next)list.insertBefore(next,li);});});root.querySelector(".esg-seq-check").addEventListener("click",function(){var all=items();var ok=all.every(function(li,pos){return parseInt(li.getAttribute("data-correct-pos"),10)===pos;});all.forEach(function(li,pos){var correct=parseInt(li.getAttribute("data-correct-pos"),10)===pos;li.style.borderColor=correct?"#2a7f2a":"#b23a3a";li.style.background=correct?"#eaf7ea":"#fbeaea";});var result=root.querySelector(".esg-seq-result");result.style.display="block";result.textContent=ok?"Correct order!":"Not quite, check the highlighted steps and try again.";});})();<\/script>';
+    html += '<button type="button" class="pyx-seq-check" style="background:#fff;color:#012169;border:1.5px solid #012169;border-radius:8px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer;">Check order</button>';
+    html += '<div class="pyx-seq-result" style="display:none;margin-top:10px;font-size:12.5px;color:#6b6b6b;background:#F6F5F3;border:1px dashed #E1DFDB;border-radius:8px;padding:10px 12px;"></div>';
+    html += '<script>(function(){var root=document.currentScript.parentElement;var list=root.querySelector(".pyx-seq-list");function items(){return Array.prototype.slice.call(list.querySelectorAll(".pyx-seq-item"));}root.querySelectorAll(".pyx-seq-up").forEach(function(btn){btn.addEventListener("click",function(){var li=btn.closest(".pyx-seq-item");var prev=li.previousElementSibling;if(prev)list.insertBefore(li,prev);});});root.querySelectorAll(".pyx-seq-down").forEach(function(btn){btn.addEventListener("click",function(){var li=btn.closest(".pyx-seq-item");var next=li.nextElementSibling;if(next)list.insertBefore(next,li);});});root.querySelector(".pyx-seq-check").addEventListener("click",function(){var all=items();var ok=all.every(function(li,pos){return parseInt(li.getAttribute("data-correct-pos"),10)===pos;});all.forEach(function(li,pos){var correct=parseInt(li.getAttribute("data-correct-pos"),10)===pos;li.style.borderColor=correct?"#2a7f2a":"#b23a3a";li.style.background=correct?"#eaf7ea":"#fbeaea";});var result=root.querySelector(".pyx-seq-result");result.style.display="block";result.textContent=ok?"Correct order!":"Not quite, check the highlighted steps and try again.";});})();<\/script>';
     html += '</div>';
     return html;
   }
 
   function buildQuizHtml() {
     const d = dataStore.quiz;
-    let html = '<div class="esg-quiz-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
+    let html = '<div class="pyx-quiz-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
     html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
     html += '<p style="color:#555;font-size:14px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
     html += '<div style="font-size:13.5px;line-height:1.6;margin-bottom:14px;background:#FAFAF9;border:1px solid #E1DFDB;border-radius:8px;padding:12px;">' + escapeHtml(d.scenario) + '</div>';
     d.options.forEach((o, i) => {
-      html += '<label class="esg-quiz-option" data-correct="' + (o.correct ? "1" : "0") + '" style="display:flex;gap:8px;align-items:flex-start;border:1px solid #E1DFDB;border-radius:8px;padding:10px 12px;margin-bottom:8px;cursor:pointer;font-size:13.5px;">';
-      html += '<input type="radio" name="esgQuizOpt" value="' + i + '" style="margin-top:3px;">';
+      html += '<label class="pyx-quiz-option" data-correct="' + (o.correct ? "1" : "0") + '" style="display:flex;gap:8px;align-items:flex-start;border:1px solid #E1DFDB;border-radius:8px;padding:10px 12px;margin-bottom:8px;cursor:pointer;font-size:13.5px;">';
+      html += '<input type="radio" name="pyxQuizOpt" value="' + i + '" style="margin-top:3px;">';
       html += '<span>' + escapeHtml(o.text) + '</span>';
       html += '</label>';
     });
-    html += '<button type="button" class="esg-quiz-submit" disabled style="background:#fff;color:#012169;border:1.5px solid #012169;border-radius:8px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer;">Submit answer</button>';
-    html += '<div class="esg-quiz-feedback" style="display:none;margin-top:12px;padding:10px 12px;border-radius:8px;font-size:13px;line-height:1.55;"></div>';
-    html += '<script>(function(){var root=document.currentScript.parentElement;var submit=root.querySelector(".esg-quiz-submit");var radios=root.querySelectorAll(\'input[name="esgQuizOpt"]\');radios.forEach(function(r){r.addEventListener("change",function(){submit.disabled=false;});});submit.addEventListener("click",function(){var checked=root.querySelector(\'input[name="esgQuizOpt"]:checked\');if(!checked)return;var label=checked.closest(".esg-quiz-option");var correct=label.getAttribute("data-correct")==="1";var fb=root.querySelector(".esg-quiz-feedback");fb.style.display="block";fb.textContent=correct?' + JSON.stringify(dataStore.quiz.correctFeedback) + ':' + JSON.stringify(dataStore.quiz.incorrectFeedback) + ';fb.style.background=correct?"#eaf7ea":"#fbeaea";fb.style.border="1px solid "+(correct?"#2a7f2a":"#b23a3a");fb.style.color=correct?"#215c21":"#7a1f1f";root.querySelectorAll(".esg-quiz-option").forEach(function(l){var isCorrectOpt=l.getAttribute("data-correct")==="1";var isChosen=l===label;if(isChosen||isCorrectOpt){l.style.borderColor=isCorrectOpt?"#2a7f2a":"#b23a3a";l.style.background=isCorrectOpt?"#eaf7ea":"#fbeaea";}});});})();<\/script>';
+    html += '<button type="button" class="pyx-quiz-submit" disabled style="background:#fff;color:#012169;border:1.5px solid #012169;border-radius:8px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer;">Submit answer</button>';
+    html += '<div class="pyx-quiz-feedback" style="display:none;margin-top:12px;padding:10px 12px;border-radius:8px;font-size:13px;line-height:1.55;"></div>';
+    html += '<script>(function(){var root=document.currentScript.parentElement;var submit=root.querySelector(".pyx-quiz-submit");var radios=root.querySelectorAll(\'input[name="pyxQuizOpt"]\');radios.forEach(function(r){r.addEventListener("change",function(){submit.disabled=false;});});submit.addEventListener("click",function(){var checked=root.querySelector(\'input[name="pyxQuizOpt"]:checked\');if(!checked)return;var label=checked.closest(".pyx-quiz-option");var correct=label.getAttribute("data-correct")==="1";var fb=root.querySelector(".pyx-quiz-feedback");fb.style.display="block";fb.textContent=correct?' + JSON.stringify(dataStore.quiz.correctFeedback) + ':' + JSON.stringify(dataStore.quiz.incorrectFeedback) + ';fb.style.background=correct?"#eaf7ea":"#fbeaea";fb.style.border="1px solid "+(correct?"#2a7f2a":"#b23a3a");fb.style.color=correct?"#215c21":"#7a1f1f";root.querySelectorAll(".pyx-quiz-option").forEach(function(l){var isCorrectOpt=l.getAttribute("data-correct")==="1";var isChosen=l===label;if(isChosen||isCorrectOpt){l.style.borderColor=isCorrectOpt?"#2a7f2a":"#b23a3a";l.style.background=isCorrectOpt?"#eaf7ea":"#fbeaea";}});});})();<\/script>';
     html += '</div>';
     return html;
   }
