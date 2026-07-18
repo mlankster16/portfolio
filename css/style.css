@@ -316,27 +316,50 @@ body.page-content header.site .wrap {
   color: var(--ink);
   line-height: 1.35;
 }
-.two-part-grid { grid-template-columns: 1fr 1fr; }
-
-/* Duke Navy variant for the two-part-workflow cards on the
-   Interactivity Generator page. #012169 bg + white text measures at
-   ~14.8:1 contrast, well past WCAG AAA (7:1). */
-.two-part-grid .course-card {
-  background: #012169;
-  border-color: #012169;
+/* two-phase flowchart (Interactivity Generator page) */
+.phase-flow {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  margin: 28px 0 32px;
 }
-.two-part-grid .icon-badge {
-  background: white;
+.phase-step {
+  flex: 1;
+  background: transparent;
+  border: 1.5px solid var(--paper-line);
+  border-radius: 8px;
+  padding: 22px 20px;
+  text-align: center;
 }
-.two-part-grid .course-card .course-kicker {
-  color: rgba(255, 255, 255, 0.7);
+.phase-step .icon-badge { margin: 0 auto 14px; background: var(--paper); }
+.content-page .phase-kicker {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin: 10px 0 6px;
 }
-.two-part-grid .course-card h4 {
-  color: white;
+.phase-step h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.35;
 }
-.two-part-grid .course-card .course-desc {
-  color: rgba(255, 255, 255, 0.9);
+.phase-step .phase-desc {
+  font-size: 14px;
+  color: var(--ink-dim);
+  margin-top: 8px;
+  margin-bottom: 0;
 }
+.phase-connector {
+  flex-shrink: 0;
+  width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-dim);
+}
+.phase-connector svg { width: 22px; height: 22px; }
 .course-card .course-desc {
   font-size: 14px;
   color: var(--ink-dim);
@@ -507,5 +530,7 @@ body.page-content header.site .wrap {
   .project-grid { grid-template-columns: 1fr; }
   .course-grid { grid-template-columns: 1fr; }
   .buckets-grid { grid-template-columns: 1fr; }
+  .phase-flow { flex-direction: column; }
+  .phase-connector { transform: rotate(90deg); align-self: center; }
   .hero { flex-direction: column; align-items: flex-start; }
 }

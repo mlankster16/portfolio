@@ -258,8 +258,9 @@
     user-select: none;
     touch-action: none;
   }
-  .drag-chip.placed { border-color: #2a7f2a; background: #eaf7ea; cursor: default; max-width: none; }
-  .drag-chip.incorrect-flash { border-color: #b23a3a; background: #fbeaea; }
+  .drag-chip.placed { border-color: #ccc; background: #fff; cursor: default; max-width: none; }
+  .drag-chip.placed.correct { border-color: #2a7f2a; background: #eaf7ea; }
+  .drag-chip.placed.incorrect { border-color: #b23a3a; background: #fbeaea; }
   .drag-chip.dragging-ghost { box-shadow: 0 6px 18px rgba(0,0,0,0.18); }
 
   /* click-to-reveal */
@@ -660,7 +661,8 @@
 
   // per-interaction preview state
   let tabsActiveIndex = 0;
-  let dragPreviewState = null;      // array of {placed, correct} keyed by statement index
+  let dragPreviewState = null;      // array of {placed, zone} keyed by statement index
+  let dragSubmitted = false;
   let revealOpenSet = new Set();
   let annotatedActiveIndex = null;
   let sequencingOrder = null;       // array of step indices, current displayed order
@@ -683,6 +685,7 @@
   function resetAllPreviewState() {
     tabsActiveIndex = 0;
     dragPreviewState = null;
+    dragSubmitted = false;
     revealOpenSet = new Set();
     annotatedActiveIndex = null;
     sequencingOrder = null;
@@ -843,7 +846,7 @@
   function renderDragPreview(shell) {
     const d = dataStore.drag;
     if (!dragPreviewState) {
-      dragPreviewState = d.statements.map(() => ({ placed: false }));
+      dragPreviewState = d.statements.map(() => ({ placed: false, zone: null }));
     }
     let html = '<p class="preview-title">' + escapeHtml(d.title) + '</p>';
     html += '<p class="preview-instructions">' + escapeHtml(d.instructions) + '</p>';
@@ -863,19 +866,32 @@
       }
     });
     html += '</div>';
+
     const allPlaced = dragPreviewState.every(st => st.placed);
-    if (allPlaced) {
-      html += '<div class="inline-note" style="margin-top:12px;">All five statements are correctly sorted.</div>';
+    html += '<div class="actions-row"><span></span><button type="button" class="btn-secondary" id="dragSubmitBtn"' + ((!allPlaced || dragSubmitted) ? ' disabled' : '') + '>Submit</button></div>';
+
+    if (dragSubmitted) {
+      const correctCount = dragPreviewState.filter((st, i) => st.zone === d.statements[i].zone).length;
+      const allCorrect = correctCount === d.statements.length;
+      const fbClass = allCorrect ? "correct" : "incorrect";
+      const fbText = allCorrect
+        ? "All five, sorted correctly. You matched disclosure language to the framework that actually produced it, not just a definition."
+        : "You correctly matched " + correctCount + " of " + d.statements.length + ". The highlighted statements show where the language pointed to a different framework than the one chosen.";
+      html += '<div class="quiz-feedback ' + fbClass + '">' + fbText + '</div>';
     }
+
     shell.innerHTML = html;
 
-    // re-insert already-placed chips into their zone slots
+    // re-insert already-placed chips into whichever zone they were dropped in
     d.statements.forEach((s, i) => {
-      if (dragPreviewState[i].placed) {
-        const slot = shell.querySelector('.drag-zone-slot[data-zone-slot="' + s.zone + '"]');
+      const state = dragPreviewState[i];
+      if (state.placed) {
+        const slot = shell.querySelector('.drag-zone-slot[data-zone-slot="' + state.zone + '"]');
         if (slot) {
           const chip = document.createElement("div");
-          chip.className = "drag-chip placed";
+          let cls = "drag-chip placed";
+          if (dragSubmitted) cls += (state.zone === s.zone) ? " correct" : " incorrect";
+          chip.className = cls;
           chip.textContent = s.text;
           slot.appendChild(chip);
         }
@@ -883,10 +899,20 @@
     });
 
     wireDragChips(shell, d);
+
+    const submitBtn = document.getElementById("dragSubmitBtn");
+    if (submitBtn) {
+      submitBtn.addEventListener("click", () => {
+        dragSubmitted = true;
+        renderDragPreview(shell);
+      });
+    }
+
     reportHeight();
   }
 
   function wireDragChips(shell, d) {
+    if (dragSubmitted) return;
     shell.querySelectorAll(".drag-chip[data-i]").forEach(chip => {
       chip.addEventListener("mousedown", onDragStart);
       chip.addEventListener("touchstart", onDragStart, { passive: false });
@@ -941,16 +967,9 @@
 
         const zoneEl = dropTarget ? dropTarget.closest(".drag-zone") : null;
         if (zoneEl) {
-          const targetZone = zoneEl.dataset.zone;
-          const statement = d.statements[idx];
-          if (targetZone === statement.zone) {
-            dragPreviewState[idx] = { placed: true };
-            renderDragPreview(shell);
-            return;
-          } else {
-            chip.classList.add("incorrect-flash");
-            setTimeout(() => { chip.classList.remove("incorrect-flash"); }, 550);
-          }
+          dragPreviewState[idx] = { placed: true, zone: zoneEl.dataset.zone };
+          renderDragPreview(shell);
+          return;
         }
         reportHeight();
       }
@@ -1386,12 +1405,15 @@
       html += '</div>';
     });
     html += '</div>';
-    html += '<div class="esg-chip-pool" style="display:flex;flex-wrap:wrap;gap:8px;">';
+    html += '<p style="font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.04em;color:#666;margin:0 0 8px;">Statements</p>';
+    html += '<div class="esg-chip-pool" style="display:flex;flex-wrap:wrap;gap:8px;min-height:20px;">';
     d.statements.forEach((s, i) => {
       html += '<div class="esg-chip" draggable="true" data-zone="' + escapeHtml(s.zone) + '" data-i="' + i + '" style="background:#fff;border:1px solid #ccc;border-radius:8px;padding:8px 10px;font-size:12.5px;cursor:grab;max-width:220px;">' + escapeHtml(s.text) + '</div>';
     });
     html += '</div>';
-    html += '<script>(function(){var root=document.currentScript.parentElement;var chips=root.querySelectorAll(".esg-chip");var zones=root.querySelectorAll(".esg-zone");chips.forEach(function(c){c.addEventListener("dragstart",function(e){e.dataTransfer.setData("text/plain",c.getAttribute("data-i"));});});zones.forEach(function(z){z.addEventListener("dragover",function(e){e.preventDefault();});z.addEventListener("drop",function(e){e.preventDefault();var i=e.dataTransfer.getData("text/plain");var chip=root.querySelector(\'.esg-chip[data-i="\'+i+\'"]\');if(!chip)return;if(chip.getAttribute("data-zone")===z.getAttribute("data-zone")){chip.style.opacity="0.6";chip.style.borderColor="#2a7f2a";chip.setAttribute("draggable","false");z.querySelector(".esg-zone-slot").appendChild(chip);}else{chip.style.borderColor="#b23a3a";setTimeout(function(){chip.style.borderColor="#ccc";},600);}});});})();<\/script>';
+    html += '<div style="display:flex;justify-content:flex-end;margin-top:18px;"><button type="button" class="esg-drag-submit" disabled style="background:#fff;color:#012169;border:1.5px solid #012169;border-radius:8px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer;opacity:0.5;">Submit</button></div>';
+    html += '<div class="esg-drag-feedback" style="display:none;margin-top:12px;padding:10px 12px;border-radius:8px;font-size:13px;line-height:1.55;"></div>';
+    html += '<script>(function(){var root=document.currentScript.parentElement;var chips=root.querySelectorAll(".esg-chip");var zones=root.querySelectorAll(".esg-zone");var submitBtn=root.querySelector(".esg-drag-submit");var feedback=root.querySelector(".esg-drag-feedback");var total=' + d.statements.length + ';function checkAllPlaced(){var placed=0;chips.forEach(function(c){if(c.closest(".esg-zone"))placed++;});submitBtn.disabled=(placed<total);submitBtn.style.opacity=(placed<total)?"0.5":"1";}chips.forEach(function(c){c.addEventListener("dragstart",function(e){e.dataTransfer.setData("text/plain",c.getAttribute("data-i"));});});zones.forEach(function(z){z.addEventListener("dragover",function(e){e.preventDefault();});z.addEventListener("drop",function(e){e.preventDefault();var i=e.dataTransfer.getData("text/plain");var chip=root.querySelector(\'.esg-chip[data-i="\'+i+\'"]\');if(!chip)return;chip.setAttribute("draggable","false");chip.style.cursor="default";z.querySelector(".esg-zone-slot").appendChild(chip);checkAllPlaced();});});submitBtn.addEventListener("click",function(){var correct=0;chips.forEach(function(c){var zoneEl=c.closest(".esg-zone");var isCorrect=zoneEl&&zoneEl.getAttribute("data-zone")===c.getAttribute("data-zone");if(isCorrect)correct++;c.style.borderColor=isCorrect?"#2a7f2a":"#b23a3a";c.style.background=isCorrect?"#eaf7ea":"#fbeaea";});submitBtn.disabled=true;submitBtn.style.opacity="0.5";var allCorrect=(correct===total);feedback.style.display="block";feedback.textContent=allCorrect?' + JSON.stringify("All five, sorted correctly. You matched disclosure language to the framework that actually produced it, not just a definition.") + ':("You correctly matched "+correct+" of "+total+". The highlighted statements show where the language pointed to a different framework than the one chosen.");feedback.style.background=allCorrect?"#eaf7ea":"#fbeaea";feedback.style.border="1px solid "+(allCorrect?"#2a7f2a":"#b23a3a");feedback.style.color=allCorrect?"#215c21":"#7a1f1f";});})();<\/script>';
     html += '</div>';
     return html;
   }

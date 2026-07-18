@@ -33,36 +33,47 @@
     team design courses.
   </p>
 
-  <h2>Designing interactives in learning design</h2>
+  <h2>I noticed a gap in what we could build quickly</h2>
   <p>
-    I design interactives often, across a range of learning environments. Some of that work lives
-    under <a href="samples.html">Sample Learning Assets</a>. Coursera's own authoring environment has
-    always been more limited than the tools I use elsewhere, and that gap gets expensive when an entire
-    specialization runs through it.
+    Coursera is well suited to heavier interactive formats like Labs, Dialogue, and Role Play. What it
+    doesn't have is a lightweight path for quick, embedded interactions, the kind that turn a single
+    concept into a fast knowledge check or an exploratory visual. Without that path, those concepts
+    default to static text, and learners lose the low-stakes moment to test their understanding right
+    when a concept is introduced. I design interactives often, across a range of learning environments,
+    some of that work lives under <a href="samples.html">Sample Learning Assets</a>, and I kept feeling
+    that gap specifically inside Coursera.
   </p>
   <p>
-    With what AI makes possible now, I built a way around it.
+    This project set out to close it: give our learning designers a way to turn raw content into
+    custom, embeddable interactions, faster and with a better pedagogical fit than we had before, with
+    accessibility and UDL built in from the start rather than added on later.
   </p>
 
-  <h2>I built it in two parts</h2>
+  <h2>I built it in two phases</h2>
   <p>
-    First, a Coursera plugin. Then, a generator that our own LX design team could use on their own
-    projects.
+    First, a Coursera plugin that takes finished HTML and JavaScript and embeds it directly into the
+    course environment. Then, a generator our own LX design team could use on their own projects.
   </p>
 
-  <div class="course-grid two-part-grid">
-    <div class="course-card">
+  <div class="phase-flow">
+    <div class="phase-step">
       <span class="icon-badge accent-blue">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="16 18 22 12 16 6"/>
           <polyline points="8 6 2 12 8 18"/>
         </svg>
       </span>
-      <p class="course-kicker">Part 1</p>
+      <p class="phase-kicker">Phase 1</p>
       <h4>The Coursera Plugin</h4>
-      <p class="course-desc">Takes HTML and JSON and embeds it directly into the Coursera course environment.</p>
+      <p class="phase-desc">Takes finished HTML and JavaScript and embeds it directly into the Coursera course environment.</p>
     </div>
-    <div class="course-card">
+    <div class="phase-connector" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="4" y1="12" x2="20" y2="12"/>
+        <polyline points="14 6 20 12 14 18"/>
+      </svg>
+    </div>
+    <div class="phase-step">
       <span class="icon-badge accent-teal">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
           <polygon points="12 2 2 7 12 12 22 7 12 2"/>
@@ -70,22 +81,31 @@
           <polyline points="2 12 12 17 22 12"/>
         </svg>
       </span>
-      <p class="course-kicker">Part 2</p>
+      <p class="phase-kicker">Phase 2</p>
       <h4>The Interactivity Generator</h4>
-      <p class="course-desc">Turns a learning design challenge into a set of interactive format options, ready to edit and export.</p>
+      <p class="phase-desc">Turns a learning design challenge into a set of interactive format options, ready to edit and export.</p>
     </div>
   </div>
 
   <p>
-    A designer describes a learning design challenge from a project they're working on, and the tool
-    proposes a set of interactive formats that could fit it. They pick one, edit the learner-facing
-    text on a dedicated edit screen, and confirm it. The tool then renders the HTML and JSON, ready to
-    paste straight into the plugin.
+    A designer describes their content and learning goal, or picks the interaction type themselves in
+    "I know what I want" mode. The tool uses Claude to recommend the strongest-fit format from a
+    curated set, tabbed explorer, click-to-reveal, inline quiz, sequencing, drag-to-classify, or
+    annotated text, grounded in learning design decision rules. It also flags common missteps: a
+    challenge that's out of scope, too content-heavy for one interaction, too vague to act on, or
+    mismatched to the format chosen.
   </p>
 
   <h2>I'll show you how it works</h2>
   <p>
-    The real tool calls an AI model live and works from whatever content a designer brings to it. What
+    From there, the designer gets a live, working preview and can explore alternatives, edit the
+    visible text without touching code, and confirm. The tool outputs a ready-to-paste plugin
+    configuration and an accessible text version. Our LX design team in CTL are the primary users. SMEs
+    review the result while or after a designer generates a component, to confirm the content itself
+    holds up.
+  </p>
+  <p>
+    The real tool calls Claude live and works from whatever content a designer brings to it. What
     follows is a mockup built around one fixed example, so you can walk through the same four steps
     without needing an API key of your own.
   </p>
