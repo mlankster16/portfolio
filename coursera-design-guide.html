@@ -132,6 +132,17 @@
 .dc .g-assets span { font-weight:700; color:var(--lvd); }
 @media (max-width:900px){ .dc .g-levels { grid-template-columns:minmax(0,1fr); } }
 @media (max-width:820px){ .dc .g-split, .dc .g-bars { grid-template-columns:minmax(0,1fr); } .dc .g-qa { grid-template-columns:minmax(0,1fr); gap:12px; } .dc .g-arrow { transform:rotate(90deg); } .dc .g-casc > li:nth-child(n) { margin-left:0; } .dc .g-casc > li:nth-child(n)::before { left:-25px; } .dc .g-assets li { grid-template-columns:minmax(0,1fr); gap:0; } }
+.dc .g-start { list-style:none; margin:8px 0 0; padding:0; counter-reset:s; display:grid; gap:12px; }
+.dc .g-start li { counter-increment:s; display:grid; grid-template-columns:32px minmax(0,1fr); gap:10px; line-height:1.55; }
+.dc .g-start li::before { content:counter(s); width:28px; height:28px; border-radius:50%; border:1.5px solid #6b4e9e; color:#5a3f87; font-weight:700; display:grid; place-items:center; font-size:14px; }
+.dc .g-fields { margin:0; display:grid; gap:0; }
+.dc .g-fields > div { padding:14px 0; border-top:1px solid var(--rule); }
+.dc .g-fields > div:first-child { border-top:0; padding-top:4px; }
+.dc .g-fields dt { font-weight:700; color:var(--navy); margin-bottom:4px; }
+.dc .g-fields dd { margin:0; line-height:1.6; }
+.dc .g-qa .g-qa-a { background:#f0eadb; color:var(--text-body); border:1px solid #e3d8bf; }
+.dc .g-qa .g-qa-a .g-meta { color:#745425; }
+.dc .g-qa .g-qa-a .q { color:var(--navy); }
 </style>
 </head>
 <body class="accent-green">
@@ -178,23 +189,27 @@
 </div>
 <div class="in"></div></section>
 <section class="band warm" id="s2-giving-each-resource-a-c"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span>Giving each resource a clear purpose</h2><p>The guide explains what faculty are working toward, the questions to consider, and how a decision connects to the learning experience.</p>
-<p>The templates hold the plans that come out of those conversations. They keep instructions brief so there is room to focus on the project itself.</p>
 <p>Faculty can move between the two as their ideas develop: read an explanation, discuss it with their designer, and record what they decide.</p></div>
 <div class="g-split">
 <div class="g-guide">
-<p class="g-meta">In the guide · Specialization, Step 2 of 4</p>
-<p class="g-t">Shape the journey</p>
-<p class="g-q">How should the Courses work together to help learners reach that goal?</p>
-<div class="g-ask"><div><p class="g-lab">You might ask</p><p>What should each Course contribute to the larger learner journey?</p></div><div><p class="g-lab">Rather than asking</p><p>How should I divide my content into three Courses?</p></div></div>
+<p class="g-meta">In the guide · Module, Step 2 of 5</p>
+<p class="g-t">Plan backward from the learning task</p>
+<p class="g-q"><em>What will learners do to show what they’ve learned?</em></p>
+<p class="g-lab">Start here</p>
+<ol class="g-start">
+<li>Decide what learners will do, create, analyze, evaluate, or decide to show they have met the objectives.</li>
+<li>Describe what a successful response includes.</li>
+<li>Note what learners already know, and where they may struggle.</li>
+<li>Identify the explanation, practice, and feedback learners will need before attempting the task.</li>
+</ol>
 </div>
 <div class="g-tpl">
-<p class="g-meta">In the template · Section 2, Shape the journey</p>
-<p class="g-lab" style="margin-top:6px">Courses in this Specialization</p>
-<ol class="g-rows">
-<li><span class="g-n">1</span><span><strong>Foundations of Data Analytics for Business</strong><br>A focused business question and an analysis-ready dataset</span><span class="g-h">7 hours</span></li>
-<li><span class="g-n">2</span><span><strong>Analyzing and Visualizing Business Data</strong><br>Analytical findings and supporting visualizations</span><span class="g-h">9 hours</span></li>
-<li><span class="g-n">3</span><span><strong>Communicating Data-Driven Recommendations</strong><br>A clear, evidence-informed recommendation</span><span class="g-h">8 hours</span></li>
-</ol>
+<p class="g-meta">In the template · Section 2, Plan backward from the learning task</p>
+<dl class="g-fields">
+<div><dt>Module learning task</dt><dd>Complete a Data Fitness Review that evaluates whether an available dataset is suitable for addressing a business question and documents concerns that could affect the proposed analysis.</dd></div>
+<div><dt>What successful work includes</dt><dd>The review identifies the data the question requires, evaluates the dataset’s relevance and completeness, notes basic quality concerns, and explains how any limitations could affect the analysis.</dd></div>
+<div><dt>What learners may need before completing the task</dt><dd>Learners can already recognize common parts of a dataset, including records, fields, and values. They still need criteria for evaluating data in relation to a particular question, and practice explaining why a limitation matters.</dd></div>
+</dl>
 </div>
 </div>
 <div class="in"></div></section>
