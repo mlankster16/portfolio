@@ -66,11 +66,11 @@
     flex-shrink: 0;
   }
 
-  .header-title strong { display: block; font-size: 15px; letter-spacing: 0.03em; }
-  .header-title span { display: block; font-size: 11.5px; opacity: 0.8; margin-top: 1px; }
+  .header-title strong { display: block; font-size: 17px; letter-spacing: 0.03em; }
+  .header-title span { display: block; font-size: 14px; opacity: 0.8; margin-top: 1px; }
 
   .step-indicator {
-    font-size: 11.5px;
+    font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -90,11 +90,11 @@
   }
 
   h1.page-title { font-size: 22px; color: var(--navy); margin: 0 0 4px; }
-  p.page-subtitle { font-size: 14px; color: var(--muted); margin: 0 0 20px; }
+  p.page-subtitle { font-size: 16px; color: var(--muted); margin: 0 0 20px; }
 
   .back-link {
     display: inline-block;
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 600;
     color: var(--navy);
     text-decoration: none;
@@ -106,7 +106,7 @@
 
   label.field-label {
     display: block;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -117,7 +117,7 @@
   textarea, input[type="text"], select {
     width: 100%;
     font-family: inherit;
-    font-size: 14px;
+    font-size: 16px;
     color: var(--ink);
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -139,7 +139,7 @@
     border: 1px solid var(--border);
     background: #fff;
     color: var(--ink);
-    font-size: 13.5px;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
   }
@@ -148,7 +148,7 @@
 
   .example-link {
     display: inline-block;
-    font-size: 13px;
+    font-size: 16px;
     color: var(--royal);
     font-weight: 600;
     cursor: pointer;
@@ -164,7 +164,7 @@
     border: none;
     border-radius: 8px;
     padding: 12px 22px;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 600;
     cursor: pointer;
   }
@@ -178,7 +178,7 @@
     border: 1.5px solid var(--navy);
     border-radius: 8px;
     padding: 10px 18px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
   }
@@ -187,7 +187,7 @@
   .btn-secondary:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
   .inline-note {
-    font-size: 12.5px;
+    font-size: 15px;
     color: var(--muted);
     background: #F6F5F3;
     border: 1px dashed var(--border);
@@ -200,7 +200,7 @@
     display: inline-block;
     background: var(--navy);
     color: #fff;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.03em;
     border-radius: 999px;
@@ -211,7 +211,7 @@
   .rationale {
     font-style: italic;
     color: #444;
-    font-size: 14.5px;
+    font-size: 17px;
     line-height: 1.6;
     margin: 0 0 18px;
   }
@@ -231,7 +231,7 @@
     transition: width 2s ease;
   }
   .progress-label {
-    font-size: 12.5px;
+    font-size: 15px;
     color: var(--muted);
     font-weight: 600;
   }
@@ -243,8 +243,8 @@
     padding: 18px;
     background: #FCFCFB;
   }
-  .preview-title { font-size: 17px; color: var(--navy); margin: 0 0 4px; font-weight: 700; }
-  .preview-instructions { font-size: 13.5px; color: var(--muted); margin: 0 0 14px; }
+  .preview-title { font-size: 18px; color: var(--navy); margin: 0 0 4px; font-weight: 700; }
+  .preview-instructions { font-size: 16px; color: var(--muted); margin: 0 0 14px; }
 
   /* tabbed explorer */
   .tabs-nav { display: flex; gap: 6px; flex-wrap: wrap; border-bottom: 2px solid #eee; margin-bottom: 16px; }
@@ -254,22 +254,22 @@
     background: none;
     cursor: pointer;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 16px;
     color: #666;
     border-bottom: 3px solid transparent;
     font-family: inherit;
   }
   .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
   .tab-btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
-  .tab-panel h4 { color: var(--navy); font-size: 15.5px; margin: 0 0 10px; }
-  .field-row { margin-bottom: 10px; font-size: 13.5px; line-height: 1.55; }
+  .tab-panel h4 { color: var(--navy); font-size: 17px; margin: 0 0 10px; }
+  .field-row { margin-bottom: 10px; font-size: 16px; line-height: 1.55; }
   .field-row strong { color: var(--ink); }
 
   /* drag-to-classify */
   .drag-zones { display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: 10px; margin-bottom: 18px; }
   .drag-zone { border: 2px dashed #ccc; border-radius: 10px; padding: 10px; min-height: 96px; transition: border-color 0.15s, background 0.15s; }
   .drag-zone.drop-hover { border-color: var(--accent); background: var(--accent-tint); }
-  .drag-zone-label { font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--navy); margin-bottom: 8px; }
+  .drag-zone-label { font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--navy); margin-bottom: 8px; }
   .drag-zone-slot { display: flex; flex-direction: column; gap: 6px; }
   .drag-chip-pool { display: flex; flex-wrap: wrap; gap: 8px; min-height: 20px; }
   .drag-chip {
@@ -277,7 +277,7 @@
     border: 1.5px solid #ccc;
     border-radius: 8px;
     padding: 8px 10px;
-    font-size: 12.5px;
+    font-size: 15px;
     line-height: 1.4;
     cursor: grab;
     max-width: 230px;
@@ -293,40 +293,40 @@
   .reveal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
   .reveal-card { border: 1px solid var(--border); border-radius: 10px; padding: 12px; cursor: pointer; background: #fff; }
   .reveal-card.open { background: var(--accent-tint); border-color: var(--accent); }
-  .reveal-card .rc-name { font-weight: 700; color: var(--navy); font-size: 14px; }
-  .reveal-card .rc-detail { display: none; font-size: 12.5px; margin-top: 8px; line-height: 1.55; color: #333; }
+  .reveal-card .rc-name { font-weight: 700; color: var(--navy); font-size: 16px; }
+  .reveal-card .rc-detail { display: none; font-size: 15px; margin-top: 8px; line-height: 1.55; color: #333; }
   .reveal-card.open .rc-detail { display: block; }
 
   /* annotated text */
-  .annotated-para { font-size: 14.5px; line-height: 1.95; margin: 0; }
+  .annotated-para { font-size: 17px; line-height: 1.95; margin: 0; }
   mark.ann { background: #fff2b8; cursor: pointer; border-radius: 3px; padding: 0 2px; }
   mark.ann.active { background: var(--accent); color: #fff; }
-  .ann-popover { margin-top: 14px; border: 1px solid var(--accent); background: var(--accent-tint); border-radius: 8px; padding: 10px 12px; font-size: 13px; line-height: 1.55; color: #234; }
+  .ann-popover { margin-top: 14px; border: 1px solid var(--accent); background: var(--accent-tint); border-radius: 8px; padding: 10px 12px; font-size: 16px; line-height: 1.55; color: #234; }
 
   /* sequencing */
   .seq-list { list-style: none; margin: 0 0 14px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-  .seq-item { display: flex; align-items: center; gap: 10px; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; background: #fff; font-size: 13px; }
+  .seq-item { display: flex; align-items: center; gap: 10px; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; background: #fff; font-size: 16px; }
   .seq-item.correct { border-color: #2a7f2a; background: #eaf7ea; }
   .seq-item.incorrect { border-color: #b23a3a; background: #fbeaea; }
   .seq-num { font-weight: 700; color: var(--navy); }
   .seq-controls { display: flex; gap: 4px; }
-  .seq-btn { border: 1px solid var(--border); background: #fff; border-radius: 4px; width: 26px; height: 24px; cursor: pointer; font-size: 11px; line-height: 1; }
+  .seq-btn { border: 1px solid var(--border); background: #fff; border-radius: 4px; width: 26px; height: 24px; cursor: pointer; font-size: 13px; line-height: 1; }
   .seq-btn:disabled { opacity: 0.3; cursor: not-allowed; }
   .seq-btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
   /* inline quiz */
-  .quiz-scenario { font-size: 13.5px; line-height: 1.6; margin-bottom: 14px; background: #FAFAF9; border: 1px solid var(--border); border-radius: 8px; padding: 12px; }
-  .quiz-option { display: flex; gap: 8px; align-items: flex-start; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; cursor: pointer; font-size: 13.5px; line-height: 1.5; }
+  .quiz-scenario { font-size: 16px; line-height: 1.6; margin-bottom: 14px; background: #FAFAF9; border: 1px solid var(--border); border-radius: 8px; padding: 12px; }
+  .quiz-option { display: flex; gap: 8px; align-items: flex-start; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; cursor: pointer; font-size: 16px; line-height: 1.5; }
   .quiz-option input { margin-top: 3px; width: auto; }
   .quiz-option.correct { border-color: #2a7f2a; background: #eaf7ea; }
   .quiz-option.incorrect { border-color: #b23a3a; background: #fbeaea; }
-  .quiz-feedback { margin-top: 12px; padding: 10px 12px; border-radius: 8px; font-size: 13px; line-height: 1.55; }
+  .quiz-feedback { margin-top: 12px; padding: 10px 12px; border-radius: 8px; font-size: 16px; line-height: 1.55; }
   .quiz-feedback.correct { background: #eaf7ea; border: 1px solid #2a7f2a; color: #215c21; }
   .quiz-feedback.incorrect { background: #fbeaea; border: 1px solid #b23a3a; color: #7a1f1f; }
 
   .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 8px; }
   .pill-label {
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -338,7 +338,7 @@
     background: #fff;
     border-radius: 999px;
     padding: 7px 14px;
-    font-size: 12.5px;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     color: var(--ink);
@@ -355,33 +355,33 @@
     margin-top: 18px;
   }
   .summary-card .label {
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.06em;
     color: var(--accent-dark);
     margin-bottom: 6px;
   }
-  .summary-card p { margin: 0; font-size: 13.5px; line-height: 1.55; color: #333; }
+  .summary-card p { margin: 0; font-size: 16px; line-height: 1.55; color: #333; }
 
   .actions-row { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; }
 
   /* step 3 edit form */
   .edit-block { border-top: 1px solid var(--border); padding-top: 16px; margin-top: 16px; }
   .edit-block:first-child { border-top: none; padding-top: 0; margin-top: 0; }
-  .edit-block h3 { font-family: 'Montserrat', Arial, sans-serif; font-size: 13px; color: var(--navy); text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 12px; }
+  .edit-block h3 { font-family: 'Montserrat', Arial, sans-serif; font-size: 16px; color: var(--navy); text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 12px; }
   .field-group { margin-bottom: 12px; }
 
   /* step 4 output */
   .theme-card { display: flex; gap: 12px; align-items: flex-start; }
   .swatch { width: 28px; height: 28px; border-radius: 6px; background: var(--accent); flex-shrink: 0; margin-top: 2px; border: 1px solid var(--accent-dark); }
-  .theme-card p { font-style: italic; font-size: 13.5px; color: #444; line-height: 1.55; margin: 0; }
+  .theme-card p { font-style: italic; font-size: 16px; color: #444; line-height: 1.55; margin: 0; }
 
   .code-block {
     background: var(--code-bg);
     color: var(--code-fg);
     border-radius: 8px;
     padding: 16px;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.5;
     overflow: auto;
     max-height: 320px;
@@ -396,7 +396,7 @@
     border: none;
     border-radius: 6px;
     padding: 7px 14px;
-    font-size: 12.5px;
+    font-size: 15px;
     font-weight: 700;
     cursor: pointer;
   }
@@ -404,7 +404,7 @@
   .copy-btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 
   .section-label {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -417,7 +417,7 @@
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 14px;
-    font-size: 13.5px;
+    font-size: 16px;
     line-height: 1.6;
     color: #333;
   }
@@ -1304,7 +1304,7 @@
     d.options.forEach((o, i) => {
       html += '<div class="edit-block"><h3>Option ' + String.fromCharCode(65 + i) + '</h3>';
       html += '<div class="field-group"><label class="field-label">Option text</label><textarea rows="2" data-arr="options" data-idx="' + i + '" data-field="text">' + escapeHtml(o.text) + '</textarea></div>';
-      html += '<div class="field-group"><label style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--navy);"><input type="radio" name="correctOption" data-correct-idx="' + i + '"' + (o.correct ? ' checked' : '') + ' style="width:auto;"> Correct answer</label></div>';
+      html += '<div class="field-group"><label style="display:flex;align-items:center;gap:6px;font-size:16px;font-weight:600;color:var(--navy);"><input type="radio" name="correctOption" data-correct-idx="' + i + '"' + (o.correct ? ' checked' : '') + ' style="width:auto;"> Correct answer</label></div>';
       html += '</div>';
     });
     html += '<div class="edit-block"><h3>Feedback</h3>';
@@ -1407,18 +1407,18 @@
     const d = dataStore.tabs;
     let html = '<div class="pyx-tabs-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
     html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
-    html += '<p style="color:#555;font-size:14px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
+    html += '<p style="color:#555;font-size:16px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
     html += '<div class="pyx-tabs-nav" style="display:flex;gap:6px;flex-wrap:wrap;border-bottom:2px solid #eee;margin-bottom:16px;">';
     d.frameworks.forEach((f, i) => {
-      html += '<button type="button" class="pyx-tab-btn" data-i="' + i + '" style="padding:9px 14px;border:none;background:none;cursor:pointer;font-weight:700;font-size:13px;color:' + (i === 0 ? '#005587' : '#666') + ';border-bottom:3px solid ' + (i === 0 ? '#005587' : 'transparent') + ';">' + escapeHtml(f.tabLabel) + '</button>';
+      html += '<button type="button" class="pyx-tab-btn" data-i="' + i + '" style="padding:9px 14px;border:none;background:none;cursor:pointer;font-weight:700;font-size:16px;color:' + (i === 0 ? '#005587' : '#666') + ';border-bottom:3px solid ' + (i === 0 ? '#005587' : 'transparent') + ';">' + escapeHtml(f.tabLabel) + '</button>';
     });
     html += '</div>';
     d.frameworks.forEach((f, i) => {
       html += '<div class="pyx-tab-panel" data-i="' + i + '" style="display:' + (i === 0 ? 'block' : 'none') + ';">';
-      html += '<h4 style="color:#012169;font-size:15.5px;margin:0 0 10px;">' + escapeHtml(f.heading) + '</h4>';
-      html += '<p style="font-size:13.5px;line-height:1.55;margin:0 0 10px;"><strong>When it shows up:</strong> ' + escapeHtml(f.when) + '</p>';
-      html += '<p style="font-size:13.5px;line-height:1.55;margin:0 0 10px;"><strong>What the message looks like:</strong> ' + escapeHtml(f.structure) + '</p>';
-      html += '<p style="font-size:13.5px;line-height:1.55;margin:0;"><strong>Quick example:</strong> ' + escapeHtml(f.example) + '</p>';
+      html += '<h4 style="color:#012169;font-size:17px;margin:0 0 10px;">' + escapeHtml(f.heading) + '</h4>';
+      html += '<p style="font-size:16px;line-height:1.55;margin:0 0 10px;"><strong>When it shows up:</strong> ' + escapeHtml(f.when) + '</p>';
+      html += '<p style="font-size:16px;line-height:1.55;margin:0 0 10px;"><strong>What the message looks like:</strong> ' + escapeHtml(f.structure) + '</p>';
+      html += '<p style="font-size:16px;line-height:1.55;margin:0;"><strong>Quick example:</strong> ' + escapeHtml(f.example) + '</p>';
       html += '</div>';
     });
     html += '<script>(function(){var root=document.currentScript.parentElement;var btns=root.querySelectorAll(".pyx-tab-btn");var panels=root.querySelectorAll(".pyx-tab-panel");btns.forEach(function(b){b.addEventListener("click",function(){var i=b.getAttribute("data-i");btns.forEach(function(x){x.style.color="#666";x.style.borderBottomColor="transparent";});b.style.color="#005587";b.style.borderBottomColor="#005587";panels.forEach(function(p){p.style.display=(p.getAttribute("data-i")===i)?"block":"none";});});});})();<\/script>';
@@ -1430,23 +1430,23 @@
     const d = dataStore.drag;
     let html = '<div class="pyx-drag-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
     html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
-    html += '<p style="color:#555;font-size:14px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
+    html += '<p style="color:#555;font-size:16px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
     html += '<div class="pyx-zones" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:16px;">';
     d.zones.forEach(z => {
-      html += '<div class="pyx-zone" data-zone="' + escapeHtml(z) + '" style="border:2px dashed #ccc;border-radius:10px;padding:10px;min-height:90px;font-size:12px;">';
-      html += '<div style="font-weight:700;font-size:11px;text-transform:uppercase;color:#012169;margin-bottom:8px;">' + escapeHtml(z) + '</div>';
+      html += '<div class="pyx-zone" data-zone="' + escapeHtml(z) + '" style="border:2px dashed #ccc;border-radius:10px;padding:10px;min-height:90px;font-size:14px;">';
+      html += '<div style="font-weight:700;font-size:13px;text-transform:uppercase;color:#012169;margin-bottom:8px;">' + escapeHtml(z) + '</div>';
       html += '<div class="pyx-zone-slot"></div>';
       html += '</div>';
     });
     html += '</div>';
-    html += '<p style="font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.04em;color:#666;margin:0 0 8px;">Statements</p>';
+    html += '<p style="font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:0.04em;color:#666;margin:0 0 8px;">Statements</p>';
     html += '<div class="pyx-chip-pool" style="display:flex;flex-wrap:wrap;gap:8px;min-height:20px;">';
     d.statements.forEach((s, i) => {
-      html += '<div class="pyx-chip" draggable="true" data-zone="' + escapeHtml(s.zone) + '" data-i="' + i + '" style="background:#fff;border:1px solid #ccc;border-radius:8px;padding:8px 10px;font-size:12.5px;cursor:grab;max-width:220px;">' + escapeHtml(s.text) + '</div>';
+      html += '<div class="pyx-chip" draggable="true" data-zone="' + escapeHtml(s.zone) + '" data-i="' + i + '" style="background:#fff;border:1px solid #ccc;border-radius:8px;padding:8px 10px;font-size:15px;cursor:grab;max-width:220px;">' + escapeHtml(s.text) + '</div>';
     });
     html += '</div>';
-    html += '<div style="display:flex;justify-content:flex-end;margin-top:18px;"><button type="button" class="pyx-drag-submit" disabled style="background:#fff;color:#012169;border:1.5px solid #012169;border-radius:8px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer;opacity:0.5;">Submit</button></div>';
-    html += '<div class="pyx-drag-feedback" style="display:none;margin-top:12px;padding:10px 12px;border-radius:8px;font-size:13px;line-height:1.55;"></div>';
+    html += '<div style="display:flex;justify-content:flex-end;margin-top:18px;"><button type="button" class="pyx-drag-submit" disabled style="background:#fff;color:#012169;border:1.5px solid #012169;border-radius:8px;padding:10px 18px;font-size:16px;font-weight:600;cursor:pointer;opacity:0.5;">Submit</button></div>';
+    html += '<div class="pyx-drag-feedback" style="display:none;margin-top:12px;padding:10px 12px;border-radius:8px;font-size:16px;line-height:1.55;"></div>';
     html += '<script>(function(){var root=document.currentScript.parentElement;var chips=root.querySelectorAll(".pyx-chip");var zones=root.querySelectorAll(".pyx-zone");var submitBtn=root.querySelector(".pyx-drag-submit");var feedback=root.querySelector(".pyx-drag-feedback");var total=' + d.statements.length + ';function checkAllPlaced(){var placed=0;chips.forEach(function(c){if(c.closest(".pyx-zone"))placed++;});submitBtn.disabled=(placed<total);submitBtn.style.opacity=(placed<total)?"0.5":"1";}chips.forEach(function(c){c.addEventListener("dragstart",function(e){e.dataTransfer.setData("text/plain",c.getAttribute("data-i"));});});zones.forEach(function(z){z.addEventListener("dragover",function(e){e.preventDefault();});z.addEventListener("drop",function(e){e.preventDefault();var i=e.dataTransfer.getData("text/plain");var chip=root.querySelector(\'.pyx-chip[data-i="\'+i+\'"]\');if(!chip)return;chip.setAttribute("draggable","false");chip.style.cursor="default";z.querySelector(".pyx-zone-slot").appendChild(chip);checkAllPlaced();});});submitBtn.addEventListener("click",function(){var correct=0;chips.forEach(function(c){var zoneEl=c.closest(".pyx-zone");var isCorrect=zoneEl&&zoneEl.getAttribute("data-zone")===c.getAttribute("data-zone");if(isCorrect)correct++;c.style.borderColor=isCorrect?"#2a7f2a":"#b23a3a";c.style.background=isCorrect?"#eaf7ea":"#fbeaea";});submitBtn.disabled=true;submitBtn.style.opacity="0.5";var allCorrect=(correct===total);feedback.style.display="block";feedback.textContent=allCorrect?' + JSON.stringify("All ten sorted correctly. You matched each bug to the error it would raise.") + ':("You correctly matched "+correct+" of "+total+". The highlighted statements show which bugs point to a different error than the one chosen.");feedback.style.background=allCorrect?"#eaf7ea":"#fbeaea";feedback.style.border="1px solid "+(allCorrect?"#2a7f2a":"#b23a3a");feedback.style.color=allCorrect?"#215c21":"#7a1f1f";});})();<\/script>';
     html += '</div>';
     return html;
@@ -1456,12 +1456,12 @@
     const d = dataStore.reveal;
     let html = '<div class="pyx-reveal-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
     html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
-    html += '<p style="color:#555;font-size:14px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
+    html += '<p style="color:#555;font-size:16px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
     html += '<div class="pyx-reveal-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;">';
     d.cards.forEach((c, i) => {
       html += '<div class="pyx-reveal-card" data-i="' + i + '" style="border:1px solid #E1DFDB;border-radius:10px;padding:12px;cursor:pointer;background:#fff;">';
-      html += '<div style="font-weight:700;color:#012169;font-size:14px;">' + escapeHtml(c.name) + '</div>';
-      html += '<div class="pyx-reveal-detail" style="display:none;font-size:12.5px;margin-top:8px;line-height:1.55;"><strong>Means:</strong> ' + escapeHtml(c.measures) + '<br><strong>Telltale sign:</strong> ' + escapeHtml(c.usedBy) + '</div>';
+      html += '<div style="font-weight:700;color:#012169;font-size:16px;">' + escapeHtml(c.name) + '</div>';
+      html += '<div class="pyx-reveal-detail" style="display:none;font-size:15px;margin-top:8px;line-height:1.55;"><strong>Means:</strong> ' + escapeHtml(c.measures) + '<br><strong>Telltale sign:</strong> ' + escapeHtml(c.usedBy) + '</div>';
       html += '</div>';
     });
     html += '</div>';
@@ -1474,8 +1474,8 @@
     const d = dataStore.annotated;
     let html = '<div class="pyx-annotated-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
     html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
-    html += '<p style="color:#555;font-size:14px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
-    html += '<p style="font-size:14.5px;line-height:1.95;">';
+    html += '<p style="color:#555;font-size:16px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
+    html += '<p style="font-size:17px;line-height:1.95;">';
     let annIdx = -1;
     d.segments.forEach(s => {
       if (s.type === "text") {
@@ -1486,7 +1486,7 @@
       }
     });
     html += '</p>';
-    html += '<div class="pyx-ann-popover" style="display:none;margin-top:14px;border:1px solid #005587;background:#EAF2F6;border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.55;"></div>';
+    html += '<div class="pyx-ann-popover" style="display:none;margin-top:14px;border:1px solid #005587;background:#EAF2F6;border-radius:8px;padding:10px 12px;font-size:16px;line-height:1.55;"></div>';
     html += '<script>(function(){var root=document.currentScript.parentElement;var pop=root.querySelector(".pyx-ann-popover");root.querySelectorAll(".pyx-ann").forEach(function(m){m.addEventListener("click",function(){pop.textContent=m.getAttribute("data-note");pop.style.display="block";});});})();<\/script>';
     html += '</div>';
     return html;
@@ -1496,17 +1496,17 @@
     const d = dataStore.sequencing;
     let html = '<div class="pyx-seq-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
     html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
-    html += '<p style="color:#555;font-size:14px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
+    html += '<p style="color:#555;font-size:16px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
     html += '<ul class="pyx-seq-list" style="list-style:none;margin:0 0 14px;padding:0;display:flex;flex-direction:column;gap:8px;">';
     d.steps.forEach((s, i) => {
-      html += '<li class="pyx-seq-item" data-correct-pos="' + i + '" style="display:flex;align-items:center;gap:10px;border:1px solid #E1DFDB;border-radius:8px;padding:10px 12px;background:#fff;font-size:13px;">';
+      html += '<li class="pyx-seq-item" data-correct-pos="' + i + '" style="display:flex;align-items:center;gap:10px;border:1px solid #E1DFDB;border-radius:8px;padding:10px 12px;background:#fff;font-size:16px;">';
       html += '<span style="flex:1;">' + escapeHtml(s) + '</span>';
       html += '<span><button type="button" class="pyx-seq-up" style="border:1px solid #E1DFDB;background:#fff;border-radius:4px;width:26px;height:24px;cursor:pointer;">&#9650;</button> <button type="button" class="pyx-seq-down" style="border:1px solid #E1DFDB;background:#fff;border-radius:4px;width:26px;height:24px;cursor:pointer;">&#9660;</button></span>';
       html += '</li>';
     });
     html += '</ul>';
-    html += '<button type="button" class="pyx-seq-check" style="background:#fff;color:#012169;border:1.5px solid #012169;border-radius:8px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer;">Check order</button>';
-    html += '<div class="pyx-seq-result" style="display:none;margin-top:10px;font-size:12.5px;color:#6b6b6b;background:#F6F5F3;border:1px dashed #E1DFDB;border-radius:8px;padding:10px 12px;"></div>';
+    html += '<button type="button" class="pyx-seq-check" style="background:#fff;color:#012169;border:1.5px solid #012169;border-radius:8px;padding:10px 18px;font-size:16px;font-weight:600;cursor:pointer;">Check order</button>';
+    html += '<div class="pyx-seq-result" style="display:none;margin-top:10px;font-size:15px;color:#6b6b6b;background:#F6F5F3;border:1px dashed #E1DFDB;border-radius:8px;padding:10px 12px;"></div>';
     html += '<script>(function(){var root=document.currentScript.parentElement;var list=root.querySelector(".pyx-seq-list");function items(){return Array.prototype.slice.call(list.querySelectorAll(".pyx-seq-item"));}root.querySelectorAll(".pyx-seq-up").forEach(function(btn){btn.addEventListener("click",function(){var li=btn.closest(".pyx-seq-item");var prev=li.previousElementSibling;if(prev)list.insertBefore(li,prev);});});root.querySelectorAll(".pyx-seq-down").forEach(function(btn){btn.addEventListener("click",function(){var li=btn.closest(".pyx-seq-item");var next=li.nextElementSibling;if(next)list.insertBefore(next,li);});});root.querySelector(".pyx-seq-check").addEventListener("click",function(){var all=items();var ok=all.every(function(li,pos){return parseInt(li.getAttribute("data-correct-pos"),10)===pos;});all.forEach(function(li,pos){var correct=parseInt(li.getAttribute("data-correct-pos"),10)===pos;li.style.borderColor=correct?"#2a7f2a":"#b23a3a";li.style.background=correct?"#eaf7ea":"#fbeaea";});var result=root.querySelector(".pyx-seq-result");result.style.display="block";result.textContent=ok?"Correct order!":"Not quite, check the highlighted steps and try again.";});})();<\/script>';
     html += '</div>';
     return html;
@@ -1516,16 +1516,16 @@
     const d = dataStore.quiz;
     let html = '<div class="pyx-quiz-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
     html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
-    html += '<p style="color:#555;font-size:14px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
-    html += '<div style="font-size:13.5px;line-height:1.6;margin-bottom:14px;background:#FAFAF9;border:1px solid #E1DFDB;border-radius:8px;padding:12px;">' + escapeHtml(d.scenario) + '</div>';
+    html += '<p style="color:#555;font-size:16px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
+    html += '<div style="font-size:16px;line-height:1.6;margin-bottom:14px;background:#FAFAF9;border:1px solid #E1DFDB;border-radius:8px;padding:12px;">' + escapeHtml(d.scenario) + '</div>';
     d.options.forEach((o, i) => {
-      html += '<label class="pyx-quiz-option" data-correct="' + (o.correct ? "1" : "0") + '" style="display:flex;gap:8px;align-items:flex-start;border:1px solid #E1DFDB;border-radius:8px;padding:10px 12px;margin-bottom:8px;cursor:pointer;font-size:13.5px;">';
+      html += '<label class="pyx-quiz-option" data-correct="' + (o.correct ? "1" : "0") + '" style="display:flex;gap:8px;align-items:flex-start;border:1px solid #E1DFDB;border-radius:8px;padding:10px 12px;margin-bottom:8px;cursor:pointer;font-size:16px;">';
       html += '<input type="radio" name="pyxQuizOpt" value="' + i + '" style="margin-top:3px;">';
       html += '<span>' + escapeHtml(o.text) + '</span>';
       html += '</label>';
     });
-    html += '<button type="button" class="pyx-quiz-submit" disabled style="background:#fff;color:#012169;border:1.5px solid #012169;border-radius:8px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer;">Submit answer</button>';
-    html += '<div class="pyx-quiz-feedback" style="display:none;margin-top:12px;padding:10px 12px;border-radius:8px;font-size:13px;line-height:1.55;"></div>';
+    html += '<button type="button" class="pyx-quiz-submit" disabled style="background:#fff;color:#012169;border:1.5px solid #012169;border-radius:8px;padding:10px 18px;font-size:16px;font-weight:600;cursor:pointer;">Submit answer</button>';
+    html += '<div class="pyx-quiz-feedback" style="display:none;margin-top:12px;padding:10px 12px;border-radius:8px;font-size:16px;line-height:1.55;"></div>';
     html += '<script>(function(){var root=document.currentScript.parentElement;var submit=root.querySelector(".pyx-quiz-submit");var radios=root.querySelectorAll(\'input[name="pyxQuizOpt"]\');radios.forEach(function(r){r.addEventListener("change",function(){submit.disabled=false;});});submit.addEventListener("click",function(){var checked=root.querySelector(\'input[name="pyxQuizOpt"]:checked\');if(!checked)return;var label=checked.closest(".pyx-quiz-option");var correct=label.getAttribute("data-correct")==="1";var fb=root.querySelector(".pyx-quiz-feedback");fb.style.display="block";fb.textContent=correct?' + JSON.stringify(dataStore.quiz.correctFeedback) + ':' + JSON.stringify(dataStore.quiz.incorrectFeedback) + ';fb.style.background=correct?"#eaf7ea":"#fbeaea";fb.style.border="1px solid "+(correct?"#2a7f2a":"#b23a3a");fb.style.color=correct?"#215c21":"#7a1f1f";root.querySelectorAll(".pyx-quiz-option").forEach(function(l){var isCorrectOpt=l.getAttribute("data-correct")==="1";var isChosen=l===label;if(isChosen||isCorrectOpt){l.style.borderColor=isCorrectOpt?"#2a7f2a":"#b23a3a";l.style.background=isCorrectOpt?"#eaf7ea":"#fbeaea";}});});})();<\/script>';
     html += '</div>';
     return html;
