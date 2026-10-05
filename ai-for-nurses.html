@@ -4,16 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI for Nurses | Megan Lancaster</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=5">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=8">
 </head>
 <body class="page-content">
 
 <header class="site">
   <div class="wrap">
     <a class="site-name" href="index.html">Megan Lancaster</a>
-    <nav class="primary">
+    <nav class="primary" aria-label="Main">
       <a href="index.html">Home</a>
+      <div class="nav-menu">
+        <button type="button" class="nav-menu-btn current" aria-expanded="false" aria-controls="work-menu">Work <span class="caret" aria-hidden="true"></span></button>
+        <ul class="nav-menu-list" id="work-menu">
+          <li><a href="ai-for-nurses.html" aria-current="page">AI for Nurses</a></li>
+          <li><a href="coursera-design-guide.html">Coursera Design Guide</a></li>
+          <li><a href="interactivity-generator.html">Interactivity Generator</a></li>
+          <li><a href="samples.html">Sample Learning Assets</a></li>
+        </ul>
+      </div>
       <a href="about.html">About</a>
       <a class="btn-resume" href="assets/resume/Lancaster_Resume_Oct2026.pdf" download>Résumé</a>
     </nav>
@@ -29,29 +38,48 @@
   </div>
 
   <p class="framing-line">
-    What's it like to work with me as a learning designer and project manager? This project is a good example.
+    Nurses were encountering AI tools in their daily work and needed support understanding what those
+    tools could tell them.
+  </p>
+  <p class="lead-line">
+    Working with Duke School of Nursing and Johnson &amp; Johnson, I led learning design and project
+    management for a three-course series connecting AI concepts to everyday nursing decisions.
   </p>
 
-  <h2>I start by learning how your world works</h2>
+  <div class="facts-band" role="group" aria-label="Project at a glance">
+    <p class="facts-band-title">At a glance</p>
+    <dl>
+      <div class="fact"><dt>My role</dt><dd>Learning design and project management</dd></div>
+      <div class="fact"><dt>Partners</dt><dd>Duke School of Nursing and Johnson &amp; Johnson</dd></div>
+      <div class="fact"><dt>Timeline</dt><dd>September 2025 to August 2026</dd></div>
+      <div class="fact"><dt>Format</dt><dd>A three-course specialization</dd></div>
+    </dl>
+  </div>
+
+  <nav class="section-strip" aria-label="On this page">
+    <a href="#learners"><span class="num">1</span>Learners</a>
+    <a href="#approach"><span class="num">2</span>Approach</a>
+    <a href="#co-design"><span class="num">3</span>Co-design</a>
+    <a href="#course-design"><span class="num">4</span>Course design</a>
+    <a href="#process"><span class="num">5</span>Timeline</a>
+    <a href="#results"><span class="num">6</span>Results</a>
+  </nav>
+
+  <h2 id="learners">I start by understanding the learners</h2>
   <p>
-    I'm not a nurse, and I've never worked in a clinical setting. When I enter a field I don't know,
-    I begin by learning about the people who work in it: their environment, the pressures they're under,
-    and what would be most useful to them.
-  </p>
-  <p>
-    I also spend time understanding what the organization and its stakeholders need the project to
-    accomplish, and when they need it. Good learning design has to account for both perspectives.
+    When I work in a new field, I start by listening. For this project, that meant learning about
+    nurses' working environments, the pressures they face, and what would be useful during a shift. I
+    also worked with our partners to understand their goals and the timeline we needed to work within.
   </p>
 
-  <h2>I ask questions before I start building</h2>
+  <h2 id="approach">I ask questions before I start building</h2>
   <p>
-    Duke School of Nursing and Johnson &amp; Johnson needed nurses to feel confident using the AI tools already showing up in their daily workflow. I started with the survey data already collected
-    from working nurses, using it to understand what they needed to know and be able to do.
+    I started with the survey data already collected from working nurses, using it to understand what
+    they needed to know and be able to do.
   </p>
   <p>
     From that, I proposed a three-course structure: seeing where AI shows up in nursing practice,
-    evaluating what an AI tool is telling you, and applying that judgment in real clinical
-    reasoning.
+    evaluating what an AI tool is telling you, and applying that judgment in real clinical reasoning.
   </p>
 
   <div class="course-grid">
@@ -89,85 +117,22 @@
 
   <p>
     Before scoping the courses or setting a timeline, I brought the proposal back to the stakeholders,
-    along with sample learning assets, and asked for their feedback and approval. Once approved, here
-    was our timeline:
+    along with sample learning assets, and asked for their feedback and approval. From kickoff in
+    September 2025 to launch in August 2026, the work moved from understanding learners' needs through
+    scripts, recording, and interactive design. The <a href="#process">full timeline</a> is below.
   </p>
 
-  <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
-      <div>
-        <p class="timeline-date">September 2025</p>
-        <p class="timeline-label">Project kickoff</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
-      <div>
-        <p class="timeline-date">October – November 2025</p>
-        <p class="timeline-label">LX needs analysis, early asset prototyping and feedback</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
-      <div>
-        <p class="timeline-date">December 2025</p>
-        <p class="timeline-label">Script writing, editing, and feedback; SME studio preparation</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
-      <div>
-        <p class="timeline-date">January – February 2026</p>
-        <p class="timeline-label">Media recording and video visual design</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
-      <div>
-        <p class="timeline-date">March 2026</p>
-        <p class="timeline-label">Co-design session with nurses</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
-      <div>
-        <p class="timeline-date">April – May 2026</p>
-        <p class="timeline-label">LX design for interactives, assessments, and supplemental materials</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
-      <div>
-        <p class="timeline-date">June 2026</p>
-        <p class="timeline-label">Final build and learner pilot</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
-      <div>
-        <p class="timeline-date">July 2026</p>
-        <p class="timeline-label">Final stakeholder review and sign-off, CEUs approved</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"><div class="timeline-dot"></div></div>
-      <div>
-        <p class="timeline-date">August 2026</p>
-        <p class="timeline-label">Launch</p>
-      </div>
-    </div>
-  </div>
-
-  <h2>Learners are involved throughout</h2>
+  <h2 id="co-design">Learners are involved throughout</h2>
   <p>
     During this project, I brought registered nurses into the process repeatedly to test whether our
     decisions made sense in the context of their actual work.
   </p>
   <p>
     In one co-design session, nurses described four ways AI was showing up during a shift: something
-    was flagged, something was summarized, a list was reprioritized, or a protocol was triggered. That conversation confirmed we were headed in the right direction and shaped the structure of the courses. The four buckets now appear throughout the series. Here's what those four buckets looked like once
-    we mapped them out for nurses:
+    was flagged, something was summarized, a list was reprioritized, or a protocol was triggered. That
+    conversation confirmed we were headed in the right direction and shaped the structure of the
+    courses. The four buckets now appear throughout the series. Here's what those four buckets looked
+    like once we mapped them out for nurses:
   </p>
 
   <div class="buckets-grid">
@@ -261,13 +226,20 @@
     they already recognize.
   </p>
 
-  <h2>I'll show you how the pieces fit together</h2>
+  <h2 id="course-design">I'll show you how the pieces fit together</h2>
   <p>
-    Courses 1 and 2 share a similar structure, built around one question: how do
-    you make technical AI concepts feel relevant to nurses whose focus is patient care?
+    Courses 1 and 2 share a similar structure, built around one question: how do you make technical AI
+    concepts feel relevant to nurses whose focus is patient care?
   </p>
   <p>
-    Each module starts with a subject-matter expert video that introduces the concept in clinical language instead of technical jargon. Then a Term Spotlight takes one term and makes it concrete and relatable, written in the voice of a trusted nurse mentor.
+    Each module starts with a subject-matter expert video that introduces the concept in clinical
+    language instead of technical jargon. Then a Term Spotlight takes one term and makes it concrete and
+    relatable, written in the voice of a trusted nurse mentor.
+  </p>
+  <p>
+    This first activity lets learners compare two kinds of AI side by side: a fall risk score that
+    changes on its own, and a discharge summary that can include an invented sentence. It helps them
+    notice that both can sound confident without showing how they got there.
   </p>
 
   <p class="try-it-label">Try it: predictive vs. generative AI</p>
@@ -280,7 +252,13 @@
 
   <p>
     From there, an Inside the AI Tool interactive connects the concept to tools nurses already use,
-    including MEWS, DAX Copilot, the Epic Sepsis Model, and the Braden Scale. The goal is for nurses to leave each module able to recognize that concept in the systems and workflows they use at work, and not only to define it.
+    including MEWS, DAX Copilot, the Epic Sepsis Model, and the Braden Scale. The goal is for nurses to
+    leave each module able to recognize that concept in the systems and workflows they use at work, and
+    not only to define it.
+  </p>
+  <p>
+    This activity lets learners change the information a model uses and see how its output responds. It
+    gives them a concrete way to explore an abstract idea.
   </p>
 
   <p class="try-it-label">Try it: features vs. labels</p>
@@ -298,10 +276,9 @@
     met the learning goals before the Course Certificate is issued.
   </p>
   <p>
-    Courses 1 and 2 build knowledge and a way of looking at AI tools. Course 3 gives nurses a chance to use both in practice. Course 3 is structured around five guided case studies. Each
-    case starts with a pre-reading that sets up the clinical situation, then a video with pause points
-    where nurses make a judgment before seeing what happens next, a graded quiz, and a post-case
-    reflection with a completed template.
+    In the third course, nurses work through five guided clinical cases. They review the situation,
+    pause during a video to make a decision, and reflect on their reasoning. Each case gives them a
+    chance to apply the ideas from earlier courses.
   </p>
 
   <p class="try-it-label">Case study with pause point</p>
@@ -310,7 +287,9 @@
   </div>
 
   <p>
-    Each activity prepares learners for the next step, moving from concept to tool, to their own practice, to clinical judgment. That progression keeps the learning close to the work nurses do every day.
+    Each activity prepares learners for the next step, moving from concept to tool, to their own
+    practice, to clinical judgment. That progression keeps the learning close to the work nurses do
+    every day.
   </p>
 
   <div class="callout">
@@ -320,18 +299,84 @@
         <path d="M9 12l2 2 4-4"/>
       </svg>
     </span>
-    <p>Every asset in this specialization, from the videos to the interactives to the final assessments, was built with accessibility in mind from the start, meeting all WCAG 2.2 requirements.</p>
+    <p>Accessibility shaped our decisions throughout development, from videos and readings to interactive activities and assessments.</p>
   </div>
 
-  <h2>Where are we now</h2>
+  <h2 id="process" data-expand="true">Explore the development process</h2>
+  <details class="process-details">
+    <summary>View the full timeline, September 2025 to August 2026</summary>
+    <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div>
+        <p class="timeline-date">September 2025</p>
+        <p class="timeline-label">Project kickoff</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div>
+        <p class="timeline-date">October – November 2025</p>
+        <p class="timeline-label">Understanding learners' needs, trying out early learning activities, and gathering feedback</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div>
+        <p class="timeline-date">December 2025</p>
+        <p class="timeline-label">Script writing, editing, and feedback; helping faculty prepare for recording</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div>
+        <p class="timeline-date">January – February 2026</p>
+        <p class="timeline-label">Media recording and video visual design</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div>
+        <p class="timeline-date">March 2026</p>
+        <p class="timeline-label">Co-design session with nurses</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div>
+        <p class="timeline-date">April – May 2026</p>
+        <p class="timeline-label">Designing interactives, assessments, and supplemental materials</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div>
+        <p class="timeline-date">June 2026</p>
+        <p class="timeline-label">Preparing the courses and testing them with learners</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
+      <div>
+        <p class="timeline-date">July 2026</p>
+        <p class="timeline-label">Final partner review and approval, CEUs approved</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-marker"><div class="timeline-dot"></div></div>
+      <div>
+        <p class="timeline-date">August 2026</p>
+        <p class="timeline-label">Launch</p>
+      </div>
+    </div>
+  </div>
+  </details>
+
+  <h2 id="results">Where are we now</h2>
   <p>
-    The specialization launched on schedule. The response from Duke School of Nursing and Johnson &amp;
-    Johnson was strong enough that they funded a second year of work together.
-  </p>
-  <p>
-    A new specialization is already scoped and scheduled to begin within the month. It's a different
-    project with its own challenges, but it exists because the first one built enough trust to continue
-    the partnership.
+    The specialization launched on schedule, and Duke School of Nursing and Johnson &amp; Johnson funded
+    a second year of collaboration. We're now developing a new specialization that builds on what we
+    learned together.
   </p>
 
 </main>
@@ -345,5 +390,6 @@
 
 <script src="js/embed-interactives.js?v=5"></script>
 
+<script src="js/site.js"></script>
 </body>
 </html>

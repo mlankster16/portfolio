@@ -4,15 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Megan Lancaster | Learning Experience Design & Project Management</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=5">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=8">
 </head>
 <body>
 
 <header class="site">
   <div class="wrap">
-    <nav class="primary">
-      <a href="index.html" class="current">Home</a>
+    <nav class="primary" aria-label="Main">
+      <a href="index.html" class="current" aria-current="page">Home</a>
+      <div class="nav-menu">
+        <button type="button" class="nav-menu-btn" aria-expanded="false" aria-controls="work-menu">Work <span class="caret" aria-hidden="true"></span></button>
+        <ul class="nav-menu-list" id="work-menu">
+          <li><a href="ai-for-nurses.html">AI for Nurses</a></li>
+          <li><a href="coursera-design-guide.html">Coursera Design Guide</a></li>
+          <li><a href="interactivity-generator.html">Interactivity Generator</a></li>
+          <li><a href="samples.html">Sample Learning Assets</a></li>
+        </ul>
+      </div>
       <a href="about.html">About</a>
       <a class="btn-resume" href="assets/resume/Lancaster_Resume_Oct2026.pdf" download>Résumé</a>
     </nav>
@@ -81,5 +90,6 @@
   </div>
 </footer>
 
+<script src="js/site.js"></script>
 </body>
 </html>
