@@ -110,7 +110,7 @@ nav.primary a:focus-visible,
   top: 100%;
   left: -16px;
   margin-top: 14px;
-  min-width: 250px;
+  min-width: 290px;
   list-style: none;
   background: var(--navy-panel);
   border: 1px solid rgba(244,239,226,0.14);
@@ -140,6 +140,24 @@ nav.primary .nav-menu-list a {
 }
 nav.primary .nav-menu-list a:hover { background: rgba(244,239,226,0.08); }
 nav.primary .nav-menu-list a[aria-current="page"] { color: var(--gold); }
+nav.primary .nav-disabled {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  color: var(--cream-dim);
+  font-size: 14px;
+  cursor: default;
+  white-space: nowrap;
+}
+nav.primary .nav-soon {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.project-card.is-soon { cursor: default; }
 nav.primary a.btn-resume {
   color: var(--navy);
   background: var(--gold);
