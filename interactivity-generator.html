@@ -204,9 +204,10 @@
 <li><span class="x-k">Prepare</span><span class="x-w">For the course</span><span>a configuration ready to place in Coursera</span></li>
 </ol>
 <div class="in"></div></section>
-<section class="band warm" id="s2-building-the-two-parts"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>Building the two parts</h2><p>I first built a plugin that embeds finished HTML and JavaScript in the Coursera course environment.</p>
+<section class="band warm" id="s2-building-the-two-parts"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>Building the two parts</h2><p>With the support of Claude Design and Claude Code, I first built a plugin that embeds finished HTML and JavaScript in the Coursera course environment.</p>
 <p>Then I built the generator to support the work that comes before that. A designer describes what they want learners to understand or practice, and the tool helps them explore possible interaction formats.</p>
-<p>Designers can also choose a format directly when they already have something in mind.</p></div>
+<p>Designers can also choose a format directly when they already have something in mind.</p>
+<p>The tool itself uses Claude API to recommend formats and build activities.</p></div>
 <div class="i-parts">
 <div class="i-part"><p class="x-k">Part 1 · The plugin</p><p class="x-w">Places the activity in Coursera</p><p>Reads the configuration on a reading page, renders the HTML, and runs its script.</p>
 <pre class="i-code" aria-label="Plugin configuration shape">{
