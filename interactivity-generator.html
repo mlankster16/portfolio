@@ -64,6 +64,100 @@
 .dc .x-tip::before { content:''; position:absolute; bottom:100%; left:50%; margin-left:-5px; border:5px solid transparent; border-bottom-color:#101d38; }
 .dc .x-steps a:hover .x-tip, .dc .x-steps a:focus-visible .x-tip { opacity:1; transform:translate(-50%,0); }
 @media (min-width:681px){ .dc .section-strip.x-steps { overflow:visible; } }
+.dc .in > p:last-child { margin-bottom:0; }
+.dc .x-path { list-style:none; margin:28px 0 32px; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.dc .x-path li { display:flex; flex-direction:column; gap:4px; padding:22px 24px 24px; background:var(--panel-warm); border-radius:6px; position:relative; }
+.dc .x-path li + li::before { content:'→'; position:absolute; left:-14px; top:50%; transform:translate(-50%,-50%); color:#b8863a; font-weight:700; }
+.dc .x-k { margin:0; font-weight:700; color:var(--accent-dark); }
+.dc .x-w { margin:0; font-family:var(--font-display); font-size:var(--s2); line-height:1.2; color:var(--navy); }
+.dc .warm .x-path li { background:#fff; }
+.dc .i-parts { display:grid; grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr); margin:28px 0 32px; }
+.dc .i-part { display:flex; flex-direction:column; gap:8px; padding:24px 26px 26px; background:#fff; border:1px solid var(--rule); border-radius:6px; }
+.dc .i-part p { margin:0; }
+.dc .i-part-gen { border-top:3px solid var(--accent); }
+.dc .i-join { align-self:center; justify-self:center; width:34px; height:34px; border-radius:50%; display:grid; place-items:center; background:#dda448; color:#101d38; font-weight:700; }
+.dc .i-code { margin:8px 0 0; padding:14px 16px; background:#101d38; color:#f4efe2; border-radius:6px; font-family:'Roboto Mono',ui-monospace,Menlo,monospace; font-size:14px; line-height:1.6; white-space:pre-wrap; word-break:break-word; }
+.dc .i-modes { list-style:none; margin:6px 0 0; padding:0; display:grid; gap:8px; }
+.dc .i-modes li { padding:10px 14px; background:var(--accent-tint); border-radius:6px; }
+.dc .i-modes strong { color:var(--navy); }
+.dc .i-types { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:28px 0 16px; }
+.dc .i-types > div { padding:18px 20px; background:var(--panel-warm); border-radius:6px; }
+.dc .i-types p { margin:0; }
+.dc .i-t { font-family:var(--font-display); font-size:var(--s2) !important; line-height:1.2; color:var(--navy); margin-bottom:4px !important; }
+.dc .i-flags { margin:0 0 32px; padding:20px 24px 22px; border:1px solid var(--rule); border-radius:6px; background:#fff; }
+.dc .i-flag-row { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+.dc .i-flag-row > div { display:flex; flex-direction:column; gap:4px; padding-left:14px; border-left:2px solid #dda448; }
+.dc .i-flag-row strong { color:var(--navy); }
+.dc .i-flow { list-style:none; margin:28px 0 32px; padding:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0; position:relative; }
+.dc .i-flow::before { content:''; position:absolute; left:22px; right:calc(25% - 22px + 16px); top:22px; height:2px; background:var(--rule-strong); }
+.dc .i-flow li { position:relative; display:flex; flex-direction:column; gap:4px; padding-right:16px; }
+.dc .i-n { width:44px; height:44px; border-radius:50%; display:grid; place-items:center; background:#fff; border:2px solid var(--accent); color:var(--accent-dark); font-weight:700; margin-bottom:10px; position:relative; }
+.dc .i-flow li:last-child .i-n { background:var(--accent); color:#fff; }
+.dc .i-flow strong { color:var(--navy); }
+.dc .i-twin { display:grid; grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr); margin:28px 0 32px; }
+.dc .i-tw { display:flex; flex-direction:column; gap:12px; padding:22px 24px 24px; background:#fff; border:1px solid var(--rule); border-radius:6px; }
+.dc .i-tw p { margin:0; }
+.dc .i-eq { align-self:center; justify-self:center; font-family:var(--font-display); font-size:var(--s2); color:#b8863a; }
+.dc .i-mini { border:1px solid #e2e6ed; border-radius:8px; padding:14px 16px; background:#f3f2f1; display:grid; gap:10px; }
+.dc .i-tabs { display:flex; flex-wrap:wrap; gap:6px; }
+.dc .i-tabs span { padding:4px 10px; border-radius:6px; background:#e2e6ed; color:#262626; font-size:14px; font-weight:600; }
+.dc .i-tabs span.on { background:#005587; color:#fff; }
+.dc .i-doc { padding:16px 18px; background:var(--panel-warm); border-radius:6px; line-height:1.7; }
+@media (max-width:900px){ .dc .i-types { grid-template-columns:repeat(2,minmax(0,1fr)); } .dc .i-flow { grid-template-columns:repeat(2,minmax(0,1fr)); row-gap:24px; } .dc .i-flow::before { display:none; } }
+@media (max-width:820px){ .dc .x-path, .dc .i-flag-row { grid-template-columns:minmax(0,1fr); } .dc .x-path li + li::before { content:'↓'; left:50%; top:-6px; } .dc .i-parts, .dc .i-twin { grid-template-columns:minmax(0,1fr); gap:12px; } .dc .i-join { transform:rotate(90deg); } }
+@media (max-width:560px){ .dc .i-types, .dc .i-flow { grid-template-columns:minmax(0,1fr); } }
+.dc .x-hint { margin:28px 0 12px; color:var(--text-muted); }
+.dc .x-hint + .i-types { margin-top:0; }
+.dc .i-type { appearance:none; font:inherit; text-align:left; cursor:pointer; position:relative; display:flex; flex-direction:column; gap:4px; padding:18px 44px 18px 20px; background:var(--panel-warm); color:var(--text-body); border:1px solid transparent; border-radius:6px; transition:background .15s, border-color .15s; }
+.dc .i-type:hover { border-color:var(--navy); }
+.dc .i-type:focus-visible { outline:2px solid var(--navy); outline-offset:3px; }
+.dc .i-plus { position:absolute; top:14px; right:16px; font-size:var(--s2); line-height:1; color:#b8863a; transition:transform .2s; }
+.dc .i-type[aria-expanded="true"] { background:#101d38; color:#cbd0dd; }
+.dc .i-type[aria-expanded="true"] .i-t { color:#f4efe2; }
+.dc .i-type[aria-expanded="true"] .i-plus { transform:rotate(45deg); color:#dda448; }
+.dc .i-demo { margin:0 0 16px; padding:22px 24px 24px; background:#fff; border:1px solid var(--rule-strong); border-top:3px solid #101d38; border-radius:0 0 6px 6px; }
+.dc .i-demo[hidden] { display:none; }
+.dc .d-box { max-width:760px; padding:20px 22px 22px; background:#f3f2f1; border:1px solid #e2e6ed; border-radius:8px; }
+.dc .d-box p { margin:0; }
+.dc .d-title { font-weight:700; color:#012169; margin-bottom:4px !important; }
+.dc .d-inst { color:var(--text-muted); margin-bottom:14px !important; }
+.dc .d-box button { font:inherit; cursor:pointer; }
+.dc .d-tabs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
+.dc .d-tab { padding:8px 14px; border:0; border-radius:6px; background:#e2e6ed; color:#262626; font-weight:600; }
+.dc .d-tab.on { background:#005587; color:#fff; }
+.dc .d-panel { padding:16px 18px; background:#fff; border:1px solid #e2e6ed; border-radius:8px; }
+.dc .d-panel strong { color:#012169; }
+.dc .d-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:10px; }
+.dc .d-card { text-align:left; display:flex; flex-direction:column; gap:6px; padding:14px 16px; min-height:64px; background:#fff; border:1px solid #e2e6ed; border-radius:8px; color:#262626; }
+.dc .d-card strong { color:#012169; } .dc .d-card.on { border-color:#005587; background:#e8f0fa; }
+.dc .d-opts { display:grid; gap:8px; }
+.dc .d-opt, .dc .d-step, .dc .d-item { text-align:left; padding:12px 14px; background:#fff; border:1px solid #e2e6ed; border-radius:8px; color:#262626; }
+.dc .d-opt:hover, .dc .d-step:hover, .dc .d-item:hover { border-color:#005587; }
+.dc .d-opt.ok, .dc .d-chip.ok, .dc .d-order li.ok .d-step { border-color:#1d6363; background:#e6f4f4; }
+.dc .d-opt.no, .dc .d-chip.no, .dc .d-order li.no .d-step { border-color:#c84e00; background:#fef0e6; }
+.dc .d-fb { margin-top:12px !important; padding:12px 14px; border-radius:8px; }
+.dc .d-fb.ok { background:#e6f4f4; color:#1d4f50; } .dc .d-fb.no { background:#fef0e6; color:#7a2f00; }
+.dc .d-seq { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+.dc .d-pool { display:grid; gap:8px; align-content:start; }
+.dc .d-order { margin:0; padding:12px 12px 12px 36px; min-height:120px; background:#fff; border:1.5px dashed #c9cdd4; border-radius:8px; display:grid; gap:8px; align-content:start; }
+.dc .d-order .d-step { width:100%; }
+.dc .d-actions { display:flex; gap:10px; margin-top:12px; }
+.dc .d-btn { padding:9px 16px; border-radius:6px; border:1px solid #005587; background:#005587; color:#fff; font-weight:600; }
+.dc .d-btn.d-reset { background:#fff; color:#005587; }
+.dc .d-items { display:grid; gap:8px; margin-bottom:12px; }
+.dc .d-item.sel { border-color:#005587; box-shadow:0 0 0 2px #005587 inset; }
+.dc .d-item.placed { opacity:.45; pointer-events:none; }
+.dc .d-zones { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; }
+.dc .d-zone { text-align:left; display:flex; flex-direction:column; gap:6px; min-height:84px; padding:10px 12px; background:#fff; border:1.5px dashed #c9cdd4; border-radius:8px; color:#262626; }
+.dc .d-zone strong { color:#012169; }
+.dc .d-zone:hover { border-color:#005587; }
+.dc .d-drop { display:grid; gap:6px; }
+.dc .d-chip { display:block; padding:6px 8px; font-size:14px; line-height:1.4; background:#e8f0fa; border:1px solid #c5d8f0; border-radius:6px; }
+.dc .d-passage { line-height:1.9; }
+.dc .d-hl { display:inline; padding:1px 3px; border:0; border-bottom:2px solid #005587; background:#e8f0fa; color:#012169; border-radius:2px; }
+.dc .d-hl.on { background:#005587; color:#fff; }
+.dc .d-note { margin-top:12px !important; padding:12px 14px; background:#fff; border-left:3px solid #005587; border-radius:4px; }
+@media (max-width:820px){ .dc .d-seq { grid-template-columns:minmax(0,1fr); } }
 </style>
 </head>
 <body class="accent-purple">
@@ -103,21 +197,101 @@
 <nav class="section-strip x-steps" aria-label="On this page"><a href="#s1-where-we-started" aria-label="Where we started"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22V4"/><path d="M4 4h12l-2 4 2 4H4"/></svg></span><span class="x-tip" aria-hidden="true">Where we started</span></a><span class="x-line" aria-hidden="true"></span><a href="#s2-building-the-two-parts" aria-label="Building the two parts"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><span class="x-tip" aria-hidden="true">Building the two parts</span></a><span class="x-line" aria-hidden="true"></span><a href="#s3-keeping-the-learning-goa" aria-label="Keeping the learning goal in view"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span><span class="x-tip" aria-hidden="true">Keeping the learning goal in view</span></a><span class="x-line" aria-hidden="true"></span><a href="#s4-giving-designers-room-to" aria-label="Giving designers room to review and edit"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><span class="x-tip" aria-hidden="true">Giving designers room to review and edit</span></a><span class="x-line" aria-hidden="true"></span><a href="#walkthrough" aria-label="See the workflow in practice"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polygon points="10 8 16 12 10 16 10 8"/></svg></span><span class="x-tip" aria-hidden="true">See the workflow in practice</span></a><span class="x-line" aria-hidden="true"></span><a href="#s5-providing-another-way-to" aria-label="Providing another way to use the content"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg></span><span class="x-tip" aria-hidden="true">Providing another way to use the content</span></a><span class="x-line" aria-hidden="true"></span><a href="#s6-what-i-wanted-to-make-ea" aria-label="What I wanted to make easier"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><span class="x-tip" aria-hidden="true">What I wanted to make easier</span></a></nav>
 
 <section class="band" id="s1-where-we-started"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22V4"/><path d="M4 4h12l-2 4 2 4H4"/></svg></span>Where we started</h2><p>Sometimes a single concept benefits from a small interaction: a quick question, a sequence to arrange, or a visual learners can explore.</p>
-<p>I wanted our team to have an easier way to create those moments in Coursera. The aim was to help designers work from their content and learning goal, try a suitable format, and prepare the activity for the course.</p></div></section>
+<p>I wanted our team to have an easier way to create those moments in Coursera. The aim was to help designers work from their content and learning goal, try a suitable format, and prepare the activity for the course.</p></div>
+<ol class="x-path" aria-label="What the tool helps designers do">
+<li><span class="x-k">Start from</span><span class="x-w">Content &amp; goal</span><span>what learners should understand or practice</span></li>
+<li><span class="x-k">Try</span><span class="x-w">A suitable format</span><span>one of six small interaction types</span></li>
+<li><span class="x-k">Prepare</span><span class="x-w">For the course</span><span>a configuration ready to place in Coursera</span></li>
+</ol>
+<div class="in"></div></section>
 <section class="band warm" id="s2-building-the-two-parts"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>Building the two parts</h2><p>I first built a plugin that embeds finished HTML and JavaScript in the Coursera course environment.</p>
 <p>Then I built the generator to support the work that comes before that. A designer describes what they want learners to understand or practice, and the tool helps them explore possible interaction formats.</p>
-<p>Designers can also choose a format directly when they already have something in mind.</p></div></section>
+<p>Designers can also choose a format directly when they already have something in mind.</p></div>
+<div class="i-parts">
+<div class="i-part"><p class="x-k">Part 1 · The plugin</p><p class="x-w">Places the activity in Coursera</p><p>Reads the configuration on a reading page, renders the HTML, and runs its script.</p>
+<pre class="i-code" aria-label="Plugin configuration shape">{
+  "html":   "&lt;div&gt;…activity…&lt;/div&gt;",
+  "script": "(function(){ … })()"
+}</pre></div>
+<span class="i-join" aria-hidden="true">←</span>
+<div class="i-part i-part-gen"><p class="x-k">Part 2 · The generator</p><p class="x-w">Creates and edits the activity</p><p>Takes the designer’s description, suggests a format, builds the activity, and exports the configuration the plugin reads.</p>
+<ul class="i-modes"><li><strong>Recommend for me</strong> · describe the learning need</li><li><strong>I know what I want</strong> · choose a format directly</li></ul></div>
+</div>
+<div class="in"></div></section>
 <section class="band" id="s3-keeping-the-learning-goa"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span>Keeping the learning goal in view</h2><p>The generator uses Claude and a set of learning design guidelines to suggest formats such as a short quiz, a tabbed explorer, or a sequencing activity.</p>
 <p>It also offers guidance when a request needs more detail, contains too much for one activity, or may work better in another format.</p>
-<p>I wanted the recommendations to help designers think through their options and make an informed choice.</p></div></section>
+<p>I wanted the recommendations to help designers think through their options and make an informed choice.</p></div>
+<p class="x-hint" id="type-hint">Select a format to try a sample built from the walkthrough example.</p>
+<div class="i-types"><button type="button" class="i-type" aria-expanded="false" aria-controls="demo-tabs"><span class="i-t">Tabbed explorer</span><span>Comparing parallel concepts</span><span class="i-plus" aria-hidden="true">+</span></button><button type="button" class="i-type" aria-expanded="false" aria-controls="demo-reveal"><span class="i-t">Click-to-reveal</span><span>Retrieval practice and recall</span><span class="i-plus" aria-hidden="true">+</span></button><button type="button" class="i-type" aria-expanded="false" aria-controls="demo-quiz"><span class="i-t">Inline quiz</span><span>A quick knowledge check</span><span class="i-plus" aria-hidden="true">+</span></button><button type="button" class="i-type" aria-expanded="false" aria-controls="demo-seq"><span class="i-t">Sequencing</span><span>Procedural understanding</span><span class="i-plus" aria-hidden="true">+</span></button><button type="button" class="i-type" aria-expanded="false" aria-controls="demo-drag"><span class="i-t">Drag-to-classify</span><span>Sorting and categorizing</span><span class="i-plus" aria-hidden="true">+</span></button><button type="button" class="i-type" aria-expanded="false" aria-controls="demo-ann"><span class="i-t">Annotated text</span><span>Guided close reading</span><span class="i-plus" aria-hidden="true">+</span></button></div>
+<div class="i-demo" id="demo-tabs" data-k="tabs" role="region" aria-label="Tabbed explorer sample" hidden><p class="x-k" style="margin:0 0 14px">Sample · Tabbed explorer</p><div class="d-box"><p class="d-title">Five Data Fitness Criteria</p><p class="d-inst">Select a criterion to see what it asks.</p>
+<div class="d-tabs" role="tablist"><button type="button" role="tab" class="d-tab on" aria-selected="true" data-i="0">Relevance</button><button type="button" role="tab" class="d-tab" aria-selected="false" data-i="1">Completeness</button><button type="button" role="tab" class="d-tab" aria-selected="false" data-i="2">Accuracy</button><button type="button" role="tab" class="d-tab" aria-selected="false" data-i="3">Timeliness</button><button type="button" role="tab" class="d-tab" aria-selected="false" data-i="4">Consistency</button></div>
+<div class="d-panel" data-i="0"><strong>Relevance</strong><p>Does this data actually measure what the business question is about?</p></div><div class="d-panel" data-i="1" hidden><strong>Completeness</strong><p>Are all the records, fields, and time periods the question needs present?</p></div><div class="d-panel" data-i="2" hidden><strong>Accuracy</strong><p>Are the values correct and believable?</p></div><div class="d-panel" data-i="3" hidden><strong>Timeliness</strong><p>Is the data recent enough to support a decision being made now?</p></div><div class="d-panel" data-i="4" hidden><strong>Consistency</strong><p>Is the same thing recorded the same way throughout the dataset?</p></div></div></div>
+<div class="i-demo" id="demo-reveal" data-k="reveal" role="region" aria-label="Click-to-reveal sample" hidden><p class="x-k" style="margin:0 0 14px">Sample · Click-to-reveal</p><div class="d-box"><p class="d-title">Five Criteria at a Glance</p><p class="d-inst">Try to recall what each criterion checks, then click to reveal it.</p>
+<div class="d-cards"><button type="button" class="d-card" aria-expanded="false"><strong>Relevance</strong><span hidden>Checks that the data measures what the question is actually about.</span></button><button type="button" class="d-card" aria-expanded="false"><strong>Completeness</strong><span hidden>Checks that every record, field, and time period the question needs is present.</span></button><button type="button" class="d-card" aria-expanded="false"><strong>Accuracy</strong><span hidden>Checks that the values are correct and believable.</span></button><button type="button" class="d-card" aria-expanded="false"><strong>Timeliness</strong><span hidden>Checks that the data is recent enough for the decision at hand.</span></button><button type="button" class="d-card" aria-expanded="false"><strong>Consistency</strong><span hidden>Checks that the same thing is recorded the same way throughout.</span></button></div></div></div>
+<div class="i-demo" id="demo-quiz" data-k="quiz" role="region" aria-label="Inline quiz sample" hidden><p class="x-k" style="margin:0 0 14px">Sample · Inline quiz</p><div class="d-box"><p class="d-title">Which Criterion Fits This Problem?</p><p class="d-inst">A manager asks whether a new checkout design reduced abandoned carts. The analyst receives a complete, error-free dataset of every completed order from the last six months. What is the biggest concern?</p>
+<div class="d-opts"><button type="button" class="d-opt" data-c="0">Completeness, because six months isn’t enough data.</button><button type="button" class="d-opt" data-c="1">Relevance, because completed orders can’t show the carts that were abandoned.</button><button type="button" class="d-opt" data-c="0">Accuracy, because error-free data is unlikely to be real.</button><button type="button" class="d-opt" data-c="0">Consistency, because the design changed during the period.</button></div>
+<p class="d-fb" hidden></p></div></div>
+<div class="i-demo" id="demo-seq" data-k="seq" role="region" aria-label="Sequencing sample" hidden><p class="x-k" style="margin:0 0 14px">Sample · Sequencing</p><div class="d-box"><p class="d-title">Run a Data Fitness Check</p><p class="d-inst">Click the steps in the order you’d take them.</p>
+<div class="d-seq"><div class="d-pool"><button type="button" class="d-step" data-n="3">Compare the dataset’s fields and coverage against that list.</button><button type="button" class="d-step" data-n="1">Restate the business question in one specific sentence.</button><button type="button" class="d-step" data-n="5">Document any limitations that could affect the analysis.</button><button type="button" class="d-step" data-n="2">List the fields, records, and time period the question requires.</button><button type="button" class="d-step" data-n="4">Scan the values for gaps, errors, and inconsistent formats.</button></div><ol class="d-order"></ol></div>
+<div class="d-actions"><button type="button" class="d-btn d-check">Check order</button><button type="button" class="d-btn d-reset">Reset</button></div><p class="d-fb" hidden></p></div></div>
+<div class="i-demo" id="demo-drag" data-k="drag" role="region" aria-label="Drag-to-classify sample" hidden><p class="x-k" style="margin:0 0 14px">Sample · Drag-to-classify</p><div class="d-box"><p class="d-title">Sort Each Problem by the Criterion It Fails</p><p class="d-inst">Select a problem, then select the criterion it fails.</p>
+<div class="d-items"><button type="button" class="d-item" data-z="Relevance">The question is about purchases, but the data only tracks website visits.</button><button type="button" class="d-item" data-z="Timeliness">The most recent record is from three years ago.</button><button type="button" class="d-item" data-z="Consistency">Dates appear as both 03/04/2025 and 2025-04-03.</button><button type="button" class="d-item" data-z="Accuracy">Several orders show a negative quantity.</button><button type="button" class="d-item" data-z="Completeness">Two of the twelve months have no rows at all.</button></div>
+<div class="d-zones"><button type="button" class="d-zone" data-z="Relevance"><strong>Relevance</strong><span class="d-drop"></span></button><button type="button" class="d-zone" data-z="Completeness"><strong>Completeness</strong><span class="d-drop"></span></button><button type="button" class="d-zone" data-z="Accuracy"><strong>Accuracy</strong><span class="d-drop"></span></button><button type="button" class="d-zone" data-z="Timeliness"><strong>Timeliness</strong><span class="d-drop"></span></button><button type="button" class="d-zone" data-z="Consistency"><strong>Consistency</strong><span class="d-drop"></span></button></div>
+<div class="d-actions"><button type="button" class="d-btn d-check">Check answers</button><button type="button" class="d-btn d-reset">Reset</button></div><p class="d-fb" hidden></p></div></div>
+<div class="i-demo" id="demo-ann" data-k="ann" role="region" aria-label="Annotated text sample" hidden><p class="x-k" style="margin:0 0 14px">Sample · Annotated text</p><div class="d-box"><p class="d-title">Reading an Analyst’s Data Notes</p><p class="d-inst">Click the highlighted phrases to see which criterion each one raises.</p>
+<p class="d-passage">The marketing team wants to know whether last month’s loyalty campaign increased repeat purchases. The dataset they shared <button type="button" class="d-hl" data-a="Relevance: opens and clicks show interest, but the question is about repeat purchases.">tracks email opens and clicks</button>, covers <button type="button" class="d-hl" data-a="Timeliness: the campaign ran last month, so data that ends last June can’t show its effect.">January through June of last year</button>, and <button type="button" class="d-hl" data-a="Completeness: a quarter of records can’t be tied to a store.">leaves the store ID blank for about a quarter of rows</button>.</p>
+<p class="d-note" hidden></p></div></div>
+<script>
+(function(){
+var btns=document.querySelectorAll('.i-type'),demos=document.querySelectorAll('.i-demo'),hint=document.getElementById('type-hint');
+btns.forEach(function(b,i){b.addEventListener('click',function(){var open=b.getAttribute('aria-expanded')==='true';btns.forEach(function(x){x.setAttribute('aria-expanded','false')});demos.forEach(function(d){d.hidden=true});if(!open){b.setAttribute('aria-expanded','true');demos[i].hidden=false;}hint.style.visibility=open?'visible':'hidden';});});
+function fb(root,msg,ok){var f=root.querySelector('.d-fb');f.hidden=false;f.textContent=msg;f.className='d-fb '+(ok?'ok':'no');}
+var t=document.getElementById('demo-tabs');t.querySelectorAll('.d-tab').forEach(function(b){b.addEventListener('click',function(){t.querySelectorAll('.d-tab').forEach(function(x){x.classList.remove('on');x.setAttribute('aria-selected','false')});b.classList.add('on');b.setAttribute('aria-selected','true');t.querySelectorAll('.d-panel').forEach(function(p){p.hidden=p.dataset.i!==b.dataset.i});});});
+document.querySelectorAll('#demo-reveal .d-card').forEach(function(c){c.addEventListener('click',function(){var s=c.querySelector('span'),o=s.hidden;s.hidden=!o;c.setAttribute('aria-expanded',o?'true':'false');c.classList.toggle('on',o);});});
+var q=document.getElementById('demo-quiz'),done=false;q.querySelectorAll('.d-opt').forEach(function(o){o.addEventListener('click',function(){if(done)return;done=true;var ok=o.dataset.c==='1';o.classList.add(ok?'ok':'no');if(!ok)q.querySelector('.d-opt[data-c="1"]').classList.add('ok');fb(q,ok?'Right. The data is clean, but abandoned carts never become orders, so it can’t answer the question. That’s relevance.':'Not quite. Nothing is missing, wrong, or inconsistent. Completed orders simply don’t include abandoned carts, so the data doesn’t measure what the question asks. That’s relevance.',ok);});});
+var s=document.getElementById('demo-seq'),pool=s.querySelector('.d-pool'),ord=s.querySelector('.d-order');var orig=Array.prototype.slice.call(pool.children);s.querySelectorAll('.d-step').forEach(function(b){b.addEventListener('click',function(){if(b.parentNode===pool){var li=document.createElement('li');li.appendChild(b);ord.appendChild(li);}else{var li2=b.parentNode;pool.appendChild(b);li2.remove();}s.querySelector('.d-fb').hidden=true;});});
+s.querySelector('.d-check').addEventListener('click',function(){var items=ord.querySelectorAll('.d-step'),right=0;items.forEach(function(b,i){var ok=+b.dataset.n===i+1;b.parentNode.className=ok?'ok':'no';if(ok)right++;});fb(s,right===5?'All five steps are in order.':right+' of 5 in the right position. Steps in red can be clicked to send back.',right===5);});
+s.querySelector('.d-reset').addEventListener('click',function(){orig.forEach(function(x){pool.appendChild(x)});ord.innerHTML='';s.querySelector('.d-fb').hidden=true;});
+var d=document.getElementById('demo-drag'),sel=null,place={};d.querySelectorAll('.d-item').forEach(function(it){it.addEventListener('click',function(){if(it.classList.contains('placed'))return;d.querySelectorAll('.d-item').forEach(function(x){x.classList.remove('sel')});sel=it;it.classList.add('sel');});});
+d.querySelectorAll('.d-zone').forEach(function(z){z.addEventListener('click',function(){if(!sel)return;var drop=z.querySelector('.d-drop');var chip=document.createElement('span');chip.className='d-chip';chip.textContent=sel.textContent;chip.dataset.z=sel.dataset.z;chip.dataset.zone=z.dataset.z;drop.appendChild(chip);sel.classList.remove('sel');sel.classList.add('placed');sel=null;d.querySelector('.d-fb').hidden=true;});});
+d.querySelector('.d-check').addEventListener('click',function(){var chips=d.querySelectorAll('.d-chip'),right=0;chips.forEach(function(c){var ok=c.dataset.z===c.dataset.zone;c.classList.toggle('ok',ok);c.classList.toggle('no',!ok);if(ok)right++;});fb(d,right===5?'All five problems are sorted correctly.':right+' of 5 correct'+(chips.length<5?', with '+(5-chips.length)+' still to place.':'.'),right===5);});
+d.querySelector('.d-reset').addEventListener('click',function(){d.querySelectorAll('.d-chip').forEach(function(c){c.remove()});d.querySelectorAll('.d-item').forEach(function(x){x.classList.remove('placed','sel')});sel=null;d.querySelector('.d-fb').hidden=true;});
+var a=document.getElementById('demo-ann'),note=a.querySelector('.d-note');a.querySelectorAll('.d-hl').forEach(function(hl){hl.addEventListener('click',function(){var on=hl.classList.contains('on');a.querySelectorAll('.d-hl').forEach(function(x){x.classList.remove('on')});if(on){note.hidden=true;return;}hl.classList.add('on');note.hidden=false;note.textContent=hl.dataset.a;});});
+})();
+</script>
+<div class="i-flags">
+<p class="x-k" style="margin:0 0 10px">When a request needs another look, the tool says so</p>
+<div class="i-flag-row">
+<div><strong>Needs more detail</strong><span>Asks one or two questions about the content or learning goal.</span></div>
+<div><strong>Too much for one activity</strong><span>Suggests focusing on a subset or splitting it across pages.</span></div>
+<div><strong>Better in another format</strong><span>Builds the chosen format and notes which type may fit better.</span></div>
+</div></div>
+<div class="in"></div></section>
 <section class="band warm" id="s4-giving-designers-room-to"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span>Giving designers room to review and edit</h2><p>Once an activity is generated, the designer gets a working preview. They can explore alternatives and edit the visible text without changing the code.</p>
 <p>Subject-matter experts can review the content with the designer before it goes into a course.</p>
-<p>When the designer is ready, the tool exports the configuration needed to embed the activity, along with a static text version of the content.</p></div></section>
+<p>When the designer is ready, the tool exports the configuration needed to embed the activity, along with a static text version of the content.</p></div>
+<ol class="i-flow" aria-label="Review and export steps">
+<li><span class="i-n">1</span><strong>Preview</strong><span>A working version of the activity</span></li>
+<li><span class="i-n">2</span><strong>Edit</strong><span>Change visible text without touching code</span></li>
+<li><span class="i-n">3</span><strong>Review</strong><span>Subject-matter experts check the content</span></li>
+<li><span class="i-n">4</span><strong>Export</strong><span>Plugin configuration and static text</span></li>
+</ol>
+<div class="in"></div></section>
 <section class="band" id="walkthrough"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polygon points="10 8 16 12 10 16 10 8"/></svg></span>See the workflow in practice</h2><p>The working tool uses Claude to respond to the content a designer brings to it.</p>
 <p>The walkthrough below uses one fixed example so you can explore the same process without an API key: describe a learning need, consider a format, review and edit the activity, and export the result.</p></div><figure class="x-embed"><figcaption>Try the sample walkthrough</figcaption><div class="x-frame"><iframe id="iframe-interactivity-generator" title="Interactivity Generator workflow tool mockup" height="700" loading="lazy"></iframe></div></figure></section>
 <section class="band warm" id="s5-providing-another-way-to"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg></span>Providing another way to use the content</h2><p>Each activity comes with a static text version.</p>
 <p>Learners can use it as a study reference or as another way to access the material. It also provides readable course content for features that may not be able to interpret the interactive component directly.</p>
-<p>I included this alongside the interactive output so both versions are part of the designer’s workflow from the start.</p></div></section>
+<p>I included this alongside the interactive output so both versions are part of the designer’s workflow from the start.</p></div>
+<div class="i-twin">
+<div class="i-tw"><p class="x-k">Interactive</p>
+<div class="i-mini" aria-hidden="true"><div class="i-tabs"><span class="on">Relevance</span><span>Completeness</span><span>Accuracy</span><span>Timeliness</span><span>Consistency</span></div>
+<p><strong>What it asks:</strong> Does this data actually measure what the business question is about?</p>
+<p><strong>Warning signs:</strong> Fields that are close to what you need, but not quite it.</p></div></div>
+<span class="i-eq" aria-hidden="true">=</span>
+<div class="i-tw i-tw-static"><p class="x-k">Static companion text</p>
+<p class="i-doc">Before analyzing a dataset, check whether it is fit for the business question you need to answer. Relevance asks whether the data actually measures what the question is about, for the right customers, products, or regions. Completeness asks whether the records, fields, and time periods the question needs are all present…</p></div>
+</div>
+<div class="in"></div></section>
 <section class="band" id="s6-what-i-wanted-to-make-ea"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>What I wanted to make easier</h2><p>The tool brings choosing a format, previewing an activity, editing its content, and preparing it for Coursera into one workflow.</p>
 <p>My aim was to give our team more room to create small learning activities, with opportunities to review the content and consider accessibility along the way.</p></div></section>
 </main>

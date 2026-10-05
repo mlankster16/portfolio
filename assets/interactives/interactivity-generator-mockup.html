@@ -44,13 +44,15 @@
   .app-header {
     background: var(--navy);
     color: #fff;
-    padding: 14px 24px;
+    padding: 16px 32px;
+    gap: 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
-  .header-left { display: flex; align-items: center; gap: 12px; }
+  .header-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .ctl-logo { height: 30px; width: auto; display: block; max-width: 100%; }
 
   .logo-mark {
     width: 36px;
@@ -421,17 +423,31 @@
     line-height: 1.6;
     color: #333;
   }
+
+  .sample-banner { display:flex; gap:12px; align-items:flex-start; padding:12px 14px; margin:0 0 18px; background:#FFF8EC; border:1px solid #F0DCC0; border-radius:8px; font-size:16px; line-height:1.5; color:#5f4526; }
+  .sb-tag { flex:none; font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; background:#B4700C; padding:3px 8px; border-radius:4px; margin-top:1px; }
+  #challengeText[readonly] { background:#FAFAF9; color:#3a3a3a; cursor:default; resize:none; }
+  .ctx-chips { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 4px; }
+  .ctx-chips span { font-size:15px; color:var(--ink); background:var(--accent-tint); border:1px solid var(--accent-tint-border); border-radius:6px; padding:5px 10px; }
+  .ctx-chips b { color:var(--accent-dark); font-weight:700; margin-right:4px; }
+  .gen-stages { list-style:none; margin:16px 0 0; padding:0; display:grid; gap:8px; }
+  .gen-stages li { display:flex; align-items:center; gap:10px; font-size:16px; color:var(--muted); transition:color .2s; }
+  .gen-stages li::before { content:''; width:16px; height:16px; border-radius:50%; border:1.5px solid #C9CDD4; flex:none; transition:background .2s, border-color .2s; }
+  .gen-stages li.done { color:var(--ink); }
+  .gen-stages li.done::before { background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat; border-color:var(--accent); }
+  .palette { display:flex; flex-wrap:wrap; gap:8px 16px; margin:0 0 12px; }
+  .palette span { display:flex; align-items:center; gap:8px; font-size:15px; color:var(--ink); }
+  .palette i { width:22px; height:22px; border-radius:5px; border:1px solid rgba(0,0,0,.12); display:block; }
+  .checks { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px; }
+  .checks li { display:flex; align-items:center; gap:7px; font-size:15px; font-weight:600; color:#1D4F50; background:#E6F4F4; border:1px solid #BFE0E0; border-radius:6px; padding:5px 10px; }
+  .checks li::before { content:'✓'; font-weight:700; }
 </style>
 </head>
 <body>
 
 <div class="app-header">
   <div class="header-left">
-    <div class="logo-mark">D</div>
-    <div class="header-title">
-      <strong>DUKE</strong>
-      <span>LX Design Team</span>
-    </div>
+    <img class="ctl-logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAACBkAAAD4CAMAAACU7FwzAAAWfmNhQlgAABZ+anVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQNjMnBhAAAAFlhqdW1iAAAAR2p1bWRjMm1hABEAEIAAAKoAOJtxA3VybjpjMnBhOjNkZWJlOGRhLTJkMjItNGJmNy05ODVlLTU5MzU4MjY2MGViOAAAAAOTanVtYgAAAClqdW1kYzJhcwARABCAAACqADibcQNjMnBhLmFzc2VydGlvbnMAAAAAuGp1bWIAAABEanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5pbmdyZWRpZW50LnYzAAAAABhjMnNodiVhhZhjK/b4lGnoX24tVQAAAGxjYm9yo2lkYzpmb3JtYXRpaW1hZ2UvcG5namluc3RhbmNlSUR4LHhtcDppaWQ6NzQyYWExYzYtZGRmNS00N2EzLWFmZDQtN2IzMGJkMDFlYzhhbHJlbGF0aW9uc2hpcGhwYXJlbnRPZgAAAeJqdW1iAAAAQWp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuYWN0aW9ucy52MgAAAAAYYzJzaIDVoUrWmh5m6/ebrwJZur8AAAGZY2JvcqJnYWN0aW9uc4KiZmFjdGlvbmtjMnBhLm9wZW5lZGpwYXJhbWV0ZXJzoWtpbmdyZWRpZW50c4GiY3VybHgtc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5pbmdyZWRpZW50LnYzZGhhc2hYIAWdtlYGvGNynoweP1BmydPXlaP2a2XquIiBDHUoP/YnpGZhY3Rpb254HWNvbS5hbnRocm9waWMuY2xhdWRlLnByb3ZpZGVkanBhcmFtZXRlcnOheB9jb20uYW50aHJvcGljLm9yaWdpbi1jb25maWRlbmNlZ3Vua25vd25rZGVzY3JpcHRpb254ZkNsYXVkZSBwcm92aWRlZCB0aGlzIGZpbGUgYXQgdGhlIHJlcXVlc3Qgb2YgYSB1c2VyIGFuZCBtYXkgaGF2ZSBjcmVhdGVkIG9yIG1vZGlmaWVkIHRoZSBmaWxlIGNvbnRlbnRzLm1zb2Z0d2FyZUFnZW50oWRuYW1lZkNsYXVkZXJhbGxBY3Rpb25zSW5jbHVkZWT1AAAAyGp1bWIAAABAanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5oYXNoLmRhdGEAAAAAGGMyc2iVlfaWZy1sPzrU3ELx8Fd3AAAAgGNib3KlY2FsZ2ZzaGEyNTZjcGFkTQAAAAAAAAAAAAAAAABkaGFzaFggyN1fHEEI3k1RVyNCsu9lie4iW+xvdPuG4hsOF2RY9eZkbmFtZW5qdW1iZiBtYW5pZmVzdGpleGNsdXNpb25zgaJlc3RhcnQYIWZsZW5ndGgZFooAAAI+anVtYgAAACdqdW1kYzJjbAARABCAAACqADibcQNjMnBhLmNsYWltLnYyAAAAAg9jYm9ypWNhbGdmc2hhMjU2aXNpZ25hdHVyZXhNc2VsZiNqdW1iZj0vYzJwYS91cm46YzJwYTozZGViZThkYS0yZDIyLTRiZjctOTg1ZS01OTM1ODI2NjBlYjgvYzJwYS5zaWduYXR1cmVqaW5zdGFuY2VJRHgseG1wOmlpZDoyYWZlZmQ2NS1hNjQ5LTQ3NTAtOTc1Yy0xMjllOTdhNmQ0NzdyY3JlYXRlZF9hc3NlcnRpb25zg6JjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggBZ22Vga8Y3KejB4/UGbJ09eVo/ZrZeq4iIEMdSg/9ieiY3VybHgqc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5hY3Rpb25zLnYyZGhhc2hYIPra/k/QIhC5WCnbnJtx3nFc8IugnHf12d1z+7Y2PpGComN1cmx4KXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaGFzaC5kYXRhZGhhc2hYIAcOdt9IcfQZcGXXxE/OyVA0ngJftVfTPvpKDODwxgMmdGNsYWltX2dlbmVyYXRvcl9pbmZvo2RuYW1lb0FudGhyb3BpYyBGaWxlc2d2ZXJzaW9uZTEuMC4wa3NwZWNWZXJzaW9uZTIuNC4wAAAQOGp1bWIAAAAoanVtZGMyY3MAEQAQgAAAqgA4m3EDYzJwYS5zaWduYXR1cmUAAAAQCGNib3LShFkCEqIBJhghWQIKMIICBjCCAY2gAwIBAgIUQOWgCu7COdC+uIP6BkIFPWdVEwAwCgYIKoZIzj0EAwMwSTEXMBUGA1UEChMOQW50aHJvcGljLCBQQkMxLjAsBgNVBAMTJUFudGhyb3BpYyBDb250ZW50IENyZWRlbnRpYWxzIFJvb3QgQ0EwHhcNMjYwODA3MTg0MzU2WhcNMjgwODA2MTk0MzU2WjBEMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEpMCcGA1UEAxMgQW50aHJvcGljIENsYXVkZSBDb250ZW50IFNpZ25pbmcwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAASYegpry1AYBRTVNL1CpTlbROnY3dey+UrsF9C3phYrATN3ZHf93Mo8RQN0KOUuOn19P4oWNFWe5n2/She9N7eTo1gwVjAOBgNVHQ8BAf8EBAMCB4AwFQYDVR0lBA4wDAYKKwYBBAGD6F4CATAMBgNVHRMBAf8EAjAAMB8GA1UdIwQYMBaAFM5R4gSBTmRbI/jjxM+aPpzB11zCMAoGCCqGSM49BAMDA2cAMGQCMDFzHRSeAXrSy1WOzkbhPZ6Km2wGTmZ/2gK18k8BQGXyqz88Rdrz6CTX9flAnYNVxgIwcF9c3fVhqmJKpi+UhasNUMko69cyX6STPfta3Q8EjyzDjzoyrol46FP6VFHhvUcJoWNwYWRZDZ4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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" alt="Duke Center for Teaching and Learning">
   </div>
   <div class="step-indicator" id="stepIndicator">STEP 1 OF 4</div>
 </div>
@@ -449,15 +465,21 @@
         <button class="toggle-btn" id="toggleKnow">I know what I want</button>
       </div>
 
-      <label class="field-label" for="challengeText">Describe your challenge</label>
-      <textarea id="challengeText" rows="6" placeholder="I'm building a module on common Python error types for students who've finished an intro programming course. The reading covers five exceptions, TypeError, ValueError, IndexError, KeyError, and AttributeError, each with a paragraph explaining what it means. Students can define each one, but a real traceback can feel overwhelming, and they're still building confidence connecting a bug to the error it will raise."></textarea>
-      <span class="example-link" id="tryExampleLink">Try the example</span>
+      <div class="sample-banner"><span class="sb-tag">Built-in sample</span><span>This walkthrough runs on one fixed example. The live tool works from whatever content a designer brings to it.</span></div>
+      <label class="field-label" for="challengeText">Sample challenge</label>
+      <textarea id="challengeText" rows="7" readonly aria-readonly="true"></textarea>
+      <div class="ctx-chips" aria-label="What the tool reads from this challenge">
+        <span><b>Learners</b> Professionals new to analytics</span>
+        <span><b>Content</b> 5 data fitness criteria</span>
+        <span><b>Struggle</b> Stop at “looks clean”</span>
+        <span><b>Goal</b> Connect criteria to problems</span>
+      </div>
 
       <div class="actions-row">
         <span></span>
-        <button class="btn-primary" id="analyzeBtn">Analyze Challenge</button>
+        <button class="btn-primary" id="analyzeBtn">Try It →</button>
       </div>
-      <div class="inline-note" id="step1Note" style="display:none; margin-top:12px;">Please describe your challenge, or click "Try the example" above.</div>
+      <div class="inline-note" id="step1Note" style="display:none; margin-top:12px;">Select Try It to run the sample.</div>
     </div>
   </div>
 
@@ -469,6 +491,11 @@
         <span class="badge">Recommended: Tabbed explorer</span>
         <p class="progress-label" id="progressLabel">Generating Tabbed explorer...</p>
         <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <ul class="gen-stages" id="genStages">
+          <li>Reading the challenge</li>
+          <li>Matching the learning goal to a format</li>
+          <li>Building a working preview</li>
+        </ul>
       </div>
 
       <div id="recommendationPanel" style="display:none;">
@@ -515,10 +542,23 @@
       <span class="badge">Tabbed explorer</span>
 
       <p class="section-label" style="margin-top:18px;">Visual theme</p>
-      <div class="theme-card">
-        <div class="swatch"></div>
-        <p>Technical theme using Prussian Blue accent (#005587) for active tabs and highlights, Duke Navy headers, and Roboto Mono for any code snippets, a clean, high-contrast layout suited to comparing five distinct error types at a glance.</p>
+      <div class="palette" aria-label="Colors used">
+        <span><i style="background:#012169"></i>Duke Navy #012169</span>
+        <span><i style="background:#005587"></i>Prussian Blue #005587</span>
+        <span><i style="background:#F3F2F1"></i>Whisper Gray #F3F2F1</span>
+        <span><i style="background:#E2E6ED"></i>Hatteras #E2E6ED</span>
       </div>
+      <div class="theme-card">
+        <p>Data theme using Prussian Blue accent (#005587) for active tabs and highlights, Duke Navy headers, and Roboto Mono for data values, a clean, high-contrast layout suited to comparing criteria.</p>
+      </div>
+
+      <p class="section-label" style="margin-top:22px;">Built into this output</p>
+      <ul class="checks">
+        <li>Keyboard navigable</li>
+        <li>WCAG 2.0 contrast</li>
+        <li>Pre-rendered HTML, listener-only script</li>
+        <li>Static companion text</li>
+      </ul>
 
       <p class="section-label" style="margin-top:22px;">Plugin JSON configuration</p>
       <div class="code-block" id="jsonOutput"></div>
@@ -536,7 +576,7 @@
   /* ==================================================================
      STATE
      ================================================================== */
-  const EXAMPLE_TEXT = "I'm building a module on common Python error types for students who've finished an intro programming course. The reading covers five exceptions, TypeError, ValueError, IndexError, KeyError, and AttributeError, each with a paragraph explaining what it means. Students finish the reading able to define each one, but a real traceback can still feel overwhelming. They're still building confidence connecting a bug to the error it will raise, or reasoning backward from an error message to the fix. Most students already recognize TypeError and IndexError from earlier debugging exercises, while ValueError, KeyError, and AttributeError are newer to them. I want something that helps them connect each error type to the kind of mistake that causes it, without just repeating the definitions.";
+  const EXAMPLE_TEXT = "I'm building a module on evaluating business data for learners who use data at work but have no formal analytics training. The reading covers five data fitness criteria, relevance, completeness, accuracy, timeliness, and consistency, each with a short paragraph. Learners finish the reading able to define each criterion, but when they open a real spreadsheet they still check whether it looks clean and stop there. Most already have a feel for accuracy and completeness, while relevance and timeliness are newer to them. I want something that helps them connect each criterion to the kind of problem it catches, without just repeating the definitions.";
 
   const TYPES = ["tabs", "drag", "reveal", "annotated", "sequencing", "quiz"];
 
@@ -549,145 +589,130 @@
     quiz: "Inline quiz"
   };
 
-  const RATIONALE_TABS = "The five exception types share a similar structure, and each one comes from a different kind of mistake. A tabbed layout lets students compare all five side by side instead of reading five stacked paragraphs, and comparing them is the skill students are still building.";
+  const RATIONALE_TABS = "The five criteria share a similar structure, and each one catches a different kind of problem. A tabbed layout lets learners compare all five side by side instead of reading five stacked paragraphs, and comparing them is the skill learners are still building.";
 
   const FRAMING = {
-    drag: "A sorting exercise checks whether students can recognize an error from a bug scenario, not just recall its definition.",
-    reveal: "A click-to-reveal grid gives students a fast, low-stakes way to check what each error means and how to spot it.",
-    annotated: "Annotating a paragraph that compares all five errors at once tests the hardest version of this skill: telling related error types apart with no labels given in advance.",
-    sequencing: "A sequencing exercise models the actual process of reading a traceback and fixing the bug it points to.",
-    quiz: "A scenario-based question asks students to reason about one concrete bug, and not only recall a definition."
+    drag: "A sorting exercise checks whether learners can recognize which criterion a data problem fails, not just recall its definition.",
+    reveal: "A click-to-reveal grid gives learners a fast, low-stakes way to check what each criterion means and how to spot a problem.",
+    annotated: "Annotating an analyst's note about a real dataset tests the hardest version of this skill: spotting fitness problems in context, with no labels given in advance.",
+    sequencing: "A sequencing exercise models the actual process of checking whether a dataset is fit for a business question.",
+    quiz: "A scenario-based question asks learners to reason about one concrete dataset, and not only recall a definition."
   };
 
   const WHY_CARDS = {
-    tabs: { label: "COMPARE PARALLEL CONCEPTS", text: "Good fit: five exceptions is about as many as tabs hold comfortably, and students can flip between what triggers each one and what its message looks like to build a mental map they can use later." },
-    drag: { label: "TEST RECOGNITION, NOT RECALL", text: "Students match a bug scenario to the error it would raise, the same judgment call they'll make while debugging their own code." },
-    reveal: { label: "LOW-STAKES RECALL CHECK", text: "Good for a quick refresher before a debugging exercise, or for students who already know a couple of these errors and just need to fill the gaps." },
-    annotated: { label: "CONNECT RELATED CONCEPTS", text: "This is the hardest and most realistic version of the skill: no error names given upfront, just a paragraph that has to be read closely to tell them apart." },
-    sequencing: { label: "MODEL THE DEBUGGING PROCESS", text: "This mirrors how a student actually works through a traceback: find where it failed, read the message, form a hypothesis, then confirm it." },
-    quiz: { label: "APPLY THE DISTINCTION", text: "The scenario invites students to notice that a dictionary key is missing, which points to the one error built for that situation." }
+    tabs: { label: "COMPARE PARALLEL CONCEPTS", text: "Good fit: five criteria is about as many as tabs hold comfortably, and learners can flip between what each one asks and its warning signs to build a checklist they can use later." },
+    drag: { label: "TEST RECOGNITION, NOT RECALL", text: "Learners match a data problem to the criterion it fails, the same judgment call they'll make reviewing their own datasets." },
+    reveal: { label: "LOW-STAKES RECALL CHECK", text: "Good for a quick refresher before a hands-on review, or for learners who already know a couple of these criteria and just need to fill the gaps." },
+    annotated: { label: "CONNECT RELATED CONCEPTS", text: "This is the hardest and most realistic version of the skill: no criteria named upfront, just an analyst's note that has to be read closely to find the problems." },
+    sequencing: { label: "MODEL THE REVIEW PROCESS", text: "This mirrors how an analyst actually works: start from the question, list what it needs, compare the data against it, then document what limits the analysis." },
+    quiz: { label: "APPLY THE DISTINCTION", text: "The scenario invites learners to notice that clean, complete data can still be the wrong data, which points to relevance." }
   };
 
-  let SHARED_STATIC_TEXT = "Python raises different exceptions depending on what went wrong, and the exception name is a clue to the fix. TypeError means an operation was used on a value of the wrong type, like adding a number to a string. ValueError means the type was right but the value itself wasn't usable, like trying to convert the word twenty-five into a number. IndexError means you asked a list, tuple, or string for a position that doesn't exist. KeyError means you asked a dictionary for a key it doesn't have. AttributeError means you tried to use a method or property that the object doesn't support, often because the object turned out to be a different type than expected, including None. Reading the exception name first narrows down what kind of mistake to look for before reading the rest of the traceback.";
+  let SHARED_STATIC_TEXT = "Before analyzing a dataset, check whether it is fit for the business question you need to answer. Relevance asks whether the data actually measures what the question is about, for the right customers, products, or regions. Completeness asks whether the records, fields, and time periods the question needs are all present. Accuracy asks whether the values are correct and believable, without typos or impossible numbers. Timeliness asks whether the data is recent enough to support a decision being made now. Consistency asks whether the same thing is recorded the same way throughout, with matching formats, units, and category names. A dataset can look clean and still fail one of these checks, so it helps to review all five against the question before trusting the results.";
 
   const dataStore = {
     tabs: {
-      title: "Five Common Python Exceptions",
-      instructions: "Select an exception to see what it means, when it shows up, and a quick example.",
+      title: "Five Data Fitness Criteria",
+      instructions: "Select a criterion to see what it asks, its warning signs, and a quick example.",
       frameworks: [
-        {
-          tabLabel: "TypeError",
-          heading: "TypeError",
-          when: "An operation or function is used on a value of the wrong type, like adding a number to a string instead of another number.",
-          structure: "The message usually names the two types that don't work together, phrases like \"can only concatenate str (not int) to str\" or \"unsupported operand type(s)\".",
-          example: "age = \"25\" then age + 5 raises: TypeError: can only concatenate str (not \"int\") to str"
-        },
-        {
-          tabLabel: "ValueError",
-          heading: "ValueError",
-          when: "The value is the right type but isn't valid for what you're asking Python to do with it, most often converting text that isn't a number.",
-          structure: "The message usually names the exact value that failed, phrases like \"invalid literal for int() with base 10\".",
-          example: "int(\"twenty-five\") raises: ValueError: invalid literal for int() with base 10: 'twenty-five'"
-        },
-        {
-          tabLabel: "IndexError",
-          heading: "IndexError",
-          when: "You ask a list, tuple, or string for a position that doesn't exist, often from looping one step too far or assuming a list has items when it might be empty.",
-          structure: "The message is short and specific to sequences: \"index out of range\".",
-          example: "names = [\"Ana\", \"Ben\"] then names[5] raises: IndexError: list index out of range"
-        },
-        {
-          tabLabel: "KeyError",
-          heading: "KeyError",
-          when: "You ask a dictionary for a key it doesn't have, often from assuming a field in a form, file, or API response is always present.",
-          structure: "The message is just the missing key itself, in quotes, with no other explanation.",
-          example: "student = {\"name\": \"Ana\"} then student[\"age\"] raises: KeyError: 'age'"
-        },
-        {
-          tabLabel: "AttributeError",
-          heading: "AttributeError",
-          when: "You try to use a method or property that the object doesn't have, often because the object turned out to be a different type than expected, including None.",
-          structure: "The message names the object's actual type, phrases like \"'NoneType' object has no attribute\" or \"'list' object has no attribute\".",
-          example: "roster.find(\"Ana\") raises: AttributeError: 'list' object has no attribute 'find'"
-        }
+        { tabLabel: "Relevance", heading: "Relevance", when: "Does this data actually measure what the business question is about, for the right customers, products, or regions?", structure: "The fields are close to what you need but not quite it, like page views when the question is about purchases.", example: "A question about repeat buyers, answered with a dataset of email sign-ups." },
+        { tabLabel: "Completeness", heading: "Completeness", when: "Are all the records, fields, and time periods the question needs actually present?", structure: "Blank cells, missing months, or a store or region that never appears.", example: "A quarterly sales file where March has no rows for two of the five stores." },
+        { tabLabel: "Accuracy", heading: "Accuracy", when: "Are the values correct and believable?", structure: "Impossible numbers, typos in names, or totals that don't match a known source.", example: "An order quantity of -40, or a customer age of 212." },
+        { tabLabel: "Timeliness", heading: "Timeliness", when: "Is the data recent enough to support a decision being made now?", structure: "An old export date, or a period that ends before a major change in the business.", example: "This quarter's pricing decision based on data that ends before last year's price increase." },
+        { tabLabel: "Consistency", heading: "Consistency", when: "Is the same thing recorded the same way throughout the dataset?", structure: "Mixed date formats, different units, or the same category spelled several ways.", example: "One region listed as \"NE,\" \"Northeast,\" and \"North East\" in the same column." }
       ]
     },
 
     drag: {
-      title: "Sort Each Bug by the Error It Raises",
-      instructions: "Drag each statement into the exception it would actually raise.",
-      zones: ["TypeError", "ValueError", "IndexError", "KeyError", "AttributeError"],
+      title: "Sort Each Problem by the Criterion It Fails",
+      instructions: "Drag each data problem into the criterion it fails.",
+      zones: ["Relevance", "Completeness", "Accuracy", "Timeliness", "Consistency"],
       statements: [
-        { text: "Adding a number to a string without converting it first.", zone: "TypeError" },
-        { text: "Passing three arguments to a function defined to take two.", zone: "TypeError" },
-        { text: "Calling int() on a string that isn't a valid number, like 'twenty-five'.", zone: "ValueError" },
-        { text: "Reading a blank form field and converting it straight to an int.", zone: "ValueError" },
-        { text: "Looping through a list with range(len(list)) but going one step too far.", zone: "IndexError" },
-        { text: "Accessing the last item of a list right after removing one, using the old length.", zone: "IndexError" },
-        { text: "Looking up a dictionary key that was never added to it.", zone: "KeyError" },
-        { text: "Assuming an API response always includes an optional field.", zone: "KeyError" },
-        { text: "Calling a string method on a variable that's actually a list.", zone: "AttributeError" },
-        { text: "Calling a method on a variable that turned out to be None because an earlier function didn't return anything.", zone: "AttributeError" }
+        { text: "The question is about purchases, but the dataset only tracks website visits.", zone: "Relevance" },
+        { text: "The question is about small-business customers, but the file combines all customers.", zone: "Relevance" },
+        { text: "Two of the twelve months have no rows at all.", zone: "Completeness" },
+        { text: "About a third of records are missing a customer region.", zone: "Completeness" },
+        { text: "Several orders show a negative quantity.", zone: "Accuracy" },
+        { text: "A product's price is listed as $4,999 instead of $49.99.", zone: "Accuracy" },
+        { text: "The most recent record is from three years ago.", zone: "Timeliness" },
+        { text: "The data ends before the company changed its pricing.", zone: "Timeliness" },
+        { text: "Dates appear as both 03/04/2025 and 2025-04-03.", zone: "Consistency" },
+        { text: "Revenue is in dollars for some stores and in thousands for others.", zone: "Consistency" }
       ]
     },
 
     reveal: {
-      title: "Five Exceptions at a Glance",
-      instructions: "Click each exception to reveal what it means and how to spot it.",
+      title: "Five Criteria at a Glance",
+      instructions: "Click each criterion to reveal what it means and how to spot a problem.",
       cards: [
-        { name: "TypeError", measures: "an operation used on the wrong type, like adding a number to a string.", usedBy: "the message names two mismatched types, like \"str\" and \"int\"." },
-        { name: "ValueError", measures: "the right type, but a value Python can't actually use, like text that isn't a number.", usedBy: "the message quotes the exact bad value." },
-        { name: "IndexError", measures: "a position in a list, tuple, or string that doesn't exist.", usedBy: "the message just says \"index out of range\"." },
-        { name: "KeyError", measures: "a dictionary key that isn't there.", usedBy: "the message is only the missing key, in quotes." },
-        { name: "AttributeError", measures: "a method or property the object doesn't have, often because it's a different type than expected.", usedBy: "the message names the object's real type, like \"NoneType\"." }
+        { name: "Relevance", measures: "the data measures what the question is actually about.", usedBy: "fields that are close to what you need, but not quite it." },
+        { name: "Completeness", measures: "every record, field, and time period the question needs is present.", usedBy: "blank cells, missing months, or groups that never appear." },
+        { name: "Accuracy", measures: "the values are correct and believable.", usedBy: "impossible numbers or totals that don't match a known source." },
+        { name: "Timeliness", measures: "the data is recent enough for the decision at hand.", usedBy: "an old export date, or a period that ends before a big change." },
+        { name: "Consistency", measures: "the same thing is recorded the same way throughout.", usedBy: "mixed formats, units, or spellings in one column." }
       ]
     },
 
     annotated: {
-      title: "Telling the Five Errors Apart",
-      instructions: "Click the highlighted terms to see what distinguishes each one.",
+      title: "Reading an Analyst's Data Notes",
+      instructions: "Click the highlighted phrases to see which fitness criterion each one raises.",
       segments: [
-        { type: "text", text: "A " },
-        { type: "ann", phrase: "KeyError", annotation: "Raised only by dictionaries, when the specific key you asked for was never added." },
-        { type: "text", text: " means the dictionary you're working with doesn't have the key you asked for. It's easy to confuse with an " },
-        { type: "ann", phrase: "IndexError", annotation: "Raised only by lists, tuples, and strings, when the numbered position you asked for doesn't exist." },
-        { type: "text", text: ", since both are about something you asked for not being there, but index errors only apply to sequences with numbered positions instead of named keys. A " },
-        { type: "ann", phrase: "ValueError", annotation: "Raised when a value is the right type but isn't usable, like text that isn't a number." },
-        { type: "text", text: " can look similar too, especially when the bad data comes from a form or file, but a value error means the type was right and the value inside it wasn't usable, not that anything was missing. When you see an " },
-        { type: "ann", phrase: "AttributeError", annotation: "Raised when an object doesn't have the method or property you tried to use." },
-        { type: "text", text: ", check whether the object is unexpectedly " },
-        { type: "ann", phrase: "None", annotation: "Python's version of \"nothing here,\" often returned silently by a function that didn't hit a return statement." },
-        { type: "text", text: " first, that's the most common hidden cause, not a typo in the method name." }
+        { type: "text", text: "The marketing team wants to know whether last month's loyalty campaign increased repeat purchases. The dataset they shared " },
+        { type: "ann", phrase: "tracks email opens and clicks", annotation: "Relevance: opens and clicks show interest, but the question is about repeat purchases, which this data doesn't measure." },
+        { type: "text", text: ", covers " },
+        { type: "ann", phrase: "January through June of last year", annotation: "Timeliness: the campaign ran last month, so data that ends last June can't show its effect." },
+        { type: "text", text: ", and " },
+        { type: "ann", phrase: "leaves the store ID blank for about a quarter of rows", annotation: "Completeness: a quarter of records can't be tied to a store, which limits any comparison by location." },
+        { type: "text", text: ". Some customers appear under " },
+        { type: "ann", phrase: "two or three spellings of the same name", annotation: "Consistency: the same customer recorded different ways will be counted more than once." },
+        { type: "text", text: ", and a few rows show " },
+        { type: "ann", phrase: "a total of $0.00 for completed orders", annotation: "Accuracy: a completed order with no total is likely an entry error, not a real value." },
+        { type: "text", text: "." }
       ]
     },
 
     sequencing: {
-      title: "Debug a Python Error Using Its Traceback",
+      title: "Run a Data Fitness Check",
       instructions: "Put these steps in the order you'd actually take them.",
       steps: [
-        "Find the last line of the traceback, that's where the error actually happened.",
-        "Read the exception name and message on that last line.",
-        "Form a hypothesis about which value is the wrong type, unusable, missing, or out of range.",
-        "Check that variable's actual value right before the line that failed.",
-        "Fix the assumption that caused the bad value, not just the line that crashed.",
-        "Rerun the code to confirm the fix instead of assuming it from reading alone."
+        "Restate the business question in a single, specific sentence.",
+        "List the fields, records, and time period the question requires.",
+        "Compare the dataset's fields and coverage against that list.",
+        "Scan the values for gaps, errors, and inconsistent formats.",
+        "Decide whether the data is fit for purpose, or what it would take to make it fit.",
+        "Document any limitations that could affect the analysis."
       ]
     },
 
     quiz: {
-      title: "Which Error Fits This Bug?",
+      title: "Which Criterion Fits This Problem?",
       instructions: "Read the scenario and choose the best answer.",
-      scenario: "A function looks up a customer's shipping address from a dictionary called orders, using an order ID the customer typed into a form. On one particular order, the code raises an exception. Which error is most likely, and why?",
+      scenario: "A manager asks whether a new checkout design reduced abandoned carts. The analyst receives a complete, error-free dataset of every completed order from the last six months, with consistent formats throughout. What is the biggest concern before starting the analysis?",
       options: [
-        { text: "IndexError, because the customer typed the order ID as a string instead of a number.", correct: false },
-        { text: "KeyError, because the order ID the customer typed doesn't exist in the orders dictionary.", correct: true },
-        { text: "TypeError, because you can't look up a dictionary using a value that came from a form.", correct: false },
-        { text: "ValueError, because the order ID is the wrong length.", correct: false }
+        { text: "Completeness, because six months isn't enough data for any analysis.", correct: false },
+        { text: "Relevance, because completed orders can't show the carts that were abandoned.", correct: true },
+        { text: "Accuracy, because error-free data is unlikely to be real.", correct: false },
+        { text: "Consistency, because the checkout design changed during the period.", correct: false }
       ],
-      correctFeedback: "Right. The order ID is a valid string, Python just never received that specific key in the orders dictionary, and a missing key is exactly what raises a KeyError.",
-      incorrectFeedback: "Not quite. The order ID's type and shape aren't the problem here, the issue is that the dictionary was never given that specific key. That's what a KeyError is built for."
+      correctFeedback: "Right. The data is clean and complete, but it only includes orders that were finished. Abandoned carts never become orders, so this dataset can't answer the question. That's a relevance problem.",
+      incorrectFeedback: "Not quite. Nothing in the scenario points to missing, wrong, or inconsistent values. Completed orders don't include abandoned carts at all, so the data doesn't measure what the question is about. That's relevance."
     }
   };
+
+
+  const CRIT_PATHS = [
+    '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/>',
+    '<rect x="3.5" y="3.5" width="7" height="7" rx="1"/><rect x="13.5" y="3.5" width="7" height="7" rx="1"/><rect x="3.5" y="13.5" width="7" height="7" rx="1"/><rect x="13.5" y="13.5" width="7" height="7" rx="1" stroke-dasharray="2 2"/>',
+    '<circle cx="12" cy="12" r="9"/><path d="M8 12.3l2.7 2.7L16.2 9.5"/>',
+    '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>',
+    '<path d="M5 7h14M5 12h14M5 17h14"/><circle cx="9" cy="7" r="1.6" fill="currentColor"/><circle cx="9" cy="12" r="1.6" fill="currentColor"/><circle cx="9" cy="17" r="1.6" fill="currentColor"/>'
+  ];
+  function critIcon(i, size, color) {
+    return '<svg aria-hidden="true" width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="' + color + '" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:' + color + ';flex:none;display:block;">' + CRIT_PATHS[i % CRIT_PATHS.length] + '</svg>';
+  }
+  function iconBadge(i, active) {
+    return '<span style="width:44px;height:44px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:none;background:' + (active ? '#005587' : '#EAF2F6') + ';border:1px solid #BFD9E6;">' + critIcon(i, 22, active ? '#ffffff' : '#005587') + '</span>';
+  }
 
   let activeType = "tabs";
   let confirmedType = null;
@@ -735,6 +760,7 @@
     });
     document.getElementById("stepIndicator").textContent = "STEP " + n + " OF 4";
     reportHeight();
+    if (n === 1) fitChallenge();
   }
 
   /* ==================================================================
@@ -749,10 +775,15 @@
     document.getElementById("toggleRecommend").classList.remove("active");
   });
 
-  document.getElementById("tryExampleLink").addEventListener("click", () => {
-    document.getElementById("challengeText").value = EXAMPLE_TEXT;
-    document.getElementById("step1Note").style.display = "none";
-  });
+  function fitChallenge() {
+    var ta = document.getElementById("challengeText");
+    if (!ta.offsetParent) return;
+    ta.style.height = "auto";
+    ta.style.height = (ta.scrollHeight + 2) + "px";
+  }
+  window.addEventListener("resize", fitChallenge);
+  document.getElementById("challengeText").value = EXAMPLE_TEXT;
+  fitChallenge();
 
   document.getElementById("analyzeBtn").addEventListener("click", () => {
     const text = document.getElementById("challengeText").value.trim();
@@ -777,6 +808,9 @@
     void fill.offsetWidth;
     fill.style.transition = "width 2s ease";
     requestAnimationFrame(() => { fill.style.width = "100%"; });
+    const stages = document.querySelectorAll("#genStages li");
+    stages.forEach(li => li.classList.remove("done"));
+    stages.forEach((li, i) => setTimeout(() => li.classList.add("done"), 450 + i * 550));
 
     setTimeout(() => {
       document.getElementById("generatingPanel").style.display = "none";
@@ -790,7 +824,8 @@
   }
 
   document.getElementById("startOverLink").addEventListener("click", () => {
-    document.getElementById("challengeText").value = "";
+    document.getElementById("challengeText").value = EXAMPLE_TEXT;
+  fitChallenge();
     document.getElementById("step1Note").style.display = "none";
     activeType = "tabs";
     confirmedType = null;
@@ -854,14 +889,14 @@
     html += '<p class="preview-instructions">' + escapeHtml(d.instructions) + '</p>';
     html += '<div class="tabs-nav">';
     d.frameworks.forEach((f, i) => {
-      html += '<button type="button" class="tab-btn' + (i === tabsActiveIndex ? ' active' : '') + '" data-i="' + i + '">' + escapeHtml(f.tabLabel) + '</button>';
+      html += '<button type="button" class="tab-btn' + (i === tabsActiveIndex ? ' active' : '') + '" data-i="' + i + '" style="display:inline-flex;align-items:center;gap:7px;">' + critIcon(i, 16, i === tabsActiveIndex ? '#005587' : '#666666') + escapeHtml(f.tabLabel) + '</button>';
     });
     html += '</div>';
     const f = d.frameworks[tabsActiveIndex];
     html += '<div class="tab-panel">';
-    html += '<h4>' + escapeHtml(f.heading) + '</h4>';
-    html += '<div class="field-row"><strong>When it shows up:</strong> ' + escapeHtml(f.when) + '</div>';
-    html += '<div class="field-row"><strong>What the message looks like:</strong> ' + escapeHtml(f.structure) + '</div>';
+    html += '<div style="display:flex;align-items:center;gap:14px;margin:0 0 14px;">' + iconBadge(tabsActiveIndex, true) + '<h4 style="margin:0;">' + escapeHtml(f.heading) + '</h4></div>';
+    html += '<div class="field-row"><strong>What it asks:</strong> ' + escapeHtml(f.when) + '</div>';
+    html += '<div class="field-row"><strong>Warning signs:</strong> ' + escapeHtml(f.structure) + '</div>';
     html += '<div class="field-row"><strong>Quick example:</strong> ' + escapeHtml(f.example) + '</div>';
     html += '</div>';
     shell.innerHTML = html;
@@ -1024,8 +1059,8 @@
     d.cards.forEach((c, i) => {
       const open = revealOpenSet.has(i);
       html += '<div class="reveal-card' + (open ? ' open' : '') + '" data-i="' + i + '">';
-      html += '<div class="rc-name">' + escapeHtml(c.name) + '</div>';
-      html += '<div class="rc-detail"><strong>Means:</strong> ' + escapeHtml(c.measures) + '<br><strong>Telltale sign:</strong> ' + escapeHtml(c.usedBy) + '</div>';
+      html += '<div style="margin-bottom:10px;">' + iconBadge(i, open) + '</div><div class="rc-name">' + escapeHtml(c.name) + '</div>';
+      html += '<div class="rc-detail"><strong>Means:</strong> ' + escapeHtml(c.measures) + '<br><strong>Warning sign:</strong> ' + escapeHtml(c.usedBy) + '</div>';
       html += '</div>';
     });
     html += '</div>';
@@ -1217,8 +1252,8 @@
     d.frameworks.forEach((f, i) => {
       html += '<div class="edit-block"><h3>' + escapeHtml(f.tabLabel) + ' panel</h3>';
       html += '<div class="field-group"><label class="field-label">Panel heading</label><input type="text" data-arr="frameworks" data-idx="' + i + '" data-field="heading" value="' + escapeHtml(f.heading) + '"></div>';
-      html += '<div class="field-group"><label class="field-label">When it shows up</label><textarea rows="3" data-arr="frameworks" data-idx="' + i + '" data-field="when">' + escapeHtml(f.when) + '</textarea></div>';
-      html += '<div class="field-group"><label class="field-label">What the message looks like</label><textarea rows="3" data-arr="frameworks" data-idx="' + i + '" data-field="structure">' + escapeHtml(f.structure) + '</textarea></div>';
+      html += '<div class="field-group"><label class="field-label">What it asks</label><textarea rows="3" data-arr="frameworks" data-idx="' + i + '" data-field="when">' + escapeHtml(f.when) + '</textarea></div>';
+      html += '<div class="field-group"><label class="field-label">Warning signs</label><textarea rows="3" data-arr="frameworks" data-idx="' + i + '" data-field="structure">' + escapeHtml(f.structure) + '</textarea></div>';
       html += '<div class="field-group"><label class="field-label">Quick example</label><textarea rows="3" data-arr="frameworks" data-idx="' + i + '" data-field="example">' + escapeHtml(f.example) + '</textarea></div>';
       html += '</div>';
     });
@@ -1253,9 +1288,9 @@
     html += '</div>';
     d.cards.forEach((c, i) => {
       html += '<div class="edit-block"><h3>Card ' + (i + 1) + '</h3>';
-      html += '<div class="field-group"><label class="field-label">Exception name</label><input type="text" data-arr="cards" data-idx="' + i + '" data-field="name" value="' + escapeHtml(c.name) + '"></div>';
+      html += '<div class="field-group"><label class="field-label">Criterion</label><input type="text" data-arr="cards" data-idx="' + i + '" data-field="name" value="' + escapeHtml(c.name) + '"></div>';
       html += '<div class="field-group"><label class="field-label">What it means</label><textarea rows="2" data-arr="cards" data-idx="' + i + '" data-field="measures">' + escapeHtml(c.measures) + '</textarea></div>';
-      html += '<div class="field-group"><label class="field-label">Telltale sign</label><textarea rows="2" data-arr="cards" data-idx="' + i + '" data-field="usedBy">' + escapeHtml(c.usedBy) + '</textarea></div>';
+      html += '<div class="field-group"><label class="field-label">Warning sign</label><textarea rows="2" data-arr="cards" data-idx="' + i + '" data-field="usedBy">' + escapeHtml(c.usedBy) + '</textarea></div>';
       html += '</div>';
     });
     return html;
@@ -1405,74 +1440,74 @@
      ================================================================== */
   function buildTabsHtml() {
     const d = dataStore.tabs;
-    let html = '<div class="pyx-tabs-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
+    let html = '<div class="dfx-tabs-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
     html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
     html += '<p style="color:#555;font-size:16px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
-    html += '<div class="pyx-tabs-nav" style="display:flex;gap:6px;flex-wrap:wrap;border-bottom:2px solid #eee;margin-bottom:16px;">';
+    html += '<div class="dfx-tabs-nav" style="display:flex;gap:6px;flex-wrap:wrap;border-bottom:2px solid #eee;margin-bottom:16px;">';
     d.frameworks.forEach((f, i) => {
-      html += '<button type="button" class="pyx-tab-btn" data-i="' + i + '" style="padding:9px 14px;border:none;background:none;cursor:pointer;font-weight:700;font-size:16px;color:' + (i === 0 ? '#005587' : '#666') + ';border-bottom:3px solid ' + (i === 0 ? '#005587' : 'transparent') + ';">' + escapeHtml(f.tabLabel) + '</button>';
+      html += '<button type="button" class="dfx-tab-btn" data-i="' + i + '" style="display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border:none;background:none;cursor:pointer;font-weight:700;font-size:16px;color:' + (i === 0 ? '#005587' : '#666') + ';border-bottom:3px solid ' + (i === 0 ? '#005587' : 'transparent') + ';">' + critIcon(i, 16, 'currentColor') + escapeHtml(f.tabLabel) + '</button>';
     });
     html += '</div>';
     d.frameworks.forEach((f, i) => {
-      html += '<div class="pyx-tab-panel" data-i="' + i + '" style="display:' + (i === 0 ? 'block' : 'none') + ';">';
-      html += '<h4 style="color:#012169;font-size:17px;margin:0 0 10px;">' + escapeHtml(f.heading) + '</h4>';
-      html += '<p style="font-size:16px;line-height:1.55;margin:0 0 10px;"><strong>When it shows up:</strong> ' + escapeHtml(f.when) + '</p>';
-      html += '<p style="font-size:16px;line-height:1.55;margin:0 0 10px;"><strong>What the message looks like:</strong> ' + escapeHtml(f.structure) + '</p>';
+      html += '<div class="dfx-tab-panel" data-i="' + i + '" style="display:' + (i === 0 ? 'block' : 'none') + ';">';
+      html += '<div style="display:flex;align-items:center;gap:14px;margin:0 0 14px;">' + iconBadge(i, true) + '<h4 style="color:#012169;font-size:17px;margin:0;">' + escapeHtml(f.heading) + '</h4></div>';
+      html += '<p style="font-size:16px;line-height:1.55;margin:0 0 10px;"><strong>What it asks:</strong> ' + escapeHtml(f.when) + '</p>';
+      html += '<p style="font-size:16px;line-height:1.55;margin:0 0 10px;"><strong>Warning signs:</strong> ' + escapeHtml(f.structure) + '</p>';
       html += '<p style="font-size:16px;line-height:1.55;margin:0;"><strong>Quick example:</strong> ' + escapeHtml(f.example) + '</p>';
       html += '</div>';
     });
-    html += '<script>(function(){var root=document.currentScript.parentElement;var btns=root.querySelectorAll(".pyx-tab-btn");var panels=root.querySelectorAll(".pyx-tab-panel");btns.forEach(function(b){b.addEventListener("click",function(){var i=b.getAttribute("data-i");btns.forEach(function(x){x.style.color="#666";x.style.borderBottomColor="transparent";});b.style.color="#005587";b.style.borderBottomColor="#005587";panels.forEach(function(p){p.style.display=(p.getAttribute("data-i")===i)?"block":"none";});});});})();<\/script>';
+    html += '<script>(function(){var root=document.currentScript.parentElement;var btns=root.querySelectorAll(".dfx-tab-btn");var panels=root.querySelectorAll(".dfx-tab-panel");btns.forEach(function(b){b.addEventListener("click",function(){var i=b.getAttribute("data-i");btns.forEach(function(x){x.style.color="#666";x.style.borderBottomColor="transparent";});b.style.color="#005587";b.style.borderBottomColor="#005587";panels.forEach(function(p){p.style.display=(p.getAttribute("data-i")===i)?"block":"none";});});});})();<\/script>';
     html += '</div>';
     return html;
   }
 
   function buildDragHtml() {
     const d = dataStore.drag;
-    let html = '<div class="pyx-drag-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
+    let html = '<div class="dfx-drag-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
     html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
     html += '<p style="color:#555;font-size:16px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
-    html += '<div class="pyx-zones" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:16px;">';
+    html += '<div class="dfx-zones" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:16px;">';
     d.zones.forEach(z => {
-      html += '<div class="pyx-zone" data-zone="' + escapeHtml(z) + '" style="border:2px dashed #ccc;border-radius:10px;padding:10px;min-height:90px;font-size:14px;">';
+      html += '<div class="dfx-zone" data-zone="' + escapeHtml(z) + '" style="border:2px dashed #ccc;border-radius:10px;padding:10px;min-height:90px;font-size:14px;">';
       html += '<div style="font-weight:700;font-size:13px;text-transform:uppercase;color:#012169;margin-bottom:8px;">' + escapeHtml(z) + '</div>';
-      html += '<div class="pyx-zone-slot"></div>';
+      html += '<div class="dfx-zone-slot"></div>';
       html += '</div>';
     });
     html += '</div>';
     html += '<p style="font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:0.04em;color:#666;margin:0 0 8px;">Statements</p>';
-    html += '<div class="pyx-chip-pool" style="display:flex;flex-wrap:wrap;gap:8px;min-height:20px;">';
+    html += '<div class="dfx-chip-pool" style="display:flex;flex-wrap:wrap;gap:8px;min-height:20px;">';
     d.statements.forEach((s, i) => {
-      html += '<div class="pyx-chip" draggable="true" data-zone="' + escapeHtml(s.zone) + '" data-i="' + i + '" style="background:#fff;border:1px solid #ccc;border-radius:8px;padding:8px 10px;font-size:15px;cursor:grab;max-width:220px;">' + escapeHtml(s.text) + '</div>';
+      html += '<div class="dfx-chip" draggable="true" data-zone="' + escapeHtml(s.zone) + '" data-i="' + i + '" style="background:#fff;border:1px solid #ccc;border-radius:8px;padding:8px 10px;font-size:15px;cursor:grab;max-width:220px;">' + escapeHtml(s.text) + '</div>';
     });
     html += '</div>';
-    html += '<div style="display:flex;justify-content:flex-end;margin-top:18px;"><button type="button" class="pyx-drag-submit" disabled style="background:#fff;color:#012169;border:1.5px solid #012169;border-radius:8px;padding:10px 18px;font-size:16px;font-weight:600;cursor:pointer;opacity:0.5;">Submit</button></div>';
-    html += '<div class="pyx-drag-feedback" style="display:none;margin-top:12px;padding:10px 12px;border-radius:8px;font-size:16px;line-height:1.55;"></div>';
-    html += '<script>(function(){var root=document.currentScript.parentElement;var chips=root.querySelectorAll(".pyx-chip");var zones=root.querySelectorAll(".pyx-zone");var submitBtn=root.querySelector(".pyx-drag-submit");var feedback=root.querySelector(".pyx-drag-feedback");var total=' + d.statements.length + ';function checkAllPlaced(){var placed=0;chips.forEach(function(c){if(c.closest(".pyx-zone"))placed++;});submitBtn.disabled=(placed<total);submitBtn.style.opacity=(placed<total)?"0.5":"1";}chips.forEach(function(c){c.addEventListener("dragstart",function(e){e.dataTransfer.setData("text/plain",c.getAttribute("data-i"));});});zones.forEach(function(z){z.addEventListener("dragover",function(e){e.preventDefault();});z.addEventListener("drop",function(e){e.preventDefault();var i=e.dataTransfer.getData("text/plain");var chip=root.querySelector(\'.pyx-chip[data-i="\'+i+\'"]\');if(!chip)return;chip.setAttribute("draggable","false");chip.style.cursor="default";z.querySelector(".pyx-zone-slot").appendChild(chip);checkAllPlaced();});});submitBtn.addEventListener("click",function(){var correct=0;chips.forEach(function(c){var zoneEl=c.closest(".pyx-zone");var isCorrect=zoneEl&&zoneEl.getAttribute("data-zone")===c.getAttribute("data-zone");if(isCorrect)correct++;c.style.borderColor=isCorrect?"#2a7f2a":"#b23a3a";c.style.background=isCorrect?"#eaf7ea":"#fbeaea";});submitBtn.disabled=true;submitBtn.style.opacity="0.5";var allCorrect=(correct===total);feedback.style.display="block";feedback.textContent=allCorrect?' + JSON.stringify("All ten sorted correctly. You matched each bug to the error it would raise.") + ':("You correctly matched "+correct+" of "+total+". The highlighted statements show which bugs point to a different error than the one chosen.");feedback.style.background=allCorrect?"#eaf7ea":"#fbeaea";feedback.style.border="1px solid "+(allCorrect?"#2a7f2a":"#b23a3a");feedback.style.color=allCorrect?"#215c21":"#7a1f1f";});})();<\/script>';
+    html += '<div style="display:flex;justify-content:flex-end;margin-top:18px;"><button type="button" class="dfx-drag-submit" disabled style="background:#fff;color:#012169;border:1.5px solid #012169;border-radius:8px;padding:10px 18px;font-size:16px;font-weight:600;cursor:pointer;opacity:0.5;">Submit</button></div>';
+    html += '<div class="dfx-drag-feedback" style="display:none;margin-top:12px;padding:10px 12px;border-radius:8px;font-size:16px;line-height:1.55;"></div>';
+    html += '<script>(function(){var root=document.currentScript.parentElement;var chips=root.querySelectorAll(".dfx-chip");var zones=root.querySelectorAll(".dfx-zone");var submitBtn=root.querySelector(".dfx-drag-submit");var feedback=root.querySelector(".dfx-drag-feedback");var total=' + d.statements.length + ';function checkAllPlaced(){var placed=0;chips.forEach(function(c){if(c.closest(".dfx-zone"))placed++;});submitBtn.disabled=(placed<total);submitBtn.style.opacity=(placed<total)?"0.5":"1";}chips.forEach(function(c){c.addEventListener("dragstart",function(e){e.dataTransfer.setData("text/plain",c.getAttribute("data-i"));});});zones.forEach(function(z){z.addEventListener("dragover",function(e){e.preventDefault();});z.addEventListener("drop",function(e){e.preventDefault();var i=e.dataTransfer.getData("text/plain");var chip=root.querySelector(\'.dfx-chip[data-i="\'+i+\'"]\');if(!chip)return;chip.setAttribute("draggable","false");chip.style.cursor="default";z.querySelector(".dfx-zone-slot").appendChild(chip);checkAllPlaced();});});submitBtn.addEventListener("click",function(){var correct=0;chips.forEach(function(c){var zoneEl=c.closest(".dfx-zone");var isCorrect=zoneEl&&zoneEl.getAttribute("data-zone")===c.getAttribute("data-zone");if(isCorrect)correct++;c.style.borderColor=isCorrect?"#2a7f2a":"#b23a3a";c.style.background=isCorrect?"#eaf7ea":"#fbeaea";});submitBtn.disabled=true;submitBtn.style.opacity="0.5";var allCorrect=(correct===total);feedback.style.display="block";feedback.textContent=allCorrect?' + JSON.stringify("All ten sorted correctly. You matched each bug to the error it would raise.") + ':("You correctly matched "+correct+" of "+total+". The highlighted statements show which bugs point to a different error than the one chosen.");feedback.style.background=allCorrect?"#eaf7ea":"#fbeaea";feedback.style.border="1px solid "+(allCorrect?"#2a7f2a":"#b23a3a");feedback.style.color=allCorrect?"#215c21":"#7a1f1f";});})();<\/script>';
     html += '</div>';
     return html;
   }
 
   function buildRevealHtml() {
     const d = dataStore.reveal;
-    let html = '<div class="pyx-reveal-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
+    let html = '<div class="dfx-reveal-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
     html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
     html += '<p style="color:#555;font-size:16px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
-    html += '<div class="pyx-reveal-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;">';
+    html += '<div class="dfx-reveal-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;">';
     d.cards.forEach((c, i) => {
-      html += '<div class="pyx-reveal-card" data-i="' + i + '" style="border:1px solid #E1DFDB;border-radius:10px;padding:12px;cursor:pointer;background:#fff;">';
-      html += '<div style="font-weight:700;color:#012169;font-size:16px;">' + escapeHtml(c.name) + '</div>';
-      html += '<div class="pyx-reveal-detail" style="display:none;font-size:15px;margin-top:8px;line-height:1.55;"><strong>Means:</strong> ' + escapeHtml(c.measures) + '<br><strong>Telltale sign:</strong> ' + escapeHtml(c.usedBy) + '</div>';
+      html += '<div class="dfx-reveal-card" data-i="' + i + '" style="border:1px solid #E1DFDB;border-radius:10px;padding:12px;cursor:pointer;background:#fff;">';
+      html += '<div style="margin-bottom:10px;">' + iconBadge(i, false) + '</div><div style="font-weight:700;color:#012169;font-size:16px;">' + escapeHtml(c.name) + '</div>';
+      html += '<div class="dfx-reveal-detail" style="display:none;font-size:15px;margin-top:8px;line-height:1.55;"><strong>Means:</strong> ' + escapeHtml(c.measures) + '<br><strong>Warning sign:</strong> ' + escapeHtml(c.usedBy) + '</div>';
       html += '</div>';
     });
     html += '</div>';
-    html += '<script>(function(){var root=document.currentScript.parentElement;root.querySelectorAll(".pyx-reveal-card").forEach(function(card){card.addEventListener("click",function(){var detail=card.querySelector(".pyx-reveal-detail");var open=detail.style.display==="block";detail.style.display=open?"none":"block";card.style.background=open?"#fff":"#EAF2F6";card.style.borderColor=open?"#E1DFDB":"#005587";});});})();<\/script>';
+    html += '<script>(function(){var root=document.currentScript.parentElement;root.querySelectorAll(".dfx-reveal-card").forEach(function(card){card.addEventListener("click",function(){var detail=card.querySelector(".dfx-reveal-detail");var open=detail.style.display==="block";detail.style.display=open?"none":"block";card.style.background=open?"#fff":"#EAF2F6";card.style.borderColor=open?"#E1DFDB":"#005587";});});})();<\/script>';
     html += '</div>';
     return html;
   }
 
   function buildAnnotatedHtml() {
     const d = dataStore.annotated;
-    let html = '<div class="pyx-annotated-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
+    let html = '<div class="dfx-annotated-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
     html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
     html += '<p style="color:#555;font-size:16px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
     html += '<p style="font-size:17px;line-height:1.95;">';
@@ -1482,51 +1517,51 @@
         html += escapeHtml(s.text);
       } else {
         annIdx++;
-        html += '<mark class="pyx-ann" data-ann-i="' + annIdx + '" data-note="' + escapeHtml(s.annotation) + '" style="background:#fff2b8;cursor:pointer;border-radius:3px;padding:0 2px;">' + escapeHtml(s.phrase) + '</mark>';
+        html += '<mark class="dfx-ann" data-ann-i="' + annIdx + '" data-note="' + escapeHtml(s.annotation) + '" style="background:#fff2b8;cursor:pointer;border-radius:3px;padding:0 2px;">' + escapeHtml(s.phrase) + '</mark>';
       }
     });
     html += '</p>';
-    html += '<div class="pyx-ann-popover" style="display:none;margin-top:14px;border:1px solid #005587;background:#EAF2F6;border-radius:8px;padding:10px 12px;font-size:16px;line-height:1.55;"></div>';
-    html += '<script>(function(){var root=document.currentScript.parentElement;var pop=root.querySelector(".pyx-ann-popover");root.querySelectorAll(".pyx-ann").forEach(function(m){m.addEventListener("click",function(){pop.textContent=m.getAttribute("data-note");pop.style.display="block";});});})();<\/script>';
+    html += '<div class="dfx-ann-popover" style="display:none;margin-top:14px;border:1px solid #005587;background:#EAF2F6;border-radius:8px;padding:10px 12px;font-size:16px;line-height:1.55;"></div>';
+    html += '<script>(function(){var root=document.currentScript.parentElement;var pop=root.querySelector(".dfx-ann-popover");root.querySelectorAll(".dfx-ann").forEach(function(m){m.addEventListener("click",function(){pop.textContent=m.getAttribute("data-note");pop.style.display="block";});});})();<\/script>';
     html += '</div>';
     return html;
   }
 
   function buildSequencingHtml() {
     const d = dataStore.sequencing;
-    let html = '<div class="pyx-seq-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
+    let html = '<div class="dfx-seq-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
     html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
     html += '<p style="color:#555;font-size:16px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
-    html += '<ul class="pyx-seq-list" style="list-style:none;margin:0 0 14px;padding:0;display:flex;flex-direction:column;gap:8px;">';
+    html += '<ul class="dfx-seq-list" style="list-style:none;margin:0 0 14px;padding:0;display:flex;flex-direction:column;gap:8px;">';
     d.steps.forEach((s, i) => {
-      html += '<li class="pyx-seq-item" data-correct-pos="' + i + '" style="display:flex;align-items:center;gap:10px;border:1px solid #E1DFDB;border-radius:8px;padding:10px 12px;background:#fff;font-size:16px;">';
+      html += '<li class="dfx-seq-item" data-correct-pos="' + i + '" style="display:flex;align-items:center;gap:10px;border:1px solid #E1DFDB;border-radius:8px;padding:10px 12px;background:#fff;font-size:16px;">';
       html += '<span style="flex:1;">' + escapeHtml(s) + '</span>';
-      html += '<span><button type="button" class="pyx-seq-up" style="border:1px solid #E1DFDB;background:#fff;border-radius:4px;width:26px;height:24px;cursor:pointer;">&#9650;</button> <button type="button" class="pyx-seq-down" style="border:1px solid #E1DFDB;background:#fff;border-radius:4px;width:26px;height:24px;cursor:pointer;">&#9660;</button></span>';
+      html += '<span><button type="button" class="dfx-seq-up" style="border:1px solid #E1DFDB;background:#fff;border-radius:4px;width:26px;height:24px;cursor:pointer;">&#9650;</button> <button type="button" class="dfx-seq-down" style="border:1px solid #E1DFDB;background:#fff;border-radius:4px;width:26px;height:24px;cursor:pointer;">&#9660;</button></span>';
       html += '</li>';
     });
     html += '</ul>';
-    html += '<button type="button" class="pyx-seq-check" style="background:#fff;color:#012169;border:1.5px solid #012169;border-radius:8px;padding:10px 18px;font-size:16px;font-weight:600;cursor:pointer;">Check order</button>';
-    html += '<div class="pyx-seq-result" style="display:none;margin-top:10px;font-size:15px;color:#6b6b6b;background:#F6F5F3;border:1px dashed #E1DFDB;border-radius:8px;padding:10px 12px;"></div>';
-    html += '<script>(function(){var root=document.currentScript.parentElement;var list=root.querySelector(".pyx-seq-list");function items(){return Array.prototype.slice.call(list.querySelectorAll(".pyx-seq-item"));}root.querySelectorAll(".pyx-seq-up").forEach(function(btn){btn.addEventListener("click",function(){var li=btn.closest(".pyx-seq-item");var prev=li.previousElementSibling;if(prev)list.insertBefore(li,prev);});});root.querySelectorAll(".pyx-seq-down").forEach(function(btn){btn.addEventListener("click",function(){var li=btn.closest(".pyx-seq-item");var next=li.nextElementSibling;if(next)list.insertBefore(next,li);});});root.querySelector(".pyx-seq-check").addEventListener("click",function(){var all=items();var ok=all.every(function(li,pos){return parseInt(li.getAttribute("data-correct-pos"),10)===pos;});all.forEach(function(li,pos){var correct=parseInt(li.getAttribute("data-correct-pos"),10)===pos;li.style.borderColor=correct?"#2a7f2a":"#b23a3a";li.style.background=correct?"#eaf7ea":"#fbeaea";});var result=root.querySelector(".pyx-seq-result");result.style.display="block";result.textContent=ok?"Correct order!":"Not quite, check the highlighted steps and try again.";});})();<\/script>';
+    html += '<button type="button" class="dfx-seq-check" style="background:#fff;color:#012169;border:1.5px solid #012169;border-radius:8px;padding:10px 18px;font-size:16px;font-weight:600;cursor:pointer;">Check order</button>';
+    html += '<div class="dfx-seq-result" style="display:none;margin-top:10px;font-size:15px;color:#6b6b6b;background:#F6F5F3;border:1px dashed #E1DFDB;border-radius:8px;padding:10px 12px;"></div>';
+    html += '<script>(function(){var root=document.currentScript.parentElement;var list=root.querySelector(".dfx-seq-list");function items(){return Array.prototype.slice.call(list.querySelectorAll(".dfx-seq-item"));}root.querySelectorAll(".dfx-seq-up").forEach(function(btn){btn.addEventListener("click",function(){var li=btn.closest(".dfx-seq-item");var prev=li.previousElementSibling;if(prev)list.insertBefore(li,prev);});});root.querySelectorAll(".dfx-seq-down").forEach(function(btn){btn.addEventListener("click",function(){var li=btn.closest(".dfx-seq-item");var next=li.nextElementSibling;if(next)list.insertBefore(next,li);});});root.querySelector(".dfx-seq-check").addEventListener("click",function(){var all=items();var ok=all.every(function(li,pos){return parseInt(li.getAttribute("data-correct-pos"),10)===pos;});all.forEach(function(li,pos){var correct=parseInt(li.getAttribute("data-correct-pos"),10)===pos;li.style.borderColor=correct?"#2a7f2a":"#b23a3a";li.style.background=correct?"#eaf7ea":"#fbeaea";});var result=root.querySelector(".dfx-seq-result");result.style.display="block";result.textContent=ok?"Correct order!":"Not quite, check the highlighted steps and try again.";});})();<\/script>';
     html += '</div>';
     return html;
   }
 
   function buildQuizHtml() {
     const d = dataStore.quiz;
-    let html = '<div class="pyx-quiz-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
+    let html = '<div class="dfx-quiz-widget" style="font-family:-apple-system,Segoe UI,sans-serif;max-width:700px;margin:0 auto;">';
     html += '<h3 style="color:#012169;font-size:19px;margin:0 0 6px;">' + escapeHtml(d.title) + '</h3>';
     html += '<p style="color:#555;font-size:16px;margin:0 0 16px;">' + escapeHtml(d.instructions) + '</p>';
     html += '<div style="font-size:16px;line-height:1.6;margin-bottom:14px;background:#FAFAF9;border:1px solid #E1DFDB;border-radius:8px;padding:12px;">' + escapeHtml(d.scenario) + '</div>';
     d.options.forEach((o, i) => {
-      html += '<label class="pyx-quiz-option" data-correct="' + (o.correct ? "1" : "0") + '" style="display:flex;gap:8px;align-items:flex-start;border:1px solid #E1DFDB;border-radius:8px;padding:10px 12px;margin-bottom:8px;cursor:pointer;font-size:16px;">';
+      html += '<label class="dfx-quiz-option" data-correct="' + (o.correct ? "1" : "0") + '" style="display:flex;gap:8px;align-items:flex-start;border:1px solid #E1DFDB;border-radius:8px;padding:10px 12px;margin-bottom:8px;cursor:pointer;font-size:16px;">';
       html += '<input type="radio" name="pyxQuizOpt" value="' + i + '" style="margin-top:3px;">';
       html += '<span>' + escapeHtml(o.text) + '</span>';
       html += '</label>';
     });
-    html += '<button type="button" class="pyx-quiz-submit" disabled style="background:#fff;color:#012169;border:1.5px solid #012169;border-radius:8px;padding:10px 18px;font-size:16px;font-weight:600;cursor:pointer;">Submit answer</button>';
-    html += '<div class="pyx-quiz-feedback" style="display:none;margin-top:12px;padding:10px 12px;border-radius:8px;font-size:16px;line-height:1.55;"></div>';
-    html += '<script>(function(){var root=document.currentScript.parentElement;var submit=root.querySelector(".pyx-quiz-submit");var radios=root.querySelectorAll(\'input[name="pyxQuizOpt"]\');radios.forEach(function(r){r.addEventListener("change",function(){submit.disabled=false;});});submit.addEventListener("click",function(){var checked=root.querySelector(\'input[name="pyxQuizOpt"]:checked\');if(!checked)return;var label=checked.closest(".pyx-quiz-option");var correct=label.getAttribute("data-correct")==="1";var fb=root.querySelector(".pyx-quiz-feedback");fb.style.display="block";fb.textContent=correct?' + JSON.stringify(dataStore.quiz.correctFeedback) + ':' + JSON.stringify(dataStore.quiz.incorrectFeedback) + ';fb.style.background=correct?"#eaf7ea":"#fbeaea";fb.style.border="1px solid "+(correct?"#2a7f2a":"#b23a3a");fb.style.color=correct?"#215c21":"#7a1f1f";root.querySelectorAll(".pyx-quiz-option").forEach(function(l){var isCorrectOpt=l.getAttribute("data-correct")==="1";var isChosen=l===label;if(isChosen||isCorrectOpt){l.style.borderColor=isCorrectOpt?"#2a7f2a":"#b23a3a";l.style.background=isCorrectOpt?"#eaf7ea":"#fbeaea";}});});})();<\/script>';
+    html += '<button type="button" class="dfx-quiz-submit" disabled style="background:#fff;color:#012169;border:1.5px solid #012169;border-radius:8px;padding:10px 18px;font-size:16px;font-weight:600;cursor:pointer;">Submit answer</button>';
+    html += '<div class="dfx-quiz-feedback" style="display:none;margin-top:12px;padding:10px 12px;border-radius:8px;font-size:16px;line-height:1.55;"></div>';
+    html += '<script>(function(){var root=document.currentScript.parentElement;var submit=root.querySelector(".dfx-quiz-submit");var radios=root.querySelectorAll(\'input[name="pyxQuizOpt"]\');radios.forEach(function(r){r.addEventListener("change",function(){submit.disabled=false;});});submit.addEventListener("click",function(){var checked=root.querySelector(\'input[name="pyxQuizOpt"]:checked\');if(!checked)return;var label=checked.closest(".dfx-quiz-option");var correct=label.getAttribute("data-correct")==="1";var fb=root.querySelector(".dfx-quiz-feedback");fb.style.display="block";fb.textContent=correct?' + JSON.stringify(dataStore.quiz.correctFeedback) + ':' + JSON.stringify(dataStore.quiz.incorrectFeedback) + ';fb.style.background=correct?"#eaf7ea":"#fbeaea";fb.style.border="1px solid "+(correct?"#2a7f2a":"#b23a3a");fb.style.color=correct?"#215c21":"#7a1f1f";root.querySelectorAll(".dfx-quiz-option").forEach(function(l){var isCorrectOpt=l.getAttribute("data-correct")==="1";var isChosen=l===label;if(isChosen||isCorrectOpt){l.style.borderColor=isCorrectOpt?"#2a7f2a":"#b23a3a";l.style.background=isCorrectOpt?"#eaf7ea":"#fbeaea";}});});})();<\/script>';
     html += '</div>';
     return html;
   }
