@@ -326,7 +326,7 @@
 <div class="feature-chip">Mobility <span>Ambulatory</span></div>
 </div>
 <button class="action-btn" id="recalcBtn">Run model again</button>
-<p class="tool-note">Click Run model again a few times. The score changes. Age, medications, and mobility never do. The number looks confident, but it doesn't show its work, and it doesn't tie back to anything you can see change on screen.</p>
+<p class="tool-note">Try clicking Run model again a few times and notice how the score changes, even though age, medications, and mobility stay the same. The score may appear precise, but it doesn't explain how it was calculated or what might account for the changes.</p>
 </div>
 </div>
 <!-- Generative panel -->
@@ -337,11 +337,11 @@
 </div>
 <div class="panel-body">
 <div class="prompt-row" style="margin-bottom: 12px;">
-<span class="prompt-text" id="promptText">Click the sentence you think is made up</span>
+<span class="prompt-text" id="promptText">Try clicking the sentence you think was made up</span>
 <button class="action-btn copper" id="newPatientBtn">New patient</button>
 </div>
 <p class="doc-body" id="docBody"></p>
-<p class="tool-note">One sentence in this summary was invented, not pulled from the record. Click the one you think is fabricated. A generated sentence can sound just as confident whether it's accurate or made up.</p>
+<p class="tool-note">One sentence in this summary was invented and does not come from the record. Try clicking the one you think was made up. Notice that a generated sentence can sound just as confident whether it is accurate or not.</p>
 </div>
 </div>
 
@@ -407,7 +407,7 @@
     answered = false;
     const scenario = scenarios[idx];
     document.getElementById('genMeta').textContent = scenario.patient;
-    document.getElementById('promptText').textContent = 'Click the sentence you think is made up';
+    document.getElementById('promptText').textContent = 'Try clicking the sentence you think was made up';
     const doc = document.getElementById('docBody');
     doc.innerHTML = '';
     scenario.sentences.forEach((text, i) => {
@@ -432,21 +432,21 @@
       clicked.classList.add('correct-guess');
       const tag = document.createElement('span');
       tag.className = 'tag tag-fabricated';
-      tag.textContent = 'Fabricated';
+      tag.textContent = 'Invented';
       clicked.appendChild(tag);
-      document.getElementById('promptText').textContent = 'Correct. That detail was invented.';
+      document.getElementById('promptText').textContent = "That's right. That detail was invented.";
     } else {
       clicked.classList.add('wrong-guess');
       const wrongTag = document.createElement('span');
       wrongTag.className = 'tag tag-accurate';
-      wrongTag.textContent = 'Actually accurate';
+      wrongTag.textContent = 'Accurate';
       clicked.appendChild(wrongTag);
       fabricated.classList.add('reveal-fabricated');
       const rightTag = document.createElement('span');
       rightTag.className = 'tag tag-fabricated';
-      rightTag.textContent = 'Fabricated';
+      rightTag.textContent = 'Invented';
       fabricated.appendChild(rightTag);
-      document.getElementById('promptText').textContent = 'Not quite. Here is the one that was invented.';
+      document.getElementById('promptText').textContent = 'Not this time. Here is the one that was invented.';
     }
   }
   document.getElementById('newPatientBtn').addEventListener('click', () => {
