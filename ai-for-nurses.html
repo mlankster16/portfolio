@@ -4,22 +4,123 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI for Nurses | Megan Lancaster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=11">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=22">
+<link rel="stylesheet" href="css/theme.css?v=1">
+<style>
+.dc { --s1:56px; --s2:28px; --s3:17px; font-size:var(--s3); line-height:1.7; color:var(--text-body); }
+.dc h1,.dc h2 { font-family:var(--font-display); font-weight:500; margin:0; color:var(--navy); }
+.dc h1 { font-size:var(--s1); line-height:1.02; letter-spacing:-.01em; }
+.dc h2 { font-size:var(--s2); line-height:1.25; margin-bottom:18px; }
+.dc h3 { font-family:var(--font-display); font-weight:500; font-size:var(--s2); color:var(--navy); margin:0 0 12px; }
+.dc p { margin:0 0 16px; text-wrap:pretty; }
+.dc .band { padding:64px var(--pad-x); }
+.dc .band > .in { max-width:880px; }
+.dc .dark { background:#101d38; color:#cbd0dd; }
+.dc .dark h1, .dc .dark h2 { color:#f4efe2; }
+.dc .warm { background:var(--panel-warm); }
+.dc .tagline { font-family:var(--font-display); font-size:var(--s2); line-height:1.35; color:#dda448; margin:16px 0 24px; }
+.dc .x-facts { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px; margin:40px 0 32px; padding-top:22px; border-top:2px solid #dda448; }
+.dc .dark dt { color:#f4efe2; font-weight:700; } .dc .dark dd { margin:0; }
+.dc .jump { display:inline-block; font-weight:600; color:#101d38; background:#dda448; padding:11px 20px; border-radius:999px; text-decoration:none; }
+.dc .jump:hover { background:#e8b964; color:#101d38; }
+.dc .acts { display:grid; gap:56px; margin-top:40px; }
+.dc .act { display:grid; grid-template-columns:72px minmax(0,1fr); gap:24px; }
+.dc .act-n { width:52px; height:52px; border-radius:50%; background:var(--blue-tint); border:1.5px solid var(--blue); color:var(--blue-dark); font-weight:700; display:grid; place-items:center; }
+.dc .x-embed { margin:20px 0 0; }
+.dc figcaption { font-weight:700; color:var(--navy); margin-bottom:12px; }
+.dc .x-frame { border:1px solid var(--rule); border-radius:6px; overflow:hidden; background:#fff; box-shadow:0 10px 28px rgba(16,29,56,.06); }
+.dc .x-frame iframe { width:100%; border:0; display:block; } .dc .x-frame img { width:100%; display:block; }
+.dc .x-tl { margin-top:8px; }
+.dc .x-tl summary { cursor:pointer; display:inline-block; font-weight:600; color:var(--navy); padding:10px 18px; border:1.5px solid var(--navy); border-radius:999px; list-style:none; }
+.dc .x-tl summary::-webkit-details-marker{display:none}
+.dc .x-tl ol { list-style:none; margin:28px 0 0; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.dc .x-tl li { display:flex; flex-direction:column; gap:4px; padding:16px 18px; background:#fff; border:1px solid var(--rule); border-radius:6px; }
+.dc .x-tl li span:first-child { font-weight:700; color:var(--teal-dark); }
+.dc .x-tl li:last-child { background:#101d38; border-color:#101d38; color:#f4efe2; } .dc .x-tl li:last-child span:first-child { color:#dda448; }
+@media (max-width:820px){ .dc{--s1:42px;--s2:24px} .dc .x-facts{grid-template-columns:repeat(2,minmax(0,1fr))} .dc .act{grid-template-columns:minmax(0,1fr);gap:12px} .dc .x-tl ol{grid-template-columns:minmax(0,1fr)} }</style>
+<style>
+.dc .x-h { display:flex; align-items:center; gap:16px; }
+.dc .x-ic { flex:none; width:48px; height:48px; border-radius:50%; display:grid; place-items:center; background:var(--accent-tint); border:1.5px solid var(--accent); }
+.dc .x-ic svg { width:22px; height:22px; stroke:var(--accent-dark); }
+.dc section[id] { scroll-margin-top:84px; }
+.dc .section-strip.x-steps { position:sticky; top:0; z-index:30; display:flex; align-items:center; justify-content:center; gap:0; margin:0; padding:12px var(--pad-x); background:rgba(255,253,248,.96); backdrop-filter:blur(6px); border:0; border-bottom:1px solid var(--rule); border-radius:0; box-shadow:none; overflow-x:auto; }
+.dc .x-steps a { flex:none; min-width:0; padding:0; border:0; background:none; display:block; }
+.dc .x-steps a:hover, .dc .x-steps a.active { background:none; }
+.dc .x-steps .x-dot { width:40px; height:40px; border-radius:50%; display:grid; place-items:center; background:#fff; border:1.5px solid var(--rule-strong); transition:background .2s, border-color .2s; }
+.dc .x-steps .x-dot svg { width:18px; height:18px; stroke:var(--text-muted); transition:stroke .2s; }
+.dc .x-steps a:hover .x-dot { border-color:var(--accent); }
+.dc .x-steps a:hover .x-dot svg { stroke:var(--accent-dark); }
+.dc .x-steps a.active .x-dot { background:var(--accent); border-color:var(--accent); }
+.dc .x-steps a.active .x-dot svg { stroke:#fff; }
+.dc .x-steps a:focus-visible { outline:2px solid var(--navy); outline-offset:3px; border-radius:50%; }
+.dc .x-line { flex:0 1 72px; min-width:16px; height:1.5px; background:var(--rule-strong); }
+@media (max-width:680px){ .dc .x-ic { width:40px; height:40px; } .dc .x-ic svg { width:18px; height:18px; } .dc .x-steps .x-dot { width:34px; height:34px; } }
+.dc .x-steps a { position:relative; }
+.dc .x-tip { position:absolute; top:calc(100% + 10px); left:50%; transform:translate(-50%,-4px); white-space:nowrap; padding:6px 12px; border-radius:6px; background:#101d38; color:#f4efe2; font-size:14px; font-weight:600; line-height:1.3; opacity:0; pointer-events:none; transition:opacity .15s, transform .15s; z-index:40; }
+.dc .x-tip::before { content:''; position:absolute; bottom:100%; left:50%; margin-left:-5px; border:5px solid transparent; border-bottom-color:#101d38; }
+.dc .x-steps a:hover .x-tip, .dc .x-steps a:focus-visible .x-tip { opacity:1; transform:translate(-50%,0); }
+@media (min-width:681px){ .dc .section-strip.x-steps { overflow:visible; } }
+.dc .in > p:last-child { margin-bottom:0; }
+.dc .act { grid-template-columns:minmax(0,1fr) !important; }
+.dc .x-n { color:#b8863a; margin-right:4px; }
+.dc .x-close { margin-top:56px; padding-top:32px; border-top:1px solid var(--rule); max-width:none; }
+.dc .x-close p { max-width:880px; }
+.dc .x-path { list-style:none; margin:28px 0 32px; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; counter-reset:none; }
+.dc .x-path li { display:flex; flex-direction:column; gap:4px; padding:22px 24px 24px; background:var(--panel-warm); border-radius:6px; position:relative; }
+.dc .x-path li + li::before { content:'→'; position:absolute; left:-14px; top:50%; transform:translate(-50%,-50%); color:#b8863a; font-weight:700; }
+.dc .x-k { font-weight:700; color:var(--accent-dark); }
+.dc .x-w { font-family:var(--font-display); font-size:var(--s2); line-height:1.2; color:var(--navy); }
+.dc .x-buckets { margin:28px 0 32px; }
+.dc .x-hint { margin:0 0 14px; color:var(--text-muted); }
+.dc .x-hint[hidden] { display:block; visibility:hidden; }
+.dc .x-bgrid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+.dc .x-b { appearance:none; font:inherit; text-align:left; cursor:pointer; position:relative; display:flex; flex-direction:column; gap:2px; padding:20px 22px 22px; background:#fff; color:var(--navy); border:1px solid var(--rule-strong); border-radius:6px; transition:background .15s, border-color .15s, color .15s; }
+.dc .x-b:hover { border-color:var(--navy); }
+.dc .x-b:focus-visible { outline:2px solid var(--navy); outline-offset:3px; }
+.dc .x-bs { color:var(--text-muted); }
+.dc .x-bw { font-family:var(--font-display); font-size:var(--s2); line-height:1.15; }
+.dc .x-bt { position:absolute; top:14px; right:18px; font-size:var(--s2); line-height:1; color:#b8863a; transition:transform .2s; }
+.dc .x-b[aria-expanded="true"] { background:#101d38; border-color:#101d38; color:#f4efe2; border-radius:6px 6px 0 0; }
+.dc .x-b[aria-expanded="true"] .x-bs { color:#cbd0dd; }
+.dc .x-b[aria-expanded="true"] .x-bt { transform:rotate(45deg); color:#dda448; }
+.dc .x-bp { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:40px; margin-top:12px; padding:28px 30px 30px; background:#fff; border:1px solid var(--rule-strong); border-top:3px solid #101d38; border-radius:0 0 6px 6px; }
+.dc .x-bp[hidden] { display:none; }
+.dc .x-bd { margin:0 0 20px; color:var(--text-body); }
+.dc .x-bl { margin:0 0 8px; font-weight:700; color:var(--navy); }
+.dc .x-see { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px 20px; }
+.dc .x-see li::before { content:''; display:inline-block; width:7px; height:7px; border-radius:50%; background:#dda448; margin-right:9px; vertical-align:2px; }
+.dc .x-voc { margin:0; display:grid; gap:12px; }
+.dc .x-voc > div { display:grid; grid-template-columns:96px minmax(0,1fr); gap:12px; padding-top:12px; border-top:1px solid var(--rule); }
+.dc .x-voc > div:first-child { padding-top:0; border-top:0; }
+.dc .x-voc dt { font-weight:700; } .dc .x-voc dd { margin:0; color:var(--text-body); }
+.dc .x-c1 dt { color:var(--blue-dark); } .dc .x-c2 dt { color:#1d6363; } .dc .x-c3 dt { color:var(--copper-dark); }
+@media (max-width:900px){ .dc .x-bgrid { grid-template-columns:repeat(2,minmax(0,1fr)); } .dc .x-b[aria-expanded="true"] { border-radius:6px; } .dc .x-bp { border-radius:6px; } }
+@media (max-width:820px){ .dc .x-path { grid-template-columns:minmax(0,1fr); gap:12px; } .dc .x-path li + li::before { content:'↓'; left:50%; top:-6px; } .dc .x-bp { grid-template-columns:minmax(0,1fr); gap:24px; } }
+</style>
 </head>
-<body class="page-content">
+<body class="accent-blue">
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="shell">
 
 <header class="site">
-  <div class="wrap">
+  <div class="site-bar">
+    <span>Learning Experience Design &amp; Project Management</span>
+    <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+  <div class="nav-row">
     <a class="site-name" href="index.html">Megan Lancaster</a>
     <nav class="primary" aria-label="Main">
       <a href="index.html">Home</a>
       <div class="nav-menu">
         <button type="button" class="nav-menu-btn current" aria-expanded="false" aria-controls="work-menu">Work <span class="caret" aria-hidden="true"></span></button>
         <ul class="nav-menu-list" id="work-menu">
-          <li><a href="ai-for-nurses.html" aria-current="page">AI for Nurses</a></li>
-          <li><a href="coursera-design-guide.html">Coursera Design Guide</a></li>
-          <li><a href="interactivity-generator.html">Interactivity Generator</a></li>
+          <li><a class="accent-blue" href="ai-for-nurses.html" aria-current="page"><span class="dot" aria-hidden="true"></span>AI for Nurses</a></li>
+          <li><a class="accent-green" href="coursera-design-guide.html"><span class="dot" aria-hidden="true"></span>Coursera Design Guide</a></li>
+          <li><a class="accent-purple" href="interactivity-generator.html"><span class="dot" aria-hidden="true"></span>Interactivity Generator</a></li>
           <li><span class="nav-disabled" aria-disabled="true">Sample Learning Assets <span class="nav-soon">Coming soon</span></span></li>
         </ul>
       </div>
@@ -29,367 +130,72 @@
   </div>
 </header>
 
-<main class="wrap content-page">
+<main id="main" class="dc">
+<header class="band dark"><div class="in"><h1>AI for Nurses</h1><p class="tagline">Helping nurses make sense of AI in their everyday work.</p><p>I led learning design and project management for a three-course Coursera Specialization developed with Duke School of Nursing and Johnson &amp; Johnson. We built the series to help nurses recognize AI in their work, consider what a tool is telling them, and bring their own clinical judgment to the decision.</p></div><dl class="x-facts"><div><dt>My role</dt><dd>Learning design and project management</dd></div><div><dt>Partners</dt><dd>Duke School of Nursing and Johnson &amp; Johnson</dd></div><div><dt>Timeline</dt><dd>September 2025–September 2026</dd></div><div><dt>Format</dt><dd>Three online courses</dd></div></dl><a class="jump" href="#learning">Explore the learning examples ↓</a></header>
+<nav class="section-strip x-steps" aria-label="On this page"><a href="#s1-where-we-started" aria-label="Where we started"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22V4"/><path d="M4 4h12l-2 4 2 4H4"/></svg></span><span class="x-tip" aria-hidden="true">Where we started</span></a><span class="x-line" aria-hidden="true"></span><a href="#s2-what-we-learned-from-nur" aria-label="What we learned from nurses"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7"/><path d="M18 14.5a6.5 6.5 0 0 1 3.5 5.5"/></svg></span><span class="x-tip" aria-hidden="true">What we learned from nurses</span></a><span class="x-line" aria-hidden="true"></span><a href="#learning" aria-label="How the learning comes together"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span><span class="x-tip" aria-hidden="true">How the learning comes together</span></a><span class="x-line" aria-hidden="true"></span><a href="#timeline" aria-label="Bringing the project together"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/></svg></span><span class="x-tip" aria-hidden="true">Bringing the project together</span></a></nav>
 
-  <div class="project-hero">
-    <p class="project-hero-eyebrow">Project</p>
-    <h1 class="project-hero-title">AI for Nurses</h1>
-    <p class="project-hero-sub">A specialization built with Duke School of Nursing and Johnson &amp; Johnson</p>
-  </div>
-
-  <p class="framing-line">
-    Nurses were encountering AI tools in their daily work and needed support understanding what those
-    tools could tell them.
-  </p>
-  <p class="lead-line">
-    Working with Duke School of Nursing and Johnson &amp; Johnson, I led learning design and project
-    management for a three-course series connecting AI concepts to everyday nursing decisions.
-  </p>
-
-  <div class="facts-band" role="group" aria-label="Project at a glance">
-    <p class="facts-band-title">At a glance</p>
-    <dl>
-      <div class="fact"><dt>My role</dt><dd>Learning design and project management</dd></div>
-      <div class="fact"><dt>Partners</dt><dd>Duke School of Nursing and Johnson &amp; Johnson</dd></div>
-      <div class="fact"><dt>Timeline</dt><dd>September 2025 to August 2026</dd></div>
-      <div class="fact"><dt>Format</dt><dd>A three-course specialization</dd></div>
-    </dl>
-  </div>
-
-  <nav class="section-strip" aria-label="On this page">
-    <a href="#learners"><span class="num">1</span>Learners</a>
-    <a href="#approach"><span class="num">2</span>Approach</a>
-    <a href="#co-design"><span class="num">3</span>Co-design</a>
-    <a href="#course-design"><span class="num">4</span>Course design</a>
-    <a href="#process"><span class="num">5</span>Timeline</a>
-    <a href="#results"><span class="num">6</span>Results</a>
-  </nav>
-
-  <h2 id="learners">I start by understanding the learners</h2>
-  <p>
-    When I work in a new field, I start by listening. For this project, that meant learning about
-    nurses' working environments, the pressures they face, and what would be useful during a shift. I
-    also worked with our partners to understand their goals and the timeline we needed to work within.
-  </p>
-
-  <h2 id="approach">I ask questions before I start building</h2>
-  <p>
-    I started with the survey data already collected from working nurses, using it to understand what
-    they needed to know and be able to do.
-  </p>
-  <p>
-    From that, I proposed a three-course structure: seeing where AI shows up in nursing practice,
-    evaluating what an AI tool is telling you, and applying that judgment in real clinical reasoning.
-  </p>
-
-  <div class="course-grid">
-    <div class="course-card">
-      <span class="icon-badge accent-teal">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
-          <circle cx="12" cy="12" r="3"/>
-        </svg>
-      </span>
-      <p class="course-kicker">Course 1</p>
-      <h4>Seeing AI in Nursing Practice</h4>
-    </div>
-    <div class="course-card">
-      <span class="icon-badge accent-blue">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="10" cy="10" r="6"/>
-          <line x1="21" y1="21" x2="14.65" y2="14.65"/>
-        </svg>
-      </span>
-      <p class="course-kicker">Course 2</p>
-      <h4>Evaluating AI in Nursing Practice</h4>
-    </div>
-    <div class="course-card">
-      <span class="icon-badge accent-green">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="9"/>
-          <path d="M9 12l2 2 4-4"/>
-        </svg>
-      </span>
-      <p class="course-kicker">Course 3</p>
-      <h4>Applying AI in Nursing Practice</h4>
-    </div>
-  </div>
-
-  <p>
-    Before scoping the courses or setting a timeline, I brought the proposal back to the stakeholders,
-    along with sample learning assets, and asked for their feedback and approval. From kickoff in
-    September 2025 to launch in August 2026, the work moved from understanding learners' needs through
-    scripts, recording, and interactive design. The <a href="#process">full timeline</a> is below.
-  </p>
-
-  <h2 id="co-design">Learners are involved throughout</h2>
-  <p>
-    During this project, I brought registered nurses into the process repeatedly to test whether our
-    decisions made sense in the context of their actual work.
-  </p>
-  <p>
-    In one co-design session, nurses described four ways AI was showing up during a shift: something
-    was flagged, something was summarized, a list was reprioritized, or a protocol was triggered. That
-    conversation confirmed we were headed in the right direction and shaped the structure of the
-    courses. The four buckets now appear throughout the series. Here's what those four buckets looked
-    like once we mapped them out for nurses:
-  </p>
-
-  <div class="buckets-grid">
-    <div class="bucket-card">
-      <div class="bucket-top">
-        <span class="icon-badge accent-orange">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/>
-            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-          </svg>
-        </span>
-        <div>
-          <span class="bucket-number">Bucket 1</span>
-          <h4>Something is flagged</h4>
-        </div>
-      </div>
-      <p>A score, alert, or Best Practice Advisory fires because the system detected a pattern.</p>
-      <div class="bucket-examples">
-        <span>Deterioration alert</span>
-        <span>Fall risk score</span>
-        <span>Sepsis BPA</span>
-      </div>
-    </div>
-    <div class="bucket-card">
-      <div class="bucket-top">
-        <span class="icon-badge accent-blue">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 2h9l5 5v15H6z"/>
-            <line x1="9" y1="13" x2="15" y2="13"/>
-            <line x1="9" y1="17" x2="15" y2="17"/>
-          </svg>
-        </span>
-        <div>
-          <span class="bucket-number">Bucket 2</span>
-          <h4>Something is summarized</h4>
-        </div>
-      </div>
-      <p>Text is constructed from documented information for a nurse to review.</p>
-      <div class="bucket-examples">
-        <span>Discharge summary draft</span>
-        <span>Progress note</span>
-        <span>After-visit summary</span>
-      </div>
-    </div>
-    <div class="bucket-card">
-      <div class="bucket-top">
-        <span class="icon-badge accent-teal">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="8" y1="6" x2="21" y2="6"/>
-            <line x1="8" y1="12" x2="21" y2="12"/>
-            <line x1="8" y1="18" x2="21" y2="18"/>
-            <line x1="3" y1="6" x2="3.01" y2="6"/>
-            <line x1="3" y1="12" x2="3.01" y2="12"/>
-            <line x1="3" y1="18" x2="3.01" y2="18"/>
-          </svg>
-        </span>
-        <div>
-          <span class="bucket-number">Bucket 3</span>
-          <h4>Something is prioritized</h4>
-        </div>
-      </div>
-      <p>A patient list is reordered or ranked by the system.</p>
-      <div class="bucket-examples">
-        <span>Reordered patient list</span>
-        <span>Risk-ranked rounding</span>
-        <span>Prioritized inbox</span>
-      </div>
-    </div>
-    <div class="bucket-card">
-      <div class="bucket-top">
-        <span class="icon-badge accent-green">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-          </svg>
-        </span>
-        <div>
-          <span class="bucket-number">Bucket 4</span>
-          <h4>Something is triggered</h4>
-        </div>
-      </div>
-      <p>A protocol, care plan, or checklist is initiated because a threshold was crossed.</p>
-      <div class="bucket-examples">
-        <span>Fall prevention protocol</span>
-        <span>Sepsis bundle</span>
-        <span>Skin care plan</span>
-      </div>
-    </div>
-  </div>
-  <p class="buckets-caption">
-    Nurses return to this map throughout all three courses as new vocabulary connects back to a bucket
-    they already recognize.
-  </p>
-
-  <h2 id="course-design">I'll show you how the pieces fit together</h2>
-  <p>
-    Courses 1 and 2 share a similar structure, built around one question: how do you make technical AI
-    concepts feel relevant to nurses whose focus is patient care?
-  </p>
-  <p>
-    Each module starts with a subject-matter expert video that introduces the concept in clinical
-    language instead of technical jargon. Then a Term Spotlight takes one term and makes it concrete and
-    relatable, written in the voice of a trusted nurse mentor.
-  </p>
-  <p>
-    This first activity lets learners compare two kinds of AI side by side: a fall risk score that
-    changes on its own, and a discharge summary that can include an invented sentence. It helps them
-    notice that both can sound confident without showing how they got there.
-  </p>
-
-  <p class="try-it-label">Try it: predictive vs. generative AI</p>
-  <div class="interactive-embed">
-    <iframe id="iframe-predictive-generative"
-            title="Predictive AI vs. Generative AI interactive example"
-            height="610"
-            loading="lazy"></iframe>
-  </div>
-
-  <p>
-    From there, an Inside the AI Tool interactive connects the concept to tools nurses already use,
-    including MEWS, DAX Copilot, the Epic Sepsis Model, and the Braden Scale. The goal is for nurses to
-    leave each module able to recognize that concept in the systems and workflows they use at work, and
-    not only to define it.
-  </p>
-  <p>
-    This activity lets learners change the information a model uses and see how its output responds. It
-    gives them a concrete way to explore an abstract idea.
-  </p>
-
-  <p class="try-it-label">Try it: features vs. labels</p>
-  <div class="interactive-embed">
-    <iframe id="iframe-features-labels"
-            title="What the model scored versus what the nurse knows interactive example"
-            height="720"
-            loading="lazy"></iframe>
-  </div>
-
-  <p>
-    We also built in practice assessments as low-stakes checkpoints before the graded work. Each course
-    ends with a Dialogue activity, where nurses bring in a tool from their own practice and work through
-    the course concepts in an AI-powered conversation. Then a graded final assessment confirms they've
-    met the learning goals before the Course Certificate is issued.
-  </p>
-  <p>
-    In the third course, nurses work through five guided clinical cases. They review the situation,
-    pause during a video to make a decision, and reflect on their reasoning. Each case gives them a
-    chance to apply the ideas from earlier courses.
-  </p>
-
-  <p class="try-it-label">Case study with pause point</p>
-  <div class="screenshot-frame">
-    <img src="assets/img/case-study-pause-point.png" alt="Case study video with a pause-point question overlay asking the nurse what is most likely driving the mismatch between the AI score and what they are observing">
-  </div>
-
-  <p>
-    Each activity prepares learners for the next step, moving from concept to tool, to their own
-    practice, to clinical judgment. That progression keeps the learning close to the work nurses do
-    every day.
-  </p>
-
-  <div class="callout">
-    <span class="callout-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/>
-        <path d="M9 12l2 2 4-4"/>
-      </svg>
-    </span>
-    <p>Accessibility shaped our decisions throughout development, from videos and readings to interactive activities and assessments.</p>
-  </div>
-
-  <h2 id="process" data-expand="true">Explore the development process</h2>
-  <details class="process-details">
-    <summary>View the full timeline, September 2025 to August 2026</summary>
-    <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
-      <div>
-        <p class="timeline-date">September 2025</p>
-        <p class="timeline-label">Project kickoff</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
-      <div>
-        <p class="timeline-date">October – November 2025</p>
-        <p class="timeline-label">Understanding learners' needs, trying out early learning activities, and gathering feedback</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
-      <div>
-        <p class="timeline-date">December 2025</p>
-        <p class="timeline-label">Script writing, editing, and feedback; helping faculty prepare for recording</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
-      <div>
-        <p class="timeline-date">January – February 2026</p>
-        <p class="timeline-label">Media recording and video visual design</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
-      <div>
-        <p class="timeline-date">March 2026</p>
-        <p class="timeline-label">Co-design session with nurses</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
-      <div>
-        <p class="timeline-date">April – May 2026</p>
-        <p class="timeline-label">Designing interactives, assessments, and supplemental materials</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
-      <div>
-        <p class="timeline-date">June 2026</p>
-        <p class="timeline-label">Preparing the courses and testing them with learners</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"><div class="timeline-dot"></div><div class="timeline-line"></div></div>
-      <div>
-        <p class="timeline-date">July 2026</p>
-        <p class="timeline-label">Final partner review and approval, CEUs approved</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-marker"><div class="timeline-dot"></div></div>
-      <div>
-        <p class="timeline-date">August 2026</p>
-        <p class="timeline-label">Launch</p>
-      </div>
-    </div>
-  </div>
-  </details>
-
-  <h2 id="results">Where are we now</h2>
-  <p>
-    The specialization launched on schedule, and Duke School of Nursing and Johnson &amp; Johnson funded
-    a second year of collaboration. We're now developing a new specialization that builds on what we
-    learned together.
-  </p>
-
+<section class="band" id="s1-where-we-started"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22V4"/><path d="M4 4h12l-2 4 2 4H4"/></svg></span>Where we started</h2><p>Nurses were already encountering AI tools during their shifts. We wanted the courses to help them understand those tools through situations they knew and questions that mattered to their work.</p>
+<p>I began with survey data collected from working nurses and conversations with our project partners. That helped me propose a three-course path: first recognizing where AI appears, then evaluating its outputs, and finally practicing how to use that understanding in clinical situations.</p></div>
+<ol class="x-path" aria-label="The three-course path">
+<li><span class="x-k">Course 1</span><span class="x-w">Recognize</span><span>where AI appears in nursing practice</span></li>
+<li><span class="x-k">Course 2</span><span class="x-w">Evaluate</span><span>what an AI tool’s outputs are telling you</span></li>
+<li><span class="x-k">Course 3</span><span class="x-w">Practice</span><span>using that understanding in clinical situations</span></li>
+</ol>
+<div class="in">
+<p>I shared the proposed structure and early learning examples with stakeholders so we could agree on the direction before developing the courses further.</p></div></section>
+<section class="band warm" id="s2-what-we-learned-from-nur"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7"/><path d="M18 14.5a6.5 6.5 0 0 1 3.5 5.5"/></svg></span>What we learned from nurses</h2><p>We brought registered nurses into the design process to help us understand how the learning would fit their experience.</p>
+<p>In one session, they described four ways AI showed up during a shift: something was flagged, summarized, prioritized, or triggered. Those descriptions gave us a familiar way to organize the content.</p></div>
+<div class="x-buckets">
+<p class="x-hint" id="bucket-hint">Select a pattern to see what nurses notice and the vocabulary it introduces.</p>
+<div class="x-bgrid"><button type="button" class="x-b" aria-expanded="false" aria-controls="bp-0"><span class="x-bs">Something is</span><span class="x-bw">flagged</span><span class="x-bt" aria-hidden="true">+</span></button><button type="button" class="x-b" aria-expanded="false" aria-controls="bp-1"><span class="x-bs">Something is</span><span class="x-bw">summarized</span><span class="x-bt" aria-hidden="true">+</span></button><button type="button" class="x-b" aria-expanded="false" aria-controls="bp-2"><span class="x-bs">Something is</span><span class="x-bw">prioritized</span><span class="x-bt" aria-hidden="true">+</span></button><button type="button" class="x-b" aria-expanded="false" aria-controls="bp-3"><span class="x-bs">Something is</span><span class="x-bw">triggered</span><span class="x-bt" aria-hidden="true">+</span></button></div>
+<div class="x-bp" id="bp-0" role="region" aria-label="Something is flagged" hidden>
+<div><p class="x-bd">A score fires, an alert appears, or a Best Practice Advisory surfaces. The system detected a pattern and drew your attention to it.</p><p class="x-bl">What nurses see</p><ul class="x-see"><li>Deterioration alert</li><li>Fall risk score</li><li>Sepsis BPA</li></ul></div>
+<div><p class="x-bl">Vocabulary it leads to</p><dl class="x-voc"><div class="x-c1"><dt>Course 1</dt><dd>Predictive AI · Machine learning · Inputs &amp; outputs</dd></div><div class="x-c2"><dt>Course 2</dt><dd>Features &amp; labels · Training data · Sensitivity &amp; specificity</dd></div></dl></div>
+</div>
+<div class="x-bp" id="bp-1" role="region" aria-label="Something is summarized" hidden>
+<div><p class="x-bd">Text was constructed from documented information: a drafted note, a discharge summary, an overnight synthesis. The system produced language for you to review.</p><p class="x-bl">What nurses see</p><ul class="x-see"><li>Discharge summary draft</li><li>Progress note</li><li>After-visit summary</li></ul></div>
+<div><p class="x-bl">Vocabulary it leads to</p><dl class="x-voc"><div class="x-c1"><dt>Course 1</dt><dd>Generative AI · AI model vs. tool</dd></div><div class="x-c2"><dt>Course 2</dt><dd>Self-supervised learning · Large language models · NLP · Unstructured data</dd></div></dl></div>
+</div>
+<div class="x-bp" id="bp-2" role="region" aria-label="Something is prioritized" hidden>
+<div><p class="x-bd">Your patient list is reordered, a message inbox is ranked, or a rounding order is suggested. The system shaped what information reaches you first.</p><p class="x-bl">What nurses see</p><ul class="x-see"><li>Reordered patient list</li><li>Risk-ranked rounding</li><li>Prioritized inbox</li></ul></div>
+<div><p class="x-bl">Vocabulary it leads to</p><dl class="x-voc"><div class="x-c1"><dt>Course 1</dt><dd>AI model vs. tool · Inputs &amp; outputs</dd></div><div class="x-c2"><dt>Course 2</dt><dd>Training data · Features &amp; labels · Supervised learning</dd></div></dl></div>
+</div>
+<div class="x-bp" id="bp-3" role="region" aria-label="Something is triggered" hidden>
+<div><p class="x-bd">A protocol populates, a care plan initiates, or a checklist appears. A threshold was crossed and the system started a pathway on your patient’s behalf.</p><p class="x-bl">What nurses see</p><ul class="x-see"><li>Fall prevention protocol</li><li>Sepsis bundle</li><li>Skin care plan</li></ul></div>
+<div><p class="x-bl">Vocabulary it leads to</p><dl class="x-voc"><div class="x-c1"><dt>Course 1</dt><dd>Rule-based systems · AI governance</dd></div><div class="x-c2"><dt>Course 2</dt><dd>Sensitivity &amp; specificity · Supervised learning</dd></div><div class="x-c3"><dt>Course 3</dt><dd>AI-SBAR</dd></div></dl></div>
+</div>
+</div>
+<script>
+(function(){var bs=document.querySelectorAll('.x-b'),ps=document.querySelectorAll('.x-bp'),hint=document.getElementById('bucket-hint');
+bs.forEach(function(b,i){b.addEventListener('click',function(){var open=b.getAttribute('aria-expanded')==='true';
+bs.forEach(function(x){x.setAttribute('aria-expanded','false')});ps.forEach(function(p){p.hidden=true});
+if(!open){b.setAttribute('aria-expanded','true');ps[i].hidden=false;}hint.hidden=!open;});});})();
+</script>
+<div class="in">
+<p>We carried the four patterns through all three courses. As learners encountered new ideas and vocabulary, they could connect them to something they already recognized.</p></div></section>
+<section class="band" id="learning"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span>How the learning comes together</h2><p>Each module introduces a concept, gives learners a way to explore it, and connects it to nursing practice.</p>
+<p>Subject-matter expert videos explain ideas in clinical language. Short Term Spotlights make individual terms more concrete. Interactive activities give nurses a chance to try an idea and see what happens.</p><p>Practice assessments, conversations about tools from learners’ own workplaces, and final assessments support the progression across the series. We considered accessibility throughout the videos, readings, activities, and assessments.</p></div>
+<div class="acts"><div class="act"><div><h3><span class="x-n">1.</span> Comparing two kinds of AI</h3><div class="in" style="max-width:880px"><p>In this activity, learners explore a fall risk score and a generated discharge summary. They can run the examples again and observe what changes.</p>
+<p>The activity introduces predictive and generative AI through familiar situations and gives learners a reason to look more closely at the information each tool produces.</p></div><figure class="x-embed"><figcaption>Try the activity: Predictive vs. Generative AI</figcaption><div class="x-frame"><iframe id="iframe-predictive-generative" title="Predictive AI vs. Generative AI interactive example" height="610" loading="lazy"></iframe></div></figure></div></div>
+<div class="act"><div><h3><span class="x-n">2.</span> Exploring what a model uses</h3><div class="in" style="max-width:880px"><p>Another activity lets learners change the information a model receives and observe how its output responds.</p>
+<p>It gives learners a way to explore inputs and outputs while considering what the model may know, and what a nurse may know from the wider situation.</p></div><figure class="x-embed"><figcaption>Try the activity: Features vs. labels</figcaption><div class="x-frame"><iframe id="iframe-features-labels" title="What the model scored versus what the nurse knows interactive example" height="720" loading="lazy"></iframe></div></figure></div></div>
+<div class="act"><div><h3><span class="x-n">3.</span> Practicing a clinical decision</h3><div class="in" style="max-width:880px"><p>The third course brings the ideas together through five guided clinical cases. Learners review a situation, pause during a video to make a decision, and reflect on their reasoning.</p>
+<p>These cases give nurses a chance to practice applying the course concepts in the context of patient care.</p></div><figure class="x-embed"><figcaption>View a case-study pause point</figcaption><div class="x-frame"><img src="assets/img/case-study-pause-point.png" alt="Case study video with a pause-point question overlay asking the nurse what is most likely driving the mismatch between the AI score and what they are observing"></div></figure></div></div></div>
+</section>
+<section class="band warm" id="timeline"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/></svg></span>Bringing the project together</h2><p>Alongside learning design, I led project management as we moved through writing, recording, activity development, learner testing, and partner review.</p>
+<p>The work involved faculty, nurses, our design team, and project partners. Early examples and opportunities for feedback helped us build a shared understanding of what we were creating.</p><p>The Specialization launched in September 2026. Duke School of Nursing and Johnson &amp; Johnson funded a second year of collaboration, and we’re now developing a new Specialization that builds on what we learned together.</p></div><details class="x-tl"><summary>View the development timeline ↓</summary><ol><li><span>September 2025</span><span>Project kickoff</span></li><li><span>October – November 2025</span><span>Understanding learners' needs, trying out early learning activities, and gathering feedback</span></li><li><span>December 2025</span><span>Script writing, editing, and feedback; helping faculty prepare for recording</span></li><li><span>January – February 2026</span><span>Media recording and video visual design</span></li><li><span>March 2026</span><span>Co-design session with nurses</span></li><li><span>April – May 2026</span><span>Designing interactives, assessments, and supplemental materials</span></li><li><span>June 2026</span><span>Preparing the courses and testing them with learners</span></li><li><span>July 2026</span><span>Final partner review and approval, CEUs approved</span></li><li><span>September 2026</span><span>Launch</span></li></ol></details></section>
 </main>
-
-<footer class="site">
-  <div class="wrap">
-    <span>&copy; Megan Lancaster</span>
-    <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
-  </div>
+<nav class="page-foot" style="margin-top:0" aria-label="More work">
+  
+  <a class="next" href="coursera-design-guide.html"><span class="dir">Next →</span><span class="ttl">Coursera Design Guide</span></a>
+</nav>
+<footer class="site-foot">
+  <span>&copy; Megan Lancaster</span>
+  <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
 </footer>
 
+</div>
 <script src="js/embed-interactives.js?v=5"></script>
-
 <script src="js/site.js"></script>
 </body>
 </html>

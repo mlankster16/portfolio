@@ -4,22 +4,75 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About | Megan Lancaster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=11">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=22">
+<link rel="stylesheet" href="css/theme.css?v=1">
+<style>
+.dc { --s1:56px; --s2:28px; --s3:17px; font-size:var(--s3); line-height:1.7; color:var(--text-body); }
+.dc h1,.dc h2 { font-family:var(--font-display); font-weight:500; margin:0; color:var(--navy); }
+.dc h1 { font-size:var(--s1); line-height:1.02; letter-spacing:-.01em; }
+.dc h2 { font-size:var(--s2); line-height:1.25; margin-bottom:18px; }
+.dc h3 { font-family:var(--font-display); font-weight:500; font-size:var(--s2); color:var(--navy); margin:0 0 12px; }
+.dc p { margin:0 0 16px; text-wrap:pretty; }
+.dc .band { padding:64px var(--pad-x); }
+.dc .band > .in { max-width:880px; }
+.dc .dark { background:#101d38; color:#cbd0dd; }
+.dc .dark h1, .dc .dark h2 { color:#f4efe2; }
+.dc .warm { background:var(--panel-warm); }
+.dc .tagline { font-family:var(--font-display); font-size:var(--s2); line-height:1.35; color:#dda448; margin:16px 0 24px; }
+.dc .x-facts { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px; margin:40px 0 32px; padding-top:22px; border-top:2px solid #dda448; }
+.dc .dark dt { color:#f4efe2; font-weight:700; } .dc .dark dd { margin:0; }
+.dc .jump { display:inline-block; font-weight:600; color:#101d38; background:#dda448; padding:11px 20px; border-radius:999px; text-decoration:none; }
+.dc .jump:hover { background:#e8b964; color:#101d38; }
+.dc .acts { display:grid; gap:56px; margin-top:40px; }
+.dc .act { display:grid; grid-template-columns:72px minmax(0,1fr); gap:24px; }
+.dc .act-n { width:52px; height:52px; border-radius:50%; background:var(--blue-tint); border:1.5px solid var(--blue); color:var(--blue-dark); font-weight:700; display:grid; place-items:center; }
+.dc .x-embed { margin:20px 0 0; }
+.dc figcaption { font-weight:700; color:var(--navy); margin-bottom:12px; }
+.dc .x-frame { border:1px solid var(--rule); border-radius:6px; overflow:hidden; background:#fff; box-shadow:0 10px 28px rgba(16,29,56,.06); }
+.dc .x-frame iframe { width:100%; border:0; display:block; } .dc .x-frame img { width:100%; display:block; }
+.dc .x-tl { margin-top:8px; }
+.dc .x-tl summary { cursor:pointer; display:inline-block; font-weight:600; color:var(--navy); padding:10px 18px; border:1.5px solid var(--navy); border-radius:999px; list-style:none; }
+.dc .x-tl summary::-webkit-details-marker{display:none}
+.dc .x-tl ol { list-style:none; margin:28px 0 0; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.dc .x-tl li { display:flex; flex-direction:column; gap:4px; padding:16px 18px; background:#fff; border:1px solid var(--rule); border-radius:6px; }
+.dc .x-tl li span:first-child { font-weight:700; color:var(--teal-dark); }
+.dc .x-tl li:last-child { background:#101d38; border-color:#101d38; color:#f4efe2; } .dc .x-tl li:last-child span:first-child { color:#dda448; }
+@media (max-width:820px){ .dc{--s1:42px;--s2:24px} .dc .x-facts{grid-template-columns:repeat(2,minmax(0,1fr))} .dc .act{grid-template-columns:minmax(0,1fr);gap:12px} .dc .x-tl ol{grid-template-columns:minmax(0,1fr)} }</style>
+<style>
+.dc .about-hero { display:grid; grid-template-columns:280px minmax(0,1fr); gap:64px; align-items:start; }
+.dc .about-hero > div:first-child { position:sticky; top:24px; }
+.dc .about-hero h1 { margin-bottom:24px; }
+.dc .about-hero img { display:block; width:100%; aspect-ratio:4/5; object-fit:cover; object-position:top center; border-radius:400px 400px 6px 6px; background:#1a2c4d; }
+.dc .about-hero p { max-width:760px; }
+.dc .jump-alt { display:inline-block; font-weight:600; padding:10px 19px; border-radius:999px; text-decoration:none; border:1.5px solid #101d38; color:#101d38; }
+.dc .jump-alt:hover { background:#101d38; color:#fff; }
+.dc .btns { display:flex; flex-wrap:wrap; gap:12px 14px; margin-top:12px; }
+@media (max-width:820px){ .dc .about-hero { grid-template-columns:minmax(0,1fr); gap:32px; } .dc .about-hero > div:first-child { position:static; max-width:240px; } }
+</style>
 </head>
-<body class="page-content">
+<body class="accent-teal">
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="shell">
 
 <header class="site">
-  <div class="wrap">
+  <div class="site-bar">
+    <span>Learning Experience Design &amp; Project Management</span>
+    <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+  <div class="nav-row">
     <a class="site-name" href="index.html">Megan Lancaster</a>
     <nav class="primary" aria-label="Main">
       <a href="index.html">Home</a>
       <div class="nav-menu">
         <button type="button" class="nav-menu-btn" aria-expanded="false" aria-controls="work-menu">Work <span class="caret" aria-hidden="true"></span></button>
         <ul class="nav-menu-list" id="work-menu">
-          <li><a href="ai-for-nurses.html">AI for Nurses</a></li>
-          <li><a href="coursera-design-guide.html">Coursera Design Guide</a></li>
-          <li><a href="interactivity-generator.html">Interactivity Generator</a></li>
+          <li><a class="accent-blue" href="ai-for-nurses.html"><span class="dot" aria-hidden="true"></span>AI for Nurses</a></li>
+          <li><a class="accent-green" href="coursera-design-guide.html"><span class="dot" aria-hidden="true"></span>Coursera Design Guide</a></li>
+          <li><a class="accent-purple" href="interactivity-generator.html"><span class="dot" aria-hidden="true"></span>Interactivity Generator</a></li>
           <li><span class="nav-disabled" aria-disabled="true">Sample Learning Assets <span class="nav-soon">Coming soon</span></span></li>
         </ul>
       </div>
@@ -29,45 +82,24 @@
   </div>
 </header>
 
-<main class="wrap content-page">
-  <div class="hero">
-    <img class="headshot-large" src="assets/img/headshot.png" alt="Portrait of Megan Lancaster">
-    <div class="hero-text">
-      <h1 class="page-title">About</h1>
-    </div>
-  </div>
-
-  <p>
-    I’m Megan, a learning designer, STEM educator, and project manager who loves working with experts to
-    turn complex ideas into meaningful learning experiences. I’m especially interested in helping people
-    see how what they’re learning connects to their lives, their work, and the questions they’re curious
-    about.
-  </p>
-  <p>
-    My background is in physics and science education, and my work has taken me from hands-on STEM
-    classrooms to online courses for learners around the world. At Duke, I partner with faculty and other
-    experts across disciplines to design experiences that give learners opportunities to explore,
-    practice, and build confidence.
-  </p>
-  <p>
-    I start by listening to the people sharing their expertise and the people we hope to reach. From
-    there, I help shape the learning experience and build activities, tools, and resources that support
-    it. Expanding access to education is what brings this work together for me. I want learning to feel
-    approachable, relevant, and full of possibility.
-  </p>
-  <p>
-    Thanks for stopping by and taking a look at my work! If you’re thinking through a learning challenge,
-    interested in working together, or just want to say hello, I’d love to hear from you.
-  </p>
+<main id="main" class="dc">
+<section class="band"><div class="about-hero"><div><img src="assets/img/headshot.png" alt="Portrait of Megan Lancaster"></div><div><h1>About</h1><p>I’m Megan, a learning designer, STEM educator, and project manager who loves working with experts to turn complex ideas into meaningful learning experiences. I’m especially interested in helping people see how what they’re learning connects to their lives, their work, and the questions they’re curious about.</p>
+<p>My background is in physics and science education, and my work has taken me from hands-on STEM classrooms to online courses for learners around the world. At Duke, I partner with faculty and other experts across disciplines to design experiences that give learners opportunities to explore, practice, and build confidence.</p>
+<p>I start by listening to the people sharing their expertise and the people we hope to reach. From there, I help shape the learning experience and build activities, tools, and resources that support it. Expanding access to education is what brings this work together for me. I want learning to feel approachable, relevant, and full of possibility.</p></div></div></section>
+<section class="band warm"><div class="in" style="margin:0 auto;text-align:center;max-width:640px"><h2>Thanks for stopping by!</h2><p>If you’re thinking through a learning challenge, interested in working together, or just want to say hello, I’d love to hear from you.</p>
+<div class="btns" style="justify-content:center"><a class="jump" href="mailto:meganrlancaster@gmail.com">Send me a message</a><a class="jump-alt" href="assets/resume/Lancaster_Resume_Oct2026.pdf" download>Download résumé</a></div></div></section>
 </main>
 
-<footer class="site">
-  <div class="wrap">
-    <span>&copy; Megan Lancaster</span>
-    <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
-  </div>
+<nav class="page-foot" style="margin-top:0" aria-label="More work">
+  
+  <a class="next" href="ai-for-nurses.html"><span class="dir">Next →</span><span class="ttl">See my work: AI for Nurses</span></a>
+</nav>
+<footer class="site-foot">
+  <span>&copy; Megan Lancaster</span>
+  <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
 </footer>
 
+</div>
 <script src="js/site.js"></script>
 </body>
 </html>

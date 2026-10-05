@@ -4,22 +4,155 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Coursera Design Guide | Megan Lancaster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=11">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=22">
+<link rel="stylesheet" href="css/theme.css?v=1">
+<style>
+.dc { --s1:56px; --s2:28px; --s3:17px; font-size:var(--s3); line-height:1.7; color:var(--text-body); }
+.dc h1,.dc h2 { font-family:var(--font-display); font-weight:500; margin:0; color:var(--navy); }
+.dc h1 { font-size:var(--s1); line-height:1.02; letter-spacing:-.01em; }
+.dc h2 { font-size:var(--s2); line-height:1.25; margin-bottom:18px; }
+.dc h3 { font-family:var(--font-display); font-weight:500; font-size:var(--s2); color:var(--navy); margin:0 0 12px; }
+.dc p { margin:0 0 16px; text-wrap:pretty; }
+.dc .band { padding:64px var(--pad-x); }
+.dc .band > .in { max-width:880px; }
+.dc .dark { background:#101d38; color:#cbd0dd; }
+.dc .dark h1, .dc .dark h2 { color:#f4efe2; }
+.dc .warm { background:var(--panel-warm); }
+.dc .tagline { font-family:var(--font-display); font-size:var(--s2); line-height:1.35; color:#dda448; margin:16px 0 24px; }
+.dc .x-facts { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px; margin:40px 0 32px; padding-top:22px; border-top:2px solid #dda448; }
+.dc .dark dt { color:#f4efe2; font-weight:700; } .dc .dark dd { margin:0; }
+.dc .jump { display:inline-block; font-weight:600; color:#101d38; background:#dda448; padding:11px 20px; border-radius:999px; text-decoration:none; }
+.dc .jump:hover { background:#e8b964; color:#101d38; }
+.dc .acts { display:grid; gap:56px; margin-top:40px; }
+.dc .act { display:grid; grid-template-columns:72px minmax(0,1fr); gap:24px; }
+.dc .act-n { width:52px; height:52px; border-radius:50%; background:var(--blue-tint); border:1.5px solid var(--blue); color:var(--blue-dark); font-weight:700; display:grid; place-items:center; }
+.dc .x-embed { margin:20px 0 0; }
+.dc figcaption { font-weight:700; color:var(--navy); margin-bottom:12px; }
+.dc .x-frame { border:1px solid var(--rule); border-radius:6px; overflow:hidden; background:#fff; box-shadow:0 10px 28px rgba(16,29,56,.06); }
+.dc .x-frame iframe { width:100%; border:0; display:block; } .dc .x-frame img { width:100%; display:block; }
+.dc .x-tl { margin-top:8px; }
+.dc .x-tl summary { cursor:pointer; display:inline-block; font-weight:600; color:var(--navy); padding:10px 18px; border:1.5px solid var(--navy); border-radius:999px; list-style:none; }
+.dc .x-tl summary::-webkit-details-marker{display:none}
+.dc .x-tl ol { list-style:none; margin:28px 0 0; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.dc .x-tl li { display:flex; flex-direction:column; gap:4px; padding:16px 18px; background:#fff; border:1px solid var(--rule); border-radius:6px; }
+.dc .x-tl li span:first-child { font-weight:700; color:var(--teal-dark); }
+.dc .x-tl li:last-child { background:#101d38; border-color:#101d38; color:#f4efe2; } .dc .x-tl li:last-child span:first-child { color:#dda448; }
+@media (max-width:820px){ .dc{--s1:42px;--s2:24px} .dc .x-facts{grid-template-columns:repeat(2,minmax(0,1fr))} .dc .act{grid-template-columns:minmax(0,1fr);gap:12px} .dc .x-tl ol{grid-template-columns:minmax(0,1fr)} }</style>
+<style>
+.dc .jump-alt { display:inline-block; font-weight:600; padding:10px 19px; border-radius:999px; text-decoration:none; border:1.5px solid currentColor; }
+.dc .dark .jump-alt { color:#f4efe2; } .dc .dark .jump-alt:hover { background:rgba(244,239,226,.1); color:#fff; }
+.dc .band:not(.dark) .jump-alt { color:#101d38; } .dc .band:not(.dark) .jump-alt:hover { background:#101d38; color:#fff; }
+.dc .btns { display:flex; flex-wrap:wrap; gap:12px 14px; margin-top:8px; }
+.dc .pair { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; margin:24px 0 28px; }
+.dc .pair > div { background:#fff; border:1px solid var(--rule); border-radius:6px; padding:24px 26px 26px; box-shadow:0 10px 28px rgba(16,29,56,.06); }
+.dc .pair > div:last-child { border-top:3px solid #dda448; }
+.dc .pair .q { font-family:var(--font-display); font-size:var(--s2); line-height:1.3; color:var(--navy); margin:0; }
+@media (max-width:820px){ .dc .pair { grid-template-columns:minmax(0,1fr); } }
+</style>
+<style>
+.dc .x-h { display:flex; align-items:center; gap:16px; }
+.dc .x-ic { flex:none; width:48px; height:48px; border-radius:50%; display:grid; place-items:center; background:var(--accent-tint); border:1.5px solid var(--accent); }
+.dc .x-ic svg { width:22px; height:22px; stroke:var(--accent-dark); }
+.dc section[id] { scroll-margin-top:84px; }
+.dc .section-strip.x-steps { position:sticky; top:0; z-index:30; display:flex; align-items:center; justify-content:center; gap:0; margin:0; padding:12px var(--pad-x); background:rgba(255,253,248,.96); backdrop-filter:blur(6px); border:0; border-bottom:1px solid var(--rule); border-radius:0; box-shadow:none; overflow-x:auto; }
+.dc .x-steps a { flex:none; min-width:0; padding:0; border:0; background:none; display:block; }
+.dc .x-steps a:hover, .dc .x-steps a.active { background:none; }
+.dc .x-steps .x-dot { width:40px; height:40px; border-radius:50%; display:grid; place-items:center; background:#fff; border:1.5px solid var(--rule-strong); transition:background .2s, border-color .2s; }
+.dc .x-steps .x-dot svg { width:18px; height:18px; stroke:var(--text-muted); transition:stroke .2s; }
+.dc .x-steps a:hover .x-dot { border-color:var(--accent); }
+.dc .x-steps a:hover .x-dot svg { stroke:var(--accent-dark); }
+.dc .x-steps a.active .x-dot { background:var(--accent); border-color:var(--accent); }
+.dc .x-steps a.active .x-dot svg { stroke:#fff; }
+.dc .x-steps a:focus-visible { outline:2px solid var(--navy); outline-offset:3px; border-radius:50%; }
+.dc .x-line { flex:0 1 72px; min-width:16px; height:1.5px; background:var(--rule-strong); }
+@media (max-width:680px){ .dc .x-ic { width:40px; height:40px; } .dc .x-ic svg { width:18px; height:18px; } .dc .x-steps .x-dot { width:34px; height:34px; } }
+.dc .x-steps a { position:relative; }
+.dc .x-tip { position:absolute; top:calc(100% + 10px); left:50%; transform:translate(-50%,-4px); white-space:nowrap; padding:6px 12px; border-radius:6px; background:#101d38; color:#f4efe2; font-size:14px; font-weight:600; line-height:1.3; opacity:0; pointer-events:none; transition:opacity .15s, transform .15s; z-index:40; }
+.dc .x-tip::before { content:''; position:absolute; bottom:100%; left:50%; margin-left:-5px; border:5px solid transparent; border-bottom-color:#101d38; }
+.dc .x-steps a:hover .x-tip, .dc .x-steps a:focus-visible .x-tip { opacity:1; transform:translate(-50%,0); }
+@media (min-width:681px){ .dc .section-strip.x-steps { overflow:visible; } }
+.dc .in > p:last-child { margin-bottom:0; }
+.dc .x-res { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin:28px 0 32px; position:relative; }
+.dc .x-r { display:flex; flex-direction:column; gap:6px; padding:24px 26px 24px; background:var(--panel-warm); border:1px solid transparent; border-radius:6px; text-decoration:none; color:var(--text-body); transition:border-color .15s, background .15s; }
+.dc .x-r:hover { background:#fff; border-color:#dda448; color:var(--text-body); }
+.dc .x-r:focus-visible { outline:2px solid var(--navy); outline-offset:3px; }
+.dc .x-r + .x-r::before { content:'↔'; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:32px; height:32px; display:grid; place-items:center; border-radius:50%; background:#fff; border:1px solid var(--rule); color:#b8863a; font-weight:700; }
+.dc .x-k { font-weight:700; color:var(--accent-dark); }
+.dc .x-w { font-family:var(--font-display); font-size:var(--s2); line-height:1.2; color:var(--navy); }
+.dc .x-go { margin-top:10px; font-weight:600; color:var(--navy); text-decoration:underline; text-decoration-color:#dda448; text-decoration-thickness:2px; text-underline-offset:5px; }
+@media (max-width:820px){ .dc .x-res { grid-template-columns:minmax(0,1fr); } .dc .x-r + .x-r::before { content:'↕'; } }
+.dc .g-meta { margin:0 0 10px; font-weight:700; color:var(--text-muted); }
+.dc .g-lab { margin:0 0 4px; font-weight:700; color:var(--navy); }
+.dc .g-t { margin:0 0 6px; font-family:var(--font-display); font-size:var(--s2); line-height:1.2; color:var(--navy); }
+.dc .g-q { margin:0 0 20px; color:var(--text-body); }
+.dc .g-split { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin:28px 0 32px; }
+.dc .g-guide { padding:24px 26px; background:#fff; border-radius:6px; border:1px solid var(--rule); }
+.dc .g-ask { display:grid; gap:12px; }
+.dc .g-ask > div { padding:14px 16px; border-radius:6px; background:#eef4f0; }
+.dc .g-ask > div + div { background:var(--panel-warm); }
+.dc .g-ask > div + div p:last-child { color:var(--text-muted); text-decoration:line-through; text-decoration-color:rgba(90,100,114,.5); }
+.dc .g-ask p { margin:0; }
+.dc .g-tpl { padding:24px 26px; background:#fff; border-radius:6px; border:1px solid var(--rule); background-image:linear-gradient(#fff 0 0); box-shadow:0 10px 28px rgba(16,29,56,.06); }
+.dc .g-rows { list-style:none; margin:8px 0 0; padding:0; }
+.dc .g-rows li { display:grid; grid-template-columns:28px minmax(0,1fr) auto; gap:12px; padding:12px 0; border-top:1px solid var(--rule); line-height:1.5; }
+.dc .g-rows strong { color:var(--navy); }
+.dc .g-n { font-weight:700; color:#17724a; } .dc .g-h { color:var(--text-muted); white-space:nowrap; }
+.lv-s { --lv:#00539b; --lvd:#00447f; --lvt:#f2f6fb; } .lv-c { --lv:#17724a; --lvd:#125e3d; --lvt:#f0f6f2; } .lv-m { --lv:#6b4e9e; --lvd:#5a3f87; --lvt:#f6f3fa; } .lv-a { --lv:#b4700c; --lvd:#8a5a0b; --lvt:#fdf6ec; } .lv-x { --lv:#c84e00; --lvd:#a84200; --lvt:#fcf5f0; }
+.dc .g-pg { margin:0 0 8px; font-weight:700; color:var(--lvd); }
+.dc .g-levels { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin:28px 0 16px; }
+.dc .g-col { padding:22px 24px 24px; background:var(--lvt); border-radius:6px; border-top:3px solid var(--lv); }
+.dc .g-col ol { margin:0; padding:0; list-style:none; counter-reset:q; display:grid; gap:12px; }
+.dc .g-col li { counter-increment:q; display:grid; grid-template-columns:24px minmax(0,1fr); gap:6px; line-height:1.5; color:var(--text-body); }
+.dc .g-col li::before { content:counter(q); font-weight:700; color:var(--lvd); }
+.dc .g-bars { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin:0 0 32px; }
+.dc .g-bar { padding:18px 24px; background:var(--lvt); border-radius:6px; border-left:0; border-top:3px solid var(--lv); }
+.dc .g-bar p:last-child { margin:0; }
+.dc .g-qa { display:grid; grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr); align-items:stretch; margin:20px 0 28px; }
+.dc .g-qa > div { padding:24px 26px 26px; border-radius:6px; }
+.dc .g-qa-q { background:#fff; border:1px solid var(--rule); }
+.dc .g-qa-a { background:#101d38; color:#cbd0dd; }
+.dc .g-qa-a .g-meta { color:#dda448; } .dc .g-qa .g-qa-a .q { color:#f4efe2; }
+.dc .g-qa .q { font-family:var(--font-display); font-size:var(--s2); line-height:1.3; color:var(--navy); margin:4px 0 0; }
+.dc .g-qa p { margin:0; }
+.dc .g-arrow { align-self:center; justify-self:center; width:36px; height:36px; border-radius:50%; display:grid; place-items:center; background:#dda448; color:#101d38; font-weight:700; }
+.dc .g-casc { list-style:none; margin:28px 0 0; padding:0 0 0 28px; position:relative; display:grid; gap:14px; }
+.dc .g-casc::before { content:''; position:absolute; left:9px; top:10px; bottom:30px; width:2px; background:var(--rule-strong); }
+.dc .g-casc > li { position:relative; padding:20px 24px 22px; background:#fff; border:1px solid var(--rule); border-radius:6px; }
+.dc .g-casc > li::before { content:''; position:absolute; left:-25px; top:26px; width:14px; height:14px; border-radius:50%; background:var(--lv); box-shadow:0 0 0 4px var(--panel-warm); }
+.dc .g-casc > li:nth-child(2) { margin-left:24px; } .dc .g-casc > li:nth-child(3) { margin-left:48px; }
+.dc .g-casc > li:nth-child(2)::before { left:-49px; } .dc .g-casc > li:nth-child(3)::before { left:-73px; }
+.dc .g-casc p { margin:0 0 6px; }
+.dc .g-obj { margin:10px 0 0 !important; padding-top:10px; border-top:1px solid var(--rule); color:var(--navy); font-weight:600; }
+.dc .g-assets { list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+.dc .g-assets li { display:grid; grid-template-columns:150px minmax(0,1fr); gap:12px; }
+.dc .g-assets span { font-weight:700; color:var(--lvd); }
+@media (max-width:900px){ .dc .g-levels { grid-template-columns:minmax(0,1fr); } }
+@media (max-width:820px){ .dc .g-split, .dc .g-bars { grid-template-columns:minmax(0,1fr); } .dc .g-qa { grid-template-columns:minmax(0,1fr); gap:12px; } .dc .g-arrow { transform:rotate(90deg); } .dc .g-casc > li:nth-child(n) { margin-left:0; } .dc .g-casc > li:nth-child(n)::before { left:-25px; } .dc .g-assets li { grid-template-columns:minmax(0,1fr); gap:0; } }
+</style>
 </head>
-<body class="page-content">
+<body class="accent-green">
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="shell">
 
 <header class="site">
-  <div class="wrap">
+  <div class="site-bar">
+    <span>Learning Experience Design &amp; Project Management</span>
+    <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+  <div class="nav-row">
     <a class="site-name" href="index.html">Megan Lancaster</a>
     <nav class="primary" aria-label="Main">
       <a href="index.html">Home</a>
       <div class="nav-menu">
         <button type="button" class="nav-menu-btn current" aria-expanded="false" aria-controls="work-menu">Work <span class="caret" aria-hidden="true"></span></button>
         <ul class="nav-menu-list" id="work-menu">
-          <li><a href="ai-for-nurses.html">AI for Nurses</a></li>
-          <li><a href="coursera-design-guide.html" aria-current="page">Coursera Design Guide</a></li>
-          <li><a href="interactivity-generator.html">Interactivity Generator</a></li>
+          <li><a class="accent-blue" href="ai-for-nurses.html"><span class="dot" aria-hidden="true"></span>AI for Nurses</a></li>
+          <li><a class="accent-green" href="coursera-design-guide.html" aria-current="page"><span class="dot" aria-hidden="true"></span>Coursera Design Guide</a></li>
+          <li><a class="accent-purple" href="interactivity-generator.html"><span class="dot" aria-hidden="true"></span>Interactivity Generator</a></li>
           <li><span class="nav-disabled" aria-disabled="true">Sample Learning Assets <span class="nav-soon">Coming soon</span></span></li>
         </ul>
       </div>
@@ -29,180 +162,84 @@
   </div>
 </header>
 
-<main class="wrap content-page">
+<main id="main" class="dc">
+<header class="band dark"><div class="in"><h1>Coursera Design Guide</h1><p class="tagline">A shared starting point for faculty developing online courses.</p>
+<p>I designed and built this website and its companion planning templates for Duke faculty working on Coursera projects. Faculty use them with a Learning Experience Designer to work through the decisions involved in creating an online course.</p>
+<p>The guide offers explanations and examples to return to along the way. The templates give faculty and their designer a place to capture their plans.</p></div>
+<dl class="x-facts" style="grid-template-columns:repeat(2,minmax(0,1fr))"><div><dt>My role</dt><dd>Website design and development, guide content, planning templates, and worked examples</dd></div><div><dt>Who it’s for</dt><dd>Duke faculty and the course design team</dd></div></dl></header>
+<nav class="section-strip x-steps" aria-label="On this page"><a href="#s1-where-we-started" aria-label="Where we started"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22V4"/><path d="M4 4h12l-2 4 2 4H4"/></svg></span><span class="x-tip" aria-hidden="true">Where we started</span></a><span class="x-line" aria-hidden="true"></span><a href="#s2-giving-each-resource-a-c" aria-label="Giving each resource a clear purpose"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span><span class="x-tip" aria-hidden="true">Giving each resource a clear purpose</span></a><span class="x-line" aria-hidden="true"></span><a href="#s3-organizing-around-the-wo" aria-label="Organizing around the work faculty are doing"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span><span class="x-tip" aria-hidden="true">Organizing around the work faculty are doing</span></a><span class="x-line" aria-hidden="true"></span><a href="#s4-showing-how-the-decision" aria-label="Showing how the decisions connect"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2.5"/><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="12" r="2.5"/><path d="M6 7.5v9"/><path d="M8.5 5H12a4 4 0 0 1 4 4v.5"/></svg></span><span class="x-tip" aria-hidden="true">Showing how the decisions connect</span></a><span class="x-line" aria-hidden="true"></span><a href="#s5-how-the-resources-are-me" aria-label="How the resources are meant to help"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg></span><span class="x-tip" aria-hidden="true">How the resources are meant to help</span></a></nav>
 
-  <div class="project-hero">
-    <p class="project-hero-eyebrow">Resource</p>
-    <h1 class="project-hero-title">Coursera Design Guide</h1>
-    <p class="project-hero-sub">A guide and planning templates for Duke faculty developing online courses and course series on Coursera.</p>
-  </div>
-
-  <p class="framing-line">
-    Faculty bring deep expertise to a Coursera project, along with plenty of decisions about designing
-    for online learners.
-  </p>
-  <p class="lead-line">
-    I built this guide and template set to support those conversations and help our smaller team support
-    more Coursera projects. Faculty use the resources alongside a Learning Experience Designer, with
-    guidance they can return to throughout development.
-  </p>
-
-  <div class="callout">
-    <span class="callout-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/>
-        <path d="M9 12l2 2 4-4"/>
-      </svg>
-    </span>
-    <p>Faculty don't need to arrive with everything figured out. The guide gives them a starting point for conversations with their designer and a place to return as their ideas develop.</p>
-  </div>
-
-  <h2>Making the planning tools easier to use</h2>
-  <p>
-    Our planning workbooks combined detailed guidance with spaces to record decisions. That could make
-    it difficult to find the next step or keep the larger learning experience in view. I wanted to make
-    both parts easier to navigate: guidance faculty could explore and templates they could use to plan
-    with their designer.
-  </p>
-
-  <h2>A place to explore and a place to plan</h2>
-  <p>
-    The guide is a website with a page for each part of the design process. Faculty use it to understand
-    what a decision involves and to bring questions to a design meeting. A set of design templates, one
-    for the Specialization and one for each Course, is where those decisions get written down. The guide
-    has no fields to fill in, and the templates carry very little instruction.
-  </p>
-
-  <div class="course-grid">
-    <div class="course-card">
-      <span class="icon-badge accent-teal">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="9"/>
-          <polygon points="15.5 8.5 13.5 13.5 8.5 15.5 10.5 10.5 15.5 8.5"/>
-        </svg>
-      </span>
-      <p class="course-kicker">Page 1</p>
-      <h4>Orient to Coursera</h4>
-    </div>
-    <div class="course-card">
-      <span class="icon-badge accent-blue">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="12 2 2 7 12 12 22 7 12 2"/>
-          <polyline points="2 17 12 22 22 17"/>
-          <polyline points="2 12 12 17 22 12"/>
-        </svg>
-      </span>
-      <p class="course-kicker">Page 2</p>
-      <h4>Specialization</h4>
-    </div>
-    <div class="course-card">
-      <span class="icon-badge accent-orange">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z"/>
-          <line x1="8" y1="8" x2="15" y2="8"/>
-        </svg>
-      </span>
-      <p class="course-kicker">Page 3</p>
-      <h4>Course</h4>
-    </div>
-    <div class="course-card">
-      <span class="icon-badge accent-green">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="7" height="7"/>
-          <rect x="14" y="3" width="7" height="7"/>
-          <rect x="3" y="14" width="7" height="7"/>
-          <rect x="14" y="14" width="7" height="7"/>
-        </svg>
-      </span>
-      <p class="course-kicker">Page 4</p>
-      <h4>Module</h4>
-    </div>
-    <div class="course-card">
-      <span class="icon-badge accent-teal">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="5 3 19 12 5 21 5 3"/>
-        </svg>
-      </span>
-      <p class="course-kicker">Page 5</p>
-      <h4>Learning Assets</h4>
-    </div>
-    <div class="course-card">
-      <span class="icon-badge accent-blue">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/>
-          <path d="M9 12l2 2 4-4"/>
-        </svg>
-      </span>
-      <p class="course-kicker">Page 6</p>
-      <h4>Accessibility, Copyright &amp; AI</h4>
-    </div>
-  </div>
-
-  <p>
-    The guide moves from the overall learning goal to the experiences that help learners reach it.
-    Faculty can focus on the part they're developing, whether that's planning a course, shaping a
-    module, or creating an activity. Shared guidance on accessibility, copyright, and AI is available
-    throughout.
-  </p>
-
-  <h2>Questions that guide the conversation</h2>
-  <p>
-    Every page breaks into a few short steps, and each step is framed as a question. A faculty lead can
-    read the question, take it to a design meeting, and leave with a decision to record. Here is one
-    question from the Specialization page, next to the kind of answer it leads to in the worked example.
-  </p>
-
-  <div class="pairing">
-    <div class="pairing-col">
-      <p class="pairing-label">In the guide: Step 1, Define the goal</p>
-      <p class="pairing-question">What should learners be able to do by the end of this Specialization?</p>
-      <p class="pairing-note">The step suggests describing who the Specialization is for, then drafting 3 to 4 outcomes that say what learners will be able to do.</p>
-    </div>
-    <div class="pairing-col pairing-example">
-      <p class="pairing-label">In the worked example</p>
-      <p class="pairing-answer">By the end of the Specialization, learners will be able to frame a business question, analyze and visualize relevant data, and communicate an evidence-informed recommendation.</p>
-      <p class="pairing-note">This goes into Section 1 of the template, along with the title, a short description, and who the Specialization is for.</p>
-    </div>
-  </div>
-
-  <p>
-    I also wrote the guide to be clear about who does what. Faculty remain the primary content authors,
-    and the CTL design team helps shape the learning experience and prepares it for Coursera. A short
-    section on the Start Here page lays out both sides, along with the roles on a typical project team.
-  </p>
-
-  <h2>One example runs through the whole guide</h2>
-  <p>
-    Guidance is easier to follow with something concrete, so I built a single example Specialization,
-    Data Analytics for Business Decisions, and carried it through every page. Faculty can see how a
-    larger goal becomes a Course, how a Course becomes a Module, and how a Module becomes an individual
-    video or quiz. A completed template shows one way to capture that thinking, and a blank version is
-    there for anyone who wants to start fresh.
-  </p>
-  <p>
-    The example shows how a broad learning goal becomes something learners can practice, with
-    explanations, feedback, and support along the way.
-  </p>
-
-  <p class="try-it-label">Explore the guide</p>
-  <p>
-    Explore the guide and completed example to see how the questions, explanations, and templates work
-    together.
-  </p>
-  <p class="guide-links">
-    <a class="guide-link" href="https://mlankster16.github.io/coursera-design-guide/" target="_blank" rel="noopener">Open the Coursera Design Guide<span aria-hidden="true"> ↗</span></a>
-    <a class="guide-link-secondary" href="https://docs.google.com/document/d/1IWk4qGemzTfPkKOOfJns8HzMYhXFExIxxs9qWhNZtRQ/edit?tab=t.argzgaksm1ov" target="_blank" rel="noopener">View the completed example<span aria-hidden="true"> ↗</span></a>
-  </p>
-
+<section class="band" id="s1-where-we-started"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22V4"/><path d="M4 4h12l-2 4 2 4H4"/></svg></span>Where we started</h2><p>Our planning workbooks held both detailed guidance and spaces to record decisions. As the resources grew, it could take some searching to find the explanation or planning section needed for a particular conversation.</p>
+<p>I wanted to make that process easier for faculty and help our team support more Coursera projects.</p>
+<p>That led me to develop two connected resources: a website faculty could explore and a set of templates they could use to plan with their designer.</p></div>
+<div class="x-res">
+<a class="x-r" href="https://mlankster16.github.io/coursera-design-guide/" target="_blank" rel="noopener"><span class="x-k">The guide</span><span class="x-w">A website to explore</span><span>Explanations, questions, and a worked example for each part of the design process.</span><span class="x-go">Explore the guide<span aria-hidden="true"> ↗</span></span></a>
+<a class="x-r" href="https://docs.google.com/document/d/1IWk4qGemzTfPkKOOfJns8HzMYhXFExIxxs9qWhNZtRQ/edit?tab=t.argzgaksm1ov" target="_blank" rel="noopener"><span class="x-k">The templates</span><span class="x-w">A place to plan</span><span>Where faculty and their designer record the decisions that come out of each conversation.</span><span class="x-go">View the completed example<span aria-hidden="true"> ↗</span></span></a>
+</div>
+<div class="in"></div></section>
+<section class="band warm" id="s2-giving-each-resource-a-c"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span>Giving each resource a clear purpose</h2><p>The guide explains what faculty are working toward, the questions to consider, and how a decision connects to the learning experience.</p>
+<p>The templates hold the plans that come out of those conversations. They keep instructions brief so there is room to focus on the project itself.</p>
+<p>Faculty can move between the two as their ideas develop: read an explanation, discuss it with their designer, and record what they decide.</p></div>
+<div class="g-split">
+<div class="g-guide">
+<p class="g-meta">In the guide · Specialization, Step 2 of 4</p>
+<p class="g-t">Shape the journey</p>
+<p class="g-q">How should the Courses work together to help learners reach that goal?</p>
+<div class="g-ask"><div><p class="g-lab">You might ask</p><p>What should each Course contribute to the larger learner journey?</p></div><div><p class="g-lab">Rather than asking</p><p>How should I divide my content into three Courses?</p></div></div>
+</div>
+<div class="g-tpl">
+<p class="g-meta">In the template · Section 2, Shape the journey</p>
+<p class="g-lab" style="margin-top:6px">Courses in this Specialization</p>
+<ol class="g-rows">
+<li><span class="g-n">1</span><span><strong>Foundations of Data Analytics for Business</strong><br>A focused business question and an analysis-ready dataset</span><span class="g-h">7 hours</span></li>
+<li><span class="g-n">2</span><span><strong>Analyzing and Visualizing Business Data</strong><br>Analytical findings and supporting visualizations</span><span class="g-h">9 hours</span></li>
+<li><span class="g-n">3</span><span><strong>Communicating Data-Driven Recommendations</strong><br>A clear, evidence-informed recommendation</span><span class="g-h">8 hours</span></li>
+</ol>
+</div>
+</div>
+<div class="in"></div></section>
+<section class="band" id="s3-organizing-around-the-wo"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>Organizing around the work faculty are doing</h2><p>The guide follows the design process from the larger learning goal to courses, modules, and individual learning materials.</p>
+<p>Faculty can return to the section that fits their current work, whether they are shaping a course, planning practice, or preparing a video. Guidance on accessibility, copyright, and AI is available along the way.</p>
+<p>I wrote the steps as questions to support design conversations. I also included an introduction to project roles so faculty could understand how their contributions and the design team’s work fit together.</p></div>
+<div class="g-levels">
+<div class="g-col lv-s"><p class="g-pg">Specialization</p><ol><li>What should learners be able to do by the end of this Specialization?</li><li>How should the Courses work together to help learners reach that goal?</li><li>What will make this Specialization relevant, discoverable, and appropriately scoped?</li></ol></div>
+<div class="g-col lv-c"><p class="g-pg">Course</p><ol><li>What is this Course for, and what should learners be able to do?</li><li>What will learners need, and what do we already have or still need?</li><li>Which ideas and goals belong together?</li><li>What will make this Course relevant, discoverable, and appropriately scoped?</li></ol></div>
+<div class="g-col lv-m"><p class="g-pg">Module</p><ol><li>What should learners be able to do by the end of this Module?</li><li>What will learners do to show what they’ve learned?</li><li>What experiences will prepare learners to complete the task?</li><li>Which formats, tools, and resources could support each part of the learner’s experience?</li></ol></div>
+</div>
+<div class="g-bars">
+<div class="g-bar lv-a"><p class="g-pg">Learning Assets</p><p>Develop the videos, readings, activities, and assessments inside each Module.</p></div>
+<div class="g-bar lv-x"><p class="g-pg">Accessibility, Copyright &amp; AI</p><p>Guidance that applies throughout development, from planning to final review.</p></div>
+</div>
+<div class="in"></div></section>
+<section class="band warm" id="s4-showing-how-the-decision"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2.5"/><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="12" r="2.5"/><path d="M6 7.5v9"/><path d="M8.5 5H12a4 4 0 0 1 4 4v.5"/></svg></span>Showing how the decisions connect</h2><p>I developed one example, <em>Data Analytics for Business Decisions</em>, and carried it through the guide.</p>
+<p>Faculty can follow how an overall goal informs a course, how the course takes shape through modules, and how a module becomes activities, videos, and assessments. A completed template shows how those decisions might be recorded.</p>
+<h3 style="margin-top:40px">From a question to a plan</h3></div>
+<div class="g-qa">
+<div class="g-qa-q"><p class="g-meta">Specialization page · Step 1, Define the goal</p><p>The guide asks:</p><p class="q">What should learners be able to do by the end of this Specialization?</p></div>
+<span class="g-arrow" aria-hidden="true">→</span>
+<div class="g-qa-a"><p class="g-meta">Worked example · Template Section 1</p><p>The worked example shows a possible answer:</p><p class="q">Learners will be able to frame a business question, analyze and visualize relevant data, and communicate an evidence-informed recommendation.</p></div>
+</div>
+<div class="in"><p>That goal then helps shape the rest of the example. Faculty can see both the decision and how it carries into later planning.</p></div>
+<ol class="g-casc" aria-label="How the goal carries through the worked example">
+<li class="lv-c"><p class="g-pg">Course 1 · Foundations of Data Analytics for Business</p><p>Learners leave with: a focused business question and an analysis-ready dataset.</p><p class="g-obj">Evaluate a dataset for relevance, completeness, and basic quality concerns.</p></li>
+<li class="lv-m"><p class="g-pg">Module 2 · Identifying and Evaluating Business Data</p><p>Learning task: a Data Fitness Review.</p><p class="g-obj">Document limitations that could affect the proposed analysis.</p></li>
+<li class="lv-a"><p class="g-pg">Learning Assets</p><ul class="g-assets"><li><span>Video</span>Think Aloud: Inspecting a Sample Dataset</li><li><span>Reading</span>Data Fitness Criteria and Checklist</li><li><span>Auto-graded quiz</span>Data Fitness Review</li></ul></li>
+</ol>
+<div class="in"></div></section>
+<section class="band" id="s5-how-the-resources-are-me"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"/></svg></span>How the resources are meant to help</h2><p>I built the guide to give faculty a place to begin and something useful to return to between meetings.</p>
+<p>It also gives our design team a shared reference for explaining the process, discussing options, and helping faculty develop their ideas. Faculty can bring their expertise and questions, then work through the next step with their designer.</p>
+<div class="btns"><a class="jump" href="https://mlankster16.github.io/coursera-design-guide/" target="_blank" rel="noopener">Explore the Coursera Design Guide<span aria-hidden="true"> ↗</span></a><a class="jump-alt" href="https://docs.google.com/document/d/1IWk4qGemzTfPkKOOfJns8HzMYhXFExIxxs9qWhNZtRQ/edit?tab=t.argzgaksm1ov" target="_blank" rel="noopener">View the completed example<span aria-hidden="true"> ↗</span></a></div></div></section>
 </main>
-
-<footer class="site">
-  <div class="wrap">
-    <span>&copy; Megan Lancaster</span>
-    <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
-  </div>
+<nav class="page-foot" style="margin-top:0" aria-label="More work">
+  <a class="prev" href="ai-for-nurses.html"><span class="dir">← Previous</span><span class="ttl">AI for Nurses</span></a>
+  <a class="next" href="interactivity-generator.html"><span class="dir">Next →</span><span class="ttl">Interactivity Generator</span></a>
+</nav>
+<footer class="site-foot">
+  <span>&copy; Megan Lancaster</span>
+  <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
 </footer>
 
+</div>
 <script src="js/site.js"></script>
 </body>
 </html>

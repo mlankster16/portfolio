@@ -3,22 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Megan Lancaster | Learning Experience Design & Project Management</title>
+<title>Megan Lancaster | Learning Experience Design &amp; Project Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=11">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=22">
+<link rel="stylesheet" href="css/theme.css?v=1">
 </head>
-<body>
+<body class="accent-teal">
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="shell">
 
 <header class="site">
-  <div class="wrap">
-    <nav class="primary" aria-label="Main">
+  <div class="site-bar">
+    <span>Learning Experience Design &amp; Project Management</span>
+    <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+  <div class="nav-row">
+    <nav class="primary" aria-label="Main" style="margin-left:auto">
       <a href="index.html" class="current" aria-current="page">Home</a>
       <div class="nav-menu">
         <button type="button" class="nav-menu-btn" aria-expanded="false" aria-controls="work-menu">Work <span class="caret" aria-hidden="true"></span></button>
         <ul class="nav-menu-list" id="work-menu">
-          <li><a href="ai-for-nurses.html">AI for Nurses</a></li>
-          <li><a href="coursera-design-guide.html">Coursera Design Guide</a></li>
-          <li><a href="interactivity-generator.html">Interactivity Generator</a></li>
+          <li><a class="accent-blue" href="ai-for-nurses.html"><span class="dot" aria-hidden="true"></span>AI for Nurses</a></li>
+          <li><a class="accent-green" href="coursera-design-guide.html"><span class="dot" aria-hidden="true"></span>Coursera Design Guide</a></li>
+          <li><a class="accent-purple" href="interactivity-generator.html"><span class="dot" aria-hidden="true"></span>Interactivity Generator</a></li>
           <li><span class="nav-disabled" aria-disabled="true">Sample Learning Assets <span class="nav-soon">Coming soon</span></span></li>
         </ul>
       </div>
@@ -28,68 +38,57 @@
   </div>
 </header>
 
-<main class="wrap hero-split">
-  <div class="hero-text">
-    <h1>Megan<br>Lancaster</h1>
-    <p class="eyebrow">Learning Experience Design<br>&amp; Project Management</p>
-    <p class="lede">
-      PMP&reg;-certified project manager and senior learning experience designer.
-      I help teams turn complex ideas into practical learning experiences, and I build the tools and processes that keep that work running smoothly.
-    </p>
-    <a class="cta-link" href="mailto:meganrlancaster@gmail.com">Send me a message</a>
+<main id="main">
+  <div class="home-hero">
+    <div>
+      <p class="eyebrow">Portfolio</p>
+      <h1>Megan Lancaster</h1>
+      <p class="page-sub">PMP&reg;-certified project manager and senior learning experience designer. I help teams turn complex ideas into practical learning experiences, and I build the tools and processes that keep that work running smoothly.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="mailto:meganrlancaster@gmail.com">Send me a message</a>
+        <a class="btn btn-secondary" href="#work">See featured work ↓</a>
+      </div>
+    </div>
+    <div class="portrait"><img src="assets/img/headshot.png" alt="Portrait of Megan Lancaster"></div>
   </div>
-  <div class="hero-image">
-    <img src="assets/img/headshot.png" alt="Portrait of Megan Lancaster">
+
+  <div class="content" id="work">
+    <h2>Featured work</h2>
+    <div class="work-grid">
+      <a class="work-card c-blue" href="ai-for-nurses.html">
+        <span class="card-icon work-icon c-blue"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/><path d="M3.5 12h4l2-3 3 6 2-3h6"/></svg></span>
+        <span class="work-title">AI for Nurses</span>
+        <span class="work-desc">A Duke School of Nursing and Johnson &amp; Johnson specialization built to help nurses get comfortable with the AI tools already showing up in their work.</span>
+        <span class="work-cta">View project →</span>
+      </a>
+      <a class="work-card c-green" href="coursera-design-guide.html">
+        <span class="card-icon work-icon c-green"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z"/><line x1="8" y1="8" x2="15" y2="8"/><line x1="8" y1="12" x2="13" y2="12"/></svg></span>
+        <span class="work-title">Coursera Design Guide</span>
+        <span class="work-desc">A guide and template set that helps Duke faculty plan a Coursera Specialization or Course with their Learning Experience Designer.</span>
+        <span class="work-cta">View project →</span>
+      </a>
+      <a class="work-card c-purple" href="interactivity-generator.html">
+        <span class="card-icon work-icon c-purple"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+        <span class="work-title">Interactivity Generator</span>
+        <span class="work-desc">A two-part tool I built for Duke's LX design team: a Coursera plugin, and a generator that turns a learning design challenge into ready-to-use interactive formats.</span>
+        <span class="work-cta">View project →</span>
+      </a>
+      <div class="work-card c-gold is-soon">
+        <span class="card-icon work-icon c-gold"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>
+        <span class="work-title">Sample Learning Assets</span>
+        <span class="work-desc">Examples of the interactive learning assets I have designed.</span>
+        <span class="work-cta">Coming soon</span>
+      </div>
+    </div>
   </div>
 </main>
 
-<section class="wrap">
-  <h2>Featured work</h2>
-  <div class="project-grid">
-
-    <a class="project-card" href="ai-for-nurses.html">
-      <span class="card-index">01</span>
-      <span class="card-body">
-        <h3>AI for Nurses</h3>
-        <p>A Duke School of Nursing and Johnson &amp; Johnson specialization built to help nurses get comfortable with the AI tools already showing up in their work.</p>
-      </span>
-    </a>
-
-    <a class="project-card" href="coursera-design-guide.html">
-      <span class="card-index">02</span>
-      <span class="card-body">
-        <h3>Coursera Design Guide</h3>
-        <p>A guide and template set that helps Duke faculty plan a Coursera Specialization or Course with their Learning Experience Designer.</p>
-      </span>
-    </a>
-
-    <a class="project-card" href="interactivity-generator.html">
-      <span class="card-index">03</span>
-      <span class="card-body">
-        <h3>Interactivity Generator</h3>
-        <p>A two-part tool I built for Duke's LX design team: a Coursera plugin, and a generator that turns a learning design challenge into ready-to-use interactive formats.</p>
-      </span>
-    </a>
-
-    <div class="project-card is-soon">
-      <span class="card-index">04</span>
-      <span class="card-body">
-        <h3>Sample Learning Assets</h3>
-        <p>Examples of the interactive learning assets I have designed.</p>
-        <span class="status">Coming soon</span>
-      </span>
-    </div>
-
-  </div>
-</section>
-
-<footer class="site">
-  <div class="wrap">
-    <span>&copy; Megan Lancaster</span>
-    <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
-  </div>
+<footer class="site-foot">
+  <span>&copy; Megan Lancaster</span>
+  <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
 </footer>
 
+</div>
 <script src="js/site.js"></script>
 </body>
 </html>

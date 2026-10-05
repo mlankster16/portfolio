@@ -4,22 +4,87 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Interactivity Generator | Megan Lancaster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=11">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=22">
+<link rel="stylesheet" href="css/theme.css?v=1">
+<style>
+.dc { --s1:56px; --s2:28px; --s3:17px; font-size:var(--s3); line-height:1.7; color:var(--text-body); }
+.dc h1,.dc h2 { font-family:var(--font-display); font-weight:500; margin:0; color:var(--navy); }
+.dc h1 { font-size:var(--s1); line-height:1.02; letter-spacing:-.01em; }
+.dc h2 { font-size:var(--s2); line-height:1.25; margin-bottom:18px; }
+.dc h3 { font-family:var(--font-display); font-weight:500; font-size:var(--s2); color:var(--navy); margin:0 0 12px; }
+.dc p { margin:0 0 16px; text-wrap:pretty; }
+.dc .band { padding:64px var(--pad-x); }
+.dc .band > .in { max-width:880px; }
+.dc .dark { background:#101d38; color:#cbd0dd; }
+.dc .dark h1, .dc .dark h2 { color:#f4efe2; }
+.dc .warm { background:var(--panel-warm); }
+.dc .tagline { font-family:var(--font-display); font-size:var(--s2); line-height:1.35; color:#dda448; margin:16px 0 24px; }
+.dc .x-facts { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px; margin:40px 0 32px; padding-top:22px; border-top:2px solid #dda448; }
+.dc .dark dt { color:#f4efe2; font-weight:700; } .dc .dark dd { margin:0; }
+.dc .jump { display:inline-block; font-weight:600; color:#101d38; background:#dda448; padding:11px 20px; border-radius:999px; text-decoration:none; }
+.dc .jump:hover { background:#e8b964; color:#101d38; }
+.dc .acts { display:grid; gap:56px; margin-top:40px; }
+.dc .act { display:grid; grid-template-columns:72px minmax(0,1fr); gap:24px; }
+.dc .act-n { width:52px; height:52px; border-radius:50%; background:var(--blue-tint); border:1.5px solid var(--blue); color:var(--blue-dark); font-weight:700; display:grid; place-items:center; }
+.dc .x-embed { margin:20px 0 0; }
+.dc figcaption { font-weight:700; color:var(--navy); margin-bottom:12px; }
+.dc .x-frame { border:1px solid var(--rule); border-radius:6px; overflow:hidden; background:#fff; box-shadow:0 10px 28px rgba(16,29,56,.06); }
+.dc .x-frame iframe { width:100%; border:0; display:block; } .dc .x-frame img { width:100%; display:block; }
+.dc .x-tl { margin-top:8px; }
+.dc .x-tl summary { cursor:pointer; display:inline-block; font-weight:600; color:var(--navy); padding:10px 18px; border:1.5px solid var(--navy); border-radius:999px; list-style:none; }
+.dc .x-tl summary::-webkit-details-marker{display:none}
+.dc .x-tl ol { list-style:none; margin:28px 0 0; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.dc .x-tl li { display:flex; flex-direction:column; gap:4px; padding:16px 18px; background:#fff; border:1px solid var(--rule); border-radius:6px; }
+.dc .x-tl li span:first-child { font-weight:700; color:var(--teal-dark); }
+.dc .x-tl li:last-child { background:#101d38; border-color:#101d38; color:#f4efe2; } .dc .x-tl li:last-child span:first-child { color:#dda448; }
+@media (max-width:820px){ .dc{--s1:42px;--s2:24px} .dc .x-facts{grid-template-columns:repeat(2,minmax(0,1fr))} .dc .act{grid-template-columns:minmax(0,1fr);gap:12px} .dc .x-tl ol{grid-template-columns:minmax(0,1fr)} }</style>
+<style>
+.dc .x-h { display:flex; align-items:center; gap:16px; }
+.dc .x-ic { flex:none; width:48px; height:48px; border-radius:50%; display:grid; place-items:center; background:var(--accent-tint); border:1.5px solid var(--accent); }
+.dc .x-ic svg { width:22px; height:22px; stroke:var(--accent-dark); }
+.dc section[id] { scroll-margin-top:84px; }
+.dc .section-strip.x-steps { position:sticky; top:0; z-index:30; display:flex; align-items:center; justify-content:center; gap:0; margin:0; padding:12px var(--pad-x); background:rgba(255,253,248,.96); backdrop-filter:blur(6px); border:0; border-bottom:1px solid var(--rule); border-radius:0; box-shadow:none; overflow-x:auto; }
+.dc .x-steps a { flex:none; min-width:0; padding:0; border:0; background:none; display:block; }
+.dc .x-steps a:hover, .dc .x-steps a.active { background:none; }
+.dc .x-steps .x-dot { width:40px; height:40px; border-radius:50%; display:grid; place-items:center; background:#fff; border:1.5px solid var(--rule-strong); transition:background .2s, border-color .2s; }
+.dc .x-steps .x-dot svg { width:18px; height:18px; stroke:var(--text-muted); transition:stroke .2s; }
+.dc .x-steps a:hover .x-dot { border-color:var(--accent); }
+.dc .x-steps a:hover .x-dot svg { stroke:var(--accent-dark); }
+.dc .x-steps a.active .x-dot { background:var(--accent); border-color:var(--accent); }
+.dc .x-steps a.active .x-dot svg { stroke:#fff; }
+.dc .x-steps a:focus-visible { outline:2px solid var(--navy); outline-offset:3px; border-radius:50%; }
+.dc .x-line { flex:0 1 72px; min-width:16px; height:1.5px; background:var(--rule-strong); }
+@media (max-width:680px){ .dc .x-ic { width:40px; height:40px; } .dc .x-ic svg { width:18px; height:18px; } .dc .x-steps .x-dot { width:34px; height:34px; } }
+.dc .x-steps a { position:relative; }
+.dc .x-tip { position:absolute; top:calc(100% + 10px); left:50%; transform:translate(-50%,-4px); white-space:nowrap; padding:6px 12px; border-radius:6px; background:#101d38; color:#f4efe2; font-size:14px; font-weight:600; line-height:1.3; opacity:0; pointer-events:none; transition:opacity .15s, transform .15s; z-index:40; }
+.dc .x-tip::before { content:''; position:absolute; bottom:100%; left:50%; margin-left:-5px; border:5px solid transparent; border-bottom-color:#101d38; }
+.dc .x-steps a:hover .x-tip, .dc .x-steps a:focus-visible .x-tip { opacity:1; transform:translate(-50%,0); }
+@media (min-width:681px){ .dc .section-strip.x-steps { overflow:visible; } }
+</style>
 </head>
-<body class="page-content">
+<body class="accent-purple">
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="shell">
 
 <header class="site">
-  <div class="wrap">
+  <div class="site-bar">
+    <span>Learning Experience Design &amp; Project Management</span>
+    <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+  <div class="nav-row">
     <a class="site-name" href="index.html">Megan Lancaster</a>
     <nav class="primary" aria-label="Main">
       <a href="index.html">Home</a>
       <div class="nav-menu">
         <button type="button" class="nav-menu-btn current" aria-expanded="false" aria-controls="work-menu">Work <span class="caret" aria-hidden="true"></span></button>
         <ul class="nav-menu-list" id="work-menu">
-          <li><a href="ai-for-nurses.html">AI for Nurses</a></li>
-          <li><a href="coursera-design-guide.html">Coursera Design Guide</a></li>
-          <li><a href="interactivity-generator.html" aria-current="page">Interactivity Generator</a></li>
+          <li><a class="accent-blue" href="ai-for-nurses.html"><span class="dot" aria-hidden="true"></span>AI for Nurses</a></li>
+          <li><a class="accent-green" href="coursera-design-guide.html"><span class="dot" aria-hidden="true"></span>Coursera Design Guide</a></li>
+          <li><a class="accent-purple" href="interactivity-generator.html" aria-current="page"><span class="dot" aria-hidden="true"></span>Interactivity Generator</a></li>
           <li><span class="nav-disabled" aria-disabled="true">Sample Learning Assets <span class="nav-soon">Coming soon</span></span></li>
         </ul>
       </div>
@@ -29,127 +94,44 @@
   </div>
 </header>
 
-<main class="wrap content-page">
+<main id="main" class="dc">
+<header class="band dark"><div class="in"><h1>Interactivity Generator</h1><p class="tagline">Helping our team create small, useful learning interactions.</p>
+<p>I designed and built a tool for Duke’s learning design team to turn course content into interactive activities.</p>
+<p>It has two connected parts: a generator that helps designers create and edit an activity, and a plugin that places the finished activity in Coursera.</p></div>
+<dl class="x-facts" style="grid-template-columns:repeat(2,minmax(0,1fr))"><div><dt>My role</dt><dd>Tool design and development, Coursera plugin, learning design guidelines, and the editing and export workflow</dd></div><div><dt>Who it’s for</dt><dd>Duke’s learning design team</dd></div></dl>
+<a class="jump" href="#walkthrough">Explore the sample walkthrough ↓</a></header>
+<nav class="section-strip x-steps" aria-label="On this page"><a href="#s1-where-we-started" aria-label="Where we started"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22V4"/><path d="M4 4h12l-2 4 2 4H4"/></svg></span><span class="x-tip" aria-hidden="true">Where we started</span></a><span class="x-line" aria-hidden="true"></span><a href="#s2-building-the-two-parts" aria-label="Building the two parts"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><span class="x-tip" aria-hidden="true">Building the two parts</span></a><span class="x-line" aria-hidden="true"></span><a href="#s3-keeping-the-learning-goa" aria-label="Keeping the learning goal in view"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span><span class="x-tip" aria-hidden="true">Keeping the learning goal in view</span></a><span class="x-line" aria-hidden="true"></span><a href="#s4-giving-designers-room-to" aria-label="Giving designers room to review and edit"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><span class="x-tip" aria-hidden="true">Giving designers room to review and edit</span></a><span class="x-line" aria-hidden="true"></span><a href="#walkthrough" aria-label="See the workflow in practice"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polygon points="10 8 16 12 10 16 10 8"/></svg></span><span class="x-tip" aria-hidden="true">See the workflow in practice</span></a><span class="x-line" aria-hidden="true"></span><a href="#s5-providing-another-way-to" aria-label="Providing another way to use the content"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg></span><span class="x-tip" aria-hidden="true">Providing another way to use the content</span></a><span class="x-line" aria-hidden="true"></span><a href="#s6-what-i-wanted-to-make-ea" aria-label="What I wanted to make easier"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><span class="x-tip" aria-hidden="true">What I wanted to make easier</span></a></nav>
 
-  <div class="project-hero">
-    <p class="project-hero-eyebrow">Tool</p>
-    <h1 class="project-hero-title">Interactivity Generator</h1>
-    <p class="project-hero-sub">A two-part workflow tool built for Duke's LX Design team</p>
-  </div>
-
-  <p class="framing-line">
-    This one is different. Instead of designing a course, I designed and built a tool that helps our
-    team design courses.
-  </p>
-
-  <h2>I noticed a gap in what we could build quickly</h2>
-  <p>
-    Coursera is well suited to heavier interactive formats like Labs, Dialogue, and Role Play. What it
-    doesn't have is a lightweight path for quick, embedded interactions, the kind that turn a single
-    concept into a fast knowledge check or an exploratory visual. Without that path, those concepts
-    default to static text, and learners miss a chance to try out an idea right as they meet it. I design
-    interactives often, across a range of learning environments. Some of that work will live under
-    Sample Learning Assets (coming soon), and I kept feeling that gap specifically inside
-    Coursera.
-  </p>
-  <p>
-    This project set out to close it: give our learning designers a way to turn raw content into
-    custom, embeddable interactions, more quickly, with accessibility and UDL built in from the start.
-  </p>
-
-  <h2>I built it in two phases</h2>
-  <p>
-    First, a Coursera plugin that takes finished HTML and JavaScript and embeds it directly into the
-    course environment. Then, a generator our own LX design team could use on their own projects.
-  </p>
-
-  <div class="phase-flow">
-    <div class="phase-step">
-      <span class="icon-badge accent-blue">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="16 18 22 12 16 6"/>
-          <polyline points="8 6 2 12 8 18"/>
-        </svg>
-      </span>
-      <p class="phase-kicker">Phase 1</p>
-      <h4>The Coursera Plugin</h4>
-      <p class="phase-desc">Takes finished HTML and JavaScript and embeds it directly into the Coursera course environment.</p>
-    </div>
-    <div class="phase-connector" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="4" y1="12" x2="20" y2="12"/>
-        <polyline points="14 6 20 12 14 18"/>
-      </svg>
-    </div>
-    <div class="phase-step">
-      <span class="icon-badge accent-teal">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="12 2 2 7 12 12 22 7 12 2"/>
-          <polyline points="2 17 12 22 22 17"/>
-          <polyline points="2 12 12 17 22 12"/>
-        </svg>
-      </span>
-      <p class="phase-kicker">Phase 2</p>
-      <h4>The Interactivity Generator</h4>
-      <p class="phase-desc">Turns a learning design challenge into a set of interactive format options, ready to edit and export.</p>
-    </div>
-  </div>
-
-  <p>
-    A designer describes their content and learning goal, or picks the interaction type themselves in
-    "I know what I want" mode. The tool uses Claude to recommend the best-fit format from six options: tabbed explorer, click-to-reveal, inline quiz, sequencing, drag-to-classify, or annotated text. Its recommendations follow a set of learning design guidelines. It also flags situations where a
-    different approach may work better: a challenge that's out of scope, too content-heavy for one
-    interaction, too open-ended to act on yet, or a poor fit for the format chosen.
-  </p>
-
-  <h2>I'll show you how it works</h2>
-  <p>
-    From there, the designer gets a live, working preview and can explore alternatives, edit the
-    visible text without touching code, and confirm. The tool outputs a ready-to-paste plugin
-    configuration and an accessible text version. Our LX design team in CTL are the primary users. SMEs
-    review the result while or after a designer generates a component, to confirm the content itself
-    holds up.
-  </p>
-  <p>
-    The real tool calls Claude live and works from whatever content a designer brings to it. What
-    follows is a mockup built around one fixed example, so you can walk through the same four steps
-    without needing an API key of your own.
-  </p>
-
-  <p class="try-it-label">Try it: describe a challenge, get an interactive</p>
-  <div class="interactive-embed">
-    <iframe id="iframe-interactivity-generator"
-            title="Interactivity Generator workflow tool mockup"
-            height="700"
-            loading="lazy"></iframe>
-  </div>
-
-  <h2>It also generates a static twin</h2>
-  <p>
-    Alongside the interactive component, the tool generates a plain static version of the same
-    content. That does two jobs at once.
-  </p>
-  <p>
-    For learners, it's a second way to use the content: a study reference, or the primary way to access the content if
-    the interactive itself isn't accessible to them, by screen reader or otherwise.
-  </p>
-  <p>
-    For Coursera itself, it gives AI-enabled features like Dialogue something to work with. Those
-    tools rely on course content to operate, and static text is what they can read when the
-    interactive can't be parsed directly.
-  </p>
-
+<section class="band" id="s1-where-we-started"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22V4"/><path d="M4 4h12l-2 4 2 4H4"/></svg></span>Where we started</h2><p>Sometimes a single concept benefits from a small interaction: a quick question, a sequence to arrange, or a visual learners can explore.</p>
+<p>I wanted our team to have an easier way to create those moments in Coursera. The aim was to help designers work from their content and learning goal, try a suitable format, and prepare the activity for the course.</p></div></section>
+<section class="band warm" id="s2-building-the-two-parts"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>Building the two parts</h2><p>I first built a plugin that embeds finished HTML and JavaScript in the Coursera course environment.</p>
+<p>Then I built the generator to support the work that comes before that. A designer describes what they want learners to understand or practice, and the tool helps them explore possible interaction formats.</p>
+<p>Designers can also choose a format directly when they already have something in mind.</p></div></section>
+<section class="band" id="s3-keeping-the-learning-goa"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span>Keeping the learning goal in view</h2><p>The generator uses Claude and a set of learning design guidelines to suggest formats such as a short quiz, a tabbed explorer, or a sequencing activity.</p>
+<p>It also offers guidance when a request needs more detail, contains too much for one activity, or may work better in another format.</p>
+<p>I wanted the recommendations to help designers think through their options and make an informed choice.</p></div></section>
+<section class="band warm" id="s4-giving-designers-room-to"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span>Giving designers room to review and edit</h2><p>Once an activity is generated, the designer gets a working preview. They can explore alternatives and edit the visible text without changing the code.</p>
+<p>Subject-matter experts can review the content with the designer before it goes into a course.</p>
+<p>When the designer is ready, the tool exports the configuration needed to embed the activity, along with a static text version of the content.</p></div></section>
+<section class="band" id="walkthrough"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polygon points="10 8 16 12 10 16 10 8"/></svg></span>See the workflow in practice</h2><p>The working tool uses Claude to respond to the content a designer brings to it.</p>
+<p>The walkthrough below uses one fixed example so you can explore the same process without an API key: describe a learning need, consider a format, review and edit the activity, and export the result.</p></div><figure class="x-embed"><figcaption>Try the sample walkthrough</figcaption><div class="x-frame"><iframe id="iframe-interactivity-generator" title="Interactivity Generator workflow tool mockup" height="700" loading="lazy"></iframe></div></figure></section>
+<section class="band warm" id="s5-providing-another-way-to"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg></span>Providing another way to use the content</h2><p>Each activity comes with a static text version.</p>
+<p>Learners can use it as a study reference or as another way to access the material. It also provides readable course content for features that may not be able to interpret the interactive component directly.</p>
+<p>I included this alongside the interactive output so both versions are part of the designer’s workflow from the start.</p></div></section>
+<section class="band" id="s6-what-i-wanted-to-make-ea"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>What I wanted to make easier</h2><p>The tool brings choosing a format, previewing an activity, editing its content, and preparing it for Coursera into one workflow.</p>
+<p>My aim was to give our team more room to create small learning activities, with opportunities to review the content and consider accessibility along the way.</p></div></section>
 </main>
-
-<footer class="site">
-  <div class="wrap">
-    <span>&copy; Megan Lancaster</span>
-    <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
-  </div>
+<nav class="page-foot" style="margin-top:0" aria-label="More work">
+  <a class="prev" href="coursera-design-guide.html"><span class="dir">← Previous</span><span class="ttl">Coursera Design Guide</span></a>
+  <a class="next" href="about.html"><span class="dir">Next →</span><span class="ttl">About Megan</span></a>
+</nav>
+<footer class="site-foot">
+  <span>&copy; Megan Lancaster</span>
+  <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
 </footer>
 
+</div>
 <script src="js/embed-interactives.js?v=5"></script>
-
 <script src="js/site.js"></script>
 </body>
 </html>

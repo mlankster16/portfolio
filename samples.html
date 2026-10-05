@@ -4,22 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sample Learning Assets | Megan Lancaster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=11">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=22">
+<link rel="stylesheet" href="css/theme.css?v=1">
 </head>
-<body class="page-content">
+<body class="accent-gold">
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="shell">
 
 <header class="site">
-  <div class="wrap">
+  <div class="site-bar">
+    <span>Learning Experience Design &amp; Project Management</span>
+    <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+  <div class="nav-row">
     <a class="site-name" href="index.html">Megan Lancaster</a>
     <nav class="primary" aria-label="Main">
       <a href="index.html">Home</a>
       <div class="nav-menu">
         <button type="button" class="nav-menu-btn current" aria-expanded="false" aria-controls="work-menu">Work <span class="caret" aria-hidden="true"></span></button>
         <ul class="nav-menu-list" id="work-menu">
-          <li><a href="ai-for-nurses.html">AI for Nurses</a></li>
-          <li><a href="coursera-design-guide.html">Coursera Design Guide</a></li>
-          <li><a href="interactivity-generator.html">Interactivity Generator</a></li>
+          <li><a class="accent-blue" href="ai-for-nurses.html"><span class="dot" aria-hidden="true"></span>AI for Nurses</a></li>
+          <li><a class="accent-green" href="coursera-design-guide.html"><span class="dot" aria-hidden="true"></span>Coursera Design Guide</a></li>
+          <li><a class="accent-purple" href="interactivity-generator.html"><span class="dot" aria-hidden="true"></span>Interactivity Generator</a></li>
           <li><span class="nav-disabled" aria-disabled="true">Sample Learning Assets <span class="nav-soon">Coming soon</span></span></li>
         </ul>
       </div>
@@ -29,20 +39,24 @@
   </div>
 </header>
 
-<main class="wrap content-page">
-  <div class="stub-page">
-    <h1 class="page-title">Sample Learning Assets</h1>
-    <p>Which samples belong here hasn't been decided yet.</p>
+<main id="main">
+  <div class="page-head">
+    <div class="page-head-inner">
+      <p class="eyebrow">Coming soon</p>
+      <h1>Sample Learning Assets</h1>
+    </div>
+  </div>
+  <div class="stub" style="padding-top:40px">
+    <p class="stub-box">Which samples belong here hasn't been decided yet.</p>
   </div>
 </main>
 
-<footer class="site">
-  <div class="wrap">
-    <span>&copy; Megan Lancaster</span>
-    <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
-  </div>
+<footer class="site-foot">
+  <span>&copy; Megan Lancaster</span>
+  <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
 </footer>
 
+</div>
 <script src="js/site.js"></script>
 </body>
 </html>
