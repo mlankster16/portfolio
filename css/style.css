@@ -497,7 +497,7 @@ a.row:hover { background: var(--panel-warm); }
 }
 .portrait img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: top center; border-radius: 2px; }
 
-.work-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; margin: 28px 0 8px; }
+.work-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; margin: 28px 0 8px; }
 .work-card {
   display: flex; flex-direction: column; gap: 10px;
   min-height: 240px;
