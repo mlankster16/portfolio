@@ -253,6 +253,9 @@
 .dc .map-qt { margin:0; font-family:var(--font-display); font-size:var(--s2); line-height:1.25; color:#f4efe2; }
 .dc .map-ar { text-align:center; color:#b8863a; font-size:var(--s2); }
 .dc .map-note { margin-top:24px !important; padding:14px 18px; border-radius:8px; background:var(--panel-warm); border:1px solid var(--rule); color:var(--text-secondary); }
+.dc .map > .map-col:first-child { align-self:start; }
+.dc .in > p.map-note { max-width:none; display:flex; align-items:flex-start; gap:12px; }
+.dc .map-note-ic { flex:none; width:22px; height:22px; margin-top:2px; stroke:var(--gold-dark); }
 @media (max-width:820px){ .dc .map { grid-template-columns:minmax(0,1fr); gap:8px; } .dc .map-ar { transform:rotate(90deg); } }
 /* consistency pass */
 .dc .band > .in { max-width:1080px !important; }
@@ -319,7 +322,7 @@
 <span class="map-ar" aria-hidden="true">→</span>
 <div class="map-col"><p class="k" style="margin:0">Example course outcomes</p><span>Explain how environmental conditions affect organisms.</span><span>Distinguish changes in behavior from evolutionary change across generations.</span><span>Interpret biological data and use evidence to evaluate explanations.</span></div>
 </div>
-<p class="map-note">The mapping would also support curriculum and accreditation review by showing where required outcomes are taught, practiced, and assessed.</p>
+<p class="map-note"><svg class="map-note-ic" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span>The mapping would also support curriculum and accreditation review by showing where required outcomes are taught, practiced, and assessed.</span></p>
 </div></section>
 <section class="band warm" id="entry"><div class="in" style="max-width:1080px">
 <h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M9 11h6M9 15h4"/></svg></span>Getting to know Jordan</h2>
