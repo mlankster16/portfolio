@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rethinking Higher Ed | Megan Lancaster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=26">
+<link rel="stylesheet" href="css/theme.css?v=1">
+<style>
+.dc { --s1:56px; --s2:28px; --s3:17px; font-size:var(--s3); line-height:1.7; color:var(--text-body); }
+.dc h1,.dc h2 { font-family:var(--font-display); font-weight:500; margin:0; color:var(--navy); }
+.dc h1 { font-size:var(--s1); line-height:1.02; letter-spacing:-.01em; }
+.dc h2 { font-size:var(--s2); line-height:1.25; margin-bottom:18px; }
+.dc h3 { font-family:var(--font-display); font-weight:500; font-size:var(--s2); color:var(--navy); margin:0 0 12px; }
+.dc p { margin:0 0 16px; text-wrap:pretty; }
+.dc .band { padding:64px var(--pad-x); }
+.dc .band > .in { max-width:880px; }
+.dc .dark { background:#101d38; color:#cbd0dd; }
+.dc .dark h1, .dc .dark h2 { color:#f4efe2; }
+.dc .warm { background:var(--panel-warm); }
+.dc .tagline { font-family:var(--font-display); font-size:var(--s2); line-height:1.35; color:#e8b964; margin:16px 0 24px; }
+.dc .x-facts { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px; margin:40px 0 32px; padding-top:22px; border-top:2px solid #e8b964; }
+.dc .dark dt { color:#f4efe2; font-weight:700; } .dc .dark dd { margin:0; }
+.dc .jump { display:inline-block; font-weight:600; color:#101d38; background:#e8b964; padding:11px 20px; border-radius:999px; text-decoration:none; }
+.dc .jump:hover { background:#e8b964; color:#101d38; }
+.dc .acts { display:grid; gap:56px; margin-top:40px; }
+.dc .act { display:grid; grid-template-columns:72px minmax(0,1fr); gap:24px; }
+.dc .act-n { width:52px; height:52px; border-radius:50%; background:var(--blue-tint); border:1.5px solid var(--blue); color:var(--blue-dark); font-weight:700; display:grid; place-items:center; }
+.dc .x-embed { margin:20px 0 0; }
+.dc figcaption { font-weight:700; color:var(--navy); margin-bottom:12px; }
+.dc .x-frame { border:1px solid var(--rule); border-radius:6px; overflow:hidden; background:#fff; box-shadow:0 10px 28px rgba(16,29,56,.06); }
+.dc .x-frame iframe { width:100%; border:0; display:block; } .dc .x-frame img { width:100%; display:block; }
+.dc .x-tl { margin-top:8px; }
+.dc .x-tl summary { cursor:pointer; display:inline-block; font-weight:600; color:var(--navy); padding:10px 18px; border:1.5px solid var(--navy); border-radius:999px; list-style:none; }
+.dc .x-tl summary::-webkit-details-marker{display:none}
+.dc .x-tl ol { list-style:none; margin:28px 0 0; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.dc .x-tl li { display:flex; flex-direction:column; gap:4px; padding:16px 18px; background:#fff; border:1px solid var(--rule); border-radius:6px; }
+.dc .x-tl li span:first-child { font-weight:700; color:var(--teal-dark); }
+.dc .x-tl li:last-child { background:#101d38; border-color:#101d38; color:#f4efe2; } .dc .x-tl li:last-child span:first-child { color:#e8b964; }
+@media (max-width:820px){ .dc{--s1:42px;--s2:24px} .dc .x-facts{grid-template-columns:repeat(2,minmax(0,1fr))} .dc .act{grid-template-columns:minmax(0,1fr);gap:12px} .dc .x-tl ol{grid-template-columns:minmax(0,1fr)} }</style><style>
+.dc .s-draft { display:inline-block; margin:0 0 18px; padding:4px 12px; border-radius:999px; background:#e8b964; color:#101d38; font-weight:700; font-size:14px; }
+.dc .k { font-size:14px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-dark); margin:0 0 10px; }
+.dc .dark .k { color:#e8b964; }
+.dc .lede { font-family:var(--font-display); font-size:var(--s2); line-height:1.35; color:var(--navy); }
+.dc .chip { appearance:none; font:inherit; font-size:var(--s3); cursor:pointer; text-align:left; padding:10px 16px; border-radius:999px; border:1.5px solid var(--rule-strong); background:#fff; color:var(--text-body); line-height:1.35; transition:background .15s,border-color .15s,color .15s; }
+.dc .chip:hover { border-color:var(--navy); }
+.dc .chip[aria-pressed="true"] { background:#101d38; border-color:#101d38; color:#f4efe2; }
+.dc .chip:focus-visible, .dc .btn:focus-visible { outline:2px solid #e8b964; outline-offset:3px; }
+.dc .chips { display:flex; flex-wrap:wrap; gap:8px; }
+.dc .btn { appearance:none; font:inherit; font-size:var(--s3); cursor:pointer; padding:10px 20px; border-radius:999px; border:1.5px solid #101d38; background:#101d38; color:#f4efe2; font-weight:600; }
+.dc .btn.ghost { background:transparent; color:#101d38; }
+.dc .btn[disabled] { opacity:.35; cursor:default; }
+.dc .fmt { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin:28px 0 0; }
+.dc .fmt > div { padding:22px 22px 24px; border-radius:10px; display:flex; flex-direction:column; gap:8px; }
+.dc .fmt p { margin:0; }
+.dc .f-video { background:var(--blue-tint); border:1px solid var(--blue-border); } .dc .f-video .ft { color:var(--blue-dark); }
+.dc .f-game { background:var(--green-tint); border:1px solid var(--green-border); } .dc .f-game .ft { color:var(--green-dark); }
+.dc .f-field { background:var(--teal-tint); border:1px solid var(--teal-border); } .dc .f-field .ft { color:var(--teal-dark); }
+.dc .ft { font-size:14px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+.dc .fn { font-family:var(--font-display); font-size:var(--s2); line-height:1.2; color:var(--navy); }
+.dc .dial { margin:28px 0 0; }
+.dc .dial-bar { height:10px; border-radius:999px; background:linear-gradient(90deg,#e8b964,#339898); }
+.dc .dial ol { list-style:none; margin:16px 0 0; padding:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; }
+.dc .dial li { display:flex; flex-direction:column; gap:4px; }
+.dc .dial li strong { color:var(--navy); }
+.dc .dial-ends { display:flex; justify-content:space-between; font-size:14px; font-weight:700; color:var(--text-muted); margin-bottom:8px; }
+.dc .rub { margin:28px 0 0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; align-items:stretch; }
+.dc .rub-in { display:flex; flex-direction:column; gap:8px; }
+.dc .rub-in span { padding:10px 14px; border-radius:8px; background:#fff; border:1px solid var(--rule); }
+.dc .rub-task { grid-column:1/-1; padding:18px 22px; border-radius:10px; background:#101d38; color:#f4efe2; font-family:var(--font-display); font-size:var(--s2); line-height:1.3; }
+.dc .rub-task .k { color:#e8b964; font-family:var(--font-body); }
+.dc .rub-crit { grid-column:1/-1; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+.dc .rub-crit div { padding:14px 16px; border-radius:8px; background:var(--panel-warm); border:1px solid var(--rule); }
+.dc .rub-crit strong { display:block; color:var(--navy); }
+.dc .cur { margin:28px 0 0; display:grid; grid-template-columns:minmax(0,1.3fr) 40px minmax(0,1fr) 40px minmax(0,1fr); align-items:center; }
+.dc .cur-col { display:flex; flex-direction:column; gap:8px; }
+.dc .cur-col > span { padding:10px 14px; border-radius:8px; background:#fff; border:1px solid var(--rule); line-height:1.4; }
+.dc .cur-col .on { background:#101d38; color:#f4efe2; border-color:#101d38; }
+.dc .cur-ar { text-align:center; color:#b8863a; font-size:var(--s2); }
+.dc .study { margin:28px 0 0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.dc .study > div { padding:22px; border-radius:10px; background:rgba(255,255,255,.06); border:1px solid rgba(244,239,226,.18); display:flex; flex-direction:column; gap:8px; }
+.dc .study p { margin:0; }
+.dc .study .fn { color:#f4efe2; }
+.dc .measure { margin:24px 0 0; display:flex; flex-wrap:wrap; gap:8px; }
+.dc .measure span { padding:6px 14px; border-radius:999px; border:1px solid rgba(244,239,226,.3); color:#f4efe2; }
+@media (max-width:820px){ .dc .fmt, .dc .study, .dc .rub, .dc .rub-crit { grid-template-columns:minmax(0,1fr); } .dc .dial ol { grid-template-columns:repeat(2,minmax(0,1fr)); } .dc .cur { grid-template-columns:minmax(0,1fr); gap:8px; } .dc .cur-ar { transform:rotate(90deg); } }
+.dc .ch { display:grid; grid-template-columns:96px minmax(0,1fr); gap:24px; }
+.dc .ch-n { font-family:var(--font-display); font-size:72px; line-height:.9; color:#e8b964; }
+.dc .meet { display:grid; grid-template-columns:auto minmax(0,1fr); gap:20px; align-items:center; padding:22px 24px; margin:24px 0 32px; border-radius:12px; background:#fff; border:1px solid var(--rule); }
+.dc .av { width:72px; height:72px; border-radius:50%; background:#e8b964; color:#101d38; display:grid; place-items:center; font-family:var(--font-display); font-size:var(--s2); }
+.dc .meet p { margin:0; }
+.dc .proto { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:0; align-items:start; background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 14px 40px rgba(16,29,56,.12); border:1px solid var(--rule); }
+.dc .p-q { background:#fff; padding:28px 28px 24px; display:flex; flex-direction:column; gap:18px; position:sticky; top:96px; }
+.dc .p-dots { display:flex; gap:6px; }
+.dc .p-dots span { width:28px; height:5px; border-radius:999px; background:var(--rule-strong); }
+.dc .p-dots span.on { background:#e8b964; }
+.dc .p-title { font-family:var(--font-display); font-size:var(--s2); line-height:1.25; color:var(--navy); margin:0; }
+.dc .p-sub { font-size:14px; color:var(--text-muted); margin:-10px 0 0; }
+.dc .p-q .chips { flex-direction:column; align-items:flex-start; }
+.dc .p-nav { margin-top:8px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.dc .p-reset { appearance:none; border:0; background:none; font:inherit; font-size:14px; color:var(--text-muted); text-decoration:underline; cursor:pointer; padding:0; }
+.dc .p-r { background:#101d38; color:#cbd0dd; padding:28px; display:flex; flex-direction:column; gap:16px; }
+.dc .p-r p { margin:0; }
+.dc .p-r .k { margin:0; color:#e8b964; }
+.dc .p-unit { font-family:var(--font-display); font-size:var(--s2); line-height:1.25; color:#f4efe2; }
+.dc .p-row { padding-top:14px; border-top:1px solid rgba(244,239,226,.16); display:flex; flex-direction:column; gap:4px; }
+.dc .p-row strong { color:#f4efe2; }
+.dc .p-pills { display:flex; flex-wrap:wrap; gap:6px; }
+.dc .p-pills span { padding:4px 12px; border-radius:999px; background:#e8b964; color:#101d38; font-weight:700; font-size:14px; }
+.dc .p-r ul { margin:0; padding-left:18px; }
+@media (max-width:900px){ .dc .proto { grid-template-columns:minmax(0,1fr); } .dc .p-q { min-height:0; } }
+@media (max-width:820px){ .dc .ch { grid-template-columns:minmax(0,1fr); gap:4px; } .dc .ch-n { font-size:48px; } }
+.dc .x-h { display:flex; align-items:center; gap:16px; }
+.dc .x-ic { flex:none; width:48px; height:48px; border-radius:50%; display:grid; place-items:center; background:var(--accent-tint); border:1.5px solid var(--accent); }
+.dc .x-ic svg { width:22px; height:22px; stroke:var(--accent-dark); }
+.dc section[id] { scroll-margin-top:84px; }
+.dc .section-strip.x-steps { position:sticky; top:0; z-index:30; display:flex; align-items:center; justify-content:center; gap:0; margin:0; padding:12px var(--pad-x); background:rgba(255,253,248,.96); backdrop-filter:blur(6px); border:0; border-bottom:1px solid var(--rule); border-radius:0; box-shadow:none; overflow-x:auto; }
+.dc .x-steps a { flex:none; min-width:0; padding:0; border:0; background:none; display:block; }
+.dc .x-steps a:hover, .dc .x-steps a.active { background:none; }
+.dc .x-steps .x-dot { width:40px; height:40px; border-radius:50%; display:grid; place-items:center; background:#fff; border:1.5px solid var(--rule-strong); transition:background .2s, border-color .2s; }
+.dc .x-steps .x-dot svg { width:18px; height:18px; stroke:var(--text-muted); transition:stroke .2s; }
+.dc .x-steps a:hover .x-dot { border-color:var(--accent); }
+.dc .x-steps a:hover .x-dot svg { stroke:var(--accent-dark); }
+.dc .x-steps a.active .x-dot { background:var(--accent); border-color:var(--accent); }
+.dc .x-steps a.active .x-dot svg { stroke:#fff; }
+.dc .x-steps a:focus-visible { outline:2px solid var(--navy); outline-offset:3px; border-radius:50%; }
+.dc .x-line { flex:0 1 72px; min-width:16px; height:1.5px; background:var(--rule-strong); }
+@media (max-width:680px){ .dc .x-ic { width:40px; height:40px; } .dc .x-ic svg { width:18px; height:18px; } .dc .x-steps .x-dot { width:34px; height:34px; } }
+.dc .x-steps a { position:relative; }
+.dc .x-tip { position:absolute; top:calc(100% + 10px); left:50%; transform:translate(-50%,-4px); white-space:nowrap; padding:6px 12px; border-radius:6px; background:#101d38; color:#f4efe2; font-size:14px; font-weight:600; line-height:1.3; opacity:0; pointer-events:none; transition:opacity .15s, transform .15s; z-index:40; }
+.dc .x-tip::before { content:''; position:absolute; bottom:100%; left:50%; margin-left:-5px; border:5px solid transparent; border-bottom-color:#101d38; }
+.dc .x-steps a:hover .x-tip, .dc .x-steps a:focus-visible .x-tip { opacity:1; transform:translate(-50%,0); }
+@media (min-width:681px){ .dc .section-strip.x-steps { overflow:visible; } }
+.dc .dark .x-ic { background:rgba(221,164,72,.14); border-color:#e8b964; } .dc .dark .x-ic svg { stroke:#e8b964; }
+.dc .x-h { margin-bottom:20px; }
+.dc .coin { display:grid; grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr); margin:28px 0 32px; }
+.dc .coin > div { padding:22px 24px 24px; border-radius:10px; background:#fff; border:1px solid var(--rule); display:flex; flex-direction:column; gap:10px; }
+.dc .coin ul { margin:0; padding:0; list-style:none; display:grid; gap:8px; }
+.dc .coin li::before { content:''; display:inline-block; width:7px; height:7px; border-radius:50%; background:#e8b964; margin-right:10px; vertical-align:2px; }
+.dc .coin .coin-same { background:var(--gold-tint); border-color:var(--gold-border); color:var(--text-body); }
+.dc .coin .coin-same .k { color:var(--gold-dark); }
+.dc .coin-eq { align-self:center; justify-self:center; font-family:var(--font-display); font-size:var(--s2); color:#b8863a; }
+@media (max-width:820px){ .dc .coin { grid-template-columns:minmax(0,1fr); gap:8px; } }
+.dc .in h3 { margin-top:36px; }
+.dc .bridge-ex { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 8px; }
+.dc .bridge-ex span { padding:6px 14px; border-radius:999px; background:var(--teal-tint); border:1px solid var(--teal-border); color:var(--teal-dark); font-weight:600; }
+.dc .fdl { margin:6px 0 0; display:grid; gap:12px; }
+.dc .fdl > div { padding-top:12px; border-top:1px solid rgba(16,29,56,.12); }
+.dc .fdl dt { font-weight:700; color:var(--navy); margin-bottom:2px; }
+.dc .fdl dd { margin:0; }
+.dc .zoom { margin:40px 0 0; display:grid; grid-template-columns:minmax(0,1fr) 120px minmax(0,1fr); align-items:stretch; row-gap:16px; }
+.dc .z-a, .dc .z-b { padding:20px 22px 22px; border-radius:10px; display:flex; flex-direction:column; gap:8px; }
+.dc .z-a { background:#101d38; } .dc .z-a .k { color:#e8b964; } .dc .z-a .z-q { color:#f4efe2; }
+.dc .z-b { background:var(--gold-tint); border:1px solid var(--gold-border); } .dc .z-b .k { color:var(--gold-dark); }
+.dc .z-q { margin:0; font-family:var(--font-display); font-size:var(--s2); line-height:1.25; color:var(--navy); }
+.dc .z-link { display:flex; align-items:center; gap:8px; padding:0 8px; }
+.dc .z-link span { flex:1; height:1.5px; background:#b8863a; }
+.dc .z-link span:last-child { position:relative; } .dc .z-link span:last-child::after { content:''; position:absolute; right:-2px; top:-4px; border:5px solid transparent; border-left:7px solid #b8863a; border-right:0; }
+.dc .z-link em { font-size:14px; color:var(--gold-dark); font-style:normal; font-weight:700; text-align:center; line-height:1.3; }
+.dc .z-why { grid-column:1/-1; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.dc .z-why > div { display:flex; flex-direction:column; gap:4px; padding:16px 18px; border-radius:8px; background:var(--panel-warm); border:1px solid var(--rule); }
+.dc .z-why strong { color:var(--navy); }
+@media (max-width:820px){ .dc .zoom { grid-template-columns:minmax(0,1fr); } .dc .z-link { flex-direction:column; height:56px; padding:0; } .dc .z-link span { width:1.5px; height:auto; flex:1; } .dc .z-link span:last-child::after { right:-4px; top:auto; bottom:-2px; border:5px solid transparent; border-top:7px solid #b8863a; border-bottom:0; } .dc .z-why { grid-template-columns:minmax(0,1fr); } }
+.dc .fq { margin:28px 0 0; padding:18px 22px 20px; border-radius:10px; background:#101d38; display:flex; flex-direction:column; gap:6px; }
+.dc .fq .k { color:#e8b964; }
+.dc .fq-q { margin:0; font-family:var(--font-display); font-size:var(--s2); line-height:1.25; color:#f4efe2; }
+.dc .fq + .fmt { margin-top:16px; }
+.dc .db-tog { margin:0 0 16px; }
+.dc .db { position:relative; background:#f3f2f1; border:1px solid var(--rule); border-radius:14px; padding:20px; box-shadow:0 14px 40px rgba(16,29,56,.10); display:flex; flex-direction:column; gap:14px; font-size:15px; line-height:1.55; }
+.dc .db p { margin:0; }
+.dc .db-top { display:flex; justify-content:space-between; align-items:center; padding:4px 6px; }
+.dc .db-crumb { font-size:14px; color:var(--text-muted); }
+.dc .db-hi { font-family:var(--font-display); font-size:var(--s2); color:var(--navy); line-height:1.2; }
+.dc .db-av { width:44px; height:44px; border-radius:50%; background:#e8b964; color:#101d38; display:grid; place-items:center; font-family:var(--font-display); font-size:22px; }
+.dc .db-q { position:relative; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.4fr); gap:20px; padding:18px 22px; border-radius:10px; background:#101d38; color:#cbd0dd; }
+.dc .db-l { font-size:14px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#e8b964; margin-bottom:4px !important; }
+.dc .db-fb .db-l, .dc .db-card .db-l { color:var(--gold-dark); }
+.dc .db-uq { font-family:var(--font-display); font-size:22px; line-height:1.3; color:#f4efe2; }
+.dc .db-grid { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr) minmax(0,1fr); gap:14px; align-items:start; }
+.dc .db-col { display:flex; flex-direction:column; gap:14px; }
+.dc .db-card { position:relative; background:#fff; border:1px solid #e2e6ed; border-radius:10px; padding:16px 18px; }
+.dc .db-h { font-size:14px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--navy); margin-bottom:10px !important; }
+.dc .db-path { list-style:none; margin:0; padding:0; display:grid; gap:0; }
+.dc .db-path li { position:relative; display:grid; grid-template-columns:22px minmax(0,1fr) auto; gap:10px; padding:0 0 14px; align-items:start; }
+.dc .db-path li:not(:last-child)::before { content:''; position:absolute; left:10px; top:20px; bottom:0; width:2px; background:#e2e6ed; }
+.dc .db-path li.done:not(:last-child)::before { background:var(--teal); }
+.dc .db-path div { display:flex; flex-direction:column; }
+.dc .db-path strong { color:var(--navy); font-weight:600; }
+.dc .db-path span { font-size:14px; color:var(--text-muted); }
+.dc .db-dot { width:22px; height:22px; border-radius:50%; border:2px solid #c9cdd4; background:#fff; position:relative; z-index:1; }
+.dc .db-path .done .db-dot { background:var(--teal) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat; border-color:var(--teal); }
+.dc .db-path .now .db-dot { border-color:#b4700c; box-shadow:0 0 0 4px var(--gold-tint); }
+.dc .db-path .db-now { font-size:14px; font-weight:700; color:#101d38 !important; background:#e8b964; padding:1px 10px; border-radius:999px; }
+.dc .db-next { background:#101d38; border-color:#101d38; color:#cbd0dd; }
+.dc .db-big { font-family:var(--font-display); font-size:var(--s2); color:#f4efe2; line-height:1.2; margin-bottom:8px !important; }
+.dc .db-btns { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+.dc .db-btn { display:inline-block; padding:8px 16px; border-radius:999px; background:#e8b964; color:#101d38; font-weight:700; font-size:14px; }
+.dc .db-btn.ghost { background:transparent; border:1.5px solid currentColor; color:var(--navy); }
+.dc .db-next .db-btn.ghost { color:#f4efe2; }
+.dc .db-routes { display:flex; flex-wrap:wrap; gap:8px; }
+.dc .db-routes span { padding:6px 12px; border-radius:8px; font-size:14px; font-weight:600; }
+.dc .db-routes em { font-style:normal; font-weight:400; margin-left:4px; }
+.dc .r-on { background:var(--blue-tint); border:1.5px solid var(--blue); color:var(--blue-dark); }
+.dc .r-g { background:var(--green-tint); border:1px solid var(--green-border); color:var(--green-dark); }
+.dc .r-t { background:var(--teal-tint); border:1px solid var(--teal-border); color:var(--teal-dark); }
+.dc .db-crit { display:grid; gap:10px; }
+.dc .db-crit > div { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:2px 12px; align-items:center; }
+.dc .db-bars { display:flex; gap:4px; } .dc .db-bars i { width:26px; height:8px; border-radius:4px; background:#e2e6ed; } .dc .db-bars i.on { background:var(--teal); }
+.dc .db-lvl { grid-column:1/-1; font-size:14px; color:var(--text-muted); }
+.dc .db-fb { margin-top:14px; padding:12px 14px; border-radius:8px; background:var(--gold-tint); border:1px solid var(--gold-border); }
+.dc .db-why { background:var(--blue-tint); border-color:var(--blue-border); }
+.dc .db-streak { display:flex; gap:6px; } .dc .db-streak i { width:30px; height:30px; border-radius:50%; display:grid; place-items:center; font-style:normal; font-size:14px; font-weight:700; background:#f3f2f1; color:var(--text-muted); } .dc .db-streak i.on { background:#e8b964; color:#101d38; }
+.dc .db-conf { display:flex; flex-wrap:wrap; gap:6px; } .dc .db-conf .chip { padding:6px 12px; font-size:14px; }
+.dc .db-sup { margin:0; padding:0; list-style:none; display:grid; gap:8px; }
+.dc .db-sup li { padding-left:16px; position:relative; } .dc .db-sup li::before { content:''; position:absolute; left:0; top:9px; width:7px; height:7px; border-radius:50%; background:var(--teal); }
+.dc .pin { display:none; position:absolute; top:-10px; left:-10px; z-index:3; width:28px; height:28px; border-radius:50%; background:var(--copper); color:#fff; font-size:14px; font-weight:700; place-items:center; box-shadow:0 0 0 3px #fff; }
+.dc .db.notes .pin { display:grid; }
+.dc .db-notes { list-style:none; counter-reset:n; margin:24px 0 0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 28px; }
+.dc .db-notes[hidden] { display:none; }
+.dc .db-notes li { counter-increment:n; display:grid; grid-template-columns:28px minmax(0,1fr); gap:2px 12px; align-content:start; }
+.dc .db-notes li::before { content:counter(n); grid-row:span 2; width:28px; height:28px; border-radius:50%; background:var(--copper); color:#fff; font-size:14px; font-weight:700; display:grid; place-items:center; }
+.dc .db-notes strong { color:var(--navy); }
+@media (max-width:1000px){ .dc .db-grid { grid-template-columns:minmax(0,1fr) minmax(0,1fr); } .dc .db-grid .db-col:first-child { grid-column:1/-1; } }
+@media (max-width:680px){ .dc .db-grid, .dc .db-q, .dc .db-notes { grid-template-columns:minmax(0,1fr); } }
+</style>
+</head>
+<body class="accent-gold">
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="shell">
+<header class="site">
+  <div class="site-bar">
+    <span>Learning Experience Design &amp; Project Management</span>
+    <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+  <div class="nav-row">
+    <a class="site-name" href="index.html">Megan Lancaster</a>
+    <nav class="primary" aria-label="Main">
+      <a href="index.html">Home</a>
+      <div class="nav-menu">
+        <button type="button" class="nav-menu-btn current" aria-expanded="false" aria-controls="work-menu">Work <span class="caret" aria-hidden="true"></span></button>
+        <ul class="nav-menu-list" id="work-menu">
+          <li><a class="accent-blue" href="ai-for-nurses.html"><span class="dot" aria-hidden="true"></span>AI for Nurses</a></li>
+          <li><a class="accent-green" href="coursera-design-guide.html"><span class="dot" aria-hidden="true"></span>Coursera Design Guide</a></li>
+          <li><a class="accent-purple" href="interactivity-generator.html"><span class="dot" aria-hidden="true"></span>Interactivity Generator</a></li>
+          <li><a class="accent-gold" href="rethinking-higher-ed.html" aria-current="page"><span class="dot" aria-hidden="true"></span>Rethinking Higher Ed</a></li>
+        </ul>
+      </div>
+      <a href="about.html">About</a>
+      <a class="btn-resume" href="https://docs.google.com/document/d/1pWk1qs3nyDYDiwEghV3D0yQEshb6pXZg0N5tTc-Grmc/edit?usp=sharing" target="_blank" rel="noopener">Résumé</a>
+    </nav>
+  </div>
+</header>
+<main id="main" class="dc">
+<header class="band dark"><div class="in"><p class="s-draft">Draft concept</p><h1>Rethinking an undergraduate science course</h1>
+<p class="tagline">Start with the learner, and let them choose the way in.</p>
+<p>This concept follows Jordan, a physics major taking biology, through a course organized around essential questions, meaningful practice, and shared learning goals. I’m exploring how learners’ interests and prior knowledge could shape their experience and what we would need to test before developing the idea further.</p></div></header>
+<nav class="section-strip x-steps" aria-label="On this page"><a href="#why" aria-label="A required course that meets learners where they are"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polygon points="15.5 8.5 13.5 13.5 8.5 15.5 10.5 10.5 15.5 8.5"/></svg></span><span class="x-tip" aria-hidden="true">Meeting learners where they are</span></a><span class="x-line" aria-hidden="true"></span><a href="#c1" aria-label="A question worth investigating"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14"/><circle cx="12" cy="17" r=".6" fill="currentColor"/></svg></span><span class="x-tip" aria-hidden="true">A question worth investigating</span></a><span class="x-line" aria-hidden="true"></span><a href="#entry" aria-label="Getting to know Jordan"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M9 11h6M9 15h4"/></svg></span><span class="x-tip" aria-hidden="true">Getting to know Jordan</span></a><span class="x-line" aria-hidden="true"></span><a href="#c2" aria-label="Choices and support"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21v-7"/><path d="M12 14 6 8"/><path d="M12 14l6-6"/><path d="M6 4v4h4"/><path d="M18 4v4h-4"/></svg></span><span class="x-tip" aria-hidden="true">Choices and support</span></a><span class="x-line" aria-hidden="true"></span><a href="#c3" aria-label="Making learning visible"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8.5 12.3l2.5 2.5 4.5-5"/></svg></span><span class="x-tip" aria-hidden="true">Making learning visible</span></a><span class="x-line" aria-hidden="true"></span><a href="#dashboard" aria-label="What Jordan might see"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg></span><span class="x-tip" aria-hidden="true">What Jordan might see</span></a></nav>
+<section class="band warm" id="why"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polygon points="15.5 8.5 13.5 13.5 8.5 15.5 10.5 10.5 15.5 8.5"/></svg></span>A required course that meets learners where they are</h2>
+<p>Students arrive in a required science course with different interests, prior knowledge, and reasons for being there. I’d like to give them more ways to connect with the material while helping everyone build the course’s core knowledge and skills.</p>
+<p>We now have the technology and resources to make that possible. AI can start from what motivates a learner, why they’re in this course or program, and what kind of experience they’re hoping for, then build the concepts and skills of a STEM curriculum around those goals.</p>
+<div class="coin"><div><p class="k" style="margin:0">What varies</p><ul><li>The examples that make it relevant</li><li>The preparation each learner needs</li><li>How they choose to begin</li></ul></div><span class="coin-eq" aria-hidden="true">+</span><div class="coin-same"><p class="k" style="margin:0">What stays the same</p><ul><li>The scientific question</li><li>The core knowledge and skills</li><li>The shared assessment</li></ul></div></div>
+<p>In this concept, learners can approach the same scientific question through different examples and activities. Their choices help shape the experience, and shared assessments let us examine what they can do with what they’ve learned.</p></div></section>
+<section class="band" id="c1"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14"/><circle cx="12" cy="17" r=".6" fill="currentColor"/></svg></span>Start with a question worth investigating</h2>
+<p>I’d organize each unit around a question learners can investigate, then build a sequence of explanations, practice, and feedback that helps them answer it. Short activities would create manageable steps within that larger investigation, with time to revisit ideas and work through more demanding problems.</p>
+<p>This means reimagining the curriculum itself. A typical general education science course can be broken down into its essential questions and skills. Every activity is built around those, and each maps back to the course’s learning outcomes so the course stays aligned for accreditation.</p>
+<div class="cur"><div class="cur-col"><p class="k" style="margin:0">Essential questions</p><span>What makes something alive?</span><span>How do traits pass between generations?</span><span class="on">How do living things adapt to a changing environment?</span><span>How do organisms depend on each other?</span><span>How do people shape living systems?</span></div>
+<span class="cur-ar" aria-hidden="true">→</span>
+<div class="cur-col"><p class="k" style="margin:0">Core skills</p><span>Collect and interpret data</span><span>Build an explanation from evidence</span><span>Evaluate sources</span></div>
+<span class="cur-ar" aria-hidden="true">→</span>
+<div class="cur-col"><p class="k" style="margin:0">Course outcomes</p><span>Mapped for accreditation review</span><span>Assessed with shared rubrics</span></div></div>
+</div></section>
+<section class="band warm" id="entry"><div class="in" style="max-width:1080px">
+<h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M9 11h6M9 15h4"/></svg></span>Getting to know Jordan</h2>
+<p style="max-width:880px">Before the course begins, I’d ask learners about their interests, prior knowledge, and reasons for taking it. Their answers would help suggest a starting point, with room to change direction as they learn.</p>
+<p style="max-width:880px">Meet Jordan below, then change the answers to explore how the proposed path responds.</p>
+<div class="meet"><span class="av" aria-hidden="true">J</span><p><strong>Meet Jordan.</strong> Jordan is a physics major taking the biology course their degree requires. They’re comfortable with graphs and data, less sure about cells and genetics, and not especially excited about the course. The questions start with Jordan’s answers. Change any of them to see the path respond.</p></div>
+<div class="proto">
+<div class="p-q" aria-live="polite"><div class="p-dots" id="aDots"></div><p class="k" id="aStep" style="margin:0"></p><p class="p-title" id="aTitle"></p><p class="p-sub" id="aSub"></p><div class="chips" id="aOpts"></div>
+<div class="p-nav"><button type="button" class="btn ghost" id="aBack">Back</button><button type="button" class="p-reset" id="aReset">Reset to Jordan</button><button type="button" class="btn" id="aNext">Next</button></div></div>
+<div class="p-r" aria-live="polite"><p class="k">Your path · Unit 3</p><p class="p-unit" id="rQ"></p>
+<div class="p-row"><strong id="rLensT"></strong><p id="rLens"></p></div>
+<div class="p-row"><strong id="rFmtT"></strong><div class="p-pills" id="rFmt"></div></div>
+<div class="p-row" id="rShakyRow"><strong>A bridge first</strong><ul id="rShaky"></ul></div>
+<div class="p-row"><strong id="rKeepT"></strong><p id="rKeep"></p></div>
+<div class="p-row"><strong>Where every path ends</strong><p id="rTask"></p></div></div>
+</div></div></section>
+<section class="band" id="c2"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21v-7"/><path d="M12 14 6 8"/><path d="M12 14l6-6"/><path d="M6 4v4h4"/><path d="M18 4v4h-4"/></svg></span>Offer meaningful choices and useful support</h2>
+<h3>Activity formats</h3><p>Each option needs to help learners work with the unit’s central ideas. I’d design the activities around comparable opportunities to interpret evidence, develop an explanation, and receive feedback.</p>
+<p>Learners could choose a starting point and try another approach when they need it. I’d examine both their choices and their work to understand which options are useful, for whom, and under what circumstances.</p><div class="fq"><p class="k" style="margin:0">All three investigate</p><p class="fq-q">How does birdsong differ between a city park and a nearby forest, and why?</p></div><div class="fmt"><div class="f-video"><span class="ft" data-f="video-tag"></span><span class="fn" data-f="video-name"></span><dl class="fdl"><div><dt>What learners do</dt><dd>Compare recordings and spectrograms, make predictions, and examine an expert’s reasoning.</dd></div><div><dt>Prepares for the shared task</dt><dd>Shows how an expert reads the evidence and builds an explanation before learners write their own.</dd></div></dl></div><div class="f-game"><span class="ft" data-f="game-tag"></span><span class="fn" data-f="game-name"></span><dl class="fdl"><div><dt>What learners do</dt><dd>Use recordings, noise measurements, and field notes to evaluate competing explanations.</dd></div><div><dt>Prepares for the shared task</dt><dd>Practices weighing another possible explanation, with feedback on each puzzle before the next one unlocks.</dd></div></dl></div><div class="f-field"><span class="ft" data-f="field-tag"></span><span class="fn" data-f="field-name"></span><dl class="fdl"><div><dt>What learners do</dt><dd>Collect a local recording and compare it with supplied recordings and noise data. Learners who can’t record outdoors can use a supplied local recording instead.</dd></div><div><dt>Prepares for the shared task</dt><dd>Works with real, imperfect data and identifies what additional evidence would help.</dd></div></dl></div></div><div style="margin-top:28px"><p>Over time, the course would track which paths learners choose and how they do. If one format is more popular, it would be refined, and new ideas would keep getting tested alongside it.</p></div>
+<h3 style="margin-top:48px">Preparation</h3>
+<p>Learners can use a short refresher before beginning the investigation. For this unit, that might mean practice reading a spectrogram or interpreting a graph. A brief check would help them decide whether they need more preparation or are ready to continue.</p>
+<div class="bridge-ex"><span>Reading graphs</span><span>Cells and DNA</span><span>Basic statistics</span></div>
+<h3 style="margin-top:48px">Motivation</h3><p>Some learners arrive with strong intrinsic motivation. Others need extra support and outside encouragement to keep going. Both are okay, and good design can support each of them.</p>
+<p>Game elements like points, streaks, and progress maps can help a learner build momentum early. The goal is to shift the reward over the term, from showing up toward what a learner can now do and explain, so the motivation becomes their own.</p>
+<div class="dial"><div class="dial-ends"><span>Outside encouragement</span><span>Their own reasons</span></div><div class="dial-bar" aria-hidden="true"></div>
+<ol><li><strong>Weeks 1–3</strong><span>Points and streaks for finishing checkpoints</span></li><li><strong>Weeks 4–7</strong><span>Badges tied to skills, not activity</span></li><li><strong>Weeks 8–11</strong><span>Learners pick their own challenges</span></li><li><strong>Weeks 12–15</strong><span>An independent project on a question they choose</span></li></ol></div></div></section>
+<section class="band warm" id="c3"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8.5 12.3l2.5 2.5 4.5-5"/></svg></span>Make the learning visible</h2>
+<p>Each activity would prepare learners for the same final task. Shared criteria would make the expectations clear while allowing learners to draw on evidence from their chosen investigation.</p>
+<div class="rub"><div class="rub-in"><span>A local recording compared with supplied data</span></div><div class="rub-in"><span>An escape room log weighing explanations</span></div><div class="rub-in"><span>Video checkpoint predictions and notes</span></div>
+<div class="rub-task"><p class="k" style="margin:0 0 6px">Every path ends with</p>Use the recordings and environmental data to explain a difference in birdsong between two settings. Consider another possible explanation and identify what additional evidence would help you investigate it.</div>
+<div class="rub-crit"><div><strong>Uses evidence</strong>Draws on observations or data</div><div><strong>Interprets data</strong>Reads patterns accurately</div><div><strong>Connects</strong>Links back to the essential question</div><div><strong>Communicates</strong>Explains clearly for a general reader</div></div></div>
+<p style="margin-top:28px">Feedback throughout the unit uses the same criteria as the final task. Checkpoints help learners see what they’re doing well and where to focus next. They also help faculty identify where learners may need more support.</p></div></section>
+
+<section class="band" id="dashboard"><div class="in" style="max-width:1180px"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg></span>What Jordan might see</h2>
+<p style="max-width:880px">A learner dashboard brings these ideas together in one place. This mockup shows Jordan partway through the birdsong unit. Turn on the design notes to see the learning design choice behind each part.</p>
+<div class="db-tog"><button type="button" class="chip" id="dbNotes" aria-pressed="false">Show design notes</button></div>
+<div class="db" id="db">
+<div class="db-top"><div><p class="db-crumb">Biology 101 · Unit 3 of 5</p><p class="db-hi">Welcome back, Jordan</p></div><div class="db-av" aria-hidden="true">J</div></div>
+<div class="db-q"><span class="pin" aria-hidden="true">1</span><div><p class="db-l">Essential question</p><p>How do living things adapt to a changing environment?</p></div><div><p class="db-l">This unit</p><p class="db-uq">How does birdsong differ between a city park and a nearby forest, and why?</p></div></div>
+<div class="db-grid">
+<div class="db-col">
+<div class="db-card"><span class="pin" aria-hidden="true">2</span><p class="db-h">Your path</p><ol class="db-path"><li class="done"><span class="db-dot" aria-hidden="true"></span><div><strong>Refresher check</strong><span>Reading a spectrogram · 5 min</span></div></li><li class="done"><span class="db-dot" aria-hidden="true"></span><div><strong>Guided video</strong><span>City vs. forest recordings · 18 min</span></div></li><li class="done"><span class="db-dot" aria-hidden="true"></span><div><strong>Checkpoint 1</strong><span>Make a prediction · feedback received</span></div></li><li class="now"><span class="db-dot" aria-hidden="true"></span><div><strong>Compare the evidence</strong><span>Spectrograms and noise data · 20 min</span></div><span class="db-now">Now</span></li><li class="todo"><span class="db-dot" aria-hidden="true"></span><div><strong>Consider another explanation</strong><span>Weigh a competing idea · 15 min</span></div></li><li class="todo"><span class="db-dot" aria-hidden="true"></span><div><strong>Checkpoint 2</strong><span>Draft your explanation · feedback</span></div></li><li class="todo"><span class="db-dot" aria-hidden="true"></span><div><strong>Final task</strong><span>Shared task · all routes</span></div></li></ol></div>
+</div>
+<div class="db-col">
+<div class="db-card db-next"><span class="pin" aria-hidden="true">3</span><p class="db-h" style="color:#e8b964">Next step · about 20 min</p><p class="db-big">Compare the evidence</p><p>Look at spectrograms from both sites alongside noise measurements. Describe one difference in the songs and what in the environment might explain it.</p><div class="db-btns"><span class="db-btn">Continue</span><span class="db-btn ghost">Review the video</span></div></div>
+<div class="db-card"><span class="pin" aria-hidden="true">4</span><p class="db-h">Try another route</p><p style="margin:0 0 12px">Same question, same final task. Switch anytime.</p><div class="db-routes"><span class="r-on">Guided video <em>current</em></span><span class="r-g">Escape room</span><span class="r-t">Field investigation</span></div></div>
+<div class="db-card"><span class="pin" aria-hidden="true">5</span><p class="db-h">Progress on the final task criteria</p><div class="db-crit"><div><span>Uses evidence</span><span class="db-bars" aria-label="Meeting"><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="db-lvl">Meeting</span></div><div><span>Interprets data</span><span class="db-bars" aria-label="Developing"><i class="on"></i><i class="on"></i><i class=""></i></span><span class="db-lvl">Developing</span></div><div><span>Considers another explanation</span><span class="db-bars" aria-label="Not yet assessed"><i class="on"></i><i class=""></i><i class=""></i></span><span class="db-lvl">Not yet assessed</span></div><div><span>Communicates clearly</span><span class="db-bars" aria-label="Developing"><i class="on"></i><i class="on"></i><i class=""></i></span><span class="db-lvl">Developing</span></div></div>
+<div class="db-fb"><p class="db-l">Feedback on Checkpoint 1</p><p>Your prediction used the recordings well. Next, look at the noise data: does it support your idea, or point to something else?</p></div></div>
+</div>
+<div class="db-col">
+<div class="db-card db-why"><span class="pin" aria-hidden="true">6</span><p class="db-h">Why this matters to you</p><p>Birdsong is a signal in a noisy channel. You’ll use what you know about frequency and noise to explain what the birds are doing.</p></div>
+<div class="db-card"><span class="pin" aria-hidden="true">7</span><p class="db-h">Momentum</p><div class="db-streak"><i class="on">M</i><i class="on">T</i><i class="on">W</i><i class="on">T</i><i class="">F</i><i class="">S</i><i class="">S</i></div><p style="margin:10px 0 0">4-day streak. Skills shown so far: reading spectrograms.</p></div>
+<div class="db-card"><span class="pin" aria-hidden="true">8</span><p class="db-h">Revisit from Unit 2</p><p style="margin:0 0 10px">Can a trait change within one bird’s lifetime, or only across generations?</p><span class="db-btn ghost">Answer in 1 min</span></div>
+<div class="db-card"><span class="pin" aria-hidden="true">9</span><p class="db-h">How confident do you feel?</p><p style="margin:0 0 10px">Explaining why city birds might sing differently</p><div class="db-conf" role="group" aria-label="Confidence"><button type="button" class="chip" aria-pressed="false">Not yet</button><button type="button" class="chip" aria-pressed="true">Somewhat</button><button type="button" class="chip" aria-pressed="false">Confident</button></div></div>
+<div class="db-card"><span class="pin" aria-hidden="true">10</span><p class="db-h">Get support</p><ul class="db-sup"><li>Study group · 3 classmates on this unit</li><li>Ask a question about this step</li><li>Faculty office hours · Thursday 4 pm</li></ul></div>
+</div></div></div>
+<ol class="db-notes" id="dbLegend" hidden><li><strong>A visible goal</strong><span>The essential question and unit question stay at the top, so every activity connects back to what learners are trying to answer.</span></li><li><strong>A sequence with manageable steps</strong><span>Short steps build toward the investigation, with estimated times so learners can plan.</span></li><li><strong>One clear next step</strong><span>The dashboard leads with the next activity and what it asks learners to do.</span></li><li><strong>Choice without losing the goal</strong><span>Learners can switch to another route at any point. The question and final task stay the same.</span></li><li><strong>Criteria-based feedback</strong><span>Progress is shown against the same criteria as the final task, not as points or percentages.</span></li><li><strong>Relevance</strong><span>The physics lens from Jordan’s entry answers reappears as a reminder of why this matters to them.</span></li><li><strong>Motivation that shifts over time</strong><span>Early on, a streak supports momentum. Later in the term this space shifts toward skills learners have shown.</span></li><li><strong>Retrieval and spacing</strong><span>A short question from an earlier unit brings back a related idea at the right moment.</span></li><li><strong>Self-assessment</strong><span>A quick confidence check helps learners notice what they understand and gives faculty a signal to follow up.</span></li><li><strong>Support options</strong><span>Learners can see where to get help, from a study group to faculty office hours.</span></li></ol>
+</div></section>
+<section class="band"><div class="in"><p class="lede" style="margin:0 0 20px">This is a working idea. If you’re thinking about similar questions, I’d love to talk.</p><a class="jump" href="mailto:meganrlancaster@gmail.com">Send me a message</a></div></section>
+</main>
+<script src="js/rethink-data.js"></script>
+<script>
+(function(){
+function fillFormats(root){var F=RETHINK.FORMAT;['video','game','field'].forEach(function(k){root.querySelector('[data-f="'+k+'-tag"]').textContent=F[k].tag;root.querySelector('[data-f="'+k+'-name"]').textContent=F[k].name;});}
+var R=RETHINK,Q=R.Q,a=JSON.parse(JSON.stringify(R.JORDAN)),i=0;
+var $=function(id){return document.getElementById(id)};
+fillFormats(document);
+function drawQ(){var q=Q[i];$('aStep').textContent='Question '+(i+1)+' of '+Q.length;$('aTitle').textContent=q.title;$('aSub').textContent=q.sub||'';$('aSub').hidden=!q.sub;
+$('aDots').innerHTML=Q.map(function(_,j){return '<span class="'+(j<=i?'on':'')+'"></span>'}).join('');
+$('aOpts').innerHTML='';q.opts.forEach(function(o){var b=document.createElement('button');b.type='button';b.className='chip';var on=q.type==='many'?(a[q.id]||[]).indexOf(o[0])>-1:a[q.id]===o[0];b.setAttribute('aria-pressed',on?'true':'false');b.textContent=o[1];
+b.onclick=function(){if(q.type==='many'){var l=a[q.id]||[],k=l.indexOf(o[0]);if(k>-1)l.splice(k,1);else l.push(o[0]);a[q.id]=l;}else a[q.id]=o[0];drawQ();drawR();};$('aOpts').appendChild(b);});
+$('aBack').disabled=i===0;$('aNext').textContent=i===Q.length-1?'Start over':'Next';}
+function drawR(){var p=R.path(a);$('rQ').textContent=R.UNIT.question;$('rLensT').textContent='Your angle: '+p.major.lens;$('rLens').textContent=p.major.text+' '+p.why;
+$('rFmtT').textContent=p.choose?'Choose your format for each piece':'Your format';$('rFmt').innerHTML=p.formats.map(function(f){return '<span>'+f.name+'</span>'}).join('');
+$('rShakyRow').hidden=!p.shaky.length;$('rShaky').innerHTML=p.shaky.map(function(s){return '<li>'+s+'</li>'}).join('');
+$('rKeepT').textContent='What keeps you going: '+p.keep.name;$('rKeep').textContent=p.keep.text;$('rTask').textContent=p.task;}
+$('aBack').onclick=function(){if(i>0){i--;drawQ();}};$('aNext').onclick=function(){i=i<Q.length-1?i+1:0;drawQ();};
+$('aReset').onclick=function(){a=JSON.parse(JSON.stringify(R.JORDAN));i=0;drawQ();drawR();};
+drawQ();drawR();
+})();
+</script>
+<script>
+(function(){var b=document.getElementById('dbNotes'),d=document.getElementById('db'),l=document.getElementById('dbLegend');b.onclick=function(){var on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',on);b.textContent=on?'Hide design notes':'Show design notes';d.classList.toggle('notes',on);l.hidden=!on;};
+document.querySelectorAll('.db-conf .chip').forEach(function(c){c.onclick=function(){document.querySelectorAll('.db-conf .chip').forEach(function(x){x.setAttribute('aria-pressed','false')});c.setAttribute('aria-pressed','true');};});})();
+</script>
+<nav class="page-foot" style="margin-top:0" aria-label="More work">
+  <a class="prev" href="interactivity-generator.html"><span class="dir">← Previous</span><span class="ttl">Interactivity Generator</span></a>
+  <a class="next" href="about.html"><span class="dir">Next →</span><span class="ttl">About Megan</span></a>
+</nav>
+<footer class="site-foot">
+  <span>&copy; Megan Lancaster</span>
+  <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
+</footer>
+</div>
+<script src="js/site.js"></script>
+</body>
+</html>
