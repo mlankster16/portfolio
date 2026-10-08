@@ -274,15 +274,15 @@
 .dc .ri-g { background:var(--green-tint) !important; border-color:var(--green-border) !important; }
 .dc .ri-f { background:var(--purple-tint) !important; border-color:var(--purple-border) !important; }
 /* Dashboard consistency pass: one type scale, one control style, one meaning for each tint */
-.dc .db .db-hi { font-size:28px; }
-.dc .db .db-big, .dc .db .db-uq { font-size:24px; line-height:1.25; }
+/* One serif role (headlines and questions, 24px); everything else is sans (15 text, 14 details) */
+.dc .db .db-hi, .dc .db .db-big, .dc .db .db-uq, .dc .db .db-q > div > p:not(.db-l) { font-family:var(--font-display); font-size:24px; font-weight:400; line-height:1.25; color:var(--navy); }
 .dc .db .db-av { font-size:24px; }
 .dc .db .db-btn, .dc .db .db-now, .dc .db .db-conf .chip, .dc .db .db-routes span, .dc .db .db-streak i { font-size:14px; font-weight:600; line-height:1.4; }
 .dc .db .db-routes span { border-radius:999px; padding:6px 14px; border-width:1px; }
 .dc .db .db-routes .r-on { border-width:1.5px; }
 .dc .db .db-btn { padding:8px 18px; }
 .dc .db .db-why { background:var(--gold-tint); border-color:var(--gold-border); }
-@media (max-width:820px){ .dc .db .db-hi { font-size:24px; } .dc .db .db-big, .dc .db .db-uq { font-size:22px; } }
+@media (max-width:820px){ .dc .db .db-hi, .dc .db .db-big, .dc .db .db-uq, .dc .db .db-q > div > p:not(.db-l) { font-size:22px; } }
 /* Getting to know Jordan: same scale as the dashboard (24 serif headlines, 17 body and titles, 15 compact values, 14 details, tags and labels) */
 .dc .proto .p-title, .dc .proto .p-unit { font-size:24px; line-height:1.25; }
 .dc .proto .p-row > strong, .dc .proto .p-unitbar strong, .dc .proto .p-ed-t { font-size:17px; font-weight:600; }
