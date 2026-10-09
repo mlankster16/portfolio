@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css?v=26">
 <link rel="stylesheet" href="css/theme.css?v=1">
 <style>
@@ -84,7 +85,7 @@
 .dc .study { margin:28px 0 0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
 .dc .study > div { padding:22px; border-radius:10px; background:rgba(255,255,255,.06); border:1px solid rgba(244,239,226,.18); display:flex; flex-direction:column; gap:8px; }
 .dc .study p { margin:0; }
-.dc .study .fn { color:#f4efe2; }
+.dc .study .fn { color:#fff; }
 .dc .measure { margin:24px 0 0; display:flex; flex-wrap:wrap; gap:8px; }
 .dc .measure span { padding:6px 14px; border-radius:999px; border:1px solid rgba(244,239,226,.3); color:#f4efe2; }
 @media (max-width:820px){ .dc .fmt, .dc .study, .dc .rub, .dc .rub-crit { grid-template-columns:minmax(0,1fr); } .dc .dial ol { grid-template-columns:repeat(2,minmax(0,1fr)); } .dc .cur { grid-template-columns:minmax(0,1fr); gap:8px; } .dc .cur-ar { transform:rotate(90deg); } }
@@ -166,9 +167,9 @@
 .dc .z-why > div { display:flex; flex-direction:column; gap:4px; padding:16px 18px; border-radius:8px; background:var(--panel-warm); border:1px solid var(--rule); }
 .dc .z-why strong { color:var(--navy); }
 @media (max-width:820px){ .dc .zoom { grid-template-columns:minmax(0,1fr); } .dc .z-link { flex-direction:column; height:56px; padding:0; } .dc .z-link span { width:1.5px; height:auto; flex:1; } .dc .z-link span:last-child::after { right:-4px; top:auto; bottom:-2px; border:5px solid transparent; border-top:7px solid #b8863a; border-bottom:0; } .dc .z-why { grid-template-columns:minmax(0,1fr); } }
-.dc .fq { margin:28px 0 0; padding:18px 22px 20px; border-radius:10px; background:#101d38; display:flex; flex-direction:column; gap:6px; }
-.dc .fq .k { color:#e8b964; }
-.dc .fq-q { margin:0; font-family:var(--font-display); font-size:var(--s2); line-height:1.25; color:#f4efe2; }
+.dc .fq { margin:28px 0 0; padding:18px 22px 20px; border-radius:10px; background:var(--app-ink); display:flex; flex-direction:column; gap:6px; }
+.dc .fq .k { color:var(--app-acc); }
+.dc .fq-q { margin:0; font-family:var(--font-display); font-size:var(--s2); line-height:1.25; color:#fff; }
 .dc .fq + .fmt { margin-top:16px; }
 .dc .db-tog { margin:0 0 16px; }
 .dc .db { position:relative; background:#f3f2f1; border:1px solid var(--rule); border-radius:14px; padding:20px; box-shadow:0 14px 40px rgba(16,29,56,.10); display:flex; flex-direction:column; gap:14px; font-size:15px; line-height:1.55; }
@@ -176,32 +177,32 @@
 .dc .db-top { display:flex; justify-content:space-between; align-items:center; padding:4px 6px; }
 .dc .db-crumb { font-size:14px; color:var(--text-muted); }
 .dc .db-hi { font-family:var(--font-display); font-size:var(--s2); color:var(--navy); line-height:1.2; }
-.dc .db-av { width:44px; height:44px; border-radius:50%; background:#e8b964; color:#101d38; display:grid; place-items:center; font-family:var(--font-display); font-size:22px; }
-.dc .db-q { position:relative; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.4fr); gap:20px; padding:18px 22px; border-radius:10px; background:#101d38; color:#cbd0dd; }
-.dc .db-l { font-size:14px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#e8b964; margin-bottom:4px !important; }
+.dc .db-av { width:44px; height:44px; border-radius:50%; background:var(--app-acc); color:var(--app-ink); display:grid; place-items:center; font-family:var(--font-display); font-size:22px; }
+.dc .db-q { position:relative; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.4fr); gap:20px; padding:18px 22px; border-radius:10px; background:var(--app-ink); color:#c7cad1; }
+.dc .db-l { font-size:14px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--app-acc); margin-bottom:4px !important; }
 .dc .db-fb .db-l, .dc .db-card .db-l { color:var(--gold-dark); }
-.dc .db-uq { font-family:var(--font-display); font-size:22px; line-height:1.3; color:#f4efe2; }
+.dc .db-uq { font-family:var(--font-display); font-size:22px; line-height:1.3; color:#fff; }
 .dc .db-grid { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr) minmax(0,1fr); gap:14px; align-items:start; }
 .dc .db-col { display:flex; flex-direction:column; gap:14px; }
-.dc .db-card { position:relative; background:#fff; border:1px solid #e2e6ed; border-radius:10px; padding:16px 18px; }
+.dc .db-card { position:relative; background:#fff; border:1px solid var(--rule); border-radius:10px; padding:16px 18px; }
 .dc .db-h { font-size:14px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--navy); margin-bottom:10px !important; }
 .dc .db-path { list-style:none; margin:0; padding:0; display:grid; gap:0; }
 .dc .db-path li { position:relative; display:grid; grid-template-columns:22px minmax(0,1fr) auto; gap:10px; padding:0 0 14px; align-items:start; }
-.dc .db-path li:not(:last-child)::before { content:''; position:absolute; left:10px; top:20px; bottom:0; width:2px; background:#e2e6ed; }
+.dc .db-path li:not(:last-child)::before { content:''; position:absolute; left:10px; top:20px; bottom:0; width:2px; background:var(--rule); }
 .dc .db-path li.done:not(:last-child)::before { background:var(--teal); }
 .dc .db-path div { display:flex; flex-direction:column; }
 .dc .db-path strong { color:var(--navy); font-weight:600; }
 .dc .db-path span { font-size:14px; color:var(--text-muted); }
 .dc .db-dot { width:22px; height:22px; border-radius:50%; border:2px solid #c9cdd4; background:#fff; position:relative; z-index:1; }
 .dc .db-path .done .db-dot { background:var(--teal) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat; border-color:var(--teal); }
-.dc .db-path .now .db-dot { border-color:#b4700c; box-shadow:0 0 0 4px var(--gold-tint); }
-.dc .db-path .db-now { font-size:14px; font-weight:700; color:#101d38 !important; background:#e8b964; padding:1px 10px; border-radius:999px; }
-.dc .db-next { background:#101d38; border-color:#101d38; color:#cbd0dd; }
-.dc .db-big { font-family:var(--font-display); font-size:var(--s2); color:#f4efe2; line-height:1.2; margin-bottom:8px !important; }
+.dc .db-path .now .db-dot { border-color:var(--app-acc-d); box-shadow:0 0 0 4px var(--gold-tint); }
+.dc .db-path .db-now { font-size:14px; font-weight:700; color:var(--app-ink) !important; background:var(--app-acc); padding:1px 10px; border-radius:999px; }
+.dc .db-next { background:var(--app-ink); border-color:var(--app-ink); color:#c7cad1; }
+.dc .db-big { font-family:var(--font-display); font-size:var(--s2); color:#fff; line-height:1.2; margin-bottom:8px !important; }
 .dc .db-btns { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
-.dc .db-btn { display:inline-block; padding:8px 16px; border-radius:999px; background:#e8b964; color:#101d38; font-weight:700; font-size:14px; }
+.dc .db-btn { display:inline-block; padding:8px 16px; border-radius:999px; background:var(--app-acc); color:var(--app-ink); font-weight:700; font-size:14px; }
 .dc .db-btn.ghost { background:transparent; border:1.5px solid currentColor; color:var(--navy); }
-.dc .db-next .db-btn.ghost { color:#f4efe2; }
+.dc .db-next .db-btn.ghost { color:#fff; }
 .dc .db-routes { display:flex; flex-wrap:wrap; gap:8px; }
 .dc .db-routes span { padding:6px 12px; border-radius:8px; font-size:14px; font-weight:600; }
 .dc .db-routes em { font-style:normal; font-weight:400; margin-left:4px; }
@@ -210,11 +211,11 @@
 .dc .r-t { background:var(--teal-tint); border:1px solid var(--teal-border); color:var(--teal-dark); }
 .dc .db-crit { display:grid; gap:10px; }
 .dc .db-crit > div { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:2px 12px; align-items:center; }
-.dc .db-bars { display:flex; gap:4px; } .dc .db-bars i { width:26px; height:8px; border-radius:4px; background:#e2e6ed; } .dc .db-bars i.on { background:var(--teal); }
+.dc .db-bars { display:flex; gap:4px; } .dc .db-bars i { width:26px; height:8px; border-radius:4px; background:var(--rule); } .dc .db-bars i.on { background:var(--teal); }
 .dc .db-lvl { grid-column:1/-1; font-size:14px; color:var(--text-muted); }
 .dc .db-fb { margin-top:14px; padding:12px 14px; border-radius:8px; background:var(--gold-tint); border:1px solid var(--gold-border); }
 .dc .db-why { background:var(--blue-tint); border-color:var(--blue-border); }
-.dc .db-streak { display:flex; gap:6px; } .dc .db-streak i { width:30px; height:30px; border-radius:50%; display:grid; place-items:center; font-style:normal; font-size:14px; font-weight:700; background:#f3f2f1; color:var(--text-muted); } .dc .db-streak i.on { background:#e8b964; color:#101d38; }
+.dc .db-streak { display:flex; gap:6px; } .dc .db-streak i { width:30px; height:30px; border-radius:50%; display:grid; place-items:center; font-style:normal; font-size:14px; font-weight:700; background:var(--app-bg); color:var(--text-muted); } .dc .db-streak i.on { background:var(--app-acc); color:var(--app-ink); }
 .dc .db-conf { display:flex; flex-wrap:wrap; gap:6px; } .dc .db-conf .chip { padding:6px 12px; font-size:14px; }
 .dc .db-sup { margin:0; padding:0; list-style:none; display:grid; gap:8px; }
 .dc .db-sup li { padding-left:16px; position:relative; } .dc .db-sup li::before { content:''; position:absolute; left:0; top:9px; width:7px; height:7px; border-radius:50%; background:var(--teal); }
@@ -276,7 +277,7 @@
 .dc .map-qt, .dc .fq-q, .dc .db-uq, .dc .db-q p { color:var(--navy) !important; }
 .dc .db-next { background:var(--blue-tint) !important; border-color:var(--blue-border) !important; color:var(--text-body) !important; }
 .dc .db-big { color:var(--navy) !important; }
-.dc .db-next .db-btn { background:#101d38; color:#fff; } .dc .db-next .db-btn.ghost { background:transparent; color:var(--navy) !important; }
+.dc .db-next .db-btn { background:var(--app-ink); color:#fff; } .dc .db-next .db-btn.ghost { background:transparent; color:var(--navy) !important; }
 .dc .f-field { background:var(--purple-tint) !important; border-color:var(--purple-border) !important; } .dc .f-field .ft { color:var(--purple-dark) !important; }
 .dc .r-t { background:var(--purple-tint) !important; border-color:var(--purple-border) !important; color:var(--purple-dark) !important; }
 .dc .ri-v { background:var(--blue-tint) !important; border-color:var(--blue-border) !important; }
@@ -321,12 +322,12 @@
 .dc .wt-tag { display:inline-block; white-space:nowrap; flex:none; font-size:14px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:3px 12px; border-radius:999px; border:1px dashed var(--rule-strong); color:var(--text-muted); background:#fff; }
 .dc .wt-ctl-r { display:flex; align-items:center; gap:12px; flex-wrap:wrap; font-size:15px; }
 .dc .wt-seg { display:inline-flex; gap:6px; align-items:center; }
-.dc .wt-dash { background:#f3f2f1; border:1px solid var(--rule); border-radius:14px; padding:20px; box-shadow:0 14px 40px rgba(16,29,56,.10); display:flex; flex-direction:column; gap:16px; min-height:560px; }
+.dc .wt-dash { background:var(--app-bg); border:1px solid var(--rule); border-radius:14px; padding:20px; box-shadow:0 14px 40px rgba(16,29,56,.10); display:flex; flex-direction:column; gap:16px; min-height:560px; }
 .dc .wt-top { display:flex; justify-content:space-between; align-items:center; gap:12px; padding-bottom:14px; border-bottom:1px solid var(--rule); }
 .dc .wt-crumb { margin:0; font-size:14px; color:var(--text-muted); }
 .dc .wt-screen { margin:0; font-family:var(--font-display); font-size:24px; line-height:1.25; color:var(--navy); }
 .dc .wt-who { display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; color:var(--navy); white-space:nowrap; }
-.dc .wt-av { width:36px; height:36px; border-radius:50%; background:#e8b964; color:#101d38; display:grid; place-items:center; font-family:var(--font-display); font-size:20px; }
+.dc .wt-av { width:36px; height:36px; border-radius:50%; background:var(--app-acc); color:var(--app-ink); display:grid; place-items:center; font-family:var(--font-display); font-size:20px; }
 .dc .wt-card { position:relative; background:#fff; border:1px solid var(--rule); border-radius:10px; padding:16px 18px; }
 .dc .wt-card > p, .dc .wt-card > div > p { margin:0 0 8px; } .dc .wt-card > p:last-child { margin-bottom:0; }
 .dc .wt-rel { position:relative; }
@@ -345,7 +346,7 @@
 .dc .wt-steps li:first-child { border-top:0; }
 .dc .wt-steps i { width:12px; height:12px; margin-top:6px; border-radius:50%; border:2px solid var(--rule-strong); }
 .dc .wt-steps li.done i { background:var(--navy); border-color:var(--navy); }
-.dc .wt-steps li.now i { background:#e8b964; border-color:#e8b964; }
+.dc .wt-steps li.now i { background:var(--app-acc); border-color:var(--app-acc); }
 .dc .wt-steps strong { display:block; color:var(--navy); line-height:1.35; }
 .dc .wt-steps span { font-size:15px; color:var(--text-muted); }
 .dc .wt-chat { display:flex; flex-direction:column; gap:10px; }
@@ -354,14 +355,14 @@
 .dc .wt-input { margin-top:6px; padding:12px 18px; border-radius:999px; border:1px solid var(--rule-strong); background:#fff; color:var(--text-muted); }
 .dc .wt-fmts { position:relative; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
 .dc .wt-fmt { appearance:none; font:inherit; text-align:left; cursor:pointer; position:relative; display:flex; flex-direction:column; gap:8px; padding:16px; border-radius:10px; color:var(--text-body); }
-.dc .wt-fmt[aria-pressed="true"] { box-shadow:0 0 0 3px #101d38; }
+.dc .wt-fmt[aria-pressed="true"] { box-shadow:0 0 0 3px var(--app-ink); }
 .dc .wt-fmt p { margin:0; font-size:15px; line-height:1.55; }
 .dc .wt-hook { position:relative; background:#fff; border-radius:10px; padding:10px 12px; }
 .dc .wt-pick { margin-top:auto; padding-top:4px; font-weight:700; font-size:14px; color:var(--navy); }
 .dc .wt-safety { margin:0; max-width:none !important; padding:12px 16px; border-radius:10px; background:#fff; border:1px dashed var(--rule-strong); }
 .dc .wt-routes { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
 .dc .wt-routes span { padding:6px 8px; border-radius:10px; text-align:center; font-size:14px; font-weight:600; background:#fff; border:1px solid var(--rule); color:var(--navy); }
-.dc .wt-routes span[aria-current="true"] { background:#101d38; border-color:#101d38; color:#fff; }
+.dc .wt-routes span[aria-current="true"] { background:var(--app-ink); border-color:var(--app-ink); color:#fff; }
 .dc .wt-crit { list-style:none; margin:0; padding:0; display:grid; gap:10px; }
 .dc .wt-crit li { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:2px 12px; padding-top:10px; border-top:1px solid var(--rule); }
 .dc .wt-crit li:first-child { border-top:0; padding-top:0; }
@@ -369,25 +370,25 @@
 .dc .wt-crit .lv { font-size:14px; font-weight:700; color:var(--navy); text-align:right; }
 .dc .wt-crit .c { grid-column:1/-1; font-size:15px; }
 .dc .wt-bars { display:inline-flex; gap:3px; margin-right:6px; vertical-align:middle; } .dc .wt-bars i { width:14px; height:6px; border-radius:3px; background:var(--rule-strong); } .dc .wt-bars i.on { background:var(--navy); }
-.dc .wt-draft { margin:0; padding:12px 16px; border-left:3px solid var(--rule-strong); background:#faf9f7; font-style:italic; }
-.dc .wt-next { background:#101d38; border-color:#101d38; color:#cbd0dd; }
-.dc .wt-next .wt-k { color:#e8b964; } .dc .wt-next .wt-big { color:#f4efe2; }
+.dc .wt-draft { margin:0; padding:12px 16px; border-left:3px solid var(--rule-strong); background:var(--app-sub); font-style:italic; }
+.dc .wt-next { background:var(--app-ink); border-color:var(--app-ink); color:#c7cad1; }
+.dc .wt-next .wt-k { color:var(--app-acc); } .dc .wt-next .wt-big { color:#fff; }
 .dc .wt-btns { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
-.dc .wt-b { display:inline-block; padding:8px 16px; border-radius:999px; background:#e8b964; color:#101d38; font-weight:600; font-size:15px; }
+.dc .wt-b { display:inline-block; padding:8px 16px; border-radius:999px; background:var(--app-acc); color:var(--app-ink); font-weight:600; font-size:15px; }
 .dc .wt-b.ghost { background:transparent; border:1px solid currentColor; color:inherit; }
-.dc .wt-streak { display:flex; gap:6px; } .dc .wt-streak i { width:30px; height:30px; border-radius:50%; display:grid; place-items:center; font-style:normal; font-size:14px; font-weight:700; background:#f3f2f1; color:var(--text-muted); } .dc .wt-streak i.on { background:#e8b964; color:#101d38; }
-.dc .wt-task { position:relative; padding:18px 22px; border-radius:10px; background:#101d38; color:#f4efe2; font-family:var(--font-display); font-size:24px; line-height:1.35; }
-.dc .wt-task .wt-k { color:#e8b964; font-family:var(--font-body); }
+.dc .wt-streak { display:flex; gap:6px; } .dc .wt-streak i { width:30px; height:30px; border-radius:50%; display:grid; place-items:center; font-style:normal; font-size:14px; font-weight:700; background:var(--app-bg); color:var(--text-muted); } .dc .wt-streak i.on { background:var(--app-acc); color:var(--app-ink); }
+.dc .wt-task { position:relative; padding:18px 22px; border-radius:10px; background:var(--app-ink); color:#fff; font-family:var(--font-display); font-size:24px; line-height:1.35; }
+.dc .wt-task .wt-k { color:var(--app-acc); font-family:var(--font-body); }
 .dc .wt-term { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; }
-.dc .wt-term li { padding:10px 12px; border-radius:10px; background:#faf9f7; border:1px solid var(--rule); font-size:15px; line-height:1.45; }
+.dc .wt-term li { padding:10px 12px; border-radius:10px; background:var(--app-sub); border:1px solid var(--rule); font-size:15px; line-height:1.45; }
 .dc .wt-term li strong { display:block; color:var(--navy); }
 .dc .wt-term li.now { background:var(--gold-tint); border-color:var(--gold-border); }
 .dc .wt-np { position:sticky; top:24px; background:var(--gold-tint); border:1px solid var(--gold-border); border-radius:14px; padding:20px; }
 .dc .wt-np-h { margin:0 0 4px; font-family:var(--font-display); font-size:24px; line-height:1.25; color:var(--navy); }
 .dc .wt-notes { list-style:none; margin:14px 0 0; padding:0; display:grid; gap:10px; }
 .dc .wt-notes li { display:grid; grid-template-columns:26px minmax(0,1fr); gap:10px; padding:12px; border-radius:10px; background:#fff; border:1px solid var(--gold-border); outline:none; }
-.dc .wt-notes li.on, .dc .wt-notes li:focus-visible { box-shadow:0 0 0 2px #e8b964; }
-.dc .wt-notes .num { width:26px; height:26px; border-radius:50%; background:#e8b964; color:#101d38; font-size:14px; font-weight:700; display:grid; place-items:center; }
+.dc .wt-notes li.on, .dc .wt-notes li:focus-visible { box-shadow:0 0 0 2px var(--app-acc); }
+.dc .wt-notes .num { width:26px; height:26px; border-radius:50%; background:var(--app-acc); color:var(--app-ink); font-size:14px; font-weight:700; display:grid; place-items:center; }
 .dc .wt-notes strong { display:block; color:var(--navy); line-height:1.35; margin-bottom:2px; }
 .dc .wt-notes .b { display:block; font-size:15px; line-height:1.55; }
 .dc .wt-notes .g { display:block; margin-top:6px; font-size:14px; font-weight:600; color:var(--gold-dark); }
@@ -413,13 +414,13 @@
 .dc .wt-tri { display:flex; flex-direction:column; gap:6px; padding:12px 14px; border-radius:10px; font-size:15px; line-height:1.5; color:var(--text-body); }
 .dc .wt-tri p { margin:0; }
 .dc .wt-tri .fn { font-weight:700; color:var(--navy); }
-.dc .wt-tri.is-cur { box-shadow:inset 0 0 0 3px #101d38; }
-.dc .wt-badge { align-self:flex-start; font-size:14px; font-weight:700; padding:1px 8px; border-radius:4px; background:#101d38; color:#fff; }
+.dc .wt-tri.is-cur { box-shadow:inset 0 0 0 3px var(--app-ink); }
+.dc .wt-badge { align-self:flex-start; font-size:14px; font-weight:700; padding:1px 8px; border-radius:4px; background:var(--app-ink); color:#fff; }
 .dc .wt-sw { margin-top:auto; align-self:flex-start; appearance:none; border:0; background:none; padding:4px 0 0; font:inherit; font-size:14px; font-weight:600; color:var(--navy); text-decoration:underline; cursor:pointer; }
 .dc .wt-g3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; align-items:start; }
 .dc .wt-bar { display:grid; grid-template-columns:minmax(0,180px) minmax(0,1fr) 48px; gap:10px; align-items:center; padding:6px 0; font-size:15px; }
-.dc .wt-bar b { display:block; height:10px; border-radius:5px; background:#e8b964; }
-.dc .wt-bar .tr { background:#f3f2f1; border-radius:5px; }
+.dc .wt-bar b { display:block; height:10px; border-radius:5px; background:var(--app-acc); }
+.dc .wt-bar .tr { background:var(--app-bg); border-radius:5px; }
 .dc .wt-bar .v { text-align:right; font-weight:700; color:var(--navy); }
 .dc .wt-sample { font-size:14px; color:var(--text-muted); }
 .dc .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
@@ -434,16 +435,16 @@
 .dc .cm-wk { font-size:14px; font-weight:700; color:var(--text-muted); }
 .dc .cm-q { font-weight:600; color:var(--navy); line-height:1.4; }
 .dc .cm-c { font-size:15px; line-height:1.45; color:var(--text-secondary); }
-.dc .cm-cur { background:#101d38; border-color:#101d38; }
-.dc .cm-cur .cm-wk { color:#e8b964; } .dc .cm-cur .cm-q { color:#fff; } .dc .cm-cur .cm-c { color:#cbd0dd; }
+.dc .cm-cur { background:var(--app-ink); border-color:var(--app-ink); }
+.dc .cm-cur .cm-wk { color:var(--app-acc); } .dc .cm-cur .cm-q { color:#fff; } .dc .cm-cur .cm-c { color:#c7cad1; }
 @media (max-width:820px){ .dc .cm-u { grid-template-columns:minmax(0,1fr); } .dc .cm-ws { grid-template-columns:minmax(0,1fr); } }
 .dc .wk-top { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin:0 0 12px; }
 .dc .wk-key { display:flex; gap:14px; flex-wrap:wrap; font-size:14px; color:var(--text-muted); }
 .dc .wk-key span { display:inline-flex; align-items:center; gap:6px; }
 .dc .wk-d { display:inline-block; width:10px; height:10px; border-radius:50%; flex:none; margin-right:6px; vertical-align:middle; box-sizing:border-box; }
 .dc .wk-key .wk-d { margin-right:0; }
-.dc .wk-d.strong { background:#e8b964; } .dc .wk-d.mixed { background:#fff; border:2.5px solid #e8b964; } .dc .wk-d.now { background:#e8b964; box-shadow:0 0 0 2px #fff; } .dc .wk-d.up { background:#fff; border:1.5px solid var(--rule-strong); }
-.dc .wk-key .wk-d.now { background:#101d38; box-shadow:0 0 0 2px #e8b964; }
+.dc .wk-d.strong { background:var(--app-acc); } .dc .wk-d.mixed { background:#fff; border:2.5px solid var(--app-acc); } .dc .wk-d.now { background:var(--app-acc); box-shadow:0 0 0 2px #fff; } .dc .wk-d.up { background:#fff; border:1.5px solid var(--rule-strong); }
+.dc .wk-key .wk-d.now { background:var(--app-ink); box-shadow:0 0 0 2px var(--app-acc); }
 .dc .wk-map { margin:0; gap:10px; }
 .dc .wk-map .cm-u { padding:0 0 10px; border:0; border-bottom:1px solid var(--rule); border-radius:0; background:none; }
 .dc .wk-map .cm-u:last-child { border-bottom:0; padding-bottom:0; }
@@ -451,9 +452,9 @@
 .dc .wk-sum { font-size:14px; color:var(--text-muted); }
 .dc .wk-b { appearance:none; font:inherit; text-align:left; cursor:pointer; width:100%; color:inherit; }
 .dc .wk-b:hover { border-color:var(--gold-border); }
-.dc .wk-b[aria-pressed="true"] { box-shadow:inset 0 0 0 3px #e8b964; }
+.dc .wk-b[aria-pressed="true"] { box-shadow:inset 0 0 0 3px var(--app-acc); }
 .dc .wk-b .cm-q { font-size:15px; }
-.dc .wk-col { position:relative; padding:14px 16px; border-radius:10px; background:#faf9f7; border:1px solid var(--rule); }
+.dc .wk-col { position:relative; padding:14px 16px; border-radius:10px; background:var(--app-sub); border:1px solid var(--rule); }
 .dc .wk-sup { background:var(--gold-tint); border-color:var(--gold-border); }
 .dc .wk-list { list-style:none; margin:0; padding:0; display:grid; gap:8px; }
 .dc .wk-list li { line-height:1.45; }
@@ -463,34 +464,34 @@
 .dc .wk-link .wt-pin { top:-2px; left:-6px; }
 .dc .wk-ref { margin-top:14px; padding-top:14px; border-top:1px solid var(--rule); }
 .dc .cm-f { font-size:14px; color:var(--gold-dark); font-weight:600; line-height:1.4; }
-.dc .cm-cur .cm-f { color:#e8b964; }
+.dc .cm-cur .cm-f { color:var(--app-acc); }
 .dc .wk-fm { position:relative; margin-top:14px; padding:14px 16px; border-radius:10px; background:#fff; border:1px solid var(--rule); }
 .dc .wk-fms { display:flex; flex-wrap:wrap; gap:8px; }
 .dc .wk-f { padding:6px 12px; border-radius:999px; background:#fff; border:1px solid var(--rule-strong); font-size:14px; font-weight:600; color:var(--navy); }
-.dc .wk-f.on { background:#101d38; border-color:#101d38; color:#fff; }
+.dc .wk-f.on { background:var(--app-ink); border-color:var(--app-ink); color:#fff; }
 .dc .gm-lv { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin:0 0 8px; }
 .dc .gm-lvn { font-family:var(--font-display); font-size:28px; line-height:1; color:var(--navy); }
-.dc .gm-xp { height:12px; border-radius:6px; background:#f3f2f1; overflow:hidden; }
-.dc .gm-xp b { display:block; height:100%; border-radius:6px; background:#e8b964; }
+.dc .gm-xp { height:12px; border-radius:6px; background:var(--app-bg); overflow:hidden; }
+.dc .gm-xp b { display:block; height:100%; border-radius:6px; background:var(--app-acc); }
 .dc .gm-stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:14px 0 0; }
-.dc .gm-stats span { display:flex; flex-direction:column; padding:8px 10px; border-radius:10px; background:#faf9f7; font-size:14px; color:var(--text-muted); line-height:1.3; }
+.dc .gm-stats span { display:flex; flex-direction:column; padding:8px 10px; border-radius:10px; background:var(--app-sub); font-size:14px; color:var(--text-muted); line-height:1.3; }
 .dc .gm-stats strong { font-family:var(--font-display); font-size:24px; font-weight:500; color:var(--navy); }
 .dc .gm-tail { margin:12px 0 0 !important; font-size:15px; color:var(--text-secondary); }
 .dc .gm-bdg { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px; }
 .dc .gm-b { appearance:none; font:inherit; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:4px; padding:6px 2px; border:0; background:none; border-radius:10px; color:var(--text-muted); }
-.dc .gm-b:hover { background:#faf9f7; }
-.dc .gm-bi { width:36px; height:36px; border-radius:50%; display:grid; place-items:center; flex:none; font-weight:700; font-size:14px; background:#f3f2f1; color:var(--text-muted); border:2px dashed var(--rule-strong); }
+.dc .gm-b:hover { background:var(--app-sub); }
+.dc .gm-bi { width:36px; height:36px; border-radius:50%; display:grid; place-items:center; flex:none; font-weight:700; font-size:14px; background:var(--app-bg); color:var(--text-muted); border:2px dashed var(--rule-strong); }
 .dc .gm-bn { font-size:13px; line-height:1.25; text-align:center; }
-.dc .gm-b.on .gm-bi, .dc .gm-badge.on .gm-bi { background:#e8b964; color:#101d38; border:2px solid #b8863a; }
+.dc .gm-b.on .gm-bi, .dc .gm-badge.on .gm-bi { background:var(--app-acc); color:var(--app-ink); border:2px solid var(--app-acc-d); }
 .dc .gm-b.on .gm-bn { color:var(--navy); font-weight:600; }
-.dc .gm-b.now .gm-bi, .dc .gm-badge.now .gm-bi { background:#fff; color:var(--navy); border:2px solid #101d38; }
+.dc .gm-b.now .gm-bi, .dc .gm-badge.now .gm-bi { background:#fff; color:var(--navy); border:2px solid var(--app-ink); }
 .dc .gm-dh { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap; }
 .dc .gm-dh > div:first-child { flex:1; min-width:240px; }
-.dc .gm-badge { display:flex; align-items:center; gap:10px; padding:10px 14px; border-radius:10px; background:#faf9f7; border:1px solid var(--rule); font-size:14px; line-height:1.35; color:var(--text-muted); max-width:280px; }
+.dc .gm-badge { display:flex; align-items:center; gap:10px; padding:10px 14px; border-radius:10px; background:var(--app-sub); border:1px solid var(--rule); font-size:14px; line-height:1.35; color:var(--text-muted); max-width:280px; }
 .dc .gm-badge strong { display:block; color:var(--navy); font-size:15px; }
 .dc .gm-q { display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; }
-.dc .gm-pts { font-size:14px; font-weight:700; color:#8a6420; background:#fff; border:1px solid var(--gold-border); border-radius:999px; padding:1px 10px; margin-top:4px; }
-.dc .gm-pts.dn { background:#e8b964; color:#101d38; border-color:#e8b964; }
+.dc .gm-pts { font-size:14px; font-weight:700; color:var(--app-acc-d); background:#fff; border:1px solid var(--gold-border); border-radius:999px; padding:1px 10px; margin-top:4px; }
+.dc .gm-pts.dn { background:var(--app-acc); color:var(--app-ink); border-color:var(--app-acc); }
 .dc .wk-res-card { position:relative; margin-top:14px; padding:14px 16px; border-radius:10px; background:#fff; border:1px solid var(--rule); }
 .dc .gm-crit { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px 24px; }
 .dc .gm-cr { display:grid; grid-template-columns:minmax(0,1fr) auto 84px; gap:10px; align-items:center; padding:6px 0; border-bottom:1px solid var(--rule); font-size:15px; line-height:1.35; }
@@ -506,7 +507,7 @@
 .dc .fj-cf span { display:flex; align-items:center; gap:2px; }
 .dc .fj-cf strong { margin-right:6px; color:var(--navy); }
 .dc .fj-fm { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:8px; }
-.dc .fj-fm span { display:flex; flex-direction:column; gap:2px; padding:8px 10px; border-radius:10px; background:#faf9f7; border:1px solid var(--rule); font-size:14px; line-height:1.35; }
+.dc .fj-fm span { display:flex; flex-direction:column; gap:2px; padding:8px 10px; border-radius:10px; background:var(--app-sub); border:1px solid var(--rule); font-size:14px; line-height:1.35; }
 .dc .fj-fm strong { color:var(--navy); }
 @media (max-width:900px){ .dc .fj-fm { grid-template-columns:repeat(4,minmax(0,1fr)); } }
 @media (max-width:560px){ .dc .fj-fm { grid-template-columns:repeat(2,minmax(0,1fr)); } .dc .fj-h, .dc .fj-r { grid-template-columns:minmax(0,1fr) 120px 48px; } }
@@ -517,19 +518,19 @@
 .dc .ro-j { background:var(--gold-tint); border-radius:10px; }
 .dc .ro-n { font-weight:600; color:var(--navy); }
 .dc .ro-link { appearance:none; border:0; background:none; padding:0; font:inherit; font-weight:700; color:var(--navy); text-decoration:underline; cursor:pointer; }
-.dc .ro-met { display:inline-block; width:44px; height:8px; border-radius:4px; background:#f3f2f1; margin-right:8px; vertical-align:middle; overflow:hidden; }
-.dc .ro-met b { display:block; height:100%; background:#e8b964; }
+.dc .ro-met { display:inline-block; width:44px; height:8px; border-radius:4px; background:var(--app-bg); margin-right:8px; vertical-align:middle; overflow:hidden; }
+.dc .ro-met b { display:block; height:100%; background:var(--app-acc); }
 .dc .oc { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:16px; align-items:start; }
 .dc .oc-l { display:grid; gap:8px; }
-.dc .oc-b { appearance:none; font:inherit; text-align:left; cursor:pointer; display:flex; flex-direction:column; gap:2px; padding:10px 12px; border-radius:10px; background:#faf9f7; border:1px solid var(--rule); color:var(--text-body); }
+.dc .oc-b { appearance:none; font:inherit; text-align:left; cursor:pointer; display:flex; flex-direction:column; gap:2px; padding:10px 12px; border-radius:10px; background:var(--app-sub); border:1px solid var(--rule); color:var(--text-body); }
 .dc .oc-b strong { color:var(--navy); line-height:1.35; font-size:15px; }
 .dc .oc-b span { font-size:14px; color:var(--text-muted); }
 .dc .oc-b:hover { border-color:var(--gold-border); }
-.dc .oc-b[aria-pressed="true"] { background:var(--gold-tint); box-shadow:inset 0 0 0 2px #e8b964; border-color:transparent; }
-.dc .oc-d { padding:16px 18px; border-radius:10px; background:#faf9f7; border:1px solid var(--rule); }
+.dc .oc-b[aria-pressed="true"] { background:var(--gold-tint); box-shadow:inset 0 0 0 2px var(--app-acc); border-color:transparent; }
+.dc .oc-d { padding:16px 18px; border-radius:10px; background:var(--app-sub); border:1px solid var(--rule); }
 .dc .oc-big { font-size:15px; margin:0 0 8px; } .dc .oc-big strong { font-family:var(--font-display); font-size:36px; font-weight:500; color:var(--navy); margin-right:6px; }
-.dc .oc-stack { display:flex; height:14px; border-radius:7px; overflow:hidden; background:#f3f2f1; }
-.dc .oc-stack b.m, .dc .oc-key i.m { background:#101d38; } .dc .oc-stack b.d, .dc .oc-key i.d { background:#e8b964; } .dc .oc-stack b.n, .dc .oc-key i.n { background:var(--rule-strong); }
+.dc .oc-stack { display:flex; height:14px; border-radius:7px; overflow:hidden; background:var(--app-bg); }
+.dc .oc-stack b.m, .dc .oc-key i.m { background:var(--app-ink); } .dc .oc-stack b.d, .dc .oc-key i.d { background:var(--app-acc); } .dc .oc-stack b.n, .dc .oc-key i.n { background:var(--rule-strong); }
 .dc .oc-key { display:flex; gap:14px; flex-wrap:wrap; margin-top:8px; font-size:14px; color:var(--text-muted); }
 .dc .oc-key span { display:inline-flex; align-items:center; gap:6px; } .dc .oc-key i { width:10px; height:10px; border-radius:2px; display:inline-block; }
 @media (max-width:820px){ .dc .oc { grid-template-columns:minmax(0,1fr); } }
@@ -560,11 +561,11 @@
 @media (max-width:680px){ .dc .wt-rail .n { width:32px; height:32px; font-size:14px; } .dc .wt-rail li + li::before { top:16px; left:calc(-50% + 18px); right:calc(50% + 18px); } .dc .wt-rail .t { display:none; } .dc .wt-rail button[aria-current="step"] .t { display:block; position:absolute; top:40px; white-space:nowrap; }  }
 .dc .wt-keycard { background:var(--gold-tint); border-color:var(--gold-border); box-shadow:0 2px 0 var(--gold-border); }
 .dc .wk-d { width:14px !important; height:14px !important; display:inline-grid !important; place-items:center; font-size:9px; font-weight:800; font-style:normal; line-height:1; }
-.dc .wk-d.strong::after { content:'✓'; color:#101d38; }
-.dc .wk-d.mixed::after { content:'!'; color:#8a6420; }
+.dc .wk-d.strong::after { content:'✓'; color:var(--app-ink); }
+.dc .wk-d.mixed::after { content:'!'; color:var(--app-acc-d); }
 .dc .wk-d.now::after { content:''; width:4px; height:4px; border-radius:50%; background:#fff; }
-.dc .cm-cur .wk-d.now { background:#e8b964; box-shadow:0 0 0 2px #101d38; }
-.dc .cm-cur .wk-d.now::after { background:#101d38; }
+.dc .cm-cur .wk-d.now { background:var(--app-acc); box-shadow:0 0 0 2px var(--app-ink); }
+.dc .cm-cur .wk-d.now::after { background:var(--app-ink); }
 @media (max-width:680px){ .dc .wt-call, .dc .wt-call.r { position:fixed; left:12px; right:12px; top:auto; bottom:12px; width:auto; max-width:none; z-index:60; } }
 .dc .wt-railwrap { display:flex; align-items:stretch; margin:0 0 28px; padding:12px 0 16px; border-bottom:1px solid var(--rule); }
 .dc .wt-railwrap .wt-rail { margin:0; padding:0; border:0; }
@@ -577,6 +578,201 @@
 @media (max-width:680px){ .dc .wt-railwrap { padding-bottom:36px; } .dc .wt-div { margin:0 6px; } .dc .wt-gl { font-size:12px; } }
 .dc .cm-ic { width:44px; height:44px; flex:none; border-radius:50%; display:grid; place-items:center; background:var(--gold-tint); border:1px solid var(--gold-border); }
 .dc .cm-ic svg { width:22px; height:22px; stroke:var(--gold-dark); }
+.dc .app-win { --app-acc:#5a52c2; --app-acc-d:#463f9e; --app-ink:#111827; --app-bg:#f5f6f8; --app-sub:#f9fafb; --app-mute:#6b7280;
+  --font-display:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif; --font-body:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --navy:#111827; --gold-tint:#f0effa; --gold-border:#cdc9ec; --gold-dark:#5a52c2; --accent:#5a52c2; --accent-dark:#463f9e; --accent-tint:#f0effa;
+  --rule:#e5e7eb; --rule-strong:#d1d5db; --panel-warm:#f9fafb; --text-muted:#6b7280; --text-body:#374151; --text-secondary:#4b5563; --text-strong:#111827;
+  --blue-tint:#eff6ff; --blue-border:#bfdbfe; --blue-dark:#1d4ed8; --green-tint:#ecfdf5; --green-border:#a7f3d0; --green-dark:#047857; --purple-tint:#f5f3ff; --purple-border:#ddd6fe; --purple-dark:#6d28d9; --teal:#5a52c2;
+  font-family:var(--font-body); font-size:15px; color:var(--text-body); font-variant-numeric:tabular-nums; border:1px solid #d1d5db; border-radius:12px; background:#fff; box-shadow:0 20px 50px rgba(17,24,39,.12), 0 2px 6px rgba(17,24,39,.06); }
+.dc .app-bar { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 14px; background:#f3f4f6; border-bottom:1px solid #e5e7eb; border-radius:12px 12px 0 0; }
+.dc .app-dots { display:flex; gap:6px; flex:none; } .dc .app-dots i { width:11px; height:11px; border-radius:50%; background:#d1d5db; }
+.dc .app-url { flex:0 1 420px; min-width:0; display:flex; align-items:center; gap:6px; padding:5px 12px; border-radius:8px; background:#fff; border:1px solid #e5e7eb; font-size:13px; color:#6b7280; white-space:nowrap; overflow:hidden; }
+.dc .app-url svg { width:13px; height:13px; flex:none; } .dc .app-url span { overflow:hidden; text-overflow:ellipsis; }
+.dc .app-body { display:grid; grid-template-columns:200px minmax(0,1fr); background:var(--app-bg); border-radius:0 0 12px 12px; }
+.dc .app-side { display:flex; flex-direction:column; gap:2px; padding:16px 10px; background:#fff; border-right:1px solid #e5e7eb; border-radius:0 0 0 12px; }
+.dc .app-brand { display:flex; align-items:center; gap:10px; padding:4px 8px 16px; }
+.dc .app-logo { width:30px; height:30px; flex:none; border-radius:8px; background:var(--app-acc); color:#fff; display:grid; place-items:center; font-weight:700; font-size:15px; }
+.dc .app-brand .app-nl, .dc .app-me .app-nl { display:flex; flex-direction:column; line-height:1.25; min-width:0; }
+.dc .app-brand strong, .dc .app-me strong { font-size:14px; font-weight:600; color:#111827; }
+.dc .app-brand span span, .dc .app-me span span { font-size:12px; color:#6b7280; }
+.dc .app-sec { margin:4px 8px 4px !important; font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
+.dc .app-item { display:flex; align-items:center; gap:10px; padding:8px 10px; border-radius:8px; font-size:14px; font-weight:500; color:#4b5563; }
+.dc .app-item svg { width:18px; height:18px; flex:none; }
+.dc .app-item.on { background:#f0effa; color:#463f9e; font-weight:600; }
+.dc .app-cnt { margin-left:auto; min-width:20px; padding:0 6px; border-radius:999px; background:var(--app-acc); color:#fff; font-size:12px; font-weight:600; text-align:center; line-height:20px; }
+.dc .app-me { margin-top:auto; display:flex; align-items:center; gap:10px; padding:12px 8px 0; border-top:1px solid #e5e7eb; }
+.dc .app-av { width:30px; height:30px; flex:none; border-radius:50%; background:#e3e1f5; color:#463f9e; display:grid; place-items:center; font-size:13px; font-weight:700; }
+.dc .app-win .wt-dash { background:transparent; border:0; border-radius:0; box-shadow:none; padding:20px 24px 28px; min-height:600px; }
+.dc .app-win .wt-top { padding:0 0 16px; }
+.dc .app-win .wt-crumb { font-size:13px; }
+.dc .app-win .wt-screen { font-size:22px; font-weight:600; letter-spacing:-.015em; line-height:1.25; }
+.dc .app-win .wt-who { gap:8px; }
+.dc .app-who { font-size:13px; font-weight:500; color:#6b7280; margin-right:4px; }
+.dc .app-ib { position:relative; width:34px; height:34px; display:grid; place-items:center; border-radius:8px; border:1px solid #e5e7eb; background:#fff; color:#4b5563; }
+.dc .app-ib svg { width:17px; height:17px; }
+.dc .app-ping { position:absolute; top:7px; right:8px; width:7px; height:7px; border-radius:50%; background:#ef4444; box-shadow:0 0 0 2px #fff; }
+.dc .app-win .wt-av { width:34px; height:34px; font-family:var(--font-body); font-size:14px; font-weight:700; color:#fff; background:var(--app-acc); }
+.dc .app-win .wt-card, .dc .app-win .wk-res-card, .dc .app-win .wk-fm { border-color:#e5e7eb; box-shadow:0 1px 2px rgba(16,24,40,.05); }
+.dc .app-win .wt-keycard { background:#f0effa; border-color:#cdc9ec; box-shadow:none; }
+.dc .app-win .wt-big { font-size:19px !important; font-weight:600; letter-spacing:-.01em; line-height:1.3; }
+.dc .app-win .wt-task { font-size:18px; font-weight:600; letter-spacing:-.01em; }
+.dc .app-win .fq-q, .dc .app-win .db-uq { font-size:18px; font-weight:600; letter-spacing:-.01em; }
+.dc .app-win .fn { font-size:17px; font-weight:600; }
+.dc .app-win .cm-t { font-size:15px !important; font-weight:600; }
+.dc .app-win .gm-lvn { font-size:24px; font-weight:700; letter-spacing:-.02em; }
+.dc .app-win .gm-stats strong, .dc .app-win .oc-big strong { font-weight:700; letter-spacing:-.02em; }
+.dc .app-win .gm-stats strong { font-size:20px; } .dc .app-win .oc-big strong { font-size:30px; }
+.dc .app-win .wt-k, .dc .app-win .k, .dc .app-win .db-l, .dc .app-win .db-h, .dc .app-win .ft { font-size:12px !important; font-weight:600 !important; letter-spacing:.05em !important; color:var(--app-mute) !important; }
+.dc .app-win .wt-next .wt-k, .dc .app-win .wt-task .wt-k, .dc .app-win .db-q .db-l, .dc .app-win .fq .k { color:#cdc9ec !important; }
+.dc .app-win .wt-next { background:var(--app-acc) !important; border-color:var(--app-acc) !important; color:#e3e1f5; }
+.dc .app-win .wt-next .wt-big { color:#fff; }
+.dc .app-win .wt-gold { font-weight:600; }
+.dc .app-win .chip { font-size:14px; padding:7px 14px; border-width:1px; }
+.dc .app-win .chip[aria-pressed="true"] { background:var(--app-acc); border-color:var(--app-acc); color:#fff; }
+.dc .app-win .chip:hover { border-color:var(--app-acc); }
+.dc .app-win .wt-b { color:#fff; border-radius:8px; }
+.dc .app-win .wt-b.ghost { color:var(--app-acc) !important; }
+.dc .app-win .wt-streak i.on, .dc .app-win .gm-b.on .gm-bi, .dc .app-win .gm-badge.on .gm-bi, .dc .app-win .gm-pts.dn { color:#fff; }
+.dc .app-win .wk-d.strong::after { color:#fff; }
+.dc .app-win .cm-cur .wk-d.now::after { background:#fff; }
+.dc .app-win .wt-pin, .dc .app-win .wt-call { font-family:'Figtree',system-ui,sans-serif; font-variant-numeric:normal; }
+.dc .app-win .wt-call strong { font-family:'EB Garamond',Garamond,serif; font-size:20px; font-weight:500; }
+@media (max-width:1180px){ .dc .app-body { grid-template-columns:60px minmax(0,1fr); } .dc .app-side .app-nl, .dc .app-sec { display:none; } .dc .app-brand { padding:4px 4px 16px; justify-content:center; } .dc .app-item { justify-content:center; padding:9px; } .dc .app-me { justify-content:center; padding:12px 0 0; } .dc .app-who { display:none; } }
+@media (max-width:600px){ .dc .app-body { grid-template-columns:minmax(0,1fr); } .dc .app-side { display:none; } .dc .app-win .wt-dash { padding:16px; } .dc .app-ib { display:none; } }
+.dc .app-win .wk-map .cm-u { grid-template-columns:minmax(0,1fr); gap:8px; }
+.dc .app-win .wk-map .cm-h { flex-direction:row; align-items:baseline; gap:10px; flex-wrap:wrap; }
+.dc .app-win .gm-bdg { grid-template-columns:repeat(4,minmax(0,1fr)); }
+.dc .app-win .gm-bn { overflow-wrap:anywhere; }
+.dc .app-win .gm-cr { grid-template-columns:minmax(0,1fr) auto; row-gap:2px; }
+.dc .app-win .gm-cr .gm-lvl { grid-column:2; grid-row:1; }
+.dc .app-win .gm-cr .wt-bars { grid-column:1 / -1; grid-row:2; }
+.dc .app-win .cm-q, .dc .app-win .ro-r span, .dc .app-win .fj-r span { overflow-wrap:anywhere; }
+@media (max-width:1000px){ .dc .app-win .gm-crit { grid-template-columns:minmax(0,1fr); } .dc .app-win .gm-bdg { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+@media (max-width:760px){ .dc .app-win .wk-map .cm-ws { grid-template-columns:minmax(0,1fr); } }
+.dc .rb-top { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin:0 0 10px; }
+.dc .rb-key { display:inline-flex; align-items:center; gap:6px; font-size:13px; color:var(--text-muted); }
+.dc .rb-key i { width:12px; height:12px; border-radius:3px; background:#f0effa; box-shadow:inset 0 0 0 2px #5a52c2; }
+.dc .rb { display:grid; border:1px solid var(--rule); border-radius:10px; overflow:hidden; }
+.dc .rb-row { display:grid; grid-template-columns:minmax(130px,.9fr) repeat(3,minmax(0,1.2fr)); }
+.dc .rb-row + .rb-row { border-top:1px solid var(--rule); }
+.dc .rb-row > span { padding:10px 12px; font-size:14px; line-height:1.45; color:var(--text-body); }
+.dc .rb-row > span + span { border-left:1px solid var(--rule); }
+.dc .rb-hd > span { background:var(--app-sub, #f9fafb); font-size:12px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--text-muted); }
+.dc .rb-c { font-weight:600; color:var(--navy) !important; background:var(--app-sub, #f9fafb); }
+.dc .rb-cell { position:relative; }
+.dc .rb-cell.on { background:#f0effa; box-shadow:inset 0 0 0 2px #5a52c2; }
+.dc .rb-l { display:none; }
+.dc .rb-you { display:inline-block; margin-top:6px; padding:1px 8px; border-radius:999px; background:#5a52c2; color:#fff; font-size:12px; font-style:normal; font-weight:600; }
+@media (max-width:760px){ .dc .rb-hd { display:none; } .dc .rb-row { grid-template-columns:minmax(0,1fr); } .dc .rb-row > span + span { border-left:0; border-top:1px solid var(--rule); } .dc .rb-l { display:block; font-size:12px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--text-muted); margin-bottom:2px; } }
+.dc .app-win .cm-cur .cm-wk, .dc .app-win .cm-cur .cm-f { color:#cdc9ec !important; }
+.dc .app-win .cm-cur .cm-q { color:#fff !important; }
+.dc .app-win .cm-cur .cm-c { color:#e5e7eb !important; }
+.dc .app-win .wt-next .wt-k, .dc .app-win .wt-next p { color:#f0effa !important; }
+.dc .app-win .wt-task, .dc .app-win .db-q, .dc .app-win .fq { color:#f3f4f6; }
+.dc .app-win .wt-task .wt-gold, .dc .app-win .db-q .wt-gold, .dc .app-win .fq .wt-gold, .dc .app-win .cm-cur .wt-gold { color:#cdc9ec; }
+.dc .app-sec { color:#6b7280; }
+.dc .app-win .gm-pts { color:#463f9e; }
+.dc .wt-crit .lv { display:inline-flex; align-items:center; justify-content:flex-end; gap:8px; }
+.dc .wt-crit .lv .wt-bars { margin-right:0; }
+.dc .lvt { display:inline-block; width:78px; text-align:left; }
+.dc .wt-bars.lv3 i.on { background:#16a34a !important; }
+.dc .wt-bars.lv2 i.on { background:#eab308 !important; }
+.dc .wt-bars.lv1 i.on { background:#f97316 !important; }
+.dc .app-win .wt-task { background:var(--app-acc); color:#fff; }
+.dc .app-win .wt-task .wt-k { color:#f0effa !important; }
+.dc .eqn { position:relative; padding:18px 22px 20px; border-radius:10px; background:#fff; border:1px solid var(--rule); box-shadow:0 1px 2px rgba(16,24,40,.05); }
+.dc .eqn-top { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 10px; margin:0 0 14px !important; max-width:none !important; }
+.dc .eqn-l { font-size:12px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:#4b5563; }
+.dc .eqn-q { font-size:15px; color:var(--text-body); }
+.dc .eqn-wk { display:flex; flex-direction:column; gap:6px; padding:2px 0 2px 16px; border-left:3px solid var(--app-acc, #5a52c2); }
+.dc .eqn-wk .eqn-l { color:var(--app-acc-d, #463f9e); }
+.dc .eqn-uq { margin:0 !important; font-size:22px; font-weight:600; letter-spacing:-.015em; line-height:1.3; color:var(--navy); max-width:none !important; }
+
+/* App palette v2: indigo accent · neutral surfaces · status only on level bars · format colors as tags */
+.dc .app-win { --fmt-video:#0369a1; --fmt-game:#a21caf; --fmt-field:#0f766e; --lbl:#4b5563; }
+.dc .app-win .wt-k, .dc .app-win .k, .dc .app-win .db-l, .dc .app-win .db-h, .dc .app-win .eqn-l, .dc .app-win .cm-n, .dc .app-win .rb-hd > span { color:var(--lbl) !important; }
+.dc .app-win .wt-next .wt-k, .dc .app-win .wt-task .wt-k, .dc .app-win .wt-next p, .dc .app-win .wt-task { color:#e3e1f5 !important; }
+.dc .app-win .wt-next .wt-big, .dc .app-win .wt-task { color:#fff !important; }
+.dc .app-win .fq, .dc .app-win .db-q { background:#fff !important; border:1px solid var(--rule) !important; color:var(--text-body) !important; box-shadow:0 1px 2px rgba(16,24,40,.05); }
+.dc .app-win .fq .k { color:var(--lbl) !important; }
+.dc .app-win .fq-q { color:var(--navy) !important; }
+.dc .app-win .wt-keycard { background:#fff !important; border-color:var(--rule) !important; border-top:3px solid #5a52c2 !important; }
+.dc .app-win .wk-sup { background:#fff !important; border-color:var(--rule) !important; }
+.dc .app-win .wk-strong { background:#fff !important; }
+.dc .app-win .ro-j { background:#f0effa !important; }
+.dc .app-win .oc-b[aria-pressed="true"] { background:#f0effa !important; box-shadow:inset 0 0 0 2px #5a52c2 !important; }
+.dc .app-win .wk-b[aria-pressed="true"] { box-shadow:inset 0 0 0 3px #5a52c2 !important; }
+.dc .app-win .cm-cur { background:#5a52c2 !important; border-color:#5a52c2 !important; }
+.dc .app-win .cm-cur .cm-wk, .dc .app-win .cm-cur .cm-f, .dc .app-win .cm-cur .cm-c { color:#e3e1f5 !important; }
+.dc .app-win .cm-cur .wk-d.now { background:#fff; box-shadow:0 0 0 2px #cdc9ec; }
+.dc .app-win .cm-cur .wk-d.now::after { background:#5a52c2; }
+.dc .app-win .wk-d.strong { background:#5a52c2; } .dc .app-win .wk-d.mixed { border-color:#5a52c2; } .dc .app-win .wk-d.mixed::after { color:#463f9e; }
+.dc .app-win .wk-key .wk-d.now { background:#5a52c2; box-shadow:0 0 0 2px #cdc9ec; }
+.dc .app-win .oc-stack b.m, .dc .app-win .oc-key i.m { background:#16a34a !important; }
+.dc .app-win .oc-stack b.d, .dc .app-win .oc-key i.d { background:#eab308 !important; }
+.dc .app-win .oc-stack b.n, .dc .app-win .oc-key i.n { background:#f97316 !important; }
+.dc .app-win .gm-b.on .gm-bi, .dc .app-win .gm-badge.on .gm-bi { background:#5a52c2; border-color:#463f9e; color:#fff; }
+.dc .app-win .gm-b.now .gm-bi, .dc .app-win .gm-badge.now .gm-bi { border-color:#5a52c2; color:#463f9e; }
+.dc .app-win .gm-pts { color:#463f9e; border-color:#cdc9ec; }
+.dc .app-win .gm-pts.dn { background:#5a52c2; border-color:#5a52c2; color:#fff; }
+.dc .app-win .wt-streak i.on { background:#5a52c2; color:#fff; }
+.dc .app-win .wt-gold { color:#463f9e; }
+.dc .app-win .wt-next .wt-gold, .dc .app-win .wt-task .wt-gold { color:#fff; text-decoration:underline; text-underline-offset:3px; }
+/* formats: white cards, colored top border + tag */
+.dc .app-win .f-video, .dc .app-win .f-game, .dc .app-win .f-field { background:#fff !important; border:1px solid var(--rule) !important; }
+.dc .app-win .wt-fmt.f-video, .dc .app-win .wt-tri.f-video { border-top:4px solid var(--fmt-video) !important; }
+.dc .app-win .wt-fmt.f-game, .dc .app-win .wt-tri.f-game { border-top:4px solid var(--fmt-game) !important; }
+.dc .app-win .wt-fmt.f-field, .dc .app-win .wt-tri.f-field { border-top:4px solid var(--fmt-field) !important; }
+.dc .app-win .f-video .ft { color:var(--fmt-video) !important; } .dc .app-win .f-game .ft { color:var(--fmt-game) !important; } .dc .app-win .f-field .ft { color:var(--fmt-field) !important; }
+.dc .app-win .wt-hook { background:var(--app-sub) !important; border:1px solid var(--rule); }
+.dc .app-win .wt-fmt[aria-pressed="true"] { box-shadow:0 0 0 3px #5a52c2 !important; }
+.dc .app-win .wt-tri.is-cur { box-shadow:inset 0 0 0 2px #5a52c2 !important; }
+.dc .app-win .wt-pick { color:#463f9e; }
+.dc .app-win .wt-sw { color:#463f9e; }
+.dc .app-win .wk-f.on { background:#5a52c2; border-color:#5a52c2; }
+.dc .app-win .wt-routes span[aria-current="true"] { background:#5a52c2; border-color:#5a52c2; }
+.dc .app-win .wt-safety { border-color:var(--rule-strong); color:var(--text-body); }
+.dc .app-win .wk-res, .dc .app-win .ro-link { color:#463f9e; }
+.dc .app-win { --text-muted:#4b5563; --app-mute:#4b5563; }
+.dc .app-win .wt-top > div:first-child { flex:1; min-width:0; }
+.dc .app-win .wt-who { flex:none; }
+.dc .app-win .wt-sw { text-align:left; }
+.dc .rs-row { list-style:none; margin:24px 0 28px; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; position:relative; }
+.dc .rs-row li { position:relative; display:flex; flex-direction:column; gap:4px; padding:20px 22px 22px; background:#fff; border:1px solid var(--rule); border-radius:10px; }
+.dc .rs-row li + li::before { content:'→'; position:absolute; left:-13px; top:50%; transform:translate(-50%,-50%); color:#b8863a; font-weight:700; }
+.dc .rs-row strong { color:var(--navy); font-size:18px; line-height:1.3; }
+.dc .rs-row span:not(.rs-n) { color:var(--text-secondary); line-height:1.5; }
+.dc .rs-n { width:36px; height:36px; flex:none; border-radius:50%; display:grid; place-items:center; background:#fff; border:2px solid #dda448; color:var(--gold-dark); font-weight:700; margin-bottom:8px; }
+.dc .rs-tl { list-style:none; margin:24px 0 28px; padding:0; display:grid; gap:0; max-width:880px; }
+.dc .rs-tl li { position:relative; display:grid; grid-template-columns:36px minmax(0,1fr); gap:18px; padding:0 0 24px; }
+.dc .rs-tl li:not(:last-child)::before { content:''; position:absolute; left:17px; top:40px; bottom:4px; width:2px; background:var(--rule-strong); }
+.dc .rs-tl .rs-n { margin:0; }
+.dc .rs-tl p { margin:0 0 8px; }
+.dc .rs-h { display:block; margin:6px 0 6px; font-size:19px; color:var(--navy); }
+.dc .rs-q { padding:12px 16px; border-radius:10px; background:var(--gold-tint); border:1px solid var(--gold-border); font-family:var(--font-display); font-size:22px; line-height:1.35; color:var(--navy); }
+@media (max-width:820px){ .dc .rs-row { grid-template-columns:minmax(0,1fr); } .dc .rs-row li + li::before { content:'↓'; left:50%; top:-8px; } }
+.dc .cm-dt .cm-cur { background:#101d38 !important; border-color:#101d38 !important; }
+.dc .cm-dt .cm-cur .cm-wk, .dc .cm-dt .cm-cur .cm-f { color:#e8b964 !important; }
+.dc .cm-dt .cm-cur .cm-q { color:#fff !important; }
+.dc .cm-dt .cm-cur .cm-c { color:#dfe3ec !important; }
+.dc .cm-dt .cm-f { color:#8a5a12; }
+.dc #c1 .wt-ideas { margin:24px 0 48px; }
+.dc .cm-lead { display:flex; justify-content:space-between; align-items:baseline; gap:12px 24px; flex-wrap:wrap; }
+.dc .cm-key { display:flex; gap:8px 20px; flex-wrap:wrap; font-size:15px; color:var(--text-secondary); }
+.dc .cm-key span { display:inline-flex; align-items:center; gap:8px; }
+.dc .cm-m { display:inline-grid; place-items:center; width:20px; height:20px; flex:none; border-radius:50%; background:#fff; border:1.5px solid #dda448; color:#8a5a12; font-size:12px; font-style:normal; font-weight:700; line-height:1; margin-right:6px; vertical-align:2px; }
+.dc .cm-key .cm-m { margin-right:0; vertical-align:0; }
+.dc #c1 .cm-cur { background:#101d38 !important; border-color:#101d38 !important; }
+.dc #c1 .cm-cur .cm-wk, .dc #c1 .cm-cur .cm-f { color:#e8b964 !important; }
+.dc #c1 .cm-cur .cm-q { color:#fff !important; }
+.dc #c1 .cm-cur .cm-c { color:#dfe3ec !important; }
+.dc #c1 .cm-cur .cm-m { background:#101d38; border-color:#e8b964; color:#e8b964; }
+.dc #c1 .cm-f { color:#8a5a12; }
+.dc #c1 .cm-dt { margin:0; }
+.dc .cm-st { display:flex; flex-direction:column; gap:2px; min-width:0; }
+.dc .cm-st .cm-hint { color:var(--text-secondary); }
+/* Contrast: the top-bar name line was 4.47:1 on its background; use the palette label gray so it clears 4.5:1 */
+.dc .app-win .app-who { color:#4b5563; }
 </style>
 </head>
 <body class="accent-gold">
@@ -609,35 +805,33 @@
 <header class="band dark"><div class="in"><p class="s-draft">Draft concept</p><h1>Designing for choice in undergraduate science</h1>
 <p class="tagline">A shared learning goal with different ways to get there.</p>
 <p>This concept follows Jordan, a physics major taking a required biology course. It explores how their interests and prior knowledge could shape the examples, activities, and support they encounter, while keeping the course’s learning goals consistent.</p>
-<p>The walkthrough below follows Jordan through one unit, from the first questions the course asks to the final task. At each moment, numbered pins on the dashboard open notes on what to look for and the learning design behind it.</p>
 <div class="wt-poc"><p><strong>Proof of concept.</strong> I built this from a learning designer’s perspective to show how the learning experience could work. The interface itself would still need UX research and product design.</p></div><a class="jump" href="#walk" style="margin-top:24px">Jump to the walkthrough</a></div></header>
-<section class="band warm" id="c1"><div class="in"><h2>Where the redesign starts: from syllabus topics to questions learners can investigate</h2>
-<p>I’d begin with the course’s existing syllabus and approved learning outcomes. Then I’d look for questions that bring related topics together and give learners a reason to explore them.</p>
-<p>For example, evolution, animal behavior, and ecology could come together around a question about how organisms respond to environmental change. Learners would still study the underlying biology, but they would use it to investigate a question and explain what the evidence suggests.</p>
-<p>I’d map the activities and assessments back to the approved outcomes to check that the redesigned course addresses the required knowledge and skills.</p>
-<div class="map">
-<div class="map-col"><p class="k" style="margin:0">Topics in the syllabus</p><span>Evolution and natural selection</span><span>Animal behavior</span><span>Ecology and environmental change</span><span>Homeostasis and physiological responses</span></div>
-<span class="map-ar" aria-hidden="true">→</span>
-<div class="map-col map-q"><p class="k" style="margin:0">Essential question</p><p class="map-qt">How do organisms respond to changes in their environment?</p></div>
-<span class="map-ar" aria-hidden="true">→</span>
-<div class="map-col"><p class="k" style="margin:0">Example course outcomes</p><span>Explain how environmental conditions affect organisms.</span><span>Distinguish changes in behavior from evolutionary change across generations.</span><span>Interpret biological data and use evidence to evaluate explanations.</span></div>
-</div>
-<p class="map-note"><svg class="map-note-ic" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span>The mapping would also support curriculum and accreditation review by showing where required outcomes are taught, practiced, and assessed.</span></p>
-
-</div></section>
-<section class="band" id="walk"><div class="in">
-<h2>Follow Jordan through Unit 3</h2>
-<p style="max-width:880px">Three ideas work together in this concept. The walkthrough shows each one as Jordan moves through the unit.</p>
+<section class="band warm" id="c1"><div class="in">
+<h2>Three ideas behind the design</h2>
 <div class="wt-ideas">
 <div class="wt-idea"><span class="wt-l" aria-hidden="true">1</span><h3>Meeting learners where they are</h3><p>Learners share their program, why they’re taking the course, and what keeps them going. Their answers shape the examples, preparation, and support they see.</p></div>
 <div class="wt-idea"><span class="wt-l" aria-hidden="true">2</span><h3>Questions worth investigating</h3><p>The course is organized around essential questions drawn from the existing syllabus and outcomes. Each unit asks a question learners can investigate with real data.</p></div>
 <div class="wt-idea"><span class="wt-l" aria-hidden="true">3</span><h3>Offering learner choice</h3><p>Each week offers three formats suited to its content. In Week 7, learners investigate through a guided video, an escape room, or a field investigation. Framing from their field carries through each format to the same final task.</p></div>
 </div>
+<details class="cm-dt">
+<summary><span class="cm-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg></span><span class="cm-st"><span class="cm-sh">The full course map</span><span class="cm-hint">See how each week’s question and learner choice carry through the whole course</span></span><span class="cm-tg" aria-hidden="true"></span></summary>
+<p style="margin:16px 0 0">Every week of the 15-week course asks its own question, built from the existing syllabus, and offers three formats suited to that week’s content. Week 7 is the one Jordan works through below.</p>
+<div class="cm">
+<div class="cm-u"><div class="cm-h"><span class="cm-n">Unit 1</span><span class="cm-t">Cells and energy</span></div><div class="cm-ws"><div class="cm-w"><span class="cm-wk">Week 1</span><span class="cm-q">What makes something alive?</span><span class="cm-c">Case: Is a virus alive?</span><span class="cm-f">Guided video · Evidence board · Interactive debate</span></div><div class="cm-w"><span class="cm-wk">Week 2</span><span class="cm-q">How do cells get the energy they need?</span><span class="cm-c">Case: Why muscles burn during a sprint</span><span class="cm-f">Guided video · System sandbox · Prediction challenge</span></div><div class="cm-w"><span class="cm-wk">Week 3</span><span class="cm-q">How do cells control what goes in and out?</span><span class="cm-c">Case: Why drinking seawater makes you thirstier</span><span class="cm-f">Guided video · Choose-your-own experiment · Teach a virtual novice</span></div></div></div>
+<div class="cm-u"><div class="cm-h"><span class="cm-n">Unit 2</span><span class="cm-t">Genetics and inheritance</span></div><div class="cm-ws"><div class="cm-w"><span class="cm-wk">Week 4</span><span class="cm-q">How is information passed from parents to offspring?</span><span class="cm-c">Case: Tracing a trait through a family</span><span class="cm-f">Guided video · Mystery investigation · Model-building activity</span></div><div class="cm-w"><span class="cm-wk">Week 5</span><span class="cm-q">How does a cell turn genetic information into a trait?</span><span class="cm-c">Case: Why some adults can digest milk</span><span class="cm-f">Guided video · Escape room · Teach a virtual novice</span></div><div class="cm-w"><span class="cm-wk">Week 6</span><span class="cm-q">When does a change in a gene make a difference?</span><span class="cm-c">Case: Sickle cell trait and malaria</span><span class="cm-f">Guided video · Role-based investigation · Progressive case reveal</span></div></div></div>
+<div class="cm-u"><div class="cm-h"><span class="cm-n">Unit 3</span><span class="cm-t">Evolution and behavior</span></div><div class="cm-ws"><div class="cm-w cm-cur"><span class="cm-wk">Week 7 · Jordan’s walkthrough</span><span class="cm-q">How do organisms respond to changes in their environment?</span><span class="cm-c">Case: Birdsong in a city park and a nearby forest</span><span class="cm-f">Guided video · Escape room · Field investigation</span></div><div class="cm-w"><span class="cm-wk">Week 8</span><span class="cm-q">How do new species arise?</span><span class="cm-c">Case: Cichlid fish in African lakes</span><span class="cm-f">Guided video · Evidence board · Model-building activity</span></div><div class="cm-w"><span class="cm-wk">Week 9</span><span class="cm-q">How do we know how living things are related?</span><span class="cm-c">Case: Whales and their land-dwelling ancestors</span><span class="cm-f">Guided video · Scavenger hunt · Progressive case reveal</span></div></div></div>
+<div class="cm-u"><div class="cm-h"><span class="cm-n">Unit 4</span><span class="cm-t">Ecology</span></div><div class="cm-ws"><div class="cm-w"><span class="cm-wk">Week 10</span><span class="cm-q">How does energy move through an ecosystem?</span><span class="cm-c">Case: Wolves returning to Yellowstone</span><span class="cm-f">Guided video · System sandbox · Model-building activity</span></div><div class="cm-w"><span class="cm-wk">Week 11</span><span class="cm-q">What happens when a species disappears?</span><span class="cm-c">Case: Sea otters and kelp forests</span><span class="cm-f">Guided video · Mystery investigation · Branching simulation</span></div><div class="cm-w"><span class="cm-wk">Week 12</span><span class="cm-q">How do human activities reshape ecosystems?</span><span class="cm-c">Case: Pollinator decline on farms</span><span class="cm-f">Guided video · Role-based investigation · Resource-management challenge</span></div></div></div>
+<div class="cm-u"><div class="cm-h"><span class="cm-n">Unit 5</span><span class="cm-t">Body systems</span></div><div class="cm-ws"><div class="cm-w"><span class="cm-wk">Week 13</span><span class="cm-q">How does the body keep conditions stable?</span><span class="cm-c">Case: Heat illness in athletes</span><span class="cm-f">Guided video · Branching simulation · Design challenge</span></div><div class="cm-w"><span class="cm-wk">Week 14</span><span class="cm-q">How does the body defend itself?</span><span class="cm-c">Case: How vaccines prepare the immune system</span><span class="cm-f">Guided video · Progressive case reveal · Collaborative puzzle</span></div><div class="cm-w"><span class="cm-wk">Week 15</span><span class="cm-q">How do body systems work together?</span><span class="cm-c">Case: Adjusting to high altitude</span><span class="cm-f">Guided video · Troubleshooting mission · Choose-your-own experiment</span></div></div></div>
+</div>
+</details>
+</div></section>
+<section class="band" id="walk"><div class="in">
+<h2>Follow Jordan through Week 7</h2>
 <div class="wt-railwrap" id="wtRail"></div>
-<div class="wt-head"><div><p class="wt-k" id="wtWhen" style="margin:0"></p><h3 id="wtTitle"></h3><p id="wtWhat"></p></div></div>
+<div class="wt-head"><div><h3 id="wtTitle"></h3><p id="wtWhat"></p></div></div>
 <p class="map-note wt-try" style="margin:0 0 20px !important"><svg class="map-note-ic" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V6a2 2 0 0 1 4 0v5"/><path d="M13 10a2 2 0 0 1 4 0v2"/><path d="M17 11.5a2 2 0 0 1 4 0V15a7 7 0 0 1-7 7h-1.5a6 6 0 0 1-4.6-2.2L4.3 16.6a1.9 1.9 0 0 1 2.9-2.4L9 16"/></svg><span id="wtTry"></span></p>
 <div class="wt-ctl"><span class="wt-tag">Proof of concept · learning design view</span><div class="wt-ctl-r" id="wtCtl"></div></div>
-<div class="wt-dash" id="wtDash" aria-live="polite"></div>
+<div class="app-win"><div class="app-bar" aria-hidden="true"><span class="app-dots"><i></i><i></i><i></i></span><span class="app-url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span id="appUrl">learn.bio101.edu</span></span><span class="app-dots" style="visibility:hidden"><i></i><i></i><i></i></span></div><div class="app-body"><nav class="app-side" id="appSide" aria-label="App navigation (mockup)"></nav><div class="wt-dash" id="wtDash" aria-live="polite"></div></div></div>
 <div class="wt-nav"><button type="button" class="btn ghost" id="wtBack">Back</button><span id="wtCount"></span><button type="button" class="btn" id="wtNext">Next</button></div>
 </div></section>
 <section class="band warm"><div class="in" style="text-align:center;display:flex;flex-direction:column;align-items:center"><p class="lede" style="margin:0 0 20px">If you’re thinking about similar questions, I’d love to talk.</p><a class="jump" href="mailto:meganrlancaster@gmail.com">Send me a message</a></div></section>
@@ -706,7 +900,7 @@ var NC=[['Which formats learners choose','Format choices and results show which 
 var NJ=[['One learner, in context','Jordan’s results on each criterion sit next to the class, so faculty can see whether a gap is individual or shared.','Formative assessment · Differentiation'],['Confidence over time','Weeks where Jordan’s confidence and results didn’t match are flagged, so faculty can help calibrate.','Metacognition'],['Choices show interests','The formats Jordan picks each week show how they like to learn and which framings connect.','Learner choice · Relevance'],['Engagement at a glance','Streaks and side quests show steady effort without tracking every click.','Self-regulated learning'],['A suggested check-in','The dashboard suggests a short, specific conversation. Faculty decide whether and how to follow up.','Responsive teaching · Relationships']];
 var CLS=[78,64,35,48,41,82],CFS=['match','under','match','over','match','over','match'];
 function FJ(){var w7=WK[6],L=['','Not yet','Developing','Meeting'],CF={match:['Matched','wk-d strong'],under:['Underconfident','wk-d mixed'],over:['Overconfident','wk-d mixed']};
-return '<div class="wt-g2"><div class="wt-card">'+pin(1)+'<p class="wt-k">Jordan compared with the class · Checkpoint 2</p><div class="fj-h"><span>Criterion</span><span>Jordan</span><span>Class meeting</span></div>'+CRN.map(function(c,i){var v=w7.cr[i];return '<div class="fj-r"><span>'+c+'</span><span class="gm-lvl"><span class="wt-bars" aria-hidden="true">'+[1,2,3].map(function(n){return '<i class="'+(n<=v?'on':'')+'"></i>'}).join('')+'</span>'+L[v]+'</span><span class="v">'+CLS[i]+'%</span></div>'}).join('')+'</div>'+
+return '<div class="wt-g2"><div class="wt-card">'+pin(1)+'<p class="wt-k">Jordan compared with the class · Checkpoint 2</p><div class="fj-h"><span>Criterion</span><span>Jordan</span><span>Class meeting</span></div>'+CRN.map(function(c,i){var v=w7.cr[i];return '<div class="fj-r"><span>'+c+'</span><span class="gm-lvl"><span class="wt-bars lv'+v+'" aria-hidden="true">'+[1,2,3].map(function(n){return '<i class="'+(n<=v?'on':'')+'"></i>'}).join('')+'</span>'+L[v]+'</span><span class="v">'+CLS[i]+'%</span></div>'}).join('')+'</div>'+
 '<div class="wt-col"><div class="wt-card">'+pin(2)+'<p class="wt-k">Confidence compared with results</p><div class="fj-cf">'+CFS.map(function(c,i){return '<span><i class="'+CF[c][1]+'"></i><strong>Week '+(i+1)+'</strong>'+CF[c][0]+'</span>'}).join('')+'</div><p style="margin:10px 0 0">Overconfident in Weeks 4 and 6, both on criteria that are still developing.</p></div>'+
 '<div class="wt-card">'+pin(4)+'<p class="wt-k">Engagement</p><div class="gm-stats" style="margin:0"><span><strong>9</strong>day streak</span><span><strong>14</strong>side quests done</span><span><strong>6</strong>badges earned</span></div></div></div></div>'+
 '<div class="wt-card">'+pin(3)+'<p class="wt-k">Formats Jordan chose</p><div class="fj-fm">'+WK.slice(0,7).map(function(w){var f=w.st==='now'?F_NOW():w.fm[w.pick];return '<span><strong>Week '+w.n+'</strong>'+f+'</span>'}).join('')+'</div><p style="margin:10px 0 0">Jordan often picks hands-on formats like sandboxes and experiments.</p></div>'+
@@ -726,6 +920,19 @@ h+='<div class="wt-card">'+pin(5)+'<p class="wt-k">Outcomes across the course</p
 if(!o[3])h+='<p class="wt-k">'+o[1]+'</p><p class="wt-big" style="margin:0 0 8px">'+o[0]+'</p><p style="margin:0">Not assessed yet. Results will appear here once the class reaches '+o[1]+'.</p>';
 else h+='<p class="wt-k">'+o[1]+'</p><p class="wt-big" style="margin:0 0 10px">'+o[0]+'</p><div class="oc-big"><strong>'+o[3][0]+'%</strong> of the class is meeting this outcome</div><div class="oc-stack"><b style="width:'+o[3][0]+'%" class="m"></b><b style="width:'+o[3][1]+'%" class="d"></b><b style="width:'+o[3][2]+'%" class="n"></b></div><div class="oc-key"><span><i class="m"></i>Meeting '+o[3][0]+'%</span><span><i class="d"></i>Developing '+o[3][1]+'%</span><span><i class="n"></i>Not yet '+o[3][2]+'%</span></div><p class="wt-k" style="margin:14px 0 4px">By week</p>'+o[4].map(function(w){return '<div class="wt-bar"><span>'+w[0]+'</span><span class="tr"><b style="width:'+w[1]+'%"></b></span><span class="v">'+w[1]+'%</span></div>'}).join('');
 return h+'</div></div></div>';}
+var APPI={"home":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 10.5 12 3l9 7.5\"/><path d=\"M5 9.5V21h14V9.5\"/></svg>","week":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 4h11a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3z\"/><path d=\"M4 17a3 3 0 0 1 3-3h11\"/></svg>","map":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polygon points=\"3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21\"/><path d=\"M9 3v15M15 6v15\"/></svg>","award":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"9\" r=\"6\"/><path d=\"M8.5 14 7 22l5-3 5 3-1.5-8\"/></svg>","msg":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z\"/></svg>","grid":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"5\" rx=\"1\"/><rect x=\"14\" y=\"12\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"3\" y=\"16\" width=\"7\" height=\"5\" rx=\"1\"/></svg>","users":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"9\" cy=\"8\" r=\"4\"/><path d=\"M2 21a7 7 0 0 1 14 0\"/><path d=\"M16 4a4 4 0 0 1 0 8\"/><path d=\"M22 21a7 7 0 0 0-5-6.7\"/></svg>","target":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><circle cx=\"12\" cy=\"12\" r=\"5\"/><circle cx=\"12\" cy=\"12\" r=\"1\"/></svg>","table":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M3 10h18M9 4v16\"/></svg>","bell":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9\"/><path d=\"M10.3 21a1.9 1.9 0 0 0 3.4 0\"/></svg>","search":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m20 20-3.5-3.5\"/></svg>","lock":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"5\" y=\"11\" width=\"14\" height=\"10\" rx=\"2\"/><path d=\"M8 11V7a4 4 0 0 1 8 0v4\"/></svg>"};
+function appChrome(){var fac=st===7,L=fac?[['grid','Overview',facView==='class'],['users','Roster',facView==='jordan'],['target','Outcomes',0],['table','Gradebook',0],['msg','Messages',0,'3']]:[['home','Home',st===0],['week','This week',st>=1&&st<=5],['map','Course map',st===6],['award','Badges',0],['msg','Messages',0,'2']];
+$('appSide').innerHTML='<div class="app-brand"><span class="app-logo">B</span><span class="app-nl"><strong>Biology 101</strong><span>Fall 2026</span></span></div>'+(fac?'<p class="app-sec app-nl">Instructor</p>':'')+L.map(function(x){return '<span class="app-item'+(x[2]?' on':'')+'">'+APPI[x[0]]+'<span class="app-nl">'+x[1]+'</span>'+(x[3]?'<span class="app-cnt app-nl">'+x[3]+'</span>':'')+'</span>'}).join('')+'<div class="app-me"><span class="app-av">'+(fac?'F':'J')+'</span><span class="app-nl"><strong>'+(fac?'Instructor':'Jordan')+'</strong><span>'+(fac?'Biology 101':(MJ[a.major]||'Undecided')+' major')+'</span></span></div>';
+$('appUrl').textContent='learn.bio101.edu/'+['welcome','week-7','week-7/formats','week-7/activity','week-7/checkpoint-2','week-7/final-task','course-map',facView==='class'?'instructor/week-7':'instructor/roster/jordan'][st];}
+var RUB=[['Uses evidence','Makes a claim without citing the recordings or data.','Cites some evidence, but not all of it supports the claim.','Supports each part of the explanation with specific values from the recordings and environmental data.'],
+['Interprets data','Misreads the spectrograms or noise data.','Reads the main pattern correctly but misses a detail or comparison.','Accurately describes patterns in the spectrograms and noise data and compares both sites.'],
+['Considers another explanation','Offers one explanation only.','Names another explanation but doesn’t test it against the data.','Weighs at least one competing explanation fairly and explains why the evidence favors one.'],
+['Identifies further evidence','Doesn’t say what else would help.','Says more data is needed, but not which kind.','Names specific evidence that would test the explanation and what it would show.'],
+['Distinguishes short-term from evolutionary change','Doesn’t separate learned from inherited change.','Mentions both, but mixes them up in the explanation.','Clearly separates changes within a bird’s lifetime from changes across generations.'],
+['Communicates clearly','Hard to follow, or missing key steps.','Mostly clear, with some gaps or jargon.','Concise, well organized, and readable for a general audience.']];
+function rubric(){var lv=WK[6].cr,H=['Not yet','Developing','Meeting'];
+return '<div class="rb-top"><p class="wt-k" style="margin:0">Rubric · how the final task is evaluated</p><span class="rb-key"><i></i>Your Checkpoint 2 draft</span></div><div class="rb" role="table" aria-label="Final task rubric"><div class="rb-row rb-hd" role="row"><span role="columnheader">Criterion</span>'+H.map(function(h){return '<span role="columnheader">'+h+'</span>'}).join('')+'</div>'+
+RUB.map(function(r,i){return '<div class="rb-row" role="row"><span class="rb-c" role="rowheader">'+r[0]+'</span>'+[1,2,3].map(function(n){var on=lv[i]===n;return '<span class="rb-cell'+(on?' on':'')+'" role="cell"><b class="rb-l">'+H[n-1]+'</b>'+r[n]+(on?'<em class="rb-you">Your draft</em>':'')+'</span>'}).join('')+'</div>'}).join('')+'</div><p class="wt-muted" style="margin:10px 0 0">The same six criteria and three levels appear at every checkpoint, so nothing on the final task is new.</p>';}
 var S=[
 {t:'Getting to know Jordan',w:'Before the course',crumb:'Biology 101 · Getting started',screen:'Welcome to Biology 101',
 what:'Before the course begins, Jordan answers three questions. The course uses the answers to choose examples and support for every unit.',
@@ -741,7 +948,7 @@ return h+'<div class="wt-card" style="background:var(--gold-tint);border-color:v
 what:'Jordan opens Unit 3. The unit question, a framing from their field, and the steps ahead are on one screen.',
 notes:[['A question worth investigating','The unit question comes from the course’s essential question, which was built from the existing syllabus topics and outcomes.','Backward design · Essential questions (Wiggins and McTighe)'],['Framed for Jordan','The question is introduced through Jordan’s major. Another learner would see a different entry point to the same biology.','Relevance'],['Review only what’s needed','Jordan picks refreshers before starting. Learners who are ready can skip ahead, and others get support without slowing anyone down.','Prior knowledge · Universal Design for Learning'],['Short steps with time estimates','The unit is broken into steps of 15 to 25 minutes, with checkpoints between them, so learners can plan and see progress.','Managing cognitive load']],
 tryit:'Select review topics to see Jordan’s steps update.',
-r:function(){var p=R.path(a);return '<div class="db-q" style="position:relative">'+pin(1)+'<div><p class="db-l">Essential question</p><p>'+EQ+'</p></div><div><p class="db-l">This unit</p><p class="db-uq">'+R.UNIT.question+'</p></div></div>'+
+r:function(){var p=R.path(a);return '<div class="eqn">'+pin(1)+'<p class="eqn-top"><span class="eqn-l">Essential question</span><span class="eqn-q">'+EQ+'</span></p><div class="eqn-wk"><span class="eqn-l">This week’s question</span><p class="eqn-uq">'+R.UNIT.question+'</p></div></div>'+
 '<div class="wt-g2"><div class="wt-col"><div class="wt-card wt-keycard">'+pin(2)+'<p class="wt-k">'+fyf()+'</p><p class="wt-big">'+angle()+'</p><p>'+p.major.text+'</p></div><div class="wt-card">'+pin(3)+'<p class="wt-k">Before you start</p><p>Pick anything you’d like to review first.</p><div class="chips">'+chips(UQ[1])+'</div></div></div>'+
 '<div class="wt-card">'+pin(4)+'<p class="wt-k">What you’ll do in Unit 3</p>'+steps(-1)+'</div></div>';}},
 {t:'Choosing a format',w:'Starting the unit',crumb:'Biology 101 · Unit 3 of 5',screen:'How would you like to investigate?',
@@ -749,7 +956,7 @@ what:'Jordan chooses how to investigate the question. Every format leads to the 
 notes:[['One question for every format','All three formats investigate the same question with the same recordings and data.','Alignment'],['Framing from their field carries into each format','Jordan’s framing shows up inside each activity, not only in the introduction.','Sustained relevance'],['Choice with a safety net','Learners can switch formats at any point without losing progress toward the final task.','Self-determination theory: autonomy'],['Three kinds of practice','The guided video works as a worked example. The escape room gives feedback on each puzzle before the next one unlocks. The field investigation works with real, imperfect data.','Worked examples · Immediate feedback · Authentic inquiry']],
 tryit:'Choose a different format for Jordan. Later moments show all three formats side by side and mark Jordan’s format.',
 r:function(){var h='<div class="fq" style="position:relative">'+pin(1)+'<p class="k" style="margin:0">All three investigate</p><p class="fq-q">'+R.UNIT.question+'</p></div><div class="wt-fmts">'+pin(4);
-['video','game','field'].forEach(function(k,j){var f=R.FORMAT[k],on=a.fmt===k;h+='<div class="wt-rel" style="display:flex">'+(j===1?pin(2):'')+'<button type="button" class="wt-fmt f-'+k+'" data-fmt="'+k+'" aria-pressed="'+on+'" style="flex:1"><span class="ft">'+f.tag+'</span><span class="fn">'+f.name+'</span><p>'+f.text+'</p><div class="wt-hook"><p class="wt-k" style="margin:0 0 2px">'+fyf()+'</p><p>'+HOOK[a.major][k]+'</p></div><span class="wt-pick">'+(on?'✓ Jordan’s pick':'Start here')+'</span></button></div>';});
+['video','game','field'].forEach(function(k,j){var f=R.FORMAT[k],on=a.fmt===k;h+='<div class="wt-rel" style="display:flex">'+(j===1?pin(2):'')+'<button type="button" class="wt-fmt f-'+k+'" data-fmt="'+k+'" aria-pressed="'+on+'" style="flex:1"><span class="ft">'+f.tag+'</span><span class="fn">'+f.name+'</span><p>'+f.text+'</p><div class="wt-hook"><p class="wt-k" style="margin:0 0 2px">'+fyf()+'</p><p>'+HOOK[a.major][k]+'</p></div><span class="wt-pick">'+(on?'✓ Your pick':'Start here')+'</span></button></div>';});
 return h+'</div><p class="wt-safety" style="position:relative">'+pin(3)+'Switch formats anytime. The question, checkpoints, and final task stay the same.</p>';}},
 {t:'Inside the activity',w:'Midway through',crumb:'Biology 101 · Unit 3 of 5',screen:'Welcome back, Jordan',
 what:'Jordan is partway through the unit. The dashboard leads with the next step, shows the same step in each format, and keeps support close by.',
@@ -770,15 +977,15 @@ r:function(){var C=[['Uses evidence',3,'Meeting','You cite the spectrogram value
 return '<div class="wt-g2"><div class="wt-col"><div class="wt-card"><p class="wt-k">Your draft explanation</p><p class="wt-draft">City birds seem to sing higher because traffic noise is mostly low-pitched, so higher notes are easier to hear. In the spectrograms, the city songs start around 3 kHz and the forest songs around 2 kHz. I’d want more recordings to be sure.</p></div>'+
 '<div class="wt-card">'+pin(3)+'<p class="wt-k">Your confidence</p><p>You said you felt <strong>somewhat confident</strong>. Your draft meets 3 of the 6 criteria so far, so that’s a close match. The next step works on the gap.</p></div>'+
 '<div class="wt-card">'+pin(4)+'<p class="wt-k">Shared with your instructor</p><p>Your instructor sees this feedback alongside a class summary and may follow up in office hours.</p></div></div>'+
-'<div class="wt-card wt-keycard">'+pin(1)+'<p class="wt-k">Feedback on the final task criteria</p><ul class="wt-crit">'+C.map(function(c){return '<li><strong>'+c[0]+'</strong><span class="lv"><span class="wt-bars" aria-hidden="true">'+[1,2,3].map(function(n){return '<i class="'+(n<=c[1]?'on':'')+'"></i>'}).join('')+'</span>'+c[2]+'</span><span class="c">'+c[3]+'</span></li>'}).join('')+'</ul></div></div>'+
+'<div class="wt-card wt-keycard">'+pin(1)+'<p class="wt-k">Feedback on the final task criteria</p><ul class="wt-crit">'+C.map(function(c){return '<li><strong>'+c[0]+'</strong><span class="lv"><span class="wt-bars lv'+c[1]+'" aria-hidden="true">'+[1,2,3].map(function(n){return '<i class="'+(n<=c[1]?'on':'')+'"></i>'}).join('')+'</span><span class="lvt">'+c[2]+'</span></span><span class="c">'+c[3]+'</span></li>'}).join('')+'</ul></div></div>'+
 '<div class="wt-card">'+pin(2)+'<p class="wt-k">Continue your exploration (optional) · about 15 min</p><p class="wt-big" style="margin-bottom:10px">Weigh a competing idea</p>'+trio(function(k){return '<p>'+NEXT[k]+'</p>'})+'</div>';}},
 {t:'The final task',w:'End of the unit',crumb:'Biology 101 · Unit 3 · Final task',screen:'Your end of unit goal',
 what:'Every format ends with the same task. Each learner brings evidence from the format they chose.',
-notes:[['Same task, every format','The shared task keeps expectations consistent, so faculty can compare learning across formats.','Alignment · Backward design'],['Evidence from each format','Work from the chosen activity becomes evidence for the final explanation.','Authentic assessment'],['Criteria Jordan has seen all along','The rubric uses the same six criteria as every checkpoint.','Transparent assessment']],
+notes:[['Same task, every format','The shared task keeps expectations consistent, so faculty can compare learning across formats.','Alignment · Backward design'],['Evidence from each format','Work from the chosen activity becomes evidence for the final explanation.','Authentic assessment'],['A rubric Jordan has seen all along','The rubric uses the same six criteria and three levels as every checkpoint. Each level describes what the work looks like, and the highlighted cells show where Jordan’s Checkpoint 2 draft is now.','Transparent assessment · Analytic rubric']],
 tryit:'',
 r:function(){return '<div class="wt-task">'+pin(1)+'<p class="wt-k" style="margin:0 0 6px">Same task for every format</p>'+R.path(a).task+'</div>'+
 '<div class="wt-card">'+pin(2)+'<p class="wt-k">Bring from your format</p>'+trio(function(k){return '<p>'+BRING[k]+'</p>'})+'<p class="wt-muted" style="margin:10px 0 0">Every format also uses the shared recordings and noise data.</p></div>'+
-'<div class="wt-card">'+pin(3)+'<p class="wt-k">How it’s assessed</p><ul class="wt-crit"><li><strong>Uses evidence</strong><span class="c">Draws on the recordings and environmental data</span></li><li><strong>Interprets data</strong><span class="c">Reads patterns in spectrograms and noise data accurately</span></li><li><strong>Considers another explanation</strong><span class="c">Weighs a competing idea fairly</span></li><li><strong>Identifies further evidence</strong><span class="c">Names what would help test it</span></li><li><strong>Distinguishes short-term from evolutionary change</strong><span class="c">Separates learned changes from inherited ones</span></li><li><strong>Communicates clearly</strong><span class="c">Presents the explanation concisely for a general reader</span></li></ul></div>';}},
+'<div class="wt-card">'+pin(3)+rubric()+'</div>';}},
 {t:'Course map',w:'Across the term',crumb:'Biology 101 · Course map',screen:'Your course map',
 what:'Jordan’s course map works like a learner version of the faculty view. It shows progress across the term, and selecting a week shows results, strengths, and support for that week.',
 notes:[['Progress that rewards skills','Experience points (XP) come from checkpoints and from improving on a criterion, not only from finishing activities. Each week’s badge names a skill Jordan has shown, and locked badges preview what’s ahead.','Self-determination theory: competence · Mastery orientation'],['Every week’s question in one view','Jordan can see how this week fits into the course and what comes next. Each unit shows a quick summary of strengths and areas to review.','Advance organizers · Course coherence'],['Strengths first, then optional side quests','Each week leads with what Jordan did well. Areas to review link to short activities worth bonus XP, so extra help feels like a choice rather than a penalty.','Strengths-based feedback · Just-in-time support'],['The same criteria faculty see','Jordan sees their own results on the six shared criteria, plus how their confidence compared with their work. Faculty see the class version in the faculty view.','Self-regulated learning · Metacognition'],['Formats and connections across weeks','Each week offers a guided video plus two formats suited to its question. Past weeks show Jordan’s pick and where ideas come back. Upcoming weeks suggest what to review.','Alignment · Spiral curriculum']],
@@ -794,9 +1001,9 @@ var d=WK[selWk-1],up=d.st==='up';
 h+='<div class="wt-card wk-detail"><div class="gm-dh"><div><p class="wt-k" style="margin:0 0 4px">Week '+d.n+' · Unit '+(d.u+1)+': '+UN[d.u]+(d.st==='now'?' · this week':up?' · upcoming':'')+'</p><p class="wt-big" style="margin:0 0 4px">'+d.q+'</p><p class="wt-muted" style="margin:0">Case: '+d.c+'</p></div><div class="gm-badge '+(d.st==='done'?'on':d.st==='now'?'now':'')+'"><span class="gm-bi">'+d.n+'</span><span><strong>'+d.bd+'</strong>'+(d.st==='done'?'Badge earned · +'+d.xp+' XP':d.st==='now'?'Unlocks with the final task · '+d.xp+' XP so far':'Locked · up to 180 XP')+'</span></div></div>';
 h+='<div class="wt-g2" style="margin-top:14px"><div class="wk-col wk-strong">'+pin(3)+'<p class="wt-k">'+(up?'Strengths you’ll use':'Where you’re strong')+'</p><ul class="wk-list">'+d.s.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></div>';
 h+='<div class="wk-col wk-sup">'+'<p class="wt-k">'+(up?'Get ready · side quests':'Side quests for extra support')+'</p>'+(d.sp.length?'<ul class="wk-list">'+d.sp.map(function(x,i){var dn=d.st==='done'&&i===0;return '<li><strong>'+x[0]+'</strong><span class="gm-q"><span class="wk-res">'+x[1]+'</span><span class="gm-pts'+(dn?' dn':'')+'">'+(dn?'✓ +20 XP earned':'+20 XP')+'</span></span></li>'}).join('')+'</ul>':'<p style="margin:0">'+(up?'Nothing to prepare. The weeks this builds on went well.':'Nothing flagged this week.')+'</p>')+'</div></div>';
-if(!up){h+='<div class="wk-res-card">'+pin(4)+'<p class="wt-k">Your results on the shared criteria</p><div class="gm-crit">'+CRN.map(function(c,i){var v=d.cr[i];return '<div class="gm-cr"><span>'+c+'</span><span class="wt-bars" aria-hidden="true">'+[1,2,3].map(function(n){return '<i class="'+(n<=v?'on':'')+'"></i>'}).join('')+'</span><span class="gm-lvl">'+['','Not yet','Developing','Meeting'][v]+'</span></div>'}).join('')+'</div><p class="gm-conf"><strong>Confidence check:</strong> '+d.cf+'</p></div>';}
+if(!up){h+='<div class="wk-res-card">'+pin(4)+'<p class="wt-k">Your results on the shared criteria</p><div class="gm-crit">'+CRN.map(function(c,i){var v=d.cr[i];return '<div class="gm-cr"><span>'+c+'</span><span class="wt-bars lv'+v+'" aria-hidden="true">'+[1,2,3].map(function(n){return '<i class="'+(n<=v?'on':'')+'"></i>'}).join('')+'</span><span class="gm-lvl">'+['','Not yet','Developing','Meeting'][v]+'</span></div>'}).join('')+'</div><p class="gm-conf"><strong>Confidence check:</strong> '+d.cf+'</p></div>';}
 else{h+='<div class="wk-res-card">'+pin(4)+'<p class="wt-k">What you’ll be assessed on</p><p style="margin:0">The same six criteria as every week. Based on your earlier work, you’re likely to start strong on <strong>Interprets data</strong> and <strong>Communicates clearly</strong>.</p></div>';}
-h+='<div class="wk-fm">'+pin(5)+'<p class="wt-k" style="margin:0 0 8px">'+(d.st==='now'?'This week’s formats':'Formats offered')+'</p><div class="wk-fms">'+d.fm.map(function(f,i){var on=d.st==='now'?f===F_NOW():i===d.pick;return '<span class="wk-f'+(on?' on':'')+'">'+(on?'✓ ':'')+f+(on?(d.st==='now'?' · Jordan’s current format':' · Jordan’s pick'):'')+'</span>'}).join('')+'</div></div>';
+h+='<div class="wk-fm">'+pin(5)+'<p class="wt-k" style="margin:0 0 8px">'+(d.st==='now'?'This week’s formats':'Formats offered')+'</p><div class="wk-fms">'+d.fm.map(function(f,i){var on=d.st==='now'?f===F_NOW():i===d.pick;return '<span class="wk-f'+(on?' on':'')+'">'+(on?'✓ ':'')+f+(on?(d.st==='now'?' · Your current format':' · Your pick'):'')+'</span>'}).join('')+'</div></div>';
 h+='<p class="wk-link">'+d.ln+'</p>';
 if(d.st==='now')h+='<div class="wk-ref"><p class="wt-k" style="margin:0 0 4px">In your own words</p><p style="margin:0 0 8px">At the start you said: <strong>'+lbl('why')+'</strong>. If a classmate asked, what would you tell them they could learn or gain from this unit?</p><div class="wt-input" style="margin:0;border-radius:10px">Write a sentence or two…</div></div>';
 return h+'</div>';}},
@@ -811,10 +1018,10 @@ function draw(){var s=S[st];
 var FIC='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 15v-3M12 15V9M17 15v-5"/></svg>';
 function rb(x,j){var fac=j===7;return '<li class="'+(fac?'':(j&&j<=st?'done':''))+'"><button type="button" data-st="'+j+'" class="'+(!fac&&j<st?'done':'')+'"'+(j===st?' aria-current="step"':'')+'><span class="n" aria-hidden="true">'+(fac?FIC:(j+1))+'</span><span class="t"><span class="sr-only">'+(fac?'':'Moment '+(j+1)+': ')+'</span>'+x.t+'</span></button></li>'}
 $('wtRail').innerHTML='<div class="wt-grp"><p class="wt-gl">Jordan’s journey</p><ol class="wt-rail" aria-label="Jordan’s journey">'+S.slice(0,7).map(rb).join('')+'</ol></div><div class="wt-div" aria-hidden="true"></div><div class="wt-grp fac"><p class="wt-gl">For faculty</p><ol class="wt-rail" aria-label="Faculty view">'+rb(S[7],7)+'</ol></div>';
-$('wtWhen').textContent=st<7?'Jordan’s journey · Moment '+(st+1)+' of 7 · '+s.w:'Faculty view · '+s.w;$('wtTitle').textContent=s.t;$('wtWhat').textContent=s.what;
+$('wtTitle').textContent=s.t;$('wtWhat').textContent=s.what;
 var who=s.who||('Jordan · '+(MJ[a.major]||'Undecided')+' major'+(st>=2?' · '+F().name:''));
 $('wtCtl').innerHTML=(st===0?'<span class="wt-seg" role="group" aria-label="Show the intake as"><span class="wt-muted">Show intake as</span><button type="button" class="chip" data-mode="survey" aria-pressed="'+(mode==='survey')+'">Survey</button><button type="button" class="chip" data-mode="chat" aria-pressed="'+(mode==='chat')+'">Chat</button></span>':'')+(st===7?'<span class="wt-seg" role="group" aria-label="Faculty view for"><span class="wt-muted">View</span><button type="button" class="chip" data-fv="class" aria-pressed="'+(facView==='class')+'">Class</button><button type="button" class="chip" data-fv="jordan" aria-pressed="'+(facView==='jordan')+'">Jordan</button></span>':'')+'<button type="button" class="p-reset" id="wtReset">Reset to Jordan</button>';
-$('wtDash').innerHTML='<div class="wt-top"><div><p class="wt-crumb">'+s.crumb+'</p><p class="wt-screen">'+s.screen+'</p></div><div class="wt-who"><span>'+who+'</span><span class="wt-av" aria-hidden="true">'+(s.av||'J')+'</span></div></div>'+s.r();
+$('wtDash').innerHTML='<div class="wt-top"><div><p class="wt-crumb">'+s.crumb+'</p><p class="wt-screen">'+s.screen+'</p></div><div class="wt-who"><span class="app-who">'+who+'</span><span class="app-ib" aria-hidden="true">'+APPI.search+'</span><span class="app-ib" aria-hidden="true">'+APPI.bell+'<i class="app-ping"></i></span><span class="wt-av" aria-hidden="true">'+(s.av||'J')+'</span></div></div>'+s.r();appChrome();
 $('wtTry').innerHTML='<strong>Select the numbered pins</strong> on the dashboard to read the design note behind each part.'+(s.tryit?' <strong>Try it:</strong> '+s.tryit:'');
 $('wtBack').disabled=st===0;$('wtNext').textContent=st===7?'Back to Moment 1':st===6?'Next: Faculty view':'Next';$('wtCount').textContent=st<7?'Moment '+(st+1)+' of 7':'Faculty view';
 seen.forEach(function(n){var p=$('wtDash').querySelector('[data-pin="'+n+'"]');if(p)p.classList.add('seen')});
