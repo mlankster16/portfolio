@@ -300,7 +300,7 @@
 .dc .proto .btn { font-size:15px; font-weight:600; padding:9px 22px; }
 .dc .proto .p-saved dt, .dc .proto .p-reset, .dc .proto .p-saved-h a { font-size:14px; }
 @media (max-width:820px){ .dc .proto .p-title, .dc .proto .p-unit { font-size:22px; } }
-/* Final-task route boxes: every box fills the full width and height of its column */
+/* Final-task format boxes: every box fills the full width and height of its column */
 .dc .rub-in > span { flex:1 1 auto; width:100%; box-sizing:border-box; }
 </style>
 <style>
@@ -356,11 +356,11 @@
 .dc .wt-fmt { appearance:none; font:inherit; text-align:left; cursor:pointer; position:relative; display:flex; flex-direction:column; gap:8px; padding:16px; border-radius:10px; color:var(--text-body); }
 .dc .wt-fmt[aria-pressed="true"] { box-shadow:0 0 0 3px #101d38; }
 .dc .wt-fmt p { margin:0; font-size:15px; line-height:1.55; }
-.dc .wt-hook { position:relative; background:#fff; border-radius:8px; padding:10px 12px; }
+.dc .wt-hook { position:relative; background:#fff; border-radius:10px; padding:10px 12px; }
 .dc .wt-pick { margin-top:auto; padding-top:4px; font-weight:700; font-size:14px; color:var(--navy); }
 .dc .wt-safety { margin:0; max-width:none !important; padding:12px 16px; border-radius:10px; background:#fff; border:1px dashed var(--rule-strong); }
 .dc .wt-routes { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
-.dc .wt-routes span { padding:6px 8px; border-radius:8px; text-align:center; font-size:14px; font-weight:600; background:#fff; border:1px solid var(--rule); color:var(--navy); }
+.dc .wt-routes span { padding:6px 8px; border-radius:10px; text-align:center; font-size:14px; font-weight:600; background:#fff; border:1px solid var(--rule); color:var(--navy); }
 .dc .wt-routes span[aria-current="true"] { background:#101d38; border-color:#101d38; color:#fff; }
 .dc .wt-crit { list-style:none; margin:0; padding:0; display:grid; gap:10px; }
 .dc .wt-crit li { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:2px 12px; padding-top:10px; border-top:1px solid var(--rule); }
@@ -379,7 +379,7 @@
 .dc .wt-task { position:relative; padding:18px 22px; border-radius:10px; background:#101d38; color:#f4efe2; font-family:var(--font-display); font-size:24px; line-height:1.35; }
 .dc .wt-task .wt-k { color:#e8b964; font-family:var(--font-body); }
 .dc .wt-term { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; }
-.dc .wt-term li { padding:10px 12px; border-radius:8px; background:#faf9f7; border:1px solid var(--rule); font-size:15px; line-height:1.45; }
+.dc .wt-term li { padding:10px 12px; border-radius:10px; background:#faf9f7; border:1px solid var(--rule); font-size:15px; line-height:1.45; }
 .dc .wt-term li strong { display:block; color:var(--navy); }
 .dc .wt-term li.now { background:var(--gold-tint); border-color:var(--gold-border); }
 .dc .wt-np { position:sticky; top:24px; background:var(--gold-tint); border:1px solid var(--gold-border); border-radius:14px; padding:20px; }
@@ -397,7 +397,7 @@
 @media (max-width:1100px){ }
 @media (max-width:820px){ .dc .wt-ideas, .dc .wt-fmts, .dc .wt-term, .dc .wt-trio, .dc .wt-g3 { grid-template-columns:minmax(0,1fr); } }
 @media (max-width:680px){ .dc .wt-g2 { grid-template-columns:minmax(0,1fr); } .dc .wt-dash { padding:16px; } .dc .wt-top { flex-wrap:wrap; } }
-.dc .wt-pin:not(.seen) { animation:wtPing 1.8s ease-out infinite; }
+.dc .wt-pin:not(.seen) { animation:wtPing 1.8s ease-out 3; }
 @keyframes wtPing { 0% { box-shadow:0 0 0 3px #f3f2f1, 0 0 0 3px rgba(232,185,100,.7); } 80%,100% { box-shadow:0 0 0 3px #f3f2f1, 0 0 0 13px rgba(232,185,100,0); } }
 @media (prefers-reduced-motion:reduce){ .dc .wt-pin { animation:none !important; } }
 .dc .wt-call { position:absolute; top:22px; left:-11px; z-index:20; width:320px; max-width:calc(100vw - 48px); background:#101d38; color:#f4efe2; border:1px solid #e8b964; border-radius:10px; padding:14px 16px; box-shadow:0 12px 32px rgba(16,29,56,.3); font-family:var(--font-body); font-size:15px; font-style:normal; font-weight:400; line-height:1.55; text-align:left; letter-spacing:0; text-transform:none; }
@@ -423,19 +423,6 @@
 .dc .wt-bar .v { text-align:right; font-weight:700; color:var(--navy); }
 .dc .wt-sample { font-size:14px; color:var(--text-muted); }
 .dc .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
-.dc .wt-rail { list-style:none; margin:0 0 28px; padding:12px 0; display:flex; align-items:center; justify-content:center; border-bottom:1px solid var(--rule); }
-.dc .wt-rail li { display:contents; }
-.dc .wt-rail button { position:relative; flex:none; appearance:none; border:0; background:none; padding:0; cursor:pointer; font:inherit; }
-.dc .wt-rail .n { width:40px; height:40px; border-radius:50%; display:grid; place-items:center; background:#fff; border:1.5px solid var(--rule-strong); color:var(--text-muted); font-size:15px; font-weight:700; transition:background .2s, border-color .2s, color .2s; }
-.dc .wt-rail button:hover .n { border-color:var(--accent); color:var(--accent-dark); }
-.dc .wt-rail button.done .n { border-color:var(--accent); color:var(--accent-dark); }
-.dc .wt-rail button[aria-current="step"] .n { background:var(--accent); border-color:var(--accent); color:#fff; }
-.dc .wt-rail button:focus-visible { outline:2px solid var(--navy); outline-offset:3px; border-radius:50%; }
-.dc .wt-rail .ln { flex:0 1 72px; min-width:12px; height:1.5px; background:var(--rule-strong); }
-.dc .wt-rail .ln.done { background:var(--accent); }
-.dc .wt-rail .t { position:absolute; top:calc(100% + 10px); left:50%; transform:translate(-50%,-4px); white-space:nowrap; padding:6px 12px; border-radius:6px; background:#101d38; color:#f4efe2; font-size:14px; font-weight:600; opacity:0; pointer-events:none; transition:opacity .15s, transform .15s; z-index:10; }
-.dc .wt-rail .t::before { content:''; position:absolute; bottom:100%; left:50%; margin-left:-5px; border:5px solid transparent; border-bottom-color:#101d38; }
-.dc .wt-rail button:hover .t, .dc .wt-rail button:focus-visible .t { opacity:1; transform:translate(-50%,0); }
 @media (max-width:680px){ .dc .wt-rail .n { width:34px; height:34px; font-size:14px; } }
 .dc .cm { display:grid; gap:12px; margin:20px 0 0; }
 .dc .cm-u { display:grid; grid-template-columns:180px minmax(0,1fr); gap:16px; align-items:stretch; padding:16px; border-radius:10px; background:#fff; border:1px solid var(--rule); }
@@ -443,7 +430,7 @@
 .dc .cm-n { font-size:14px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--gold-dark); }
 .dc .cm-t { font-family:var(--font-display); font-size:22px; line-height:1.25; color:var(--navy); }
 .dc .cm-ws { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
-.dc .cm-w { display:flex; flex-direction:column; gap:4px; padding:12px 14px; border-radius:8px; background:var(--panel-warm); border:1px solid var(--rule); }
+.dc .cm-w { display:flex; flex-direction:column; gap:4px; padding:12px 14px; border-radius:10px; background:var(--panel-warm); border:1px solid var(--rule); }
 .dc .cm-wk { font-size:14px; font-weight:700; color:var(--text-muted); }
 .dc .cm-q { font-weight:600; color:var(--navy); line-height:1.4; }
 .dc .cm-c { font-size:15px; line-height:1.45; color:var(--text-secondary); }
@@ -472,7 +459,7 @@
 .dc .wk-list li { line-height:1.45; }
 .dc .wk-list strong { display:block; color:var(--navy); }
 .dc .wk-res { display:inline-block; margin-top:4px; font-size:14px; font-weight:600; color:var(--navy); text-decoration:underline; }
-.dc .wk-link { position:relative; margin:14px 0 0; padding-left:22px; color:var(--text-secondary); max-width:none !important; }
+.dc .wk-link { position:relative; margin:14px 0 0; padding-left:0; color:var(--text-secondary); max-width:none !important; }
 .dc .wk-link .wt-pin { top:-2px; left:-6px; }
 .dc .wk-ref { margin-top:14px; padding-top:14px; border-top:1px solid var(--rule); }
 .dc .cm-f { font-size:14px; color:var(--gold-dark); font-weight:600; line-height:1.4; }
@@ -486,14 +473,14 @@
 .dc .gm-xp { height:12px; border-radius:6px; background:#f3f2f1; overflow:hidden; }
 .dc .gm-xp b { display:block; height:100%; border-radius:6px; background:#e8b964; }
 .dc .gm-stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:14px 0 0; }
-.dc .gm-stats span { display:flex; flex-direction:column; padding:8px 10px; border-radius:8px; background:#faf9f7; font-size:14px; color:var(--text-muted); line-height:1.3; }
+.dc .gm-stats span { display:flex; flex-direction:column; padding:8px 10px; border-radius:10px; background:#faf9f7; font-size:14px; color:var(--text-muted); line-height:1.3; }
 .dc .gm-stats strong { font-family:var(--font-display); font-size:24px; font-weight:500; color:var(--navy); }
 .dc .gm-tail { margin:12px 0 0 !important; font-size:15px; color:var(--text-secondary); }
 .dc .gm-bdg { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px; }
-.dc .gm-b { appearance:none; font:inherit; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:4px; padding:6px 2px; border:0; background:none; border-radius:8px; color:var(--text-muted); }
+.dc .gm-b { appearance:none; font:inherit; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:4px; padding:6px 2px; border:0; background:none; border-radius:10px; color:var(--text-muted); }
 .dc .gm-b:hover { background:#faf9f7; }
 .dc .gm-bi { width:36px; height:36px; border-radius:50%; display:grid; place-items:center; flex:none; font-weight:700; font-size:14px; background:#f3f2f1; color:var(--text-muted); border:2px dashed var(--rule-strong); }
-.dc .gm-bn { font-size:12px; line-height:1.25; text-align:center; }
+.dc .gm-bn { font-size:13px; line-height:1.25; text-align:center; }
 .dc .gm-b.on .gm-bi, .dc .gm-badge.on .gm-bi { background:#e8b964; color:#101d38; border:2px solid #b8863a; }
 .dc .gm-b.on .gm-bn { color:var(--navy); font-weight:600; }
 .dc .gm-b.now .gm-bi, .dc .gm-badge.now .gm-bi { background:#fff; color:var(--navy); border:2px solid #101d38; }
@@ -519,7 +506,7 @@
 .dc .fj-cf span { display:flex; align-items:center; gap:2px; }
 .dc .fj-cf strong { margin-right:6px; color:var(--navy); }
 .dc .fj-fm { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:8px; }
-.dc .fj-fm span { display:flex; flex-direction:column; gap:2px; padding:8px 10px; border-radius:8px; background:#faf9f7; border:1px solid var(--rule); font-size:14px; line-height:1.35; }
+.dc .fj-fm span { display:flex; flex-direction:column; gap:2px; padding:8px 10px; border-radius:10px; background:#faf9f7; border:1px solid var(--rule); font-size:14px; line-height:1.35; }
 .dc .fj-fm strong { color:var(--navy); }
 @media (max-width:900px){ .dc .fj-fm { grid-template-columns:repeat(4,minmax(0,1fr)); } }
 @media (max-width:560px){ .dc .fj-fm { grid-template-columns:repeat(2,minmax(0,1fr)); } .dc .fj-h, .dc .fj-r { grid-template-columns:minmax(0,1fr) 120px 48px; } }
@@ -527,14 +514,14 @@
 .dc .ro-h, .dc .ro-r { display:grid; grid-template-columns:minmax(90px,1fr) minmax(100px,1fr) 130px 140px 70px minmax(150px,1.6fr); gap:12px; align-items:center; min-width:720px; }
 .dc .ro-h { font-size:14px; font-weight:700; color:var(--text-muted); padding:0 8px 6px; border-bottom:1px solid var(--rule); }
 .dc .ro-r { padding:8px; border-bottom:1px solid var(--rule); }
-.dc .ro-j { background:var(--gold-tint); border-radius:8px; }
+.dc .ro-j { background:var(--gold-tint); border-radius:10px; }
 .dc .ro-n { font-weight:600; color:var(--navy); }
 .dc .ro-link { appearance:none; border:0; background:none; padding:0; font:inherit; font-weight:700; color:var(--navy); text-decoration:underline; cursor:pointer; }
 .dc .ro-met { display:inline-block; width:44px; height:8px; border-radius:4px; background:#f3f2f1; margin-right:8px; vertical-align:middle; overflow:hidden; }
 .dc .ro-met b { display:block; height:100%; background:#e8b964; }
 .dc .oc { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:16px; align-items:start; }
 .dc .oc-l { display:grid; gap:8px; }
-.dc .oc-b { appearance:none; font:inherit; text-align:left; cursor:pointer; display:flex; flex-direction:column; gap:2px; padding:10px 12px; border-radius:8px; background:#faf9f7; border:1px solid var(--rule); color:var(--text-body); }
+.dc .oc-b { appearance:none; font:inherit; text-align:left; cursor:pointer; display:flex; flex-direction:column; gap:2px; padding:10px 12px; border-radius:10px; background:#faf9f7; border:1px solid var(--rule); color:var(--text-body); }
 .dc .oc-b strong { color:var(--navy); line-height:1.35; font-size:15px; }
 .dc .oc-b span { font-size:14px; color:var(--text-muted); }
 .dc .oc-b:hover { border-color:var(--gold-border); }
@@ -546,16 +533,50 @@
 .dc .oc-key { display:flex; gap:14px; flex-wrap:wrap; margin-top:8px; font-size:14px; color:var(--text-muted); }
 .dc .oc-key span { display:inline-flex; align-items:center; gap:6px; } .dc .oc-key i { width:10px; height:10px; border-radius:2px; display:inline-block; }
 @media (max-width:820px){ .dc .oc { grid-template-columns:minmax(0,1fr); } }
-
-/* Full course map: collapsed by default */
-.dc .cm-details { margin-top:8px; }
-.dc .cm-details > summary { cursor:pointer; display:inline-block; font-weight:600; color:var(--navy); padding:10px 18px; border:1.5px solid var(--navy); border-radius:999px; list-style:none; }
-.dc .cm-details > summary::-webkit-details-marker { display:none; }
-.dc .cm-details > summary:focus-visible { outline:2px solid var(--navy); outline-offset:3px; }
-.dc .cm-details .cm-hide { display:none; }
-.dc .cm-details[open] .cm-show { display:none; }
-.dc .cm-details[open] .cm-hide { display:inline; }
-.dc .cm-details > .cm { margin-top:24px; }
+.dc .cm-dt { margin:48px 0 0; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:0 0 4px; }
+.dc .cm-dt[open] { padding-bottom:20px; }
+.dc .cm-dt summary { list-style:none; display:flex; align-items:center; gap:14px; padding:18px 0 14px; cursor:pointer; }
+.dc .cm-dt summary::-webkit-details-marker { display:none; }
+.dc .cm-dt summary:focus-visible { outline:2px solid var(--navy); outline-offset:4px; border-radius:4px; }
+.dc .cm-sh { font-family:var(--font-display); font-size:var(--s2); line-height:1.25; color:var(--navy); }
+.dc .cm-hint { font-size:15px; color:var(--text-muted); }
+.dc .cm-tg { margin-left:auto; width:32px; height:32px; flex:none; border-radius:50%; border:1.5px solid var(--rule-strong); background:#fff; display:grid; place-items:center; }
+.dc .cm-tg::before { content:'+'; font-size:20px; line-height:1; color:var(--navy); }
+.dc .cm-dt[open] .cm-tg::before { content:'−'; }
+.dc .cm-dt summary:hover .cm-tg { border-color:var(--accent); }
+.dc .wt-rail { list-style:none; margin:0 0 28px; padding:12px 0 16px; display:flex; border-bottom:1px solid var(--rule); }
+.dc .wt-rail li { position:relative; flex:1 1 0; min-width:0; display:flex; justify-content:center; }
+.dc .wt-rail li + li::before { content:''; position:absolute; top:20px; left:calc(-50% + 24px); right:calc(50% + 24px); height:1.5px; background:var(--rule-strong); }
+.dc .wt-rail li.done::before { background:var(--accent); }
+.dc .wt-rail button { display:flex; flex-direction:column; align-items:center; gap:8px; min-width:0; width:100%; appearance:none; border:0; background:none; padding:0 4px; cursor:pointer; font:inherit; color:var(--text-muted); }
+.dc .wt-rail .n { width:40px; height:40px; flex:none; border-radius:50%; display:grid; place-items:center; background:#fff; border:1.5px solid var(--rule-strong); color:var(--text-muted); font-size:15px; font-weight:700; transition:background .2s, border-color .2s, color .2s; }
+.dc .wt-rail .t { font-size:13px; font-weight:600; line-height:1.3; text-align:center; text-wrap:balance; }
+.dc .wt-rail button:hover .n { border-color:var(--accent); color:var(--accent-dark); }
+.dc .wt-rail button:hover .t { color:var(--text-strong); }
+.dc .wt-rail button.done .n { border-color:var(--accent); color:var(--accent-dark); }
+.dc .wt-rail button[aria-current="step"] .n { background:var(--accent); border-color:var(--accent); color:#fff; }
+.dc .wt-rail button[aria-current="step"] .t { color:var(--navy); font-weight:700; }
+.dc .wt-rail button:focus-visible { outline:2px solid var(--navy); outline-offset:3px; border-radius:10px; }
+@media (max-width:680px){ .dc .wt-rail .n { width:32px; height:32px; font-size:14px; } .dc .wt-rail li + li::before { top:16px; left:calc(-50% + 18px); right:calc(50% + 18px); } .dc .wt-rail .t { display:none; } .dc .wt-rail button[aria-current="step"] .t { display:block; position:absolute; top:40px; white-space:nowrap; }  }
+.dc .wt-keycard { background:var(--gold-tint); border-color:var(--gold-border); box-shadow:0 2px 0 var(--gold-border); }
+.dc .wk-d { width:14px !important; height:14px !important; display:inline-grid !important; place-items:center; font-size:9px; font-weight:800; font-style:normal; line-height:1; }
+.dc .wk-d.strong::after { content:'✓'; color:#101d38; }
+.dc .wk-d.mixed::after { content:'!'; color:#8a6420; }
+.dc .wk-d.now::after { content:''; width:4px; height:4px; border-radius:50%; background:#fff; }
+.dc .cm-cur .wk-d.now { background:#e8b964; box-shadow:0 0 0 2px #101d38; }
+.dc .cm-cur .wk-d.now::after { background:#101d38; }
+@media (max-width:680px){ .dc .wt-call, .dc .wt-call.r { position:fixed; left:12px; right:12px; top:auto; bottom:12px; width:auto; max-width:none; z-index:60; } }
+.dc .wt-railwrap { display:flex; align-items:stretch; margin:0 0 28px; padding:12px 0 16px; border-bottom:1px solid var(--rule); }
+.dc .wt-railwrap .wt-rail { margin:0; padding:0; border:0; }
+.dc .wt-grp { flex:7 1 0; min-width:0; display:flex; flex-direction:column; gap:12px; }
+.dc .wt-grp.fac { flex:1 1 0; }
+.dc .wt-gl { margin:0 !important; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--gold-dark); text-align:center; }
+.dc .wt-div { width:1px; flex:none; background:var(--rule-strong); margin:0 12px; }
+.dc .wt-grp.fac .n { border-style:dashed; }
+.dc .wt-grp.fac button[aria-current="step"] .n { background:#101d38; border-color:#101d38; border-style:solid; color:#e8b964; }
+@media (max-width:680px){ .dc .wt-railwrap { padding-bottom:36px; } .dc .wt-div { margin:0 6px; } .dc .wt-gl { font-size:12px; } }
+.dc .cm-ic { width:44px; height:44px; flex:none; border-radius:50%; display:grid; place-items:center; background:var(--gold-tint); border:1px solid var(--gold-border); }
+.dc .cm-ic svg { width:22px; height:22px; stroke:var(--gold-dark); }
 </style>
 </head>
 <body class="accent-gold">
@@ -585,11 +606,11 @@
   </div>
 </header>
 <main id="main" class="dc">
-<header class="band dark"><div class="in"><p class="s-draft">Draft concept · Guided walkthrough</p><h1>Designing for choice in undergraduate science</h1>
+<header class="band dark"><div class="in"><p class="s-draft">Draft concept</p><h1>Designing for choice in undergraduate science</h1>
 <p class="tagline">A shared learning goal with different ways to get there.</p>
 <p>This concept follows Jordan, a physics major taking a required biology course. It explores how their interests and prior knowledge could shape the examples, activities, and support they encounter, while keeping the course’s learning goals consistent.</p>
-<p>The walkthrough below follows Jordan through one unit, from the first questions the course asks to the final task. At each stage, numbered pins on the dashboard open notes on what to look for and the learning design behind it.</p>
-<div class="wt-poc"><p><strong>Proof of concept.</strong> I built this from a learning designer’s perspective to show how the learning experience could work. The interface itself would still need UX research and product design.</p></div></div></header>
+<p>The walkthrough below follows Jordan through one unit, from the first questions the course asks to the final task. At each moment, numbered pins on the dashboard open notes on what to look for and the learning design behind it.</p>
+<div class="wt-poc"><p><strong>Proof of concept.</strong> I built this from a learning designer’s perspective to show how the learning experience could work. The interface itself would still need UX research and product design.</p></div><a class="jump" href="#walk" style="margin-top:24px">Jump to the walkthrough</a></div></header>
 <section class="band warm" id="c1"><div class="in"><h2>Where the redesign starts: from syllabus topics to questions learners can investigate</h2>
 <p>I’d begin with the course’s existing syllabus and approved learning outcomes. Then I’d look for questions that bring related topics together and give learners a reason to explore them.</p>
 <p>For example, evolution, animal behavior, and ecology could come together around a question about how organisms respond to environmental change. Learners would still study the underlying biology, but they would use it to investigate a question and explain what the evidence suggests.</p>
@@ -603,27 +624,16 @@
 </div>
 <p class="map-note"><svg class="map-note-ic" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span>The mapping would also support curriculum and accreditation review by showing where required outcomes are taught, practiced, and assessed.</span></p>
 
-<h3 style="margin:48px 0 8px">The full course map</h3>
-<p>Each week centers on its own essential question and case, and the weeks are grouped into five units. The walkthrough below follows Jordan through Week 7.</p>
-<details class="cm-details"><summary><span class="cm-show">View the full course map ↓</span><span class="cm-hide">Hide the full course map ↑</span></summary>
-<div class="cm">
-<div class="cm-u"><div class="cm-h"><span class="cm-n">Unit 1</span><span class="cm-t">Cells and energy</span></div><div class="cm-ws"><div class="cm-w"><span class="cm-wk">Week 1</span><span class="cm-q">What makes something alive?</span><span class="cm-c">Case: Is a virus alive?</span><span class="cm-f">Guided video · Evidence board · Interactive debate</span></div><div class="cm-w"><span class="cm-wk">Week 2</span><span class="cm-q">How do cells get the energy they need?</span><span class="cm-c">Case: Why muscles burn during a sprint</span><span class="cm-f">Guided video · System sandbox · Prediction challenge</span></div><div class="cm-w"><span class="cm-wk">Week 3</span><span class="cm-q">How do cells control what goes in and out?</span><span class="cm-c">Case: Why drinking seawater makes you thirstier</span><span class="cm-f">Guided video · Choose-your-own experiment · Teach a virtual novice</span></div></div></div>
-<div class="cm-u"><div class="cm-h"><span class="cm-n">Unit 2</span><span class="cm-t">Genetics and inheritance</span></div><div class="cm-ws"><div class="cm-w"><span class="cm-wk">Week 4</span><span class="cm-q">How is information passed from parents to offspring?</span><span class="cm-c">Case: Tracing a trait through a family</span><span class="cm-f">Guided video · Mystery investigation · Model-building activity</span></div><div class="cm-w"><span class="cm-wk">Week 5</span><span class="cm-q">How does a cell turn genetic information into a trait?</span><span class="cm-c">Case: Why some adults can digest milk</span><span class="cm-f">Guided video · Escape room · Teach a virtual novice</span></div><div class="cm-w"><span class="cm-wk">Week 6</span><span class="cm-q">When does a change in a gene make a difference?</span><span class="cm-c">Case: Sickle cell trait and malaria</span><span class="cm-f">Guided video · Role-based investigation · Progressive case reveal</span></div></div></div>
-<div class="cm-u"><div class="cm-h"><span class="cm-n">Unit 3</span><span class="cm-t">Evolution and behavior</span></div><div class="cm-ws"><div class="cm-w cm-cur"><span class="cm-wk">Week 7 · Jordan’s walkthrough</span><span class="cm-q">How do organisms respond to changes in their environment?</span><span class="cm-c">Case: Birdsong in a city park and a nearby forest</span><span class="cm-f">Guided video · Escape room · Field investigation</span></div><div class="cm-w"><span class="cm-wk">Week 8</span><span class="cm-q">How do new species arise?</span><span class="cm-c">Case: Cichlid fish in African lakes</span><span class="cm-f">Guided video · Evidence board · Model-building activity</span></div><div class="cm-w"><span class="cm-wk">Week 9</span><span class="cm-q">How do we know how living things are related?</span><span class="cm-c">Case: Whales and their land-dwelling ancestors</span><span class="cm-f">Guided video · Scavenger hunt · Progressive case reveal</span></div></div></div>
-<div class="cm-u"><div class="cm-h"><span class="cm-n">Unit 4</span><span class="cm-t">Ecology</span></div><div class="cm-ws"><div class="cm-w"><span class="cm-wk">Week 10</span><span class="cm-q">How does energy move through an ecosystem?</span><span class="cm-c">Case: Wolves returning to Yellowstone</span><span class="cm-f">Guided video · System sandbox · Model-building activity</span></div><div class="cm-w"><span class="cm-wk">Week 11</span><span class="cm-q">What happens when a species disappears?</span><span class="cm-c">Case: Sea otters and kelp forests</span><span class="cm-f">Guided video · Mystery investigation · Branching simulation</span></div><div class="cm-w"><span class="cm-wk">Week 12</span><span class="cm-q">How do human activities reshape ecosystems?</span><span class="cm-c">Case: Pollinator decline on farms</span><span class="cm-f">Guided video · Role-based investigation · Resource-management challenge</span></div></div></div>
-<div class="cm-u"><div class="cm-h"><span class="cm-n">Unit 5</span><span class="cm-t">Body systems</span></div><div class="cm-ws"><div class="cm-w"><span class="cm-wk">Week 13</span><span class="cm-q">How does the body keep conditions stable?</span><span class="cm-c">Case: Heat illness in athletes</span><span class="cm-f">Guided video · Branching simulation · Design challenge</span></div><div class="cm-w"><span class="cm-wk">Week 14</span><span class="cm-q">How does the body defend itself?</span><span class="cm-c">Case: How vaccines prepare the immune system</span><span class="cm-f">Guided video · Progressive case reveal · Collaborative puzzle</span></div><div class="cm-w"><span class="cm-wk">Week 15</span><span class="cm-q">How do body systems work together?</span><span class="cm-c">Case: Adjusting to high altitude</span><span class="cm-f">Guided video · Troubleshooting mission · Choose-your-own experiment</span></div></div></div>
-</div>
-</details>
 </div></section>
 <section class="band" id="walk"><div class="in">
 <h2>Follow Jordan through Unit 3</h2>
 <p style="max-width:880px">Three ideas work together in this concept. The walkthrough shows each one as Jordan moves through the unit.</p>
 <div class="wt-ideas">
-<div class="wt-idea"><span class="wt-l" aria-hidden="true">1</span><h3>Meeting learners where they are</h3><p>Learners share their program, why they’re taking the course, and what keeps them going. Their answers shape the examples, preparation, and support they see.</p><button type="button" class="wt-go" data-st="0">See it in Stage 1</button></div>
-<div class="wt-idea"><span class="wt-l" aria-hidden="true">2</span><h3>Questions worth investigating</h3><p>The course is organized around essential questions drawn from the existing syllabus and outcomes. Each unit asks a question learners can investigate with real data.</p><button type="button" class="wt-go" data-st="1">See it in Stage 2</button></div>
-<div class="wt-idea"><span class="wt-l" aria-hidden="true">3</span><h3>One framing, in the format they choose</h3><p>Each week offers three formats suited to its content. In Week 7, learners investigate through a guided video, an escape room, or a field investigation. Framing from their field carries through each format to the same final task.</p><button type="button" class="wt-go" data-st="2">See it in Stage 3</button></div>
+<div class="wt-idea"><span class="wt-l" aria-hidden="true">1</span><h3>Meeting learners where they are</h3><p>Learners share their program, why they’re taking the course, and what keeps them going. Their answers shape the examples, preparation, and support they see.</p></div>
+<div class="wt-idea"><span class="wt-l" aria-hidden="true">2</span><h3>Questions worth investigating</h3><p>The course is organized around essential questions drawn from the existing syllabus and outcomes. Each unit asks a question learners can investigate with real data.</p></div>
+<div class="wt-idea"><span class="wt-l" aria-hidden="true">3</span><h3>Offering learner choice</h3><p>Each week offers three formats suited to its content. In Week 7, learners investigate through a guided video, an escape room, or a field investigation. Framing from their field carries through each format to the same final task.</p></div>
 </div>
-<ol class="wt-rail" id="wtRail" aria-label="Stages of Jordan’s unit"></ol>
+<div class="wt-railwrap" id="wtRail"></div>
 <div class="wt-head"><div><p class="wt-k" id="wtWhen" style="margin:0"></p><h3 id="wtTitle"></h3><p id="wtWhat"></p></div></div>
 <p class="map-note wt-try" style="margin:0 0 20px !important"><svg class="map-note-ic" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V6a2 2 0 0 1 4 0v5"/><path d="M13 10a2 2 0 0 1 4 0v2"/><path d="M17 11.5a2 2 0 0 1 4 0V15a7 7 0 0 1-7 7h-1.5a6 6 0 0 1-4.6-2.2L4.3 16.6a1.9 1.9 0 0 1 2.9-2.4L9 16"/></svg><span id="wtTry"></span></p>
 <div class="wt-ctl"><span class="wt-tag">Proof of concept · learning design view</span><div class="wt-ctl-r" id="wtCtl"></div></div>
@@ -656,13 +666,13 @@ var NEXT={video:'Rewatch the expert weighing a second explanation · 4 min',game
 function fyf(){return a.major==='undecided'||!MJ[a.major]?'In the field':'From your field'}
 function gold(t){return '<span class="wt-gold">'+t+'</span>'}
 function angle(){var m=MJ[a.major];return m?'As a '+gold(m)+' major, '+CUE[a.major]:'Still '+gold('exploring majors')+'?'}
-function pin(n){return '<button type="button" class="wt-pin" data-pin="'+n+'" aria-label="Design note '+n+'">'+n+'</button>'}
+function pin(n){return '<button type="button" class="wt-pin" data-pin="'+n+'" aria-label="Design note '+n+'" aria-expanded="false">'+n+'</button>'}
 function chips(q){return q.opts.map(function(o){var on=q.type==='many'?(a[q.id]||[]).indexOf(o[0])>-1:a[q.id]===o[0];return '<button type="button" class="chip" data-q="'+q.id+'" data-v="'+o[0]+'" aria-pressed="'+on+'">'+o[1]+'</button>'}).join('')}
 function F(){return R.FORMAT[a.fmt]}
-function trio(fn){return '<div class="wt-trio">'+['video','game','field'].map(function(k){var c=a.fmt===k;return '<div class="wt-tri f-'+k+(c?' is-cur':'')+'">'+'<span class="fn">'+R.FORMAT[k].name+'</span>'+fn(k)+(c?'':'<button type="button" class="wt-sw" data-fmt="'+k+'">Switch to this route</button>')+'</div>'}).join('')+'</div>'}
+function trio(fn){return '<div class="wt-trio">'+['video','game','field'].map(function(k){var c=a.fmt===k;return '<div class="wt-tri f-'+k+(c?' is-cur':'')+'">'+'<span class="fn">'+R.FORMAT[k].name+'</span>'+fn(k)+(c?'':'<button type="button" class="wt-sw" data-fmt="'+k+'">Switch to this format</button>')+'</div>'}).join('')+'</div>'}
 function steps(cur){var p=R.path(a),s=[];if(p.shaky.length)s.push(['Refresher check',p.shaky.length+(p.shaky.length>1?' topics':' topic')+' · about 5 min each']);
-s.push(cur<0?['Your chosen activity','Pick a format in the next stage · about 20 min']:STEP2[a.fmt]);
-s=s.concat([['Checkpoint 1','Make a prediction · feedback'],['Compare the evidence','Spectrograms and noise data · 20 min'],['Consider another explanation','Weigh a competing idea · 15 min'],['Checkpoint 2','Draft your explanation · feedback'],['Final task','Same task for every route']]);
+s.push(cur<0?['Your chosen activity','Pick a format next · about 20 min']:STEP2[a.fmt]);
+s=s.concat([['Checkpoint 1','Make a prediction · feedback'],['Compare the evidence','Spectrograms and noise data · 20 min'],['Consider another explanation','Weigh a competing idea · 15 min'],['Checkpoint 2','Draft your explanation · feedback'],['Final task','Same task for every format']]);
 var now=cur<0?-1:s.length-4;return '<ol class="wt-steps">'+s.map(function(x,j){var c=cur<0?'':(j<now?'done':j===now?'now':'');return '<li class="'+c+'"><i aria-hidden="true"></i><div><strong>'+x[0]+'</strong><span>'+x[1]+'</span></div></li>'}).join('')+'</ol>'}
 function momentum(){var k=a.keep;if(k==='points')return '<div class="wt-streak"><i class="on">M</i><i class="on">T</i><i class="on">W</i><i class="on">T</i><i>F</i><i>S</i><i>S</i></div><p style="margin:10px 0 0">4-day streak · 3 checkpoints complete</p>';
 if(k==='self')return '<p style="margin:0">Optional deep dive: do all city birds shift their pitch? An open dataset is ready when you are.</p>';
@@ -720,7 +730,7 @@ var S=[
 {t:'Getting to know Jordan',w:'Before the course',crumb:'Biology 101 · Getting started',screen:'Welcome to Biology 101',
 what:'Before the course begins, Jordan answers three questions. The course uses the answers to choose examples and support for every unit.',
 notes:[['It starts with the learner’s program','Jordan’s major becomes the lens for examples throughout the course, so new ideas connect to something they already know.','Prior knowledge · Relevance (Keller’s ARCS model)'],['It asks what keeps them going','This answer shapes the support Jordan sees, such as streaks, a study group, or a weekly plan. The science stays the same.','Self-determination theory'],['The recommendation is visible and editable','Jordan can see how their answers were used and change them at any point.','Learner autonomy']],
-tryit:'Switch between Survey and Chat above the dashboard. Both collect the same answers. A survey is quicker to complete, and a chat could ask follow-up questions and explain its suggestions. Then change Jordan’s major to see the framing shift in every later stage.',
+tryit:'Switch between Survey and Chat above the dashboard. Both collect the same answers. A survey is quicker to complete, and a chat could ask follow-up questions and explain its suggestions. Then change Jordan’s major to see the framing shift in every later moment.',
 r:function(){var p=R.path(a);if(mode==='chat'){var h='<div class="wt-chat"><p class="wt-bot">Hi Jordan, welcome to Biology 101. I have three quick questions so I can set up the course for you.</p>';
 CQ.forEach(function(q,j){h+='<p class="wt-bot">'+(j===0?pin(1):j===2?pin(2):'')+q.title+'</p><div class="chips wt-reply">'+chips(q)+'</div>';if(j===0)h+='<p class="wt-bot">'+ACK[a.major]+'</p>';});
 return h+'<div class="wt-bot">'+pin(3)+'<p style="margin:0 0 6px">Here’s how I’ll set up Unit 3.</p><p class="wt-big" style="margin:0 0 6px">'+angle()+'.</p><p style="margin:0">'+p.why+' Want to change anything? Just tell me.</p></div><div class="wt-input">Type a message…</div></div>';}
@@ -732,19 +742,19 @@ what:'Jordan opens Unit 3. The unit question, a framing from their field, and th
 notes:[['A question worth investigating','The unit question comes from the course’s essential question, which was built from the existing syllabus topics and outcomes.','Backward design · Essential questions (Wiggins and McTighe)'],['Framed for Jordan','The question is introduced through Jordan’s major. Another learner would see a different entry point to the same biology.','Relevance'],['Review only what’s needed','Jordan picks refreshers before starting. Learners who are ready can skip ahead, and others get support without slowing anyone down.','Prior knowledge · Universal Design for Learning'],['Short steps with time estimates','The unit is broken into steps of 15 to 25 minutes, with checkpoints between them, so learners can plan and see progress.','Managing cognitive load']],
 tryit:'Select review topics to see Jordan’s steps update.',
 r:function(){var p=R.path(a);return '<div class="db-q" style="position:relative">'+pin(1)+'<div><p class="db-l">Essential question</p><p>'+EQ+'</p></div><div><p class="db-l">This unit</p><p class="db-uq">'+R.UNIT.question+'</p></div></div>'+
-'<div class="wt-g2"><div class="wt-col"><div class="wt-card">'+pin(2)+'<p class="wt-k">'+fyf()+'</p><p class="wt-big">'+angle()+'</p><p>'+p.major.text+'</p></div><div class="wt-card">'+pin(3)+'<p class="wt-k">Before you start</p><p>Pick anything you’d like to review first.</p><div class="chips">'+chips(UQ[1])+'</div></div></div>'+
+'<div class="wt-g2"><div class="wt-col"><div class="wt-card wt-keycard">'+pin(2)+'<p class="wt-k">'+fyf()+'</p><p class="wt-big">'+angle()+'</p><p>'+p.major.text+'</p></div><div class="wt-card">'+pin(3)+'<p class="wt-k">Before you start</p><p>Pick anything you’d like to review first.</p><div class="chips">'+chips(UQ[1])+'</div></div></div>'+
 '<div class="wt-card">'+pin(4)+'<p class="wt-k">What you’ll do in Unit 3</p>'+steps(-1)+'</div></div>';}},
 {t:'Choosing a format',w:'Starting the unit',crumb:'Biology 101 · Unit 3 of 5',screen:'How would you like to investigate?',
 what:'Jordan chooses how to investigate the question. Every format leads to the same checkpoints and final task.',
-notes:[['One question for every route','All three formats investigate the same question with the same recordings and data.','Alignment'],['Framing from their field carries into each format','Jordan’s framing shows up inside each activity, not only in the introduction.','Sustained relevance'],['Choice with a safety net','Learners can switch formats at any point without losing progress toward the final task.','Self-determination theory: autonomy'],['Three kinds of practice','The guided video works as a worked example. The escape room gives feedback on each puzzle before the next one unlocks. The field investigation works with real, imperfect data.','Worked examples · Immediate feedback · Authentic inquiry']],
-tryit:'Choose a different format for Jordan. Later stages show all three formats side by side and mark Jordan’s route.',
+notes:[['One question for every format','All three formats investigate the same question with the same recordings and data.','Alignment'],['Framing from their field carries into each format','Jordan’s framing shows up inside each activity, not only in the introduction.','Sustained relevance'],['Choice with a safety net','Learners can switch formats at any point without losing progress toward the final task.','Self-determination theory: autonomy'],['Three kinds of practice','The guided video works as a worked example. The escape room gives feedback on each puzzle before the next one unlocks. The field investigation works with real, imperfect data.','Worked examples · Immediate feedback · Authentic inquiry']],
+tryit:'Choose a different format for Jordan. Later moments show all three formats side by side and mark Jordan’s format.',
 r:function(){var h='<div class="fq" style="position:relative">'+pin(1)+'<p class="k" style="margin:0">All three investigate</p><p class="fq-q">'+R.UNIT.question+'</p></div><div class="wt-fmts">'+pin(4);
 ['video','game','field'].forEach(function(k,j){var f=R.FORMAT[k],on=a.fmt===k;h+='<div class="wt-rel" style="display:flex">'+(j===1?pin(2):'')+'<button type="button" class="wt-fmt f-'+k+'" data-fmt="'+k+'" aria-pressed="'+on+'" style="flex:1"><span class="ft">'+f.tag+'</span><span class="fn">'+f.name+'</span><p>'+f.text+'</p><div class="wt-hook"><p class="wt-k" style="margin:0 0 2px">'+fyf()+'</p><p>'+HOOK[a.major][k]+'</p></div><span class="wt-pick">'+(on?'✓ Jordan’s pick':'Start here')+'</span></button></div>';});
 return h+'</div><p class="wt-safety" style="position:relative">'+pin(3)+'Switch formats anytime. The question, checkpoints, and final task stay the same.</p>';}},
 {t:'Inside the activity',w:'Midway through',crumb:'Biology 101 · Unit 3 of 5',screen:'Welcome back, Jordan',
 what:'Jordan is partway through the unit. The dashboard leads with the next step, shows the same step in each format, and keeps support close by.',
-notes:[['One clear next step','The dashboard leads with what to do next and about how long it takes.','Managing cognitive load'],['Every route, side by side','Each format reaches the same step with framing from Jordan’s field built in. Jordan can switch routes at any point.','Relevance · Autonomy'],['Support that matches what keeps them going','This card reflects what Jordan said keeps them going at the start of the course. Another learner might see a study group or a weekly plan.','Self-determination theory'],['Returning to earlier ideas','A one-minute question brings back a concept from Unit 2 so it stays fresh.','Retrieval and spaced practice'],['Checking confidence','Jordan rates their confidence before the next checkpoint and later compares it with the feedback on their work.','Metacognition']],
-tryit:'Go back to Stage 1 and change “What keeps you going?” to see card 3 change.',
+notes:[['One clear next step','The dashboard leads with what to do next and about how long it takes.','Managing cognitive load'],['Every format, side by side','Each format reaches the same step with framing from Jordan’s field built in. Jordan can switch formats at any point.','Relevance · Autonomy'],['Support that matches what keeps them going','This card reflects what Jordan said keeps them going at the start of the course. Another learner might see a study group or a weekly plan.','Self-determination theory'],['Returning to earlier ideas','A one-minute question brings back a concept from Unit 2 so it stays fresh.','Retrieval and spaced practice'],['Checking confidence','Jordan rates their confidence before the next checkpoint and later compares it with the feedback on their work.','Metacognition']],
+tryit:'Go back to Moment 1 and change “What keeps you going?” to see card 3 change.',
 r:function(){return '<div class="wt-card wt-next" style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:14px 18px">'+pin(1)+'<div style="flex:1;min-width:240px"><p class="wt-k" style="margin:0 0 2px">Next step · about 20 min</p><p class="wt-big" style="margin:0 0 4px;font-size:22px">Compare the evidence</p><p style="margin:0">Look at spectrograms from both sites alongside noise measurements. Describe one difference in the songs and what in the environment might explain it.</p></div></div>'+
 '<div class="wt-g2"><div class="wt-col">'+
 '<div class="wt-card"><p class="wt-k">Your path</p>'+steps(1)+'</div></div>'+
@@ -754,43 +764,43 @@ r:function(){return '<div class="wt-card wt-next" style="display:flex;align-item
 '<div class="wt-card">'+pin(2)+'<p class="wt-k">This step in each format</p>'+trio(function(k){return '<p class="wt-muted">'+NOW[k][0]+'</p><p>'+NOW[k][1]+'</p><p><strong>'+fyf()+':</strong> '+HOOK[a.major][k]+'</p>'})+'</div>';}},
 {t:'Checkpoint feedback',w:'Near the end of the unit',crumb:'Biology 101 · Unit 3 · Checkpoint 2',screen:'Feedback on your draft',
 what:'Jordan submits a draft explanation and gets feedback on the same criteria the final task uses.',
-notes:[['Feedback on the final task criteria','Each comment is tied to one of the six criteria, so Jordan can see where the draft stands.','Formative assessment · Transparent criteria'],['A specific next move, in every format','The feedback ends with one step to take. Each route offers its own way to practice it.','Feedback that looks forward'],['Confidence compared with the work','Jordan sees how their confidence rating lines up with the feedback.','Metacognition'],['Shared with faculty','Faculty see this feedback alongside a class summary, shown in Stage 8.','Using evidence to adjust teaching']],
+notes:[['Feedback on the final task criteria','Each comment is tied to one of the six criteria, so Jordan can see where the draft stands.','Formative assessment · Transparent criteria'],['A specific next move, in every format','The feedback ends with one step to take. Each format offers its own way to practice it.','Feedback that looks forward'],['Confidence compared with the work','Jordan sees how their confidence rating lines up with the feedback.','Metacognition'],['Shared with faculty','Faculty see this feedback alongside a class summary, shown in the faculty view.','Using evidence to adjust teaching']],
 tryit:'',
 r:function(){var C=[['Uses evidence',3,'Meeting','You cite the spectrogram values directly.'],['Interprets data',3,'Meeting','You read the frequency shift correctly at both sites.'],['Considers another explanation',1,'Not yet','Your draft offers one explanation. What else differs between the sites?'],['Identifies further evidence',2,'Developing','You mention needing more recordings. Say what they would help you test.'],['Distinguishes short-term from evolutionary change',2,'Developing','Say whether the higher pitch is learned within a bird’s lifetime or inherited across generations.'],['Communicates clearly',3,'Meeting','Your explanation is concise and easy to follow.']];
 return '<div class="wt-g2"><div class="wt-col"><div class="wt-card"><p class="wt-k">Your draft explanation</p><p class="wt-draft">City birds seem to sing higher because traffic noise is mostly low-pitched, so higher notes are easier to hear. In the spectrograms, the city songs start around 3 kHz and the forest songs around 2 kHz. I’d want more recordings to be sure.</p></div>'+
 '<div class="wt-card">'+pin(3)+'<p class="wt-k">Your confidence</p><p>You said you felt <strong>somewhat confident</strong>. Your draft meets 3 of the 6 criteria so far, so that’s a close match. The next step works on the gap.</p></div>'+
 '<div class="wt-card">'+pin(4)+'<p class="wt-k">Shared with your instructor</p><p>Your instructor sees this feedback alongside a class summary and may follow up in office hours.</p></div></div>'+
-'<div class="wt-card">'+pin(1)+'<p class="wt-k">Feedback on the final task criteria</p><ul class="wt-crit">'+C.map(function(c){return '<li><strong>'+c[0]+'</strong><span class="lv"><span class="wt-bars" aria-hidden="true">'+[1,2,3].map(function(n){return '<i class="'+(n<=c[1]?'on':'')+'"></i>'}).join('')+'</span>'+c[2]+'</span><span class="c">'+c[3]+'</span></li>'}).join('')+'</ul></div></div>'+
+'<div class="wt-card wt-keycard">'+pin(1)+'<p class="wt-k">Feedback on the final task criteria</p><ul class="wt-crit">'+C.map(function(c){return '<li><strong>'+c[0]+'</strong><span class="lv"><span class="wt-bars" aria-hidden="true">'+[1,2,3].map(function(n){return '<i class="'+(n<=c[1]?'on':'')+'"></i>'}).join('')+'</span>'+c[2]+'</span><span class="c">'+c[3]+'</span></li>'}).join('')+'</ul></div></div>'+
 '<div class="wt-card">'+pin(2)+'<p class="wt-k">Continue your exploration (optional) · about 15 min</p><p class="wt-big" style="margin-bottom:10px">Weigh a competing idea</p>'+trio(function(k){return '<p>'+NEXT[k]+'</p>'})+'</div>';}},
 {t:'The final task',w:'End of the unit',crumb:'Biology 101 · Unit 3 · Final task',screen:'Your end of unit goal',
-what:'Every route ends with the same task. Each learner brings evidence from the format they chose.',
-notes:[['Same task, every route','The shared task keeps expectations consistent, so faculty can compare learning across formats.','Alignment · Backward design'],['Evidence from each route','Work from the chosen activity becomes evidence for the final explanation.','Authentic assessment'],['Criteria Jordan has seen all along','The rubric uses the same six criteria as every checkpoint.','Transparent assessment']],
+what:'Every format ends with the same task. Each learner brings evidence from the format they chose.',
+notes:[['Same task, every format','The shared task keeps expectations consistent, so faculty can compare learning across formats.','Alignment · Backward design'],['Evidence from each format','Work from the chosen activity becomes evidence for the final explanation.','Authentic assessment'],['Criteria Jordan has seen all along','The rubric uses the same six criteria as every checkpoint.','Transparent assessment']],
 tryit:'',
-r:function(){return '<div class="wt-task">'+pin(1)+'<p class="wt-k" style="margin:0 0 6px">Same task for every route</p>'+R.path(a).task+'</div>'+
-'<div class="wt-card">'+pin(2)+'<p class="wt-k">Bring from your route</p>'+trio(function(k){return '<p>'+BRING[k]+'</p>'})+'<p class="wt-muted" style="margin:10px 0 0">Every route also uses the shared recordings and noise data.</p></div>'+
+r:function(){return '<div class="wt-task">'+pin(1)+'<p class="wt-k" style="margin:0 0 6px">Same task for every format</p>'+R.path(a).task+'</div>'+
+'<div class="wt-card">'+pin(2)+'<p class="wt-k">Bring from your format</p>'+trio(function(k){return '<p>'+BRING[k]+'</p>'})+'<p class="wt-muted" style="margin:10px 0 0">Every format also uses the shared recordings and noise data.</p></div>'+
 '<div class="wt-card">'+pin(3)+'<p class="wt-k">How it’s assessed</p><ul class="wt-crit"><li><strong>Uses evidence</strong><span class="c">Draws on the recordings and environmental data</span></li><li><strong>Interprets data</strong><span class="c">Reads patterns in spectrograms and noise data accurately</span></li><li><strong>Considers another explanation</strong><span class="c">Weighs a competing idea fairly</span></li><li><strong>Identifies further evidence</strong><span class="c">Names what would help test it</span></li><li><strong>Distinguishes short-term from evolutionary change</strong><span class="c">Separates learned changes from inherited ones</span></li><li><strong>Communicates clearly</strong><span class="c">Presents the explanation concisely for a general reader</span></li></ul></div>';}},
 {t:'Course map',w:'Across the term',crumb:'Biology 101 · Course map',screen:'Your course map',
 what:'Jordan’s course map works like a learner version of the faculty view. It shows progress across the term, and selecting a week shows results, strengths, and support for that week.',
-notes:[['Progress that rewards skills','Experience points (XP) come from checkpoints and from improving on a criterion, not only from finishing activities. The streak counts days with any learning activity, so short sessions still count.','Self-determination theory: competence · Gamification'],['Badges named for skills','Each week’s badge names a skill Jordan has shown in their work. Locked badges preview what’s ahead.','Mastery orientation · Goal setting'],['Every week’s question in one view','Jordan can see how this week fits into the course and what comes next. Each unit shows a quick summary of strengths and areas to review.','Advance organizers · Course coherence'],['Strengths come first','Each week leads with what Jordan did well before naming what to work on.','Strengths-based feedback · Self-efficacy'],['Support as optional side quests','Each area to review links to a short activity worth bonus XP, so extra help feels like a choice rather than a penalty.','Just-in-time support · Autonomy'],['The same criteria faculty see','Jordan sees their own results on the six shared criteria, plus how their confidence compared with their work. Faculty see the class version in Stage 8.','Self-regulated learning · Metacognition'],['Formats fit each week’s content','Each week offers a guided video plus two formats suited to its question. Past weeks show which format Jordan chose.','Alignment · Learner choice'],['Connections across weeks','Past weeks show where ideas come back. Upcoming weeks suggest what to review based on Jordan’s earlier work.','Spiral curriculum · Prior knowledge']],
-tryit:'Select different weeks on the map, including an upcoming one. Then go back to Stage 1 and change “What keeps you going?” to see how the progress card changes.',
+notes:[['Progress that rewards skills','Experience points (XP) come from checkpoints and from improving on a criterion, not only from finishing activities. Each week’s badge names a skill Jordan has shown, and locked badges preview what’s ahead.','Self-determination theory: competence · Mastery orientation'],['Every week’s question in one view','Jordan can see how this week fits into the course and what comes next. Each unit shows a quick summary of strengths and areas to review.','Advance organizers · Course coherence'],['Strengths first, then optional side quests','Each week leads with what Jordan did well. Areas to review link to short activities worth bonus XP, so extra help feels like a choice rather than a penalty.','Strengths-based feedback · Just-in-time support'],['The same criteria faculty see','Jordan sees their own results on the six shared criteria, plus how their confidence compared with their work. Faculty see the class version in the faculty view.','Self-regulated learning · Metacognition'],['Formats and connections across weeks','Each week offers a guided video plus two formats suited to its question. Past weeks show Jordan’s pick and where ideas come back. Upcoming weeks suggest what to review.','Alignment · Spiral curriculum']],
+tryit:'Select different weeks on the map, including an upcoming one. Then go back to Moment 1 and change “What keeps you going?” to see how the progress card changes.',
 r:function(){var earned=WK.filter(function(w){return w.st==='done'}),xp=earned.reduce(function(n,w){return n+w.xp},0)+WK[6].xp;
-var h='<div class="wt-g2"><div class="wt-card">'+pin(1)+'<p class="wt-k">Your progress</p><div class="gm-lv"><span class="gm-lvn">Level 4</span><span class="wt-muted">'+xp.toLocaleString()+' XP · '+(1200-xp)+' XP to Level 5</span></div><div class="gm-xp"><b style="width:'+Math.round((xp-800)/400*100)+'%"></b></div><div class="gm-stats"><span><strong>9</strong>day streak</span><span><strong>'+earned.length+'</strong>badges earned</span><span><strong>14</strong>side quests done</span></div><p class="gm-tail">'+GM[a.keep]+'</p></div>';
-h+='<div class="wt-card">'+pin(2)+'<p class="wt-k">Skill badges · '+earned.length+' of 15</p><div class="gm-bdg">'+WK.map(function(w){var c=w.st==='done'?'on':w.st==='now'?'now':'';return '<button type="button" class="gm-b '+c+'" data-wk="'+w.n+'" title="Week '+w.n+': '+w.bd+'"><span class="gm-bi">'+w.n+'</span><span class="gm-bn">'+w.bd+'</span></button>'}).join('')+'</div></div></div>';
-h+='<div class="wt-card">'+pin(3)+'<div class="wk-top"><p class="wt-k" style="margin:0">15 weeks · one essential question each</p><div class="wk-key"><span><i class="wk-d strong"></i>Strong</span><span><i class="wk-d mixed"></i>Review suggested</span><span><i class="wk-d now"></i>This week</span><span><i class="wk-d up"></i>Upcoming</span></div></div><div class="cm wk-map">';
+var h='<p class="wt-sample" style="margin:0">Sample numbers for illustration.</p><div class="wt-g2"><div class="wt-card wt-keycard">'+pin(1)+'<p class="wt-k">Your progress</p><div class="gm-lv"><span class="gm-lvn">Level 4</span><span class="wt-muted">'+xp.toLocaleString()+' XP · '+(1200-xp)+' XP to Level 5</span></div><div class="gm-xp"><b style="width:'+Math.round((xp-800)/400*100)+'%"></b></div><div class="gm-stats"><span><strong>9</strong>day streak</span><span><strong>'+earned.length+'</strong>badges earned</span><span><strong>14</strong>side quests done</span></div><p class="gm-tail">'+GM[a.keep]+'</p></div>';
+h+='<div class="wt-card"><p class="wt-k">Skill badges · '+earned.length+' of 15</p><div class="gm-bdg">'+WK.map(function(w){var c=w.st==='done'?'on':w.st==='now'?'now':'';return '<button type="button" class="gm-b '+c+'" data-wk="'+w.n+'" title="Week '+w.n+': '+w.bd+'"><span class="gm-bi">'+w.n+'</span><span class="gm-bn">'+w.bd+'</span></button>'}).join('')+'</div></div></div>';
+h+='<div class="wt-card">'+pin(2)+'<div class="wk-top"><p class="wt-k" style="margin:0">15 weeks · one essential question each</p><div class="wk-key"><span><i class="wk-d strong"></i>Strong</span><span><i class="wk-d mixed"></i>Review suggested</span><span><i class="wk-d now"></i>This week</span><span><i class="wk-d up"></i>Upcoming</span></div></div><div class="cm wk-map">';
 UN.forEach(function(u,ui){var ws=WK.filter(function(w){return w.u===ui}),done=ws.filter(function(w){return w.st==='done'}),sp=done.reduce(function(n,w){return n+w.sp.length},0),sg=done.reduce(function(n,w){return n+w.s.length},0),sum=ws.some(function(w){return w.st==='now'})?'In progress':done.length?sg+' strengths · '+sp+' to review':'Upcoming';
-h+='<div class="cm-u"><div class="cm-h"><span class="cm-n">Unit '+(ui+1)+'</span><span class="cm-t">'+u+'</span><span class="wk-sum">'+sum+'</span></div><div class="cm-ws">'+ws.map(function(w){var cls=w.st==='done'?(w.sp.length?'mixed':'strong'):w.st;return '<button type="button" class="cm-w wk-b'+(w.st==='now'?' cm-cur':'')+'" data-wk="'+w.n+'" aria-pressed="'+(selWk===w.n)+'"><span class="cm-wk"><i class="wk-d '+cls+'"></i>Week '+w.n+(w.st==='now'?' · this week':'')+'</span><span class="cm-q">'+w.q+'</span></button>'}).join('')+'</div></div>';});
+h+='<div class="cm-u"><div class="cm-h"><span class="cm-n">Unit '+(ui+1)+'</span><span class="cm-t">'+u+'</span><span class="wk-sum">'+sum+'</span></div><div class="cm-ws">'+ws.map(function(w){var cls=w.st==='done'?(w.sp.length?'mixed':'strong'):w.st;return '<button type="button" class="cm-w wk-b'+(w.st==='now'?' cm-cur':'')+'" data-wk="'+w.n+'" aria-pressed="'+(selWk===w.n)+'"><span class="cm-wk"><i class="wk-d '+cls+'" aria-hidden="true"></i>Week '+w.n+(w.st==='now'?' · this week':'')+'<span class="sr-only"> · '+{strong:'strong',mixed:'review suggested',now:'in progress',up:'upcoming'}[cls]+'</span></span><span class="cm-q">'+w.q+'</span></button>'}).join('')+'</div></div>';});
 h+='</div></div>';
 var d=WK[selWk-1],up=d.st==='up';
 h+='<div class="wt-card wk-detail"><div class="gm-dh"><div><p class="wt-k" style="margin:0 0 4px">Week '+d.n+' · Unit '+(d.u+1)+': '+UN[d.u]+(d.st==='now'?' · this week':up?' · upcoming':'')+'</p><p class="wt-big" style="margin:0 0 4px">'+d.q+'</p><p class="wt-muted" style="margin:0">Case: '+d.c+'</p></div><div class="gm-badge '+(d.st==='done'?'on':d.st==='now'?'now':'')+'"><span class="gm-bi">'+d.n+'</span><span><strong>'+d.bd+'</strong>'+(d.st==='done'?'Badge earned · +'+d.xp+' XP':d.st==='now'?'Unlocks with the final task · '+d.xp+' XP so far':'Locked · up to 180 XP')+'</span></div></div>';
-h+='<div class="wt-g2" style="margin-top:14px"><div class="wk-col wk-strong">'+pin(4)+'<p class="wt-k">'+(up?'Strengths you’ll use':'Where you’re strong')+'</p><ul class="wk-list">'+d.s.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></div>';
-h+='<div class="wk-col wk-sup">'+pin(5)+'<p class="wt-k">'+(up?'Get ready · side quests':'Side quests for extra support')+'</p>'+(d.sp.length?'<ul class="wk-list">'+d.sp.map(function(x,i){var dn=d.st==='done'&&i===0;return '<li><strong>'+x[0]+'</strong><span class="gm-q"><span class="wk-res">'+x[1]+'</span><span class="gm-pts'+(dn?' dn':'')+'">'+(dn?'✓ +20 XP earned':'+20 XP')+'</span></span></li>'}).join('')+'</ul>':'<p style="margin:0">'+(up?'Nothing to prepare. The weeks this builds on went well.':'Nothing flagged this week.')+'</p>')+'</div></div>';
-if(!up){h+='<div class="wk-res-card">'+pin(6)+'<p class="wt-k">Your results on the shared criteria</p><div class="gm-crit">'+CRN.map(function(c,i){var v=d.cr[i];return '<div class="gm-cr"><span>'+c+'</span><span class="wt-bars" aria-hidden="true">'+[1,2,3].map(function(n){return '<i class="'+(n<=v?'on':'')+'"></i>'}).join('')+'</span><span class="gm-lvl">'+['','Not yet','Developing','Meeting'][v]+'</span></div>'}).join('')+'</div><p class="gm-conf"><strong>Confidence check:</strong> '+d.cf+'</p></div>';}
-else{h+='<div class="wk-res-card">'+pin(6)+'<p class="wt-k">What you’ll be assessed on</p><p style="margin:0">The same six criteria as every week. Based on your earlier work, you’re likely to start strong on <strong>Interprets data</strong> and <strong>Communicates clearly</strong>.</p></div>';}
-h+='<div class="wk-fm">'+pin(7)+'<p class="wt-k" style="margin:0 0 8px">'+(d.st==='now'?'This week’s formats':'Formats offered')+'</p><div class="wk-fms">'+d.fm.map(function(f,i){var on=d.st==='now'?f===F_NOW():i===d.pick;return '<span class="wk-f'+(on?' on':'')+'">'+(on?'✓ ':'')+f+(on?(d.st==='now'?' · Jordan’s current route':' · Jordan’s pick'):'')+'</span>'}).join('')+'</div></div>';
-h+='<p class="wk-link">'+pin(8)+d.ln+'</p>';
+h+='<div class="wt-g2" style="margin-top:14px"><div class="wk-col wk-strong">'+pin(3)+'<p class="wt-k">'+(up?'Strengths you’ll use':'Where you’re strong')+'</p><ul class="wk-list">'+d.s.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></div>';
+h+='<div class="wk-col wk-sup">'+'<p class="wt-k">'+(up?'Get ready · side quests':'Side quests for extra support')+'</p>'+(d.sp.length?'<ul class="wk-list">'+d.sp.map(function(x,i){var dn=d.st==='done'&&i===0;return '<li><strong>'+x[0]+'</strong><span class="gm-q"><span class="wk-res">'+x[1]+'</span><span class="gm-pts'+(dn?' dn':'')+'">'+(dn?'✓ +20 XP earned':'+20 XP')+'</span></span></li>'}).join('')+'</ul>':'<p style="margin:0">'+(up?'Nothing to prepare. The weeks this builds on went well.':'Nothing flagged this week.')+'</p>')+'</div></div>';
+if(!up){h+='<div class="wk-res-card">'+pin(4)+'<p class="wt-k">Your results on the shared criteria</p><div class="gm-crit">'+CRN.map(function(c,i){var v=d.cr[i];return '<div class="gm-cr"><span>'+c+'</span><span class="wt-bars" aria-hidden="true">'+[1,2,3].map(function(n){return '<i class="'+(n<=v?'on':'')+'"></i>'}).join('')+'</span><span class="gm-lvl">'+['','Not yet','Developing','Meeting'][v]+'</span></div>'}).join('')+'</div><p class="gm-conf"><strong>Confidence check:</strong> '+d.cf+'</p></div>';}
+else{h+='<div class="wk-res-card">'+pin(4)+'<p class="wt-k">What you’ll be assessed on</p><p style="margin:0">The same six criteria as every week. Based on your earlier work, you’re likely to start strong on <strong>Interprets data</strong> and <strong>Communicates clearly</strong>.</p></div>';}
+h+='<div class="wk-fm">'+pin(5)+'<p class="wt-k" style="margin:0 0 8px">'+(d.st==='now'?'This week’s formats':'Formats offered')+'</p><div class="wk-fms">'+d.fm.map(function(f,i){var on=d.st==='now'?f===F_NOW():i===d.pick;return '<span class="wk-f'+(on?' on':'')+'">'+(on?'✓ ':'')+f+(on?(d.st==='now'?' · Jordan’s current format':' · Jordan’s pick'):'')+'</span>'}).join('')+'</div></div>';
+h+='<p class="wk-link">'+d.ln+'</p>';
 if(d.st==='now')h+='<div class="wk-ref"><p class="wt-k" style="margin:0 0 4px">In your own words</p><p style="margin:0 0 8px">At the start you said: <strong>'+lbl('why')+'</strong>. If a classmate asked, what would you tell them they could learn or gain from this unit?</p><div class="wt-input" style="margin:0;border-radius:10px">Write a sentence or two…</div></div>';
 return h+'</div>';}},
-{t:'Faculty view',w:'For faculty',crumb:'Biology 101 · Instructor view',get screen(){return facView==='class'?'Week 7 at a glance':'Jordan · Week 7'},get who(){return facView==='class'?'Instructor view · Class':'Instructor view · Jordan'},av:'F',
+{t:'Faculty view',w:'For instructors',crumb:'Biology 101 · Instructor view',get screen(){return facView==='class'?'Week 7 at a glance':'Jordan · Week 7'},get who(){return facView==='class'?'Instructor view · Class':'Instructor view · Jordan'},av:'F',
 what:'Faculty see how the class is moving through the unit and where learners may need more support.',
 get notes(){return facView==='class'?NC:NJ},
 tryit:'Switch between Class and Jordan above the dashboard to compare the class summary with one learner’s view.',
@@ -798,26 +808,28 @@ r:function(){return facView==='jordan'?FJ():FC();}}];
 function lbl(id){var q=CQ.concat(UQ).filter(function(x){return x.id===id})[0],o=q.opts.filter(function(x){return x[0]===a[id]})[0];return o?o[1]:''}
 var open=0;
 function draw(){var s=S[st];
-$('wtRail').innerHTML=S.map(function(x,j){return (j?'<li aria-hidden="true"><span class="ln'+(j<=st?' done':'')+'"></span></li>':'')+'<li><button type="button" data-st="'+j+'" class="'+(j<st?'done':'')+'"'+(j===st?' aria-current="step"':'')+'><span class="n" aria-hidden="true">'+(j+1)+'</span><span class="t"><span class="sr-only">Stage '+(j+1)+': </span>'+x.t+'</span></button></li>'}).join('');
-$('wtWhen').textContent='Stage '+(st+1)+' of '+S.length+' · '+s.w;$('wtTitle').textContent=s.t;$('wtWhat').textContent=s.what;
+var FIC='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 15v-3M12 15V9M17 15v-5"/></svg>';
+function rb(x,j){var fac=j===7;return '<li class="'+(fac?'':(j&&j<=st?'done':''))+'"><button type="button" data-st="'+j+'" class="'+(!fac&&j<st?'done':'')+'"'+(j===st?' aria-current="step"':'')+'><span class="n" aria-hidden="true">'+(fac?FIC:(j+1))+'</span><span class="t"><span class="sr-only">'+(fac?'':'Moment '+(j+1)+': ')+'</span>'+x.t+'</span></button></li>'}
+$('wtRail').innerHTML='<div class="wt-grp"><p class="wt-gl">Jordan’s journey</p><ol class="wt-rail" aria-label="Jordan’s journey">'+S.slice(0,7).map(rb).join('')+'</ol></div><div class="wt-div" aria-hidden="true"></div><div class="wt-grp fac"><p class="wt-gl">For faculty</p><ol class="wt-rail" aria-label="Faculty view">'+rb(S[7],7)+'</ol></div>';
+$('wtWhen').textContent=st<7?'Jordan’s journey · Moment '+(st+1)+' of 7 · '+s.w:'Faculty view · '+s.w;$('wtTitle').textContent=s.t;$('wtWhat').textContent=s.what;
 var who=s.who||('Jordan · '+(MJ[a.major]||'Undecided')+' major'+(st>=2?' · '+F().name:''));
 $('wtCtl').innerHTML=(st===0?'<span class="wt-seg" role="group" aria-label="Show the intake as"><span class="wt-muted">Show intake as</span><button type="button" class="chip" data-mode="survey" aria-pressed="'+(mode==='survey')+'">Survey</button><button type="button" class="chip" data-mode="chat" aria-pressed="'+(mode==='chat')+'">Chat</button></span>':'')+(st===7?'<span class="wt-seg" role="group" aria-label="Faculty view for"><span class="wt-muted">View</span><button type="button" class="chip" data-fv="class" aria-pressed="'+(facView==='class')+'">Class</button><button type="button" class="chip" data-fv="jordan" aria-pressed="'+(facView==='jordan')+'">Jordan</button></span>':'')+'<button type="button" class="p-reset" id="wtReset">Reset to Jordan</button>';
 $('wtDash').innerHTML='<div class="wt-top"><div><p class="wt-crumb">'+s.crumb+'</p><p class="wt-screen">'+s.screen+'</p></div><div class="wt-who"><span>'+who+'</span><span class="wt-av" aria-hidden="true">'+(s.av||'J')+'</span></div></div>'+s.r();
 $('wtTry').innerHTML='<strong>Select the numbered pins</strong> on the dashboard to read the design note behind each part.'+(s.tryit?' <strong>Try it:</strong> '+s.tryit:'');
-$('wtBack').disabled=st===0;$('wtNext').textContent=st===S.length-1?'Back to Stage 1':'Next';$('wtCount').textContent='Stage '+(st+1)+' of '+S.length;
+$('wtBack').disabled=st===0;$('wtNext').textContent=st===7?'Back to Moment 1':st===6?'Next: Faculty view':'Next';$('wtCount').textContent=st<7?'Moment '+(st+1)+' of 7':'Faculty view';
 seen.forEach(function(n){var p=$('wtDash').querySelector('[data-pin="'+n+'"]');if(p)p.classList.add('seen')});
 if(open)note(open);}
 var seen=[];
-function note(n){var d=$('wtDash');d.querySelectorAll('.wt-call').forEach(function(c){c.remove()});d.querySelectorAll('.wt-hl').forEach(function(c){c.classList.remove('wt-hl')});d.querySelectorAll('.wt-pin.on').forEach(function(c){c.classList.remove('on')});
+function note(n){var d=$('wtDash');d.querySelectorAll('.wt-call').forEach(function(c){c.remove()});d.querySelectorAll('.wt-hl').forEach(function(c){c.classList.remove('wt-hl')});d.querySelectorAll('.wt-pin.on').forEach(function(c){c.classList.remove('on');c.setAttribute('aria-expanded','false')});
 open=n;if(!n)return;var s=S[st],p=d.querySelector('[data-pin="'+n+'"]'),x=s.notes[n-1];if(!p||!x){open=0;return;}
-if(seen.indexOf(n)<0)seen.push(n);p.classList.add('on','seen');var host=p.parentElement;host.classList.add('wt-hl');
+if(seen.indexOf(n)<0)seen.push(n);p.classList.add('on','seen');p.setAttribute('aria-expanded','true');var host=p.parentElement;host.classList.add('wt-hl');
 var c=document.createElement('div');c.className='wt-call';c.setAttribute('role','note');
-c.innerHTML='<div class="wt-call-h"><span>Design note '+n+' of '+s.notes.length+'</span><button type="button" class="wt-call-x" aria-label="Close note">×</button></div><strong>'+x[0]+'</strong><p>'+x[1]+'</p><p class="g">Grounded in: '+x[2]+'</p>'+(n<s.notes.length?'<button type="button" class="wt-call-next" data-nn="'+(n+1)+'">Next note →</button>':(st<S.length-1?'<button type="button" class="wt-call-next" data-ns>Next stage →</button>':''));
-host.appendChild(c);var dr=d.getBoundingClientRect(),cr=c.getBoundingClientRect();if(cr.right>Math.min(dr.right,window.innerWidth)-8)c.classList.add('r');}
+c.innerHTML='<div class="wt-call-h"><span>Design note '+n+' of '+s.notes.length+'</span><button type="button" class="wt-call-x" aria-label="Close note">×</button></div><strong>'+x[0]+'</strong><p>'+x[1]+'</p><p class="g">Grounded in: '+x[2]+'</p>'+(n<s.notes.length?'<button type="button" class="wt-call-next" data-nn="'+(n+1)+'">Next note →</button>':(st<S.length-1?'<button type="button" class="wt-call-next" data-ns>'+(st===6?'Faculty view →':'Next moment →')+'</button>':''));
+c.tabIndex=-1;c.setAttribute('aria-label','Design note '+n);host.appendChild(c);if(window.innerWidth<=680){var y=host.getBoundingClientRect().top+window.scrollY-90;window.scrollTo({top:y,behavior:'smooth'});}var dr=d.getBoundingClientRect(),cr=c.getBoundingClientRect();if(cr.right>Math.min(dr.right,window.innerWidth)-8)c.classList.add('r');}
 function go(n,scroll){st=n;open=0;seen=[];draw();if(scroll){var y=$('wtRail').getBoundingClientRect().top+window.scrollY-90;if(y<window.scrollY)window.scrollTo({top:y,behavior:'smooth'});}}
 document.addEventListener('click',function(e){var t=e.target.closest('button');if(!t)return;
-if(t.dataset.pin){var n=+t.dataset.pin;note(open===n?0:n);return;}
-if(t.classList.contains('wt-call-x')){note(0);return;}
+if(t.dataset.pin){var n=+t.dataset.pin;note(open===n?0:n);var cc=$('wtDash').querySelector('.wt-call');if(cc)cc.focus({preventScroll:true});return;}
+if(t.classList.contains('wt-call-x')){closeNote();return;}
 if(t.dataset.nn){note(+t.dataset.nn);return;}
 if(t.dataset.ns!==undefined){go(st+1,true);return;}
 if(t.dataset.st!==undefined){go(+t.dataset.st,false);if(t.classList.contains('wt-go')){var y=$('wtRail').getBoundingClientRect().top+window.scrollY-90;window.scrollTo({top:y,behavior:'smooth'});}return;}
@@ -830,7 +842,9 @@ if(t.dataset.fv){facView=t.dataset.fv;open=0;draw();return;}
 if(t.dataset.wk){selWk=+t.dataset.wk;draw();return;}
 if(t.dataset.fmt){a.fmt=t.dataset.fmt;draw();return;}
 if(t.dataset.c!==undefined){t.parentElement.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',b===t)});return;}});
-document.addEventListener('keydown',function(e){if(e.key==='Escape'&&open)note(0);});
+function closeNote(){var n=open;note(0);var p=$('wtDash').querySelector('[data-pin="'+n+'"]');if(p)p.focus({preventScroll:true});}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&open){closeNote();return;}
+if(e.target.closest&&e.target.closest('#wtRail')&&(e.key==='ArrowRight'||e.key==='ArrowLeft')){e.preventDefault();var n=st+(e.key==='ArrowRight'?1:-1);if(n<0||n>=S.length)return;go(n,false);var b=$('wtRail').querySelector('[data-st="'+n+'"]');if(b)b.focus();}});
 $('wtBack').onclick=function(){if(st>0)go(st-1,true)};$('wtNext').onclick=function(){go(st<S.length-1?st+1:0,true)};
 open=0;draw();
 })();
