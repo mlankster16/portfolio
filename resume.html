@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Résumé | Megan Lancaster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=26">
+<link rel="stylesheet" href="css/theme.css?v=1">
+<style>
+.dc { --s1:56px; --s2:28px; --s3:17px; font-size:var(--s3); line-height:1.7; color:var(--text-body); }
+.dc h1,.dc h2,.dc h3 { font-family:var(--font-display); font-weight:500; margin:0; color:var(--navy); }
+.dc h1 { font-size:var(--s1); line-height:1.02; letter-spacing:-.01em; }
+.dc p { margin:0 0 16px; text-wrap:pretty; }
+.dc .band { padding:64px var(--pad-x); }
+.dc .dark { background:#101d38; color:#cbd0dd; } .dc .dark h1 { color:#f4efe2; }
+.dc .tagline { font-family:var(--font-display); font-size:var(--s2); line-height:1.35; color:#dda448; margin:16px 0 20px; }
+.dc .r-meta { display:flex; flex-wrap:wrap; gap:6px 22px; margin:0 0 28px; color:#cbd0dd; font-size:16px; }
+.dc .r-meta a { color:#f4efe2; }
+.dc .jump { display:inline-block; font-weight:600; color:#101d38; background:#dda448; padding:11px 20px; border-radius:999px; text-decoration:none; }
+.dc .jump:hover { background:#e8b964; color:#101d38; }
+.dc .jump-alt { display:inline-block; font-weight:600; padding:10px 19px; border-radius:999px; text-decoration:none; border:1.5px solid #f4efe2; color:#f4efe2; }
+.dc .jump-alt:hover { background:#f4efe2; color:#101d38; }
+.dc .btns { display:flex; flex-wrap:wrap; gap:12px 14px; }
+.dc .r-toc { position:sticky; top:0; z-index:20; display:flex; gap:4px 20px; flex-wrap:wrap; padding:14px var(--pad-x); background:rgba(255,253,248,.96); border-bottom:1px solid var(--rule); font-size:15px; font-weight:600; }
+.dc .r-toc a { color:var(--text-secondary); text-decoration:none; } .dc .r-toc a:hover { color:var(--navy); text-decoration:underline; }
+.dc .r-body { padding:24px var(--pad-x) 64px; }
+.dc .r-sec { display:grid; grid-template-columns:220px minmax(0,1fr); gap:32px; padding:40px 0; border-top:1px solid var(--rule); scroll-margin-top:64px; }
+.dc .r-sec:first-child { border-top:0; }
+.dc .r-sec h2 { font-size:26px; line-height:1.2; }
+.dc .r-sec > div { max-width:780px; }
+.dc .r-chips { display:flex; flex-wrap:wrap; gap:8px; }
+.dc .r-chips span { padding:6px 14px; border-radius:999px; background:var(--panel-warm); border:1px solid var(--rule); font-size:15px; color:var(--navy); }
+.dc .r-job + .r-job { margin-top:32px; }
+.dc .r-jh { display:flex; justify-content:space-between; align-items:baseline; gap:4px 20px; flex-wrap:wrap; margin-bottom:8px; }
+.dc .r-job h3 { font-size:22px; line-height:1.3; }
+.dc .r-org { margin:2px 0 0 !important; font-weight:600; color:var(--text-secondary); }
+.dc .r-date { margin:0 !important; font-size:15px; font-weight:600; color:var(--gold-dark); white-space:nowrap; }
+.dc .r-job ul, .dc .r-list { margin:0; padding-left:20px; display:grid; gap:6px; }
+.dc .r-job li::marker, .dc .r-list li::marker { color:#dda448; }
+.dc .r-cite { list-style:none; margin:0; padding:0; display:grid; gap:14px; }
+.dc .r-cite li { padding-left:16px; border-left:2px solid var(--rule-strong); font-size:16px; line-height:1.6; }
+.dc .r-h4 { margin:0 0 10px !important; font-size:14px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--gold-dark); }
+.dc .r-h4:not(:first-child) { margin-top:24px !important; }
+.dc .r-more summary { cursor:pointer; display:inline-block; margin-top:16px; font-weight:600; color:var(--navy); padding:8px 16px; border:1.5px solid var(--navy); border-radius:999px; list-style:none; }
+.dc .r-more summary::-webkit-details-marker { display:none; }
+.dc .r-more[open] summary { display:none; }
+.dc .r-more ul { margin-top:14px; }
+@media (max-width:820px){ .dc{--s1:42px;--s2:24px} .dc .r-sec { grid-template-columns:minmax(0,1fr); gap:12px; padding:32px 0; } }
+@media print { .dc .r-toc, .dc .btns { display:none; } }
+</style>
+</head>
+<body class="accent-teal">
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="shell">
+
+<header class="site">
+  <div class="site-bar">
+    <span>Learning Experience Design &amp; Project Management</span>
+    <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+  <div class="nav-row">
+    <a class="site-name" href="index.html">Megan Lancaster</a>
+    <nav class="primary" aria-label="Main">
+      <a href="index.html">Home</a>
+      <div class="nav-menu">
+        <button type="button" class="nav-menu-btn" aria-expanded="false" aria-controls="work-menu">Work <span class="caret" aria-hidden="true"></span></button>
+        <ul class="nav-menu-list" id="work-menu">
+          <li><a class="accent-gold" href="choose-your-own-adventure.html"><span class="dot" aria-hidden="true"></span>Choose Your Own Adventure</a></li>
+          <li><a class="accent-blue" href="ai-for-nurses.html"><span class="dot" aria-hidden="true"></span>AI for Nurses</a></li>
+          <li><a class="accent-purple" href="interactivity-generator.html"><span class="dot" aria-hidden="true"></span>Interactivity Generator</a></li>
+          <li><a class="accent-green" href="coursera-design-guide.html"><span class="dot" aria-hidden="true"></span>Coursera Design Guide</a></li>
+        </ul>
+      </div>
+      <a href="about.html">About</a>
+      <a class="btn-resume current" href="resume.html" aria-current="page">Résumé</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="dc">
+<header class="band dark"><div class="in" style="max-width:880px"><h1 style="margin-bottom:24px">Résumé</h1>
+<div class="btns"><a class="jump" href="mailto:meganrlancaster@gmail.com">Send me a message</a></div></div></header>
+<nav class="r-toc" aria-label="On this page"><a href="#experience">Experience</a><a href="#teaching">Teaching</a><a href="#awards">Awards</a><a href="#publications">Publications</a><a href="#presentations">Presentations</a><a href="#education">Education</a></nav>
+<div class="r-body">
+<section class="r-sec" id="experience"><h2>Experience</h2><div><article class="r-job"><div class="r-jh"><div><h3>Senior Learning Experience Designer and Project Manager</h3><p class="r-org">Duke University · Durham, NC (Remote)</p></div><p class="r-date">April 2021 – Present</p></div><ul><li>Led learning design and project delivery for 50+ online courses and Specializations, working with faculty and partners across nursing, engineering, data science, business, and other disciplines.</li><li>Turned early ideas into course plans, prototypes, and learning experiences, helping teams work through uncertainty, agree on priorities, and adapt as learner and stakeholder needs became clearer.</li><li>Managed scope, timelines, resources, and stakeholder reviews across course development projects, helping teams decide where further development would add value and when work was ready to launch.</li><li>Designed activities, cases, and assessments that help learners explore complex concepts, practice decisions, and apply what they learn to their work.</li><li>Designed and built a Coursera Design Guide website and companion templates that help faculty and designers connect learning goals to course structure, practice, assessment, and learner support.</li><li>Built a Coursera plugin and Claude-powered Interactivity Generator that brings format selection, editable previews, content review, and export into one workflow, with static text alternatives alongside interactive activities.</li><li>Co-designed Coursera’s integrated labs interface, now deployed platform-wide, applying Universal Design for Learning to make technical learning environments easier to navigate.</li><li>Developed shared resources for the design team, including a course review framework combining Quality Matters, OLC, and Duke standards, and Claude Skills supporting project intake, scoping, and course design.</li></ul></article><article class="r-job"><div class="r-jh"><div><h3>Learning Experience Designer</h3><p class="r-org">Duke University · Durham, NC (Remote)</p></div><p class="r-date">January 2020 – April 2021</p></div><ul><li>Led design sprints with faculty across Duke University and Duke Health, translating complex subject matter into high-impact online and hybrid learning experiences.</li><li>Developed interactive prototypes and assessments that improved learner engagement and provided measurable evidence of learning outcomes.</li><li>Applied learner analytics and faculty feedback to iterate and improve course designs.</li></ul></article><article class="r-job"><div class="r-jh"><div><h3>Educational Technology Specialist</h3><p class="r-org">High Point University · High Point, NC</p></div><p class="r-date">July 2018 – December 2019</p></div><ul><li>Served as project lead for the rollout of campus-wide learning initiatives, supporting 100+ faculty in adopting instructional technology and Blackboard LMS.</li><li>Created and scaled the Blackboard Bootcamp program, establishing a sustainable training pipeline that improved faculty confidence by 32% and reduced support requests (18% average).</li><li>Designed HPU’s first cross-disciplinary Pathway system using e-portfolios and achievement badges, giving leadership new visibility into student progression.</li><li>Collected and analyzed adoption and engagement data to evaluate technology effectiveness and guide continuous improvement.</li></ul></article><article class="r-job"><div class="r-jh"><div><h3>Program Manager (K-5 Engineering Education)</h3><p class="r-org">UNC Greensboro · Greensboro, NC</p></div><p class="r-date">August 2015 – December 2017</p></div><ul><li>Directed multi-stakeholder projects to implement Engineering is Elementary curriculum across schools, coaching teachers and adapting programming for diverse learning contexts.</li><li>Designed and facilitated teacher professional development workshops, enhancing STEM teaching capacity for dozens of educators across the district.</li><li>Developed research and evaluation instruments (quantitative, qualitative, and mixed-methods) to assess program success and inform district-level strategy.</li></ul></article><article class="r-job"><div class="r-jh"><div><h3>Instructional Designer and Project Manager</h3><p class="r-org">UNC Greensboro · Greensboro, NC</p></div><p class="r-date">September 2013 – July 2015</p></div><ul><li>Served as project manager for cross-functional online course development teams, coordinating faculty, multimedia developers, and designers to deliver innovative courses on Canvas and WordPress.</li><li>Designed and launched UNCG’s first MOOC, a high-visibility initiative that expanded the university’s digital presence and set the stage for future online programs.</li><li>Ensured projects met milestones, maintained accessibility standards, and aligned with institutional strategy, balancing faculty needs with university-wide objectives.</li></ul></article></div></section>
+<section class="r-sec" id="teaching"><h2>Teaching and curriculum design</h2><div><article class="r-job"><div class="r-jh"><div><h3>Virtual Mission Flight Director (4th-12th grade)</h3><p class="r-org">Challenger Learning Center · Bangor, ME</p></div><p class="r-date">March 2024 – July 2025</p></div><ul><li>Coordinate and lead virtual missions to the Moon and Mars through NASA’s educator program.</li><li>Work with K-12 teachers to prepare and provide supplemental curriculum and activities for students participating in virtual missions.</li><li>Provide technical support to teachers and students participating in virtual missions.</li></ul></article><article class="r-job"><div class="r-jh"><div><h3>Engineering is Elementary (EiE) Coordinator (K-5th grade)</h3><p class="r-org">UNC Greensboro · Greensboro, NC</p></div><p class="r-date">August 2015 – December 2017</p></div><ul><li>Coordinated and lead 4-6 week lessons for elementary school students engaging in the Engineering is Elementary (EiE) curriculum.</li><li>Provided ongoing professional development for elementary school teachers and administrators in engineering education.</li></ul></article><article class="r-job"><div class="r-jh"><div><h3>Science Teacher (7th-12th grade)</h3><p class="r-org">New Garden Friends School · Greensboro, NC</p></div><p class="r-date">July 2014 – May 2015</p></div><ul><li>Planned and taught the entire middle school science curriculum and high school environmental science using hands-on, guided inquiry methodologies and the Next Generation Science Standards (NGSS).</li></ul></article><article class="r-job"><div class="r-jh"><div><h3>STEM Instructor and eStudies Academic Consultant (5th-12th grade)</h3><p class="r-org">Duke Talent Identification (TIP) Program · Durham, NC</p></div><p class="r-date">June 2011 – April 2015</p></div><ul><li>Designed and taught highly engaging, hands-on courses in topics like: Engineering of Space Exploration; Roller Coaster Physics; Engineering Technology for the Digital World; Digital Circuit Design and Analysis.</li><li>Reviewed and provided feedback for online curriculum in development for STEM instructors.</li><li>Provided asynchronous and synchronous e-training for instructional staff.</li></ul></article></div></section>
+<section class="r-sec" id="awards"><h2>Recent awards and honors</h2><div><ul class="r-list"><li><strong>Coursera Vision &amp; Values Award (2025):</strong> Honored for principled innovation, platform leadership, and AI-integrated teaching tools.</li><li><strong>Duke Presidential Award (2021):</strong> Recognized for extraordinary contributions in transitioning Duke to remote teaching during COVID-19.</li></ul></div></section>
+<section class="r-sec" id="publications"><h2>Publications</h2><div><p class="r-h4">Book chapters</p><ul class="r-cite"><li>Jones, M.G. &amp; Leagon, M.R. (2014). Science teacher attitudes and beliefs: Reforming practice. In N. Lederman &amp; S. Abell, (Eds), <em>Handbook of Research on Science Teaching</em>, (pp. 830-847). Routledge, NY.</li></ul><p class="r-h4">Articles in peer-reviewed journals</p><ul class="r-cite"><li>Carlone, H.B. &amp; Lancaster, M.R. (2024). “Getting along” and “using evidence” in elementary engineering: Desettling commonplace cultural narratives. <em>Journal of Research in Science Teaching.</em></li><li>Lancaster, M.R. (2016, July). Engineering technology for the digital world. <em>Science Scope.</em> 39(9).</li><li>Lancaster, M.R. &amp; Jones, M.G. (2015, July). Science meets engineering: Applying the design process to monitor leatherback turtle hatchlings. <em>Science Scope.</em> 38(9). 53-62.</li></ul></div></section>
+<section class="r-sec" id="presentations"><h2>Conference presentations</h2><div><ul class="r-cite"><li>Lancaster, M.R., Rogers, H. (2024, July). <em>Designing with Empathy: Integrating Trauma-Informed Principles in Asynchronous MOOCs.</em> Conversations with Colleagues presentation at the annual meeting of Distance Teaching &amp; Learning (UPCEA DT&amp;L), Minneapolis, MN.</li><li>Lancaster, M.R., Hudson, M. (2022, May). <em>Accelerate Skill Development with Coursera Labs.</em> Technical presentation at the annual meeting of Coursera Conference, Virtual.</li><li>Carlone, H.B., Lancaster, M.R. (2018, March). <em>Productive friction and ‘getting along’ in an elementary engineering classroom.</em> Paper presented at the annual international meeting of the National Association for Research in Science Teaching, Atlanta, GA.</li></ul><details class="r-more"><summary>Show 7 more</summary><ul class="r-cite"><li>Carlone, H.B., Lancaster, M.R., Mangrum, J. R., Blankmann, D., Jones, A. (2016, October). <em>Kids love to engineer! How do elementary teachers teach engineering design?</em> Workshop presented at the annual meeting of the North Carolina Science Teachers Association (NCSTA), Greensboro, NC.</li><li>Lancaster, M.R., Carlone, H.B. (2016, April). <em>A new lens for examining teachers’ epistemic beliefs in science and engineering.</em> Paper presented at the annual international meeting of the American Educational Research Association (AERA), Washington, DC.</li><li>Lancaster, M.R., Carlone, H.B. (2016, April). <em>Examining elementary teachers’ epistemic beliefs in engineering education.</em> Poster presented at the annual international meeting of the American Educational Research Association (AERA), Washington, DC.</li><li>Lancaster, M.R. (2016, April). <em>Examining elementary teachers’ existing epistemic beliefs in science and engineering.</em> Poster presented at the annual international meeting of the National Association for Research in Science Teaching (NARST), Baltimore, MD.</li><li>Carlone, H.B, Lancaster, M.R., Hedgedus, T., Mangrum, J. (2016, April). <em>Agentic narratives, social responsibility and moral reasoning in the context of elementary engineering.</em> Sponsored session at the annual international meeting of the National Association for Research in Science Teaching (NARST), Baltimore, MD.</li><li>Carlone, H.B, Lancaster, M.R., Mangrum, J., Hedgedus, T., Martin, M., Carter, A.D. (2016, April). <em>Cultural meanings of competence in a high needs elementary classroom.</em> Paper presented at the annual international meeting of the American Educational Research Association (AERA), Washington, DC.</li><li>Jones, M.G., Tracy, J., Leagon, M.R., Childers, G., Corin, E., &amp; Taylor, A. (2012, November). <em>What is the big deal about nanotechnology?</em> Workshop presented at the annual meeting of the North Carolina Science Teachers Association (NCSTA), Winston-Salem, NC.</li></ul></details></div></section>
+<section class="r-sec" id="education"><h2>Education and certifications</h2><div><ul class="r-list"><li>Project Management Professional (PMP) Certification, Project Management Institute</li><li>M.S. Science Education, North Carolina State University</li><li>M.S. Engineering Physics, Appalachian State University</li><li>B.S. Physics, University of North Carolina at Greensboro</li></ul></div></section>
+<section class="r-sec" id="references"><h2>References</h2><div><p style="margin:0">Available on request.</p></div></section>
+</div>
+</main>
+
+<footer class="site-foot">
+  <span>&copy; Megan Lancaster</span>
+  <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
+</footer>
+
+</div>
+<script src="js/site.js"></script>
+</body>
+</html>
