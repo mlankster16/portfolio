@@ -1103,7 +1103,8 @@ if(seen.indexOf(n)<0)seen.push(n);p.classList.add('on','seen');p.setAttribute('a
 var c=document.createElement('div');c.className='wt-call';c.setAttribute('role','note');
 c.innerHTML='<div class="wt-call-h"><span>Design note '+n+' of '+s.notes.length+'</span><button type="button" class="wt-call-x" aria-label="Close note">×</button></div><strong>'+x[0]+'</strong><p>'+x[1]+'</p><p class="g">Grounded in: '+x[2]+'</p>'+(n<s.notes.length?'<button type="button" class="wt-call-next" data-nn="'+(n+1)+'">Next note →</button>':(st<S.length-1?'<button type="button" class="wt-call-next" data-ns>'+(st===6?'Faculty view →':'Next moment →')+'</button>':''));
 c.tabIndex=-1;c.setAttribute('aria-label','Design note '+n);host.appendChild(c);if(window.innerWidth<=680){var y=host.getBoundingClientRect().top+window.scrollY-90;window.scrollTo({top:y,behavior:'smooth'});}var dr=d.getBoundingClientRect(),cr=c.getBoundingClientRect();if(cr.right>Math.min(dr.right,window.innerWidth)-8)c.classList.add('r');}
-function go(n,scroll){st=n;wkOpen=false;open=0;seen=[];draw();if(scroll){var y=$('wtRail').getBoundingClientRect().top+window.scrollY-90;if(y<window.scrollY)window.scrollTo({top:y,behavior:'smooth'});}}
+function go(n,scroll){st=n;wkOpen=false;open=0;seen=[];draw();if(scroll)centerApp();}
+function centerApp(){var w=document.querySelector('.app-win');if(!w)return;var r=w.getBoundingClientRect(),vh=window.innerHeight,y=r.height<=vh-32?r.top+window.scrollY-(vh-r.height)/2:r.top+window.scrollY-16;if(Math.abs(y-window.scrollY)>8)window.scrollTo({top:Math.max(0,y),behavior:'smooth'});}
 document.addEventListener('click',function(e){var t=e.target.closest('button');if(!t)return;
 if(t.dataset.pin){var n=+t.dataset.pin;note(open===n?0:n);var cc=$('wtDash').querySelector('.wt-call');if(cc)cc.focus({preventScroll:true});return;}
 if(t.classList.contains('wt-call-x')){closeNote();return;}
