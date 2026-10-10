@@ -1236,6 +1236,7 @@
 .bw .app-open{margin-left:auto;background:#C8F560;color:#2B2940;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px}
 @keyframes cmPulse{0%,100%{box-shadow:0 0 0 2px #5f4ee0,0 0 0 0 rgba(95,78,224,.35)}50%{box-shadow:0 0 0 2px #5f4ee0,0 0 0 8px rgba(95,78,224,0)}}
 @media (prefers-reduced-motion:reduce){.bw .app-cm:not(.seen){animation:none}}
+@media (max-width:680px){.no-mob,#wtRail,#wtTour,#tourPop,.bw .app-ib{display:none!important}}
 .bw .cmap{position:absolute;inset:0;z-index:50;display:flex;align-items:flex-start;justify-content:center;padding:28px;border-radius:28px;overflow:hidden}
 .bw .cmap-bg{position:absolute;inset:0;border:0;background:rgba(43,41,64,.4);cursor:default}
 .bw .cmap-p{position:relative;width:100%;max-height:100%;overflow:auto;background:#fff;border-radius:24px;padding:28px;box-shadow:0 30px 60px -30px rgba(40,30,90,.45)}
@@ -1302,7 +1303,7 @@
 </div></section>
 <section class="band" id="walk"><div class="in">
 <h2>Step into the course as Jordan</h2>
-<p>The prototype below is Biology 101 as Jordan would see it in Week 7. Move through seven moments of the week, from the first chat with the course to the course map, then switch to the faculty view. Numbered pins on each screen explain the design behind it.</p>
+<p>The prototype below is Biology 101 as Jordan would see it in Week 7. Move through seven moments of the week, from the first chat with the course to the course map<span class="no-mob">, then switch to the faculty view</span>. Numbered pins on each screen explain the design behind it.</p>
 <div class="wt-head" style="display:none"><div><h3 id="wtTitle"></h3><p id="wtWhat"></p></div></div>
 <p class="map-note wt-try" id="wtTryP" style="margin:0 0 20px !important"><svg class="map-note-ic" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V6a2 2 0 0 1 4 0v5"/><path d="M13 10a2 2 0 0 1 4 0v2"/><path d="M17 11.5a2 2 0 0 1 4 0V15a7 7 0 0 1-7 7h-1.5a6 6 0 0 1-4.6-2.2L4.3 16.6a1.9 1.9 0 0 1 2.9-2.4L9 16"/></svg><span id="wtTry"></span></p>
 </div></section></div>
@@ -1515,7 +1516,7 @@ var who=s.who||('Jordan · '+(MJ[a.major]||'Undecided')+' major'+(st>=2?' · '+F
 $('wtCtl').innerHTML=(st===7?'<span class="wt-seg" role="group" aria-label="Faculty view for"><span class="wt-muted">View</span><button type="button" class="chip" data-fv="class" aria-pressed="'+(facView==='class')+'">Class</button><button type="button" class="chip" data-fv="jordan" aria-pressed="'+(facView==='jordan')+'">Jordan</button></span>':'')+'<button type="button" class="p-reset" id="wtTour">Show me around</button>'+'<button type="button" class="p-reset" id="wtReset">Reset to Jordan</button>';
 $('wtDash').innerHTML='<div class="wt-top"><div><p class="wt-crumb">'+s.crumb+'</p><p class="wt-screen">'+s.screen+'</p></div><div class="wt-who">'+(st<7?'<span class="ds-xp">'+(WK.filter(function(w){return w.st==='done'}).reduce(function(n,w){return n+w.xp},0)+WK[6].xp).toLocaleString()+' XP</span>':'')+'<span class="app-who">'+who+'</span><span class="app-ib" aria-hidden="true">'+APPI.search+'</span><span class="app-ib" aria-hidden="true">'+APPI.bell+'<i class="app-ping"></i></span><span class="wt-av" aria-hidden="true">'+(s.av||'J')+'</span></div></div>'+s.r();appChrome();
 $('wtTryP').style.display='none';$('wtTry').innerHTML='<strong>Select the numbered pins</strong> on the dashboard to read the design note behind each part.'+(s.tryit?' <strong>Try it:</strong> '+s.tryit:'');
-$('wtBack').disabled=st===0;$('wtNext').textContent=st===7?'Back to Moment 1':st===6?'Next: Faculty view':'Next';$('wtCount').textContent=st<7?'Moment '+(st+1)+' of 7':'Faculty view';
+$('wtBack').disabled=st===0;$('wtNext').textContent=st>=lastSt()?'Back to Moment 1':st===6?'Next: Faculty view':'Next';$('wtCount').textContent=st<7?'Moment '+(st+1)+' of 7':'Faculty view';
 seen.forEach(function(n){var p=$('wtDash').querySelector('[data-pin="'+n+'"]');if(p)p.classList.add('seen')});
 if(open)note(open);renderCmap();tourApply();cues();nextCue();
 if(flashRes){flashRes=0;var rp=$('wtDash').querySelector('[data-pin="3"]');if(rp&&st===0){var rc=rp.parentElement;rc.classList.add('res-flash');setTimeout(function(){rc.classList.remove('res-flash')},1300);}}}
@@ -1535,7 +1536,7 @@ function note(n){var d=$('wtDash');d.querySelectorAll('.wt-call').forEach(functi
 open=n;if(!n)return;var s=S[st],p=d.querySelector('[data-pin="'+n+'"]'),x=s.notes[n-1];if(!p&&x&&st===6&&!wkOpen){open=n;wkOpen=true;draw();return;}if(!p||!x){open=0;return;}
 if(seen.indexOf(n)<0)seen.push(n);setTimeout(nextCue,0);p.classList.add('on','seen');p.setAttribute('aria-expanded','true');var host=p.parentElement;host.classList.add('wt-hl');
 var c=document.createElement('div');c.className='wt-call';c.setAttribute('role','note');
-c.innerHTML='<div class="wt-call-h"><span>Design note '+n+' of '+s.notes.length+'</span><button type="button" class="wt-call-x" aria-label="Close note">×</button></div><strong>'+x[0]+'</strong><p>'+x[1]+'</p><p class="g">Grounded in: '+x[2]+'</p>'+(n<s.notes.length?'<button type="button" class="wt-call-next" data-nn="'+(n+1)+'">Next note →</button>':(st<S.length-1?'<button type="button" class="wt-call-next" data-ns>'+(st===6?'Faculty view →':'Next moment →')+'</button>':''));
+c.innerHTML='<div class="wt-call-h"><span>Design note '+n+' of '+s.notes.length+'</span><button type="button" class="wt-call-x" aria-label="Close note">×</button></div><strong>'+x[0]+'</strong><p>'+x[1]+'</p><p class="g">Grounded in: '+x[2]+'</p>'+(n<s.notes.length?'<button type="button" class="wt-call-next" data-nn="'+(n+1)+'">Next note →</button>':(st<lastSt()?'<button type="button" class="wt-call-next" data-ns>'+(st===6?'Faculty view →':'Next moment →')+'</button>':''));
 c.tabIndex=-1;c.setAttribute('aria-label','Design note '+n);host.appendChild(c);if(window.innerWidth<=680){var y=host.getBoundingClientRect().top+window.scrollY-90;window.scrollTo({top:y,behavior:'smooth'});}var dr=d.getBoundingClientRect(),cr=c.getBoundingClientRect();if(cr.right>Math.min(dr.right,window.innerWidth)-8)c.classList.add('r');}
 function go(n,scroll){st=n;wkOpen=false;open=0;seen=[];draw();if(scroll)centerApp();}
 function centerApp(){var w=document.querySelector('.app-win');if(!w)return;var r=w.getBoundingClientRect(),vh=window.innerHeight,y=r.height<=vh-32?r.top+window.scrollY-(vh-r.height)/2:r.top+window.scrollY-16;if(Math.abs(y-window.scrollY)>8)window.scrollTo({top:Math.max(0,y),behavior:'smooth'});}
@@ -1564,8 +1565,10 @@ function closeNote(){var n=open;note(0);var p=$('wtDash').querySelector('[data-p
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&open){closeNote();return;}
 if(e.key==='Escape'&&wkOpen&&st===6){wkOpen=false;draw();var r=$('wtDash').querySelector('[data-wk="'+selWk+'"]');if(r)r.focus({preventScroll:true});return;}
 if(e.target.closest&&e.target.closest('#wtRail')&&(e.key==='ArrowRight'||e.key==='ArrowLeft')){e.preventDefault();var n=st+(e.key==='ArrowRight'?1:-1);if(n<0||n>=S.length)return;go(n,false);var b=$('wtRail').querySelector('[data-st="'+n+'"]');if(b)b.focus();}});
-$('wtBack').onclick=function(){if(st>0)go(st-1,true)};$('wtNext').onclick=function(){go(st<S.length-1?st+1:0,true)};
+$('wtBack').onclick=function(){if(st>0)go(st-1,true)};$('wtNext').onclick=function(){go(st<lastSt()?st+1:0,true)};
 var tour=0,tourSeen=false,tourSt=0;
+function isMob(){return window.innerWidth<=680}
+function lastSt(){return isMob()?6:S.length-1}
 var PINS='Select the numbered pins on the dashboard to read the design note behind each part.';
 function clickables(){var g=[].slice.call($('wtCtl').querySelectorAll('.wt-seg'));$('wtDash').querySelectorAll('button:not(.wt-pin):not(.wt-call-x):not(.wt-call-next):not([data-wkx])').forEach(function(b){var e=b.closest('.chips, .gm-bdg, .wk-map, .wt-fmts')||b;if(g.indexOf(e)<0)g.push(e)});return g}
 var CMS={t:'The full course map',b:'Select Course map in the menu at any time to open all 15 weeks. Each week has its own question and three formats.',side:'below',glow:function(){return [document.querySelector('.app-cm')]},at:function(){return document.querySelector('.app-cm')}};
@@ -1591,7 +1594,7 @@ var left=Math.max(0,Math.min(cx-w/2,c.width-w)),top=T.side==='above'?r.top-c.top
 b.dataset.side=T.side;b.style.left=left+'px';b.style.top=top+'px';b.querySelector('.tour-ar').style.left=Math.max(14,Math.min(cx-left-6,w-26))+'px';}
 window.addEventListener('resize',tourPos);
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&cmapOpen){cmapOpen=false;draw();return;}if(e.key==='Escape'&&tour)tourSet(0);});
-if('IntersectionObserver' in window){var io=new IntersectionObserver(function(en){if(en[0].isIntersecting&&!tourSeen){tourSeen=true;io.disconnect();if(st===0)tourSet(1);}},{rootMargin:'0px 0px -40% 0px'});io.observe($('wtDash').querySelector('[data-pin="1"]')||$('wtDash'));}
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(en){if(en[0].isIntersecting&&!tourSeen){tourSeen=true;io.disconnect();if(st===0&&!isMob())tourSet(1);}},{rootMargin:'0px 0px -40% 0px'});io.observe($('wtDash').querySelector('[data-pin="1"]')||$('wtDash'));}
 open=0;draw();
 })();
 </script>
