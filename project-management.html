@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Management | Megan Lancaster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=26">
+<link rel="stylesheet" href="css/theme.css?v=1">
+<style>
+.dc { --s1:56px; --s2:28px; --s3:17px; font-size:var(--s3); line-height:1.7; color:var(--text-body); }
+.dc h1,.dc h2 { font-family:var(--font-display); font-weight:500; margin:0; color:var(--navy); }
+.dc h1 { font-size:var(--s1); line-height:1.02; letter-spacing:-.01em; }
+.dc h2 { font-size:var(--s2); line-height:1.25; margin-bottom:18px; }
+.dc h3 { font-family:var(--font-display); font-weight:500; font-size:24px; line-height:1.25; color:var(--navy); margin:0 0 8px; }
+.dc p { margin:0 0 16px; text-wrap:pretty; }
+.dc .band { padding:64px var(--pad-x); }
+.dc .band > .in { max-width:880px; }
+.dc .in > p:last-child { margin-bottom:0; }
+.dc .dark { background:#101d38; color:#cbd0dd; }
+.dc .dark h1 { color:#f4efe2; }
+.dc .warm { background:var(--panel-warm); }
+.dc .tagline { font-family:var(--font-display); font-size:var(--s2); line-height:1.35; color:#dda448; margin:16px 0 24px; }
+.dc .x-facts { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; margin:40px 0 0; padding-top:22px; border-top:2px solid #dda448; }
+.dc .dark dt { color:#f4efe2; font-weight:700; } .dc .dark dd { margin:0; }
+.dc section[id] { scroll-margin-top:84px; }
+.dc .x-h { display:flex; align-items:center; gap:16px; }
+.dc .x-ic { flex:none; width:48px; height:48px; border-radius:50%; display:grid; place-items:center; background:var(--m-t, var(--accent-tint)); border:1.5px solid var(--m, var(--accent)); }
+.dc .x-ic svg { width:22px; height:22px; stroke:var(--m-d, var(--accent-dark)); }
+.m-w { --m:#00539b; --m-d:#00447f; --m-t:#f2f6fb; }
+.m-h { --m:#6b4e9e; --m-d:#5a3f87; --m-t:#f6f3fa; }
+.m-a { --m:#17724a; --m-d:#125e3d; --m-t:#f0f6f2; }
+.dc .kick { margin:0 0 8px; font-weight:700; color:var(--m-d, var(--accent-dark)); }
+
+/* lifecycle */
+.dc .lc { list-style:none; margin:32px 0 0; padding:0; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:16px; counter-reset:p; }
+.dc .lc > li { counter-increment:p; position:relative; display:flex; flex-direction:column; padding:22px 22px 18px; background:#fff; border:1px solid var(--rule); border-radius:6px; transition:border-color .15s, box-shadow .15s; }
+.dc .lc > li:hover { border-color:#dda448; box-shadow:0 10px 28px rgba(16,29,56,.06); }
+.dc .lc > li + li::before { content:'→'; position:absolute; left:-16px; top:30px; width:16px; text-align:center; color:#b8863a; font-weight:700; }
+.dc .lc-n { width:36px; height:36px; border-radius:50%; display:grid; place-items:center; background:var(--accent-tint); border:1.5px solid var(--accent); color:var(--accent-dark); font-weight:700; margin-bottom:14px; }
+.dc .lc-n::before { content:counter(p); }
+.dc .lc p { margin:0 0 14px; line-height:1.55; }
+.dc .lc details { margin-top:auto; border-top:1px solid var(--rule); padding-top:10px; }
+.dc .lc summary { cursor:pointer; list-style:none; font-weight:600; color:var(--navy); display:flex; justify-content:space-between; align-items:center; }
+.dc .lc summary::-webkit-details-marker { display:none; }
+.dc .lc summary::after { content:'+'; font-weight:700; color:#b8863a; font-size:20px; line-height:1; }
+.dc .lc details[open] summary::after { content:'–'; }
+.dc .lc summary:focus-visible { outline:2px solid var(--navy); outline-offset:3px; }
+.dc .lc ul { margin:10px 0 0; padding:0 0 0 18px; display:grid; gap:6px; line-height:1.5; }
+
+/* choosing */
+.dc .fit { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:32px; }
+.dc .fit > a { display:flex; flex-direction:column; padding:24px 24px 22px; background:var(--m-t); border-radius:6px; border-top:3px solid var(--m); text-decoration:none; color:var(--text-body); transition:background .15s, box-shadow .15s; }
+.dc .fit > a:hover { background:#fff; box-shadow:0 10px 28px rgba(16,29,56,.08); color:var(--text-body); }
+.dc .fit > a:focus-visible { outline:2px solid var(--navy); outline-offset:3px; }
+.dc .fit p { margin:0 0 12px; line-height:1.55; }
+.dc .fit ul { margin:0 0 16px; padding:0 0 0 18px; display:grid; gap:6px; line-height:1.5; }
+.dc .fit .go { margin-top:auto; font-weight:600; color:var(--navy); text-decoration:underline; text-decoration-color:var(--m); text-decoration-thickness:2px; text-underline-offset:5px; }
+
+/* method timeline */
+.dc .tl { position:relative; display:grid; grid-template-columns:repeat(var(--n),minmax(0,1fr)); margin:36px 0 0; }
+.dc .tl::before { content:''; position:absolute; left:calc(50% / var(--n)); right:calc(50% / var(--n)); top:21px; height:2px; background:var(--rule-strong); }
+.dc .ms { position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:10px; padding:0 6px; background:none; border:0; font:inherit; color:var(--text-body); cursor:pointer; text-align:center; }
+.dc .ms .dot { width:44px; height:44px; border-radius:50%; display:grid; place-items:center; background:#fff; border:2px solid var(--rule-strong); color:var(--text-muted); font-weight:700; font-size:15px; transition:background .15s, border-color .15s, color .15s, transform .15s; }
+.dc .ms .lbl { font-weight:600; line-height:1.3; color:var(--navy); }
+.dc .ms:hover .dot { border-color:var(--m); color:var(--m-d); transform:scale(1.06); }
+.dc .ms.on .dot { background:var(--m); border-color:var(--m); color:#fff; }
+.dc .ms:focus-visible { outline:none; } .dc .ms:focus-visible .dot { outline:2px solid var(--navy); outline-offset:3px; }
+.dc .loop { grid-row:2; margin:14px 6px 0; padding:6px 0 0; border:2px solid var(--m); border-top:0; border-radius:0 0 10px 10px; height:18px; position:relative; }
+.dc .loop span { position:absolute; left:50%; top:100%; transform:translate(-50%,6px); white-space:nowrap; padding:2px 12px; border-radius:999px; background:var(--m-t); color:var(--m-d); font-weight:700; font-size:14px; }
+.dc .tl.has-loop { padding-bottom:40px; }
+.dc .panel { margin-top:28px; padding:24px 26px; background:#fff; border:1px solid var(--rule); border-top:3px solid var(--m); border-radius:6px; box-shadow:0 10px 28px rgba(16,29,56,.06); min-height:150px; }
+.dc .panel [data-d] { display:none; }
+.dc .panel [data-d].on { display:block; animation:pmIn .2s ease; }
+.dc .panel p { margin:0 0 10px; }
+.dc .panel .out { margin:0; padding-top:10px; border-top:1px solid var(--rule); color:var(--navy); }
+.dc .panel .out strong { color:var(--m-d); }
+.dc .hint { margin:12px 0 0; font-size:14px; color:var(--text-muted); }
+@keyframes pmIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:none; } }
+
+/* example project */
+.dc .ex { margin-top:28px; display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:0; border-radius:6px; overflow:hidden; border:1.5px dashed var(--rule-strong); background:var(--panel-warm); }
+.dc .band.warm .ex { background:#fff; }
+.dc .ex > div { padding:24px 26px; }
+.dc .ex > div + div { border-left:1px solid var(--rule); }
+.dc .ex dl { margin:0; display:grid; gap:12px; }
+.dc .ex dt { font-weight:700; color:var(--navy); }
+.dc .ex dd { margin:0; color:var(--text-muted); }
+.dc .ex-more { grid-column:1 / -1; border-top:1px solid var(--rule); }
+.dc .ex > .ex-more + * , .dc .ex > div.ex-more { border-left:0; }
+.dc .ex-pts { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; line-height:1.55; }
+.dc .ex-pts strong { display:block; color:var(--navy); margin-bottom:4px; }
+.dc .ex-pts a { color:var(--navy); text-decoration-color:var(--m); text-decoration-thickness:2px; text-underline-offset:3px; }
+.dc .ex a { color:var(--navy); text-decoration-color:var(--m); text-decoration-thickness:2px; text-underline-offset:3px; }
+.dc .ex-tags { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px; }
+.dc .ex-tags li { padding:4px 12px; border-radius:999px; background:var(--m-t); color:var(--m-d); font-weight:600; font-size:15px; }
+@media (max-width:820px){ .dc .ex-pts { grid-template-columns:minmax(0,1fr); } }
+.dc .ex .todo { color:var(--text-muted); font-style:italic; }
+
+.dc .section-strip.x-steps { position:sticky; top:0; z-index:30; display:flex; align-items:center; justify-content:center; margin:0; padding:12px var(--pad-x); background:rgba(255,253,248,.96); backdrop-filter:blur(6px); border:0; border-bottom:1px solid var(--rule); border-radius:0; box-shadow:none; overflow-x:auto; }
+.dc .x-steps a { flex:none; padding:0; border:0; background:none; display:block; position:relative; }
+.dc .x-steps a:hover, .dc .x-steps a.active { background:none; }
+.dc .x-steps .x-dot { width:40px; height:40px; border-radius:50%; display:grid; place-items:center; background:#fff; border:1.5px solid var(--rule-strong); transition:background .2s, border-color .2s; }
+.dc .x-steps .x-dot svg { width:18px; height:18px; stroke:var(--text-muted); }
+.dc .x-steps a:hover .x-dot { border-color:var(--m, var(--accent)); }
+.dc .x-steps a.active .x-dot { background:var(--m, var(--accent)); border-color:var(--m, var(--accent)); }
+.dc .x-steps a.active .x-dot svg { stroke:#fff; }
+.dc .x-steps a:focus-visible { outline:2px solid var(--navy); outline-offset:3px; border-radius:50%; }
+.dc .x-line { flex:0 1 72px; min-width:16px; height:1.5px; background:var(--rule-strong); }
+.dc .x-tip { position:absolute; top:calc(100% + 10px); left:50%; transform:translate(-50%,-4px); white-space:nowrap; padding:6px 12px; border-radius:6px; background:#101d38; color:#f4efe2; font-size:14px; font-weight:600; line-height:1.3; opacity:0; pointer-events:none; transition:opacity .15s, transform .15s; z-index:40; }
+.dc .x-steps a:hover .x-tip, .dc .x-steps a:focus-visible .x-tip { opacity:1; transform:translate(-50%,0); }
+@media (min-width:681px){ .dc .section-strip.x-steps { overflow:visible; } }
+
+@media (max-width:1100px){ .dc .lc { grid-template-columns:repeat(3,minmax(0,1fr)); } .dc .lc > li:nth-child(4)::before { display:none; } }
+@media (max-width:820px){ .dc .lc { grid-template-columns:repeat(2,minmax(0,1fr)); } .dc .lc > li:nth-child(4)::before { display:block; } .dc .lc > li:nth-child(odd)::before { display:none; } }
+@media (max-width:820px){
+  .dc{--s1:42px;--s2:24px}
+  .dc .x-facts, .dc .fit, .dc .ex { grid-template-columns:minmax(0,1fr); }
+  .dc .ex > div + div { border-left:0; border-top:1px solid var(--rule); }
+  .dc .tl { grid-template-columns:minmax(0,1fr); gap:10px; padding-left:0; }
+  .dc .tl::before { left:21px; right:auto; top:22px; bottom:22px; width:2px; height:auto; }
+  .dc .tl.has-loop { padding-bottom:0; }
+  .dc .ms { flex-direction:row; text-align:left; padding:0; }
+  .dc .loop { display:none; }
+}
+@media (max-width:560px){ .dc .lc { grid-template-columns:minmax(0,1fr); } .dc .lc > li + li::before { display:none; } }
+</style>
+</head>
+<body class="accent-gold">
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="shell">
+
+<header class="site">
+  <div class="site-bar">
+    <span>Learning Experience Design &amp; Project Management</span>
+    <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+  <div class="nav-row">
+    <a class="site-name" href="index.html">Megan Lancaster</a>
+    <nav class="primary" aria-label="Main">
+      <a href="index.html">Home</a>
+      <div class="nav-menu">
+        <button type="button" class="nav-menu-btn" aria-expanded="false" aria-controls="work-menu">Samples <span class="caret" aria-hidden="true"></span></button>
+        <ul class="nav-menu-list" id="work-menu">
+          <li><a class="accent-gold" href="choose-your-own-adventure.html"><span class="dot" aria-hidden="true"></span>Choose Your Own Adventure</a></li>
+          <li><a class="accent-blue" href="ai-for-nurses.html"><span class="dot" aria-hidden="true"></span>AI for Nurses</a></li>
+          <li><a class="accent-purple" href="interactivity-generator.html"><span class="dot" aria-hidden="true"></span>Interactivity Generator</a></li>
+          <li><a class="accent-green" href="coursera-design-guide.html"><span class="dot" aria-hidden="true"></span>Coursera Design Guide</a></li>
+        </ul>
+      </div>
+      <a class="current" href="project-management.html" aria-current="page">Project Management</a>
+      <a href="about.html">About</a>
+      <a class="btn-resume" href="resume.html">Résumé</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="dc">
+<header class="band dark"><div class="in">
+<h1>Project Management</h1>
+<p class="tagline">How I scope, kick off, manage, deliver, and evaluate projects for Duke initiatives.</p>
+<p>The projects I lead range from multi-course Coursera Specializations to faculty-built courses and interactive learning tools. Each one moves through the same five phases, and I choose a delivery approach based on what we’re building and who we’re building it with.</p>
+</div>
+<dl class="x-facts"><div><dt>Approaches</dt><dd>Agile, Hybrid, and Traditional (Waterfall)</dd></div><div><dt>Partners</dt><dd>Faculty, subject matter experts, and Duke design and media teams</dd></div><div><dt>Certification</dt><dd>Project Management Professional (PMP)</dd></div></dl>
+</header>
+
+<nav class="section-strip x-steps" aria-label="On this page">
+<a href="#lifecycle" aria-label="The project lifecycle"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 12h10"/></svg></span><span class="x-tip" aria-hidden="true">The project lifecycle</span></a><span class="x-line" aria-hidden="true"></span>
+<a href="#choosing" aria-label="Choosing an approach"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v6"/><path d="M12 9l-6 6"/><path d="M12 9l6 6"/><path d="M12 9v12"/></svg></span><span class="x-tip" aria-hidden="true">Choosing an approach</span></a><span class="x-line" aria-hidden="true"></span>
+<a class="m-a" href="#agile" aria-label="Agile"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v4h-4"/></svg></span><span class="x-tip" aria-hidden="true">Agile</span></a><span class="x-line" aria-hidden="true"></span>
+<a class="m-h" href="#hybrid" aria-label="Hybrid"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h6v5"/><path d="M14 12a3 3 0 1 0 6 0 3 3 0 1 0-6 0"/><path d="M9 12h5"/></svg></span><span class="x-tip" aria-hidden="true">Hybrid</span></a><span class="x-line" aria-hidden="true"></span>
+<a class="m-w" href="#traditional" aria-label="Traditional"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h7v4"/><path d="M10 9h6v4"/><path d="M16 13h5v6"/></svg></span><span class="x-tip" aria-hidden="true">Traditional</span></a>
+</nav>
+
+<section class="band" id="lifecycle"><div class="in">
+<h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 12h10"/></svg></span>The project lifecycle</h2>
+<p>Every project I manage moves through five phases. The approach changes what happens inside each phase, especially during development, but the phases stay the same.</p>
+</div>
+<ol class="lc">
+<li><span class="lc-n" aria-hidden="true"></span><h3>Scope</h3><p>Define goals, audience, deliverables, and constraints with partners.</p>
+<details><summary>What this includes</summary><ul><li>Scoping conversations with faculty and stakeholders</li><li>Effort, budget, and timeline estimates</li><li>Scope of Work and sign-off</li></ul></details></li>
+<li><span class="lc-n" aria-hidden="true"></span><h3>Kickoff</h3><p>Align the team on roles, schedule, and how we’ll work together.</p>
+<details><summary>What this includes</summary><ul><li>Kickoff meeting and shared project plan</li><li>Roles and responsibilities</li><li>Communication cadence and tools</li></ul></details></li>
+<li><span class="lc-n" aria-hidden="true"></span><h3>Manage</h3><p>Keep development on track while the work takes shape.</p>
+<details><summary>What this includes</summary><ul><li>Status check-ins and progress tracking</li><li>Risk, issue, and change management</li><li>Review cycles with partners</li></ul></details></li>
+<li><span class="lc-n" aria-hidden="true"></span><h3>Deliver</h3><p>Launch, hand off, and capture what we learned.</p>
+<details><summary>What this includes</summary><ul><li>Quality and accessibility review</li><li>Launch and handoff</li><li>Retrospective and lessons learned</li></ul></details></li>
+<li><span class="lc-n" aria-hidden="true"></span><h3>Evaluate</h3><p>Review how the product is working and plan what comes next.</p>
+<details><summary>What this includes</summary><ul><li>Learner feedback</li><li>Backend analytics</li><li>Next steps for improvement and optimization</li></ul></details></li>
+</ol>
+</section>
+
+<section class="band warm" id="choosing"><div class="in">
+<h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v6"/><path d="M12 9l-6 6"/><path d="M12 9l6 6"/><path d="M12 9v12"/></svg></span>Choosing an approach</h2>
+<p>I choose an approach during scoping, based on how well-defined the work is, how often partners can review it, and how much the product is likely to change as we build.</p>
+</div>
+<div class="fit">
+<a class="m-a" href="#agile"><p class="kick">Agile</p><p>Best when:</p><ul><li>The product will change as we learn</li><li>Partners can give frequent feedback</li><li>Working versions matter more than a full spec</li></ul><span class="go">See the cycle ↓</span></a>
+<a class="m-h" href="#hybrid"><p class="kick">Hybrid</p><p>Best when:</p><ul><li>The plan is set but details will evolve</li><li>Partners review work in batches</li><li>Some pieces need room to iterate</li></ul><span class="go">See the cycle ↓</span></a>
+<a class="m-w" href="#traditional"><p class="kick">Traditional (Waterfall)</p><p>Best when:</p><ul><li>Requirements are clear from the start</li><li>Deadlines and approvals are fixed</li><li>Each phase builds on the one before</li></ul><span class="go">See the cycle ↓</span></a>
+</div>
+</section>
+
+<section class="band m-a" id="agile"><div class="in">
+<h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v4h-4"/></svg></span>Agile</h2>
+<p>Work is planned and delivered in short sprints, with a working version reviewed at the end of each one.</p>
+</div>
+<div class="tl has-loop" style="--n:5" data-tl>
+<button class="ms on" type="button"><span class="dot">1</span><span class="lbl">Product &amp; backlog</span></button>
+<button class="ms" type="button"><span class="dot">2</span><span class="lbl">Sprint planning</span></button>
+<button class="ms" type="button"><span class="dot">3</span><span class="lbl">Build &amp; check in</span></button>
+<button class="ms" type="button"><span class="dot">4</span><span class="lbl">Review &amp; demo</span></button>
+<button class="ms" type="button"><span class="dot">5</span><span class="lbl">Retrospective</span></button>
+<div class="loop" style="grid-column:2 / 6" aria-hidden="true"><span>↻ Repeats each sprint</span></div>
+</div>
+<div class="panel" aria-live="polite">
+<div data-d class="on"><h3>Product &amp; backlog</h3><p>Each product starts with a short definition: what it is, who it’s for, the problem it solves, and what success looks like at MVP. The owner then builds a backlog of cards sorted into Discovery, Build, Test, Refine, Deploy, and Icebox.</p><p class="out"><strong>Output:</strong> a product definition and a prioritized backlog on our Monday.com board</p></div>
+<div data-d><h3>Sprint planning</h3><p>At the start of each one-week sprint, each person pulls two to four ready cards from their backlog and writes a one-sentence sprint goal. The goal stays fixed for the week. The cards underneath it can be swapped, split, or added to.</p><p class="out"><strong>Output:</strong> a sprint goal, committed cards, and estimated hours</p></div>
+<div data-d><h3>Build &amp; check in</h3><p>Midway through the sprint, everyone posts a short async update: progress toward their goal, any blocked cards, and what support they need. Blockers come up here instead of waiting for the review.</p><p class="out"><strong>Output:</strong> an async update in Teams, with blocked cards flagged on the board</p></div>
+<div data-d><h3>Review &amp; demo</h3><p>At the end of each sprint, each person shows what they built or learned and reflects on whether they met their goal. Work can be rough; the point is to make progress visible to the team.</p><p class="out"><strong>Output:</strong> goal met, partial, or not met, plus cards carried into the next sprint</p></div>
+<div data-d><h3>Retrospective</h3><p>Right after the review, a 15-minute conversation about how we worked rather than what we built: what went well, what was hard, and what we’ll change next sprint.</p><p class="out"><strong>Output:</strong> one or two adjustments for the next sprint, and blockers escalated to leadership</p></div>
+</div>
+<p class="hint">Hover or select a phase to see what happens.</p>
+<div class="ex">
+<div><p class="kick">Example project</p><h3>AI Pilot</h3><p style="margin:0">Over a summer, four members of Duke’s Learning Experience Design team each built AI-powered tools for our course development work. It was also the team’s first Agile project, so we tested a new way of working alongside a new set of tools.</p></div>
+<div><dl><div><dt>Timeline</dt><dd>June to August 2026, in one-week sprints</dd></div><div><dt>My role</dt><dd>Designed and facilitated the Agile process; product owner for two of the tools</dd></div><div><dt>Why Agile</dt><dd>We didn’t yet know what the tools could do. Weekly cycles let each person test, learn, and adjust, and kept everyone’s progress visible.</dd></div></dl></div>
+<div class="ex-more"><p class="kick">How it played out</p>
+<ul class="ex-pts">
+<li><strong>Goals held while plans flexed.</strong> Capacity shifted week to week with time off and other projects. Each person kept a sprint goal and adjusted the cards beneath it, so lighter weeks still moved the work forward.</li>
+<li><strong>Blockers surfaced weekly.</strong> Hosting, API budget, and admin approvals came up at check-ins and went to leadership as one shared list, which became each tool’s path to production.</li>
+<li><strong>Learning was shared.</strong> Weekly demos let us see how each person was approaching prompts, agents, and hosting. When a tool reached MVP, its owner picked up the next priority from our shared list.</li>
+</ul>
+<p class="kick" style="margin-top:20px">What we built</p>
+<ul class="ex-tags"><li>Coursera interaction generator</li><li>Claude Skills library and dashboard</li><li>Capacity forecasting model</li><li>Course design outline tool</li><li>Script writing agent</li></ul>
+</div>
+</div>
+</section>
+
+<section class="band warm m-h" id="hybrid"><div class="in">
+<h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h6v5"/><path d="M14 12a3 3 0 1 0 6 0 3 3 0 1 0-6 0"/><path d="M9 12h5"/></svg></span>Hybrid</h2>
+<p>The overall roadmap follows a fixed sequence of phases and sign-off milestones. Within it, the design work moves through scheduled cycles of review, feedback, and implementation.</p>
+</div>
+<div class="tl has-loop" style="--n:5" data-tl>
+<button class="ms on" type="button"><span class="dot">1</span><span class="lbl">Kickoff &amp; discovery</span></button>
+<button class="ms" type="button"><span class="dot">2</span><span class="lbl">Design &amp; alignment</span></button>
+<button class="ms" type="button"><span class="dot">3</span><span class="lbl">Co-design</span></button>
+<button class="ms" type="button"><span class="dot">4</span><span class="lbl">Production &amp; build</span></button>
+<button class="ms" type="button"><span class="dot">5</span><span class="lbl">Review &amp; launch</span></button>
+<div class="loop" style="grid-column:2 / 5" aria-hidden="true"><span>↻ Review, feedback, implement</span></div>
+</div>
+<div class="panel" aria-live="polite">
+<div data-d class="on"><h3>Kickoff &amp; discovery</h3><p>A project kickoff and onboarding for each faculty lead, followed by one-on-one walkthroughs with each member of the design team to discuss the course, its learning goals, and what it should include.</p><p class="out"><strong>Milestone:</strong> onboarding and course walkthroughs complete, with faculty sign-off</p></div>
+<div data-d><h3>Design &amp; alignment</h3><p>Faculty leads develop their course design with the design team through ongoing planning meetings. Full project team meetings bring every course together for alignment, and the gaps or open questions they surface shape the next co-design session.</p><p class="out"><strong>Milestone:</strong> course design drafted, with faculty sign-off</p></div>
+<div data-d><h3>Co-design</h3><p>Practicing nurses respond to the questions and gaps identified during design. Faculty leads and the design team refine each course from that input before production begins.</p><p class="out"><strong>Milestone:</strong> course and module maps finalized, and every learning asset identified</p></div>
+<div data-d><h3>Production &amp; build</h3><p>Scripting, studio recording, video editing, and course build. Scripts and video edits each get a dedicated review round, and a second co-design session gathers feedback across all courses near completion.</p><p class="out"><strong>Milestone:</strong> video edits approved and all courses built and ready for review</p></div>
+<div data-d><h3>Review &amp; launch</h3><p>Continuing education review, stakeholder feedback, launch preparation, and submission to Coursera.</p><p class="out"><strong>Milestone:</strong> courses launch-ready and the Specialization launched</p></div>
+</div>
+<p class="hint">Hover or select a phase to see what happens.</p>
+<div class="ex">
+<div><p class="kick">Example project · In development</p><h3>Ethics, Equity, and Patient Safety in AI for Nursing Practice</h3><p style="margin:0">A four-course Coursera Specialization for practicing nurses, developed with Duke University School of Nursing as Year 2 of the Empowering Nurses initiative with Johnson &amp; Johnson. Year 1 was <a href="ai-for-nurses.html">AI for Nurses</a>. Each course has its own faculty lead, supported by one shared CTL design team.</p></div>
+<div><dl><div><dt>Timeline</dt><dd>September 2026 to an August 2027 launch</dd></div><div><dt>My role</dt><dd>Project manager and senior learning experience designer across all four courses</dd></div><div><dt>Why Hybrid</dt><dd>A fixed launch date, continuing education credit, and four courses developed in parallel call for a dependable roadmap. Feedback from practicing nurses shapes the design, so co-design sessions are scheduled into it.</dd></div></dl></div>
+<div class="ex-more"><p class="kick">How it’s structured</p>
+<ul class="ex-pts">
+<li><strong>Sign-offs keep courses in step.</strong> Faculty lead sign-offs at key milestones, from the finalized course design to launch-ready courses, move all four courses into each new phase together.</li>
+<li><strong>Co-design with practicing nurses.</strong> Two sessions, one during design and one near completion. The School of Nursing recruits nurses, and we plan each session around gaps surfaced in faculty design meetings.</li>
+<li><strong>Review rounds are built in.</strong> Scripts and video edits each get a dedicated review with the design team, and full team meetings keep the four courses aligned across the Specialization.</li>
+</ul>
+<p class="kick" style="margin-top:20px">The four courses</p>
+<ul class="ex-tags"><li>Ethical Foundations of AI in Nursing Practice</li><li>Bias, Fairness, and Health Equity in AI-Enabled Care</li><li>Understanding AI Tools, Data, and Technical Limits</li><li>Patient Safety, Simulation, and Responsible Generative AI Use</li></ul>
+</div>
+</div>
+</section>
+
+<section class="band m-w" id="traditional"><div class="in">
+<h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h7v4"/><path d="M10 9h6v4"/><path d="M16 13h5v6"/></svg></span>Traditional (Waterfall)</h2>
+<p>Work moves through defined phases in order, with each phase reviewed and approved before the next begins.</p>
+</div>
+<div class="tl" style="--n:5" data-tl>
+<button class="ms on" type="button"><span class="dot">1</span><span class="lbl">Initiate</span></button>
+<button class="ms" type="button"><span class="dot">2</span><span class="lbl">Plan</span></button>
+<button class="ms" type="button"><span class="dot">3</span><span class="lbl">Develop</span></button>
+<button class="ms" type="button"><span class="dot">4</span><span class="lbl">Review &amp; QA</span></button>
+<button class="ms" type="button"><span class="dot">5</span><span class="lbl">Launch &amp; close</span></button>
+</div>
+<div class="panel" aria-live="polite">
+<div data-d class="on"><h3>Initiate</h3><p>Meetings with faculty and leadership define the project’s scope, objectives, and success criteria, and identify everyone who has a stake in the outcome.</p><p class="out"><strong>Milestone:</strong> project charter and stakeholder register approved</p></div>
+<div data-d><h3>Plan</h3><p>An integrated project plan sets the scope, schedule, and cost baselines, supported by a work breakdown structure, a communication plan, and a risk register.</p><p class="out"><strong>Milestone:</strong> baselines approved, with milestones for drafts, media production, and launch</p></div>
+<div data-d><h3>Develop</h3><p>The team designs course materials, produces video, and builds assignments in sequence. Progress is tracked against the baselines, and any change goes through a formal change request.</p><p class="out"><strong>Milestone:</strong> course materials, videos, and assignments complete</p></div>
+<div data-d><h3>Review &amp; QA</h3><p>Courses are checked against accessibility and quality standards, then reviewed by stakeholders before launch.</p><p class="out"><strong>Milestone:</strong> stakeholder acceptance of the courses</p></div>
+<div data-d><h3>Launch &amp; close</h3><p>Courses launch, lessons learned are documented, project files are archived, and ownership moves to the team that maintains the courses.</p><p class="out"><strong>Milestone:</strong> launch and handoff for ongoing maintenance</p></div>
+</div>
+<p class="hint">Hover or select a phase to see what happens.</p>
+<div class="ex">
+<div><p class="kick">Example project · Launched</p><h3>Data Science with R</h3><p style="margin:0">A four-course Coursera Specialization developed with Duke’s Department of Statistics, taught through video lectures, code-along exercises, and graded programming assignments.</p></div>
+<div><dl><div><dt>Timeline</dt><dd>February to December 2024</dd></div><div><dt>My role</dt><dd>Project manager for a design team of three, working with two faculty instructors and four additional stakeholders</dd></div><div><dt>Why Traditional</dt><dd>The scope was clear from the start: four courses with defined lessons and assessments. Fixed baselines made progress easy to track and changes easy to manage.</dd></div></dl></div>
+<div class="ex-more"><p class="kick">How it played out</p>
+<ul class="ex-pts">
+<li><strong>Baselines set the path.</strong> Scope, schedule, and cost baselines and a work breakdown structure set milestones for drafts, media production, and launch.</li>
+<li><strong>A pause then a rebaseline.</strong> When faculty availability paused development mid-year, we moved through a formal change request, reallocated resources, and rebaselined the schedule once work resumed.</li>
+<li><strong>On budget with a clean handoff.</strong> The Specialization launched three months later than first planned and within budget, then moved to our Technical Support team for ongoing maintenance.</li>
+</ul>
+<p class="kick" style="margin-top:20px">The four courses</p>
+<ul class="ex-tags"><li>Data Visualization and Transformation with R</li><li>Data Tidying and Importing with R</li><li>Data Science Ethics with R</li><li>Data Modeling and Prediction with R</li></ul>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="site-foot">
+  <span>&copy; Megan Lancaster</span>
+  <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
+</footer>
+
+</div>
+<script src="js/site.js"></script>
+<script>
+document.querySelectorAll('[data-tl]').forEach(function (tl) {
+  var ms = tl.querySelectorAll('.ms');
+  var ds = tl.parentElement.querySelectorAll('.panel [data-d]');
+  ms.forEach(function (b, i) {
+    function show() {
+      ms.forEach(function (x, j) { x.classList.toggle('on', j === i); x.setAttribute('aria-pressed', j === i); });
+      ds.forEach(function (d, j) { d.classList.toggle('on', j === i); });
+    }
+    b.addEventListener('mouseenter', show);
+    b.addEventListener('focus', show);
+    b.addEventListener('click', show);
+  });
+});
+</script>
+</body>
+</html>

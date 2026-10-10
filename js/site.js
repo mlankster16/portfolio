@@ -1,6 +1,6 @@
-/* Site-wide behavior: the "Work" menu in the header, and the section strip on long project pages. */
+/* Site-wide behavior: the "Samples" menu in the header, and the section strip on long project pages. */
 (function () {
-  /* ---- Work menu ---- */
+  /* ---- Samples menu ---- */
   var menu = document.querySelector('.nav-menu');
   if (menu) {
     var btn = menu.querySelector('.nav-menu-btn');
