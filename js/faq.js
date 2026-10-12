@@ -36,15 +36,14 @@
 
   function rank(text) {
     var q = tokens(text), low = norm(text);
-    if (!q.length) return [];
     var seen = {}, uq = q.filter(function (t) { return seen[t] ? false : (seen[t] = 1); });
     return items.map(function (x) {
       var s = 0, hit = 0, strong = 0;
       uq.forEach(function (t) {
         if (x.f[t]) { s += x.f[t] * idf(t); hit++; if (x.f[t] >= 3) strong++; }
       });
-      (x.item.phrases || []).forEach(function (p) { if ((' ' + low.replace(/[^a-z0-9+#]+/g, ' ') + ' ').indexOf(' ' + p + ' ') > -1) { s += 12; strong++; } });
-      return { item: x.item, score: s, hit: hit / uq.length, strong: strong };
+      (x.item.phrases || []).forEach(function (p) { if ((' ' + low.replace(/[^a-z0-9+#]+/g, ' ') + ' ').indexOf(' ' + p + ' ') > -1) { s += 8 + 4 * p.split(' ').length; strong++; } });
+      return { item: x.item, score: s, hit: hit / (uq.length || 1), strong: strong };
     }).filter(function (r) { return r.score > 0; }).sort(function (a, b) { return b.score - a.score; });
   }
 

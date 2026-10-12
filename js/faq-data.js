@@ -61,6 +61,27 @@ window.FAQ_DATA = {
       keys: 'background education degree degrees studied study physics engineering science teacher teaching taught classroom stem school university where did you go to school'
     },
 
+    {
+      id: 'joy', group: 'about',
+      phrases: ['what brings you joy', 'brings you joy', 'what do you love', 'what do you enjoy about your work', 'what motivates you', 'what drives you'],
+      q: 'What brings you joy?',
+      a: [
+        'I love taking an idea, building something we can try, and making it better as we learn. Working quickly gives me energy, especially when I can share an early version, hear what people think, and use that feedback to try something new.',
+        'What makes that exciting is finding an approach that meets the needs of the people I\u2019m designing for. That might mean helping a learner make sense of a difficult concept, giving faculty a way to bring their ideas to life, or working through priorities with project partners. I love the puzzle of bringing those needs together and creating something useful with a team.'
+      ],
+      links: [{ label: 'About me', href: 'about.html' }],
+      keys: 'joy love enjoy passion motivation motivates drives excites exciting rewarding energy prototype feedback iterate puzzle'
+    },
+    {
+      id: 'outside-work', group: 'about',
+      phrases: ['outside of work', 'outside work', 'for fun', 'free time', 'in your spare time', 'what do you do for fun'],
+      q: 'What do you enjoy outside of work?',
+      a: [
+        'I\u2019m happiest outdoors! I love hiking, camping, traveling, and spending time surrounded by nature. I enjoy exploring somewhere new, but I\u2019m just as happy taking a familiar trail and enjoying a little time outside my current state of Maine.'
+      ],
+      keys: 'hobbies hobby interests outside work fun free time spare time weekends outdoors hiking camping travel traveling nature trail maine personal life'
+    },
+
     /* ---------- Samples ---------- */
     {
       id: 'where-start', group: 'samples',
@@ -152,6 +173,7 @@ window.FAQ_DATA = {
     },
     {
       id: 'keep-moving', group: 'pm',
+      phrases: ['manage projects','manage a project','how do you manage','keep a project','manage your projects','project management process','how do you run projects'],
       q: 'How do you keep a project moving?',
       a: [
         'I work with the team to agree on what we’re creating, who is responsible for each part, and when we need decisions or feedback. I’m a PMP®-certified project manager, and much of my work involves helping people plan around the time and resources available.',
