@@ -32,8 +32,10 @@
   window.DCLogic = DCLogic;
   window.DCMount = function (C) {
     var c = new C();
-    document.querySelectorAll('[data-click]').forEach(function (e) {
-      e.addEventListener('click', function () { var f = c.renderVals()[e.getAttribute('data-click')]; if (f) f(); });
+    [['click', 'data-click'], ['mouseenter', 'data-enter'], ['focus', 'data-focus']].forEach(function (p) {
+      document.querySelectorAll('[' + p[1] + ']').forEach(function (e) {
+        e.addEventListener(p[0], function () { var f = c.renderVals()[e.getAttribute(p[1])]; if (f) f(); });
+      });
     });
     c.render();
     return c;
