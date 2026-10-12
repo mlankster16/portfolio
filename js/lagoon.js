@@ -46,4 +46,16 @@
     window.addEventListener('resize', spy);
     spy();
   }
+  /* Q&A chat: load its styles, answers, and script on every page. */
+  (function () {
+    var css = document.createElement('link');
+    css.rel = 'stylesheet'; css.href = 'css/faq.css?v=3';
+    document.head.appendChild(css);
+    function load(src, next) {
+      var t = document.createElement('script');
+      t.src = src; t.onload = next || null;
+      document.body.appendChild(t);
+    }
+    load('js/faq-data.js?v=3', function () { load('js/faq.js?v=5'); });
+  })();
 })();

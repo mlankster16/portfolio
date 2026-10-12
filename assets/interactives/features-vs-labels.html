@@ -1,4 +1,4 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title> What the model scored. What the nurse knows. </title> <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400;1,8..60,600&family=Source+Sans+3:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet"> 
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title> What the model used and what the nurse knows </title> <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400;1,8..60,600&family=Source+Sans+3:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet"> 
 <style>
    :root {
      --duke-navy: #012169;
@@ -521,8 +521,8 @@
 <div class="legend-swatch swatch-gap"></div> Not in model </div>
 </div>
 <div class="tabs">
-<button class="tab-btn active-model" id="modelTab"> What The Model Used </button>
-<button class="tab-btn" id="nurseTab"> What The Nurse Knows </button>
+<button class="tab-btn active-model" id="modelTab"> What the model used </button>
+<button class="tab-btn" id="nurseTab"> What the nurse knows </button>
 </div>
 <!-- What the model sees -->
 <div class="panel" id="modelPanel">
@@ -546,7 +546,7 @@
 <span> 100 (High) </span>
 </div>
 </div>
-<p class="features-label"> Features the model was trained on. Adjust and watch the score move. </p>
+<p class="features-label"> Features the model was trained on. Try adjusting them to see the score move.</p>
 <div class="feature-pair">
 <div class="feature-row">
 <div class="feature-row-top">
@@ -598,10 +598,10 @@
 <p class="label-strip-label"> Label: training outcome </p>
 <p class="label-strip-value"> Fell / Did not fall </p>
 </div>
-<p class="label-strip-note"> What the model learned to predict, based on thousands of past patients </p>
+<p class="label-strip-note"> What the model learned to predict, based on past patients</p>
 </div>
 </div>
-<p class="tool-note">Try moving the sliders and pills. The score updates because age, prior falls, medications, and mobility are the four features this model was trained on.</p>
+<p class="tool-note">Try moving the sliders and choosing different options. The score changes because age, prior falls, medications, and mobility are the four features, or inputs, this model was trained on.</p>
 </div>
 <!-- What the nurse knows -->
 <div class="panel" id="nursePanel" style="display: none;">
@@ -634,10 +634,10 @@
 </div>
 <div class="verdict-strip">
 <span class="verdict-icon"> ! </span>
-<p class="verdict-text"><strong> Try going back and changing the score. </strong> Notice that none of this shifts, because none of it was a feature the model could see. </p>
+<p class="verdict-text"><strong> Try going back and adjusting the features. </strong> Notice that none of this changes, because none of it was a feature the model could see.</p>
 </div>
 </div>
-<p class="tool-note">This is what the nurse knows that the model doesn't have. Try switching back to the other tab and changing the score. Nothing here moves, because none of it was a feature the model could see.</p>
+<p class="tool-note">These are details the nurse knows that the model doesn't have. If you switch back to the other tab and adjust the features, nothing here changes, because none of it was a feature the model could see.</p>
 </div>
 
 <script>

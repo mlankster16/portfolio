@@ -9,7 +9,7 @@ window.RETHINK = (function () {
   ];
   var UNIT_Q = [
     { id: 'style', title: 'What kind of experience would you like for this unit?', type: 'one', opts: [
-      ['video', 'Guided video: recordings, predictions, and an expert’s reasoning'], ['game', 'Escape room: evaluate competing explanations to unlock each step'], ['field', 'Field investigation: record locally, or use a supplied recording'], ['mix', 'I’d like to choose as I go'] ] },
+      ['video', 'Guided video: recordings, predictions, and an expert’s reasoning'], ['game', 'Escape room: evaluate competing explanations to move on to each step'], ['field', 'Field investigation: record locally, or use a supplied recording'], ['mix', 'I’d like to choose as I go'] ] },
     { id: 'shaky', title: 'What would you like to review before getting started?', sub: 'Choose any you’d find helpful.', type: 'many', opts: [
       ['graphs', 'Reading and comparing graphs'], ['pitch', 'Understanding frequency and pitch'], ['spectro', 'Reading a spectrogram, a visual map of sound'], ['evidence', 'Comparing evidence for different explanations'] ] }
   ];
@@ -18,16 +18,16 @@ window.RETHINK = (function () {
   var JORDAN = { major: 'physics', why: 'required', style: 'mix', shaky: ['spectro', 'evidence'], keep: 'points' };
 
   var UNIT = { n: 'Unit 3', concept: 'Adaptation in a changing environment', question: 'How does birdsong differ between a city park and a nearby forest, and why?',
-    doing: 'You’ll compare recordings and environmental data from two settings, consider more than one explanation, and finish with a shared task that every route prepares you for.',
+    doing: 'You’ll compare recordings and environmental data from two settings, consider more than one explanation, and finish with a shared task that every format prepares you for.',
     skills: ['Reading and comparing graphs', 'Frequency and pitch', 'Reading a spectrogram', 'Weighing evidence for different explanations'] };
 
   var MAJOR = {
-    physics: { lens: 'Birdsong as a signal', text: 'Birdsong is a signal traveling through a noisy channel. In cities, some birds sing at a higher pitch to be heard over traffic. You’ll start from the physics of sound and work toward why that shift matters for survival.' },
-    biology: { lens: 'Foundation for your major', text: 'Adaptation comes up again in ecology and evolution. This unit gives you a first look at the evidence researchers use, with data you collect yourself.' },
-    business: { lens: 'Costs and decisions', text: 'Noise, light, and habitat change are side effects of how cities and businesses grow. You’ll look at what that change means for local species and how organizations weigh it in their decisions.' },
+    physics: { lens: 'Birdsong as a signal', text: 'Birdsong is a signal traveling through a noisy channel. In cities, some birds sing at a higher pitch to be heard over traffic. You’ll start from the physics of sound and work toward why that shift might matter for survival.' },
+    biology: { lens: 'Foundation for your major', text: 'Adaptation comes up again in ecology and evolution. This unit gives you a first look at the evidence researchers use, working with real recordings and data.' },
+    business: { lens: 'Costs and decisions', text: 'Noise, light, and habitat change can be side effects of how cities and businesses grow. You’ll look at what that change means for local species and how organizations weigh it in their decisions.' },
     music: { lens: 'Song, pitch, and learning', text: 'Many songbirds learn their songs much like people learn melodies. You’ll compare recordings and look at how pitch and timing shift when the environment gets louder.' },
-    cs: { lens: 'Audio as data', text: 'Bird identification apps use machine learning on audio recordings. You’ll work with the same kind of data those tools are trained on and see where they get it wrong.' },
-    undecided: { lens: 'A sampler', text: 'This unit touches biology, data, and fieldwork, so you can notice which parts you enjoy most. That’s useful information for choosing a major.' }
+    cs: { lens: 'Audio as data', text: 'Bird identification apps use machine learning on audio recordings. You’ll work with the same kind of data those tools are trained on and see where they can get it wrong.' },
+    undecided: { lens: 'A sampler', text: 'This unit touches biology, data, and fieldwork, so you can notice which parts you enjoy most. That can help when you choose a major.' }
   };
   var WHY = {
     required: 'Since this course is a requirement, each unit starts by showing where it connects to your own program.',
@@ -50,9 +50,9 @@ window.RETHINK = (function () {
     self: { name: 'Room to explore', text: 'Optional deep-dive questions and an open dataset to explore, with no points attached.' },
     points: { name: 'Streaks, points, and seeing progress', text: 'Points and a weekly streak for each checkpoint, plus a progress map that fills in. Over the term, rewards shift from showing up to showing what you can explain.' },
     people: { name: 'A small crew', text: 'A group of four working on the same question, with a shared findings board at the end of the unit.' },
-    plan: { name: 'A steady plan', text: 'A suggested weekly plan with reminders and short check-ins, so the next step is always clear.' }
+    plan: { name: 'A steady plan', text: 'A suggested weekly plan with reminders and short check-ins, so the next step is easy to see.' }
   };
-  var TASK = 'Use the recordings and environmental data to explain a difference in birdsong between two settings. Consider another possible explanation and identify what additional evidence would help you investigate it.';
+  var TASK = 'Use the recordings and environmental data to explain a difference in birdsong between two settings. Consider another possible explanation and name what more evidence would help you test it.';
 
   function path(a) {
     var formats = a.style === 'mix' ? ['video', 'game', 'field'] : [a.style];

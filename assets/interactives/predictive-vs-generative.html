@@ -434,7 +434,7 @@
       tag.className = 'tag tag-fabricated';
       tag.textContent = 'Invented';
       clicked.appendChild(tag);
-      document.getElementById('promptText').textContent = "That's right. That detail was invented.";
+      document.getElementById('promptText').textContent = "Yes, that detail was invented.";
     } else {
       clicked.classList.add('wrong-guess');
       const wrongTag = document.createElement('span');
@@ -446,7 +446,7 @@
       rightTag.className = 'tag tag-fabricated';
       rightTag.textContent = 'Invented';
       fabricated.appendChild(rightTag);
-      document.getElementById('promptText').textContent = 'Not this time. Here is the one that was invented.';
+      document.getElementById('promptText').textContent = 'That one was accurate. Here is the invented one.';
     }
   }
   document.getElementById('newPatientBtn').addEventListener('click', () => {
