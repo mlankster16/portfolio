@@ -65,7 +65,7 @@ html.faq-lift .faq-panel { bottom: 158px; height: min(620px, calc(100vh - 190px)
 .faq-input:focus-visible { outline: 3px solid #0F8A86; outline-offset: 2px; }
 .faq-send { display: grid; place-items: center; width: 46px; height: 46px; flex: none; border: 0; border-radius: 50%; background: #0F2E33; color: #fff; cursor: pointer; }
 .faq-send:hover { background: #0A6A67; }
-.faq-note { margin: 0; padding: 4px 18px 14px; font-size: 12.5px; line-height: 1.5; color: #4B6468; }
+.faq-note { margin: 0; padding: 4px 18px 14px; font-size: 13px; line-height: 1.5; color: #4B6468; }
 
 .faq-launch:focus-visible, .faq-close:focus-visible, .faq-send:focus-visible, .faq-chip:focus-visible, .faq-btn:focus-visible, .faq-row:focus-visible, .faq-log:focus-visible { outline: 3px solid #0F8A86; outline-offset: 3px; }
 

@@ -49,7 +49,7 @@
   /* Q&A chat: load its styles, answers, and script on every page. */
   (function () {
     var css = document.createElement('link');
-    css.rel = 'stylesheet'; css.href = 'css/faq.css?v=3';
+    css.rel = 'stylesheet'; css.href = 'css/faq.css?v=4';
     document.head.appendChild(css);
     function load(src, next) {
       var t = document.createElement('script');
