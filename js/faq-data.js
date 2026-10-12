@@ -79,7 +79,7 @@ window.FAQ_DATA = {
       a: [
         'I\u2019m happiest outdoors! I love hiking, camping, traveling, and spending time surrounded by nature. I enjoy exploring somewhere new, but I\u2019m just as happy taking a familiar trail and enjoying a little time outside my current state of Maine.'
       ],
-      keys: 'hobbies hobby interests outside work fun free time spare time weekends outdoors hiking camping travel traveling nature trail maine personal life'
+      keys: 'hike hikes hiker hobbies hobby interests outside work fun free time spare time weekends outdoors hiking camping travel traveling nature trail personal life'
     },
 
     /* ---------- Samples ---------- */
@@ -241,6 +241,17 @@ window.FAQ_DATA = {
 
     /* ---------- Contact ---------- */
     {
+      id: 'location-roles', group: 'contact',
+      phrases: ['where are you', 'where do you live', 'where are you based', 'where are you located', 'are you remote', 'are you in maine', 'live in maine', 'based in', 'open to', 'new job', 'new role', 'new roles', 'new opportunity', 'new opportunities', 'looking for', 'looking for work', 'available for', 'open to work', 'relocate', 'relocation', 'work remotely', 'in person', 'hiring', 'full time', 'job'],
+      q: 'Where are you based, and what kind of roles interest you?',
+      a: [
+        'I\u2019m based in Maine. At this time, I\u2019m interested in remote roles or roles local to Maine.',
+        'If you\u2019re thinking about working together, I\u2019d love to hear from you.'
+      ],
+      links: 'contact',
+      keys: 'location located based live living where maine remote local onsite on-site hybrid relocate relocation open to roles jobs job opportunities opportunity work availability available looking employment position positions career hiring time zone state'
+    },
+    {
       id: 'resume', group: 'contact',
       phrases: ['your resume','your cv','see your resume'],
       q: 'Can I see your résumé?',
@@ -250,7 +261,7 @@ window.FAQ_DATA = {
     },
     {
       id: 'contact', group: 'contact',
-      phrases: ['open to','new job','new role','new opportunity','available for','hire you','work together','phone','call you','email you','get in touch'],
+      phrases: ['hire you','work together','phone','call you','email you','get in touch'],
       q: 'How can I contact you?',
       a: [
         'I’d love to hear from you. If you’re thinking through a learning challenge, interested in working together, or just want to say hello, send me a message.'
