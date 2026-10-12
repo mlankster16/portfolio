@@ -16,12 +16,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, iframe:focus-visib
 .pill-strip > :first-child { margin-left: auto; }
 .pill-strip > :last-child { margin-right: auto; }
 .pill-strip a { text-decoration: none; }
-/* Readability floor: lift the smallest inline text sizes. Labels stay compact, sentences stay comfortable. */
-[style*="font-size:11px"], [style*="font-size:12px"] { font-size: 13px !important; }
-[style*="font-size:13px"] { font-size: 14px !important; }
-[style*="font-size:14px;font-weight:300"], [style*="font-size:14.5px;font-weight:300"] { font-size: 15px !important; }
-[style*="font-size:15px;font-weight:300"] { font-size: 16px !important; }
-[style*="clamp(10px,1.1vw,12px)"] { font-size: clamp(11px, 1.2vw, 13px) !important; }
 /* Résumé role rows: let the date pill wrap under the title on narrow screens. */
 [style*="justify-content:space-between;gap:16px;align-items:flex-start"] { flex-wrap: wrap !important; }
 @media (max-width: 560px) { [style*="white-space:nowrap;flex:none"] { white-space: normal !important; } }
@@ -30,10 +24,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible, iframe:focus-visib
 /* Home: when the screen is too narrow to keep the headshot beside the intro, drop it. */
 @media (max-width: 960px) { .home-photo { display: none !important; } }
 /* Home: four sample cards across on wide screens, two on mid-size screens, one on phones. */
-@media (min-width: 1180px) {
+@media (min-width: 1100px) {
   .home-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: 32px 24px !important; }
-  .home-grid > a > span:nth-child(2) { font-size: 22px !important; }
-  .home-grid > a > span:nth-child(3) { font-size: 16px !important; line-height: 1.6 !important; flex: 1; }
+  .home-grid > a > span:nth-child(3) { flex: 1; }
 }
-@media (min-width: 641px) and (max-width: 1179px) { .home-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
+@media (min-width: 641px) and (max-width: 1099px) { .home-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
 @media (max-width: 640px) { .home-grid { grid-template-columns: minmax(0, 1fr) !important; } }
