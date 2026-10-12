@@ -25,3 +25,5 @@ a:focus-visible, button:focus-visible, summary:focus-visible, iframe:focus-visib
 /* Résumé role rows: let the date pill wrap under the title on narrow screens. */
 [style*="justify-content:space-between;gap:16px;align-items:flex-start"] { flex-wrap: wrap !important; }
 @media (max-width: 560px) { [style*="white-space:nowrap;flex:none"] { white-space: normal !important; } }
+/* Two-column rows (Résumé, About): stack on narrow screens. */
+@media (max-width: 820px) { .r-sec { grid-template-columns: minmax(0, 1fr) !important; gap: 16px !important; } }
