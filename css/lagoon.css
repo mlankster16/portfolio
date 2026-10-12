@@ -29,3 +29,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible, iframe:focus-visib
 @media (max-width: 820px) { .r-sec { grid-template-columns: minmax(0, 1fr) !important; gap: 16px !important; } }
 /* Home: when the screen is too narrow to keep the headshot beside the intro, drop it. */
 @media (max-width: 960px) { .home-photo { display: none !important; } }
+/* Home: four sample cards across on wide screens, two on mid-size screens, one on phones. */
+@media (min-width: 1180px) {
+  .home-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: 32px 24px !important; }
+  .home-grid > a > span:nth-child(2) { font-size: 22px !important; }
+  .home-grid > a > span:nth-child(3) { font-size: 16px !important; line-height: 1.6 !important; flex: 1; }
+}
+@media (min-width: 641px) and (max-width: 1179px) { .home-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
+@media (max-width: 640px) { .home-grid { grid-template-columns: minmax(0, 1fr) !important; } }
