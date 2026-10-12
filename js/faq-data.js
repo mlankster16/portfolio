@@ -241,15 +241,26 @@ window.FAQ_DATA = {
 
     /* ---------- Contact ---------- */
     {
+      id: 'work-type', group: 'contact',
+      phrases: ['what type of work', 'what kind of work', 'what kinds of work', 'what are you looking for', 'looking for work', 'looking for a job', 'open to work', 'open to', 'new job', 'new jobs', 'new role', 'new roles', 'new opportunity', 'new opportunities', 'available for', 'available for hire', 'for hire', 'full time', 'full-time', 'job', 'jobs', 'hiring', 'employment', 'freelance', 'consulting', 'consultant', 'contract', 'contractor', 'part time'],
+      q: 'What type of work are you looking for?',
+      a: [
+        'I\u2019m open to full-time roles, consulting, and contract-based projects where I can help shape learning experiences, lead design work, and build with a team. I\u2019d love to bring my experience in higher education and STEM to learning products that give people more ways to explore, practice, and connect what they\u2019re learning to their lives.',
+        'I\u2019m especially excited about opportunities to use AI thoughtfully, build and test ideas quickly, and improve them with feedback from learners and project partners. I enjoy helping a team turn a promising idea into something useful, whether through an ongoing role or a focused project.'
+      ],
+      links: 'contact',
+      keys: 'type kind work looking roles role jobs job open opportunities opportunity full time fulltime consulting consultant contract contractor freelance project projects hire hiring employment position positions career availability available seeking want next step ideal'
+    },
+    {
       id: 'location-roles', group: 'contact',
-      phrases: ['where are you', 'where do you live', 'where are you based', 'where are you located', 'are you remote', 'are you in maine', 'live in maine', 'based in', 'open to', 'new job', 'new role', 'new roles', 'new opportunity', 'new opportunities', 'looking for', 'looking for work', 'available for', 'open to work', 'relocate', 'relocation', 'work remotely', 'in person', 'hiring', 'full time', 'job'],
-      q: 'Where are you based, and what kind of roles interest you?',
+      phrases: ['where are you', 'where do you live', 'where are you based', 'where are you located', 'are you remote', 'are you in maine', 'live in maine', 'based in', 'relocate', 'relocation', 'work remotely', 'remote work', 'remote roles', 'in person', 'time zone'],
+      q: 'Where are you based?',
       a: [
         'I\u2019m based in Maine. At this time, I\u2019m interested in remote roles or roles local to Maine.',
         'If you\u2019re thinking about working together, I\u2019d love to hear from you.'
       ],
       links: 'contact',
-      keys: 'location located based live living where maine remote local onsite on-site hybrid relocate relocation open to roles jobs job opportunities opportunity work availability available looking employment position positions career hiring time zone state'
+      keys: 'location located based live living where maine remote local onsite on-site hybrid relocate relocation time zone state'
     },
     {
       id: 'resume', group: 'contact',
