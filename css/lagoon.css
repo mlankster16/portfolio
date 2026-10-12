@@ -1,0 +1,18 @@
+/* Sorbet Studio, Lagoon: shared rules. Page layout lives in each page's own markup. */
+body { margin: 0; background: #fff; }
+a { color: #0A6A67; text-decoration: none; }
+a:hover { color: #0F2E33; }
+summary::-webkit-details-marker { display: none; }
+html { scroll-behavior: smooth; }
+a:focus-visible, button:focus-visible, summary:focus-visible, iframe:focus-visible { outline: 3px solid #0F8A86; outline-offset: 3px; border-radius: 6px; }
+.skip-link { position: absolute; left: 12px; top: -64px; z-index: 100; background: #0F2E33; color: #fff; padding: 10px 18px; border-radius: 999px; font: 500 15px 'Plus Jakarta Sans', sans-serif; }
+.skip-link:focus { top: 12px; color: #fff; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+
+@media (max-width:680px){.no-mob{display:none!important}}
+/* In-page section strips: scroll sideways on narrow screens instead of clipping. */
+.pill-strip { overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.pill-strip::-webkit-scrollbar { display: none; }
+.pill-strip > :first-child { margin-left: auto; }
+.pill-strip > :last-child { margin-right: auto; }
+.pill-strip a { text-decoration: none; }

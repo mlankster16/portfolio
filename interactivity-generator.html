@@ -1,304 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Interactivity Generator | Megan Lancaster</title>
+<meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=26">
-<link rel="stylesheet" href="css/theme.css?v=1">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/lagoon.css?v=1">
 <style>
-.dc { --s1:56px; --s2:28px; --s3:17px; font-size:var(--s3); line-height:1.7; color:var(--text-body); }
-.dc h1,.dc h2 { font-family:var(--font-display); font-weight:500; margin:0; color:var(--navy); }
-.dc h1 { font-size:var(--s1); line-height:1.02; letter-spacing:-.01em; }
-.dc h2 { font-size:var(--s2); line-height:1.25; margin-bottom:18px; }
-.dc h3 { font-family:var(--font-display); font-weight:500; font-size:var(--s2); color:var(--navy); margin:0 0 12px; }
-.dc p { margin:0 0 16px; text-wrap:pretty; }
-.dc .band { padding:64px var(--pad-x); }
-.dc .band > .in { max-width:880px; }
-.dc .dark { background:#101d38; color:#cbd0dd; }
-.dc .dark h1, .dc .dark h2 { color:#f4efe2; }
-.dc .warm { background:var(--panel-warm); }
-.dc .tagline { font-family:var(--font-display); font-size:var(--s2); line-height:1.35; color:#dda448; margin:16px 0 24px; }
-.dc .x-facts { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px; margin:40px 0 32px; padding-top:22px; border-top:2px solid #dda448; }
-.dc .dark dt { color:#f4efe2; font-weight:700; } .dc .dark dd { margin:0; }
-.dc .jump { display:inline-block; font-weight:600; color:#101d38; background:#dda448; padding:11px 20px; border-radius:999px; text-decoration:none; }
-.dc .jump:hover { background:#e8b964; color:#101d38; }
-.dc .acts { display:grid; gap:56px; margin-top:40px; }
-.dc .act { display:grid; grid-template-columns:72px minmax(0,1fr); gap:24px; }
-.dc .act-n { width:52px; height:52px; border-radius:50%; background:var(--blue-tint); border:1.5px solid var(--blue); color:var(--blue-dark); font-weight:700; display:grid; place-items:center; }
-.dc .x-embed { margin:20px 0 0; }
-.dc figcaption { font-weight:700; color:var(--navy); margin-bottom:12px; }
-.dc .x-frame { border:1px solid var(--rule); border-radius:6px; overflow:hidden; background:#fff; box-shadow:0 10px 28px rgba(16,29,56,.06); }
-.dc .x-frame iframe { width:100%; border:0; display:block; } .dc .x-frame img { width:100%; display:block; }
-.dc .x-tl { margin-top:8px; }
-.dc .x-tl summary { cursor:pointer; display:inline-block; font-weight:600; color:var(--navy); padding:10px 18px; border:1.5px solid var(--navy); border-radius:999px; list-style:none; }
-.dc .x-tl summary::-webkit-details-marker{display:none}
-.dc .x-tl ol { list-style:none; margin:28px 0 0; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
-.dc .x-tl li { display:flex; flex-direction:column; gap:4px; padding:16px 18px; background:#fff; border:1px solid var(--rule); border-radius:6px; }
-.dc .x-tl li span:first-child { font-weight:700; color:var(--teal-dark); }
-.dc .x-tl li:last-child { background:#101d38; border-color:#101d38; color:#f4efe2; } .dc .x-tl li:last-child span:first-child { color:#dda448; }
-@media (max-width:820px){ .dc{--s1:42px;--s2:24px} .dc .x-facts{grid-template-columns:repeat(2,minmax(0,1fr))} .dc .act{grid-template-columns:minmax(0,1fr);gap:12px} .dc .x-tl ol{grid-template-columns:minmax(0,1fr)} }</style>
-<style>
-.dc .x-h { display:flex; align-items:center; gap:16px; }
-.dc .x-ic { flex:none; width:48px; height:48px; border-radius:50%; display:grid; place-items:center; background:var(--accent-tint); border:1.5px solid var(--accent); }
-.dc .x-ic svg { width:22px; height:22px; stroke:var(--accent-dark); }
-.dc section[id] { scroll-margin-top:84px; }
-.dc .section-strip.x-steps { position:sticky; top:0; z-index:30; display:flex; align-items:center; justify-content:center; gap:0; margin:0; padding:12px var(--pad-x); background:rgba(255,253,248,.96); backdrop-filter:blur(6px); border:0; border-bottom:1px solid var(--rule); border-radius:0; box-shadow:none; overflow-x:auto; }
-.dc .x-steps a { flex:none; min-width:0; padding:0; border:0; background:none; display:block; }
-.dc .x-steps a:hover, .dc .x-steps a.active { background:none; }
-.dc .x-steps .x-dot { width:40px; height:40px; border-radius:50%; display:grid; place-items:center; background:#fff; border:1.5px solid var(--rule-strong); transition:background .2s, border-color .2s; }
-.dc .x-steps .x-dot svg { width:18px; height:18px; stroke:var(--text-muted); transition:stroke .2s; }
-.dc .x-steps a:hover .x-dot { border-color:var(--accent); }
-.dc .x-steps a:hover .x-dot svg { stroke:var(--accent-dark); }
-.dc .x-steps a.active .x-dot { background:var(--accent); border-color:var(--accent); }
-.dc .x-steps a.active .x-dot svg { stroke:#fff; }
-.dc .x-steps a:focus-visible { outline:2px solid var(--navy); outline-offset:3px; border-radius:50%; }
-.dc .x-line { flex:0 1 72px; min-width:16px; height:1.5px; background:var(--rule-strong); }
-@media (max-width:680px){ .dc .x-ic { width:40px; height:40px; } .dc .x-ic svg { width:18px; height:18px; } .dc .x-steps .x-dot { width:34px; height:34px; } }
-.dc .x-steps a { position:relative; }
-.dc .x-tip { position:absolute; top:calc(100% + 10px); left:50%; transform:translate(-50%,-4px); white-space:nowrap; padding:6px 12px; border-radius:6px; background:#101d38; color:#f4efe2; font-size:14px; font-weight:600; line-height:1.3; opacity:0; pointer-events:none; transition:opacity .15s, transform .15s; z-index:40; }
-.dc .x-tip::before { content:''; position:absolute; bottom:100%; left:50%; margin-left:-5px; border:5px solid transparent; border-bottom-color:#101d38; }
-.dc .x-steps a:hover .x-tip, .dc .x-steps a:focus-visible .x-tip { opacity:1; transform:translate(-50%,0); }
-@media (min-width:681px){ .dc .section-strip.x-steps { overflow:visible; } }
-.dc .in > p:last-child { margin-bottom:0; }
-.dc .x-path { list-style:none; margin:28px 0 32px; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
-.dc .x-path li { display:flex; flex-direction:column; gap:4px; padding:22px 24px 24px; background:var(--panel-warm); border-radius:6px; position:relative; }
-.dc .x-path li + li::before { content:'→'; position:absolute; left:-14px; top:50%; transform:translate(-50%,-50%); color:#b8863a; font-weight:700; }
-.dc .x-k { margin:0; font-weight:700; color:var(--accent-dark); }
-.dc .x-w { margin:0; font-family:var(--font-display); font-size:var(--s2); line-height:1.2; color:var(--navy); }
-.dc .warm .x-path li { background:#fff; }
-.dc .i-parts { display:grid; grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr); margin:28px 0 32px; }
-.dc .i-part { display:flex; flex-direction:column; gap:8px; padding:24px 26px 26px; background:#fff; border:1px solid var(--rule); border-radius:6px; }
-.dc .i-part p { margin:0; }
-.dc .i-part-gen { border-top:3px solid var(--accent); }
-.dc .i-join { align-self:center; justify-self:center; width:34px; height:34px; border-radius:50%; display:grid; place-items:center; background:#dda448; color:#101d38; font-weight:700; }
-.dc .i-code { margin:8px 0 0; padding:14px 16px; background:#101d38; color:#f4efe2; border-radius:6px; font-family:'Roboto Mono',ui-monospace,Menlo,monospace; font-size:14px; line-height:1.6; white-space:pre-wrap; word-break:break-word; }
-.dc .i-modes { list-style:none; margin:6px 0 0; padding:0; display:grid; gap:8px; }
-.dc .i-modes li { padding:10px 14px; background:var(--accent-tint); border-radius:6px; }
-.dc .i-modes strong { color:var(--navy); }
-.dc .i-types { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:28px 0 16px; }
-.dc .i-types > div { padding:18px 20px; background:var(--panel-warm); border-radius:6px; }
-.dc .i-types p { margin:0; }
-.dc .i-t { font-family:var(--font-display); font-size:var(--s2) !important; line-height:1.2; color:var(--navy); margin-bottom:4px !important; }
-.dc .i-flags { margin:0 0 32px; padding:20px 24px 22px; border:1px solid var(--rule); border-radius:6px; background:#fff; }
-.dc .i-flag-row { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
-.dc .i-flag-row > div { display:flex; flex-direction:column; gap:4px; padding-left:14px; border-left:2px solid #dda448; }
-.dc .i-flag-row strong { color:var(--navy); }
-.dc .i-flow { list-style:none; margin:28px 0 32px; padding:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0; position:relative; }
-.dc .i-flow::before { content:''; position:absolute; left:22px; right:calc(25% - 22px + 16px); top:22px; height:2px; background:var(--rule-strong); }
-.dc .i-flow li { position:relative; display:flex; flex-direction:column; gap:4px; padding-right:16px; }
-.dc .i-n { width:44px; height:44px; border-radius:50%; display:grid; place-items:center; background:#fff; border:2px solid var(--accent); color:var(--accent-dark); font-weight:700; margin-bottom:10px; position:relative; }
-.dc .i-flow li:last-child .i-n { background:var(--accent); color:#fff; }
-.dc .i-flow strong { color:var(--navy); }
-.dc .i-twin { display:grid; grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr); margin:28px 0 32px; }
-.dc .i-tw { display:flex; flex-direction:column; gap:12px; padding:22px 24px 24px; background:#fff; border:1px solid var(--rule); border-radius:6px; }
-.dc .i-tw p { margin:0; }
-.dc .i-eq { align-self:center; justify-self:center; font-family:var(--font-display); font-size:var(--s2); color:#b8863a; }
-.dc .i-mini { border:1px solid #e2e6ed; border-radius:8px; padding:14px 16px; background:#f3f2f1; display:grid; gap:10px; }
-.dc .i-tabs { display:flex; flex-wrap:wrap; gap:6px; }
-.dc .i-tabs span { padding:4px 10px; border-radius:6px; background:#e2e6ed; color:#262626; font-size:14px; font-weight:600; }
-.dc .i-tabs span.on { background:#005587; color:#fff; }
-.dc .i-doc { padding:16px 18px; background:var(--panel-warm); border-radius:6px; line-height:1.7; }
-@media (max-width:900px){ .dc .i-types { grid-template-columns:repeat(2,minmax(0,1fr)); } .dc .i-flow { grid-template-columns:repeat(2,minmax(0,1fr)); row-gap:24px; } .dc .i-flow::before { display:none; } }
-@media (max-width:820px){ .dc .x-path, .dc .i-flag-row { grid-template-columns:minmax(0,1fr); } .dc .x-path li + li::before { content:'↓'; left:50%; top:-6px; } .dc .i-parts, .dc .i-twin { grid-template-columns:minmax(0,1fr); gap:12px; } .dc .i-join { transform:rotate(90deg); } }
-@media (max-width:560px){ .dc .i-types, .dc .i-flow { grid-template-columns:minmax(0,1fr); } }
-.dc .x-hint { margin:28px 0 12px; color:var(--text-muted); }
-.dc .x-hint + .i-types { margin-top:0; }
-.dc .i-type { appearance:none; font:inherit; text-align:left; cursor:pointer; position:relative; display:flex; flex-direction:column; gap:4px; padding:18px 44px 18px 20px; background:var(--panel-warm); color:var(--text-body); border:1px solid transparent; border-radius:6px; transition:background .15s, border-color .15s; }
-.dc .i-type:hover { border-color:var(--navy); }
-.dc .i-type:focus-visible { outline:2px solid var(--navy); outline-offset:3px; }
-.dc .i-plus { position:absolute; top:14px; right:16px; font-size:var(--s2); line-height:1; color:#b8863a; transition:transform .2s; }
-.dc .i-type[aria-expanded="true"] { background:#101d38; color:#cbd0dd; }
-.dc .i-type[aria-expanded="true"] .i-t { color:#f4efe2; }
-.dc .i-type[aria-expanded="true"] .i-plus { transform:rotate(45deg); color:#dda448; }
-.dc .i-demo { margin:0 0 16px; padding:22px 24px 24px; background:#fff; border:1px solid var(--rule-strong); border-top:3px solid #101d38; border-radius:0 0 6px 6px; }
-.dc .i-demo[hidden] { display:none; }
-.dc .d-box { max-width:760px; padding:20px 22px 22px; background:#f3f2f1; border:1px solid #e2e6ed; border-radius:8px; }
-.dc .d-box p { margin:0; }
-.dc .d-title { font-weight:700; color:#012169; margin-bottom:4px !important; }
-.dc .d-inst { color:var(--text-muted); margin-bottom:14px !important; }
-.dc .d-box button { font:inherit; cursor:pointer; }
-.dc .d-tabs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
-.dc .d-tab { padding:8px 14px; border:0; border-radius:6px; background:#e2e6ed; color:#262626; font-weight:600; }
-.dc .d-tab.on { background:#005587; color:#fff; }
-.dc .d-panel { padding:16px 18px; background:#fff; border:1px solid #e2e6ed; border-radius:8px; }
-.dc .d-panel strong { color:#012169; }
-.dc .d-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:10px; }
-.dc .d-card { text-align:left; display:flex; flex-direction:column; gap:6px; padding:14px 16px; min-height:64px; background:#fff; border:1px solid #e2e6ed; border-radius:8px; color:#262626; }
-.dc .d-card strong { color:#012169; } .dc .d-card.on { border-color:#005587; background:#e8f0fa; }
-.dc .d-opts { display:grid; gap:8px; }
-.dc .d-opt, .dc .d-step, .dc .d-item { text-align:left; padding:12px 14px; background:#fff; border:1px solid #e2e6ed; border-radius:8px; color:#262626; }
-.dc .d-opt:hover, .dc .d-step:hover, .dc .d-item:hover { border-color:#005587; }
-.dc .d-opt.ok, .dc .d-chip.ok, .dc .d-order li.ok .d-step { border-color:#1d6363; background:#e6f4f4; }
-.dc .d-opt.no, .dc .d-chip.no, .dc .d-order li.no .d-step { border-color:#c84e00; background:#fef0e6; }
-.dc .d-fb { margin-top:12px !important; padding:12px 14px; border-radius:8px; }
-.dc .d-fb.ok { background:#e6f4f4; color:#1d4f50; } .dc .d-fb.no { background:#fef0e6; color:#7a2f00; }
-.dc .d-seq { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
-.dc .d-pool { display:grid; gap:8px; align-content:start; }
-.dc .d-order { margin:0; padding:12px 12px 12px 36px; min-height:120px; background:#fff; border:1.5px dashed #c9cdd4; border-radius:8px; display:grid; gap:8px; align-content:start; }
-.dc .d-order .d-step { width:100%; }
-.dc .d-actions { display:flex; gap:10px; margin-top:12px; }
-.dc .d-btn { padding:9px 16px; border-radius:6px; border:1px solid #005587; background:#005587; color:#fff; font-weight:600; }
-.dc .d-btn.d-reset { background:#fff; color:#005587; }
-.dc .d-items { display:grid; gap:8px; margin-bottom:12px; }
-.dc .d-item.sel { border-color:#005587; box-shadow:0 0 0 2px #005587 inset; }
-.dc .d-item.placed { opacity:.45; pointer-events:none; }
-.dc .d-zones { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; }
-.dc .d-zone { text-align:left; display:flex; flex-direction:column; gap:6px; min-height:84px; padding:10px 12px; background:#fff; border:1.5px dashed #c9cdd4; border-radius:8px; color:#262626; }
-.dc .d-zone strong { color:#012169; }
-.dc .d-zone:hover { border-color:#005587; }
-.dc .d-drop { display:grid; gap:6px; }
-.dc .d-chip { display:block; padding:6px 8px; font-size:14px; line-height:1.4; background:#e8f0fa; border:1px solid #c5d8f0; border-radius:6px; }
-.dc .d-passage { line-height:1.9; }
-.dc .d-hl { display:inline; padding:1px 3px; border:0; border-bottom:2px solid #005587; background:#e8f0fa; color:#012169; border-radius:2px; }
-.dc .d-hl.on { background:#005587; color:#fff; }
-.dc .d-note { margin-top:12px !important; padding:12px 14px; background:#fff; border-left:3px solid #005587; border-radius:4px; }
-@media (max-width:820px){ .dc .d-seq { grid-template-columns:minmax(0,1fr); } }
+.hv1:hover{color:#0F2E33 !important}
+.hv2:hover{background:#F3F7F5 !important;color:#0F2E33 !important}
+.hv3:hover{background:#F3F7F5 !important;color:#0F2E33 !important}
+.hv4:hover{background:#F3F7F5 !important;color:#0F2E33 !important}
+.hv5:hover{background:#F3F7F5 !important;color:#0F2E33 !important}
+.hv6:hover{color:#0F2E33 !important}
+.hv7:hover{color:#0F2E33 !important}
+.hv8:hover{color:#0F2E33 !important}
+.hv9:hover{background:#0A6A67 !important;color:#fff !important}
+.hv10:hover{background:#0A6A67 !important;color:#fff !important}
+.hv11:hover{border-color:#0F8A86 !important;color:#0F2E33 !important}
+.hv12:hover{filter:brightness(.97) !important;color:#0F2E33 !important}
+.hv13:hover{color:#0F2E33 !important}
+.hv14:hover{color:#0F2E33 !important}
 </style>
+
 </head>
-<body class="accent-purple">
+<body>
 <a class="skip-link" href="#main">Skip to main content</a>
-<div class="shell">
-
-<header class="site">
-  <div class="site-bar">
-    <span>Learning Experience Design &amp; Project Management</span>
-    <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
-  </div>
-  <div class="nav-row">
-    <a class="site-name" href="index.html">Megan Lancaster</a>
-    <nav class="primary" aria-label="Main">
-      <a href="index.html">Home</a>
-      <div class="nav-menu">
-        <button type="button" class="nav-menu-btn current" aria-expanded="false" aria-controls="work-menu">Samples <span class="caret" aria-hidden="true"></span></button>
-        <ul class="nav-menu-list" id="work-menu">
-          <li><a class="accent-green" href="space-medicine.html"><span class="dot" aria-hidden="true"></span>Space Medicine</a></li>
-          <li><a class="accent-gold" href="choose-your-own-adventure.html"><span class="dot" aria-hidden="true"></span>Choose Your Own Adventure</a></li>
-          <li><a class="accent-blue" href="ai-for-nurses.html"><span class="dot" aria-hidden="true"></span>AI for Nurses</a></li>
-          <li><a class="accent-purple" href="interactivity-generator.html" aria-current="page"><span class="dot" aria-hidden="true"></span>Interactivity Generator</a></li>
-        </ul>
-      </div>
-      <a href="project-management.html">Project Management</a>
-      <a href="about.html">About</a>
-      <a class="btn-resume" href="resume.html">Résumé</a>
+<div style="font-family:'Plus Jakarta Sans',sans-serif;color:#0F2E33;background:#FFFFFF;min-height:100vh;display:flex;flex-direction:column;overflow-x:clip;">
+  <header style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px 28px;padding:24px max(clamp(20px,5vw,56px),calc((100% - 1168px) / 2));">
+    <a href="index.html" style="font-size:20px;font-weight:300;letter-spacing:-.01em;color:#0F2E33;white-space:nowrap;">Megan Lancaster, PMP®</a>
+    <nav aria-label="Main" style="display:flex;flex-wrap:wrap;gap:10px clamp(14px,2vw,26px);align-items:center;font-size:15px;color:#4B6468;white-space:nowrap;">
+      <a class="hv1" href="index.html" style="color:#4B6468;">Home</a>
+      <details style="position:relative;">
+        <summary style="list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px;color:#0F2E33;font-weight:500;">Samples <span aria-hidden="true" style="font-size:11px;">▾</span></summary>
+        <div style="position:absolute;top:calc(100% + 12px);left:-16px;z-index:20;background:#fff;border:1px solid #DCE8E3;border-radius:20px;padding:8px;display:flex;flex-direction:column;min-width:260px;box-shadow:0 24px 48px -28px rgba(15,46,51,.35);font-weight:400;">
+          <a class="hv2" href="space-medicine.html" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;color:#0F2E33;"><span style="width:10px;height:10px;border-radius:50%;background:#0F8A86;flex:none;"></span>Space Medicine</a>
+          <a class="hv3" href="choose-your-own-adventure.html" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;color:#0F2E33;"><span style="width:10px;height:10px;border-radius:50%;background:#FFD84A;flex:none;"></span>Choose Your Own Adventure</a>
+          <a class="hv4" href="ai-for-nurses.html" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;color:#0F2E33;"><span style="width:10px;height:10px;border-radius:50%;background:#7FB3C8;flex:none;"></span>AI for Nurses</a>
+          <a class="hv5" href="digital-you.html" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;color:#0F2E33;"><span style="width:10px;height:10px;border-radius:50%;background:#F29B5C;flex:none;"></span>Digital You</a>
+        </div>
+      </details>
+      <a class="hv6" href="course-portfolio.html" style="color:#4B6468;">Course Portfolio</a>
+      <a class="hv7" href="project-management.html" style="color:#4B6468;">Project Management</a>
+      <a class="hv8" href="about.html" style="color:#4B6468;">About</a>
+      <a class="hv9" href="resume.html" style="background:#0F2E33;color:#fff;padding:8px 18px;border-radius:999px;white-space:nowrap;">Résumé</a>
     </nav>
-  </div>
-</header>
-
-<main id="main" class="dc">
-<header class="band dark"><div class="in"><h1>Interactivity Generator</h1><p class="tagline">Helping our team create small, useful learning interactions.</p>
-<p>I designed and built a tool for Duke’s learning design team to turn course content into interactive activities.</p>
-<p>It has two connected parts: a generator that helps designers create and edit an activity, and a plugin that places the finished activity in Coursera.</p></div>
-<dl class="x-facts" style="grid-template-columns:repeat(2,minmax(0,1fr))"><div><dt>My role</dt><dd>Tool design and development, Coursera plugin, learning design guidelines, and the editing and export workflow</dd></div><div><dt>Who it’s for</dt><dd>Duke’s learning design team</dd></div></dl>
-<a class="jump" href="#walkthrough">Explore the sample walkthrough ↓</a></header>
-<nav class="section-strip x-steps" aria-label="On this page"><a href="#s1-where-we-started" aria-label="Where we started"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22V4"/><path d="M4 4h12l-2 4 2 4H4"/></svg></span><span class="x-tip" aria-hidden="true">Where we started</span></a><span class="x-line" aria-hidden="true"></span><a href="#s2-building-the-two-parts" aria-label="Building the two parts"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><span class="x-tip" aria-hidden="true">Building the two parts</span></a><span class="x-line" aria-hidden="true"></span><a href="#s3-keeping-the-learning-goa" aria-label="Keeping the learning goal in view"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span><span class="x-tip" aria-hidden="true">Keeping the learning goal in view</span></a><span class="x-line" aria-hidden="true"></span><a href="#s4-giving-designers-room-to" aria-label="Giving designers room to review and edit"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><span class="x-tip" aria-hidden="true">Giving designers room to review and edit</span></a><span class="x-line" aria-hidden="true"></span><a href="#walkthrough" aria-label="See the workflow in practice"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polygon points="10 8 16 12 10 16 10 8"/></svg></span><span class="x-tip" aria-hidden="true">See the workflow in practice</span></a><span class="x-line" aria-hidden="true"></span><a href="#s5-providing-another-way-to" aria-label="Providing another way to use the content"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg></span><span class="x-tip" aria-hidden="true">Providing another way to use the content</span></a><span class="x-line" aria-hidden="true"></span><a href="#s6-what-i-wanted-to-make-ea" aria-label="What I wanted to make easier"><span class="x-dot"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><span class="x-tip" aria-hidden="true">What I wanted to make easier</span></a></nav>
-
-<section class="band" id="s1-where-we-started"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22V4"/><path d="M4 4h12l-2 4 2 4H4"/></svg></span>Where we started</h2><p>Sometimes a single concept benefits from a small interaction: a quick question, a sequence to arrange, or a visual learners can explore.</p>
-<p>I wanted our team to have an easier way to create those moments in Coursera. I started with the decisions a designer needs to make: what learners should understand or practice, which format could help, and how to review and prepare the activity for a course. Those decisions became the structure of the tool.</p></div>
-<ol class="x-path" aria-label="What the tool helps designers do">
-<li><span class="x-k">Start from</span><span class="x-w">Content &amp; goal</span><span>what learners should understand or practice</span></li>
-<li><span class="x-k">Try</span><span class="x-w">A suitable format</span><span>one of six small interaction types</span></li>
-<li><span class="x-k">Prepare</span><span class="x-w">For the course</span><span>a configuration ready to place in Coursera</span></li>
-</ol>
-<div class="in"></div></section>
-<section class="band warm" id="s2-building-the-two-parts"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>Building the two parts</h2><p>With the support of Claude Design and Claude Code, I first built a plugin that embeds finished HTML and JavaScript in the Coursera course environment.</p>
-<p>Then I built the generator to support the work that comes before that. A designer describes what they want learners to understand or practice, and the tool helps them explore possible interaction formats.</p>
-<p>Designers can also choose a format directly when they already have something in mind.</p>
-<p>The tool itself uses Claude API to recommend formats and build activities.</p></div>
-<div class="i-parts">
-<div class="i-part"><p class="x-k">Part 1 · The plugin</p><p class="x-w">Places the activity in Coursera</p><p>Reads the configuration on a reading page, renders the HTML, and runs its script.</p>
-<pre class="i-code" aria-label="Plugin configuration shape">{
-  "html":   "&lt;div&gt;…activity…&lt;/div&gt;",
-  "script": "(function(){ … })()"
-}</pre></div>
-<span class="i-join" aria-hidden="true">←</span>
-<div class="i-part i-part-gen"><p class="x-k">Part 2 · The generator</p><p class="x-w">Creates and edits the activity</p><p>Takes the designer’s description, suggests a format, builds the activity, and exports the configuration the plugin reads.</p>
-<ul class="i-modes"><li><strong>Recommend for me</strong> · describe the learning need</li><li><strong>I know what I want</strong> · choose a format directly</li></ul></div>
+  </header>
+<main id="main" style="flex:1;">
+    <div style="padding:clamp(48px,6vw,72px) max(clamp(20px,5vw,56px),calc((100% - 1168px) / 2)) 64px;background:#F3F7F5;display:flex;flex-direction:column;gap:36px;">
+      <span style="align-self:flex-start;white-space:nowrap;font-size:13px;background:#FFF0B3;color:#6B5400;padding:7px 14px;border-radius:999px;">Sample · Tool for designers</span>
+      <h1 style="margin:0;font-size:clamp(56px,10vw,128px);font-weight:300;line-height:.95;letter-spacing:-.05em;">Interactivity <span style="color:#0F8A86;">Generator</span></h1>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:56px;align-items:end;">
+        <div style="display:flex;flex-direction:column;gap:18px;"><div style="font-size:clamp(22px,2.6vw,28px);font-weight:300;line-height:1.35;letter-spacing:-.01em;text-wrap:pretty;">Helping our team create <span style="color:#0A6A67;">small, useful learning interactions.</span></div><p style="margin:0;font-size:17px;font-weight:300;line-height:1.7;color:#4B6468;text-wrap:pretty;">I designed and built a tool for Duke’s learning design team to turn course content into interactive activities. It has two connected parts: a generator that helps designers create and edit an activity, and a plugin that places the finished activity in Coursera.</p></div>
+        <div style="display:flex;justify-content:flex-end;"><a class="hv10" href="#walkthrough" style="white-space:nowrap;background:#0F2E33;color:#fff;padding:14px 22px;border-radius:999px;font-size:15px;font-weight:500;">Explore the sample walkthrough ↓</a></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;padding-top:22px;border-top:2px solid #FFD84A;"><div style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:13px;font-weight:600;">My role</span><span style="font-size:15px;font-weight:300;line-height:1.5;color:#4B6468;">Tool design and development, Coursera plugin, learning design guidelines, and the editing and export workflow</span></div><div style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:13px;font-weight:600;">Who it’s for</span><span style="font-size:15px;font-weight:300;line-height:1.5;color:#4B6468;">Duke’s learning design team</span></div></div>
+    </div>
+    <div id="started" style="scroll-margin-top:16px;padding:clamp(56px,7vw,80px) max(clamp(20px,5vw,56px),calc((100% - 1168px) / 2));display:flex;flex-direction:column;gap:36px;">
+      <div style="display:flex;flex-direction:column;gap:14px;"><div style="display:flex;flex-direction:column;gap:10px;"><span style="font-size:13px;font-weight:500;color:#0A6A67;">01 · Where we started</span><h2 style="margin:0;font-size:clamp(32px,4.5vw,44px);font-weight:300;letter-spacing:-.035em;line-height:1.05;">Where we started</h2></div><div style="display:flex;flex-direction:column;gap:14px;max-width:820px;"><p style="margin:0;font-size:17px;font-weight:300;line-height:1.7;color:#4B6468;text-wrap:pretty;">Sometimes a single concept benefits from a small interaction: a quick question, a sequence to arrange, or a visual learners can explore.</p><p style="margin:0;font-size:17px;font-weight:300;line-height:1.7;color:#4B6468;text-wrap:pretty;">I wanted our team to have an easier way to create those moments in Coursera. I started with the decisions a designer needs to make: what learners should understand or practice, which format could help, and how to review and prepare the activity for a course. Those decisions became the structure of the tool.</p></div></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px;"><div style="border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:10px;background:#DDF1EB;"><span style="font-size:13px;font-weight:600;color:#0A6A67;">Start from</span><span style="font-size:24px;font-weight:300;letter-spacing:-.02em;line-height:1.2;">Content &amp; goal</span><span style="font-size:15px;font-weight:300;line-height:1.55;color:#4B6468;">what learners should understand or practice</span></div><div style="border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:10px;background:#FFF0B3;"><span style="font-size:13px;font-weight:600;color:#6B5400;">Try</span><span style="font-size:24px;font-weight:300;letter-spacing:-.02em;line-height:1.2;">A suitable format</span><span style="font-size:15px;font-weight:300;line-height:1.55;color:#4B6468;">one of six small interaction types</span></div><div style="border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:10px;background:#D6E7EE;"><span style="font-size:13px;font-weight:600;color:#1F5F7A;">Prepare</span><span style="font-size:24px;font-weight:300;letter-spacing:-.02em;line-height:1.2;">For the course</span><span style="font-size:15px;font-weight:300;line-height:1.55;color:#4B6468;">a configuration ready to place in Coursera</span></div></div>
+    </div>
+    <div id="parts" style="scroll-margin-top:16px;padding:clamp(56px,7vw,80px) max(clamp(20px,5vw,56px),calc((100% - 1168px) / 2));background:#F3F7F5;display:flex;flex-direction:column;gap:36px;">
+      <div style="display:flex;flex-direction:column;gap:14px;"><div style="display:flex;flex-direction:column;gap:10px;"><span style="font-size:13px;font-weight:500;color:#0A6A67;">02 · How it works</span><h2 style="margin:0;font-size:clamp(32px,4.5vw,44px);font-weight:300;letter-spacing:-.035em;line-height:1.05;">Building the two parts</h2></div><div style="display:flex;flex-direction:column;gap:14px;max-width:820px;"><p style="margin:0;font-size:17px;font-weight:300;line-height:1.7;color:#4B6468;text-wrap:pretty;">With the support of Claude Design and Claude Code, I first built a plugin that embeds finished HTML and JavaScript in the Coursera course environment.</p><p style="margin:0;font-size:17px;font-weight:300;line-height:1.7;color:#4B6468;text-wrap:pretty;">Then I built the generator to support the work that comes before that. A designer describes what they want learners to understand or practice, and the tool helps them explore possible interaction formats.</p><p style="margin:0;font-size:17px;font-weight:300;line-height:1.7;color:#4B6468;text-wrap:pretty;">Designers can also choose a format directly when they already have something in mind.</p><p style="margin:0;font-size:17px;font-weight:300;line-height:1.7;color:#4B6468;text-wrap:pretty;">The tool itself uses Claude API to recommend formats and build activities.</p></div></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:14px;"><div style="background:#fff;border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:12px;"><span style="font-size:13px;font-weight:600;color:#0A6A67;">Part 1 · The plugin</span><span style="font-size:24px;font-weight:300;letter-spacing:-.02em;">Places the activity in Coursera</span><span style="font-size:15px;font-weight:300;line-height:1.6;color:#4B6468;">Reads the configuration on a reading page, renders the HTML, and runs its script.</span><pre aria-label="Plugin configuration shape" style="margin:0;background:#0F2E33;color:#BFE5DA;border-radius:16px;padding:16px 18px;font-size:13px;line-height:1.6;white-space:pre-wrap;">{ "html": "&lt;div&gt;…activity…&lt;/div&gt;",
+  "script": "(function(){ … })()" }</pre></div><div style="background:#fff;border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:12px;"><span style="font-size:13px;font-weight:600;color:#0A6A67;">Part 2 · The generator</span><span style="font-size:24px;font-weight:300;letter-spacing:-.02em;">Creates and edits the activity</span><span style="font-size:15px;font-weight:300;line-height:1.6;color:#4B6468;">Takes the designer’s description, suggests a format, builds the activity, and exports the configuration the plugin reads.</span><div style="display:flex;flex-direction:column;gap:8px;"><span style="font-size:14px;line-height:1.5;padding:10px 14px;border-radius:14px;background:#F3F7F5;"><strong style="font-weight:600;">Recommend for me</strong> · describe the learning need</span><span style="font-size:14px;line-height:1.5;padding:10px 14px;border-radius:14px;background:#F3F7F5;"><strong style="font-weight:600;">I know what I want</strong> · choose a format directly</span></div></div></div>
+    </div>
+    <div id="goal" style="scroll-margin-top:16px;padding:clamp(56px,7vw,80px) max(clamp(20px,5vw,56px),calc((100% - 1168px) / 2));display:flex;flex-direction:column;gap:36px;">
+      <div style="display:flex;flex-direction:column;gap:14px;"><div style="display:flex;flex-direction:column;gap:10px;"><span style="font-size:13px;font-weight:500;color:#0A6A67;">03 · Recommendations</span><h2 style="margin:0;font-size:clamp(32px,4.5vw,44px);font-weight:300;letter-spacing:-.035em;line-height:1.05;">Keeping the learning goal in view</h2></div><div style="display:flex;flex-direction:column;gap:14px;max-width:820px;"><p style="margin:0;font-size:17px;font-weight:300;line-height:1.7;color:#4B6468;text-wrap:pretty;">The generator uses Claude and a set of learning design guidelines to suggest formats such as a short quiz, a tabbed explorer, or a sequencing activity. The recommendations begin with what learners need to understand or practice.</p><p style="margin:0;font-size:17px;font-weight:300;line-height:1.7;color:#4B6468;text-wrap:pretty;">I included guidance for requests that need more detail, contain too much for one activity, or may work better in another format. The designer can consider the recommendation, explore another option, or choose a format directly.</p></div></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px;"><div style="background:#fff;border:1px solid #DCE8E3;border-radius:20px;padding:18px 20px;display:flex;flex-direction:column;gap:4px;"><span style="font-size:19px;font-weight:400;letter-spacing:-.01em;">Tabbed explorer</span><span style="font-size:14px;font-weight:300;color:#4B6468;">Comparing parallel concepts</span></div><div style="background:#fff;border:1px solid #DCE8E3;border-radius:20px;padding:18px 20px;display:flex;flex-direction:column;gap:4px;"><span style="font-size:19px;font-weight:400;letter-spacing:-.01em;">Click-to-reveal</span><span style="font-size:14px;font-weight:300;color:#4B6468;">Retrieval practice and recall</span></div><div style="background:#fff;border:1px solid #DCE8E3;border-radius:20px;padding:18px 20px;display:flex;flex-direction:column;gap:4px;"><span style="font-size:19px;font-weight:400;letter-spacing:-.01em;">Inline quiz</span><span style="font-size:14px;font-weight:300;color:#4B6468;">A quick knowledge check</span></div><div style="background:#fff;border:1px solid #DCE8E3;border-radius:20px;padding:18px 20px;display:flex;flex-direction:column;gap:4px;"><span style="font-size:19px;font-weight:400;letter-spacing:-.01em;">Sequencing</span><span style="font-size:14px;font-weight:300;color:#4B6468;">Procedural understanding</span></div><div style="background:#fff;border:1px solid #DCE8E3;border-radius:20px;padding:18px 20px;display:flex;flex-direction:column;gap:4px;"><span style="font-size:19px;font-weight:400;letter-spacing:-.01em;">Drag-to-classify</span><span style="font-size:14px;font-weight:300;color:#4B6468;">Sorting and categorizing</span></div><div style="background:#fff;border:1px solid #DCE8E3;border-radius:20px;padding:18px 20px;display:flex;flex-direction:column;gap:4px;"><span style="font-size:19px;font-weight:400;letter-spacing:-.01em;">Annotated text</span><span style="font-size:14px;font-weight:300;color:#4B6468;">Guided close reading</span></div></div>
+    </div>
+    <div id="review" style="scroll-margin-top:16px;padding:clamp(56px,7vw,80px) max(clamp(20px,5vw,56px),calc((100% - 1168px) / 2));background:#F3F7F5;display:flex;flex-direction:column;gap:36px;">
+      <div style="display:flex;flex-direction:column;gap:14px;"><div style="display:flex;flex-direction:column;gap:10px;"><span style="font-size:13px;font-weight:500;color:#0A6A67;">04 · Review and edit</span><h2 style="margin:0;font-size:clamp(32px,4.5vw,44px);font-weight:300;letter-spacing:-.035em;line-height:1.05;">Giving designers room to review and edit</h2></div><div style="display:flex;flex-direction:column;gap:14px;max-width:820px;"><p style="margin:0;font-size:17px;font-weight:300;line-height:1.7;color:#4B6468;text-wrap:pretty;">Once an activity is generated, the designer gets a working preview. They can try it, explore alternatives, and edit the visible text without changing the code. Subject-matter experts can review the content with the designer before it goes into a course.</p><p style="margin:0;font-size:17px;font-weight:300;line-height:1.7;color:#4B6468;text-wrap:pretty;">I built those steps into the workflow because generating an activity is only part of preparing it for learners. Designers also need room to check the content, adjust the language, and consider whether the interaction supports the intended learning.</p><p style="margin:0;font-size:17px;font-weight:300;line-height:1.7;color:#4B6468;text-wrap:pretty;">When ready, they can export the Coursera configuration and a static text version of the content.</p></div></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:14px;"><div style="background:#fff;border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:10px;"><span style="width:34px;height:34px;border-radius:50%;background:#BFE5DA;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#0A6A67;">1</span><span style="font-size:22px;font-weight:400;letter-spacing:-.02em;">Preview</span><span style="font-size:15px;font-weight:300;line-height:1.55;color:#4B6468;">A working version of the activity</span></div><div style="background:#fff;border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:10px;"><span style="width:34px;height:34px;border-radius:50%;background:#BFE5DA;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#0A6A67;">2</span><span style="font-size:22px;font-weight:400;letter-spacing:-.02em;">Edit</span><span style="font-size:15px;font-weight:300;line-height:1.55;color:#4B6468;">Change visible text without touching code</span></div><div style="background:#fff;border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:10px;"><span style="width:34px;height:34px;border-radius:50%;background:#BFE5DA;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#0A6A67;">3</span><span style="font-size:22px;font-weight:400;letter-spacing:-.02em;">Review</span><span style="font-size:15px;font-weight:300;line-height:1.55;color:#4B6468;">Subject-matter experts check the content</span></div><div style="background:#fff;border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:10px;"><span style="width:34px;height:34px;border-radius:50%;background:#BFE5DA;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#0A6A67;">4</span><span style="font-size:22px;font-weight:400;letter-spacing:-.02em;">Export</span><span style="font-size:15px;font-weight:300;line-height:1.55;color:#4B6468;">Plugin configuration and static text</span></div></div>
+    </div>
+    <div id="walkthrough" style="scroll-margin-top:16px;padding:clamp(56px,7vw,80px) max(clamp(20px,5vw,56px),calc((100% - 1168px) / 2));display:flex;flex-direction:column;gap:36px;">
+      <div style="display:flex;flex-direction:column;gap:14px;"><div style="display:flex;flex-direction:column;gap:10px;"><span style="font-size:13px;font-weight:500;color:#0A6A67;">05 · The walkthrough</span><h2 style="margin:0;font-size:clamp(32px,4.5vw,44px);font-weight:300;letter-spacing:-.035em;line-height:1.05;">See the workflow in practice</h2></div><div style="display:flex;flex-direction:column;gap:14px;max-width:820px;"><p style="margin:0;font-size:17px;font-weight:300;line-height:1.7;color:#4B6468;text-wrap:pretty;">The working tool uses Claude to respond to the content a designer brings to it.</p><p style="margin:0;font-size:17px;font-weight:300;line-height:1.7;color:#4B6468;text-wrap:pretty;">The walkthrough below uses one fixed example so you can explore the same process without an API key: describe a learning need, consider a format, review and edit the activity, and export the result.</p></div></div><iframe data-embed="" data-min="700" src="assets/interactives/interactivity-generator-mockup.html" title="Interactivity Generator workflow tool mockup" loading="lazy" style="display:block;width:100%;height:700px;border:0;border-radius:22px;background:#fff;box-shadow:0 0 0 1px #DCE8E3;"></iframe>
+    </div>
+    <div id="access" style="scroll-margin-top:16px;padding:clamp(56px,7vw,80px) max(clamp(20px,5vw,56px),calc((100% - 1168px) / 2));background:#F3F7F5;display:flex;flex-direction:column;gap:36px;">
+      <div style="display:flex;flex-direction:column;gap:14px;"><div style="display:flex;flex-direction:column;gap:10px;"><span style="font-size:13px;font-weight:500;color:#0A6A67;">06 · Access</span><h2 style="margin:0;font-size:clamp(32px,4.5vw,44px);font-weight:300;letter-spacing:-.035em;line-height:1.05;">Providing another way to use the content</h2></div><div style="display:flex;flex-direction:column;gap:14px;max-width:820px;"><p style="margin:0;font-size:17px;font-weight:300;line-height:1.7;color:#4B6468;text-wrap:pretty;">Each activity comes with a static text version that learners can use as a study reference or another way to access the material. It also provides readable content for course features that may not interpret the interactive component directly.</p><p style="margin:0;font-size:17px;font-weight:300;line-height:1.7;color:#4B6468;text-wrap:pretty;">I made the companion text part of the export workflow so designers receive both versions together. This gives them another way to support access to the content as they prepare the activity for a course.</p></div></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:14px;"><div style="background:#fff;border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:14px;"><span style="font-size:13px;font-weight:600;color:#0A6A67;">Interactive</span><div style="display:flex;flex-wrap:wrap;gap:6px;"><span style="font-size:13px;font-weight:500;padding:6px 12px;border-radius:999px;background:#0F2E33;color:#fff;">Relevance</span><span style="font-size:13px;font-weight:500;padding:6px 12px;border-radius:999px;background:#F3F7F5;border:1px solid #DCE8E3;">Completeness</span><span style="font-size:13px;font-weight:500;padding:6px 12px;border-radius:999px;background:#F3F7F5;border:1px solid #DCE8E3;">Accuracy</span><span style="font-size:13px;font-weight:500;padding:6px 12px;border-radius:999px;background:#F3F7F5;border:1px solid #DCE8E3;">Timeliness</span><span style="font-size:13px;font-weight:500;padding:6px 12px;border-radius:999px;background:#F3F7F5;border:1px solid #DCE8E3;">Consistency</span></div><p style="margin:0;font-size:15px;font-weight:300;line-height:1.6;"><strong style="font-weight:600;">What it asks:</strong> Does this data actually measure what the business question is about?</p><p style="margin:0;font-size:15px;font-weight:300;line-height:1.6;"><strong style="font-weight:600;">Warning signs:</strong> Fields that are close to what you need, but not quite it.</p></div><div style="background:#fff;border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:14px;"><span style="font-size:13px;font-weight:600;color:#6B5400;">Static companion text</span><p style="margin:0;font-size:15px;font-weight:300;line-height:1.7;color:#4B6468;">Before analyzing a dataset, check whether it is fit for the business question you need to answer. Relevance asks whether the data actually measures what the question is about, for the right customers, products, or regions. Completeness asks whether the records, fields, and time periods the question needs are all present…</p></div></div>
+    </div>
+    <div id="easier" style="scroll-margin-top:16px;padding:clamp(56px,7vw,80px) max(clamp(20px,5vw,56px),calc((100% - 1168px) / 2));display:flex;flex-direction:column;gap:36px;">
+      <div style="display:flex;flex-direction:column;gap:14px;"><div style="display:flex;flex-direction:column;gap:10px;"><span style="font-size:13px;font-weight:500;color:#0A6A67;">07 · Looking back</span><h2 style="margin:0;font-size:clamp(32px,4.5vw,44px);font-weight:300;letter-spacing:-.035em;line-height:1.05;">What I wanted to make easier</h2></div><div style="display:flex;flex-direction:column;gap:14px;max-width:820px;"><p style="margin:0;font-size:17px;font-weight:300;line-height:1.7;color:#4B6468;text-wrap:pretty;">I designed the tool around the work that happens between having an idea for an interaction and placing it in a course. Choosing a format, trying it, editing the content, and preparing the output all happen in one place.</p><p style="margin:0;font-size:17px;font-weight:300;line-height:1.7;color:#4B6468;text-wrap:pretty;">My aim was to make small learning interactions more practical for our team to develop, while keeping the designer involved in the choices that shape the learner’s experience.</p></div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px;padding:0 max(clamp(20px,5vw,56px),calc((100% - 1168px) / 2)) 56px;"><a class="hv11" href="ai-for-nurses.html" style="color:#0F2E33;border-radius:22px;padding:20px 24px;display:flex;flex-direction:column;gap:4px;background:#fff;border:1px solid #DCE8E3;"><span style="font-size:13px;color:#4B6468;">← Previous</span><span style="font-size:20px;font-weight:400;">AI for Nurses</span></a><a class="hv12" href="about.html" style="color:#0F2E33;border-radius:22px;padding:20px 24px;display:flex;flex-direction:column;gap:4px;align-items:flex-end;text-align:right;background:#BFE5DA;"><span style="font-size:13px;color:#0A6A67;">Next →</span><span style="font-size:20px;font-weight:400;">About</span></a></div>
+  </main>
+<footer style="border-top:1px solid #DCE8E3;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:22px max(clamp(20px,5vw,56px),calc((100% - 1168px) / 2));font-size:14px;color:#4B6468;">
+    <span>© Megan Lancaster</span>
+    <div style="display:flex;gap:18px;"><a class="hv13" href="mailto:meganrlancaster@gmail.com" style="color:#4B6468;">Email</a><a class="hv14" href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener" style="color:#4B6468;">LinkedIn</a></div>
+  </footer>
 </div>
-<div class="in"></div></section>
-<section class="band" id="s3-keeping-the-learning-goa"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span>Keeping the learning goal in view</h2><p>The generator uses Claude and a set of learning design guidelines to suggest formats such as a short quiz, a tabbed explorer, or a sequencing activity. The recommendations begin with what learners need to understand or practice.</p>
-<p>I included guidance for requests that need more detail, contain too much for one activity, or may work better in another format. The designer can consider the recommendation, explore another option, or choose a format directly.</p></div>
-<p class="x-hint" id="type-hint">Select a format to try a sample built from the walkthrough example.</p>
-<div class="i-types"><button type="button" class="i-type" aria-expanded="false" aria-controls="demo-tabs"><span class="i-t">Tabbed explorer</span><span>Comparing parallel concepts</span><span class="i-plus" aria-hidden="true">+</span></button><button type="button" class="i-type" aria-expanded="false" aria-controls="demo-reveal"><span class="i-t">Click-to-reveal</span><span>Retrieval practice and recall</span><span class="i-plus" aria-hidden="true">+</span></button><button type="button" class="i-type" aria-expanded="false" aria-controls="demo-quiz"><span class="i-t">Inline quiz</span><span>A quick knowledge check</span><span class="i-plus" aria-hidden="true">+</span></button><button type="button" class="i-type" aria-expanded="false" aria-controls="demo-seq"><span class="i-t">Sequencing</span><span>Procedural understanding</span><span class="i-plus" aria-hidden="true">+</span></button><button type="button" class="i-type" aria-expanded="false" aria-controls="demo-drag"><span class="i-t">Drag-to-classify</span><span>Sorting and categorizing</span><span class="i-plus" aria-hidden="true">+</span></button><button type="button" class="i-type" aria-expanded="false" aria-controls="demo-ann"><span class="i-t">Annotated text</span><span>Guided close reading</span><span class="i-plus" aria-hidden="true">+</span></button></div>
-<div class="i-demo" id="demo-tabs" data-k="tabs" role="region" aria-label="Tabbed explorer sample" hidden><p class="x-k" style="margin:0 0 14px">Sample · Tabbed explorer</p><div class="d-box"><p class="d-title">Five Data Fitness Criteria</p><p class="d-inst">Select a criterion to see what it asks.</p>
-<div class="d-tabs" role="tablist"><button type="button" role="tab" class="d-tab on" aria-selected="true" data-i="0">Relevance</button><button type="button" role="tab" class="d-tab" aria-selected="false" data-i="1">Completeness</button><button type="button" role="tab" class="d-tab" aria-selected="false" data-i="2">Accuracy</button><button type="button" role="tab" class="d-tab" aria-selected="false" data-i="3">Timeliness</button><button type="button" role="tab" class="d-tab" aria-selected="false" data-i="4">Consistency</button></div>
-<div class="d-panel" data-i="0"><strong>Relevance</strong><p>Does this data actually measure what the business question is about?</p></div><div class="d-panel" data-i="1" hidden><strong>Completeness</strong><p>Are all the records, fields, and time periods the question needs present?</p></div><div class="d-panel" data-i="2" hidden><strong>Accuracy</strong><p>Are the values correct and believable?</p></div><div class="d-panel" data-i="3" hidden><strong>Timeliness</strong><p>Is the data recent enough to support a decision being made now?</p></div><div class="d-panel" data-i="4" hidden><strong>Consistency</strong><p>Is the same thing recorded the same way throughout the dataset?</p></div></div></div>
-<div class="i-demo" id="demo-reveal" data-k="reveal" role="region" aria-label="Click-to-reveal sample" hidden><p class="x-k" style="margin:0 0 14px">Sample · Click-to-reveal</p><div class="d-box"><p class="d-title">Five Criteria at a Glance</p><p class="d-inst">Try to recall what each criterion checks, then click to reveal it.</p>
-<div class="d-cards"><button type="button" class="d-card" aria-expanded="false"><strong>Relevance</strong><span hidden>Checks that the data measures what the question is actually about.</span></button><button type="button" class="d-card" aria-expanded="false"><strong>Completeness</strong><span hidden>Checks that every record, field, and time period the question needs is present.</span></button><button type="button" class="d-card" aria-expanded="false"><strong>Accuracy</strong><span hidden>Checks that the values are correct and believable.</span></button><button type="button" class="d-card" aria-expanded="false"><strong>Timeliness</strong><span hidden>Checks that the data is recent enough for the decision at hand.</span></button><button type="button" class="d-card" aria-expanded="false"><strong>Consistency</strong><span hidden>Checks that the same thing is recorded the same way throughout.</span></button></div></div></div>
-<div class="i-demo" id="demo-quiz" data-k="quiz" role="region" aria-label="Inline quiz sample" hidden><p class="x-k" style="margin:0 0 14px">Sample · Inline quiz</p><div class="d-box"><p class="d-title">Which Criterion Fits This Problem?</p><p class="d-inst">A manager asks whether a new checkout design reduced abandoned carts. The analyst receives a complete, error-free dataset of every completed order from the last six months. What is the biggest concern?</p>
-<div class="d-opts"><button type="button" class="d-opt" data-c="0">Completeness, because six months isn’t enough data.</button><button type="button" class="d-opt" data-c="1">Relevance, because completed orders can’t show the carts that were abandoned.</button><button type="button" class="d-opt" data-c="0">Accuracy, because error-free data is unlikely to be real.</button><button type="button" class="d-opt" data-c="0">Consistency, because the design changed during the period.</button></div>
-<p class="d-fb" hidden></p></div></div>
-<div class="i-demo" id="demo-seq" data-k="seq" role="region" aria-label="Sequencing sample" hidden><p class="x-k" style="margin:0 0 14px">Sample · Sequencing</p><div class="d-box"><p class="d-title">Run a Data Fitness Check</p><p class="d-inst">Click the steps in the order you’d take them.</p>
-<div class="d-seq"><div class="d-pool"><button type="button" class="d-step" data-n="3">Compare the dataset’s fields and coverage against that list.</button><button type="button" class="d-step" data-n="1">Restate the business question in one specific sentence.</button><button type="button" class="d-step" data-n="5">Document any limitations that could affect the analysis.</button><button type="button" class="d-step" data-n="2">List the fields, records, and time period the question requires.</button><button type="button" class="d-step" data-n="4">Scan the values for gaps, errors, and inconsistent formats.</button></div><ol class="d-order"></ol></div>
-<div class="d-actions"><button type="button" class="d-btn d-check">Check order</button><button type="button" class="d-btn d-reset">Reset</button></div><p class="d-fb" hidden></p></div></div>
-<div class="i-demo" id="demo-drag" data-k="drag" role="region" aria-label="Drag-to-classify sample" hidden><p class="x-k" style="margin:0 0 14px">Sample · Drag-to-classify</p><div class="d-box"><p class="d-title">Sort Each Problem by the Criterion It Fails</p><p class="d-inst">Select a problem, then select the criterion it fails.</p>
-<div class="d-items"><button type="button" class="d-item" data-z="Relevance">The question is about purchases, but the data only tracks website visits.</button><button type="button" class="d-item" data-z="Timeliness">The most recent record is from three years ago.</button><button type="button" class="d-item" data-z="Consistency">Dates appear as both 03/04/2025 and 2025-04-03.</button><button type="button" class="d-item" data-z="Accuracy">Several orders show a negative quantity.</button><button type="button" class="d-item" data-z="Completeness">Two of the twelve months have no rows at all.</button></div>
-<div class="d-zones"><button type="button" class="d-zone" data-z="Relevance"><strong>Relevance</strong><span class="d-drop"></span></button><button type="button" class="d-zone" data-z="Completeness"><strong>Completeness</strong><span class="d-drop"></span></button><button type="button" class="d-zone" data-z="Accuracy"><strong>Accuracy</strong><span class="d-drop"></span></button><button type="button" class="d-zone" data-z="Timeliness"><strong>Timeliness</strong><span class="d-drop"></span></button><button type="button" class="d-zone" data-z="Consistency"><strong>Consistency</strong><span class="d-drop"></span></button></div>
-<div class="d-actions"><button type="button" class="d-btn d-check">Check answers</button><button type="button" class="d-btn d-reset">Reset</button></div><p class="d-fb" hidden></p></div></div>
-<div class="i-demo" id="demo-ann" data-k="ann" role="region" aria-label="Annotated text sample" hidden><p class="x-k" style="margin:0 0 14px">Sample · Annotated text</p><div class="d-box"><p class="d-title">Reading an Analyst’s Data Notes</p><p class="d-inst">Click the highlighted phrases to see which criterion each one raises.</p>
-<p class="d-passage">The marketing team wants to know whether last month’s loyalty campaign increased repeat purchases. The dataset they shared <button type="button" class="d-hl" data-a="Relevance: opens and clicks show interest, but the question is about repeat purchases.">tracks email opens and clicks</button>, covers <button type="button" class="d-hl" data-a="Timeliness: the campaign ran last month, so data that ends last June can’t show its effect.">January through June of last year</button>, and <button type="button" class="d-hl" data-a="Completeness: a quarter of records can’t be tied to a store.">leaves the store ID blank for about a quarter of rows</button>.</p>
-<p class="d-note" hidden></p></div></div>
-<script>
-(function(){
-var btns=document.querySelectorAll('.i-type'),demos=document.querySelectorAll('.i-demo'),hint=document.getElementById('type-hint');
-btns.forEach(function(b,i){b.addEventListener('click',function(){var open=b.getAttribute('aria-expanded')==='true';btns.forEach(function(x){x.setAttribute('aria-expanded','false')});demos.forEach(function(d){d.hidden=true});if(!open){b.setAttribute('aria-expanded','true');demos[i].hidden=false;}hint.style.visibility=open?'visible':'hidden';});});
-function fb(root,msg,ok){var f=root.querySelector('.d-fb');f.hidden=false;f.textContent=msg;f.className='d-fb '+(ok?'ok':'no');}
-var t=document.getElementById('demo-tabs');t.querySelectorAll('.d-tab').forEach(function(b){b.addEventListener('click',function(){t.querySelectorAll('.d-tab').forEach(function(x){x.classList.remove('on');x.setAttribute('aria-selected','false')});b.classList.add('on');b.setAttribute('aria-selected','true');t.querySelectorAll('.d-panel').forEach(function(p){p.hidden=p.dataset.i!==b.dataset.i});});});
-document.querySelectorAll('#demo-reveal .d-card').forEach(function(c){c.addEventListener('click',function(){var s=c.querySelector('span'),o=s.hidden;s.hidden=!o;c.setAttribute('aria-expanded',o?'true':'false');c.classList.toggle('on',o);});});
-var q=document.getElementById('demo-quiz'),done=false;q.querySelectorAll('.d-opt').forEach(function(o){o.addEventListener('click',function(){if(done)return;done=true;var ok=o.dataset.c==='1';o.classList.add(ok?'ok':'no');if(!ok)q.querySelector('.d-opt[data-c="1"]').classList.add('ok');fb(q,ok?'Right. The data is clean, but abandoned carts never become orders, so it can’t answer the question. That’s relevance.':'Not quite. Nothing is missing, wrong, or inconsistent. Completed orders simply don’t include abandoned carts, so the data doesn’t measure what the question asks. That’s relevance.',ok);});});
-var s=document.getElementById('demo-seq'),pool=s.querySelector('.d-pool'),ord=s.querySelector('.d-order');var orig=Array.prototype.slice.call(pool.children);s.querySelectorAll('.d-step').forEach(function(b){b.addEventListener('click',function(){if(b.parentNode===pool){var li=document.createElement('li');li.appendChild(b);ord.appendChild(li);}else{var li2=b.parentNode;pool.appendChild(b);li2.remove();}s.querySelector('.d-fb').hidden=true;});});
-s.querySelector('.d-check').addEventListener('click',function(){var items=ord.querySelectorAll('.d-step'),right=0;items.forEach(function(b,i){var ok=+b.dataset.n===i+1;b.parentNode.className=ok?'ok':'no';if(ok)right++;});fb(s,right===5?'All five steps are in order.':right+' of 5 in the right position. Steps in red can be clicked to send back.',right===5);});
-s.querySelector('.d-reset').addEventListener('click',function(){orig.forEach(function(x){pool.appendChild(x)});ord.innerHTML='';s.querySelector('.d-fb').hidden=true;});
-var d=document.getElementById('demo-drag'),sel=null,place={};d.querySelectorAll('.d-item').forEach(function(it){it.addEventListener('click',function(){if(it.classList.contains('placed'))return;d.querySelectorAll('.d-item').forEach(function(x){x.classList.remove('sel')});sel=it;it.classList.add('sel');});});
-d.querySelectorAll('.d-zone').forEach(function(z){z.addEventListener('click',function(){if(!sel)return;var drop=z.querySelector('.d-drop');var chip=document.createElement('span');chip.className='d-chip';chip.textContent=sel.textContent;chip.dataset.z=sel.dataset.z;chip.dataset.zone=z.dataset.z;drop.appendChild(chip);sel.classList.remove('sel');sel.classList.add('placed');sel=null;d.querySelector('.d-fb').hidden=true;});});
-d.querySelector('.d-check').addEventListener('click',function(){var chips=d.querySelectorAll('.d-chip'),right=0;chips.forEach(function(c){var ok=c.dataset.z===c.dataset.zone;c.classList.toggle('ok',ok);c.classList.toggle('no',!ok);if(ok)right++;});fb(d,right===5?'All five problems are sorted correctly.':right+' of 5 correct'+(chips.length<5?', with '+(5-chips.length)+' still to place.':'.'),right===5);});
-d.querySelector('.d-reset').addEventListener('click',function(){d.querySelectorAll('.d-chip').forEach(function(c){c.remove()});d.querySelectorAll('.d-item').forEach(function(x){x.classList.remove('placed','sel')});sel=null;d.querySelector('.d-fb').hidden=true;});
-var a=document.getElementById('demo-ann'),note=a.querySelector('.d-note');a.querySelectorAll('.d-hl').forEach(function(hl){hl.addEventListener('click',function(){var on=hl.classList.contains('on');a.querySelectorAll('.d-hl').forEach(function(x){x.classList.remove('on')});if(on){note.hidden=true;return;}hl.classList.add('on');note.hidden=false;note.textContent=hl.dataset.a;});});
-})();
-</script>
-<div class="in"></div></section>
-<section class="band warm" id="s4-giving-designers-room-to"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span>Giving designers room to review and edit</h2><p>Once an activity is generated, the designer gets a working preview. They can try it, explore alternatives, and edit the visible text without changing the code. Subject-matter experts can review the content with the designer before it goes into a course.</p>
-<p>I built those steps into the workflow because generating an activity is only part of preparing it for learners. Designers also need room to check the content, adjust the language, and consider whether the interaction supports the intended learning.</p>
-<p>When ready, they can export the Coursera configuration and a static text version of the content.</p></div>
-<ol class="i-flow" aria-label="Review and export steps">
-<li><span class="i-n">1</span><strong>Preview</strong><span>A working version of the activity</span></li>
-<li><span class="i-n">2</span><strong>Edit</strong><span>Change visible text without touching code</span></li>
-<li><span class="i-n">3</span><strong>Review</strong><span>Subject-matter experts check the content</span></li>
-<li><span class="i-n">4</span><strong>Export</strong><span>Plugin configuration and static text</span></li>
-</ol>
-<div class="in"></div></section>
-<section class="band" id="walkthrough"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polygon points="10 8 16 12 10 16 10 8"/></svg></span>See the workflow in practice</h2><p>The working tool uses Claude to respond to the content a designer brings to it.</p>
-<p>The walkthrough below uses one fixed example so you can explore the same process without an API key: describe a learning need, consider a format, review and edit the activity, and export the result.</p></div><figure class="x-embed"><figcaption>Try the sample walkthrough</figcaption><div class="x-frame"><iframe id="iframe-interactivity-generator" title="Interactivity Generator workflow tool mockup" height="700" loading="lazy"></iframe></div></figure></section>
-<section class="band warm" id="s5-providing-another-way-to"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg></span>Providing another way to use the content</h2><p>Each activity comes with a static text version that learners can use as a study reference or another way to access the material. It also provides readable content for course features that may not interpret the interactive component directly.</p>
-<p>I made the companion text part of the export workflow so designers receive both versions together. This gives them another way to support access to the content as they prepare the activity for a course.</p></div>
-<div class="i-twin">
-<div class="i-tw"><p class="x-k">Interactive</p>
-<div class="i-mini" aria-hidden="true"><div class="i-tabs"><span class="on">Relevance</span><span>Completeness</span><span>Accuracy</span><span>Timeliness</span><span>Consistency</span></div>
-<p><strong>What it asks:</strong> Does this data actually measure what the business question is about?</p>
-<p><strong>Warning signs:</strong> Fields that are close to what you need, but not quite it.</p></div></div>
-<span class="i-eq" aria-hidden="true">=</span>
-<div class="i-tw i-tw-static"><p class="x-k">Static companion text</p>
-<p class="i-doc">Before analyzing a dataset, check whether it is fit for the business question you need to answer. Relevance asks whether the data actually measures what the question is about, for the right customers, products, or regions. Completeness asks whether the records, fields, and time periods the question needs are all present…</p></div>
-</div>
-<div class="in"></div></section>
-<section class="band" id="s6-what-i-wanted-to-make-ea"><div class="in"><h2 class="x-h"><span class="x-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>What I wanted to make easier</h2><p>I designed the tool around the work that happens between having an idea for an interaction and placing it in a course. Choosing a format, trying it, editing the content, and preparing the output all happen in one place.</p>
-<p>My aim was to make small learning interactions more practical for our team to develop, while keeping the designer involved in the choices that shape the learner’s experience.</p></div></section>
-</main>
-<nav class="page-foot" style="margin-top:0" aria-label="More samples">
-  <a class="prev" href="ai-for-nurses.html"><span class="dir">← Previous</span><span class="ttl">AI for Nurses</span></a>
-  <a class="next" href="about.html"><span class="dir">Next →</span><span class="ttl">About Megan</span></a>
-</nav>
-<footer class="site-foot">
-  <span>&copy; Megan Lancaster</span>
-  <span class="contact-links"><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></span>
-</footer>
 
-</div>
-<script src="js/embed-interactives.js?v=5"></script>
-<script src="js/site.js"></script>
+<script src="js/lagoon.js?v=1"></script>
+
 </body>
 </html>
