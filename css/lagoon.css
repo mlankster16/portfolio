@@ -2,6 +2,7 @@
 body { margin: 0; background: #fff; }
 a { color: #0A6A67; text-decoration: none; }
 a:hover { color: #0F2E33; }
+h1 { font-family: 'Plus Jakarta Sans', sans-serif; }
 summary::-webkit-details-marker { display: none; }
 html { scroll-behavior: smooth; }
 a:focus-visible, button:focus-visible, summary:focus-visible, iframe:focus-visible { outline: 3px solid #0F8A86; outline-offset: 3px; border-radius: 6px; }

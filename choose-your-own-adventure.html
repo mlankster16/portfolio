@@ -8,12 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css?v=26">
 
-<link rel="stylesheet" href="css/lagoon.css?v=13">
+<link rel="stylesheet" href="css/lagoon.css?v=15">
 <style>
 .hv1:hover{color:#0F2E33 !important}
 .hv2:hover{background:#F3F7F5 !important;color:#0F2E33 !important}
@@ -1282,6 +1279,13 @@
 .bw .wt-rail button[aria-current] .n{background:var(--violet);color:#fff;box-shadow:0 0 0 4px var(--vt)}
 .bw .wt-rail button[aria-current] .t{color:var(--ink);font-weight:700}
 .bw .wt-div{width:1px;flex:none;align-self:stretch;background:var(--line);margin:2px 0}
+
+.bw .wt-grp.fac{padding-top:26px}
+.bw .wt-grp.fac .wt-rail{grid-auto-columns:minmax(84px,auto)}
+.bw .wt-grp.fac button{padding:4px}
+.bw .wt-grp.fac .n{background:var(--warn);color:var(--ink)}
+.bw .wt-grp.fac button:hover .n{box-shadow:0 0 0 4px #FCE8C6}
+.bw .wt-grp.fac button[aria-current] .n{background:var(--warn);color:var(--ink);box-shadow:0 0 0 4px #F8D9A0}
 </style>
 <style>.bw-out{width:100%!important;left:0!important;transform:none!important;margin:0!important}</style>
 </head>
@@ -1310,7 +1314,7 @@
 <main id="main" style="flex:1;">
     <div style="padding:clamp(25.5px,4vw,41.5px) max(clamp(16px,5vw,45px),calc((100% - 934.5px) / 2)) 35px;background:#F3F7F5;display:flex;flex-direction:column;gap:22.5px;">
       <span style="align-self:flex-start;white-space:nowrap;font-size:12.5px;background:#FFF0B3;color:#6B5400;padding:5.5px 11px;border-radius:999px;">Sample · Draft concept</span>
-      <h1 style="margin:0;font-size:clamp(38px,min(6.2vw,7.8vh),68px);font-weight:300;line-height:.95;letter-spacing:-.05em;">Choose Your <span style="color:#0F8A86;">Own Adventure</span></h1>
+      <h1 style="margin:0;font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(38px,min(6.2vw,7.8vh),68px);font-weight:300;line-height:.95;letter-spacing:-.05em;">Choose Your <span style="color:#0F8A86;">Own Adventure</span></h1>
       <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 45px;">
         <div style="flex:1 1 600px;max-width:765px;font-size:clamp(17px,1.7vw,20px);font-weight:300;line-height:1.35;letter-spacing:-.01em;text-wrap:pretty;">Designing for choice in undergraduate science: <span style="color:#0A6A67;">a shared learning goal with different ways to get there.</span></div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;"><a href="#walk" style="color:#0F2E33;white-space:nowrap;background:#0F2E33;color:#fff;padding:11px 17.5px;border-radius:999px;font-size:14px;font-weight:500;">Jump to the walkthrough ↓</a></div>
@@ -1535,8 +1539,8 @@ var open=0;
 function draw(){var s=S[st];
 var FIC='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 15v-3M12 15V9M17 15v-5"/></svg>';
 function rb(x,j){var fac=j===7;var RL=['Meet Jordan','Unit overview','Choose a format','The activity','Feedback','Final task','Course map','Faculty view'];
-return '<li class="'+(fac?'':(j&&j<=st?'done':''))+'"><button type="button" data-st="'+j+'" class="'+(!fac&&j<st?'done':'')+'"'+(j===st?' aria-current="step"':'')+'><span class="n" aria-hidden="true">'+(fac?FIC:(j+1))+'</span><span class="t"><span class="sr-only">'+(fac?'':'Moment '+(j+1)+': ')+x.t+'</span><span aria-hidden="true">'+RL[j]+'</span></span></button></li>'}
-$('wtRail').innerHTML='<div class="wt-grp"><p class="wt-gl">Jordan’s journey</p><ol class="wt-rail" aria-label="Jordan’s journey">'+S.slice(0,7).map(rb).join('')+'</ol></div><div class="wt-div" aria-hidden="true"></div><div class="wt-grp fac"><p class="wt-gl">For faculty</p><ol class="wt-rail" aria-label="Faculty view">'+rb(S[7],7)+'</ol></div>';
+return '<li class="'+(fac?'':(j&&j<=st?'done':''))+'"><button type="button" data-st="'+j+'" class="'+(!fac&&j<st?'done':'')+'"'+(j===st?' aria-current="step"':'')+'><span class="n" aria-hidden="true">'+(fac?FIC:(j+1))+'</span><span class="t"><span class="sr-only">'+(fac?'':'Moment '+(j+1)+': ')+x.t+'</span>'+'<span aria-hidden="true">'+RL[j]+'</span>'+'</span></button></li>'}
+$('wtRail').innerHTML='<div class="wt-grp"><p class="wt-gl">Jordan’s journey</p><ol class="wt-rail" aria-label="Jordan’s journey">'+S.slice(0,7).map(rb).join('')+'</ol></div><div class="wt-div" aria-hidden="true"></div><div class="wt-grp fac"><ol class="wt-rail" aria-label="Faculty view">'+rb(S[7],7)+'</ol></div>';
 $('wtTitle').textContent=s.t;$('wtWhat').textContent=s.what;
 var who=s.who||('Jordan · '+(MJ[a.major]||'Undecided')+' major'+(st>=2?' · '+F().name:''));
 $('wtCtl').innerHTML=(st===7?'<span class="wt-seg" role="group" aria-label="Faculty view for"><span class="wt-muted">View</span><button type="button" class="chip" data-fv="class" aria-pressed="'+(facView==='class')+'">Class</button><button type="button" class="chip" data-fv="jordan" aria-pressed="'+(facView==='jordan')+'">Jordan</button></span>':'')+'<button type="button" class="p-reset" id="wtTour">Show me around</button>'+'<button type="button" class="p-reset" id="wtReset">Reset to Jordan</button>';
@@ -1549,7 +1553,7 @@ if(flashRes){flashRes=0;var rp=$('wtDash').querySelector('[data-pin="3"]');if(rp
 var cmapOpen=false,cmapSeen=false;
 function renderCmap(){var w=document.querySelector('#bwApp .app-win'),old=w.querySelector('.cmap');if(old)old.remove();if(!cmapOpen)return;
 var m=document.createElement('div');m.className='cmap';
-m.innerHTML='<button type="button" class="cmap-bg" data-cmapx tabindex="-1" aria-label="Close course map"></button><div class="cmap-p" role="dialog" aria-modal="true" aria-label="Full course map" tabindex="-1"><div class="cmap-h"><div><p class="cmap-e">Biology 101 · 15 weeks</p><h4 class="cmap-t">Full course map</h4><p class="cmap-s">Every week asks its own question, built from the existing syllabus, and offers three formats suited to that week’s content.</p></div><button type="button" class="cmap-x" data-cmapx aria-label="Close">×</button></div><div class="cmap-g">'+
+m.innerHTML='<button type="button" class="cmap-bg" data-cmapx tabindex="-1" aria-label="Close course map"></button><div class="cmap-p" role="dialog" aria-modal="true" aria-label="Full course map" tabindex="-1"><div class="cmap-h"><div><p class="cmap-e">Biology 101 · 15 weeks</p><h4 class="cmap-t">Full course map</h4><p class="cmap-s">Every week asks its own question, grounded in introductory Biology accreditation standards, and offers three formats suited to that week’s content.</p></div><button type="button" class="cmap-x" data-cmapx aria-label="Close">×</button></div><div class="cmap-g">'+
 UN.map(function(u,ui){return '<div class="cmap-u"><p class="cmap-uh"><span class="cmap-un">Unit '+(ui+1)+'</span><span class="cmap-ut">'+u+'</span></p>'+WK.filter(function(w){return w.u===ui}).map(function(w){var cur=w.n===7;return '<div class="cmap-w'+(cur?' cur':'')+'"><p class="cmap-wk">Week '+w.n+(cur?' · This week':'')+'</p><p class="cmap-q">'+w.q+'</p><p class="cmap-c">Case: '+w.c+'</p><p class="cmap-f">'+w.fm.join(' · ')+'</p></div>'}).join('')+'</div>'}).join('')+'</div></div>';
 w.appendChild(m);}
 var flashRes=0,ncT=0,ncSt=-1;
