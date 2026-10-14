@@ -760,7 +760,7 @@ function rTriage(b,it,k){
 /* 4 sim */
 function pAt(h){return Math.pow(1-6.8754e-6*h,5.2559)}
 var GLOG=[[0,'Ground','Glaisher and Coxwell begin normally.'],[10560,'~2 miles','Above the clouds. No major symptoms.'],[26400,'~5 miles','Coxwell begins having difficulty breathing.'],[29000,'29,000 ft','Glaisher struggles to read his instruments.']];
-var GQ=[['lungs','The lungs stopped working','They were still breathing. Their lungs were doing their job.'],['blood','The blood stopped circulating','Their hearts were still pumping, so blood was still moving.'],['none','The atmosphere contains no oxygen','Check the oxygen meter. Oxygen is still about 21% of the air.'],['press','Atmospheric pressure has fallen',1]];
+var GQ=[['lungs','The lungs stopped working','They were still breathing. Their lungs were doing their job.'],['blood','The blood stopped circulating','Their hearts were still pumping, so blood was still moving.'],['none','The air holds a smaller percentage of oxygen','Check the oxygen meter. Oxygen is still about 21% of the air at every altitude.'],['press','Atmospheric pressure has fallen',1]];
 var GCH=[['Altitude rises','The balloon climbs toward 29,000 ft.'],['Atmospheric pressure falls','There are fewer air molecules around the balloon.'],['Each breath holds fewer molecules','Oxygen is still about 21% of the air, but there\u2019s less air in every breath.'],['Less oxygen pushes into the blood','With lower pressure, fewer oxygen molecules cross from the lungs into the blood.'],['Less oxygen reaches the cells','The delivery chain still works. It just has less to carry.'],['Mitochondria make less ATP','Without enough oxygen, cells can\u2019t make the energy they need.'],['Hypoxic hypoxia','Tunnel vision, confusion, and loss of dexterity, just like Glaisher and Coxwell.']];
 function rSim(b,it,k){
   var G=S.gb&&S.gb.tried?S.gb:{h:0,top:false,tried:{},ok:false,last:null}; S.gb=G;
@@ -916,17 +916,17 @@ var Q=[
      {t:'Wait for the crew to tell you what to do.',f:'The crew is putting on their own masks. Ten seconds go by, and it\u2019s getting hard to think. You pull your mask on, then your child\u2019s.'}]},
  {s:'Masks on. Across the aisle, a man\u2019s mask is dangling. His lips are bluish, and his sentences don\u2019t make sense. Which link in the oxygen chain is failing?',
   o:[{t:'The atmosphere. At this cabin pressure, each breath brings in too little oxygen.',ok:true,f:'Correct. His heart, blood, and cells are working. The thin cabin air is the problem. Blue lips (cyanosis) and confusion are the same signs Glaisher showed.'},
-     {t:'The heart. It has stopped pumping blood.',f:'Everyone on board lost pressure at the same moment. Start with what they all share: the air.'},
-     {t:'The blood. It can\u2019t carry enough oxygen.',f:'Nothing suggests a problem with his blood. Everyone is breathing the same thin air, so start there.'},
-     {t:'The mitochondria. His cells can\u2019t use oxygen.',f:'Nothing suggests poisoning. The whole cabin changed at once, so look at the air first.'}]},
+     {t:'The lungs. Panic has him breathing too fast and shallow to take in enough air.',f:'Fast breathing can make him feel worse, but everyone lost pressure at the same moment. Start with what they all share: the air.'},
+     {t:'The blood. His bluish lips mean his blood can\u2019t carry oxygen properly.',f:'Blue lips show his blood isn\u2019t getting enough oxygen. They don\u2019t mean the blood itself has stopped working. Everyone is breathing the same thin air, so start there.'},
+     {t:'The heart. The stress of the emergency is keeping it from pumping well.',f:'His heart is working hard, not failing. The whole cabin changed at once, so look at the air first.'}]},
  {s:'You help him put on his mask. The plastic bag on it isn\u2019t inflating, and he looks worried. What do you tell him?',
   o:[{t:'It\u2019s working. Oxygen is flowing even if the bag doesn\u2019t inflate, so keep breathing normally.',ok:true,f:'Correct. The bag on an airline mask may not inflate even while oxygen is flowing. The mask raises the oxygen pressure in each breath, the same link supplemental oxygen fixed in your final challenge.'},
-     {t:'Take it off and share mine.',f:'Taking his mask off puts him back on thin cabin air. His mask is working, even if the bag stays flat.'},
-     {t:'Hold your breath to save oxygen.',f:'Holding his breath doesn\u2019t save anything. The mask only helps if he keeps breathing normally.'}]},
+     {t:'Swap it for an unused mask from an empty seat.',f:'Taking his mask off, even for a few seconds, puts him back on thin cabin air. His mask is working, even if the bag stays flat.'},
+     {t:'Pull the strap tighter and breathe deeply until the bag fills.',f:'A snug fit helps, but the bag may never inflate, and deep breathing won\u2019t change that. Oxygen is flowing, so he should keep breathing normally.'}]},
  {s:'The pilot starts an emergency descent. Why does descending help, even though everyone has a mask?',
   o:[{t:'Lower altitude means higher atmospheric pressure, so each breath brings in more oxygen.',ok:true,f:'Correct. As the plane descends, atmospheric pressure rises, so oxygen pressure rises too and more oxygen enters the blood. Coxwell\u2019s ripcord did the same thing in 1862.'},
      {t:'The air lower down has a higher percentage of oxygen.',f:'Oxygen stays about 21% of the air at every altitude. What changes on the way down is the pressure.'},
-     {t:'It\u2019s warmer lower down.',f:'It is warmer, but warmth doesn\u2019t fix thin air. What changes as the plane descends?'},
+     {t:'The air lower down holds more moisture, which helps the lungs absorb oxygen.',f:'Humidity doesn\u2019t change how much oxygen each breath brings in. What changes as the plane descends?'},
      {t:'It gets everyone closer to medical help.',f:'That may help later, but it isn\u2019t why everyone can breathe again. What changes as the plane descends?'}]}];
 Q[0].o=mix(Q[0].o,1);Q[1].o=mix(Q[1].o,2);Q[2].o=mix(Q[2].o,1);Q[3].o=mix(Q[3].o,3);
 function rQuiz(b,it,k){

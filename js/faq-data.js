@@ -90,8 +90,8 @@ window.FAQ_DATA = {
       a: ['It depends on what you’re curious about:'],
       links: [
         { label: 'Space Medicine', href: 'space-medicine.html', note: 'course design on Coursera' },
+        { label: 'Light the Beacon', href: 'beacon-escape-room.html', note: 'a playable Grade 6 math escape room' },
         { label: 'Cleared for Flight', href: 'drone-inspection-training.html', note: 'a drone inspection training concept' },
-        { label: 'Access Granted', href: 'admin-certification.html', note: 'a certification concept for platform admins' },
         { label: 'AI for Nurses', href: 'ai-for-nurses.html', note: 'a full Specialization, from start to launch' },
         { label: 'Digital You', href: 'digital-you.html', note: 'a for-credit course in Canvas' },
         { label: 'Branching Biology', href: 'choose-your-own-adventure.html', note: 'a concept for personalized learning' },
@@ -131,14 +131,14 @@ window.FAQ_DATA = {
       keys: 'cleared for flight drone drones inspection training field employees utility technical training task analysis course map simulator scenario checkride aircraft performance objective'
     },
     {
-      id: 'admin-cert', group: 'samples',
-      q: 'What is Access Granted?',
+      id: 'beacon', group: 'samples',
+      q: 'What is Light the Beacon?',
       a: [
-        'Access Granted is a certification concept for administrators of an enterprise platform. Admins practice in a simulated console, work toward a three-level credential and stay current as the product changes.',
-        'It’s a concept, so you can try the sandbox lab and sample exam item on the page, but it hasn’t been used with real admins.'
+        'Light the Beacon is a virtual escape room for Grade 6 math. Learners restore a storm-damaged lighthouse by reasoning with equivalent ratios and unit rates, with staged hints and feedback for each kind of mistake.',
+        'It’s a playable concept, so you can try all four rooms on the page, but it hasn’t been used with real students.'
       ],
-      links: [{ label: 'Access Granted', href: 'admin-certification.html' }],
-      keys: 'access granted admin administrator certification credential levels associate professional expert exam blueprint sandbox lab console enterprise platform technical training'
+      links: [{ label: 'Light the Beacon', href: 'beacon-escape-room.html' }],
+      keys: 'light the beacon escape room game game-based lighthouse grade 6 math ratio ratios unit rate rates equivalent ratios puzzle puzzles hints feedback middle school gamification playable 6.rp.a.3 common core'
     },
     {
       id: 'ai-for-nurses', group: 'samples',
@@ -175,7 +175,7 @@ window.FAQ_DATA = {
       q: 'Are all the projects in this portfolio in use?',
       a: [
         'The portfolio includes both work developed for use at Duke and ideas I’m exploring. Space Medicine launched on Coursera in 2021, and the reimagined Week 2 is a concept I built to show what more interactivity could look like. AI for Nurses launched in September 2026, and Digital You ran as a for-credit course in Spring 2024.',
-        'Branching Biology is a proof of concept. It would need further research, development, and testing before being used with students. Cleared for Flight and Access Granted are concepts too.',
+        'Branching Biology is a proof of concept. It would need further research, development, and testing before being used with students. Light the Beacon and Cleared for Flight are concepts too.',
         'I also built the Coursera Design Guide and Interactivity Generator to support Duke’s faculty and learning design team. You’ll find them mentioned on my résumé.'
       ],
       links: [{ label: 'Résumé', href: 'resume.html' }],
