@@ -6,6 +6,7 @@
      data-style="name"         apply a style object
      data-bind-<attr>="name"   set an attribute (and the value property on inputs)
      data-click / data-enter / data-leave / data-change / data-focus = "name"   event handlers
+     data-scroll-key="name"   scroll this element into view when the value changes (if it is off screen)
      data-for="list" data-as="item"   repeat the children once per item; inside, use "item.prop"
    Names can be paths like "item.label". */
 (function () {
@@ -33,6 +34,25 @@
   DCLogic.prototype.render = function () {
     var vals = this.renderVals();
     this._update(this._root || document.body, [vals]);
+    this._keepInView(vals);
+  };
+  /* data-scroll-key="name": when that value changes (a new room, a next step), bring the element's
+     top back into view if it has scrolled off, so the learner lands at the start of the new step. */
+  DCLogic.prototype._keepInView = function (vals) {
+    var root = this._root || document.body;
+    [].forEach.call(root.querySelectorAll('[data-scroll-key]'), function (e) {
+      var k = lookup(e.getAttribute('data-scroll-key'), [vals]);
+      if (e.__sk !== undefined && e.__sk !== k) {
+        window.requestAnimationFrame(function () {
+          var r = e.getBoundingClientRect();
+          if (r.top < 0 || r.top > window.innerHeight - 80) {
+            var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            window.scrollBy({ top: r.top - 16, behavior: calm ? 'auto' : 'smooth' });
+          }
+        });
+      }
+      e.__sk = k;
+    });
   };
 
   function applyStyle(e, o) {
