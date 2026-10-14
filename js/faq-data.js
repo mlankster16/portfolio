@@ -349,14 +349,15 @@ window.FAQ_DATA = {
     },
     {
       id: 'in-use', group: 'samples',
-      q: 'Are all the projects in this portfolio in use?',
+      phrases: ['are all the projects in use','which projects are real','which are real','real or concept','live or concept','what is a concept','what are concepts','are these real','are these real projects','what is a live project','proof of concept','learning design of your live courses','see your live courses','show your live work','why are some projects concepts'],
+      q: 'Which projects are real, and which are concepts?',
       a: [
-        'The portfolio includes both work developed for use at Duke and ideas I’m exploring. Space Medicine launched on Coursera in 2021, and the reimagined Week 2 is a concept I built to show what more interactivity could look like. AI for Nurses launched in September 2026, and Digital You ran as a for-credit course in Spring 2024.',
-        'Branching Biology is a proof of concept. It would need further research, development, and testing before being used with students. Light the Beacon and Cleared for Flight are concepts too.',
-        'I also built the Coursera Design Guide and Interactivity Generator to support Duke’s faculty and learning design team. You’ll find them mentioned on my résumé.'
+        'Space Medicine, AI for Nurses, and Digital You are live projects: real courses I worked on with Duke faculty and partners. Space Medicine launched on Coursera in 2021, AI for Nurses launched in September 2026, and Digital You ran as a for-credit course in Spring 2024. On Space Medicine, the original course is live, and the reimagined Week 2 module is a concept I built.',
+        'Branching Biology, Light the Beacon, and Cleared for Flight are concepts: custom designs I created to show my work. Because of intellectual property, it’s harder for me to show the learning design behind live courses, so the concepts let me share what I can do and what’s possible beyond them. They’re proofs of concept, and they would need further research, development, and testing before being used with learners.',
+        'On the Home page, each sample is marked Live project or Concept, and you can filter by either. I also built the Coursera Design Guide and Interactivity Generator to support Duke’s faculty and learning design team. You’ll find them mentioned on my résumé.'
       ],
       links: [{ label: 'Résumé', href: 'resume.html' }],
-      keys: 'real in use live launched concept prototype proof of concept hypothetical actual production published design guide interactivity generator tools'
+      keys: 'real in use live launched concept concepts prototype proof of concept hypothetical actual production published difference live project ip intellectual property confidential confidentiality why concepts custom design design guide interactivity generator tools'
     },
 
     /* ---------- Project management ---------- */
