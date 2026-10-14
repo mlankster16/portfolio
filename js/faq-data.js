@@ -90,9 +90,11 @@ window.FAQ_DATA = {
       a: ['It depends on what you’re curious about:'],
       links: [
         { label: 'Space Medicine', href: 'space-medicine.html', note: 'course design on Coursera' },
+        { label: 'Cleared for Flight', href: 'drone-inspection-training.html', note: 'a drone inspection training concept' },
+        { label: 'Access Granted', href: 'admin-certification.html', note: 'a certification concept for platform admins' },
         { label: 'AI for Nurses', href: 'ai-for-nurses.html', note: 'a full Specialization, from start to launch' },
         { label: 'Digital You', href: 'digital-you.html', note: 'a for-credit course in Canvas' },
-        { label: 'Choose Your Own Adventure', href: 'choose-your-own-adventure.html', note: 'a concept for personalized learning' },
+        { label: 'Branching Biology', href: 'choose-your-own-adventure.html', note: 'a concept for personalized learning' },
         { label: 'Project Management', href: 'project-management.html', note: 'how I scope, manage, and deliver projects' },
         { label: 'Course Portfolio', href: 'course-portfolio.html', note: 'everything I’ve developed over the last six years' }
       ],
@@ -110,13 +112,33 @@ window.FAQ_DATA = {
     },
     {
       id: 'cyoa', group: 'samples',
-      q: 'What is Choose Your Own Adventure?',
+      q: 'What is Branching Biology?',
       a: [
         'It’s a concept I designed for a required undergraduate science course. An interactive walkthrough follows one learner, Jordan, through a unit, showing how interests and prior knowledge could shape the activities and support while the learning goals stay the same.',
         'It’s a proof of concept built from a learning designer’s perspective, so it would need UX research and product design before anyone used it.'
       ],
-      links: [{ label: 'Choose Your Own Adventure', href: 'choose-your-own-adventure.html' }],
+      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
       keys: 'cyoa choose your own adventure jordan biology 101 personalized adaptive learner choice walkthrough proof of concept concept undergraduate science dashboard'
+    },
+    {
+      id: 'drone', group: 'samples',
+      q: 'What is Cleared for Flight?',
+      a: [
+        'Cleared for Flight is a curriculum concept for training field employees to fly drone inspections. It works from a task analysis to a course map, simulator scenarios and a field checkride.',
+        'It’s a concept, so you can try the interactive pieces on the page, but it hasn’t been used with real trainees.'
+      ],
+      links: [{ label: 'Cleared for Flight', href: 'drone-inspection-training.html' }],
+      keys: 'cleared for flight drone drones inspection training field employees utility technical training task analysis course map simulator scenario checkride aircraft performance objective'
+    },
+    {
+      id: 'admin-cert', group: 'samples',
+      q: 'What is Access Granted?',
+      a: [
+        'Access Granted is a certification concept for administrators of an enterprise platform. Admins practice in a simulated console, work toward a three-level credential and stay current as the product changes.',
+        'It’s a concept, so you can try the sandbox lab and sample exam item on the page, but it hasn’t been used with real admins.'
+      ],
+      links: [{ label: 'Access Granted', href: 'admin-certification.html' }],
+      keys: 'access granted admin administrator certification credential levels associate professional expert exam blueprint sandbox lab console enterprise platform technical training'
     },
     {
       id: 'ai-for-nurses', group: 'samples',
@@ -132,7 +154,7 @@ window.FAQ_DATA = {
       id: 'digital-you', group: 'samples',
       q: 'What is Digital You?',
       a: [
-        'Let’s Talk about Digital You is a for-credit, interdisciplinary Duke course in Canvas, open to students in any major. As project manager and lead learning experience designer, I helped two lead instructors and weekly guest experts build one integrated course on the technical and ethical sides of a data-centric world.',
+        'Let’s Talk Digital You is a for-credit, interdisciplinary Duke course in Canvas, open to students in any major. As project manager and lead learning experience designer, I helped two lead instructors and weekly guest experts build one integrated course on the technical and ethical sides of a data-centric world.',
         'It ran as a hybrid, semester-long course in Spring 2024.'
       ],
       links: [{ label: 'Digital You', href: 'digital-you.html' }],
@@ -153,7 +175,7 @@ window.FAQ_DATA = {
       q: 'Are all the projects in this portfolio in use?',
       a: [
         'The portfolio includes both work developed for use at Duke and ideas I’m exploring. Space Medicine launched on Coursera in 2021, and the reimagined Week 2 is a concept I built to show what more interactivity could look like. AI for Nurses launched in September 2026, and Digital You ran as a for-credit course in Spring 2024.',
-        'Choose Your Own Adventure is a proof of concept. It would need further research, development, and testing before being used with students.',
+        'Branching Biology is a proof of concept. It would need further research, development, and testing before being used with students. Cleared for Flight and Access Granted are concepts too.',
         'I also built the Coursera Design Guide and Interactivity Generator to support Duke’s faculty and learning design team. You’ll find them mentioned on my résumé.'
       ],
       links: [{ label: 'Résumé', href: 'resume.html' }],

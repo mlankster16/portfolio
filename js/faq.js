@@ -84,7 +84,7 @@
   document.body.appendChild(launch);
   document.body.appendChild(panel);
 
-  /* On the Choose Your Own Adventure page a sticky Back/Next bar sits at the bottom. */
+  /* On the Branching Biology page a sticky Back/Next bar sits at the bottom. */
   if (document.getElementById('bwApp')) document.documentElement.classList.add('faq-lift');
 
   /* ---------- Conversation ---------- */

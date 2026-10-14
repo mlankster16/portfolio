@@ -56,6 +56,6 @@
       t.src = src; t.onload = next || null;
       document.body.appendChild(t);
     }
-    load('js/faq-data.js?v=10', function () { load('js/faq.js?v=7'); });
+    load('js/faq-data.js?v=11', function () { load('js/faq.js?v=8'); });
   })();
 })();
