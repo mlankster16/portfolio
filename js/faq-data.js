@@ -435,7 +435,7 @@ window.FAQ_DATA = {
       a: [
         'I use AI to help develop ideas, build prototypes, and create tools that support our team’s work. For example, I used Claude Design and Claude Code to build the Coursera Design Guide and Interactivity Generator. The generator also uses Claude to suggest formats and create activities from a designer’s content and learning goal.',
         'I make the decisions about the learning experience and review what we create. When the content requires subject expertise, I work with experts to check it. I’m especially interested in where AI gives us more room to explore an idea, try an approach, and improve it.',
-        'I note AI use on the pages where it applies. On my concept pages, I used Claude as a thought and design partner. The Space Medicine module was built with Claude Design and Claude Code, and for AI for Nurses, I used ChatGPT, Claude, and Claude Code to support the design.'
+        'On my concept samples, I used Claude as a thought and design partner. The Space Medicine module was built with Claude Design and Claude Code, and for AI for Nurses, I used ChatGPT, Claude, and Claude Code to support the design.'
       ],
       links: [{ label: 'Space Medicine', href: 'space-medicine.html' }],
       keys: 'ai artificial intelligence claude chatgpt llm generative tools automation prompts copilot machine learning code claude code claude design vibe coding'
