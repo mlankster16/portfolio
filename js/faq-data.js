@@ -132,7 +132,7 @@ window.FAQ_DATA = {
       id: 'where-start', group: 'samples',
       phrases: ['where to start','where do i start','where should i begin','where to begin','what should i look at first','what is your favorite sample','which sample should i look at'],
       q: 'Where should I start?',
-      a: ['It depends on what you’re curious about. My samples fall into three groups: custom design concepts (Space Medicine, Branching Biology, and Light the Beacon), technical training (Cleared for Flight), and higher ed projects (AI for Nurses and Digital You).'],
+      a: ['It depends on what you’re curious about. Space Medicine, AI for Nurses, and Digital You are live projects. Branching Biology, Light the Beacon, and Cleared for Flight are concepts I designed to show my work. On the Home page, you can filter the samples by project type, features, audience, or platform.'],
       links: [
         { label: 'Space Medicine', href: 'space-medicine.html', note: 'a Coursera course, with Week 2 reimagined as an interactive module' },
         { label: 'Branching Biology', href: 'choose-your-own-adventure.html', note: 'a concept for personalized learning' },
@@ -143,7 +143,7 @@ window.FAQ_DATA = {
         { label: 'Project Management', href: 'project-management.html', note: 'how I scope, manage, and deliver projects' },
         { label: 'Course Portfolio', href: 'course-portfolio.html', note: 'everything I’ve developed over the last six years' }
       ],
-      keys: 'start begin first overview where to begin best work highlights recommend recommendation tour what should i look at see samples portfolio examples favorite hiring technical training higher ed custom design group category show me higher ed work'
+      keys: 'start begin first overview where to begin best work highlights recommend recommendation tour what should i look at see samples portfolio examples favorite hiring technical training higher ed custom design group category show me higher ed work filter filters audience platform features k-12 workforce lifelong learning'
     },
     {
       id: 'space-medicine', group: 'samples',
@@ -354,7 +354,7 @@ window.FAQ_DATA = {
       a: [
         'Space Medicine, AI for Nurses, and Digital You are live projects: real courses I worked on with Duke faculty and partners. Space Medicine launched on Coursera in 2021, AI for Nurses launched in September 2026, and Digital You ran as a for-credit course in Spring 2024. On Space Medicine, the original course is live, and the reimagined Week 2 module is a concept I built.',
         'Branching Biology, Light the Beacon, and Cleared for Flight are concepts: custom designs I created to show my work. Because of intellectual property, it’s harder for me to show the learning design behind live courses, so the concepts let me share what I can do and what’s possible beyond them. They’re proofs of concept, and they would need further research, development, and testing before being used with learners.',
-        'On the Home page, each sample is marked Live project or Concept, and you can filter by either. I also built the Coursera Design Guide and Interactivity Generator to support Duke’s faculty and learning design team. You’ll find them mentioned on my résumé.'
+        'On the Home page, each sample is marked Live project or Concept, and you can filter by project type, features, audience, or platform. I also built the Coursera Design Guide and Interactivity Generator to support Duke’s faculty and learning design team. You’ll find them mentioned on my résumé.'
       ],
       links: [{ label: 'Résumé', href: 'resume.html' }],
       keys: 'real in use live launched concept concepts prototype proof of concept hypothetical actual production published difference live project ip intellectual property confidential confidentiality why concepts custom design design guide interactivity generator tools'
