@@ -266,7 +266,7 @@ window.FAQ_DATA = {
       q: 'What does faculty see in Branching Biology?',
       a: [
         'The walkthrough includes a faculty view. It shows which formats learners choose, class patterns on shared criteria, and how learners’ confidence compares with their results. It also includes a roster that shows who might need a check-in, and a view of how the class is doing on each course outcome.',
-        'Faculty decide whether and how to follow up. Numbered pins on each screen explain the design thinking behind it.'
+        'Faculty decide whether and how to follow up.'
       ],
       links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
       keys: 'faculty view instructor dashboard roster check-in confidence results class patterns outcomes curriculum accreditation data analytics learning analytics teacher what does faculty see'
