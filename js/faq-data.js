@@ -532,9 +532,8 @@ window.FAQ_DATA = {
       phrases: ['ai','use ai','artificial intelligence','claude','chatgpt','generative ai'],
       q: 'How do you use AI in your work?',
       a: [
-        'I use AI to help develop ideas, build prototypes, and create tools that support our team’s work. For example, I used Claude Design and Claude Code to build the Coursera Design Guide and Interactivity Generator. The generator also uses Claude to suggest formats and create activities from a designer’s content and learning goal.',
-        'I make the decisions about the learning experience and review what we create. When the content requires subject expertise, I work with experts to check it. I’m especially interested in where AI gives us more room to explore an idea, try an approach, and improve it.',
-        'I used Claude Design and Claude Code as thought and design partners across my portfolio, including every concept sample. For AI for Nurses, I also used ChatGPT. Digital You is the one project where I didn’t use AI.'
+        'I use AI to help develop ideas, build prototypes, and create tools that support our team’s work. For example, I used Claude Design and Claude Code as thought and design partners across my portfolio, including every concept sample. For AI for Nurses, I also used ChatGPT. Digital You is the one project where I didn’t use AI.',
+        'I make the decisions about the learning experience and review what we create. When the content requires subject expertise, I work with experts to check it. I’m especially interested in where AI gives us more room to explore an idea, try an approach, and improve it.'
       ],
       links: [{ label: 'Space Medicine', href: 'space-medicine.html' }],
       keys: 'ai artificial intelligence claude chatgpt llm generative tools automation prompts copilot machine learning code claude code claude design vibe coding'
