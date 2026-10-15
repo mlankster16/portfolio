@@ -137,11 +137,11 @@
   state = { l: 0 };
   renderVals() {
     const L = [
-      ['case-study','Case study','What Goes Up','In 1862, two aeronauts set a record balloon flight and nearly didn’t survive it. What made the altitude so dangerous?','#0F2E33','#0F2E33'],
+      ['case-study','Case study','What Goes Up','In 1862, two aeronauts made one of the highest balloon flights of their era and nearly didn’t survive it. Their exact maximum altitude is uncertain. What made the altitude so dangerous?','#0F2E33','#0F2E33'],
       ['physiology','Physiology','The Fire of Life','How does oxygen get from the air we breathe to every cell in the body?','#0F8A86','#0A6A67'],
-      ['hypoxia','Pathophysiology','Hypoxia','What happens when the oxygen supply breaks down, and what do the symptoms tell us?','#E0B000','#6B5400'],
-      ['physics','Physics','Solubility, Altitude and Pressure','Why does every breath bring in less oxygen as you climb?','#2E7DA6','#1F5F7A'],
-      ['engineering','Engineering','Countermeasures','How do airplanes, spacesuits, and the ISS keep people breathing?','#0F2E33','#0F2E33']];
+      ['hypoxia','Pathophysiology','Hypoxia','What happens when too little oxygen reaches the tissues (hypoxia), and how does it relate to low oxygen in the blood (hypoxemia)? Symptoms offer clues, but they can’t confirm either one.','#E0B000','#6B5400'],
+      ['physics','Physics','Solubility, Altitude and Pressure','Oxygen stays about 21% of the air as you climb. So why does each breath deliver fewer oxygen molecules?','#2E7DA6','#1F5F7A'],
+      ['engineering','Engineering','Countermeasures','How do aircraft cabins, oxygen masks, spacesuits, and the ISS each manage pressure, oxygen, and carbon dioxide?','#0F2E33','#0F2E33']];
     const l = this.state.l, d = L[l];
     const v = { img: 'assets/img/space-medicine/' + d[0] + '.png', alt: 'Title card: ' + d[1] + ': ' + d[2], kick: d[1], title: d[2], text: d[3],
       kickStyle: { fontSize:13, fontWeight: 600, color: d[5] },
