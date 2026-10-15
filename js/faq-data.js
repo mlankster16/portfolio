@@ -147,43 +147,60 @@ window.FAQ_DATA = {
     },
     {
       id: 'space-medicine', group: 'samples',
+      phrases: ['what is space medicine', 'what did you do on space medicine', 'is the week 2 module live', 'what happened to glaisher and coxwell'],
       q: 'What is Space Medicine?',
       a: [
-        'Space Medicine is a 2021 Coursera course from Duke that I managed and designed, with nearly 30,000 learners since launch. I coordinated the media teams, guided the scripts, and designed the learner journey.',
-        'On the Space Medicine page, I reimagined Week 2 with an interactive exercise after every video, following an 1862 balloon flight from first symptoms to a redesigned flight. You can try it there.'
+        'Space Medicine is a Duke Coursera course launched in 2021. As Senior Learning Designer and Project Manager, I managed the project and led the learning design, coordinating media production, guiding scripts, and shaping the learner journey. It has reached nearly 30,000 learners.',
+        'Separately, I created a concept reimagining of Week 2. It follows James Glaisher and Henry Coxwell’s 1862 balloon flight through a case-based interactive module, with a short activity after each video and a final challenge to redesign Glaisher’s balloon. The module is a portfolio concept and isn’t part of the live Coursera course.'
+      ],
+      links: [{ label: 'Explore the course and Week 2 concept', href: 'space-medicine.html' }],
+      keys: 'space medicine coursera balloon glaisher coxwell hypoxia altitude week 2 exercise interactive module reimagined nasa astronaut what did you do on space medicine is the week 2 module live live course concept role'
+    },
+    {
+      id: 'space-week2', group: 'samples',
+      phrases: ['what did you redesign', 'how did you redesign week 2', 'how did you make the week 2 module'],
+      q: 'How did you redesign Space Medicine Week 2?',
+      a: [
+        'I organized the week around one case. Learners investigate what happened to Glaisher and Coxwell, form a hypothesis and revisit it as new evidence comes in, use physiology and pressure models to explain the risk, then apply what they’ve learned in a final challenge to redesign Glaisher’s balloon. Each video is followed by a short activity, and a scenario-based quiz asks learners to transfer the ideas to a cabin pressure loss.',
+        'The goal was to help learners connect the videos and practice across the week, so each topic builds on the last. I built the module with Claude Design and Claude Code.'
       ],
       links: [{ label: 'Space Medicine', href: 'space-medicine.html' }],
-      keys: 'space medicine coursera balloon glaisher coxwell hypoxia altitude week 2 exercise interactive module reimagined nasa astronaut'
+      keys: 'redesign reimagined week 2 what did you redesign how did you make module exercises hypothesis investigate evidence simulator quiz cabin pressure final challenge redesign balloon activities after each video design process tools claude design claude code'
     },
     {
       id: 'cyoa', group: 'samples',
+      phrases: ['what is branching biology', 'is branching biology real', 'is it a working product'],
       q: 'What is Branching Biology?',
       a: [
-        'It’s a concept I designed for a required undergraduate science course. An interactive walkthrough follows one learner, Jordan, through a unit, showing how interests and prior knowledge could shape the activities and support while the learning goals stay the same.',
-        'It’s a proof of concept built from a learning designer’s perspective, so it would need UX research and product design before anyone used it.'
+        'Branching Biology is a proof of concept for a personalized learning experience in a required undergraduate Biology 101 course. I designed the concept and prototype, and the walkthrough follows Jordan, a physics major, through a sample unit.',
+        'It shows how learner choices could shape the examples, activity format, and support while keeping the unit’s learning goals in view. It’s a design proposal, not a deployed adaptive-learning product or a course validated with students. I made it as a Senior Learning and Curriculum Designer, with Claude as a thought and design partner.'
       ],
       links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
-      keys: 'cyoa choose your own adventure jordan biology 101 personalized adaptive learner choice walkthrough proof of concept concept undergraduate science dashboard'
+      keys: 'cyoa choose your own adventure branching biology jordan biology 101 personalized adaptive learner choice walkthrough proof of concept concept undergraduate science dashboard design proposal prototype what did you build'
     },
     {
       id: 'drone', group: 'samples',
+      phrases: ['what is cleared for flight', 'is this real flight training', 'what parts are illustrative', 'what is illustrative', 'who is cleared for flight for'],
       q: 'What is Cleared for Flight?',
       a: [
-        'Cleared for Flight is a curriculum concept for training field employees to fly drone inspections. It works from a task analysis to a course map, simulator scenarios and a field checkride.',
-        'It’s a concept, so you can try the interactive pieces on the page, but it hasn’t been used with real trainees.'
+        'Cleared for Flight is a curriculum concept I designed for field employees who already hold an FAA Remote Pilot Certificate (Part 107) but haven’t flown inspections. It shows how I’d connect a job task analysis to learning outcomes, guided simulator practice, independent scenarios, and an evaluator-scored field checkride.',
+        'The interactive pieces are examples of the proposed training. The aircraft limits, clearance distances, battery reserves, and image tolerances are illustrative values, not approved operating standards. I haven’t piloted it with real trainees, and the operating details would need review by flight and utility safety experts before anyone could use it.',
+        'I made it as a Senior Learning and Curriculum Designer, using Claude as a thought and design partner.'
       ],
       links: [{ label: 'Cleared for Flight', href: 'drone-inspection-training.html' }],
-      keys: 'cleared for flight drone drones inspection training field employees utility technical training task analysis course map simulator scenario checkride aircraft performance objective'
+      keys: 'cleared for flight drone drones inspection training field employees utility technical training task analysis course map simulator scenario checkride part 107 remote pilot certificate illustrative concept real flight training aircraft limits who is it for audience prerequisite'
     },
     {
       id: 'beacon', group: 'samples',
+      phrases: ['what is light the beacon', 'is light the beacon tested with students'],
       q: 'What is Light the Beacon?',
       a: [
-        'Light the Beacon is a virtual escape room for Grade 6 math. Learners restore a storm-damaged lighthouse by reasoning with equivalent ratios and unit rates, with staged hints and feedback for each kind of mistake.',
-        'It’s a playable concept, so you can try all four rooms on the page, but it hasn’t been used with real students.'
+        'I designed Light the Beacon as a playable browser concept for Grade 6 math. Learners solve four connected problems: build a 2:3 blue-to-gold ratio on a lens, complete a ratio table, find a unit rate, and compare signal plans against the supplies and time available.',
+        'The rooms move from a visual model to a table to a rate, then ask learners to use those results in a decision. Optional hints support retries, and feedback points learners toward a relationship they may want to check.',
+        'It’s a prototype that hasn’t been tested with students. I built it to make the learning sequence and interactions concrete, as a Senior Learning and Curriculum Designer, with Claude as a thought and design partner. It would need review and piloting before classroom use.'
       ],
       links: [{ label: 'Light the Beacon', href: 'beacon-escape-room.html' }],
-      keys: 'light the beacon escape room game game-based lighthouse grade 6 math ratio ratios unit rate rates equivalent ratios puzzle puzzles hints feedback middle school gamification playable 6.rp.a.3 common core'
+      keys: 'light the beacon escape room game game-based lighthouse grade 6 math ratio ratios unit rate rates equivalent ratios puzzle puzzles hints feedback middle school gamification playable prototype concept untested not tested with students'
     },
     {
       id: 'ai-for-nurses', group: 'samples',
@@ -207,69 +224,126 @@ window.FAQ_DATA = {
     },
     {
       id: 'beacon-standard', group: 'samples',
-      phrases: ['what standard','which standard','what math standard','common core'],
+      phrases: ['what standard', 'which standard', 'what math standard', 'common core', 'what math is in the escape room'],
       q: 'What standard does Light the Beacon address?',
       a: [
-        'Light the Beacon is built on one Grade 6 Common Core standard, 6.RP.A.3: use ratio and rate reasoning to solve real-world and mathematical problems. The page breaks it into essential questions and “I can” goals for equivalent ratios, unit rates, and reasoning in context.',
-        'Learners move from a visual model in the lens room to a ratio table in the generator room, then to a unit rate in the radio room. At the control panel, they use what they’ve learned to choose a signal plan.'
+        'Light the Beacon focuses on selected parts of Grade 6 Common Core standard 6.RP.A.3, especially 3a, working with equivalent ratios and a ratio table, and 3b, solving a unit-rate problem.',
+        'Learners use that reasoning across the lens, generator, and radio rooms, then apply it to the final plan decision. The concept doesn’t address every expectation in 6.RP.A.3.'
       ],
       links: [{ label: 'Light the Beacon', href: 'beacon-escape-room.html' }],
-      keys: 'standard standards common core 6.rp.a.3 6rp grade 6 ratio rate ratios unit rate equivalent ratios math mathematics rooms lens generator radio control panel essential question i can goals alignment aligned'
+      keys: 'standard standards common core 6.rp.a.3 6rp 3a 3b grade 6 ratio rate ratios unit rate equivalent ratios ratio table math mathematics rooms lens generator radio control panel essential question i can goals alignment aligned coverage percent measurement conversion'
     },
     {
       id: 'beacon-design', group: 'samples',
-      phrases: ['how do hints work','are there hints','does it have hints'],
+      phrases: ['how do hints work', 'are there hints', 'does it have hints', 'how does feedback work'],
       q: 'How do hints and feedback work in Light the Beacon?',
       a: [
         'Each room has three optional hints. They move from a guiding question to a more concrete next step, and they’re free to use. There’s no timer or penalty, so learners can try again as often as they like.',
-        'Feedback points back to the part of the relationship a learner may want to reconsider. At the final panel, learners choose a plan and pick the reason it works, which gives a class something to compare and discuss.'
+        'Feedback points back to the part of the relationship a learner may want to reconsider. Some answers get targeted feedback, and others get a more general prompt.',
+        'At the final panel, learners choose a plan and then select a reason it works from a short list. Both reasons describe true conditions, so this step works as a discussion prompt in class. It doesn’t check understanding on its own.'
       ],
       links: [{ label: 'Light the Beacon', href: 'beacon-escape-room.html' }],
-      keys: 'hints hint feedback support scaffolding scaffold timer penalty try again mistakes wrong answers explain reasoning discussion classroom class use escape room staged hints free'
+      keys: 'hints hint feedback support scaffolding scaffold timer penalty try again mistakes wrong answers explain reasoning discussion classroom class use escape room staged hints free final panel plan reason'
+    },
+    {
+      id: 'beacon-validate', group: 'samples',
+      phrases: ['what would you test', 'how would you test light the beacon', 'has it been tested'],
+      q: 'What would you want to learn from testing Light the Beacon?',
+      a: [
+        'I’d want to know whether learners can explain how the ratios and rates support their final choice, where they get stuck, and whether the hints help them move forward without giving away the answer.',
+        'I’d review the activity with a Grade 6 math educator, then pilot it with students and look at their reasoning as well as whether they complete the rooms. I’d use what I learn to revise the prompts, feedback, and final decision. These are proposed next steps, not results.'
+      ],
+      links: [{ label: 'Light the Beacon', href: 'beacon-escape-room.html' }],
+      keys: 'test testing pilot validate validation next steps what would you test educator review students pilot reasoning learn from testing improve revise'
     },
     {
       id: 'drone-design', group: 'samples',
-      phrases: ['how did you design the drone training','task analysis','design the drone course','drone course','design cleared for flight','how did you design cleared for flight'],
+      phrases: ['how did you design the drone training', 'task analysis', 'design the drone course', 'drone course', 'design cleared for flight', 'how did you design cleared for flight', 'how did you make cleared for flight'],
       q: 'How did you design Cleared for Flight?',
       a: [
-        'I started with a task analysis: I broke the job into duties, tasks, and steps, then rated each task by how much harm a mistake could cause. Every task became a performance objective with a condition, a behavior, and a standard.',
-        'From there, I built a course map that matches each lesson to the format that suits its tasks. Knowledge is self-paced, judgment is practiced in the simulator, and anything that touches the real aircraft happens with an instructor.'
+        'I started by breaking the job into duties, tasks, and steps, then writing observable performance objectives. I rated each task by how much harm a mistake could cause, which helped me set priorities for practice and assessment.',
+        'From there, I designed a progression: an instructor demonstration, guided simulator practice with prompts, optional hints, and retries, an independent scenario with new conditions, observed field practice, and an evaluator-scored checkride. A course map matches each lesson to the format that suits its tasks. Knowledge is self-paced, judgment is practiced in the simulator, and anything that touches the real aircraft happens with an instructor.',
+        'The page shows the curriculum architecture and sample interactions. The aircraft-specific procedures and operating limits would need review with flight and utility safety experts before implementation.'
       ],
       links: [{ label: 'Cleared for Flight', href: 'drone-inspection-training.html' }],
-      keys: 'task analysis duties tasks steps criticality risk harm performance objective condition behavior standard course map modality simulator self-paced classroom field instructor curriculum design process'
+      keys: 'task analysis duties tasks steps criticality risk harm performance objective condition behavior standard course map modality simulator self-paced classroom field instructor curriculum design process progression demonstration guided practice hints retries independent scenario observed field practice what did you do role tools how did you make'
     },
     {
       id: 'drone-assess', group: 'samples',
-      phrases: ['how do you assess trainees','what is a checkride','how do you evaluate training'],
+      phrases: ['how do you assess trainees', 'what is a checkride', 'how do you evaluate training'],
       q: 'How would you assess and evaluate the drone training?',
       a: [
-        'Qualification depends on a field checkride, where an instructor scores the trainee flying a real aircraft against the same standards as the objectives. Missing any critical item means the trainee isn’t qualified yet, however well the rest went.',
-        'I plan the measures with the curriculum, so the data needed to revise it comes in from the first cohort: simulator decisions and attempts, first-attempt checkride pass rates, the items missed most often, and incident and near-miss reports. When an item is missed often, I trace it back through the course map to the lesson and objective behind it and revise there first.'
+        'This is a proposed evaluation model, not a course that has been piloted. A qualified evaluator scores the field checkride against behavior-based criteria and records what they observed as evidence. Missing a critical item means the trainee isn’t qualified yet. If all critical items are met, the instructor assigns targeted practice on any missed noncritical items before the trainee’s first solo mission.',
+        'I’d also review simulator decisions, attempts, and hint use, compare simulator results with checkride results for the same tasks, and look at flight lead observations, incident and near-miss reports, and inspection data that has to be re-flown. Those measures could show where to add guided practice, give field practice more time, or revisit an objective. I don’t have learner or operational results for this concept.'
       ],
       links: [{ label: 'Cleared for Flight', href: 'drone-inspection-training.html' }],
-      keys: 'assess assessment evaluate evaluation measure measures effectiveness checkride qualification qualified pass rate xapi lms simulator data incident near-miss revise improve trainees training evaluation kirkpatrick'
+      keys: 'assess assessment evaluate evaluation measure measures effectiveness checkride qualification qualified evaluator rubric behavior-based critical items remediation pass rate xapi lms simulator data incident near-miss reflight revise improve trainees training evaluation results'
+    },
+    {
+      id: 'drone-validate', group: 'samples',
+      phrases: ['did you work with a drone expert', 'what would you test before using this', 'what would you validate'],
+      q: 'What would you validate before using Cleared for Flight?',
+      a: [
+        'I’d first work with flight and utility safety experts to confirm the aircraft, procedures, clearances, emergency actions, and image requirements for the actual operation. Then I’d review the task analysis, objectives, scenarios, and checkride rubric with them.',
+        'After that, I’d test the learning sequence and interactions with representative trainees and evaluators, revise based on what I observe, and confirm the qualification criteria before launch. These are proposed next steps, not work I’ve completed.'
+      ],
+      links: [{ label: 'Cleared for Flight', href: 'drone-inspection-training.html' }],
+      keys: 'validate validation review experts safety experts flight experts utility safety test pilot pilot test before using next steps what would you test did you work with a drone expert subject matter expert sme approve approval operating standards'
+    },
+    {
+      id: 'drone-part107', group: 'samples',
+      phrases: ['does it teach part 107', 'is this faa training', 'does it prepare for part 107'],
+      q: 'Does Cleared for Flight teach someone to earn a Part 107 certificate?',
+      a: [
+        'No. The concept assumes learners already hold an FAA Remote Pilot Certificate (Part 107), earned before the course. It focuses on company qualification: the company’s aircraft, inspection procedures, and qualification standards.',
+        'The field checkride represents company qualification in this concept. It doesn’t stand in for FAA certification.'
+      ],
+      links: [{ label: 'Cleared for Flight', href: 'drone-inspection-training.html' }],
+      keys: 'part 107 faa remote pilot certificate remote pilot license drone license certification faa exam teach part 107 prerequisite prior certificate company qualification not faa'
     },
     {
       id: 'cyoa-how', group: 'samples',
-      phrases: ['is this adaptive learning','how does it adapt','what formats'],
-      q: 'How does Branching Biology adapt to each learner?',
+      phrases: ['is this adaptive learning', 'how does it adapt', 'what formats', 'how does personalization work'],
+      q: 'How does personalization work in Branching Biology?',
       a: [
-        'The walkthrough follows Jordan, a physics major in Biology 101. A learner’s program, reasons for taking the course, and motivation shape the examples and support they see, while the course’s learning goals stay the same.',
-        'Each unit asks an essential question from the existing syllabus. Each week offers three formats, a guided video, an escape room, or a field investigation, that all lead to the same final task.'
+        'In this concept, personalization is shown through choices about context, activity format, and support. The walkthrough uses Jordan to illustrate how those choices might work. It doesn’t demonstrate an algorithm adjusting instruction in response to learner performance.',
+        'The proposed formats are a guided video, an escape-room activity, and a field investigation. The design intent is to keep the learning goals consistent across formats. A next design step would be to check that each format gives learners a comparable chance to practice and show those goals.'
       ],
       links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
-      keys: 'adapt adaptive personalized personalization learner path pathways choice formats guided video escape room field investigation essential question syllabus final task interests prior knowledge jordan physics major biology 101'
+      keys: 'adapt adaptive personalized personalization how does it adapt learner path pathways choice formats guided video escape room field investigation essential question syllabus interests prior knowledge jordan algorithm automatic recommendations'
     },
     {
       id: 'cyoa-faculty', group: 'samples',
-      phrases: ['what does the faculty view show','faculty dashboard'],
+      phrases: ['what does the faculty view show', 'faculty dashboard'],
       q: 'What does faculty see in Branching Biology?',
       a: [
-        'The walkthrough includes a faculty view. It shows which formats learners choose, class patterns on shared criteria, and how learners’ confidence compares with their results. It also includes a roster that shows who might need a check-in, and a view of how the class is doing on each course outcome.',
-        'Faculty decide whether and how to follow up.'
+        'The concept includes a faculty view with example patterns in activity choices, confidence, and performance against shared criteria. It also sketches how an instructor might spot a reason to check in with a learner.',
+        'These indicators are prompts for a conversation. They don’t diagnose a learner or draw conclusions about them. The view is a design concept with sample numbers for illustration, and it hasn’t been tested as an analytics tool. Before building something like it, I’d want to define what data are needed, who can see them, and how instructors should interpret them.'
       ],
       links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
-      keys: 'faculty view instructor dashboard roster check-in confidence results class patterns outcomes curriculum accreditation data analytics learning analytics teacher what does faculty see'
+      keys: 'faculty view instructor dashboard roster check-in confidence results class patterns outcomes curriculum accreditation data analytics learning analytics teacher what does faculty see sample numbers privacy data'
+    },
+    {
+      id: 'cyoa-biology', group: 'samples',
+      phrases: ['what biology is in the activity', 'what is the birdsong activity', 'are the recordings real', 'what is the science'],
+      q: 'What biology idea does the Branching Biology activity explore?',
+      a: [
+        'The sample unit asks how organisms respond to changes in their environment, using birdsong in a city park and a nearby forest. Learners look at evidence, such as recordings and spectrograms, to explain why city birds might sing differently, and they consider other explanations.',
+        'The recordings and numbers in the walkthrough are sample data for illustration. To use the comparison as real evidence, I’d document the species, where and how the recordings were made, the sample size, and how pitch was measured, and I’d label anything illustrative as illustrative.'
+      ],
+      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
+      keys: 'biology birdsong bird song song pitch recordings recording spectrogram traffic noise city birds forest park field investigation evidence alternative explanation another explanation evolution evolutionary dataset data sample data illustrative species science scientific claims environment'
+    },
+    {
+      id: 'cyoa-validate', group: 'samples',
+      phrases: ['what would you test before using this with students', 'has branching biology been tested'],
+      q: 'What would you test before using Branching Biology with students?',
+      a: [
+        'I’d start by checking the biology, then test the unit with students and instructors. I’d want to know whether learners can explain the evidence and consider another explanation, whether the formats support the same learning goals, and whether the format choices work for learners with different access needs.',
+        'I’d also test whether the faculty view helps instructors make useful decisions without treating a dashboard signal as a definitive judgment. These are proposed next steps, not results from a completed study.'
+      ],
+      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
+      keys: 'test testing pilot validate validation next steps before using with students instructors access needs accessibility biology review evidence what would you test study results'
     },
     {
       id: 'ai-accred', group: 'samples',
@@ -288,7 +362,8 @@ window.FAQ_DATA = {
       q: 'How did you design the AI for Nurses courses?',
       a: [
         'Survey data from working nurses and conversations with partners shaped a progression that I shared early with stakeholders. In a co-design session, registered nurses described AI as something that flags, summarizes, prioritizes, or triggers, and those patterns carry through all three courses.',
-        'Lessons pair a short expert video from Duke School of Nursing faculty with readings that connect vocabulary to real tools. In Course 3, case study videos pause three times so nurses make a real-time clinical judgment, and learners apply the AI-SBAR framework.'
+        'Lessons pair a short expert video from Duke School of Nursing faculty with readings that connect vocabulary to real tools. In Course 3, case study videos pause three times so nurses make a real-time clinical judgment, and learners apply the AI-SBAR framework.',
+        'I worked as Senior Learning Designer and Project Manager, and I used ChatGPT, Claude, and Claude Code to support the design.'
       ],
       links: [{ label: 'AI for Nurses', href: 'ai-for-nurses.html' }],
       keys: 'design process co-design codesign survey nurses registered nurses learning objectives courses three courses ai-sbar sbar case studies videos clinical judgment vocabulary progression stakeholders johnson school of nursing'
@@ -299,7 +374,8 @@ window.FAQ_DATA = {
       q: 'How was Digital You organized?',
       a: [
         'Two lead instructors and a rotating guest expert taught each week, and I coordinated people across five roles into one integrated course. Each theme ran across two weeks: how a technology works, then its ethical implications. Two panel weeks brought live Q&A across disciplines.',
-        'I defined three outcomes with the lead instructors, then mapped every week to the same six-step structure so guests and TAs could begin co-design work. Each week included a guest session for about 100 students, hands-on exploration in EdStem, smaller sections for discussion, and a weekly blog post on each student’s own WordPress site.'
+        'I defined three outcomes with the lead instructors, then mapped every week to the same six-step structure so guests and TAs could begin co-design work. Each week included a guest session for about 100 students, hands-on exploration in EdStem, smaller sections for discussion, and a weekly blog post on each student’s own WordPress site.',
+        'My role was Senior Learning Designer and Project Manager.'
       ],
       links: [{ label: 'Digital You', href: 'digital-you.html' }],
       keys: 'organized structure weekly guest lecturers instructors tas panel weeks themes outcomes six-step edstem wordpress blog sections students 100 canvas ethics technology generative art privacy social media algorithms topics who did you work with'
@@ -358,6 +434,17 @@ window.FAQ_DATA = {
       ],
       links: [{ label: 'Résumé', href: 'resume.html' }],
       keys: 'real in use live launched concept concepts prototype proof of concept hypothetical actual production published difference live project ip intellectual property confidential confidentiality why concepts custom design design guide interactivity generator tools'
+    },
+    {
+      id: 'concept-making', group: 'samples',
+      phrases: ['how did you make your concept samples', 'what tools did you use for the concepts', 'how did you build the samples'],
+      q: 'How did you make your concept samples?',
+      a: [
+        'For Branching Biology, Light the Beacon, and Cleared for Flight, I worked as a Senior Learning and Curriculum Designer. I designed the learning sequence, including the practice, feedback, and assessment, and then built an interactive prototype to show how it would work. I used Claude as a thought and design partner throughout.',
+        'Each concept has its own page that walks through the design decisions. They’re prototypes, and they would need review with subject experts and testing with learners before anyone used them.'
+      ],
+      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }, { label: 'Light the Beacon', href: 'beacon-escape-room.html' }, { label: 'Cleared for Flight', href: 'drone-inspection-training.html' }],
+      keys: 'how did you make how did you build what tools did you use tools role what did you do process concept samples prototype claude design claude code ai partner built made created designed concepts'
     },
 
     /* ---------- Project management ---------- */
