@@ -28,6 +28,7 @@
 input:focus{outline:2px solid #0F8A86;outline-offset:1px}
 .pn1:hover,.pn2:hover{border-color:#0F8A86 !important;color:#0F2E33 !important;filter:brightness(.97) !important}
 @media (min-width:760px){.bcsticky{position:sticky;top:16px}}
+@media (max-width:700px){.hero-art{width:85%!important;opacity:.28}}
 </style>
 
 
@@ -58,14 +59,27 @@ input:focus{outline:2px solid #0F8A86;outline-offset:1px}
     </nav>
   </header>
 <main id="main" style="flex:1;">
-  <div style="padding:clamp(25.5px,4vw,41.5px) max(clamp(16px,5vw,45px),calc((100% - 934.5px) / 2)) 51px;background:#F3F7F5;display:flex;flex-direction:column;gap:22.5px;">
+  <div style="padding:clamp(25.5px,4vw,41.5px) max(clamp(16px,5vw,45px),calc((100% - 934.5px) / 2)) 51px;overflow:hidden;background:#F3F7F5;display:flex;flex-direction:column;gap:22.5px;">
     
-    <h1 style="margin:0;font-size:clamp(38px,min(6.2vw,7.8vh),68px);font-weight:300;line-height:.95;letter-spacing:-.05em;">Light the <span style="color:#0F8A86;">Beacon</span></h1>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:45px;align-items:end;">
+    <div style="position:relative;display:flex;flex-direction:column;min-height:210px;">
+      <div class="hero-art" aria-hidden="true" style="position:absolute;top:-8px;bottom:-8px;right:calc(max(clamp(16px,5vw,45px),calc((100vw - 934.5px) / 2)) * -1);width:min(48%,520px);-webkit-mask-image:linear-gradient(to right,transparent,#000 35%);mask-image:linear-gradient(to right,transparent,#000 35%);pointer-events:none;"><svg viewBox="0 0 490 240" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" style="width:100%;height:100%;display:block;"><defs><pattern id="bc-h" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><path d="M0 0 L0 6" stroke="#0F8A86" stroke-width="1" opacity=".55"/></pattern><clipPath id="bc-t"><path d="M206 214 L220 92 L260 92 L274 214 Z"/></clipPath></defs>
+<path d="M240 70 L470 26 L470 120 Z" fill="#FFD84A" opacity=".55"/>
+<g fill="none" stroke="#0F2E33" stroke-width="1.2" stroke-linecap="round" opacity=".35"><path d="M40 30 l-6 14"/><path d="M90 60 l-6 14"/><path d="M150 24 l-6 14"/><path d="M330 40 l-6 14"/><path d="M400 70 l-6 14"/><path d="M450 30 l-6 14"/><path d="M120 110 l-6 14"/><path d="M380 120 l-6 14"/></g>
+<path d="M206 214 L220 92 L260 92 L274 214 Z" fill="#fff"/><g clip-path="url(#bc-t)"><rect x="200" y="122" width="80" height="22" fill="#BFE5DA"/><rect x="200" y="166" width="80" height="22" fill="#BFE5DA"/><rect x="200" y="122" width="80" height="22" fill="url(#bc-h)"/><rect x="200" y="166" width="80" height="22" fill="url(#bc-h)"/></g>
+<g fill="none" stroke="#0F2E33" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M206 214 L220 92 L260 92 L274 214 Z" /><path d="M206 214 L220 92 L260 92 L274 214 Z" transform="translate(1.5 -1.1)" opacity=".35"/><rect x="222" y="62" width="36" height="30" rx="3" fill="#fff"/><circle cx="240" cy="77" r="9" fill="#FFD84A"/><path d="M216 62 H264 M222 62 L240 46 L258 62"/><path d="M214 92 H266"/><path d="M234 214 V196 a6 6 0 0 1 12 0 V214"/></g>
+<g fill="none" stroke="#0F8A86" stroke-width="1.5" stroke-linecap="round"><path d="M0 216 c15 -8 30 -8 45 0 c15 8 30 8 45 0"/><path d="M90 216 c15 -8 30 -8 45 0 c15 8 30 8 45 0"/><path d="M180 216 c15 -8 30 -8 45 0 c15 8 30 8 45 0"/><path d="M270 216 c15 -8 30 -8 45 0 c15 8 30 8 45 0"/><path d="M360 216 c15 -8 30 -8 45 0 c15 8 30 8 45 0"/><path d="M450 216 c15 -8 30 -8 45 0 c15 8 30 8 45 0"/></g>
+<g fill="none" stroke="#0F2E33" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M372 200 H430 L420 212 H382 Z" fill="#D6E7EE"/><path d="M398 200 V172 M398 174 L416 196 H398"/></g>
+<g stroke="#0F2E33" stroke-width="1.2"><circle cx="54" cy="160" r="8" fill="#7FB3C8"/><circle cx="76" cy="160" r="8" fill="#7FB3C8"/><circle cx="98" cy="160" r="8" fill="#FFD84A"/><circle cx="120" cy="160" r="8" fill="#FFD84A"/><circle cx="142" cy="160" r="8" fill="#FFD84A"/></g>
+<g fill="none" stroke="#0F2E33" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".7"><path d="M50 186 H146 M50 182 V190 M82 182 V190 M114 182 V190 M146 182 V190"/></g></svg></div>
+      <div style="position:relative;display:flex;flex-direction:column;gap:18px;max-width:min(100%,540px);">
+      <h1 style="margin:0;font-size:clamp(38px,min(6.2vw,7.8vh),68px);font-weight:300;line-height:.95;letter-spacing:-.05em;">Light the <span style="color:#0F8A86;">Beacon</span></h1>
+    <div style="display:flex;flex-direction:column;align-items:flex-start;gap:18px;">
       <div style="font-size:clamp(17px,1.7vw,20px);font-weight:300;line-height:1.35;letter-spacing:-.01em;text-wrap:pretty;">A virtual escape room for Grade 6 math, <span style="color:#0A6A67;">where ratio reasoning brings a storm-damaged lighthouse back online.</span></div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;"><a class="hv12" href="#play" style="white-space:nowrap;background:#0F2E33;color:#fff;padding:11px 17.5px;border-radius:999px;font-size:14px;font-weight:500;">Play the escape room ↓</a><a href="#standard" style="color:#0F2E33;white-space:nowrap;background:#fff;border:1px solid #DCE8E3;padding:10.5px 17.5px;border-radius:999px;font-size:14px;font-weight:500;">See the standard behind it ↓</a></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-start;"><a class="hv12" href="#play" style="white-space:nowrap;background:#0F2E33;color:#fff;padding:11px 17.5px;border-radius:999px;font-size:14px;font-weight:500;">Play the escape room ↓</a><a href="#standard" style="color:#0F2E33;white-space:nowrap;background:#fff;border:1px solid #DCE8E3;padding:10.5px 17.5px;border-radius:999px;font-size:14px;font-weight:500;">See the standard behind it ↓</a></div>
     </div>
-    <div style="display:flex;flex-direction:column;gap:16px;padding-top:17.5px;border-top:2px solid #FFD84A;">
+      </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;padding-top:17.5px;border-top:2px solid #FFD84A;">
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:19px;"><div style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:13px;font-weight:600;">Learners</span><span style="font-size:14px;font-weight:300;line-height:1.5;color:#4B6468;">Grade 6 math students</span></div><div style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:13px;font-weight:600;">Goal</span><span style="font-size:14px;font-weight:300;line-height:1.5;color:#4B6468;">Use equivalent ratios and unit rates to solve problems and choose a signal plan that fits the available supplies and time.</span></div><div style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:13px;font-weight:600;">Delivery</span><span style="font-size:14px;font-weight:300;line-height:1.5;color:#4B6468;">A self-paced browser activity for independent or classroom use.</span></div><div style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:13px;font-weight:600;">Role</span><span style="font-size:14px;font-weight:300;line-height:1.5;color:#4B6468;">Senior Learning and Curriculum Designer</span></div></div>
       
     </div>
