@@ -240,7 +240,7 @@ window.FAQ_DATA = {
       a: [
         'Each room has three optional hints. They move from a guiding question to a more concrete next step, and they’re free to use. There’s no timer or penalty, so learners can try again as often as they like.',
         'Feedback points back to the part of the relationship a learner may want to reconsider. Some answers get targeted feedback, and others get a more general prompt.',
-        'At the final panel, learners choose a plan and then select a reason it works from a short list. Both reasons describe true conditions, so this step works as a discussion prompt in class. It doesn’t check understanding on its own.'
+        'At the final panel, learners choose a plan and then select both reasons it works. If they select only one, a short note confirms it’s true and asks about the other, so the step checks that they can connect the ratio and the time available.'
       ],
       links: [{ label: 'Light the Beacon', href: 'beacon-escape-room.html' }],
       keys: 'hints hint feedback support scaffolding scaffold timer penalty try again mistakes wrong answers explain reasoning discussion classroom class use escape room staged hints free final panel plan reason'
