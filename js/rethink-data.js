@@ -9,7 +9,7 @@ window.RETHINK = (function () {
   ];
   var UNIT_Q = [
     { id: 'style', title: 'What kind of experience would you like for this unit?', type: 'one', opts: [
-      ['video', 'Guided video: recordings, predictions, and an expert’s reasoning'], ['game', 'Escape room: evaluate competing explanations to move on to each step'], ['field', 'Field investigation: record locally, or use a supplied recording'], ['mix', 'I’d like to choose as I go'] ] },
+      ['video', 'Guided video: recordings, predictions, and an expert’s reasoning'], ['game', 'Escape room: evaluate competing explanations to move on to each step'], ['field', 'Field investigation: work with supplied field recordings, and add your own if you like'], ['mix', 'I’d like to choose as I go'] ] },
     { id: 'shaky', title: 'What would you like to review before getting started?', sub: 'Choose any you’d find helpful.', type: 'many', opts: [
       ['graphs', 'Reading and comparing graphs'], ['pitch', 'Understanding frequency and pitch'], ['spectro', 'Reading a spectrogram, a visual map of sound'], ['evidence', 'Comparing evidence for different explanations'] ] }
   ];
@@ -19,13 +19,14 @@ window.RETHINK = (function () {
 
   var UNIT = { n: 'Unit 3', concept: 'Adaptation in a changing environment', question: 'How does birdsong differ between a city park and a nearby forest, and why?',
     doing: 'You’ll compare recordings and environmental data from two settings, consider more than one explanation, and finish with a shared task that every format prepares you for.',
+    goal: 'Use recordings and noise data to compare song-frequency patterns, evaluate at least two explanations, and say what the data can and can’t tell us about why the songs differ.',
     skills: ['Reading and comparing graphs', 'Frequency and pitch', 'Reading a spectrogram', 'Weighing evidence for different explanations'] };
 
   var MAJOR = {
-    physics: { lens: 'Birdsong as a signal', text: 'Birdsong is a signal traveling through a noisy channel. In cities, some birds sing at a higher pitch to be heard over traffic. You’ll start from the physics of sound and work toward why that shift might matter for survival.' },
-    biology: { lens: 'Foundation for your major', text: 'Adaptation comes up again in ecology and evolution. This unit gives you a first look at the evidence researchers use, working with real recordings and data.' },
+    physics: { lens: 'Birdsong as a signal', text: 'Birdsong is a signal traveling through a noisy channel. Some bird populations in noisy urban areas sing song elements with higher minimum frequencies than populations in quieter areas. One hypothesis is that higher notes are easier to detect over low-frequency traffic noise, but findings vary by species and no single explanation holds everywhere. You’ll start from the physics of sound and test that idea against other explanations.' },
+    biology: { lens: 'Foundation for your major', text: 'Adaptation comes up again in ecology and evolution. This unit gives you a first look at the evidence researchers use, working with field recordings and noise data.' },
     business: { lens: 'Costs and decisions', text: 'Noise, light, and habitat change can be side effects of how cities and businesses grow. You’ll look at what that change means for local species and how organizations weigh it in their decisions.' },
-    music: { lens: 'Song, pitch, and learning', text: 'Many songbirds learn their songs much like people learn melodies. You’ll compare recordings and look at how pitch and timing shift when the environment gets louder.' },
+    music: { lens: 'Song, pitch, and learning', text: 'Song sparrows, the species in this unit, learn their songs from older birds in their first year. That’s a simplified parallel to learning a melody by ear. You’ll compare recordings and look at how frequency and timing differ between a loud site and a quiet one.' },
     cs: { lens: 'Audio as data', text: 'Bird identification apps use machine learning on audio recordings. You’ll work with the same kind of data those tools are trained on and see where they can get it wrong.' },
     undecided: { lens: 'A sampler', text: 'This unit touches biology, data, and fieldwork, so you can notice which parts you enjoy most. That can help when you choose a major.' }
   };
@@ -36,9 +37,9 @@ window.RETHINK = (function () {
     unsure: 'If you’re not sure yet, that’s fine. The first week includes short samples of each kind of activity so you can find what fits.'
   };
   var FORMAT = {
-    video: { tag: 'Watch', name: 'Guided video', text: 'Compare recordings and spectrograms from a city park and a nearby forest, make predictions, and examine an expert’s reasoning.' },
-    game: { tag: 'Explore', name: 'Escape room', text: 'Use recordings, noise measurements, and field notes from both settings to evaluate competing explanations.' },
-    field: { tag: 'Listen', name: 'Field investigation', text: 'Collect a local recording, or use a supplied one, and compare it with supplied city and forest recordings and noise data.' }
+    video: { tag: 'Watch', name: 'Guided video', text: 'Compare recordings and spectrograms from a city park and a nearby forest, make predictions, and examine an expert’s reasoning.', time: 'About 40 min', support: 'Captions and transcript · pause at any checkpoint' },
+    game: { tag: 'Explore', name: 'Escape room', text: 'Use recordings, noise measurements, and field notes from both settings to evaluate competing explanations.', time: 'About 40 min', support: 'A hint after two tries · your room log saves as you go' },
+    field: { tag: 'Listen', name: 'Field investigation', text: 'Work with the supplied city and forest recordings and noise data. You can also add a recording from near you.', time: 'About 40 min, plus up to 20 min if you record', support: 'Supplied recordings always available · step-by-step protocol' }
   };
   var SHAKY = {
     graphs: 'Reading and comparing graphs: a 5-minute practice with two charts side by side.',
@@ -52,7 +53,7 @@ window.RETHINK = (function () {
     people: { name: 'A small crew', text: 'A group of four working on the same question, with a shared findings board at the end of the unit.' },
     plan: { name: 'A steady plan', text: 'A suggested weekly plan with reminders and short check-ins, so the next step is easy to see.' }
   };
-  var TASK = 'Use the recordings and environmental data to explain a difference in birdsong between two settings. Consider another possible explanation and name what more evidence would help you test it.';
+  var TASK = 'First, using the recordings and noise data, describe how song frequency differs between the city park and the forest. Evaluate at least two explanations: which do the data support, and which remain uncertain? Then answer: can these data tell us whether the difference reflects a short-term behavioral response, a learned song spreading through the population (cultural change), or genetic change across generations? Name the evidence that would help you tell the explanations apart.';
 
   function path(a) {
     var formats = a.style === 'mix' ? ['video', 'game', 'field'] : [a.style];
