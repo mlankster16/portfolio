@@ -173,7 +173,7 @@ window.FAQ_DATA = {
       q: 'What is Branching Biology?',
       a: [
         'Branching Biology is a proof of concept for a personalized learning experience in a required undergraduate Biology 101 course. I designed the concept and prototype, and the walkthrough follows Jordan, a physics major, through a sample unit.',
-        'It shows how learner choices could shape the examples, activity format, and support while keeping the unit’s learning goals in view. It’s a design proposal, not a deployed adaptive-learning product or a course validated with students. I made it as a Senior Learning and Curriculum Designer, with Claude as a thought and design partner.'
+        'It shows how learner choices could shape the examples, activity format, and support while keeping the unit’s learning goals in view. It’s a design proposal, not a deployed adaptive-learning product or a course validated with students. I made it as a Senior Learning and Curriculum Designer, with Claude Design and Claude Code as thought and design partners.'
       ],
       links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
       keys: 'cyoa choose your own adventure branching biology jordan biology 101 personalized adaptive learner choice walkthrough proof of concept concept undergraduate science dashboard design proposal prototype what did you build'
@@ -185,7 +185,7 @@ window.FAQ_DATA = {
       a: [
         'Cleared for Flight is a curriculum concept I designed for field employees who already hold an FAA Remote Pilot Certificate (Part 107) but haven’t flown inspections. It shows how I’d connect a job task analysis to learning outcomes, guided simulator practice, independent scenarios, and an evaluator-scored field checkride.',
         'The interactive pieces are examples of the proposed training. The aircraft limits, clearance distances, battery reserves, and image tolerances are illustrative values, not approved operating standards. I haven’t piloted it with real trainees, and the operating details would need review by flight and utility safety experts before anyone could use it.',
-        'I made it as a Senior Learning and Curriculum Designer, using Claude as a thought and design partner.'
+        'I made it as a Senior Learning and Curriculum Designer, using Claude Design and Claude Code as thought and design partners.'
       ],
       links: [{ label: 'Cleared for Flight', href: 'drone-inspection-training.html' }],
       keys: 'cleared for flight drone drones inspection training field employees utility technical training task analysis course map simulator scenario checkride part 107 remote pilot certificate illustrative concept real flight training aircraft limits who is it for audience prerequisite'
@@ -197,7 +197,7 @@ window.FAQ_DATA = {
       a: [
         'I designed Light the Beacon as a playable browser concept for Grade 6 math. Learners solve four connected problems: build a 2:3 blue-to-gold ratio on a lens, complete a ratio table, find a unit rate, and compare signal plans against the supplies and time available.',
         'The rooms move from a visual model to a table to a rate, then ask learners to use those results in a decision. Optional hints support retries, and feedback points learners toward a relationship they may want to check.',
-        'It’s a prototype that hasn’t been tested with students. I built it to make the learning sequence and interactions concrete, as a Senior Learning and Curriculum Designer, with Claude as a thought and design partner. It would need review and piloting before classroom use.'
+        'It’s a prototype that hasn’t been tested with students. I built it to make the learning sequence and interactions concrete, as a Senior Learning and Curriculum Designer, with Claude Design and Claude Code as thought and design partners. It would need review and piloting before classroom use.'
       ],
       links: [{ label: 'Light the Beacon', href: 'beacon-escape-room.html' }],
       keys: 'light the beacon escape room game game-based lighthouse grade 6 math ratio ratios unit rate rates equivalent ratios puzzle puzzles hints feedback middle school gamification playable prototype concept untested not tested with students'
@@ -284,7 +284,7 @@ window.FAQ_DATA = {
       phrases: ['did you work with a drone expert', 'what would you test before using this', 'what would you validate'],
       q: 'What would you validate before using Cleared for Flight?',
       a: [
-        'I’d first work with flight and utility safety experts to confirm the aircraft, procedures, clearances, emergency actions, and image requirements for the actual operation. Then I’d review the task analysis, objectives, scenarios, and checkride rubric with them.',
+        'I didn’t work with a drone expert on this proof of concept. That would be a follow-up step. I’d start by working with flight and utility safety experts to confirm the aircraft, procedures, clearances, emergency actions, and image requirements for the actual operation. Then I’d review the task analysis, objectives, scenarios, and checkride rubric with them.',
         'After that, I’d test the learning sequence and interactions with representative trainees and evaluators, revise based on what I observe, and confirm the qualification criteria before launch. These are proposed next steps, not work I’ve completed.'
       ],
       links: [{ label: 'Cleared for Flight', href: 'drone-inspection-training.html' }],
@@ -440,7 +440,7 @@ window.FAQ_DATA = {
       phrases: ['how did you make your concept samples', 'what tools did you use for the concepts', 'how did you build the samples'],
       q: 'How did you make your concept samples?',
       a: [
-        'For Branching Biology, Light the Beacon, and Cleared for Flight, I worked as a Senior Learning and Curriculum Designer. I designed the learning sequence, including the practice, feedback, and assessment, and then built an interactive prototype to show how it would work. I used Claude as a thought and design partner throughout.',
+        'For Branching Biology, Light the Beacon, and Cleared for Flight, I worked as a Senior Learning and Curriculum Designer. I designed the learning sequence, including the practice, feedback, and assessment, and then built an interactive prototype to show how it would work. I used Claude Design and Claude Code as thought and design partners throughout.',
         'Each concept has its own page that walks through the design decisions. They’re prototypes, and they would need review with subject experts and testing with learners before anyone used them.'
       ],
       links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }, { label: 'Light the Beacon', href: 'beacon-escape-room.html' }, { label: 'Cleared for Flight', href: 'drone-inspection-training.html' }],
@@ -523,7 +523,7 @@ window.FAQ_DATA = {
       a: [
         'I use AI to help develop ideas, build prototypes, and create tools that support our team’s work. For example, I used Claude Design and Claude Code to build the Coursera Design Guide and Interactivity Generator. The generator also uses Claude to suggest formats and create activities from a designer’s content and learning goal.',
         'I make the decisions about the learning experience and review what we create. When the content requires subject expertise, I work with experts to check it. I’m especially interested in where AI gives us more room to explore an idea, try an approach, and improve it.',
-        'On my concept samples, I used Claude as a thought and design partner. The Space Medicine module was built with Claude Design and Claude Code, and for AI for Nurses, I used ChatGPT, Claude, and Claude Code to support the design.'
+        'I used Claude Design and Claude Code as thought and design partners across my portfolio, including every concept sample. For AI for Nurses, I also used ChatGPT. Digital You is the one project where I didn’t use AI.'
       ],
       links: [{ label: 'Space Medicine', href: 'space-medicine.html' }],
       keys: 'ai artificial intelligence claude chatgpt llm generative tools automation prompts copilot machine learning code claude code claude design vibe coding'
