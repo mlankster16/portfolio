@@ -228,7 +228,7 @@ window.FAQ_DATA = {
       q: 'What standard does Light the Beacon address?',
       a: [
         'Light the Beacon focuses on selected parts of Grade 6 Common Core standard 6.RP.A.3, especially 3a, working with equivalent ratios and a ratio table, and 3b, solving a unit-rate problem.',
-        'Learners use that reasoning across the lens, generator, and radio rooms, then apply it to the final plan decision. The concept doesn’t address every expectation in 6.RP.A.3.'
+        'Learners use that reasoning across the lens, generator, and radio rooms, then apply it to the final plan decision. It doesn’t practice plotting ratio pairs from 3a, percents (3c), or unit conversions (3d), so it doesn’t address every expectation in 6.RP.A.3.'
       ],
       links: [{ label: 'Light the Beacon', href: 'beacon-escape-room.html' }],
       keys: 'standard standards common core 6.rp.a.3 6rp 3a 3b grade 6 ratio rate ratios unit rate equivalent ratios ratio table math mathematics rooms lens generator radio control panel essential question i can goals alignment aligned coverage percent measurement conversion'
@@ -240,7 +240,7 @@ window.FAQ_DATA = {
       a: [
         'Each room has three optional hints. They move from a guiding question to a more concrete next step, and they’re free to use. There’s no timer or penalty, so learners can try again as often as they like.',
         'Feedback points back to the part of the relationship a learner may want to reconsider. Some answers get targeted feedback, and others get a more general prompt.',
-        'At the final panel, learners choose a plan and then select both reasons it works. If they select only one, a short note confirms it’s true and asks about the other, so the step checks that they can connect the ratio and the time available.'
+        'In the lens room, learners first say how many groups of 5 fit in the 20 spots. In rooms 1 to 3, they record the strategy they used before the door unlocks, and those strategies appear in the recap at the end.','At the final panel, learners choose a plan and then select every reason that applies. Two reasons are true and one is a distractor, so the step checks that they can connect the ratio and the time available. If they select only one true reason, a short note says there’s another limit to check.'
       ],
       links: [{ label: 'Light the Beacon', href: 'beacon-escape-room.html' }],
       keys: 'hints hint feedback support scaffolding scaffold timer penalty try again mistakes wrong answers explain reasoning discussion classroom class use escape room staged hints free final panel plan reason'
@@ -303,14 +303,14 @@ window.FAQ_DATA = {
     },
     {
       id: 'cyoa-how', group: 'samples',
-      phrases: ['is this adaptive learning', 'how does it adapt', 'what formats', 'how does personalization work'],
-      q: 'How does personalization work in Branching Biology?',
+      phrases: ['is branching biology adaptive', 'is this adaptive learning', 'how does it adapt', 'what formats', 'how does personalization work'],
+      q: 'Is Branching Biology adaptive?',
       a: [
-        'In this concept, personalization is shown through choices about context, activity format, and support. The walkthrough uses Jordan to illustrate how those choices might work. It doesn’t demonstrate an algorithm adjusting instruction in response to learner performance.',
+        'In this concept, personalization is shown through choices about context, activity format, and support. The walkthrough uses Jordan to illustrate how those choices might work. The path is personalized and choice-based, and a short, ungraded skills check suggests refreshers. The concept doesn’t yet change instruction based on how a learner performs.',
         'The proposed formats are a guided video, an escape-room activity, and a field investigation. The design intent is to keep the learning goals consistent across formats. A next design step would be to check that each format gives learners a comparable chance to practice and show those goals.'
       ],
       links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
-      keys: 'adapt adaptive personalized personalization how does it adapt learner path pathways choice formats guided video escape room field investigation essential question syllabus interests prior knowledge jordan algorithm automatic recommendations'
+      keys: 'adapt adaptive personalized personalization how does it adapt learner path pathways choice learner choice formats guided video escape room field investigation essential question syllabus interests prior knowledge jordan algorithm automatic recommendations skills check refreshers'
     },
     {
       id: 'cyoa-faculty', group: 'samples',
@@ -336,14 +336,25 @@ window.FAQ_DATA = {
     },
     {
       id: 'cyoa-validate', group: 'samples',
-      phrases: ['what would you test before using this with students', 'has branching biology been tested'],
+      phrases: ['what would you test before using this with students', 'has branching biology been tested', 'how would you validate branching biology'],
       q: 'What would you test before using Branching Biology with students?',
       a: [
-        'I’d start by checking the biology, then test the unit with students and instructors. I’d want to know whether learners can explain the evidence and consider another explanation, whether the formats support the same learning goals, and whether the format choices work for learners with different access needs.',
-        'I’d also test whether the faculty view helps instructors make useful decisions without treating a dashboard signal as a definitive judgment. These are proposed next steps, not results from a completed study.'
+        'I’d test first whether final-task work is comparable across formats, scored blind on the shared rubric, whether checkpoint feedback leads to stronger revisions, whether learners understand how their opening answers are used, and whether the dashboard signals lead faculty to useful check-ins. Success would look like similar results across formats, clear gains from the Checkpoint 2 draft to the final task, and learners reporting that the course felt relevant.',
+        'Biology faculty would own the content. Before launch, a biology expert would review the recordings and data, the explanations, the key-terms definitions, and the rubric language. I’d replace illustrative data with cited recordings, test with screen reader and keyboard users and with learners who are Deaf or hard of hearing, choose a host platform and plan the connection to the LMS gradebook, and set privacy rules for opening-question and dashboard data. These are proposed next steps, not results from a completed study.'
       ],
       links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
-      keys: 'test testing pilot validate validation next steps before using with students instructors access needs accessibility biology review evidence what would you test study results'
+      keys: 'test testing pilot validate validation next steps before using with students instructors access needs accessibility screen reader keyboard deaf hard of hearing biology expert review evidence what would you test study results privacy gradebook lms success measures'
+    },
+    {
+      id: 'cyoa-origin', group: 'samples',
+      phrases: ['where did branching biology come from', 'what is illustrative in branching biology', 'what did you design in branching biology'],
+      q: 'Where did the Branching Biology concept come from?',
+      a: [
+        'This proof of concept draws on 13 years of teaching and learning design work in higher education. It takes on tension points that a traditional LMS doesn’t handle well: making a required course feel relevant, offering choice without splitting up assessment, and giving faculty useful signals without over-reading the data.',
+        'I designed and built the interactive walkthrough, including the essential question and unit goal, three formats with shared checkpoints, and the feedback, final task, and rubric. The learner data, faculty dashboard, course map results, and bird recordings and measurements are illustrative, and the platform features show how the design could work. They aren’t a built product.'
+      ],
+      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
+      keys: 'where did it come from origin originated why branching biology concept background tension points required course relevant choice assessment faculty signals what did you design what is illustrative designed and built illustrative data platform features 13 years higher education'
     },
     {
       id: 'ai-accred', group: 'samples',
