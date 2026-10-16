@@ -598,8 +598,8 @@ var LOS=[
  ['Explain how altitude changes atmospheric pressure and the partial pressure of inspired oxygen.','Practice: Exercises 2 and 4 \u00b7 Show it: quiz decisions 3 and 5'],
  ['Use evidence to weigh possible causes of the aeronauts\u2019 symptoms, and state the limits of that evidence.','Practice: Exercises 1 and 3 \u00b7 Show it: Exercise 3 and quiz decisions 2 and 7'],
  ['Compare oxygen and pressure countermeasures in balloon, aircraft, and spacecraft settings.','Practice: Exercise 5 \u00b7 Show it: quiz decisions 4 and 6'],
- ['Apply the model to a new scenario and identify what the model leaves out.','Practice: Exercise 5 and your hypothesis review \u00b7 Show it: quiz decisions 1 and 8']];
-var OBJ=['Explain how altitude affects oxygen pressure','Weigh evidence and its limits','Compare countermeasures across settings','Apply the model and name what it leaves out'];
+ ['Apply what you\u2019ve learned to a new scenario and identify what the model leaves out.','Practice: Exercise 5 and your hypothesis review \u00b7 Show it: quiz decisions 1 and 8']];
+var OBJ=['Explain how altitude affects oxygen pressure','Weigh evidence and its limits','Compare countermeasures across settings','Apply what you\u2019ve learned and name what the model leaves out'];
 var OREV=['Revisit Take Glaisher Back Up and the physics video.','Revisit Weigh the Evidence.','Revisit the countermeasures video and the final challenge.','Revisit the final challenge and your hypothesis review.'];
 function rIntro(b,it,k){
   b.innerHTML='<div class="ih"><div class="ih-sky" aria-hidden="true"><span class="ih-cl" style="bottom:30%"></span><span class="ih-cl b" style="bottom:52%"></span><span class="ih-line" style="bottom:78%"><em>~29,000 ft \u00b7 approximate reported altitude</em></span><span class="ih-line sea" style="bottom:12%"><em>Sea level</em></span><div class="gb-bal ih-bal"><span class="env"></span><span class="rp"></span><span class="bsk"></span></div><span class="ih-o"></span><span class="ih-o" style="left:22%;animation-delay:-1.2s"></span><span class="ih-o" style="left:38%;animation-delay:-2.6s"></span><span class="ih-o" style="left:84%;animation-delay:-.6s"></span><span class="ih-o" style="left:70%;animation-delay:-3.4s"></span></div>'+
@@ -863,7 +863,7 @@ function rTrade(b,it,k){
   function draw(){
     var x='';
     if(F.ph==='pick'){
-      x+=head()+'<div class="bp"><p class="goal"><b>Your goal:</b> reach 29,000 feet without developing hypoxia.</p>';
+      x+=head()+'<div class="bp"><p class="goal"><b>Your goal:</b> in this model, choose measures that predict no hypoxia through ~29,000 ft.</p>';
       x+='<p class="lbl">Engineering budget \u00b7 choose two</p><div class="budget">'+[0,1].map(function(i){var e=F.sel[i]?eq(F.sel[i]):null;return '<span class="slot'+(e?' full':'')+'">'+(e?e.ic+' '+e.n:'Empty slot '+(i+1))+'</span>'}).join('')+'</div>';
       x+='<div class="eqg">'+EQ.map(function(e){var on=F.sel.indexOf(e.k)>-1;return '<button type="button" class="eqc'+(on?' on':'')+'" data-q="'+e.k+'" aria-pressed="'+on+'"'+(!on&&F.sel.length>=2?' disabled':'')+'><span class="ei" aria-hidden="true">'+e.ic+'</span><b>'+e.n+'</b><span class="d">'+e.d+'</span></button>'}).join('')+'</div>';
       x+='<div class="row"><button class="btn pri" type="button" data-launch'+(F.sel.length===2?'':' disabled')+'>\uD83C\uDF88 Launch</button>'+(F.sel.length<2?'<span style="color:var(--muted)">Choose '+(2-F.sel.length)+' more.</span>':'')+'</div></div>';
