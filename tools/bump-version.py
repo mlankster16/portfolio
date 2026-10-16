@@ -19,15 +19,12 @@ if not targets:
 files = [p for p in root.rglob("*") if p.suffix in {".html", ".js"} and ".git" not in p.parts and "tools" not in p.parts]
 for target in targets:
     pattern = re.compile(re.escape(target) + r"\?v=(\d+)")
-    hits = 0
-    new = None
-    for f in files:
-        text = f.read_text(encoding="utf-8")
-        found = pattern.findall(text)
-        if not found:
-            continue
-        if new is None:
-            new = max(int(v) for v in found) + 1
+    hits = [(f, f.read_text(encoding="utf-8")) for f in files]
+    hits = [(f, text) for f, text in hits if pattern.search(text)]
+    if not hits:
+        print(f"{target}: no references found")
+        continue
+    new = max(int(v) for _, text in hits for v in pattern.findall(text)) + 1
+    for f, text in hits:
         f.write_text(pattern.sub(f"{target}?v={new}", text), encoding="utf-8")
-        hits += 1
-    print(f"{target}: {'v' + str(new) + ' in ' + str(hits) + ' file(s)' if hits else 'no references found'}")
+    print(f"{target}: v{new} in {len(hits)} file(s)")

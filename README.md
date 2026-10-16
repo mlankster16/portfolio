@@ -31,10 +31,22 @@ Then open http://localhost:8744. Any static file server works.
 | `assets/img/` | Images (WebP), grouped by page, plus `share-card.png` (the link-preview card used in the share tags) |
 | `assets/interactives/` | Self-contained interactive modules embedded in sample pages |
 | `assets/resume/` | Résumé PDF linked from the Résumé page |
+| `partials/` | Shared header and footer markup (see "Shared header and footer") |
+| `tools/build.py` | Copies the partials into every page |
 | `tools/bump-version.py` | Cache-buster helper (see below) |
 | `sitemap.xml` | Page list for search engines |
 
 Note: `choose-your-own-adventure.html` is the Branching Biology page. The file name predates the project title and is kept so existing links keep working.
+
+## Shared header and footer
+
+The header and footer live in `partials/header.html` and `partials/footer.html`, and their styles are in `css/lagoon.css`. Each page holds a generated copy between `<!-- build:header -->` and `<!-- build:footer -->` marker comments, so the pages stay plain static HTML that works without JavaScript. To change the nav or footer, edit the partial and run:
+
+```bash
+python3 tools/build.py
+```
+
+The script marks the current page in the nav automatically. `python3 tools/build.py --check` exits with an error if any page is out of date. Commit the regenerated pages along with the partial.
 
 ## How the interactive pages work
 

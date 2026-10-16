@@ -23,22 +23,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/lagoon.css?v=16">
+<link rel="stylesheet" href="css/lagoon.css?v=18">
 <style>
-.hv1:hover{color:#0F2E33 !important}
-.hv2:hover{background:#F3F7F5 !important;color:#0F2E33 !important}
-.hv3:hover{background:#F3F7F5 !important;color:#0F2E33 !important}
-.hv4:hover{background:#F3F7F5 !important;color:#0F2E33 !important}
-.hv5:hover{background:#F3F7F5 !important;color:#0F2E33 !important}
-.hv6:hover{background:#F3F7F5 !important;color:#0F2E33 !important}
-.hv7:hover{background:#F3F7F5 !important;color:#0F2E33 !important}
-.hv8:hover{color:#0F2E33 !important}
-.hv9:hover{color:#0F2E33 !important}
-.hv10:hover{color:#0F2E33 !important}
-.hv11:hover{background:#0A6A67 !important;color:#fff !important}
 .hv12:hover{color:#fff !important;background:#0A6A67 !important}
-.hv13:hover{color:#0F2E33 !important}
-.hv14:hover{color:#0F2E33 !important}
 .pn1:hover,.pn2:hover{border-color:#0F8A86 !important;color:#0F2E33 !important;filter:brightness(.97) !important}
 @media (max-width:900px){.hero-art{width:85%!important;opacity:.28}}
 </style>
@@ -49,27 +36,29 @@
 <a class="skip-link" href="#main">Skip to main content</a>
 
 <div style="font-family:'Plus Jakarta Sans',sans-serif;color:#0F2E33;background:#FFFFFF;min-height:100vh;display:flex;flex-direction:column;overflow-x:clip;">
-  <header style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:13px 22.5px;padding:13px max(clamp(16px,5vw,45px),calc((100% - 934.5px) / 2));">
-    <a href="index.html" style="font-size:17px;font-weight:300;letter-spacing:-.01em;color:#0F2E33;white-space:nowrap;">Megan Lancaster, PMP®</a>
-    <nav aria-label="Main" style="display:flex;flex-wrap:wrap;gap:8px clamp(11px,2vw,21px);align-items:center;font-size:14px;color:#4B6468;white-space:nowrap;">
-      <a class="hv1" href="index.html" style="color:#4B6468;">Home</a>
-      <details style="position:relative;">
-        <summary style="list-style:none;cursor:pointer;display:flex;align-items:center;gap:5px;color:#0F2E33;font-weight:500;">Samples <span aria-hidden="true" style="font-size:13px;">▾</span></summary>
-        <div style="position:absolute;top:calc(100% + 12px);left:-16px;z-index:20;background:#fff;border:1px solid #DCE8E3;border-radius:17px;padding:6.5px;display:flex;flex-direction:column;min-width:260px;box-shadow:0 24px 48px -28px rgba(15,46,51,.35);font-weight:400;">
-          <a class="hv2" href="space-medicine.html" style="display:flex;align-items:center;gap:8px;padding:8px 9.5px;border-radius:10px;color:#0F2E33;"><span style="width:10px;height:10px;border-radius:50%;background:#0F8A86;flex:none;"></span>Space Medicine</a>
-          <a class="hv2" href="choose-your-own-adventure.html" style="display:flex;align-items:center;gap:8px;padding:8px 9.5px;border-radius:10px;color:#0F2E33;"><span style="width:10px;height:10px;border-radius:50%;background:#FFD84A;flex:none;"></span>Branching Biology</a>
-          <a class="hv2" href="beacon-escape-room.html" style="display:flex;align-items:center;gap:8px;padding:8px 9.5px;border-radius:10px;color:#0F2E33;"><span style="width:10px;height:10px;border-radius:50%;background:#5FA35A;flex:none;"></span>Light the Beacon</a>
-          <a class="hv2" href="drone-inspection-training.html" aria-current="page" style="display:flex;align-items:center;gap:8px;padding:8px 9.5px;border-radius:10px;color:#0F2E33;background:#F3F7F5;font-weight:500;"><span style="width:10px;height:10px;border-radius:50%;background:#2E7DA6;flex:none;"></span>Cleared for Flight</a>
-          <a class="hv2" href="ai-for-nurses.html" style="display:flex;align-items:center;gap:8px;padding:8px 9.5px;border-radius:10px;color:#0F2E33;"><span style="width:10px;height:10px;border-radius:50%;background:#7FB3C8;flex:none;"></span>AI for Nurses</a>
-          <a class="hv2" href="digital-you.html" style="display:flex;align-items:center;gap:8px;padding:8px 9.5px;border-radius:10px;color:#0F2E33;"><span style="width:10px;height:10px;border-radius:50%;background:#F29B5C;flex:none;"></span>Digital You</a>
+  <!-- build:header -->
+  <header class="site-header">
+    <a class="site-brand" href="index.html">Megan Lancaster, PMP®</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <details class="is-current">
+        <summary>Samples <span class="caret" aria-hidden="true">▾</span></summary>
+        <div class="site-menu">
+          <a href="space-medicine.html"><span class="dot" style="background:#0F8A86;"></span>Space Medicine</a>
+          <a href="choose-your-own-adventure.html"><span class="dot" style="background:#FFD84A;"></span>Branching Biology</a>
+          <a href="beacon-escape-room.html"><span class="dot" style="background:#5FA35A;"></span>Light the Beacon</a>
+          <a href="drone-inspection-training.html" aria-current="page"><span class="dot" style="background:#2E7DA6;"></span>Cleared for Flight</a>
+          <a href="ai-for-nurses.html"><span class="dot" style="background:#7FB3C8;"></span>AI for Nurses</a>
+          <a href="digital-you.html"><span class="dot" style="background:#F29B5C;"></span>Digital You</a>
         </div>
       </details>
-      <a class="hv8" href="course-portfolio.html" style="color:#4B6468;">Course Portfolio</a>
-      <a class="hv9" href="project-management.html" style="color:#4B6468;">Project Management</a>
-      <a class="hv10" href="about.html" style="color:#4B6468;">About</a>
-      <a class="hv11" href="resume.html" style="background:#0F2E33;color:#fff;padding:6.5px 14.5px;border-radius:999px;white-space:nowrap;">Résumé</a>
+      <a href="course-portfolio.html">Course Portfolio</a>
+      <a href="project-management.html">Project Management</a>
+      <a href="about.html">About</a>
+      <a class="site-cta" href="resume.html">Résumé</a>
     </nav>
   </header>
+  <!-- /build:header -->
 <main id="main" style="flex:1;">
 
   <div style="padding:clamp(25.5px,4vw,41.5px) max(clamp(16px,5vw,45px),calc((100% - 934.5px) / 2)) 51px;background:#F3F7F5;display:flex;flex-direction:column;gap:22.5px;">
@@ -305,10 +294,12 @@
 
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:11px;padding:45px max(clamp(16px,5vw,45px),calc((100% - 934.5px) / 2));"><a class="pn1" href="beacon-escape-room.html" style="color:#0F2E33;border-radius:18.5px;padding:16px 19px;display:flex;flex-direction:column;gap:4px;background:#fff;border:1px solid #DCE8E3;"><span style="font-size:13px;color:#4B6468;">← Previous</span><span style="font-size:17px;font-weight:400;">Light the Beacon</span></a><a class="pn2" href="ai-for-nurses.html" style="color:#0F2E33;border-radius:18.5px;padding:16px 19px;display:flex;flex-direction:column;gap:4px;align-items:flex-end;text-align:right;background:#BFE5DA;"><span style="font-size:13px;color:#0A6A67;">Next →</span><span style="font-size:17px;font-weight:400;">AI for Nurses</span></a></div>
   </main>
-<footer style="border-top:1px solid #DCE8E3;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:9.5px;padding:17.5px max(clamp(16px,5vw,45px),calc((100% - 934.5px) / 2));font-size:13.5px;color:#4B6468;">
+<!-- build:footer -->
+  <footer class="site-footer">
     <span>© Megan Lancaster</span>
-    <div style="display:flex;gap:14.5px;"><a class="hv13" href="mailto:meganrlancaster@gmail.com" style="color:#4B6468;">Email</a><a class="hv14" href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener" style="color:#4B6468;">LinkedIn</a></div>
+    <div><a href="mailto:meganrlancaster@gmail.com">Email</a><a href="https://www.linkedin.com/in/megan-lancaster-pmp/" target="_blank" rel="noopener">LinkedIn</a></div>
   </footer>
+  <!-- /build:footer -->
 </div>
 
 <script src="js/lagoon.js?v=39"></script>
