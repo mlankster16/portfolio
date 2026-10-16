@@ -150,7 +150,7 @@ window.FAQ_DATA = {
       phrases: ['what is space medicine', 'what did you do on space medicine', 'is the week 2 module live', 'what happened to glaisher and coxwell'],
       q: 'What is Space Medicine?',
       a: [
-        'Space Medicine is a Duke Coursera course launched in 2021. As Senior Learning Designer and Project Manager, I managed the project and led the learning design, coordinating media production, guiding scripts, and shaping the learner journey. It has reached nearly 30,000 learners.',
+        'Space Medicine is a Duke Coursera course launched in 2021. As Senior Learning Designer and Project Manager, I managed the project and led the learning design, coordinating media production, guiding scripts, and shaping the course structure. It has reached nearly 30,000 learners.',
         'Separately, I created a concept reimagining of Week 2. It follows James Glaisher and Henry Coxwell’s 1862 balloon flight through a case-based interactive module, with a short activity after each video and a final challenge to redesign Glaisher’s balloon. The module is a portfolio concept and isn’t part of the live Coursera course.'
       ],
       links: [{ label: 'Explore the course and Week 2 concept', href: 'space-medicine.html' }],
@@ -240,7 +240,7 @@ window.FAQ_DATA = {
       a: [
         'Each room has three optional hints. They move from a guiding question to a more concrete next step, and they’re free to use. There’s no timer or penalty, so learners can try again as often as they like.',
         'Feedback points back to the part of the relationship a learner may want to reconsider. Some answers get targeted feedback, and others get a more general prompt.',
-        'In the lens room, learners first say how many groups of 5 fit in the 20 spots. In rooms 1 to 3, they record the strategy they used before the door unlocks, and those strategies appear in the recap at the end.','At the final panel, learners choose a plan and then select every reason that applies. Two reasons are true and one is a distractor, so the step checks that they can connect the ratio and the time available. If they select only one true reason, a short note says there’s another limit to check.'
+        'In the lens room, learners first say how many groups of 5 fit in the 20 spots. In rooms 1 to 3, they record the strategy they used before the door unlocks, and those strategies appear in the recap at the end.','At the final panel, learners choose a plan and then select every reason that applies. Two reasons are true and two are distractors, so the step checks that they can connect the ratio and the time available. If they select a distractor, a short note points back to the supplies or the plans, and if they select only one true reason, it says there’s another limit to check.'
       ],
       links: [{ label: 'Light the Beacon', href: 'beacon-escape-room.html' }],
       keys: 'hints hint feedback support scaffolding scaffold timer penalty try again mistakes wrong answers explain reasoning discussion classroom class use escape room staged hints free final panel plan reason'
@@ -273,8 +273,8 @@ window.FAQ_DATA = {
       phrases: ['how do you assess trainees', 'what is a checkride', 'how do you evaluate training'],
       q: 'How would you assess and evaluate the drone training?',
       a: [
-        'This is a proposed evaluation model, not a course that has been piloted. A qualified evaluator scores the field checkride against behavior-based criteria and records what they observed as evidence. Missing a critical item means the trainee isn’t qualified yet. If all critical items are met, the instructor assigns targeted practice on any missed noncritical items before the trainee’s first solo mission.',
-        'I’d also review simulator decisions, attempts, and hint use, compare simulator results with checkride results for the same tasks, and look at flight lead observations, incident and near-miss reports, and inspection data that has to be re-flown. Those measures could show where to add guided practice, give field practice more time, or revisit an objective. I don’t have learner or operational results for this concept.'
+        'This is a proposed evaluation model, not a course that has been piloted. A qualified evaluator scores the field checkride against behavior-based criteria and records what they observed as evidence. Missing a critical item means the trainee isn’t qualified yet. If all critical items are met, the instructor assigns targeted practice on any missed noncritical items before the trainee’s first independently assigned inspection.',
+        'I’d also plan to review simulator decisions, attempts, and hint use, compare simulator results with checkride results for the same tasks, and look at flight lead observations, incident and near-miss reports, and inspection data that has to be re-flown. Those measures could show where to add guided practice, give field practice more time, or revisit an objective. I don’t have learner or operational results for this concept.'
       ],
       links: [{ label: 'Cleared for Flight', href: 'drone-inspection-training.html' }],
       keys: 'assess assessment evaluate evaluation measure measures effectiveness checkride qualification qualified evaluator rubric behavior-based critical items remediation pass rate xapi lms simulator data incident near-miss reflight revise improve trainees training evaluation results'
@@ -306,7 +306,7 @@ window.FAQ_DATA = {
       phrases: ['is branching biology adaptive', 'is this adaptive learning', 'how does it adapt', 'what formats', 'how does personalization work'],
       q: 'Is Branching Biology adaptive?',
       a: [
-        'In this concept, personalization is shown through choices about context, activity format, and support. The walkthrough uses Jordan to illustrate how those choices might work. The path is personalized and choice-based, and a short, ungraded skills check suggests refreshers. The concept doesn’t yet change instruction based on how a learner performs.',
+        'In this concept, personalization is shown through choices about context, activity format, and support. The walkthrough uses Jordan to illustrate how those choices might work. The path is personalized and choice-based, shaped by a few opening questions in the course chat. The concept doesn’t yet change instruction based on how a learner performs.',
         'The proposed formats are a guided video, an escape-room activity, and a field investigation. The design intent is to keep the learning goals consistent across formats. A next design step would be to check that each format gives learners a comparable chance to practice and show those goals.'
       ],
       links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],

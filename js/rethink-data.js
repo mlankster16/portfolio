@@ -17,7 +17,7 @@ window.RETHINK = (function () {
   Q = COURSE_Q.concat(UNIT_Q);
   var JORDAN = { major: 'physics', why: 'required', style: 'mix', shaky: ['spectro', 'evidence'], keep: 'points' };
 
-  var UNIT = { n: 'Unit 3', concept: 'Adaptation in a changing environment', question: 'How does birdsong differ between a city park and a nearby forest, and why?',
+  var UNIT = { n: 'Unit 3', concept: 'Variation in birdsong across environments', question: 'How does birdsong differ between a city park and a nearby forest, and why?',
     doing: 'You’ll compare recordings and environmental data from two settings, consider more than one explanation, and finish with a shared task that every format prepares you for.',
     goal: 'Use recordings and noise data to compare song-frequency patterns, evaluate at least two explanations, and say what the data can and can’t tell us about why the songs differ.',
     skills: ['Reading and comparing graphs', 'Frequency and pitch', 'Reading a spectrogram', 'Weighing evidence for different explanations'] };
