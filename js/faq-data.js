@@ -520,6 +520,15 @@ window.FAQ_DATA = {
       keys: 'real in use live launched concept concepts prototype proof of concept hypothetical actual production published difference live project ip intellectual property confidential confidentiality why concepts custom design'
     },
     {
+      id: 'ip-assets', group: 'samples',
+      phrases: ['can you share the full assets for your live courses', 'can i see your live courses', 'can i see the course files', 'why are there no live course samples', 'can i see your work', 'why can\'t you share the full assets','why can\'t i see the full assets','why cant you share','why are there no live course samples','why are the live courses not shown'],
+      q: 'Why can’t you share the full assets for your live courses?',
+      a: [
+        'Live courses (Coursera and Canvas) were developed with Duke faculty and partners, so intellectual property and proprietary restrictions limit what I can share publicly. I can share selected snippets of work, and I’m happy to talk through the design decisions, my role, and how the work came together.'
+      ],
+      keys: 'full assets live courses share assets course files intellectual property proprietary ip restrictions confidential portfolio samples snippets can i see the course can i see your work coursera canvas duke permission'
+    },
+    {
       id: 'concept-making', group: 'samples',
       phrases: ['how did you make your concept samples', 'what tools did you use for the concepts', 'how did you build the samples'],
       q: 'How did you make your concept samples?',
@@ -814,16 +823,6 @@ window.FAQ_DATA = {
       ],
       links: 'contact',
       keys: 'contact email reach message hire hiring work together collaborate connect linkedin talk get in touch freelance consulting available availability'
-    },
-    {
-      id: 'ip-assets', group: 'contact',
-      phrases: ['can you share the full assets for your live courses', 'can i see your live courses', 'can i see the course files', 'why are there no live course samples', 'can i see your work'],
-      q: 'Can you share the full assets for your live courses?',
-      a: [
-        'Live courses (Coursera and Canvas) were developed with Duke faculty and partners, so intellectual property and proprietary restrictions limit what I can share publicly. I can share selected snippets of work, and I’m happy to talk through the design decisions, my role, and how the work came together.'
-      ],
-      links: 'contact',
-      keys: 'full assets live courses share assets course files intellectual property proprietary ip restrictions confidential portfolio samples snippets can i see the course can i see your work coursera canvas duke permission'
     },
     {
       id: 'about-chat', group: 'contact',
