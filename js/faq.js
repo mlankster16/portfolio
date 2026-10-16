@@ -102,7 +102,9 @@
     var wrap = el('div', { class: 'faq-links' });
     if (it.links === 'contact') {
       wrap.appendChild(el('a', { class: 'faq-btn faq-btn-dark', href: 'mailto:' + D.email, text: 'Email Megan' }));
-      wrap.appendChild(el('a', { class: 'faq-btn', href: D.linkedin, target: '_blank', rel: 'noopener', text: 'LinkedIn' }));
+      var li = el('a', { class: 'faq-btn', href: D.linkedin, target: '_blank', rel: 'noopener', text: 'LinkedIn' });
+      li.appendChild(el('span', { class: 'sr-only', text: ' (opens in a new tab)' }));
+      wrap.appendChild(li);
       return wrap;
     }
     var many = it.links.length > 2;

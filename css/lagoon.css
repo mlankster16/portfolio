@@ -53,3 +53,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, iframe:focus-visib
 .site-footer div { display: flex; gap: 14.5px; }
 .site-footer a { color: #4B6468; }
 .site-footer a:hover { color: #0F2E33; }
+
+/* Screen-reader-only text, e.g. "(opens in a new tab)". */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
