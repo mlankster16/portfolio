@@ -33,7 +33,7 @@ window.FAQ_DATA = {
       phrases: ['what do you do','who are you','tell me about yourself'],
       q: 'What do you do?',
       a: [
-        'I’m a senior learning experience designer and a PMP®-certified project manager. I work with experts to turn complex ideas into learning people can use.',
+        'I’m a senior learning experience designer, STEM educator, and PMP®-certified project manager. I work with experts to turn complex ideas into learning people can use.',
         'Along the way, I help teams decide what to focus on, how learners will practice, and what we can build well with the time and resources available.'
       ],
       links: [{ label: 'About me', href: 'about.html' }],
@@ -60,7 +60,6 @@ window.FAQ_DATA = {
       links: [{ label: 'Résumé', href: 'resume.html', note: 'education and teaching experience' }],
       keys: 'background education degree degrees studied study physics engineering science teacher teaching taught classroom stem school university where did you go to school'
     },
-
     {
       id: 'joy', group: 'about',
       phrases: ['what brings you joy', 'brings you joy', 'what do you love', 'what do you enjoy about your work', 'what motivates you', 'what drives you'],
@@ -81,7 +80,6 @@ window.FAQ_DATA = {
       ],
       keys: 'hike hikes hiker hobbies hobby interests outside work fun free time spare time weekends outdoors hiking camping travel traveling nature trail personal life'
     },
-
     {
       id: 'credentials', group: 'about',
       phrases: ['what is your education','where did you go to school','what degrees do you have','are you pmp certified','do you have a certification'],
@@ -126,7 +124,6 @@ window.FAQ_DATA = {
       links: [{ label: 'Résumé', href: 'resume.html' }],
       keys: 'classroom teaching teacher taught k-12 k12 middle school high school science teacher stem instructor elementary engineering is elementary eie challenger learning center flight director duke tip professional development workshops'
     },
-
     /* ---------- Samples ---------- */
     {
       id: 'where-start', group: 'samples',
@@ -144,6 +141,68 @@ window.FAQ_DATA = {
         { label: 'Course Portfolio', href: 'course-portfolio.html', note: 'everything I’ve developed over the last six years' }
       ],
       keys: 'start begin first overview where to begin best work highlights recommend recommendation tour what should i look at see samples portfolio examples favorite hiring technical training higher ed custom design group category show me higher ed work filter filters audience platform features k-12 workforce lifelong learning'
+    },
+    {
+      id: 'in-use', group: 'samples',
+      phrases: ['are all the projects in use','which projects are real','which are real','real or concept','live or concept','what is a concept','what are concepts','are these real','are these real projects','what is a live project','proof of concept','learning design of your live courses','see your live courses','show your live work','why are some projects concepts'],
+      q: 'Which projects are real, and which are concepts?',
+      a: [
+        'Space Medicine, AI for Nurses, and Digital You are live projects: real courses I worked on with Duke faculty and partners. Space Medicine launched on Coursera in 2021, AI for Nurses launched in September 2026, and Digital You ran as a for-credit course in Spring 2024. On Space Medicine, the original course is live, and the reimagined Week 2 module is a concept I built.',
+        'Branching Biology, Light the Beacon, and Cleared for Flight are concepts: custom designs I created to show my work. Because of intellectual property, it’s harder for me to show the learning design behind live courses, so the concepts let me share what I can do and what’s possible beyond them. They’re proofs of concept, and they would need further research, development, and testing before being used with learners.',
+        'On the Home page, each sample is marked Live project or Concept, and you can filter by project type, features, audience, or platform.'
+      ],
+      keys: 'real in use live launched concept concepts prototype proof of concept hypothetical actual production published difference live project ip intellectual property confidential confidentiality why concepts custom design'
+    },
+    {
+      id: 'try-concepts', group: 'samples',
+      phrases: ['can i try the concepts', 'can i try the samples', 'are the interactives working', 'are the samples interactive'],
+      q: 'Can I try the concepts?',
+      a: [
+        'Yes. Branching Biology, Light the Beacon, and Cleared for Flight are interactive on their project pages. The separate Space Medicine Week 2 concept is interactive on the Space Medicine page as well.'
+      ],
+      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }, { label: 'Light the Beacon', href: 'beacon-escape-room.html' }, { label: 'Cleared for Flight', href: 'drone-inspection-training.html' }, { label: 'Space Medicine', href: 'space-medicine.html' }],
+      keys: 'try interactive demo play can i try the concepts samples working prototypes are they interactive do they work live demo'
+    },
+    {
+      id: 'concept-making', group: 'samples',
+      phrases: ['how did you make your concept samples', 'what tools did you use for the concepts', 'how did you build the samples'],
+      q: 'How did you make your concept samples?',
+      a: [
+        'For Branching Biology, Light the Beacon, and Cleared for Flight, I worked as a Senior Learning and Curriculum Designer. I designed the learning sequence, including the practice, feedback, and assessment, and then built an interactive prototype to show how it would work. I used Claude Design and Claude Code as thought and design partners throughout.',
+        'Each concept has its own page that walks through the design decisions. They’re prototypes, and they would need review with subject experts and testing with learners before anyone used them.'
+      ],
+      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }, { label: 'Light the Beacon', href: 'beacon-escape-room.html' }, { label: 'Cleared for Flight', href: 'drone-inspection-training.html' }],
+      keys: 'how did you make how did you build what tools did you use tools role what did you do process concept samples prototype claude design claude code ai partner built made created designed concepts'
+    },
+    {
+      id: 'ip-assets', group: 'samples',
+      phrases: ['can you share the full assets for your live courses', 'can i see your live courses', 'can i see the course files', 'why are there no live course samples', 'can i see your work', 'why can\'t you share the full assets','why can\'t i see the full assets','why cant you share','why are the live courses not shown'],
+      q: 'Why can’t you share the full assets for your live courses?',
+      a: [
+        'Live courses (Coursera and Canvas) were developed with Duke faculty and partners, so intellectual property and proprietary restrictions limit what I can share publicly. I can share selected snippets of work, and I’m happy to talk through the design decisions, my role, and how the work came together.'
+      ],
+      keys: 'full assets live courses share assets course files intellectual property proprietary ip restrictions confidential portfolio samples snippets can i see the course can i see your work coursera canvas duke permission'
+    },
+    {
+      id: 'course-count', group: 'samples',
+      q: 'How many courses have you worked on?',
+      a: [
+        'Since 2020, I’ve designed and developed 47 Coursera courses and 12 Coursera Specializations with Duke faculty, with more than 377,000 enrollments. I’ve also built courses on Canvas and other platforms.',
+        'The Course Portfolio has the full list.'
+      ],
+      links: [{ label: 'Course Portfolio', href: 'course-portfolio.html' }],
+      keys: 'how many count total courses specializations enrollments learners enrolled numbers stats statistics scale impact reach years 2020 catalog list archive'
+    },
+    {
+      id: 'top-rated', group: 'samples',
+      phrases: ['which courses are rated highest','best rated courses','highest rated course'],
+      q: 'Which of your courses are rated highest?',
+      a: [
+        'A few favorites from the Course Portfolio: the Financial Management Specialization has a 4.8 out of 5 average rating with 59,525 enrolled. Space Medicine also has 4.8 out of 5, with 29,777 enrolled. The AI in Nursing Practice Specialization, new in 2026, has a 5.0 out of 5 so far, with 100+ enrolled.',
+        'Across everything, I’ve designed 47 Coursera courses and 12 Specializations with more than 377,000 enrollments.'
+      ],
+      links: [{ label: 'Course Portfolio', href: 'course-portfolio.html' }],
+      keys: 'rated rating ratings highest best top favorite favourite reviews review stars popular most popular enrollments enrolled financial management space medicine ai in nursing practice'
     },
     {
       id: 'space-medicine', group: 'samples',
@@ -179,16 +238,70 @@ window.FAQ_DATA = {
       keys: 'cyoa choose your own adventure branching biology jordan biology 101 personalized adaptive learner choice walkthrough proof of concept concept undergraduate science dashboard design proposal prototype what did you build'
     },
     {
-      id: 'drone', group: 'samples',
-      phrases: ['what is cleared for flight', 'is this real flight training', 'what parts are illustrative', 'what is illustrative', 'who is cleared for flight for'],
-      q: 'What is Cleared for Flight?',
+      id: 'cyoa-how', group: 'samples',
+      phrases: ['is branching biology adaptive', 'is this adaptive learning', 'how does it adapt', 'what formats', 'how does personalization work'],
+      q: 'Is Branching Biology adaptive?',
       a: [
-        'Cleared for Flight is a curriculum concept I designed for field employees who already hold an FAA Remote Pilot Certificate (Part 107) but haven’t flown inspections. It shows how I’d connect a job task analysis to learning outcomes, guided simulator practice, independent scenarios, and an evaluator-scored field checkride.',
-        'The interactive pieces are examples of the proposed training. The aircraft limits, clearance distances, battery reserves, and image tolerances are illustrative values, not approved operating standards. I haven’t piloted it with real trainees, and the operating details would need review by flight and utility safety experts before anyone could use it.',
-        'I made it as a Senior Learning and Curriculum Designer, using Claude Design and Claude Code as thought and design partners.'
+        'In this concept, personalization is shown through choices about context, activity format, and support. The walkthrough uses Jordan to illustrate how those choices might work. The path is personalized and choice-based, shaped by a few opening questions in the course chat. The concept doesn’t yet change instruction based on how a learner performs.',
+        'The proposed formats are a guided video, an escape-room activity, and a field investigation. The design intent is to keep the learning goals consistent across formats. A next design step would be to check that each format gives learners a comparable chance to practice and show those goals.'
       ],
-      links: [{ label: 'Cleared for Flight', href: 'drone-inspection-training.html' }],
-      keys: 'cleared for flight drone drones inspection training field employees utility technical training task analysis course map simulator scenario checkride part 107 remote pilot certificate illustrative concept real flight training aircraft limits who is it for audience prerequisite'
+      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
+      keys: 'adapt adaptive personalized personalization how does it adapt learner path pathways choice learner choice formats guided video escape room field investigation essential question syllabus interests prior knowledge jordan algorithm automatic recommendations skills check refreshers'
+    },
+    {
+      id: 'cyoa-biology', group: 'samples',
+      phrases: ['what biology is in the activity', 'what is the birdsong activity', 'are the recordings real', 'what is the science', 'song sparrow', 'what bird is it', 'which bird', 'what species', 'portland study'],
+      q: 'What biology idea does the Branching Biology activity explore?',
+      a: [
+        'The sample unit asks how organisms respond to changes in their environment, using song sparrow song in a city park and a nearby forest. Learners look at evidence, such as recordings and spectrograms, to explain why city birds might sing differently, and they consider other explanations. The unit includes a short “Meet the bird” reading and a list of sources, including a published Portland study that found an association between low-frequency background noise and song sparrow song frequency. That study doesn’t on its own establish the cause.',
+        'The recordings and measurements in the walkthrough are illustrative, and the page says so. A live course would use cited recordings, for example from the Macaulay Library. I’d also document where and how the recordings were made, the sample size, and how pitch was measured.'
+      ],
+      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
+      keys: 'song sparrow sparrow species portland study meet the bird macaulay library sources biology birdsong bird song song pitch recordings recording spectrogram traffic noise city birds forest park field investigation evidence alternative explanation another explanation evolution evolutionary dataset data sample data illustrative species science scientific claims environment'
+    },
+    {
+      id: 'cyoa-faculty', group: 'samples',
+      phrases: ['what does the faculty view show', 'faculty dashboard'],
+      q: 'What does faculty see in Branching Biology?',
+      a: [
+        'The concept includes a faculty view with example patterns in activity choices, confidence, and performance against shared criteria. It also sketches how an instructor might spot a reason to check in with a learner.',
+        'These indicators are prompts for a conversation. They don’t diagnose a learner or draw conclusions about them. The view is a design concept with sample numbers for illustration, and it hasn’t been tested as an analytics tool. Before building something like it, I’d want to define what data are needed, who can see them, and how instructors should interpret them.'
+      ],
+      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
+      keys: 'faculty view instructor dashboard roster check-in confidence results class patterns outcomes curriculum accreditation data analytics learning analytics teacher what does faculty see sample numbers privacy data'
+    },
+    {
+      id: 'cyoa-origin', group: 'samples',
+      phrases: ['where did branching biology come from', 'what is illustrative in branching biology', 'what did you design in branching biology'],
+      q: 'Where did the Branching Biology concept come from?',
+      a: [
+        'This proof of concept draws on 13 years of teaching and learning design work in higher education. It takes on tension points that a traditional LMS doesn’t handle well: making a required course feel relevant, offering choice without splitting up assessment, and giving faculty useful signals without over-reading the data.',
+        'I designed and built the interactive walkthrough, including the essential question and unit goal, three formats with shared checkpoints, and the feedback, final task, and rubric. The learner data, faculty dashboard, course map results, and bird recordings and measurements are illustrative, and the platform features show how the design could work. They aren’t a built product.'
+      ],
+      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
+      keys: 'where did it come from origin originated why branching biology concept background tension points required course relevant choice assessment faculty signals what did you design what is illustrative designed and built illustrative data platform features 13 years higher education'
+    },
+    {
+      id: 'cyoa-science', group: 'samples',
+      phrases: ['what learning science informed branching biology', 'what research supports your design choices', 'what is self-determination theory', 'do you use backward design', 'what learning theories do you use'],
+      q: 'What learning science informed Branching Biology?',
+      a: [
+        'Three ideas shape the concept. First, examples connect to a learner’s existing knowledge and interests, drawing on prior-knowledge research and Keller’s ARCS model. Second, backward design keeps activities and assessments focused on a shared essential question. Third, learners can choose among formats while working toward the same goals and criteria, drawing on self-determination theory and Universal Design for Learning.',
+        'The choices shape how learners engage with the work, not what they are expected to learn.'
+      ],
+      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
+      keys: 'learning science research evidence based theory prior knowledge keller arcs model backward design essential question self-determination theory universal design for learning udl autonomy competence relevance motivation three ideas how learning works ambrose'
+    },
+    {
+      id: 'cyoa-validate', group: 'samples',
+      phrases: ['what would you test before using this with students', 'has branching biology been tested', 'how would you validate branching biology'],
+      q: 'What would you test before using Branching Biology with students?',
+      a: [
+        'I’d test first whether final-task work is comparable across formats, scored blind on the shared rubric, whether checkpoint feedback leads to stronger revisions, whether learners understand how their opening answers are used, and whether the dashboard signals lead faculty to useful check-ins. Success would look like similar results across formats, clear gains from the Checkpoint 2 draft to the final task, and learners reporting that the course felt relevant.',
+        'Biology faculty would own the content. Before launch, a biology expert would review the recordings and data, the explanations, the key-terms definitions, and the rubric language. I’d replace illustrative data with cited recordings, test with screen reader and keyboard users and with learners who are Deaf or hard of hearing, choose a host platform and plan the connection to the LMS gradebook, and set privacy rules for opening-question and dashboard data. These are proposed next steps, not results from a completed study.'
+      ],
+      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
+      keys: 'test testing pilot validate validation next steps before using with students instructors access needs accessibility screen reader keyboard deaf hard of hearing biology expert review evidence what would you test study results privacy gradebook lms success measures'
     },
     {
       id: 'beacon', group: 'samples',
@@ -201,26 +314,6 @@ window.FAQ_DATA = {
       ],
       links: [{ label: 'Light the Beacon', href: 'beacon-escape-room.html' }],
       keys: 'light the beacon escape room game game-based lighthouse grade 6 math ratio ratios unit rate rates equivalent ratios puzzle puzzles hints feedback middle school gamification playable prototype concept untested not tested with students'
-    },
-    {
-      id: 'ai-for-nurses', group: 'samples',
-      q: 'What was your role on AI for Nurses?',
-      a: [
-        'I led learning design and project management for a three-course Coursera Specialization developed with Duke School of Nursing and Johnson & Johnson. I started with survey data from working nurses, then brought registered nurses into the design process so the examples would match what they see on a shift.',
-        'The Specialization launched in September 2026 and offers up to 9 continuing education credit hours for nurses.'
-      ],
-      links: [{ label: 'AI for Nurses', href: 'ai-for-nurses.html' }],
-      keys: 'ai for nurses nursing nurses specialization johnson johnson j&j duke school of nursing continuing education credit hours healthcare clinical artificial intelligence'
-    },
-    {
-      id: 'digital-you', group: 'samples',
-      q: 'What is Digital You?',
-      a: [
-        'Let’s Talk Digital You is a for-credit, interdisciplinary Duke course in Canvas, open to students in any major. As project manager and lead learning experience designer, I helped two lead instructors and weekly guest experts build one integrated course on the technical and ethical sides of a data-centric world.',
-        'It ran as a hybrid, semester-long course in Spring 2024.'
-      ],
-      links: [{ label: 'Digital You', href: 'digital-you.html' }],
-      keys: 'digital you canvas for-credit credit course interdisciplinary ethics technology data guest lecturers instructors tas university undergraduate hybrid spring 2024'
     },
     {
       id: 'beacon-standard', group: 'samples',
@@ -246,6 +339,16 @@ window.FAQ_DATA = {
       keys: 'hints hint feedback support scaffolding scaffold timer penalty try again mistakes wrong answers explain reasoning discussion classroom class use escape room staged hints free final panel plan reason'
     },
     {
+      id: 'beacon-class', group: 'samples',
+      phrases: ['how could a teacher use light the beacon in class', 'can teachers use light the beacon', 'is light the beacon for the classroom'],
+      q: 'How could a teacher use Light the Beacon in class?',
+      a: [
+        'Learners can complete the activity independently first, at their own pace. Then a teacher could use it to start a short discussion: How did you solve each puzzle? Which representation helped you? How did equivalent ratios and unit rates help you choose a final signal plan?'
+      ],
+      links: [{ label: 'Light the Beacon', href: 'beacon-escape-room.html' }],
+      keys: 'teacher classroom use in class discussion independent practice representations equivalent ratios unit rates final signal plan how could a teacher use how long does it take middle school grade 6'
+    },
+    {
       id: 'beacon-validate', group: 'samples',
       phrases: ['what would you test', 'how would you test light the beacon', 'has it been tested'],
       q: 'What would you want to learn from testing Light the Beacon?',
@@ -255,6 +358,18 @@ window.FAQ_DATA = {
       ],
       links: [{ label: 'Light the Beacon', href: 'beacon-escape-room.html' }],
       keys: 'test testing pilot validate validation next steps what would you test educator review students pilot reasoning learn from testing improve revise'
+    },
+    {
+      id: 'drone', group: 'samples',
+      phrases: ['what is cleared for flight', 'is this real flight training', 'what parts are illustrative', 'what is illustrative', 'who is cleared for flight for'],
+      q: 'What is Cleared for Flight?',
+      a: [
+        'Cleared for Flight is a curriculum concept I designed for field employees who already hold an FAA Remote Pilot Certificate (Part 107) but haven’t flown inspections. It shows how I’d connect a job task analysis to learning outcomes, guided simulator practice, independent scenarios, and an evaluator-scored field checkride.',
+        'The interactive pieces are examples of the proposed training. The aircraft limits, clearance distances, battery reserves, and image tolerances are illustrative values, not approved operating standards. I haven’t piloted it with real trainees, and the operating details would need review by flight and utility safety experts before anyone could use it.',
+        'I made it as a Senior Learning and Curriculum Designer, using Claude Design and Claude Code as thought and design partners.'
+      ],
+      links: [{ label: 'Cleared for Flight', href: 'drone-inspection-training.html' }],
+      keys: 'cleared for flight drone drones inspection training field employees utility technical training task analysis course map simulator scenario checkride part 107 remote pilot certificate illustrative concept real flight training aircraft limits who is it for audience prerequisite'
     },
     {
       id: 'drone-design', group: 'samples',
@@ -269,6 +384,17 @@ window.FAQ_DATA = {
       keys: 'task analysis duties tasks steps criticality risk harm performance objective condition behavior standard course map modality simulator self-paced classroom field instructor curriculum design process progression demonstration guided practice hints retries independent scenario observed field practice what did you do role tools how did you make'
     },
     {
+      id: 'drone-sim', group: 'samples',
+      phrases: ['how does the cleared for flight simulator work', 'what is the simulator in cleared for flight', 'can a learner fail cleared for flight'],
+      q: 'How does the Cleared for Flight simulator work?',
+      a: [
+        'The sample scenario builds toward independent decisions across five decision points. The first includes a prompt, the next two offer optional hints, and the last two are completed without hints. After coaching, learners can try a decision again.',
+        'This is a concept prototype, and the operating limits shown in it are illustrative values. They would need review by flight and utility safety experts before any real training use.'
+      ],
+      links: [{ label: 'Cleared for Flight', href: 'drone-inspection-training.html' }],
+      keys: 'simulator scenario decision points five decisions prompt hints fade support no hints coaching retry try again substation inspection illustrative limits prototype how does the simulator work can a learner fail'
+    },
+    {
       id: 'drone-assess', group: 'samples',
       phrases: ['how do you assess trainees', 'what is a checkride', 'how do you evaluate training'],
       q: 'How would you assess and evaluate the drone training?',
@@ -278,17 +404,6 @@ window.FAQ_DATA = {
       ],
       links: [{ label: 'Cleared for Flight', href: 'drone-inspection-training.html' }],
       keys: 'assess assessment evaluate evaluation measure measures effectiveness checkride qualification qualified evaluator rubric behavior-based critical items remediation pass rate xapi lms simulator data incident near-miss reflight revise improve trainees training evaluation results'
-    },
-    {
-      id: 'drone-validate', group: 'samples',
-      phrases: ['did you work with a drone expert', 'what would you test before using this', 'what would you validate'],
-      q: 'What would you validate before using Cleared for Flight?',
-      a: [
-        'I didn’t work with a drone expert on this proof of concept. That would be a follow-up step. I’d start by working with flight and utility safety experts to confirm the aircraft, procedures, clearances, emergency actions, and image requirements for the actual operation. Then I’d review the task analysis, objectives, scenarios, and checkride rubric with them.',
-        'After that, I’d test the learning sequence and interactions with representative trainees and evaluators, revise based on what I observe, and confirm the qualification criteria before launch. These are proposed next steps, not work I’ve completed.'
-      ],
-      links: [{ label: 'Cleared for Flight', href: 'drone-inspection-training.html' }],
-      keys: 'validate validation review experts safety experts flight experts utility safety test pilot pilot test before using next steps what would you test did you work with a drone expert subject matter expert sme approve approval operating standards'
     },
     {
       id: 'drone-part107', group: 'samples',
@@ -302,59 +417,25 @@ window.FAQ_DATA = {
       keys: 'part 107 faa remote pilot certificate remote pilot license drone license certification faa exam teach part 107 prerequisite prior certificate company qualification not faa'
     },
     {
-      id: 'cyoa-how', group: 'samples',
-      phrases: ['is branching biology adaptive', 'is this adaptive learning', 'how does it adapt', 'what formats', 'how does personalization work'],
-      q: 'Is Branching Biology adaptive?',
+      id: 'drone-validate', group: 'samples',
+      phrases: ['did you work with a drone expert', 'what would you test before using this', 'what would you validate'],
+      q: 'What would you validate before using Cleared for Flight?',
       a: [
-        'In this concept, personalization is shown through choices about context, activity format, and support. The walkthrough uses Jordan to illustrate how those choices might work. The path is personalized and choice-based, shaped by a few opening questions in the course chat. The concept doesn’t yet change instruction based on how a learner performs.',
-        'The proposed formats are a guided video, an escape-room activity, and a field investigation. The design intent is to keep the learning goals consistent across formats. A next design step would be to check that each format gives learners a comparable chance to practice and show those goals.'
+        'I didn’t work with a drone expert on this proof of concept. That would be a follow-up step. I’d start by working with flight and utility safety experts to confirm the aircraft, procedures, clearances, emergency actions, and image requirements for the actual operation. Then I’d review the task analysis, objectives, scenarios, and checkride rubric with them.',
+        'After that, I’d test the learning sequence and interactions with representative trainees and evaluators, revise based on what I observe, and confirm the qualification criteria before launch. These are proposed next steps, not work I’ve completed.'
       ],
-      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
-      keys: 'adapt adaptive personalized personalization how does it adapt learner path pathways choice learner choice formats guided video escape room field investigation essential question syllabus interests prior knowledge jordan algorithm automatic recommendations skills check refreshers'
+      links: [{ label: 'Cleared for Flight', href: 'drone-inspection-training.html' }],
+      keys: 'validate validation review experts safety experts flight experts utility safety test pilot pilot test before using next steps what would you test did you work with a drone expert subject matter expert sme approve approval operating standards'
     },
     {
-      id: 'cyoa-faculty', group: 'samples',
-      phrases: ['what does the faculty view show', 'faculty dashboard'],
-      q: 'What does faculty see in Branching Biology?',
+      id: 'ai-for-nurses', group: 'samples',
+      q: 'What was your role on AI for Nurses?',
       a: [
-        'The concept includes a faculty view with example patterns in activity choices, confidence, and performance against shared criteria. It also sketches how an instructor might spot a reason to check in with a learner.',
-        'These indicators are prompts for a conversation. They don’t diagnose a learner or draw conclusions about them. The view is a design concept with sample numbers for illustration, and it hasn’t been tested as an analytics tool. Before building something like it, I’d want to define what data are needed, who can see them, and how instructors should interpret them.'
+        'I led learning design and project management for a three-course Coursera Specialization developed with Duke School of Nursing and Johnson & Johnson. I started with survey data from working nurses, then brought registered nurses into the design process so the examples would match what they see on a shift.',
+        'The Specialization launched in September 2026 and offers up to 9 continuing education credit hours for nurses.'
       ],
-      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
-      keys: 'faculty view instructor dashboard roster check-in confidence results class patterns outcomes curriculum accreditation data analytics learning analytics teacher what does faculty see sample numbers privacy data'
-    },
-    {
-      id: 'cyoa-biology', group: 'samples',
-      phrases: ['what biology is in the activity', 'what is the birdsong activity', 'are the recordings real', 'what is the science', 'song sparrow', 'what bird is it', 'which bird', 'what species', 'portland study'],
-      q: 'What biology idea does the Branching Biology activity explore?',
-      a: [
-        'The sample unit asks how organisms respond to changes in their environment, using song sparrow song in a city park and a nearby forest. Learners look at evidence, such as recordings and spectrograms, to explain why city birds might sing differently, and they consider other explanations. The unit includes a short “Meet the bird” reading and a list of sources, including a published Portland study that found an association between low-frequency background noise and song sparrow song frequency. That study doesn’t on its own establish the cause.',
-        'The recordings and measurements in the walkthrough are illustrative, and the page says so. A live course would use cited recordings, for example from the Macaulay Library. I’d also document where and how the recordings were made, the sample size, and how pitch was measured.'
-      ],
-      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
-      keys: 'song sparrow sparrow species portland study meet the bird macaulay library sources biology birdsong bird song song pitch recordings recording spectrogram traffic noise city birds forest park field investigation evidence alternative explanation another explanation evolution evolutionary dataset data sample data illustrative species science scientific claims environment'
-    },
-    {
-      id: 'cyoa-validate', group: 'samples',
-      phrases: ['what would you test before using this with students', 'has branching biology been tested', 'how would you validate branching biology'],
-      q: 'What would you test before using Branching Biology with students?',
-      a: [
-        'I’d test first whether final-task work is comparable across formats, scored blind on the shared rubric, whether checkpoint feedback leads to stronger revisions, whether learners understand how their opening answers are used, and whether the dashboard signals lead faculty to useful check-ins. Success would look like similar results across formats, clear gains from the Checkpoint 2 draft to the final task, and learners reporting that the course felt relevant.',
-        'Biology faculty would own the content. Before launch, a biology expert would review the recordings and data, the explanations, the key-terms definitions, and the rubric language. I’d replace illustrative data with cited recordings, test with screen reader and keyboard users and with learners who are Deaf or hard of hearing, choose a host platform and plan the connection to the LMS gradebook, and set privacy rules for opening-question and dashboard data. These are proposed next steps, not results from a completed study.'
-      ],
-      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
-      keys: 'test testing pilot validate validation next steps before using with students instructors access needs accessibility screen reader keyboard deaf hard of hearing biology expert review evidence what would you test study results privacy gradebook lms success measures'
-    },
-    {
-      id: 'cyoa-origin', group: 'samples',
-      phrases: ['where did branching biology come from', 'what is illustrative in branching biology', 'what did you design in branching biology'],
-      q: 'Where did the Branching Biology concept come from?',
-      a: [
-        'This proof of concept draws on 13 years of teaching and learning design work in higher education. It takes on tension points that a traditional LMS doesn’t handle well: making a required course feel relevant, offering choice without splitting up assessment, and giving faculty useful signals without over-reading the data.',
-        'I designed and built the interactive walkthrough, including the essential question and unit goal, three formats with shared checkpoints, and the feedback, final task, and rubric. The learner data, faculty dashboard, course map results, and bird recordings and measurements are illustrative, and the platform features show how the design could work. They aren’t a built product.'
-      ],
-      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
-      keys: 'where did it come from origin originated why branching biology concept background tension points required course relevant choice assessment faculty signals what did you design what is illustrative designed and built illustrative data platform features 13 years higher education'
+      links: [{ label: 'AI for Nurses', href: 'ai-for-nurses.html' }],
+      keys: 'ai for nurses nursing nurses specialization johnson johnson j&j duke school of nursing continuing education credit hours healthcare clinical artificial intelligence'
     },
     {
       id: 'ai-accred', group: 'samples',
@@ -378,52 +459,6 @@ window.FAQ_DATA = {
       ],
       links: [{ label: 'AI for Nurses', href: 'ai-for-nurses.html' }],
       keys: 'design process co-design codesign survey nurses registered nurses learning objectives courses three courses ai-sbar sbar case studies videos clinical judgment vocabulary progression stakeholders johnson school of nursing'
-    },
-    {
-      id: 'digital-structure', group: 'samples',
-      phrases: ['who did you work with on digital you','what were the digital you topics'],
-      q: 'How was Digital You organized?',
-      a: [
-        'Two lead instructors and a rotating guest expert taught each week, and I coordinated people across five roles into one integrated course. Each theme ran across two weeks: how a technology works, then its ethical implications. Two panel weeks brought live Q&A across disciplines.',
-        'I defined three outcomes with the lead instructors, then mapped every week to the same six-step structure so guests and TAs could begin co-design work. Each week included a guest session for about 100 students, hands-on exploration in EdStem, smaller sections for discussion, and a weekly blog post on each student’s own WordPress site.',
-        'My role was Senior Learning Designer and Project Manager.'
-      ],
-      links: [{ label: 'Digital You', href: 'digital-you.html' }],
-      keys: 'organized structure weekly guest lecturers instructors tas panel weeks themes outcomes six-step edstem wordpress blog sections students 100 canvas ethics technology generative art privacy social media algorithms topics who did you work with'
-    },
-    {
-      id: 'top-rated', group: 'samples',
-      phrases: ['which courses are rated highest','best rated courses','highest rated course'],
-      q: 'Which of your courses are rated highest?',
-      a: [
-        'A few favorites from the Course Portfolio: the Financial Management Specialization has a 4.8 out of 5 average rating with 59,525 enrolled. Space Medicine also has 4.8 out of 5, with 29,777 enrolled. The AI in Nursing Practice Specialization, new in 2026, has a 5.0 out of 5 so far, with 100+ enrolled.',
-        'Across everything, I’ve designed 47 Coursera courses and 12 Specializations with more than 377,000 enrollments.'
-      ],
-      links: [{ label: 'Course Portfolio', href: 'course-portfolio.html' }],
-      keys: 'rated rating ratings highest best top favorite favourite reviews review stars popular most popular enrollments enrolled financial management space medicine ai in nursing practice'
-    },
-
-    {
-      id: 'digital-results', group: 'samples',
-      phrases: ['what were the results of digital you', 'did students learn anything from digital you', 'how did digital you turn out', 'what would you change about digital you', 'digital you results'],
-      q: 'What were the results of Digital You?',
-      a: [
-        'Reflections, final projects, mid-semester feedback, and course evaluations showed growth in students’ ethical reasoning and digital literacy. Final projects brought technical research together with ethical analysis, and course evaluations showed high engagement. Mid-semester feedback helped us refine the labs and pacing.',
-        'For a next version, I’d offer more open-ended lab pathways, make stronger connections between the technology and ethics weeks, and add a course coordinator to support a large, multi-instructor course.'
-      ],
-      links: [{ label: 'Digital You', href: 'digital-you.html' }],
-      keys: 'digital you results outcomes impact evaluation evaluations feedback growth ethical reasoning digital literacy final projects engagement lessons learned what would you change next version improve students learned'
-    },
-    {
-      id: 'digital-pm', group: 'samples',
-      phrases: ['how did you manage the digital you project', 'how long did digital you take to build', 'what was the digital you timeline', 'how did you keep digital you accessible', 'digital you timeline'],
-      q: 'How did you manage the Digital You project?',
-      a: [
-        'I coordinated 31 people across five roles, including instructors, guest lecturers, TAs, and the design team. A team charter clarified roles, expectations, working norms, and conflict handling. Two tracking boards kept the work visible: one for faculty and leadership, and another for detailed internal tasks.',
-        'The project timeline ran from April 2023 to May 2024. We defined outcomes and mapped content, prototyped the first lab pair, built the Canvas structure and guest templates, onboarded TAs, and then launched, gathered feedback, and debriefed. We reviewed each asset as it was created, added a second reviewer, and completed accessibility checks for captions, alt text, screen-reader-friendly PDFs, and the course as a whole.'
-      ],
-      links: [{ label: 'Digital You', href: 'digital-you.html' }],
-      keys: 'digital you project management timeline how long coordinated 31 people five roles team charter tracking boards boards qa review accessibility checks captions alt text screen reader pdf canvas edstem tas guest lecturers conflict handling'
     },
     {
       id: 'ai-activities', group: 'samples',
@@ -457,89 +492,49 @@ window.FAQ_DATA = {
       keys: 'after launch second year funded new specialization in development next project four courses continuing project manager senior learning experience designer partners johnson ai for nurses what happened next'
     },
     {
-      id: 'beacon-class', group: 'samples',
-      phrases: ['how could a teacher use light the beacon in class', 'can teachers use light the beacon', 'is light the beacon for the classroom'],
-      q: 'How could a teacher use Light the Beacon in class?',
+      id: 'digital-you', group: 'samples',
+      q: 'What is Digital You?',
       a: [
-        'Learners can complete the activity independently first, at their own pace. Then a teacher could use it to start a short discussion: How did you solve each puzzle? Which representation helped you? How did equivalent ratios and unit rates help you choose a final signal plan?'
+        'Let’s Talk Digital You is a for-credit, interdisciplinary Duke course in Canvas, open to students in any major. As project manager and lead learning experience designer, I helped two lead instructors and weekly guest experts build one integrated course on the technical and ethical sides of a data-centric world.',
+        'It ran as a hybrid, semester-long course in Spring 2024.'
       ],
-      links: [{ label: 'Light the Beacon', href: 'beacon-escape-room.html' }],
-      keys: 'teacher classroom use in class discussion independent practice representations equivalent ratios unit rates final signal plan how could a teacher use how long does it take middle school grade 6'
+      links: [{ label: 'Digital You', href: 'digital-you.html' }],
+      keys: 'digital you canvas for-credit credit course interdisciplinary ethics technology data guest lecturers instructors tas university undergraduate hybrid spring 2024'
     },
     {
-      id: 'cyoa-science', group: 'samples',
-      phrases: ['what learning science informed branching biology', 'what research supports your design choices', 'what is self-determination theory', 'do you use backward design', 'what learning theories do you use'],
-      q: 'What learning science informed Branching Biology?',
+      id: 'digital-structure', group: 'samples',
+      phrases: ['who did you work with on digital you','what were the digital you topics'],
+      q: 'How was Digital You organized?',
       a: [
-        'Three ideas shape the concept. First, examples connect to a learner’s existing knowledge and interests, drawing on prior-knowledge research and Keller’s ARCS model. Second, backward design keeps activities and assessments focused on a shared essential question. Third, learners can choose among formats while working toward the same goals and criteria, drawing on self-determination theory and Universal Design for Learning.',
-        'The choices shape how learners engage with the work, not what they are expected to learn.'
+        'Two lead instructors and a rotating guest expert taught each week, and I coordinated people across five roles into one integrated course. Each theme ran across two weeks: how a technology works, then its ethical implications. Two panel weeks brought live Q&A across disciplines.',
+        'I defined three outcomes with the lead instructors, then mapped every week to the same six-step structure so guests and TAs could begin co-design work. Each week included a guest session for about 100 students, hands-on exploration in EdStem, smaller sections for discussion, and a weekly blog post on each student’s own WordPress site.',
+        'My role was Senior Learning Designer and Project Manager.'
       ],
-      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
-      keys: 'learning science research evidence based theory prior knowledge keller arcs model backward design essential question self-determination theory universal design for learning udl autonomy competence relevance motivation three ideas how learning works ambrose'
+      links: [{ label: 'Digital You', href: 'digital-you.html' }],
+      keys: 'organized structure weekly guest lecturers instructors tas panel weeks themes outcomes six-step edstem wordpress blog sections students 100 canvas ethics technology generative art privacy social media algorithms topics who did you work with'
     },
     {
-      id: 'drone-sim', group: 'samples',
-      phrases: ['how does the cleared for flight simulator work', 'what is the simulator in cleared for flight', 'can a learner fail cleared for flight'],
-      q: 'How does the Cleared for Flight simulator work?',
+      id: 'digital-pm', group: 'samples',
+      phrases: ['how did you manage the digital you project', 'how long did digital you take to build', 'what was the digital you timeline', 'how did you keep digital you accessible', 'digital you timeline'],
+      q: 'How did you manage the Digital You project?',
       a: [
-        'The sample scenario builds toward independent decisions across five decision points. The first includes a prompt, the next two offer optional hints, and the last two are completed without hints. After coaching, learners can try a decision again.',
-        'This is a concept prototype, and the operating limits shown in it are illustrative values. They would need review by flight and utility safety experts before any real training use.'
+        'I coordinated 31 people across five roles, including instructors, guest lecturers, TAs, and the design team. A team charter clarified roles, expectations, working norms, and conflict handling. Two tracking boards kept the work visible: one for faculty and leadership, and another for detailed internal tasks.',
+        'The project timeline ran from April 2023 to May 2024. We defined outcomes and mapped content, prototyped the first lab pair, built the Canvas structure and guest templates, onboarded TAs, and then launched, gathered feedback, and debriefed. We reviewed each asset as it was created, added a second reviewer, and completed accessibility checks for captions, alt text, screen-reader-friendly PDFs, and the course as a whole.'
       ],
-      links: [{ label: 'Cleared for Flight', href: 'drone-inspection-training.html' }],
-      keys: 'simulator scenario decision points five decisions prompt hints fade support no hints coaching retry try again substation inspection illustrative limits prototype how does the simulator work can a learner fail'
+      links: [{ label: 'Digital You', href: 'digital-you.html' }],
+      keys: 'digital you project management timeline how long coordinated 31 people five roles team charter tracking boards boards qa review accessibility checks captions alt text screen reader pdf canvas edstem tas guest lecturers conflict handling'
     },
     {
-      id: 'try-concepts', group: 'samples',
-      phrases: ['can i try the concepts', 'can i try the samples', 'are the interactives working', 'are the samples interactive'],
-      q: 'Can I try the concepts?',
+      id: 'digital-results', group: 'samples',
+      phrases: ['what were the results of digital you', 'did students learn anything from digital you', 'how did digital you turn out', 'what would you change about digital you', 'digital you results'],
+      q: 'What were the results of Digital You?',
       a: [
-        'Yes. Branching Biology, Light the Beacon, and Cleared for Flight are interactive on their project pages. The separate Space Medicine Week 2 concept is interactive on the Space Medicine page as well.'
+        'Reflections, final projects, mid-semester feedback, and course evaluations showed growth in students’ ethical reasoning and digital literacy. Final projects brought technical research together with ethical analysis, and course evaluations showed high engagement. Mid-semester feedback helped us refine the labs and pacing.',
+        'For a next version, I’d offer more open-ended lab pathways, make stronger connections between the technology and ethics weeks, and add a course coordinator to support a large, multi-instructor course.'
       ],
-      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }, { label: 'Light the Beacon', href: 'beacon-escape-room.html' }, { label: 'Cleared for Flight', href: 'drone-inspection-training.html' }, { label: 'Space Medicine', href: 'space-medicine.html' }],
-      keys: 'try interactive demo play can i try the concepts samples working prototypes are they interactive do they work live demo'
+      links: [{ label: 'Digital You', href: 'digital-you.html' }],
+      keys: 'digital you results outcomes impact evaluation evaluations feedback growth ethical reasoning digital literacy final projects engagement lessons learned what would you change next version improve students learned'
     },
-    {
-      id: 'course-count', group: 'samples',
-      q: 'How many courses have you worked on?',
-      a: [
-        'Since 2020, I’ve designed and developed 47 Coursera courses and 12 Coursera Specializations with Duke faculty, with more than 377,000 enrollments. I’ve also built courses on Canvas and other platforms.',
-        'The Course Portfolio has the full list.'
-      ],
-      links: [{ label: 'Course Portfolio', href: 'course-portfolio.html' }],
-      keys: 'how many count total courses specializations enrollments learners enrolled numbers stats statistics scale impact reach years 2020 catalog list archive'
-    },
-    {
-      id: 'in-use', group: 'samples',
-      phrases: ['are all the projects in use','which projects are real','which are real','real or concept','live or concept','what is a concept','what are concepts','are these real','are these real projects','what is a live project','proof of concept','learning design of your live courses','see your live courses','show your live work','why are some projects concepts'],
-      q: 'Which projects are real, and which are concepts?',
-      a: [
-        'Space Medicine, AI for Nurses, and Digital You are live projects: real courses I worked on with Duke faculty and partners. Space Medicine launched on Coursera in 2021, AI for Nurses launched in September 2026, and Digital You ran as a for-credit course in Spring 2024. On Space Medicine, the original course is live, and the reimagined Week 2 module is a concept I built.',
-        'Branching Biology, Light the Beacon, and Cleared for Flight are concepts: custom designs I created to show my work. Because of intellectual property, it’s harder for me to show the learning design behind live courses, so the concepts let me share what I can do and what’s possible beyond them. They’re proofs of concept, and they would need further research, development, and testing before being used with learners.',
-        'On the Home page, each sample is marked Live project or Concept, and you can filter by project type, features, audience, or platform.'
-      ],
-      keys: 'real in use live launched concept concepts prototype proof of concept hypothetical actual production published difference live project ip intellectual property confidential confidentiality why concepts custom design'
-    },
-    {
-      id: 'ip-assets', group: 'samples',
-      phrases: ['can you share the full assets for your live courses', 'can i see your live courses', 'can i see the course files', 'why are there no live course samples', 'can i see your work', 'why can\'t you share the full assets','why can\'t i see the full assets','why cant you share','why are the live courses not shown'],
-      q: 'Why can’t you share the full assets for your live courses?',
-      a: [
-        'Live courses (Coursera and Canvas) were developed with Duke faculty and partners, so intellectual property and proprietary restrictions limit what I can share publicly. I can share selected snippets of work, and I’m happy to talk through the design decisions, my role, and how the work came together.'
-      ],
-      keys: 'full assets live courses share assets course files intellectual property proprietary ip restrictions confidential portfolio samples snippets can i see the course can i see your work coursera canvas duke permission'
-    },
-    {
-      id: 'concept-making', group: 'samples',
-      phrases: ['how did you make your concept samples', 'what tools did you use for the concepts', 'how did you build the samples'],
-      q: 'How did you make your concept samples?',
-      a: [
-        'For Branching Biology, Light the Beacon, and Cleared for Flight, I worked as a Senior Learning and Curriculum Designer. I designed the learning sequence, including the practice, feedback, and assessment, and then built an interactive prototype to show how it would work. I used Claude Design and Claude Code as thought and design partners throughout.',
-        'Each concept has its own page that walks through the design decisions. They’re prototypes, and they would need review with subject experts and testing with learners before anyone used them.'
-      ],
-      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }, { label: 'Light the Beacon', href: 'beacon-escape-room.html' }, { label: 'Cleared for Flight', href: 'drone-inspection-training.html' }],
-      keys: 'how did you make how did you build what tools did you use tools role what did you do process concept samples prototype claude design claude code ai partner built made created designed concepts'
-    },
-
     /* ---------- Project management ---------- */
     {
       id: 'design-build-manage', group: 'pm',
@@ -572,7 +567,6 @@ window.FAQ_DATA = {
       links: [{ label: 'Project Management', href: 'project-management.html' }],
       keys: 'agile hybrid waterfall traditional scrum sprint sprints methodology approach methods choose which framework iterative ai pilot data science with r'
     },
-
     {
       id: 'approach-when', group: 'pm',
       phrases: ['what is agile','what is waterfall','difference between agile and waterfall'],
@@ -596,8 +590,6 @@ window.FAQ_DATA = {
       links: [{ label: 'Project Management', href: 'project-management.html' }],
       keys: 'agile sprint sprints scrum backlog monday.com monday teams retrospective review demo product owner standup async update pilot summer ai tools project management tools software kanban'
     },
-
-
     /* ---------- How I work ---------- */
     {
       id: 'new-subject', group: 'how',
@@ -614,7 +606,7 @@ window.FAQ_DATA = {
       phrases: ['how do you use ai', 'do you use ai', 'do you use ai in your work', 'use of ai', 'ai in your work', 'ai tools', 'artificial intelligence', 'claude', 'chatgpt', 'generative ai', 'did you use ai'],
       q: 'How do you use AI in your work?',
       a: [
-        'I use AI to help develop ideas, build prototypes, and create tools that support our team’s work. For example, I used Claude Design and Claude Code as thought and design partners across my portfolio, including every concept sample. For AI for Nurses, I also used ChatGPT. Digital You is the one project where I didn’t use AI.',
+        'I use AI to help develop ideas, build prototypes, and create tools that support our team’s work. For example, I used Claude Design and Claude Code as thought and design partners across my portfolio, including every concept sample, and ChatGPT for the occasional idea session. For AI for Nurses, I used ChatGPT, Claude, and Claude Code to support the design. Digital You is the one project where I didn’t use AI.',
         'I make the decisions about the learning experience and review what we create. When the content requires subject expertise, I work with experts to check it. I’m especially interested in where AI gives us more room to explore an idea, try an approach, and improve it.'
       ],
       links: [{ label: 'Space Medicine', href: 'space-medicine.html' }],
@@ -654,7 +646,6 @@ window.FAQ_DATA = {
       links: [{ label: 'Résumé', href: 'resume.html', note: 'tools and platforms' }],
       keys: 'platform platforms tools software lms learning management system coursera canvas edstem storyline rise captivate articulate authoring tools technology tech stack blackboard moodle scorm xapi app agnostic'
     },
-
     {
       id: 'faculty-experts', group: 'how',
       phrases: ['do you work with faculty','subject matter experts'],
@@ -792,8 +783,6 @@ window.FAQ_DATA = {
       links: [{ label: 'Cleared for Flight', href: 'drone-inspection-training.html' }, { label: 'AI for Nurses', href: 'ai-for-nurses.html' }],
       keys: 'technical training workforce corporate training corporate learning professional development upskilling industry employees field employees on the job training job aids simulations technical audiences business'
     },
-
-
     /* ---------- Contact ---------- */
     {
       id: 'work-type', group: 'contact',
@@ -821,7 +810,7 @@ window.FAQ_DATA = {
       id: 'resume', group: 'contact',
       phrases: ['your resume','your cv','see your resume'],
       q: 'Can I see your résumé?',
-      a: ['Yes! My résumé is on this site as a full, searchable record, and there’s a Download résumé button for the two-page version.'],
+      a: ['Yes! My résumé is on this site as a full, searchable record, and there’s a Download résumé button that opens the two-page PDF in a new tab.'],
       links: [{ label: 'Résumé', href: 'resume.html' }],
       keys: 'resume résumé cv curriculum vitae download pdf word docx search experience history employment work history education publications presentations awards'
     },
