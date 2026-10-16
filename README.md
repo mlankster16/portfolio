@@ -35,8 +35,10 @@ Then open http://localhost:8744. Any static file server works.
 | `partials/` | Shared header and footer markup (see "Shared header and footer") |
 | `tools/build.py` | Copies the partials into every page |
 | `tools/bump-version.py` | Cache-buster helper (see below) |
+| `tools/check.py` | Repo health checks (see "Keeping the repo clean") |
+| `.githooks/pre-push` | Optional pre-push hook that runs the checks |
 | `sitemap.xml` | Page list for search engines |
-| `.github/workflows/check.yml` | GitHub Action that checks every push (see "Checks") |
+| `.github/workflows/check.yml` | GitHub Action that runs `tools/check.py` on every push |
 
 Note: `choose-your-own-adventure.html` is the Branching Biology page. The file name predates the project title and is kept so existing links keep working.
 
@@ -66,9 +68,25 @@ Shared files are referenced with a version query string, for example `js/lagoon.
 python3 tools/bump-version.py js/lagoon.js
 ```
 
-## Checks
+## Keeping the repo clean
 
-`.github/workflows/check.yml` runs on every push and pull request. It confirms the shared header and footer are up to date (`tools/build.py --check`), that every JavaScript file parses, and that no page has duplicate ids or an em dash. Run the same checks locally with `python3 tools/build.py --check` and `node --check js/*.js`.
+`python3 tools/check.py` runs the repo health checks, and GitHub runs the same script on every push and pull request (`.github/workflows/check.yml`). It confirms that:
+
+- the shared header and footer are up to date
+- every JavaScript file parses
+- no page has duplicate ids or an em dash
+- role titles are capitalized (Senior Learning Experience Designer, Project Manager, and so on)
+- every local link, image, script, stylesheet and font points at a file that exists
+- each `?v=` cache-buster has one version everywhere
+- no asset is over its size limit (250KB for images) and no asset is left unreferenced
+
+To run the checks automatically before each push, enable the included hook once per clone:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+Working conventions: make changes on a short-lived branch, merge into `main` with a fast-forward, delete the branch afterward, and keep generated or scratch files out of the repo (they belong in `.gitignore`).
 
 ## Conventions
 

@@ -10,28 +10,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Shared header and footer are up to date
-        run: python3 tools/build.py --check
-
-      - name: JavaScript parses
-        run: for f in js/*.js; do node --check "$f"; done
-
-      - name: Pages have no duplicate ids and no em dashes in site copy
-        run: |
-          python3 - <<'PY'
-          import re, sys
-          from pathlib import Path
-          bad = 0
-          for p in sorted(Path('.').glob('*.html')):
-              text = p.read_text(encoding='utf-8')
-              ids = re.findall(r'\sid="([^"{]+)"', text)
-              dups = sorted({i for i in ids if ids.count(i) > 1})
-              if dups:
-                  print(f'{p}: duplicate ids {dups}'); bad += 1
-              if '—' in text:
-                  print(f'{p}: contains an em dash'); bad += 1
-          if '—' in Path('js/faq-data.js').read_text(encoding='utf-8'):
-              print('js/faq-data.js: contains an em dash'); bad += 1
-          sys.exit(1 if bad else 0)
-          PY
+      - name: Repo health checks
+        run: python3 tools/check.py
