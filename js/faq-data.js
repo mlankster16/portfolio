@@ -521,7 +521,7 @@ window.FAQ_DATA = {
     },
     {
       id: 'ip-assets', group: 'samples',
-      phrases: ['can you share the full assets for your live courses', 'can i see your live courses', 'can i see the course files', 'why are there no live course samples', 'can i see your work', 'why can\'t you share the full assets','why can\'t i see the full assets','why cant you share','why are there no live course samples','why are the live courses not shown'],
+      phrases: ['can you share the full assets for your live courses', 'can i see your live courses', 'can i see the course files', 'why are there no live course samples', 'can i see your work', 'why can\'t you share the full assets','why can\'t i see the full assets','why cant you share','why are the live courses not shown'],
       q: 'Why can’t you share the full assets for your live courses?',
       a: [
         'Live courses (Coursera and Canvas) were developed with Duke faculty and partners, so intellectual property and proprietary restrictions limit what I can share publicly. I can share selected snippets of work, and I’m happy to talk through the design decisions, my role, and how the work came together.'
