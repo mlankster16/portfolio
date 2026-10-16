@@ -507,7 +507,7 @@ window.FAQ_DATA = {
       q: 'How was Digital You organized?',
       a: [
         'Two lead instructors and a rotating guest expert taught each week, and I coordinated people across five roles into one integrated course. Each theme ran across two weeks: how a technology works, then its ethical implications. Two panel weeks brought live Q&A across disciplines.',
-        'I defined three outcomes with the lead instructors, then mapped every week to the same six-step structure so guests and TAs could begin co-design work. Each week included a guest session for about 100 students, hands-on exploration in EdStem, smaller sections for discussion, and a weekly blog post on each student’s own WordPress site.',
+        'With the lead instructors, I defined five course outcomes, then mapped every week to the same six-step structure so guests and TAs could begin co-design work. Each week included a guest session for about 100 students, hands-on exploration in EdStem, smaller sections for discussion, and a weekly blog post on each student’s own WordPress site.',
         'My role was Senior Learning Experience Designer and Project Manager.'
       ],
       links: [{ label: 'Digital You', href: 'digital-you.html' }],

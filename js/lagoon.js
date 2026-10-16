@@ -67,7 +67,7 @@
     function fetchChat() {
       if (state) return;
       state = 1;
-      load('js/faq-data.js?v=36', function () { load('js/faq.js?v=10'); });
+      load('js/faq-data.js?v=37', function () { load('js/faq.js?v=10'); });
     }
     ['pointerenter', 'focus', 'touchstart'].forEach(function (ev) { btn.addEventListener(ev, fetchChat, { passive: true }); });
     btn.addEventListener('click', function () {
