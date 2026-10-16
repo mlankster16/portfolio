@@ -147,7 +147,7 @@ window.FAQ_DATA = {
     },
     {
       id: 'space-medicine', group: 'samples',
-      phrases: ['what is space medicine', 'what did you do on space medicine', 'is the week 2 module live', 'what happened to glaisher and coxwell'],
+      phrases: ['what is space medicine', 'what did you do on space medicine', 'is the week 2 module live', 'what happened to glaisher and coxwell', 'how do you work with media teams', 'work with media teams', 'media team', 'media teams', 'media producers', 'media production'],
       q: 'What is Space Medicine?',
       a: [
         'Space Medicine is a Duke Coursera course launched in 2021. As Senior Learning Designer and Project Manager, I managed the project and led the learning design, coordinating media production, guiding scripts, and shaping the course structure. It has reached nearly 30,000 learners.',
@@ -169,7 +169,7 @@ window.FAQ_DATA = {
     },
     {
       id: 'cyoa', group: 'samples',
-      phrases: ['what is branching biology', 'is branching biology real', 'is it a working product'],
+      phrases: ['what is branching biology', 'is branching biology real', 'is it a working product', 'who is jordan', 'who is jordan in branching biology', 'what is jordan', 'what is the branching biology course map', 'the course map', 'branching biology course map'],
       q: 'What is Branching Biology?',
       a: [
         'Branching Biology is a proof of concept for a personalized learning experience in a required undergraduate Biology 101 course. I designed the concept and prototype, and the walkthrough follows Jordan, a physics major, through a sample unit.',
@@ -325,14 +325,14 @@ window.FAQ_DATA = {
     },
     {
       id: 'cyoa-biology', group: 'samples',
-      phrases: ['what biology is in the activity', 'what is the birdsong activity', 'are the recordings real', 'what is the science'],
+      phrases: ['what biology is in the activity', 'what is the birdsong activity', 'are the recordings real', 'what is the science', 'song sparrow', 'what bird is it', 'which bird', 'what species', 'portland study'],
       q: 'What biology idea does the Branching Biology activity explore?',
       a: [
-        'The sample unit asks how organisms respond to changes in their environment, using birdsong in a city park and a nearby forest. Learners look at evidence, such as recordings and spectrograms, to explain why city birds might sing differently, and they consider other explanations.',
-        'The recordings and numbers in the walkthrough are sample data for illustration. To use the comparison as real evidence, I’d document the species, where and how the recordings were made, the sample size, and how pitch was measured, and I’d label anything illustrative as illustrative.'
+        'The sample unit asks how organisms respond to changes in their environment, using song sparrow song in a city park and a nearby forest. Learners look at evidence, such as recordings and spectrograms, to explain why city birds might sing differently, and they consider other explanations. The unit includes a short “Meet the bird” reading and a list of sources, including a published Portland study that found an association between low-frequency background noise and song sparrow song frequency. That study doesn’t on its own establish the cause.',
+        'The recordings and measurements in the walkthrough are illustrative, and the page says so. A live course would use cited recordings, for example from the Macaulay Library. I’d also document where and how the recordings were made, the sample size, and how pitch was measured.'
       ],
       links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
-      keys: 'biology birdsong bird song song pitch recordings recording spectrogram traffic noise city birds forest park field investigation evidence alternative explanation another explanation evolution evolutionary dataset data sample data illustrative species science scientific claims environment'
+      keys: 'song sparrow sparrow species portland study meet the bird macaulay library sources biology birdsong bird song song pitch recordings recording spectrogram traffic noise city birds forest park field investigation evidence alternative explanation another explanation evolution evolutionary dataset data sample data illustrative species science scientific claims environment'
     },
     {
       id: 'cyoa-validate', group: 'samples',
@@ -507,7 +507,7 @@ window.FAQ_DATA = {
     },
     {
       id: 'ai-use', group: 'how',
-      phrases: ['ai','use ai','artificial intelligence','claude','chatgpt','generative ai'],
+      phrases: ['how do you use ai', 'do you use ai', 'do you use ai in your work', 'use of ai', 'ai in your work', 'ai tools', 'artificial intelligence', 'claude', 'chatgpt', 'generative ai', 'did you use ai'],
       q: 'How do you use AI in your work?',
       a: [
         'I use AI to help develop ideas, build prototypes, and create tools that support our team’s work. For example, I used Claude Design and Claude Code as thought and design partners across my portfolio, including every concept sample. For AI for Nurses, I also used ChatGPT. Digital You is the one project where I didn’t use AI.',
@@ -529,6 +529,7 @@ window.FAQ_DATA = {
     },
     {
       id: 'platforms', group: 'how',
+      phrases: ['do you have experience with canvas', 'experience with canvas', 'canvas experience', 'do you use canvas', 'experience with storyline', 'do you have experience with articulate storyline', 'do you use storyline', 'do you use edstem', 'experience with edstem', 'experience with rise', 'experience with captivate'],
       q: 'What platforms and tools do you use?',
       a: [
         'It depends on the needs of the project. I’m fluent in a variety of learning management systems, and I design in a platform-agnostic way, so the learning is portable and modular and can work in an app or on the web.',
