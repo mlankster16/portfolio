@@ -28,9 +28,9 @@ Then open http://localhost:8744. Any static file server works.
 | `js/lagoon.js` | Shared behavior: nav menus, embed resizing, scroll highlighting, loads the chat |
 | `js/lagoon-dc.js` | Small state helper for pages with interactions (tabs, toggles, simulators) |
 | `js/rethink-data.js` | Content for the walkthrough on the Branching Biology page |
-| `assets/img/` | Images, grouped by page |
+| `assets/img/` | Images, grouped by page, plus `share-card.png` (the link-preview card used in the share tags) |
 | `assets/interactives/` | Self-contained interactive modules embedded in sample pages |
-| `assets/resume/` | Downloadable résumé |
+| `assets/resume/` | Résumé PDF linked from the Résumé page |
 | `tools/bump-version.py` | Cache-buster helper (see below) |
 | `sitemap.xml` | Page list for search engines |
 
@@ -66,4 +66,4 @@ Push to `main`. GitHub Pages publishes the site from the repository root within 
 
 ## License and content
 
-All site content, writing, and images are © Megan Lancaster. All rights reserved unless stated otherwise.
+All site content, writing, images, and code are © Megan Lancaster, all rights reserved. This repository is public for viewing, not for reuse. See [LICENSE](LICENSE).
