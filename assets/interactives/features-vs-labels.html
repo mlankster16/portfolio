@@ -312,6 +312,7 @@
      border-radius: 2px;
      outline: none;
    }
+   .slider:focus-visible { outline: 2px solid var(--duke-navy); outline-offset: 6px; }
 
    .slider::-webkit-slider-thumb {
      -webkit-appearance: none;
@@ -556,7 +557,7 @@
 <span class="feature-contrib" id="ageContrib"> +6 </span>
 </span>
 </div>
-<input type="range" class="slider" id="ageSlider" min="18" max="95" value="76">
+<input type="range" class="slider" id="ageSlider" aria-label="Patient age" min="18" max="95" value="76">
 </div>
 <div class="feature-row">
 <div class="feature-row-top">
@@ -566,7 +567,7 @@
 <span class="feature-contrib" id="medsContrib"> +15 </span>
 </span>
 </div>
-<input type="range" class="slider" id="medsSlider" min="0" max="15" value="6">
+<input type="range" class="slider" id="medsSlider" aria-label="Number of medications" min="0" max="15" value="6">
 </div>
 </div>
 <div class="feature-pair" style="margin-top: 6px;">
@@ -576,9 +577,9 @@
 <span class="feature-contrib" id="fallContrib"> +0 </span>
 </div>
 <div class="pill-group" id="fallGroup">
-<button class="pill-btn active" data-value="none"> None on record </button>
-<button class="pill-btn" data-value="one"> One fall </button>
-<button class="pill-btn" data-value="multiple"> Multiple </button>
+<button type="button" aria-pressed="true" class="pill-btn active" data-value="none"> None on record </button>
+<button type="button" aria-pressed="false" class="pill-btn" data-value="one"> One fall </button>
+<button type="button" aria-pressed="false" class="pill-btn" data-value="multiple"> Multiple </button>
 </div>
 </div>
 <div class="feature-row">
@@ -587,9 +588,9 @@
 <span class="feature-contrib" id="mobilityContrib"> +0 </span>
 </div>
 <div class="pill-group" id="mobilityGroup">
-<button class="pill-btn active" data-value="ambulatory"> Ambulatory </button>
-<button class="pill-btn" data-value="device"> Assistive device </button>
-<button class="pill-btn" data-value="dependent"> Dependent </button>
+<button type="button" aria-pressed="true" class="pill-btn active" data-value="ambulatory"> Ambulatory </button>
+<button type="button" aria-pressed="false" class="pill-btn" data-value="device"> Assistive device </button>
+<button type="button" aria-pressed="false" class="pill-btn" data-value="dependent"> Dependent </button>
 </div>
 </div>
 </div>
@@ -726,8 +727,9 @@
      const group = document.getElementById(groupId);
      group.querySelectorAll('.pill-btn').forEach(btn => {
        btn.addEventListener('click', () => {
-         group.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+         group.querySelectorAll('.pill-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
          btn.classList.add('active');
+         btn.setAttribute('aria-pressed', 'true');
          state[stateKey] = btn.dataset.value;
          render();
        });
@@ -757,8 +759,8 @@
      Object.assign(state, defaults);
      document.getElementById('ageSlider').value = state.age;
      document.getElementById('medsSlider').value = state.meds;
-     document.querySelectorAll('#fallGroup .pill-btn').forEach(b => b.classList.toggle('active', b.dataset.value === state.priorFall));
-     document.querySelectorAll('#mobilityGroup .pill-btn').forEach(b => b.classList.toggle('active', b.dataset.value === state.mobility));
+     document.querySelectorAll('#fallGroup .pill-btn').forEach(b => { const on = b.dataset.value === state.priorFall; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+     document.querySelectorAll('#mobilityGroup .pill-btn').forEach(b => { const on = b.dataset.value === state.mobility; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
      render();
    });
    render();

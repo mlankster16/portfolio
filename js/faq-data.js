@@ -87,7 +87,7 @@ window.FAQ_DATA = {
       phrases: ['what is your education','where did you go to school','what degrees do you have','are you pmp certified','do you have a certification'],
       q: 'What are your education and certifications?',
       a: [
-        'I’m a Project Management Professional (PMP®) through the Project Management Institute. I also hold an M.S. in Science Education from North Carolina State University, an M.S. in Engineering Physics from Appalachian State University, and a B.S. in Physics from the University of North Carolina at Greensboro.'
+        'I’m a Project Management Professional (PMP®) through the Project Management Institute. I also hold an M.Ed. in Science Education from North Carolina State University, an M.S. in Engineering Physics from Appalachian State University, and a B.S. in Physics from the University of North Carolina at Greensboro.'
       ],
       links: [{ label: 'Résumé', href: 'resume.html' }],
       keys: 'education degree degrees school university college masters bachelors physics engineering physics science education nc state north carolina state appalachian state unc greensboro pmp certification certified credential credentials project management professional where did you go to school study studied graduate'
@@ -810,9 +810,9 @@ window.FAQ_DATA = {
       id: 'resume', group: 'contact',
       phrases: ['your resume','your cv','see your resume'],
       q: 'Can I see your résumé?',
-      a: ['Yes! My résumé is on this site, and there’s a Download PDF button there too.'],
+      a: ['Yes! My résumé is on this site as a full, searchable record, and there’s a Download résumé button for the two-page version.'],
       links: [{ label: 'Résumé', href: 'resume.html' }],
-      keys: 'resume résumé cv curriculum vitae download pdf experience history employment work history education publications presentations awards'
+      keys: 'resume résumé cv curriculum vitae download pdf word docx search experience history employment work history education publications presentations awards'
     },
     {
       id: 'contact', group: 'contact',

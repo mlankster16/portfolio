@@ -224,6 +224,11 @@
     border-radius: 2px;
   }
 
+  .sentence:focus-visible {
+    outline: 2px solid var(--duke-navy);
+    outline-offset: 2px;
+  }
+
   .sentence:hover:not(.answered) {
     background: var(--feature-bg);
   }
@@ -415,7 +420,10 @@
       span.className = 'sentence';
       span.textContent = text + ' ';
       span.dataset.index = i;
+      span.tabIndex = 0;
+      span.setAttribute('role', 'button');
       span.addEventListener('click', () => handleGuess(i));
+      span.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleGuess(i); } });
       doc.appendChild(span);
     });
   }
