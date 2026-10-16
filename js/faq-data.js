@@ -209,7 +209,7 @@ window.FAQ_DATA = {
       phrases: ['what is space medicine', 'what did you do on space medicine', 'is the week 2 module live', 'what happened to glaisher and coxwell', 'how do you work with media teams', 'work with media teams', 'media team', 'media teams', 'media producers', 'media production'],
       q: 'What is Space Medicine?',
       a: [
-        'Space Medicine is a Duke Coursera course launched in 2021. As Senior Learning Designer and Project Manager, I managed the project and led the learning design, coordinating media production, guiding scripts, and shaping the course structure. It has reached nearly 30,000 learners.',
+        'Space Medicine is a Duke Coursera course launched in 2021. As Senior Learning Experience Designer and Project Manager, I managed the project and led the learning design, coordinating media production, guiding scripts, and shaping the course structure. It has reached nearly 30,000 learners.',
         'Separately, I created a concept reimagining of Week 2. It follows James Glaisher and Henry Coxwell’s 1862 balloon flight through a case-based interactive module, with a short activity after each video and a final challenge to redesign Glaisher’s balloon. The module is a portfolio concept and isn’t part of the live Coursera course.'
       ],
       links: [{ label: 'Explore the course and Week 2 concept', href: 'space-medicine.html' }],
