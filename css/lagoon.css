@@ -56,3 +56,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible, iframe:focus-visib
 
 /* Screen-reader-only text, e.g. "(opens in a new tab)". */
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Phones: larger tap areas in the header and footer, and keep the Samples menu on screen. */
+@media (max-width: 680px) {
+  .site-brand { padding: 4px 0; }
+  .site-nav { row-gap: 0; }
+  .site-nav > a:not(.site-cta), .site-nav summary { padding: 6px 0; }
+  .site-footer a { padding: 6px 0; }
+}
+@media (max-width: 420px) {
+  .site-header { position: relative; }
+  .site-nav details { position: static; }
+  .site-menu { left: 12px; right: 12px; top: calc(100% + 4px); min-width: 0; }
+}
