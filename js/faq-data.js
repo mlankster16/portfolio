@@ -402,27 +402,6 @@ window.FAQ_DATA = {
       links: [{ label: 'Course Portfolio', href: 'course-portfolio.html' }],
       keys: 'rated rating ratings highest best top favorite favourite reviews review stars popular most popular enrollments enrolled financial management space medicine ai in nursing practice'
     },
-    {
-      id: 'generator', group: 'samples',
-      phrases: ['what is the interactivity generator'],
-      q: 'What is the Interactivity Generator?',
-      a: [
-        'It’s a tool I designed and built for Duke’s learning design team to turn course content into small interactive activities. A designer describes what learners should understand or practice, and the tool helps them explore formats, create and edit an activity, and prepare it for review. A plugin then places the finished activity in Coursera.',
-        'I built it with Claude Design and Claude Code, and the tool uses the Claude API to recommend formats and build activities. Learners get static text alternatives.'
-      ],
-      links: [{ label: 'Interactivity Generator', href: 'interactivity-generator.html' }],
-      keys: 'interactivity generator tool plugin coursera claude api activity activities interactions formats designers design team duke built tool'
-    },
-    {
-      id: 'design-guide', group: 'samples',
-      phrases: ['what is the coursera design guide','design guide'],
-      q: 'What is the Coursera Design Guide?',
-      a: [
-        'I developed course design resources that have been used in 25 published courses, and I trained faculty, Duke Corporate Education partners, and fellow designers to use them. I built on that work with a shared design guide, planning templates, and reusable examples.'
-      ],
-      links: [{ label: 'Résumé', href: 'resume.html' }],
-      keys: 'coursera design guide design guide resources templates planning templates reusable examples faculty training duke corporate education published courses guidelines'
-    },
 
     {
       id: 'course-count', group: 'samples',
@@ -441,10 +420,9 @@ window.FAQ_DATA = {
       a: [
         'Space Medicine, AI for Nurses, and Digital You are live projects: real courses I worked on with Duke faculty and partners. Space Medicine launched on Coursera in 2021, AI for Nurses launched in September 2026, and Digital You ran as a for-credit course in Spring 2024. On Space Medicine, the original course is live, and the reimagined Week 2 module is a concept I built.',
         'Branching Biology, Light the Beacon, and Cleared for Flight are concepts: custom designs I created to show my work. Because of intellectual property, it’s harder for me to show the learning design behind live courses, so the concepts let me share what I can do and what’s possible beyond them. They’re proofs of concept, and they would need further research, development, and testing before being used with learners.',
-        'On the Home page, each sample is marked Live project or Concept, and you can filter by project type, features, audience, or platform. I also built the Coursera Design Guide and Interactivity Generator to support Duke’s faculty and learning design team. You’ll find them mentioned on my résumé.'
+        'On the Home page, each sample is marked Live project or Concept, and you can filter by project type, features, audience, or platform.'
       ],
-      links: [{ label: 'Résumé', href: 'resume.html' }],
-      keys: 'real in use live launched concept concepts prototype proof of concept hypothetical actual production published difference live project ip intellectual property confidential confidentiality why concepts custom design design guide interactivity generator tools'
+      keys: 'real in use live launched concept concepts prototype proof of concept hypothetical actual production published difference live project ip intellectual property confidential confidentiality why concepts custom design'
     },
     {
       id: 'concept-making', group: 'samples',
@@ -464,7 +442,7 @@ window.FAQ_DATA = {
       q: 'Do you design the learning, build it, or manage the project?',
       a: [
         'My work often includes all three. I help shape the learning experience, develop materials and prototypes, and coordinate the work needed to bring a project together.',
-        'The mix depends on the project and the team. In AI for Nurses, I led learning design and project management with faculty and project partners. For the Coursera Design Guide and Interactivity Generator, I also designed and built the resources themselves.'
+        'The mix depends on the project and the team. In AI for Nurses, I led learning design and project management with faculty and project partners.'
       ],
       links: [{ label: 'Project Management', href: 'project-management.html' }],
       keys: 'designer or project manager both roles build develop manage lead responsibilities what do you actually do hands on developer'
@@ -509,7 +487,7 @@ window.FAQ_DATA = {
       a: [
         'Over a summer, June to August 2026, my team worked in one-week sprints. Each product started with a short definition and a backlog on our Monday.com board. At the start of each sprint, each person set a one-sentence goal and pulled in a few ready cards.',
         'Midweek, everyone posted a short async update in Teams, with blocked cards flagged on the board. Each sprint ended with a review and demo, then a 15-minute retrospective on how we worked. I designed and facilitated the process and was product owner for two of the tools.',
-        'We built a Coursera interaction generator, a Claude Skills library and dashboard, a capacity forecasting model, a course design outline tool, and a script writing agent.'
+        'We built a Claude Skills library and dashboard, a capacity forecasting model, a course design outline tool, and a script writing agent.'
       ],
       links: [{ label: 'Project Management', href: 'project-management.html' }],
       keys: 'agile sprint sprints scrum backlog monday.com monday teams retrospective review demo product owner standup async update pilot summer ai tools project management tools software kanban'
