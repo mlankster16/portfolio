@@ -404,6 +404,101 @@ window.FAQ_DATA = {
     },
 
     {
+      id: 'digital-results', group: 'samples',
+      phrases: ['what were the results of digital you', 'did students learn anything from digital you', 'how did digital you turn out', 'what would you change about digital you', 'digital you results'],
+      q: 'What were the results of Digital You?',
+      a: [
+        'Reflections, final projects, mid-semester feedback, and course evaluations showed growth in students’ ethical reasoning and digital literacy. Final projects brought technical research together with ethical analysis, and course evaluations showed high engagement. Mid-semester feedback helped us refine the labs and pacing.',
+        'For a next version, I’d offer more open-ended lab pathways, make stronger connections between the technology and ethics weeks, and add a course coordinator to support a large, multi-instructor course.'
+      ],
+      links: [{ label: 'Digital You', href: 'digital-you.html' }],
+      keys: 'digital you results outcomes impact evaluation evaluations feedback growth ethical reasoning digital literacy final projects engagement lessons learned what would you change next version improve students learned'
+    },
+    {
+      id: 'digital-pm', group: 'samples',
+      phrases: ['how did you manage the digital you project', 'how long did digital you take to build', 'what was the digital you timeline', 'how did you keep digital you accessible', 'digital you timeline'],
+      q: 'How did you manage the Digital You project?',
+      a: [
+        'I coordinated 31 people across five roles, including instructors, guest lecturers, TAs, and the design team. A team charter clarified roles, expectations, working norms, and conflict handling. Two tracking boards kept the work visible: one for faculty and leadership, and another for detailed internal tasks.',
+        'The project timeline ran from April 2023 to May 2024. We defined outcomes and mapped content, prototyped the first lab pair, built the Canvas structure and guest templates, onboarded TAs, and then launched, gathered feedback, and debriefed. We reviewed each asset as it was created, added a second reviewer, and completed accessibility checks for captions, alt text, screen-reader-friendly PDFs, and the course as a whole.'
+      ],
+      links: [{ label: 'Digital You', href: 'digital-you.html' }],
+      keys: 'digital you project management timeline how long coordinated 31 people five roles team charter tracking boards boards qa review accessibility checks captions alt text screen reader pdf canvas edstem tas guest lecturers conflict handling'
+    },
+    {
+      id: 'ai-activities', group: 'samples',
+      phrases: ['what kinds of activities did you design for ai for nurses', 'what types of activities are in ai for nurses', 'what is the ai coach in ai for nurses', 'what is the coursera ai coach'],
+      q: 'What kinds of activities did you design for AI for Nurses?',
+      a: [
+        'The courses use seven activity types: short faculty videos, term spotlights, readings about specific AI tools, dialogue activities with a Coursera AI Coach, ungraded practice quizzes, graded application quizzes, and post-case reflections.',
+        'The activities connect concepts to clinical practice. For example, Course 3 case videos pause three times for a clinical judgment, while the AI Coach conversations ask nurses to reflect on a tool or moment from their own work. Graded quizzes allow unlimited attempts and provide feedback on every answer option.'
+      ],
+      links: [{ label: 'AI for Nurses', href: 'ai-for-nurses.html' }],
+      keys: 'ai for nurses activities activity types seven videos term spotlights readings ai tools dialogue coursera ai coach practice quizzes graded quizzes application questions reflections case videos clinical judgment unlimited attempts feedback every answer option'
+    },
+    {
+      id: 'ai-try', group: 'samples',
+      phrases: ['can i try the ai for nurses activities', 'is there a demo of ai for nurses'],
+      q: 'Can I try the AI for Nurses activities?',
+      a: [
+        'Yes. Two activities are fully interactive on the page. In one, you compare a fall-risk score with a generated discharge summary. In the other, you change what information a model receives and see how its output responds, including what the nurse knows that the model does not.'
+      ],
+      links: [{ label: 'AI for Nurses', href: 'ai-for-nurses.html' }],
+      keys: 'try ai for nurses activities interactive live activity demo fall risk score discharge summary what a model receives predictive generative can i try'
+    },
+    {
+      id: 'ai-after', group: 'samples',
+      phrases: ['what happened after ai for nurses launched', 'is there a second ai for nurses specialization', 'what is next for ai for nurses'],
+      q: 'What happened after AI for Nurses launched?',
+      a: [
+        'After the launch, our partners funded a second year of work, and a new Specialization is in development. I’m continuing as project manager and senior learning experience designer across the four courses in that project.'
+      ],
+      links: [{ label: 'AI for Nurses', href: 'ai-for-nurses.html' }],
+      keys: 'after launch second year funded new specialization in development next project four courses continuing project manager senior learning experience designer partners johnson ai for nurses what happened next'
+    },
+    {
+      id: 'beacon-class', group: 'samples',
+      phrases: ['how could a teacher use light the beacon in class', 'can teachers use light the beacon', 'is light the beacon for the classroom'],
+      q: 'How could a teacher use Light the Beacon in class?',
+      a: [
+        'Learners can complete the activity independently first, at their own pace. Then a teacher could use it to start a short discussion: How did you solve each puzzle? Which representation helped you? How did equivalent ratios and unit rates help you choose a final signal plan?'
+      ],
+      links: [{ label: 'Light the Beacon', href: 'beacon-escape-room.html' }],
+      keys: 'teacher classroom use in class discussion independent practice representations equivalent ratios unit rates final signal plan how could a teacher use how long does it take middle school grade 6'
+    },
+    {
+      id: 'cyoa-science', group: 'samples',
+      phrases: ['what learning science informed branching biology', 'what research supports your design choices', 'what is self-determination theory', 'do you use backward design', 'what learning theories do you use'],
+      q: 'What learning science informed Branching Biology?',
+      a: [
+        'Three ideas shape the concept. First, examples connect to a learner’s existing knowledge and interests, drawing on prior-knowledge research and Keller’s ARCS model. Second, backward design keeps activities and assessments focused on a shared essential question. Third, learners can choose among formats while working toward the same goals and criteria, drawing on self-determination theory and Universal Design for Learning.',
+        'The choices shape how learners engage with the work, not what they are expected to learn.'
+      ],
+      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }],
+      keys: 'learning science research evidence based theory prior knowledge keller arcs model backward design essential question self-determination theory universal design for learning udl autonomy competence relevance motivation three ideas how learning works ambrose'
+    },
+    {
+      id: 'drone-sim', group: 'samples',
+      phrases: ['how does the cleared for flight simulator work', 'what is the simulator in cleared for flight', 'can a learner fail cleared for flight'],
+      q: 'How does the Cleared for Flight simulator work?',
+      a: [
+        'The sample scenario builds toward independent decisions across five decision points. The first includes a prompt, the next two offer optional hints, and the last two are completed without hints. After coaching, learners can try a decision again.',
+        'This is a concept prototype, and the operating limits shown in it are illustrative values. They would need review by flight and utility safety experts before any real training use.'
+      ],
+      links: [{ label: 'Cleared for Flight', href: 'drone-inspection-training.html' }],
+      keys: 'simulator scenario decision points five decisions prompt hints fade support no hints coaching retry try again substation inspection illustrative limits prototype how does the simulator work can a learner fail'
+    },
+    {
+      id: 'try-concepts', group: 'samples',
+      phrases: ['can i try the concepts', 'can i try the samples', 'are the interactives working', 'are the samples interactive'],
+      q: 'Can I try the concepts?',
+      a: [
+        'Yes. Branching Biology, Light the Beacon, and Cleared for Flight are interactive on their project pages. The separate Space Medicine Week 2 concept is interactive on the Space Medicine page as well.'
+      ],
+      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }, { label: 'Light the Beacon', href: 'beacon-escape-room.html' }, { label: 'Cleared for Flight', href: 'drone-inspection-training.html' }, { label: 'Space Medicine', href: 'space-medicine.html' }],
+      keys: 'try interactive demo play can i try the concepts samples working prototypes are they interactive do they work live demo'
+    },
+    {
       id: 'course-count', group: 'samples',
       q: 'How many courses have you worked on?',
       a: [
@@ -578,12 +673,83 @@ window.FAQ_DATA = {
       phrases: ['how do you design for learner motivation','learner motivation','design for motivation','how do you motivate learners','how do you keep learners motivated','how do you keep learners engaged','how do you engage learners','what keeps learners going','student motivation','learner engagement'],
       q: 'How do you design for learner motivation?',
       a: [
-        'Learners come to a course for different reasons. Some are already interested in the topic; others are there because a course is required, or because something simply caught their curiosity. I want to make room for all of those starting points.',
+        'Learners come to a course for different reasons. Some are already interested in the topic; others are there because a course is required, or because something caught their curiosity. I want to make room for all of those starting points.',
         'My longer-term aim is to help learners find personal meaning and a reason to keep going. Along the way, clear goals, manageable milestones, visible progress, useful feedback, and chances to try again can provide structure and momentum. Meaningful choices and relevant examples can help learners connect the work to their own interests. I want those supports to build confidence and curiosity, not just reward completion.',
         'In Branching Biology, learners can explore a shared question through different formats while working toward the same goals. In Light the Beacon, a sequence of problems builds toward a decision, with hints and feedback available along the way. Those concepts haven’t been tested with learners, so I’d want to learn which supports help different learners stay engaged and where the experience needs to change.'
       ],
       links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }, { label: 'Light the Beacon', href: 'beacon-escape-room.html' }],
       keys: 'motivation motivate motivated learner motivation student motivation engagement engage engaged keep going persistence meaning purpose curiosity interest required course relevance choice autonomy confidence progress milestones feedback try again retry goals momentum self-determination arcs reward gamification'
+    },
+    {
+      id: 'design-process', group: 'how',
+      phrases: ['what is your design process', 'whats your design process', 'what is your process', 'how do you approach a project', 'what instructional design models do you use'],
+      q: 'What’s your design process, from first idea to launch?',
+      a: [
+        'I start by getting clear on what we’re trying to solve, who the learners are, and what success should look like. I listen to subject matter experts and project partners, look at what already exists, and figure out what we can carry forward, adapt, or create. From there, I turn the big idea into learning goals, a workable scope, and a plan the team can act on.',
+        'Then we shape the learner experience, prototype key moments, and build the content and tools. I share work early so people can react while it’s still easy to make changes. Along the way, I coordinate reviews, timelines, and production details. Before launch, I focus on accessibility, clarity, and quality. Afterward, I use feedback and performance signals to decide what to refine. I enjoy making a fuzzy idea concrete while keeping the people it’s meant to serve at the center.'
+      ],
+      keys: 'design process process workflow first idea to launch how do you work steps approach methodology start scope goals prototype build review launch iterate refine instructional design model'
+    },
+    {
+      id: 'led-team', group: 'how',
+      phrases: ['have you led a team', 'have you managed a team', 'do you manage people', 'do you have leadership experience', 'have you led or managed a team'],
+      q: 'Have you led or managed a team?',
+      a: [
+        'Yes. At Duke, I’ve led and co-led learning projects involving faculty and subject matter experts, design and media partners, project leads, and other stakeholders. I’ve contributed to work across more than 50 courses and Specializations, and developed resources now used in 25 published courses. I also mentor designers and help teams strengthen scoping, planning, review, and delivery.',
+        'My leadership is hands-on. I help create shared direction, surface decisions early, make responsibilities and next steps clear, and keep work moving as needs shift. My experience has primarily been in project and team leadership.'
+      ],
+      keys: 'led a team managed a team leadership lead manage people direct reports mentor mentoring designers team lead project lead management experience supervise stakeholders hands-on'
+    },
+    {
+      id: 'collab-style', group: 'how',
+      phrases: ['what is your management style', 'what is your collaboration style', 'what is your working style', 'how do you work with a team', 'what is your biggest strength'],
+      q: 'What’s your management and collaboration style?',
+      a: [
+        'I’m warm, direct, and collaborative. I start by listening and asking questions so we understand what matters to learners, faculty, and the project. I like to make goals, roles, timelines, and open decisions clear, then keep communication straightforward and feedback specific.',
+        'I share early examples and prototypes so people have something concrete to react to. That helps us make better decisions together. I’m comfortable when the path isn’t fully defined. I bring structure where it helps, stay flexible as we learn, and help the team decide when to keep refining and when to ship. I know when to push for more and when to make a practical call and move forward.'
+      ],
+      keys: 'management style collaboration style working style how do you work with teams communication feedback leadership style warm direct collaborative strengths ambiguity ship decisions'
+    },
+    {
+      id: 'learner-feedback', group: 'how',
+      phrases: ['how do you use learner feedback', 'how do you use analytics', 'do you use learner research or user testing', 'how do you improve a course after launch', 'do you pilot courses'],
+      q: 'How do you use learner feedback and analytics to improve a learning experience?',
+      a: [
+        'I bring learners into the process early, especially when a course is designed for a specific audience or addresses a workforce need. For AI for Nurses, co-design sessions helped us understand nurses’ needs and challenges and bring that perspective into the course. Nurses piloted the courses as well, giving us an important check on whether the content and learning experience felt relevant and useful to them.',
+        'Focus groups and pilots can be especially helpful for checking alignment: Are we addressing the right needs? Does the content connect to learners’ work? Can they use what they’re learning? After launch, I look at learner feedback, assessment results, course evaluations, and available analytics to spot areas to explore. I treat those measures as signals rather than answers on their own, then use what learners say and do to decide what to clarify, adjust, or test next.'
+      ],
+      links: [{ label: 'AI for Nurses', href: 'ai-for-nurses.html' }],
+      keys: 'learner feedback analytics data improve iterate pilot pilots focus groups co-design user testing learner research course evaluations assessment results signals continuous improvement ai for nurses nurses piloted'
+    },
+    {
+      id: 'handle-feedback', group: 'how',
+      phrases: ['how do you handle disagreement', 'how do you handle feedback from faculty', 'what do you do when faculty disagree', 'how do you handle conflict', 'how do you handle scope creep'],
+      q: 'How do you handle disagreement or feedback from faculty and subject matter experts?',
+      a: [
+        'I try to understand what each person is trying to accomplish, then bring the conversation back to the shared goals, learner needs, quality expectations, and project constraints. I make the tradeoffs visible and look for an approach that addresses the concern while keeping the work aligned.',
+        'On Duke projects, a clear scope of work and team charter established working norms and a process for handling conflict. I worked with the team through questions about visuals and course direction so we could maintain alignment across the project.'
+      ],
+      keys: 'disagreement conflict feedback faculty subject matter experts sme push back tradeoffs alignment scope of work team charter difficult conversations handle feedback criticism disagree'
+    },
+    {
+      id: 'curriculum-vs-ld', group: 'how',
+      phrases: ['what is the difference between curriculum and learning design', 'curriculum design vs learning design', 'curriculum vs instructional design'],
+      q: 'What’s the difference between curriculum and learning design?',
+      a: [
+        'Curriculum design gives learning its structure: what learners should know or be able to do, how the goals connect, and what standards or requirements the experience needs to meet. Learning design focuses on how learners will work toward those goals through examples, practice, activities, and feedback.',
+        'In my work as an educator, I’ve taught a range of STEM subjects and learners at different levels. Many of those experiences called for me to develop the curriculum and the learning design together. I see them as closely connected: the curriculum gives us a meaningful destination, and the learning design helps learners find their way there.'
+      ],
+      keys: 'curriculum design versus learning design difference between curriculum and instructional design learning experience design standards goals activities practice feedback educator stem curriculum developer'
+    },
+    {
+      id: 'curriculum-process', group: 'how',
+      phrases: ['what is your process for curriculum design', 'how do you write learning objectives', 'how do you align to standards', 'what standards do you use', 'do you use ngss'],
+      q: 'What’s your process for curriculum design?',
+      a: [
+        'I start with the learners, the subject, and what they need to be able to do. I also look at the standards or requirements that matter for that setting, whether that’s NGSS, Common Core, or accreditation standards. I use them to anchor the experience, then translate them into clear, tangible goals learners can work toward.',
+        'That often means shaping the goals into essential questions and statements like, “By the end of this lesson, you’ll be able to…” From there, I map a sequence of ideas, examples, practice, and assessment that helps learners build toward those goals in manageable steps. I work with subject matter experts to make sure the content is accurate and relevant, and I refine the experience based on feedback and what learners need.'
+      ],
+      keys: 'curriculum design process standards ngss common core accreditation learning objectives learning goals write objectives essential questions backward design sequence scope and sequence map assessment alignment'
     },
     {
       id: 'labs', group: 'how',
@@ -648,6 +814,16 @@ window.FAQ_DATA = {
       ],
       links: 'contact',
       keys: 'contact email reach message hire hiring work together collaborate connect linkedin talk get in touch freelance consulting available availability'
+    },
+    {
+      id: 'ip-assets', group: 'contact',
+      phrases: ['can you share the full assets for your live courses', 'can i see your live courses', 'can i see the course files', 'why are there no live course samples', 'can i see your work'],
+      q: 'Can you share the full assets for your live courses?',
+      a: [
+        'Live courses (Coursera and Canvas) were developed with Duke faculty and partners, so intellectual property and proprietary restrictions limit what I can share publicly. I can share selected snippets of work, and I’m happy to talk through the design decisions, my role, and how the work came together.'
+      ],
+      links: 'contact',
+      keys: 'full assets live courses share assets course files intellectual property proprietary ip restrictions confidential portfolio samples snippets can i see the course can i see your work coursera canvas duke permission'
     },
     {
       id: 'about-chat', group: 'contact',
