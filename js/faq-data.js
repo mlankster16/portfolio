@@ -574,6 +574,18 @@ window.FAQ_DATA = {
       keys: 'practice assessment assessments quizzes quiz activities coding practice branching scenarios scenarios interactive media case-based simulations games gamification game-based simulations hands-on interactive'
     },
     {
+      id: 'motivation', group: 'how',
+      phrases: ['how do you design for learner motivation','learner motivation','design for motivation','how do you motivate learners','how do you keep learners motivated','how do you keep learners engaged','how do you engage learners','what keeps learners going','student motivation','learner engagement'],
+      q: 'How do you design for learner motivation?',
+      a: [
+        'Learners come to a course for different reasons. Some are already interested in the topic; others are there because a course is required, or because something simply caught their curiosity. I want to make room for all of those starting points.',
+        'My longer-term aim is to help learners find personal meaning and a reason to keep going. Along the way, clear goals, manageable milestones, visible progress, useful feedback, and chances to try again can provide structure and momentum. Meaningful choices and relevant examples can help learners connect the work to their own interests. I want those supports to build confidence and curiosity, not just reward completion.',
+        'In Branching Biology, learners can explore a shared question through different formats while working toward the same goals. In Light the Beacon, a sequence of problems builds toward a decision, with hints and feedback available along the way. Those concepts haven’t been tested with learners, so I’d want to learn which supports help different learners stay engaged and where the experience needs to change.'
+      ],
+      links: [{ label: 'Branching Biology', href: 'choose-your-own-adventure.html' }, { label: 'Light the Beacon', href: 'beacon-escape-room.html' }],
+      keys: 'motivation motivate motivated learner motivation student motivation engagement engage engaged keep going persistence meaning purpose curiosity interest required course relevance choice autonomy confidence progress milestones feedback try again retry goals momentum self-determination arcs reward gamification'
+    },
+    {
       id: 'labs', group: 'how',
       phrases: ['coursera labs','hands-on coding labs'],
       q: 'What’s your experience with Coursera Labs?',
