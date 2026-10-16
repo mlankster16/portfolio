@@ -28,7 +28,7 @@ Then open http://localhost:8744. Any static file server works.
 | `js/lagoon.js` | Shared behavior: nav menus, embed resizing, scroll highlighting, loads the chat |
 | `js/lagoon-dc.js` | Small state helper for pages with interactions (tabs, toggles, simulators) |
 | `js/rethink-data.js` | Content for the walkthrough on the Branching Biology page |
-| `assets/img/` | Images, grouped by page, plus `share-card.png` (the link-preview card used in the share tags) |
+| `assets/img/` | Images (WebP), grouped by page, plus `share-card.png` (the link-preview card used in the share tags) |
 | `assets/interactives/` | Self-contained interactive modules embedded in sample pages |
 | `assets/resume/` | Résumé PDF linked from the Résumé page |
 | `tools/bump-version.py` | Cache-buster helper (see below) |
@@ -57,7 +57,7 @@ python3 tools/bump-version.py js/lagoon.js
 - Plus Jakarta Sans, with a teal, seafoam, and sun-yellow palette
 - Text contrast meets WCAG AA, and body text is at least 13px
 - Pages must not scroll horizontally at phone widths
-- Images carry descriptive `alt` text; below-the-fold images use `loading="lazy"`
+- Images are WebP, carry descriptive `alt` text, and below-the-fold images use `loading="lazy"`. The share card stays PNG because link previews do not reliably support WebP
 - Writing style: plain, warm language and no em dashes
 
 ## Deploying
