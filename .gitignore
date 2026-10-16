@@ -1,1 +1,14 @@
+# macOS
 .DS_Store
+._*
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Local tooling and scratch files
+node_modules/
+*.zip
+*.log
+.claude/

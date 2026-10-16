@@ -1,3 +1,5 @@
+/* Questions and learner paths for the Branching Biology walkthrough (choose-your-own-adventure.html).
+   Edit this file to change the walkthrough content. */
 window.RETHINK = (function () {
   var Q = [
     { id: 'major', title: 'What’s your major or program?', type: 'one', opts: [

@@ -621,6 +621,17 @@ window.FAQ_DATA = {
       keys: 'ai artificial intelligence claude chatgpt llm generative tools automation prompts copilot machine learning code claude code claude design vibe coding'
     },
     {
+      id: 'portfolio-build', group: 'how',
+      phrases: ['how did you create this portfolio', 'how did you build this portfolio', 'how did you build this site', 'how did you make this website', 'who built this site', 'who made this website', 'who designed this portfolio', 'how was this site made', 'did you build this yourself'],
+      q: 'How did you create this portfolio?',
+      a: [
+        'This portfolio turned out to be one of the most fun projects I’ve ever taken on. As a learning designer, I spend a lot of time helping others shape their story, so it was a real joy to do that for my own work, revisiting each phase of my career and finding the right way to share it.',
+        'I built everything myself, with Claude Design and Claude Code as creative partners and ChatGPT for the occasional idea session.'
+      ],
+      links: [{ label: 'About Megan', href: 'about.html' }],
+      keys: 'portfolio website site built made created build make create design designed developed yourself claude design claude code chatgpt how was this made who built behind the scenes'
+    },
+    {
       id: 'accessibility', group: 'how',
       q: 'How do you think about accessibility?',
       a: [
