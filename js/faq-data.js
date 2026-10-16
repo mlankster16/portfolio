@@ -33,7 +33,7 @@ window.FAQ_DATA = {
       phrases: ['what do you do','who are you','tell me about yourself'],
       q: 'What do you do?',
       a: [
-        'I’m a senior learning experience designer, STEM educator, and PMP®-certified project manager. I work with experts to turn complex ideas into learning people can use.',
+        'I’m a Senior Learning Experience Designer, STEM Educator, and PMP®-certified Project Manager. I work with experts to turn complex ideas into learning people can use.',
         'Along the way, I help teams decide what to focus on, how learners will practice, and what we can build well with the time and resources available.'
       ],
       links: [{ label: 'About me', href: 'about.html' }],
@@ -95,8 +95,8 @@ window.FAQ_DATA = {
       phrases: ['work history','career history','how long have you worked','years of experience'],
       q: 'What’s your work history?',
       a: [
-        'I’ve worked at Duke since 2020, first as a learning experience designer and now as a senior learning experience designer and project manager. I’ve led learning design and project delivery for more than 50 online courses and Specializations there.',
-        'Before Duke, I was an educational technology specialist at High Point University, where I led campus-wide rollouts that supported more than 100 faculty. Before that, I was a program manager and instructional designer at UNC Greensboro, including designing the university’s first MOOC.',
+        'I’ve worked at Duke since 2020, first as a Learning Experience Designer and now as a Senior Learning Experience Designer and Project Manager. I’ve led learning design and project delivery for more than 50 online courses and Specializations there.',
+        'Before Duke, I was an Educational Technology Specialist at High Point University, where I led campus-wide rollouts that supported more than 100 faculty. Before that, I was a Program Manager and Instructional Designer at UNC Greensboro, including designing the university’s first MOOC.',
         'Earlier in my career, I taught science and STEM courses to K–12 students. My résumé has the details.'
       ],
       links: [{ label: 'Résumé', href: 'resume.html' }],
@@ -455,7 +455,7 @@ window.FAQ_DATA = {
       a: [
         'Survey data from working nurses and conversations with partners shaped a progression that I shared early with stakeholders. In a co-design session, registered nurses described AI as something that flags, summarizes, prioritizes, or triggers, and those patterns carry through all three courses.',
         'Lessons pair a short expert video from Duke School of Nursing faculty with readings that connect vocabulary to real tools. In Course 3, case study videos pause three times so nurses make a real-time clinical judgment, and learners apply the AI-SBAR framework.',
-        'I worked as Senior Learning Designer and Project Manager, and I used ChatGPT, Claude, and Claude Code to support the design.'
+        'I worked as Senior Learning Experience Designer and Project Manager, and I used ChatGPT, Claude, and Claude Code to support the design.'
       ],
       links: [{ label: 'AI for Nurses', href: 'ai-for-nurses.html' }],
       keys: 'design process co-design codesign survey nurses registered nurses learning objectives courses three courses ai-sbar sbar case studies videos clinical judgment vocabulary progression stakeholders johnson school of nursing'
@@ -486,7 +486,7 @@ window.FAQ_DATA = {
       phrases: ['what happened after ai for nurses launched', 'is there a second ai for nurses specialization', 'what is next for ai for nurses'],
       q: 'What happened after AI for Nurses launched?',
       a: [
-        'After the launch, our partners funded a second year of work, and a new Specialization is in development. I’m continuing as project manager and senior learning experience designer across the four courses in that project.'
+        'After the launch, our partners funded a second year of work, and a new Specialization is in development. I’m continuing as Project Manager and Senior Learning Experience Designer across the four courses in that project.'
       ],
       links: [{ label: 'AI for Nurses', href: 'ai-for-nurses.html' }],
       keys: 'after launch second year funded new specialization in development next project four courses continuing project manager senior learning experience designer partners johnson ai for nurses what happened next'
@@ -495,7 +495,7 @@ window.FAQ_DATA = {
       id: 'digital-you', group: 'samples',
       q: 'What is Digital You?',
       a: [
-        'Let’s Talk Digital You is a for-credit, interdisciplinary Duke course in Canvas, open to students in any major. As project manager and lead learning experience designer, I helped two lead instructors and weekly guest experts build one integrated course on the technical and ethical sides of a data-centric world.',
+        'Let’s Talk Digital You is a for-credit, interdisciplinary Duke course in Canvas, open to students in any major. As Project Manager and Lead Learning Experience Designer, I helped two lead instructors and weekly guest experts build one integrated course on the technical and ethical sides of a data-centric world.',
         'It ran as a hybrid, semester-long course in Spring 2024.'
       ],
       links: [{ label: 'Digital You', href: 'digital-you.html' }],
@@ -508,7 +508,7 @@ window.FAQ_DATA = {
       a: [
         'Two lead instructors and a rotating guest expert taught each week, and I coordinated people across five roles into one integrated course. Each theme ran across two weeks: how a technology works, then its ethical implications. Two panel weeks brought live Q&A across disciplines.',
         'I defined three outcomes with the lead instructors, then mapped every week to the same six-step structure so guests and TAs could begin co-design work. Each week included a guest session for about 100 students, hands-on exploration in EdStem, smaller sections for discussion, and a weekly blog post on each student’s own WordPress site.',
-        'My role was Senior Learning Designer and Project Manager.'
+        'My role was Senior Learning Experience Designer and Project Manager.'
       ],
       links: [{ label: 'Digital You', href: 'digital-you.html' }],
       keys: 'organized structure weekly guest lecturers instructors tas panel weeks themes outcomes six-step edstem wordpress blog sections students 100 canvas ethics technology generative art privacy social media algorithms topics who did you work with'
@@ -551,7 +551,7 @@ window.FAQ_DATA = {
       phrases: ['manage projects','manage a project','how do you manage','keep a project','manage your projects','project management process','how do you run projects'],
       q: 'How do you keep a project moving?',
       a: [
-        'I work with the team to agree on what we’re creating, who is responsible for each part, and when we need decisions or feedback. I’m a PMP®-certified project manager, and much of my work involves helping people plan around the time and resources available.',
+        'I work with the team to agree on what we’re creating, who is responsible for each part, and when we need decisions or feedback. I’m a PMP®-certified Project Manager, and much of my work involves helping people plan around the time and resources available.',
         'Every project moves through five phases: scope, kickoff, manage, deliver, and evaluate. When new ideas come up, I help us consider what they would add and what they would require. Those conversations help the team choose where to focus.'
       ],
       links: [{ label: 'Project Management', href: 'project-management.html', note: 'the five phases in more detail' }],
@@ -584,7 +584,7 @@ window.FAQ_DATA = {
       q: 'How did you run the Agile pilot?',
       a: [
         'Over a summer, June to August 2026, my team worked in one-week sprints. Each product started with a short definition and a backlog on our Monday.com board. At the start of each sprint, each person set a one-sentence goal and pulled in a few ready cards.',
-        'Midweek, everyone posted a short async update in Teams, with blocked cards flagged on the board. Each sprint ended with a review and demo, then a 15-minute retrospective on how we worked. I designed and facilitated the process and was product owner for two of the tools.',
+        'Midweek, everyone posted a short async update in Teams, with blocked cards flagged on the board. Each sprint ended with a review and demo, then a 15-minute retrospective on how we worked. I designed and facilitated the process and was Product Owner for two of the tools.',
         'We built a Claude Skills library and dashboard, a capacity forecasting model, a course design outline tool, and a script writing agent.'
       ],
       links: [{ label: 'Project Management', href: 'project-management.html' }],
@@ -617,7 +617,7 @@ window.FAQ_DATA = {
       phrases: ['how did you create this portfolio', 'how did you build this portfolio', 'how did you build this site', 'how did you make this website', 'who built this site', 'who made this website', 'who designed this portfolio', 'how was this site made', 'did you build this yourself'],
       q: 'How did you create this portfolio?',
       a: [
-        'This portfolio turned out to be one of the most fun projects I’ve ever taken on. As a learning designer, I spend a lot of time helping others shape their story, so it was a real joy to do that for my own work, revisiting each phase of my career and finding the right way to share it.',
+        'This portfolio turned out to be one of the most fun projects I’ve ever taken on. As a Learning Designer, I spend a lot of time helping others shape their story, so it was a real joy to do that for my own work, revisiting each phase of my career and finding the right way to share it.',
         'I built everything myself, with Claude Design and Claude Code as creative partners and ChatGPT for the occasional idea session.'
       ],
       links: [{ label: 'About Megan', href: 'about.html' }],

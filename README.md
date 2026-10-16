@@ -1,6 +1,6 @@
 # Megan Lancaster | Portfolio
 
-Static portfolio site for Megan Lancaster, a Senior Learning Experience Designer, STEM educator, and PMP-certified project manager.
+Static portfolio site for Megan Lancaster, a Senior Learning Experience Designer, STEM Educator, and PMP-certified Project Manager.
 
 Live site: https://mlankster16.github.io/portfolio/
 
