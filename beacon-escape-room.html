@@ -20,10 +20,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://mlankster16.github.io/portfolio/assets/img/share-card.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/lagoon.css?v=18">
+<link rel="preload" href="assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/lagoon.css?v=19">
 <style>
 .hv12:hover{color:#fff !important;background:#0A6A67 !important}
 .hv13:hover{color:#fff !important;background:#0A6A67 !important}
@@ -38,7 +36,7 @@ input:focus{outline:2px solid #0F8A86;outline-offset:1px}
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
 
-<div style="font-family:'Plus Jakarta Sans',sans-serif;color:#0F2E33;background:#FFFFFF;min-height:100vh;display:flex;flex-direction:column;overflow-x:clip;">
+<div style="font-family:'Plus Jakarta Sans','Plus Jakarta Fallback',sans-serif;color:#0F2E33;background:#FFFFFF;min-height:100vh;display:flex;flex-direction:column;overflow-x:clip;">
   <!-- build:header -->
   <header class="site-header">
     <a class="site-brand" href="index.html">Megan Lancaster, PMP®</a>
@@ -140,9 +138,9 @@ input:focus{outline:2px solid #0F8A86;outline-offset:1px}
 <span data-if="r3" style="display:none"><div style="background:#EAF4EE;overflow:hidden;border-radius:18.5px;padding:clamp(14.5px,2.4vw,21px);display:flex;flex-direction:column;gap:14.5px;color:#0F2E33;"><div style="position:relative;height:clamp(96px,14vw,130px);margin:calc(clamp(14.5px,2.4vw,21px) * -1) calc(clamp(14.5px,2.4vw,21px) * -1) 0;"><svg viewBox="0 0 600 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="display:block;width:100%;height:100%;"><rect width="600" height="130" fill="#12352B"></rect><rect x="110" y="40" width="460" height="76" rx="10" fill="#1B4A3B" stroke="#9DD9B4" stroke-width="1.5"></rect><g transform="translate(150 78)"><circle r="18" fill="#0F2E33" stroke="#9DD9B4" stroke-width="2"></circle><path d="M0 0 L8 -12" stroke="#9DD9B4" stroke-width="2.5" stroke-linecap="round"></path></g><g transform="translate(210 78)"><circle r="18" fill="#0F2E33" stroke="#9DD9B4" stroke-width="2"></circle><path d="M0 0 L8 -12" stroke="#9DD9B4" stroke-width="2.5" stroke-linecap="round"></path></g><rect x="248" y="50" width="204" height="44" rx="6" fill="#0A231C" stroke="#9DD9B4" stroke-width="1"></rect><path d="M260 72 L260 72.0 L266 81.9 L272 87.6 L278 77.5 L284 74.7 L290 70.9 L296 59.9 L302 56.0 L308 59.0 L314 70.3 L320 74.2 L326 77.2 L332 87.8 L338 83.0 L344 73.5 L350 68.7 L356 66.3 L362 66.3 L368 63.4 L374 73.6 L380 83.1 L386 77.9 L392 77.2 L398 74.2 L404 67.4 L410 58.9 L416 56.0 L422 67.5 L428 70.9 L434 74.8 L440 86.6" fill="none" data-bind-stroke="bnWave" stroke-width="2" stroke-linejoin="round"></path><path d="M470 54 H540" stroke="#9DD9B4" stroke-width="2" opacity=".6"></path><path d="M470 63 H540" stroke="#9DD9B4" stroke-width="2" opacity=".6"></path><path d="M470 72 H540" stroke="#9DD9B4" stroke-width="2" opacity=".6"></path><path d="M470 81 H540" stroke="#9DD9B4" stroke-width="2" opacity=".6"></path><path d="M470 90 H540" stroke="#9DD9B4" stroke-width="2" opacity=".6"></path><path d="M60 116 V40 M60 40 l-14 -16 M60 40 l14 -16" fill="none" stroke="#9DD9B4" stroke-width="2" stroke-linecap="round"></path><path d="M0 120 H600" stroke="#0A231C" stroke-width="10"></path></svg><span style="position:absolute;left:14px;top:10px;font-size:13px;font-weight:600;letter-spacing:.04em;background:rgba(255,255,255,.92);color:#0F2E33;padding:4px 8px;border-radius:999px;white-space:nowrap;">Middle floor · the radio</span></div>
   <div style="display:flex;flex-direction:column;gap:6.5px;"><span style="font-size:13px;font-weight:600;color:#0A6A67;">Room 3 · Radio room</span><span style="font-size:clamp(20px,2.3vw,25px);font-weight:400;letter-spacing:-.02em;line-height:1.15;">How fast is the radio?</span><span style="font-size:14.5px;font-weight:300;line-height:1.6;color:#4B6468;text-wrap:pretty;">The radio sent 18 beeps in 3 minutes. How many beeps is that each minute? Then find how long it takes to send 42 beeps.</span></div>
   <div style="overflow-x:auto;"><svg viewBox="0 0 520 120" style="display:block;width:100%;height:auto;" role="img" aria-label="Double number line: minutes and beeps">
-    <g font-family="Plus Jakarta Sans, sans-serif" font-size="14" fill="#0F2E33"><text x="0" y="36">Minutes</text><text x="0" y="96">Beeps</text></g>
+    <g font-family="Plus Jakarta Sans,Plus Jakarta Fallback,sans-serif" font-size="14" fill="#0F2E33"><text x="0" y="36">Minutes</text><text x="0" y="96">Beeps</text></g>
     <g stroke="#0F2E33" stroke-width="1.5" fill="none"><path d="M80 32 H510 M80 92 H510"></path><path d="M90 24 V40 M90 84 V100"></path><path d="M148 24 V40 M148 84 V100"></path><path d="M264 24 V40 M264 84 V100"></path><path d="M496 24 V40 M496 84 V100"></path></g>
-    <g font-family="Plus Jakarta Sans, sans-serif" font-size="15" text-anchor="middle" fill="#0F2E33"><text x="90" y="16">0</text><text x="148" y="16">1</text><text x="264" y="16">3</text><text x="496" y="16">7</text><text x="90" y="120">0</text><text x="148" y="120" data-bind-fill="nl1c"><tspan data-text="nl1"></tspan></text><text x="264" y="120">18</text><text x="496" y="120" data-bind-fill="nl2c"><tspan data-text="nl2"></tspan></text></g>
+    <g font-family="Plus Jakarta Sans,Plus Jakarta Fallback,sans-serif" font-size="15" text-anchor="middle" fill="#0F2E33"><text x="90" y="16">0</text><text x="148" y="16">1</text><text x="264" y="16">3</text><text x="496" y="16">7</text><text x="90" y="120">0</text><text x="148" y="120" data-bind-fill="nl1c"><tspan data-text="nl1"></tspan></text><text x="264" y="120">18</text><text x="496" y="120" data-bind-fill="nl2c"><tspan data-text="nl2"></tspan></text></g>
   </svg></div>
   <div style="display:flex;flex-wrap:wrap;gap:9.5px 16px;align-items:center;"><label style="display:flex;align-items:center;gap:8px;font-size:14.5px;">Beeps in 1 minute <input inputMode="numeric" data-bind-value="r1Val" data-change="onR1" style="font:inherit;font-size:17px;width:96px;padding:8px 9.5px;border:1.5px solid #B9CCC7;border-radius:10px;text-align:center;color:#0F2E33;background:#fff;"></label><button type="button" data-click="checkR1" style="font:inherit;cursor:pointer;white-space:nowrap;background:#0F2E33;color:#fff;border:0;border-radius:999px;padding:9.5px 16px;font-size:14px;font-weight:500;">Check rate</button></div>
   <span data-if="raShow" style="display:none"><div data-style="raBox"><span style="font-size:14px;line-height:1.6;"><span data-text="raMsg"></span></span></div></span>
@@ -206,7 +204,7 @@ input:focus{outline:2px solid #0F8A86;outline-offset:1px}
   <!-- /build:footer -->
 </div>
 
-<script src="js/lagoon.js?v=39"></script>
+<script src="js/lagoon.js?v=43"></script>
 <script src="js/lagoon-dc.js?v=4"></script>
 <script>class Component extends DCLogic {
   state = { door: '', doorErr: false, std: 0, room: 0, slots: ['g','g','g','g'].concat(Array(16).fill(null)), pick: 'b', lens: null, genVal: '', strat: null, gen: null, r1Val: '', ra: null, r2Val: '', rb: null, plan: null, pat: null, fl: null, du: null, fin: null, why: null, lg: null, sg: [null, null, null, null], doorNeed: '', h: [0, 0, 0, 0, 0] };

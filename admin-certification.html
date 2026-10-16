@@ -9,8 +9,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/lagoon.css?v=18">
+<link rel="preload" href="assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/lagoon.css?v=19">
 <style>
 .hv12:hover{color:#fff !important;background:#0A6A67 !important}
 </style>
@@ -20,7 +20,7 @@
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
 
-<div style="font-family:'Plus Jakarta Sans',sans-serif;color:#0F2E33;background:#FFFFFF;min-height:100vh;display:flex;flex-direction:column;overflow-x:clip;">
+<div style="font-family:'Plus Jakarta Sans','Plus Jakarta Fallback',sans-serif;color:#0F2E33;background:#FFFFFF;min-height:100vh;display:flex;flex-direction:column;overflow-x:clip;">
   <!-- build:header -->
   <header class="site-header">
     <a class="site-brand" href="index.html">Megan Lancaster, PMP®</a>
@@ -160,7 +160,7 @@
   <!-- /build:footer -->
 </div>
 
-<script src="js/lagoon.js?v=39"></script>
+<script src="js/lagoon.js?v=43"></script>
 <script src="js/lagoon-dc.js?v=4"></script>
 <script>class Component extends DCLogic {
   state = { lv: 0, role: null, scope: null, exp: null, saved: false, hn: 0, hints: 0, it: null, ch: 0 };

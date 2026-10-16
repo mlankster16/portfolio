@@ -20,11 +20,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://mlankster16.github.io/portfolio/assets/img/share-card.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="css/lagoon.css?v=18">
+<link rel="stylesheet" href="css/lagoon.css?v=19">
 <style>
 .hv10:hover{border-color:#0F8A86 !important;color:#0F2E33 !important}
 .hv11:hover{border-color:#0F8A86 !important;color:#0F2E33 !important;filter:brightness(.97) !important}
@@ -906,7 +904,7 @@
 .dc .gm-how strong { color:#8a6a0a; }
 </style>
 <style id="bw-style">
-.bw{--ink:#0F2E33;--muted:#4B6468;--bg:#F3F7F5;--line:#DCE8E3;--violet:#0C7D79;--deep:#0F2E33;--vt:#DDF1EB;--lime:#FFD84A;--lt:#FFF0B3;--off:#DCE8E3;--track:#E7F0EC;--warn:#F2A541;--grad:linear-gradient(160deg,#0F2E33,#0B4044);--gold-tint:#DDF1EB;--gold-border:#BFE5DA;--navy:#0F2E33;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);font-size:14px;line-height:1.55}
+.bw{--ink:#0F2E33;--muted:#4B6468;--bg:#F3F7F5;--line:#DCE8E3;--violet:#0C7D79;--deep:#0F2E33;--vt:#DDF1EB;--lime:#FFD84A;--lt:#FFF0B3;--off:#DCE8E3;--track:#E7F0EC;--warn:#F2A541;--grad:linear-gradient(160deg,#0F2E33,#0B4044);--gold-tint:#DDF1EB;--gold-border:#BFE5DA;--navy:#0F2E33;font-family:'Plus Jakarta Sans','Plus Jakarta Fallback',system-ui,sans-serif;color:var(--ink);font-size:14px;line-height:1.55}
 .bw *{box-sizing:border-box}
 .bw p{margin:0 0 8px}
 .bw button{font:inherit;color:inherit;cursor:pointer}
@@ -1307,7 +1305,7 @@
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
-<div style="font-family:'Plus Jakarta Sans',sans-serif;color:#0F2E33;background:#FFFFFF;min-height:100vh;display:flex;flex-direction:column;overflow-x:clip;">
+<div style="font-family:'Plus Jakarta Sans','Plus Jakarta Fallback',sans-serif;color:#0F2E33;background:#FFFFFF;min-height:100vh;display:flex;flex-direction:column;overflow-x:clip;">
     <!-- build:header -->
   <header class="site-header">
     <a class="site-brand" href="index.html">Megan Lancaster, PMP®</a>
@@ -1349,7 +1347,7 @@
 <path d="M269 110 L290 106 L270 120 Z" fill="#0F2E33"/><circle cx="258" cy="111" r="2.6" fill="#0F2E33"/><path d="M218 172 L216 187 M230 170 L230 186"/>
 <path d="M298 94 a16 16 0 0 1 0 22" stroke="#0F8A86"/><path d="M308 84 a30 30 0 0 1 0 42" stroke="#0F8A86" opacity=".8"/></g></g></svg></div>
       <div style="position:relative;display:flex;flex-direction:column;gap:18px;max-width:min(100%,540px);">
-      <h1 style="margin:0;font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(38px,min(6.2vw,7.8vh),68px);font-weight:300;line-height:.95;letter-spacing:-.05em;">Branching <span style="color:#0F8A86;">Biology</span></h1>
+      <h1 style="margin:0;font-family:'Plus Jakarta Sans','Plus Jakarta Fallback',sans-serif;font-size:clamp(38px,min(6.2vw,7.8vh),68px);font-weight:300;line-height:.95;letter-spacing:-.05em;">Branching <span style="color:#0F8A86;">Biology</span></h1>
       <div style="display:flex;flex-direction:column;align-items:flex-start;gap:18px;">
         <div style="font-size:clamp(17px,1.7vw,20px);font-weight:300;line-height:1.35;letter-spacing:-.01em;text-wrap:pretty;">Designing for choice in undergraduate science: <span style="color:#0A6A67;">a shared learning goal with different ways to get there.</span></div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-start;"><a href="#walk" style="color:#0F2E33;white-space:nowrap;background:#0F2E33;color:#fff;padding:11px 17.5px;border-radius:999px;font-size:14px;font-weight:500;">Jump to the walkthrough ↓</a></div>
@@ -1780,7 +1778,7 @@ if('IntersectionObserver' in window){var io=new IntersectionObserver(function(en
 open=0;draw();
 })();
 </script>
-<script src="js/lagoon.js?v=39"></script>
+<script src="js/lagoon.js?v=43"></script>
 
 </body>
 </html>

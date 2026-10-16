@@ -29,12 +29,14 @@ Then open http://localhost:8744. Any static file server works.
 | `js/lagoon-dc.js` | Small state helper for pages with interactions (tabs, toggles, simulators) |
 | `js/rethink-data.js` | Content for the walkthrough on the Branching Biology page |
 | `assets/img/` | Images (WebP), grouped by page, plus `share-card.png` (the link-preview card used in the share tags) |
+| `assets/fonts/` | Plus Jakarta Sans, self-hosted (no Google Fonts request) |
 | `assets/interactives/` | Self-contained interactive modules embedded in sample pages |
 | `assets/resume/` | Résumé PDF linked from the Résumé page |
 | `partials/` | Shared header and footer markup (see "Shared header and footer") |
 | `tools/build.py` | Copies the partials into every page |
 | `tools/bump-version.py` | Cache-buster helper (see below) |
 | `sitemap.xml` | Page list for search engines |
+| `.github/workflows/check.yml` | GitHub Action that checks every push (see "Checks") |
 
 Note: `choose-your-own-adventure.html` is the Branching Biology page. The file name predates the project title and is kept so existing links keep working.
 
@@ -54,7 +56,7 @@ Pages with interactions define a `Component` class with `state` and `renderVals(
 
 ## Editing the Q&A chat
 
-All questions and answers live in `js/faq-data.js`. The matcher in `js/faq.js` scores what a visitor types against each item's `phrases` and `keys`. It makes no network calls, stores nothing, and uses no AI. The comment at the top of `faq-data.js` describes each field.
+The "Ask a question" button appears on every page, but the answers and chat script (about 95KB) load only when a visitor hovers, focuses, touches, or clicks it. All questions and answers live in `js/faq-data.js`. The matcher in `js/faq.js` scores what a visitor types against each item's `phrases` and `keys`. It makes no network calls, stores nothing, and uses no AI. The comment at the top of `faq-data.js` describes each field.
 
 ## Cache-busting
 
@@ -64,9 +66,13 @@ Shared files are referenced with a version query string, for example `js/lagoon.
 python3 tools/bump-version.py js/lagoon.js
 ```
 
+## Checks
+
+`.github/workflows/check.yml` runs on every push and pull request. It confirms the shared header and footer are up to date (`tools/build.py --check`), that every JavaScript file parses, and that no page has duplicate ids or an em dash. Run the same checks locally with `python3 tools/build.py --check` and `node --check js/*.js`.
+
 ## Conventions
 
-- Plus Jakarta Sans, with a teal, seafoam, and sun-yellow palette
+- Plus Jakarta Sans (self-hosted, with a size-matched fallback so text does not jump when it loads), with a teal, seafoam, and sun-yellow palette
 - Text contrast meets WCAG AA, and body text is at least 13px
 - Pages must not scroll horizontally at phone widths
 - Images are WebP, carry descriptive `alt` text, and below-the-fold images use `loading="lazy"`. The share card stays PNG because link previews do not reliably support WebP

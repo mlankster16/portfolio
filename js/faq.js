@@ -2,7 +2,9 @@
    No network calls, no storage, no AI. */
 (function () {
   var D = window.FAQ_DATA;
-  if (!D || document.getElementById('faq-launch')) return;
+  /* js/lagoon.js shows a stand-in "Ask a question" button and loads this file on first use. */
+  var stub = document.getElementById('faq-launch');
+  if (!D || (stub && !stub.hasAttribute('data-stub'))) return;
 
   /* ---------- Matching ---------- */
   var STOP = {};
@@ -63,8 +65,9 @@
   var ICON_SEND = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 
   /* ---------- Build the widget ---------- */
-  var launch = el('button', { type: 'button', id: 'faq-launch', class: 'faq-launch', 'aria-expanded': 'false', 'aria-controls': 'faq-panel' });
-  launch.innerHTML = ICON_CHAT + '<span>Ask a question</span>';
+  var launch = stub || el('button', { type: 'button', id: 'faq-launch', class: 'faq-launch', 'aria-label': 'Ask a question', 'aria-expanded': 'false', 'aria-controls': 'faq-panel' });
+  if (stub) { stub.removeAttribute('data-stub'); stub.removeAttribute('aria-busy'); }
+  else launch.innerHTML = ICON_CHAT + '<span>Ask a question</span>';
 
   var panel = el('section', { id: 'faq-panel', class: 'faq-panel', role: 'dialog', 'aria-labelledby': 'faq-title', hidden: '' });
   var head = el('div', { class: 'faq-head' });
@@ -81,7 +84,7 @@
   form.appendChild(input); form.appendChild(send);
   var note = el('p', { class: 'faq-note', text: D.note });
   panel.appendChild(head); panel.appendChild(log); panel.appendChild(form); panel.appendChild(note);
-  document.body.appendChild(launch);
+  if (!stub) document.body.appendChild(launch);
   document.body.appendChild(panel);
 
   /* On the Branching Biology page a sticky Back/Next bar sits at the bottom. */
@@ -207,4 +210,6 @@
     input.value = '';
     ask(v);
   });
+
+  if (stub && window.FAQ_OPEN_ON_LOAD) open();
 })();

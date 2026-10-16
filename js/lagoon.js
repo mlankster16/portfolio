@@ -46,16 +46,35 @@
     window.addEventListener('resize', spy);
     spy();
   }
-  /* Q&A chat: load its styles, answers, and script on every page. */
+  /* Q&A chat. The button shows right away; the answers (about 85KB) and the chat script
+     load only when a visitor goes for it (hover, focus, touch, or click). */
   (function () {
     var css = document.createElement('link');
-    css.rel = 'stylesheet'; css.href = 'css/faq.css?v=4';
+    css.rel = 'stylesheet'; css.href = 'css/faq.css?v=5';
     document.head.appendChild(css);
+    var btn = document.createElement('button');
+    btn.type = 'button'; btn.id = 'faq-launch'; btn.className = 'faq-launch';
+    btn.setAttribute('data-stub', ''); btn.setAttribute('aria-label', 'Ask a question'); btn.setAttribute('aria-controls', 'faq-panel'); btn.setAttribute('aria-expanded', 'false');
+    btn.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span>Ask a question</span>';
+    document.body.appendChild(btn);
+    var state = 0; /* 0 = idle, 1 = loading, 2 = ready */
     function load(src, next) {
       var t = document.createElement('script');
       t.src = src; t.onload = next || null;
+      t.onerror = function () { state = 0; btn.removeAttribute('aria-busy'); };
       document.body.appendChild(t);
     }
-    load('js/faq-data.js?v=33', function () { load('js/faq.js?v=8'); });
+    function fetchChat() {
+      if (state) return;
+      state = 1;
+      load('js/faq-data.js?v=33', function () { load('js/faq.js?v=10'); });
+    }
+    ['pointerenter', 'focus', 'touchstart'].forEach(function (ev) { btn.addEventListener(ev, fetchChat, { passive: true }); });
+    btn.addEventListener('click', function () {
+      if (!btn.hasAttribute('data-stub')) return; /* the chat script has taken over this button */
+      window.FAQ_OPEN_ON_LOAD = true;
+      btn.setAttribute('aria-busy', 'true');
+      fetchChat();
+    });
   })();
 })();
