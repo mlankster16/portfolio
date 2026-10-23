@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../../js/dc-runtime.js?v=1"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>/* Self-hosted fonts (assets/fonts) */
+@font-face{font-family:'Young Serif';font-style:normal;font-weight:400;font-display:swap;src:url('../fonts/young-serif-latin.woff2') format('woff2')}</style>
+<style>
+@font-face{font-family:'Plus Jakarta Sans';src:url('../fonts/plus-jakarta-sans-latin.woff2') format('woff2');font-weight:200 800;font-display:swap}
+body{margin:0;background:#0B1622;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#F4EEE2}
+a{color:#FFC965}a:hover{color:#fff}
+button,input{font:inherit}
+button:focus{outline:none}button:focus-visible,input:focus-visible{outline:2px solid #FFC965;outline-offset:3px}
+@keyframes bcBob{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-4%) rotate(1.5deg)}}
+@keyframes bcPulse{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes bcRing{0%{box-shadow:0 0 0 0 rgba(255,201,101,.75),0 6px 18px rgba(0,0,0,.5)}70%{box-shadow:0 0 0 16px rgba(255,201,101,0),0 6px 18px rgba(0,0,0,.5)}100%{box-shadow:0 0 0 0 rgba(255,201,101,0),0 6px 18px rgba(0,0,0,.5)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="padding:clamp(12px,2.4vw,24px);box-sizing:border-box;display:flex;flex-direction:column;gap:18px;max-width:1240px;margin:0 auto">
+  
+
+
+  <sc-if value="{{ r0 }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <div style="position:relative;aspect-ratio:3/1;min-height:260px;border-radius:24px;overflow:hidden;background:#0D2438 url(../img/beacon/sea-panorama.webp) center/cover;box-shadow:0 30px 80px rgba(0,0,0,.45)">
+        <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,14,22,.82) 0%,rgba(6,14,22,.45) 42%,rgba(6,14,22,0) 70%)"></div>
+        <div aria-hidden="true" style="position:absolute;left:{{ heroX }}%;top:72%;width:clamp(110px,17%,220px);transform:translate(-50%,-78%);transition:left 3s cubic-bezier(.2,.7,.3,1)"><img src="../img/beacon/boat.webp" alt="" style="display:block;width:100%;height:auto;filter:drop-shadow(0 6px 10px rgba(0,0,0,.6));animation:bcBob 2.4s ease-in-out infinite"></div>
+        <span style="position:absolute;top:16px;right:16px;font-size:13px;font-weight:700;padding:6px 12px;border-radius:999px;background:rgba(11,22,34,.8);color:#FFC965;border:1px solid rgba(255,201,101,.5)">Ship: 3.0 miles from the reef</span>
+        <div style="position:absolute;left:clamp(18px,4vw,40px);bottom:clamp(18px,4vw,36px);max-width:min(460px,60%);display:flex;flex-direction:column;gap:8px">
+          <span style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#E3A64B">A storm on the coast</span>
+          <h2 style="margin:0;font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:clamp(28px,4vw,44px);line-height:1.05">The lighthouse is dark</h2>
+          <p style="margin:0;font-size:clamp(15px,1.6vw,17px);line-height:1.55;color:#E6ECF0">A rescue ship is sailing straight toward the rocks, and the crew can’t see the danger. Only you can get the light shining again.</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;flex-direction:column;gap:14px;padding:clamp(18px,2.6vw,28px);border-radius:24px;background:#13212F;border:1px solid #24364A">
+          <span style="font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#E3A64B">Your mission</span>
+          <p style="margin:0;font-size:16px;line-height:1.6;color:#DCE3E8;max-width:70ch">The storm broke the lens, the generator, and the radio. Each room has a math puzzle that fixes one of them. Fix all three, then send a signal before the ship reaches the rocks.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:12px">
+            <div style="display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:#13212F;border:1px solid #24364A"><div style="position:relative;aspect-ratio:4/3;background:#0B1622 url(../img/beacon/lens.webp) center/cover"><span style="position:absolute;top:8px;left:8px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#FFC965;color:#0B1622;font-size:14px;font-weight:700">1</span></div><div style="display:flex;flex-direction:column;gap:2px;padding:10px 12px"><span style="font-size:15px;font-weight:700">Lens room</span><span style="font-size:13.5px;color:#B9C3CC">Match a ratio</span></div></div><div style="display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:#13212F;border:1px solid #24364A"><div style="position:relative;aspect-ratio:4/3;background:#0B1622 url(../img/beacon/generator.webp) center/cover"><span style="position:absolute;top:8px;left:8px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#FFC965;color:#0B1622;font-size:14px;font-weight:700">2</span></div><div style="display:flex;flex-direction:column;gap:2px;padding:10px 12px"><span style="font-size:15px;font-weight:700">Generator room</span><span style="font-size:13.5px;color:#B9C3CC">Fill a ratio table</span></div></div><div style="display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:#13212F;border:1px solid #24364A"><div style="position:relative;aspect-ratio:4/3;background:#0B1622 url(../img/beacon/radio.webp) center/cover"><span style="position:absolute;top:8px;left:8px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#FFC965;color:#0B1622;font-size:14px;font-weight:700">3</span></div><div style="display:flex;flex-direction:column;gap:2px;padding:10px 12px"><span style="font-size:15px;font-weight:700">Radio room</span><span style="font-size:13.5px;color:#B9C3CC">Find a unit rate</span></div></div><div style="display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:#13212F;border:1px solid #24364A"><div style="position:relative;aspect-ratio:4/3;background:#0B1622 url(../img/beacon/gallery.webp) center/cover"><span style="position:absolute;top:8px;left:8px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#FFC965;color:#0B1622;font-size:14px;font-weight:700">4</span></div><div style="display:flex;flex-direction:column;gap:2px;padding:10px 12px"><span style="font-size:15px;font-weight:700">Signal gallery</span><span style="font-size:13.5px;color:#B9C3CC">Set the signal</span></div></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px;padding:clamp(18px,2.6vw,28px);border-radius:24px;background:#13212F;border:1px solid #24364A">
+          <span style="font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#E3A64B">How it works</span>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:18px 22px">
+          <div style="display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start"><span style="width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(255,201,101,.12)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#FFC965" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"></path></svg></span><span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:700">Hints are always free</span><span style="font-size:14px;line-height:1.5;color:#B9C3CC">Tap the lightbulb in any room. Use as many as you like.</span></span></div>
+          <div style="display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start"><span style="width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(255,201,101,.12)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#FFC965" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle></svg></span><span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:700">Practice first if you’re unsure</span><span style="font-size:14px;line-height:1.5;color:#B9C3CC">Each room has a short practice to help you warm up.</span></span></div>
+          <div style="display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start"><span style="width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(255,201,101,.12)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#FFC965" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"></path><path d="M9 8h6M9 12h6"></path></svg></span><span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:700">Collect clues</span><span style="font-size:14px;line-height:1.5;color:#B9C3CC">Each fixed room gives you a clue for your logbook. You’ll need them at the end.</span></span></div>
+          <div style="display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start"><span style="width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(255,201,101,.12)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#FFC965" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></span><span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:700">Unlock each door</span><span style="font-size:14px;line-height:1.5;color:#B9C3CC">Use what you solved to open the door to the next room.</span></span></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:8px 0 4px">
+          <button type="button" onClick="{{ startGame }}" aria-label="Climb the lighthouse and start" style="cursor:pointer;width:104px;height:104px;border-radius:50%;display:grid;place-items:center;padding:0;border:0;background:radial-gradient(circle at 40% 35%,#FFE2A8,#FFC965 55%,#E3A64B);box-shadow:0 6px 0 #A9741F;animation:bcRing 1.8s ease-out infinite;transition:transform .1s" style-hover="transform:scale(1.05)" style-active="transform:translateY(4px) scale(.98)"><svg viewBox="0 0 64 64" width="54" height="54" fill="none" stroke="#0B1622" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M32 6v4"></path><path d="M24 14h16l-2 8H26z" fill="#0B1622"></path><path d="M22 22h20"></path><path d="M26 22l-4 34h20l-4-34"></path><path d="M24 36h16M23 46h18"></path><path d="M16 58h32"></path><path d="M42 16l14-6M42 19l14 2" stroke-width="2.5"></path></svg></button>
+          <span style="font-size:16px;font-weight:700;color:#FFC965">Tap the lighthouse to climb in</span>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+  <div style="position:relative;display:{{ gridDisp }};grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:18px;align-items:start">
+    <sc-if value="{{ traveling }}" hint-placeholder-val="{{ false }}">
+      <div role="dialog" aria-label="Ship update" style="position:absolute;inset:0;z-index:9;border-radius:24px;background:#0B1622;display:flex;flex-direction:column;justify-content:center;gap:20px;padding:clamp(0px,1vw,8px) 0;box-sizing:border-box;overflow:auto">
+        <div aria-hidden="true" style="position:relative;width:100%;aspect-ratio:3/1;min-height:240px;border-radius:24px;overflow:hidden;background:#0D2438 url(../img/beacon/sea-panorama.webp) center/cover;box-shadow:0 30px 80px rgba(0,0,0,.45);flex:none">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,14,22,.25),rgba(6,14,22,0) 40%,rgba(6,14,22,.35))"></div>
+          <div style="position:absolute;left:{{ trailL }}%;width:{{ trailW }}%;top:80%;height:4px;margin-top:-2px;border-radius:2px;background:#FFC965;box-shadow:0 0 12px #FFC965;transition:left 1.6s ease-in-out,width 1.6s ease-in-out"></div>
+          <sc-for list="{{ miles }}" as="m" hint-placeholder-count="4"><span style="position:absolute;left:{{ m.x }}%;bottom:5%;transform:translateX(-50%);white-space:nowrap;font-size:13px;font-weight:700;padding:2px 8px;border-radius:999px;background:rgba(11,22,34,.75);color:#DCE3E8">{{ m.l }}</span></sc-for>
+          <span style="position:absolute;left:12%;top:58%;transform:translateX(-50%);font-size:13px;font-weight:700;padding:2px 9px;border-radius:999px;background:rgba(11,22,34,.8);color:#F2B28C">Reef</span>
+          <sc-if value="{{ tHarbor }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;right:3%;top:30%;font-size:13px;font-weight:700;padding:2px 9px;border-radius:999px;background:rgba(11,22,34,.8);color:#7FD1C4">Harbor</span></sc-if>
+          <div style="position:absolute;left:{{ shipX }}%;top:{{ shipY }}%;width:{{ shipW }}%;transform:translate(-50%,-78%) scaleX({{ shipFlip }});transition:left 1.6s ease-in-out,top 1.6s ease-in-out,width 1.6s ease-in-out,transform .6s ease"><img src="../img/beacon/boat.webp" alt="" style="display:block;width:100%;height:auto;filter:drop-shadow(0 6px 10px rgba(0,0,0,.6));animation:bcBob 2.4s ease-in-out infinite"></div>
+          <span style="position:absolute;top:16px;right:16px;font-size:13px;font-weight:700;padding:6px 12px;border-radius:999px;background:rgba(11,22,34,.8);color:#FFC965;border:1px solid rgba(255,201,101,.5)">{{ tChip }}</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 28px;padding:0 clamp(6px,2vw,20px)">
+          <div style="flex:1 1 380px;max-width:640px;display:flex;flex-direction:column;gap:8px">
+            <span style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#E3A64B">Meanwhile, out at sea…</span>
+            <span aria-live="polite" style="font-family:'Young Serif',Georgia,serif;font-size:clamp(26px,3.4vw,38px);line-height:1.1">{{ tTitle }}</span>
+            <span style="font-size:16px;line-height:1.6;color:#DCE3E8">{{ tMsg }}</span>
+          </div>
+          <sc-if value="{{ tHarbor }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ endTravel }}" style="cursor:pointer;padding:14px 26px;border-radius:999px;border:0;background:#FFC965;color:#0B1622;font-size:17px;font-weight:700;box-shadow:0 5px 0 #A9741F;transition:transform .08s,box-shadow .08s" style-active="transform:translateY(4px);box-shadow:0 1px 0 #A9741F">{{ tBtn }}</button></sc-if><sc-if value="{{ tInside }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;align-items:center;gap:10px"><button type="button" onClick="{{ endTravel }}" aria-label="{{ tLbl }}" style="cursor:pointer;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;padding:0;border:0;background:radial-gradient(circle at 40% 35%,#FFE2A8,#FFC965 55%,#E3A64B);box-shadow:0 6px 0 #A9741F;animation:bcRing 1.8s ease-out infinite;transition:transform .1s" style-hover="transform:scale(1.05)" style-active="transform:translateY(4px) scale(.98)"><svg viewBox="0 0 64 64" width="50" height="50" fill="none" stroke="#0B1622" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M32 6v4"></path><path d="M24 14h16l-2 8H26z" fill="#0B1622"></path><path d="M22 22h20"></path><path d="M26 22l-4 34h20l-4-34"></path><path d="M24 36h16M23 46h18"></path><path d="M16 58h32"></path><path d="M42 16l14-6M42 19l14 2" stroke-width="2.5"></path></svg></button><span style="font-size:15px;font-weight:700;color:#FFC965;text-align:center">{{ tLbl }}</span></div></sc-if>
+        </div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ mapOn }}" hint-placeholder-val="{{ false }}">
+      <div role="dialog" aria-label="Inside the lighthouse" style="position:absolute;inset:0;z-index:9;border-radius:24px;background:rgba(6,14,22,.97);backdrop-filter:blur(6px);display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:24px;padding:20px;box-sizing:border-box;overflow:auto">
+        <div style="position:relative;height:min(640px,calc(100% - 8px));min-height:420px;aspect-ratio:2/3;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.6);flex:none">
+          <img src="../img/beacon/cutaway.webp" alt="{{ mapAlt }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:18px">
+          <div aria-hidden="true" style="position:absolute;inset:0;border-radius:18px;background:rgba(6,14,22,.35)"></div>
+          <div aria-hidden="true" style="position:absolute;left:{{ mDone.l }}%;top:{{ mDone.t }}%;width:{{ mDone.w }}%;height:{{ mDone.h }}%;border-radius:12px;border:3px solid #FFC965;background:rgba(255,201,101,.12);box-shadow:0 0 18px rgba(255,201,101,.6);opacity:{{ mDoneOp }}"><span style="position:absolute;left:50%;bottom:6px;transform:translateX(-50%);white-space:nowrap;font-size:13px;font-weight:700;padding:4px 10px;border-radius:999px;background:#FFC965;color:#0B1622">✓ {{ mDone.name }}</span></div>
+          <div aria-hidden="true" style="position:absolute;left:{{ mCur.l }}%;top:{{ mCur.t }}%;width:{{ mCur.w }}%;height:{{ mCur.h }}%;border-radius:12px;border:3px solid #7FD1C4;box-shadow:0 0 0 4px rgba(127,209,196,.25),0 0 24px rgba(127,209,196,.7);transition:left 1.4s ease-in-out,top 1.4s ease-in-out,width 1.4s ease-in-out,height 1.4s ease-in-out"><span style="position:absolute;left:50%;top:6px;transform:translateX(-50%);white-space:nowrap;font-size:13px;font-weight:700;padding:4px 10px;border-radius:999px;background:#7FD1C4;color:#0B1622;opacity:{{ mNextOp }};transition:opacity .4s ease 1.2s">Next: {{ mNext.name }}</span></div>
+        </div>
+        <div style="flex:1 1 220px;max-width:340px;display:flex;flex-direction:column;gap:12px">
+          <span style="font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#E3A64B">Inside the lighthouse</span>
+          <span style="font-family:'Young Serif',Georgia,serif;font-size:28px;line-height:1.15">{{ mTitle }}</span>
+          <span style="font-size:15.5px;line-height:1.6;color:#DCE3E8">{{ mMsg }}</span>
+          <div style="align-self:center;margin-top:12px"><div style="display:flex;flex-direction:column;align-items:center;gap:10px"><button type="button" onClick="{{ finishTravel }}" aria-label="{{ mLbl }}" style="cursor:pointer;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;padding:0;border:0;background:radial-gradient(circle at 40% 35%,#FFE2A8,#FFC965 55%,#E3A64B);box-shadow:0 6px 0 #A9741F;animation:bcRing 1.8s ease-out infinite;transition:transform .1s" style-hover="transform:scale(1.05)" style-active="transform:translateY(4px) scale(.98)"><sc-if value="{{ mIc1 }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 64 64" width="50" height="50" fill="none" stroke="#0B1622" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="32" cy="32" r="18"></circle><circle cx="32" cy="32" r="11"></circle><circle cx="32" cy="32" r="4" fill="#0B1622"></circle><path d="M32 6v6M32 52v6M6 32h6M52 32h6"></path></svg></sc-if><sc-if value="{{ mIc2 }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 64 64" width="50" height="50" fill="none" stroke="#0B1622" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M36 6L16 36h14l-4 22 22-32H34z" fill="#0B1622"></path></svg></sc-if><sc-if value="{{ mIc3 }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 64 64" width="50" height="50" fill="none" stroke="#0B1622" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="12" y="28" width="40" height="24" rx="4"></rect><circle cx="24" cy="40" r="5"></circle><path d="M36 36h10M36 44h10"></path><path d="M26 28l16-16"></path><path d="M44 8a10 10 0 0 1 6 6M46 2a16 16 0 0 1 10 10"></path></svg></sc-if><sc-if value="{{ mIc4 }}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 64 64" width="50" height="50" fill="none" stroke="#0B1622" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="32" cy="32" r="16"></circle><circle cx="32" cy="32" r="5" fill="#0B1622"></circle><path d="M32 6v10M32 48v10M6 32h10M48 32h10M14 14l7 7M43 43l7 7M50 14l-7 7M21 43l-7 7"></path></svg></sc-if></button><span style="font-size:15px;font-weight:700;color:#FFC965;text-align:center">{{ mLbl }}</span></div></div>
+        </div>
+      </div>
+    </sc-if>
+
+    <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+    <div style="position:relative;aspect-ratio:1/1;border-radius:24px;overflow:hidden;background:#111D2A;box-shadow:0 30px 80px rgba(0,0,0,.45)">
+      <img src="../img/beacon/storm.webp" alt="{{ sc0.alt }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ sc0.op }};filter:brightness({{ sc0.br }}) saturate({{ sc0.sat }});transition:opacity .8s ease,filter 1.2s ease">
+      <img src="../img/beacon/lens.webp" alt="{{ sc1.alt }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ sc1.op }};filter:brightness({{ sc1.br }}) saturate({{ sc1.sat }});transition:opacity .8s ease,filter 1.2s ease">
+      <img src="../img/beacon/generator.webp" alt="{{ sc2.alt }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ sc2.op }};filter:brightness({{ sc2.br }}) saturate({{ sc2.sat }});transition:opacity .8s ease,filter 1.2s ease">
+      <img src="../img/beacon/radio.webp" alt="{{ sc3.alt }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ sc3.op }};filter:brightness({{ sc3.br }}) saturate({{ sc3.sat }});transition:opacity .8s ease,filter 1.2s ease">
+      <img src="../img/beacon/gallery.webp" alt="{{ sc4.alt }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ sc4.op }};filter:brightness({{ sc4.br }}) saturate({{ sc4.sat }});transition:opacity .8s ease,filter 1.2s ease">
+      <img src="../img/beacon/lit.webp" alt="{{ sc5.alt }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:{{ sc5.op }};filter:brightness({{ sc5.br }}) saturate({{ sc5.sat }});transition:opacity .8s ease,filter 1.2s ease">
+      <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,22,34,.55) 0%,rgba(11,22,34,0) 26%,rgba(11,22,34,0) 70%,rgba(11,22,34,.75) 100%);pointer-events:none"></div>
+      <div style="position:absolute;top:14px;left:14px;right:14px;display:flex;justify-content:space-between;gap:8px;align-items:flex-start;pointer-events:none">
+        <span style="white-space:nowrap;font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;background:rgba(11,22,34,.72);backdrop-filter:blur(6px);color:#F4EEE2;border:1px solid rgba(227,166,75,.45)">{{ place }}</span>
+      </div>
+
+      <sc-if value="{{ lensRing }}" hint-placeholder-val="{{ false }}">
+        <div aria-hidden="true" style="position:absolute;left:50%;top:46%;width:74%;aspect-ratio:1/1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(11,22,34,.62) 40%,rgba(11,22,34,.25) 64%,rgba(11,22,34,0) 72%);pointer-events:none"></div>
+        <div role="group" aria-label="Lens spots" style="position:absolute;inset:0">
+          <sc-for list="{{ slots }}" as="s" hint-placeholder-count="20">
+            <button type="button" aria-label="{{ s.label }}" onClick="{{ s.set }}" style="position:absolute;left:{{ s.x }}%;top:{{ s.y }}%;width:max(30px,7.6%);aspect-ratio:1/1;transform:translate(-50%,-50%);border-radius:50%;padding:0;cursor:{{ s.cur }};background:{{ s.bg }};border:{{ s.bd }};box-shadow:{{ s.sh }};transition:background .15s,box-shadow .4s"></button>
+          </sc-for>
+        </div>
+        <div style="position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;display:flex;flex-direction:column;gap:2px">
+          <span style="font-family:'Young Serif',Georgia,serif;font-size:clamp(18px,2.6vw,24px)">{{ lensCountBig }}</span>
+          <span style="font-size:13px;color:#DCE3E8">blue · gold</span>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ r2 }}" hint-placeholder-val="{{ false }}">
+        <span aria-hidden="true" style="position:absolute;left:44.5%;top:34%;width:7%;aspect-ratio:1/1;border-radius:50%;transform:translate(-50%,-50%);box-shadow:{{ gaugeGlow }};transition:box-shadow 1s;pointer-events:none"></span>
+        <span aria-hidden="true" style="position:absolute;left:49.5%;top:34%;width:7%;aspect-ratio:1/1;border-radius:50%;transform:translate(-50%,-50%);box-shadow:{{ gaugeGlow }};transition:box-shadow 1s;pointer-events:none"></span>
+        <div style="position:absolute;left:14px;bottom:14px;display:flex;flex-direction:column;gap:2px;padding:10px 14px;border-radius:14px;background:rgba(11,22,34,.78);backdrop-filter:blur(6px);border:1px solid rgba(227,166,75,.4)">
+          <span style="font-size:13px;color:#B9C3CC">Generator output</span>
+          <span style="font-family:'Young Serif',Georgia,serif;font-size:22px;color:{{ genReadC }}">{{ genRead }}</span>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ r3 }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;left:14px;right:14px;bottom:14px;padding:12px 14px;border-radius:14px;background:rgba(11,22,34,.8);backdrop-filter:blur(6px);border:1px solid rgba(127,209,196,.4);display:flex;flex-direction:column;gap:8px">
+          <span style="font-size:13px;color:#B9C3CC">Radio log · beeps over time</span>
+          <div style="position:relative;height:34px">
+            <div style="position:absolute;left:0;right:0;top:12px;height:2px;background:#5D6E7C"></div>
+            <sc-for list="{{ nlTicks }}" as="t" hint-placeholder-count="8"><span style="position:absolute;left:{{ t.x }}%;top:6px;width:2px;height:14px;background:{{ t.c }};transform:translateX(-50%)"></span><span style="position:absolute;left:{{ t.x }}%;top:20px;font-size:12px;color:#B9C3CC;transform:translateX(-50%)">{{ t.l }}</span></sc-for>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px"><span>1 min → <strong style="color:{{ nl1c }}">{{ nl1 }}</strong> beeps</span><span>3 min → <strong>18</strong> beeps</span><span><strong style="color:{{ nl2c }}">{{ nl2 }}</strong> min → <strong>42</strong> beeps</span></div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ r4 }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;left:14px;bottom:14px;right:14px;display:flex;flex-wrap:wrap;gap:6px">
+          <span style="font-size:13px;font-weight:600;padding:6px 11px;border-radius:999px;background:rgba(11,22,34,.8);color:#FFC965">Lens · {{ patShow }}</span>
+          <span style="font-size:13px;font-weight:600;padding:6px 11px;border-radius:999px;background:rgba(11,22,34,.8);color:#FFC965">Flashes · {{ flShow }}</span>
+          <span style="font-size:13px;font-weight:600;padding:6px 11px;border-radius:999px;background:rgba(11,22,34,.8);color:#7FD1C4">Radio · {{ duShow }}</span>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ toastOn }}" hint-placeholder-val="{{ false }}">
+        <div role="status" style="position:absolute;left:50%;top:18%;transform:translateX(-50%);z-index:7;display:flex;align-items:center;gap:12px;padding:12px 18px 12px 12px;border-radius:18px;background:#FFC965;color:#0B1622;box-shadow:0 0 0 6px rgba(255,201,101,.25),0 14px 34px rgba(0,0,0,.5);white-space:nowrap">
+          <span style="width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#0B1622;color:#FFC965;font-size:18px;font-weight:700">{{ toastGlyph }}</span>
+          <span style="display:flex;flex-direction:column;gap:1px"><span style="font-family:'Young Serif',Georgia,serif;font-size:20px;line-height:1.1">{{ toastT }}</span><span style="font-size:13px;font-weight:600">{{ toastS }}</span></span>
+        </div>
+      </sc-if>
+      <sc-if value="{{ hasHints }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;top:56px;right:14px;display:flex;flex-direction:column;align-items:flex-end;gap:10px;z-index:3">
+          <button type="button" aria-label="Hints, {{ hintCt }} used" aria-expanded="{{ hintOpen }}" onClick="{{ toggleHint }}" style="position:relative;cursor:pointer;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;padding:0;background:{{ hintBtnBg }};color:{{ hintBtnFg }};border:1.5px solid #FFC965;box-shadow:0 4px 14px rgba(0,0,0,.45)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"></path></svg><span aria-hidden="true" style="position:absolute;right:-6px;bottom:-6px;min-width:26px;padding:2px 5px;box-sizing:border-box;border-radius:999px;background:#0B1622;border:1.5px solid #FFC965;color:#FFC965;font-size:11px;font-weight:700;line-height:1.2">{{ hintCt }}</span></button>
+          <sc-if value="{{ doorReady }}" hint-placeholder-val="{{ false }}"><button type="button" aria-label="Unlock the door" aria-expanded="{{ doorOpen }}" onClick="{{ toggleDoor }}" style="cursor:pointer;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;padding:0;background:{{ doorBtnBg }};color:{{ doorBtnFg }};border:2px solid #FFC965;animation:{{ lockAnim }}"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></button></sc-if>
+        </div>
+        <sc-if value="{{ hintOpen }}" hint-placeholder-val="{{ false }}">
+          <div role="dialog" aria-label="Hints" style="position:absolute;top:56px;right:68px;width:min(300px,calc(100% - 96px));z-index:4;padding:14px;border-radius:16px;background:rgba(11,22,34,.94);backdrop-filter:blur(8px);border:1px solid #E3A64B;box-shadow:0 14px 40px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span style="font-size:15px;font-weight:600;color:#FFC965">Hints</span><button type="button" onClick="{{ closePop }}" aria-label="Close" style="cursor:pointer;width:28px;height:28px;border-radius:50%;border:1px solid #3A4E63;background:transparent;color:#F4EEE2;font-size:16px;line-height:1;padding:0;flex:none">×</button></div>
+            <span style="font-size:13px;color:#B9C3CC">Hints are always free. Use as many as you like!</span>
+            <sc-for list="{{ hints }}" as="h" hint-placeholder-count="0"><div style="display:grid;grid-template-columns:24px minmax(0,1fr);gap:8px;font-size:14px;line-height:1.5"><span style="width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;background:#E3A64B;color:#0B1622">{{ h.n }}</span><span style="color:#DCE3E8">{{ h.t }}</span></div></sc-for>
+            <button type="button" onClick="{{ hint }}" disabled="{{ hintsAll }}" style="align-self:flex-start;cursor:pointer;padding:7px 14px;border-radius:999px;border:1px solid #E3A64B;background:transparent;color:#FFC965;font-size:14px;font-weight:600;opacity:{{ hintOp }}">{{ hintLabel }}</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ doorOpen }}" hint-placeholder-val="{{ false }}">
+          <div role="dialog" aria-label="{{ doorTitle }}" style="position:absolute;top:56px;right:68px;width:min(300px,calc(100% - 96px));z-index:4;padding:14px;border-radius:16px;background:rgba(11,22,34,.94);backdrop-filter:blur(8px);border:1px solid #E3A64B;box-shadow:0 14px 40px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span style="font-size:15px;font-weight:600;color:#FFC965">{{ doorTitle }}</span><button type="button" onClick="{{ closePop }}" aria-label="Close" style="cursor:pointer;width:28px;height:28px;border-radius:50%;border:1px solid #3A4E63;background:transparent;color:#F4EEE2;font-size:16px;line-height:1;padding:0;flex:none">×</button></div>
+            <span style="font-size:14px;line-height:1.5;color:#DCE3E8">{{ doorPrompt }}</span>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><input aria-label="{{ doorPrompt }}" inputmode="numeric" value="{{ doorVal }}" onChange="{{ onDoor }}" style="width:80px;text-align:center;padding:9px;border-radius:10px;border:1.5px solid #E3A64B;background:#13212F;color:#F4EEE2;font-size:17px;letter-spacing:.1em"><button type="button" onClick="{{ unlockDoor }}" style="cursor:pointer;padding:10px 18px;border-radius:999px;border:0;background:#E3A64B;color:#0B1622;font-size:14px;font-weight:700">Unlock</button></div>
+            <sc-if value="{{ doorErr }}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin:0;padding:11px 14px;border-radius:14px;font-size:15px;line-height:1.55;background:#FFE2A8;color:#3D2A00">{{ doorMsg }}</p></sc-if>
+          </div>
+        </sc-if>
+      </sc-if>
+      <sc-if value="{{ r5 }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;left:14px;bottom:14px;padding:10px 16px;border-radius:999px;background:rgba(11,22,34,.75);backdrop-filter:blur(6px);font-size:15px;font-weight:600;color:#FFC965">The ship sees the beacon</div>
+      </sc-if>
+    </div>
+
+      <div style="display:flex;flex-direction:column;gap:12px;padding:14px 16px;border-radius:18px;background:#13212F;border:1px solid #24364A">
+    <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;font-size:13px;font-weight:600;line-height:1.3;color:#B9C3CC"><span>{{ progLabel }}</span><span>{{ shipText }}</span></div>
+      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px">
+        <sc-for list="{{ sys }}" as="s" hint-placeholder-count="4"><div style="display:flex;flex-direction:column;gap:7px;min-width:0"><span style="height:6px;border-radius:3px;background:{{ s.bar }};transition:background .3s"></span><span style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;line-height:1.3;color:{{ s.fg }}"><span style="width:8px;height:8px;flex:none;border-radius:50%;background:{{ s.dot }};box-shadow:{{ s.glow }}"></span>{{ s.name }}</span></div></sc-for>
+      </div>
+    </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <span style="margin-top:4px;font-size:13px;font-weight:600;line-height:1.3;color:#B9C3CC">Clues {{ jCount }}</span><div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px">
+        <sc-for list="{{ journal }}" as="j" hint-placeholder-count="3"><span title="{{ j.clue }}" style="min-width:0;line-height:1.3;display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:5px 10px 5px 5px;border-radius:999px;background:{{ j.bg }};color:{{ j.fg }};border:{{ j.bd }}"><span style="width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;background:{{ j.ibg }};color:#0B1622">{{ j.glyph }}</span>{{ j.name }}</span></sc-for></div>
+      </div>
+      </div>
+    </div>
+    <div data-scroll-key="room" style="display:flex;flex-direction:column;gap:14px;padding:clamp(18px,2.4vw,26px);border-radius:24px;background:#13212F;border:1px solid #24364A">
+      <sc-if value="{{ hasSteps }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:4px">
+          <div style="display:flex;gap:5px;align-items:center"><sc-for list="{{ stepDots }}" as="d" hint-placeholder-count="3"><button type="button" aria-label="{{ d.label }}" aria-current="{{ d.cur }}" disabled="{{ d.locked }}" onClick="{{ d.go }}" style="width:{{ d.w }}px;height:10px;border-radius:5px;border:0;padding:0;cursor:{{ d.cursor }};background:{{ d.bg }};transition:width .2s,background .2s"></button></sc-for></div>
+          <span style="font-size:13px;line-height:1.3;color:#B9C3CC">Step {{ stepN }} of {{ stepT }} · {{ stepName }}</span>
+        </div>
+      </sc-if>
+      <sc-if value="{{ prac }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:18px;background:#0F2A2E;border:1px solid #7FD1C4">
+          <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px"><span style="white-space:nowrap;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7FD1C4">Practice</span><button type="button" onClick="{{ closePrac }}" style="white-space:nowrap;cursor:pointer;padding:6px 12px;border-radius:999px;border:1px solid #3A4E63;background:transparent;color:#F4EEE2;font-size:13.5px;font-weight:600">Back to the room</button></div>
+          <sc-if value="{{ pR1 }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:6px"><div style="display:flex;gap:5px"><sc-for list="{{ ppDots }}" as="d" hint-placeholder-count="3"><button type="button" aria-label="{{ d.label }}" aria-current="{{ d.cur }}" disabled="{{ d.locked }}" onClick="{{ d.go }}" style="width:{{ d.w }}px;height:10px;border-radius:5px;border:0;padding:0;cursor:{{ d.cursor }};background:{{ d.bg }};transition:width .2s"></button></sc-for></div><span style="font-size:13px;line-height:1.3;color:#B9C3CC">Part {{ ppN }} of 3 · {{ ppName }}</span></div>
+            <sc-if value="{{ pp0 }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <p style="margin:0;font-size:15.5px;line-height:1.6">A <strong>ratio</strong> compares two amounts. In the lens, it tells you how many blue lights go with how many gold lights.</p>
+                <div style="display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:14px;background:#0B1622">
+                  <span style="font-size:13px;font-weight:600;color:#B9C3CC">Example: 1 blue for every 4 gold</span>
+                  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px"><span style="display:flex;gap:4px;padding:5px 7px;border-radius:999px;border:1px dashed #8C99A6"><span style="width:22px;height:22px;border-radius:50%;background:#4A90C9;border:2px solid #F4EEE2"></span><span style="width:22px;height:22px;border-radius:50%;background:#FFC965;border:2px solid #F4EEE2"></span><span style="width:22px;height:22px;border-radius:50%;background:#FFC965;border:2px solid #F4EEE2"></span><span style="width:22px;height:22px;border-radius:50%;background:#FFC965;border:2px solid #F4EEE2"></span><span style="width:22px;height:22px;border-radius:50%;background:#FFC965;border:2px solid #F4EEE2"></span></span><span style="font-size:22px;font-weight:700">1 : 4</span></div>
+                  <span style="font-size:14px;line-height:1.5;color:#DCE3E8">Read it as “1 to 4.” Order matters: blue comes first, then gold.</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:14px;background:#0B1622">
+                  <span style="font-size:13px;font-weight:600;color:#B9C3CC">Two groups of the same ratio</span>
+                  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px"><span style="display:flex;gap:4px;padding:5px 7px;border-radius:999px;border:1px dashed #8C99A6"><span style="width:22px;height:22px;border-radius:50%;background:#4A90C9;border:2px solid #F4EEE2"></span><span style="width:22px;height:22px;border-radius:50%;background:#FFC965;border:2px solid #F4EEE2"></span><span style="width:22px;height:22px;border-radius:50%;background:#FFC965;border:2px solid #F4EEE2"></span><span style="width:22px;height:22px;border-radius:50%;background:#FFC965;border:2px solid #F4EEE2"></span><span style="width:22px;height:22px;border-radius:50%;background:#FFC965;border:2px solid #F4EEE2"></span></span><span style="display:flex;gap:4px;padding:5px 7px;border-radius:999px;border:1px dashed #8C99A6"><span style="width:22px;height:22px;border-radius:50%;background:#4A90C9;border:2px solid #F4EEE2"></span><span style="width:22px;height:22px;border-radius:50%;background:#FFC965;border:2px solid #F4EEE2"></span><span style="width:22px;height:22px;border-radius:50%;background:#FFC965;border:2px solid #F4EEE2"></span><span style="width:22px;height:22px;border-radius:50%;background:#FFC965;border:2px solid #F4EEE2"></span><span style="width:22px;height:22px;border-radius:50%;background:#FFC965;border:2px solid #F4EEE2"></span></span><span style="font-size:22px;font-weight:700">2 : 8</span></div>
+                  <span style="font-size:14px;line-height:1.5;color:#DCE3E8">More lights, same ratio. Each group still has 1 blue for every 4 gold. Ratios that match like this are called <strong>equivalent ratios</strong>.</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:14px;background:#0B1622;border:1px solid #2F5E5A">
+                  <span style="align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:rgba(127,209,196,.16);color:#7FD1C4">Describe it</span>
+                  <span style="font-size:15px;font-weight:600;line-height:1.5">Look at this group. Finish the sentence using “for every.”</span>
+                  <span style="display:flex;gap:4px;padding:5px 7px;border-radius:999px;border:1px dashed #8C99A6;align-self:flex-start"><span style="width:20px;height:20px;border-radius:50%;background:#4A90C9;border:2px solid #F4EEE2"></span><span style="width:20px;height:20px;border-radius:50%;background:#4A90C9;border:2px solid #F4EEE2"></span><span style="width:20px;height:20px;border-radius:50%;background:#FFC965;border:2px solid #F4EEE2"></span><span style="width:20px;height:20px;border-radius:50%;background:#FFC965;border:2px solid #F4EEE2"></span><span style="width:20px;height:20px;border-radius:50%;background:#FFC965;border:2px solid #F4EEE2"></span></span>
+                  <span style="font-size:17px;line-height:1.6">There are <strong style="display:inline-block;min-width:34px;text-align:center;border-bottom:2px solid #4A90C9;color:#9CC7EA">{{ dBv }}</strong> blue lights for every <strong style="display:inline-block;min-width:34px;text-align:center;border-bottom:2px solid #FFC965;color:#FFC965">{{ dGv }}</strong> gold lights.</span>
+                  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px"><span style="font-size:13px;font-weight:600;color:#9CC7EA;min-width:44px">Blue</span><sc-for list="{{ dBOpts }}" as="o" hint-placeholder-count="3"><button type="button" aria-pressed="{{ o.on }}" onClick="{{ o.pick }}" style="cursor:pointer;padding:7px 13px;border-radius:999px;font-size:14px;font-weight:600;background:{{ o.bg }};color:{{ o.fg }};border:1.5px solid {{ o.bd }}">{{ o.t }}</button></sc-for></div>
+                  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px"><span style="font-size:13px;font-weight:600;color:#FFC965;min-width:44px">Gold</span><sc-for list="{{ dGOpts }}" as="o" hint-placeholder-count="3"><button type="button" aria-pressed="{{ o.on }}" onClick="{{ o.pick }}" style="cursor:pointer;padding:7px 13px;border-radius:999px;font-size:14px;font-weight:600;background:{{ o.bg }};color:{{ o.fg }};border:1.5px solid {{ o.bd }}">{{ o.t }}</button></sc-for></div>
+                  <sc-if value="{{ dFbShow }}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin:0;padding:11px 14px;border-radius:14px;font-size:15px;line-height:1.55;background:{{ dFbBg }};color:{{ dFbFg }}">{{ dFb }}</p></sc-if>
+                </div>
+                <button type="button" onClick="{{ ppNext }}" style="align-self:flex-start;cursor:pointer;padding:10px 18px;border-radius:999px;border:0;background:#7FD1C4;color:#0B1622;font-size:14px;font-weight:700;box-shadow:0 4px 0 #3E8F84;transition:transform .08s,box-shadow .08s" style-active="transform:translateY(3px);box-shadow:0 1px 0 #3E8F84">Next: try a few →</button>
+              </div>
+            </sc-if>
+            <sc-if value="{{ pp1 }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <sc-for list="{{ pQs }}" as="q" hint-placeholder-count="3">
+                  <div style="display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:14px;background:#0B1622">
+                    <span style="font-size:13px;font-weight:600;color:#7FD1C4">{{ q.n }}</span>
+                    <span style="font-size:15px;font-weight:600;line-height:1.5">{{ q.text }}</span>
+                    <div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ q.groups }}" as="g" hint-placeholder-count="0"><span style="display:flex;gap:4px;padding:5px 7px;border-radius:999px;border:1px dashed #8C99A6"><sc-for list="{{ g }}" as="c" hint-placeholder-count="5"><span style="width:20px;height:20px;border-radius:50%;background:{{ c }};border:2px solid #F4EEE2"></span></sc-for></span></sc-for></div>
+                    <div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ q.opts }}" as="o" hint-placeholder-count="3"><button type="button" aria-pressed="{{ o.on }}" onClick="{{ o.pick }}" style="cursor:pointer;padding:8px 14px;border-radius:999px;font-size:14px;font-weight:600;background:{{ o.bg }};color:{{ o.fg }};border:1.5px solid {{ o.bd }}">{{ o.t }}</button></sc-for></div>
+                    <sc-if value="{{ q.fbShow }}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin:0;padding:11px 14px;border-radius:14px;font-size:15px;line-height:1.55;background:{{ q.fbBg }};color:{{ q.fbFg }}">{{ q.fb }}</p></sc-if>
+                  </div>
+                </sc-for>
+                <sc-if value="{{ pQsDone }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ ppNext }}" style="align-self:flex-start;cursor:pointer;padding:10px 18px;border-radius:999px;border:0;background:#7FD1C4;color:#0B1622;font-size:14px;font-weight:700;box-shadow:0 4px 0 #3E8F84;transition:transform .08s,box-shadow .08s" style-active="transform:translateY(3px);box-shadow:0 1px 0 #3E8F84">Next: the signal lamp →</button></sc-if>
+              </div>
+            </sc-if>
+            <sc-if value="{{ pp2 }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <p style="margin:0;font-size:15.5px;line-height:1.6">A small signal lamp has <strong>10 spots</strong>. It needs the ratio <strong>1 blue : 4 gold</strong>. One group of that ratio uses 5 spots.</p>
+                <div style="display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:14px;background:#0B1622">
+                  <span style="font-size:15px;font-weight:600">How many groups of 5 fit in 10 spots?</span>
+                  <div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ pgOpts }}" as="o" hint-placeholder-count="3"><button type="button" aria-pressed="{{ o.on }}" onClick="{{ o.pick }}" style="cursor:pointer;padding:8px 14px;border-radius:999px;font-size:14px;font-weight:600;background:{{ o.bg }};color:{{ o.fg }};border:1.5px solid {{ o.bd }}">{{ o.t }}</button></sc-for></div>
+                  <sc-if value="{{ pgFbShow }}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin:0;padding:11px 14px;border-radius:14px;font-size:15px;line-height:1.55;background:{{ pgBg }};color:{{ pgFg }}">{{ pgFb }}</p></sc-if>
+                </div>
+                <sc-if value="{{ pgOk }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;flex-direction:column;gap:10px">
+                    <span style="font-size:15px;line-height:1.55">Now build both groups. Each one needs 1 blue and 4 gold.</span>
+                    <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><span style="font-size:14px;color:#B9C3CC">Pick a color, then tap a spot:</span><button type="button" onClick="{{ ppB }}" aria-pressed="{{ ppBOn }}" style="cursor:pointer;display:flex;align-items:center;gap:6px;padding:7px 13px;border-radius:999px;font-size:14px;font-weight:600;background:{{ ppBBg }};color:#F4EEE2;border:1.5px solid #4A90C9"><span style="width:12px;height:12px;border-radius:50%;background:#4A90C9;border:1px solid #fff"></span>Blue</button><button type="button" onClick="{{ ppG }}" aria-pressed="{{ ppGOn }}" style="cursor:pointer;display:flex;align-items:center;gap:6px;padding:7px 13px;border-radius:999px;font-size:14px;font-weight:600;background:{{ ppGBg }};color:{{ ppGFg }};border:1.5px solid #FFC965"><span style="width:12px;height:12px;border-radius:50%;background:#FFC965;border:1px solid #fff"></span>Gold</button></div>
+                    <sc-for list="{{ pGroups }}" as="g" hint-placeholder-count="2">
+                      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;background:#0B1622">
+                        <span style="min-width:64px;font-size:13px;font-weight:600;color:#B9C3CC">{{ g.name }}</span>
+                        <div style="display:flex;gap:6px"><sc-for list="{{ g.slots }}" as="s" hint-placeholder-count="5"><button type="button" aria-label="{{ s.label }}" onClick="{{ s.set }}" style="cursor:pointer;width:36px;height:36px;border-radius:50%;padding:0;background:{{ s.bg }};border:{{ s.bd }}"></button></sc-for></div>
+                        <span style="font-size:14px;font-weight:600;color:{{ g.c }}">{{ g.count }}</span>
+                      </div>
+                    </sc-for>
+                    <span style="font-size:13.5px;color:#B9C3CC">Tap a spot again to empty it. Whole lamp: {{ pCount }}</span>
+                    <button type="button" onClick="{{ checkPrac }}" style="align-self:flex-start;cursor:pointer;padding:10px 18px;border-radius:999px;border:0;background:#7FD1C4;color:#0B1622;font-size:14px;font-weight:700;box-shadow:0 4px 0 #3E8F84;transition:transform .08s,box-shadow .08s" style-active="transform:translateY(3px);box-shadow:0 1px 0 #3E8F84">Check the lamp</button>
+                    <sc-if value="{{ pfShow }}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin:0;padding:11px 14px;border-radius:14px;font-size:15px;line-height:1.55;background:{{ pfBg }};color:{{ pfFg }}">{{ pfMsg }}</p></sc-if>
+                    <sc-if value="{{ pfOk }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ closePrac }}" style="align-self:flex-start;cursor:pointer;padding:10px 18px;border-radius:999px;border:0;background:#FFC965;color:#0B1622;font-size:14px;font-weight:700;box-shadow:0 4px 0 #A9741F;transition:transform .08s,box-shadow .08s" style-active="transform:translateY(3px);box-shadow:0 1px 0 #A9741F">I’m ready for the lens room →</button></sc-if>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-if>
+          </sc-if>
+          <sc-if value="{{ pGd }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:6px"><div style="display:flex;gap:5px"><sc-for list="{{ ppDots }}" as="d" hint-placeholder-count="3"><button type="button" aria-label="{{ d.label }}" aria-current="{{ d.cur }}" disabled="{{ d.locked }}" onClick="{{ d.go }}" style="width:{{ d.w }}px;height:10px;border-radius:5px;border:0;padding:0;cursor:{{ d.cursor }};background:{{ d.bg }};transition:width .2s"></button></sc-for></div><span style="font-size:13px;line-height:1.3;color:#B9C3CC">Part {{ ppN }} of 3 · {{ ppName }}</span></div>
+            <sc-if value="{{ pp0 }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <p style="margin:0;font-size:15.5px;line-height:1.6">{{ gIntro }}</p>
+                <sc-for list="{{ gEx }}" as="x" hint-placeholder-count="2">
+                  <div style="display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:14px;background:#0B1622">
+                    <span style="font-size:13px;font-weight:600;color:#B9C3CC">{{ x.title }}</span>
+                    <sc-if value="{{ x.hasRows }}" hint-placeholder-val="{{ false }}"><div style="display:grid;grid-template-columns:auto repeat({{ x.cols }},minmax(0,1fr));border-radius:10px;overflow:hidden;border:1px solid #3A4E63;font-size:15px"><sc-for list="{{ x.rows }}" as="r" hint-placeholder-count="2"><span style="padding:8px 10px;font-size:13px;font-weight:600;color:#B9C3CC;background:{{ r.bg }}">{{ r.label }}</span><sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="3"><span style="padding:8px;text-align:center;font-weight:600;background:{{ r.bg }};color:{{ c.c }}">{{ c.v }}</span></sc-for></sc-for></div></sc-if>
+                    <span style="font-size:20px;font-weight:700;line-height:1.3">{{ x.big }}</span>
+                    <span style="font-size:14px;line-height:1.5;color:#DCE3E8">{{ x.cap }}</span>
+                  </div>
+                </sc-for>
+                <sc-if value="{{ gTape }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:14px;background:#0B1622;border:1px solid #2F5E5A">
+                    <span style="align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:rgba(127,209,196,.16);color:#7FD1C4">Build it</span>
+                    <span style="font-size:15px;font-weight:600;line-height:1.5">Each group is 2 power packs for every 5 flashes. Add groups to build a tape diagram until you have 6 packs.</span>
+                    <div style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:6px 10px;align-items:center">
+                      <span style="font-size:13px;font-weight:600;color:#B9C3CC">Packs</span><div style="display:flex;gap:3px;min-height:34px"><sc-for list="{{ tapeSegs }}" as="t" hint-placeholder-count="1"><span style="flex:1;display:grid;place-items:center;border-radius:6px;background:#2F5E5A;border:1.5px solid #7FD1C4;font-size:14px;font-weight:700">2</span></sc-for></div>
+                      <span style="font-size:13px;font-weight:600;color:#B9C3CC">Flashes</span><div style="display:flex;gap:3px;min-height:34px"><sc-for list="{{ tapeSegs }}" as="t" hint-placeholder-count="1"><span style="flex:1;display:grid;place-items:center;border-radius:6px;background:#5A4720;border:1.5px solid #FFC965;font-size:14px;font-weight:700">5</span></sc-for></div>
+                    </div>
+                    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px"><button type="button" onClick="{{ tapeLess }}" aria-label="Remove a group" style="cursor:pointer;width:38px;height:38px;border-radius:50%;border:1.5px solid #7FD1C4;background:transparent;color:#7FD1C4;font-size:20px;font-weight:700;padding:0;line-height:1">−</button><span style="font-size:15px;font-weight:700;min-width:96px;text-align:center">{{ tapeN }}</span><button type="button" onClick="{{ tapeMore }}" aria-label="Add a group" style="cursor:pointer;width:38px;height:38px;border-radius:50%;border:1.5px solid #7FD1C4;background:transparent;color:#7FD1C4;font-size:20px;font-weight:700;padding:0;line-height:1">+</button><span style="font-size:15px">{{ tapeSum }}</span></div>
+                    <p aria-live="polite" style="margin:0;padding:11px 14px;border-radius:14px;font-size:15px;line-height:1.55;background:{{ tapeBg }};color:{{ tapeFg }}">{{ tapeFb }}</p>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ gSplit }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:14px;background:#0B1622;border:1px solid #2F5E5A">
+                    <span style="align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:rgba(127,209,196,.16);color:#7FD1C4">Draw it</span>
+                    <span style="font-size:15px;font-weight:600;line-height:1.5">A buoy sends 20 beeps in 4 minutes. Split the beeps into equal parts, one part for each minute.</span>
+                    <div style="display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:3px"><sc-for list="{{ splitCells }}" as="c" hint-placeholder-count="20"><span style="height:26px;border-radius:4px;background:{{ c.bg }};border-left:{{ c.edge }}"></span></sc-for></div>
+                    <div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ splitLabels }}" as="l" hint-placeholder-count="1"><span style="font-size:13px;font-weight:600;padding:3px 9px;border-radius:999px;background:{{ l.bg }};color:#0B1622">{{ l.t }}</span></sc-for></div>
+                    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px"><button type="button" onClick="{{ splitLess }}" aria-label="Fewer parts" style="cursor:pointer;width:38px;height:38px;border-radius:50%;border:1.5px solid #7FD1C4;background:transparent;color:#7FD1C4;font-size:20px;font-weight:700;padding:0;line-height:1">−</button><span style="font-size:15px;font-weight:700;min-width:96px;text-align:center">{{ splitN }}</span><button type="button" onClick="{{ splitMore }}" aria-label="More parts" style="cursor:pointer;width:38px;height:38px;border-radius:50%;border:1.5px solid #7FD1C4;background:transparent;color:#7FD1C4;font-size:20px;font-weight:700;padding:0;line-height:1">+</button></div>
+                    <p aria-live="polite" style="margin:0;padding:11px 14px;border-radius:14px;font-size:15px;line-height:1.55;background:{{ splitBg }};color:{{ splitFg }}">{{ splitFb }}</p>
+                  </div>
+                </sc-if>
+                <button type="button" onClick="{{ ppNext }}" style="align-self:flex-start;cursor:pointer;padding:10px 18px;border-radius:999px;border:0;background:#7FD1C4;color:#0B1622;font-size:14px;font-weight:700;box-shadow:0 4px 0 #3E8F84;transition:transform .08s,box-shadow .08s" style-active="transform:translateY(3px);box-shadow:0 1px 0 #3E8F84">Next: try a few →</button>
+              </div>
+            </sc-if>
+            <sc-if value="{{ pp1 }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <sc-for list="{{ pQs }}" as="q" hint-placeholder-count="3">
+                  <div style="display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:14px;background:#0B1622">
+                    <span style="font-size:13px;font-weight:600;color:#7FD1C4">{{ q.n }}</span>
+                    <span style="font-size:15px;font-weight:600;line-height:1.5">{{ q.text }}</span>
+                    <div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ q.opts }}" as="o" hint-placeholder-count="3"><button type="button" aria-pressed="{{ o.on }}" onClick="{{ o.pick }}" style="cursor:pointer;padding:8px 14px;border-radius:999px;font-size:14px;font-weight:600;background:{{ o.bg }};color:{{ o.fg }};border:1.5px solid {{ o.bd }}">{{ o.t }}</button></sc-for></div>
+                    <sc-if value="{{ q.fbShow }}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin:0;padding:11px 14px;border-radius:14px;font-size:15px;line-height:1.55;background:{{ q.fbBg }};color:{{ q.fbFg }}">{{ q.fb }}</p></sc-if>
+                  </div>
+                </sc-for>
+                <sc-if value="{{ pQsDone }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ ppNext }}" style="align-self:flex-start;cursor:pointer;padding:10px 18px;border-radius:999px;border:0;background:#7FD1C4;color:#0B1622;font-size:14px;font-weight:700;box-shadow:0 4px 0 #3E8F84;transition:transform .08s,box-shadow .08s" style-active="transform:translateY(3px);box-shadow:0 1px 0 #3E8F84">Next: {{ gLastName }} →</button></sc-if>
+              </div>
+            </sc-if>
+            <sc-if value="{{ pp2 }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <p style="margin:0;font-size:15.5px;line-height:1.6">{{ gTask }}</p>
+                <div style="display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:14px;background:#0B1622">
+                  <sc-for list="{{ gIns }}" as="i" hint-placeholder-count="2">
+                    <div style="display:flex;flex-direction:column;gap:6px">
+                      <label style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:15px"><span style="font-weight:600">{{ i.label }}</span><input inputmode="numeric" value="{{ i.v }}" onChange="{{ i.on }}" style="width:70px;text-align:center;padding:8px;border-radius:10px;border:1.5px solid {{ i.bd }};background:#13212F;color:#F4EEE2;font-size:16px"><span style="font-size:14px;color:#B9C3CC">{{ i.unit }}</span></label>
+                      <sc-if value="{{ i.fbShow }}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin:0;padding:11px 14px;border-radius:14px;font-size:15px;line-height:1.55;font-size:14px;background:{{ i.fbBg }};color:{{ i.fbFg }}">{{ i.fb }}</p></sc-if>
+                    </div>
+                  </sc-for>
+                </div>
+                <button type="button" onClick="{{ checkPrac }}" style="align-self:flex-start;cursor:pointer;padding:10px 18px;border-radius:999px;border:0;background:#7FD1C4;color:#0B1622;font-size:14px;font-weight:700;box-shadow:0 4px 0 #3E8F84;transition:transform .08s,box-shadow .08s" style-active="transform:translateY(3px);box-shadow:0 1px 0 #3E8F84">Check</button>
+                <sc-if value="{{ pfShow }}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin:0;padding:11px 14px;border-radius:14px;font-size:15px;line-height:1.55;background:{{ pfBg }};color:{{ pfFg }}">{{ pfMsg }}</p></sc-if>
+                <sc-if value="{{ xShow }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:14px;background:#0B1622;border:1px solid #2F5E5A">
+                    <span style="align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:rgba(127,209,196,.16);color:#7FD1C4">Explain it</span>
+                    <span style="font-size:15px;font-weight:600;line-height:1.5">Finish the sentence to explain why the practice signal works.</span>
+                    <span style="font-size:16px;line-height:1.6">The signal works because <strong style="color:#FFC965">{{ xAv }}</strong>, and <strong style="color:#7FD1C4">{{ xBv }}</strong>.</span>
+                    <span style="font-size:13px;font-weight:600;color:#FFC965">Supplies</span><div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ xAOpts }}" as="o" hint-placeholder-count="2"><button type="button" aria-pressed="{{ o.on }}" onClick="{{ o.pick }}" style="cursor:pointer;padding:7px 13px;border-radius:999px;font-size:14px;font-weight:600;background:{{ o.bg }};color:{{ o.fg }};border:1.5px solid {{ o.bd }}">{{ o.t }}</button></sc-for></div>
+                    <span style="font-size:13px;font-weight:600;color:#7FD1C4">Time</span><div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ xBOpts }}" as="o" hint-placeholder-count="2"><button type="button" aria-pressed="{{ o.on }}" onClick="{{ o.pick }}" style="cursor:pointer;padding:7px 13px;border-radius:999px;font-size:14px;font-weight:600;background:{{ o.bg }};color:{{ o.fg }};border:1.5px solid {{ o.bd }}">{{ o.t }}</button></sc-for></div>
+                    <sc-if value="{{ xFbShow }}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin:0;padding:11px 14px;border-radius:14px;font-size:15px;line-height:1.55;background:{{ xFbBg }};color:{{ xFbFg }}">{{ xFb }}</p></sc-if>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ gReady }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ closePrac }}" style="align-self:flex-start;cursor:pointer;padding:10px 18px;border-radius:999px;border:0;background:#FFC965;color:#0B1622;font-size:14px;font-weight:700;box-shadow:0 4px 0 #A9741F;transition:transform .08s,box-shadow .08s" style-active="transform:translateY(3px);box-shadow:0 1px 0 #A9741F">I’m ready for the room →</button></sc-if>
+              </div>
+            </sc-if>
+          </sc-if>
+        </div>
+      </sc-if>
+
+
+      <sc-if value="{{ r0 }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <h2 style="margin:0;font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:28px;line-height:1.15">The lighthouse is dark</h2>
+          <p style="margin:0;font-size:16px;line-height:1.6;color:#DCE3E8">A rescue ship is heading toward the rocks, and it needs a signal. Can you get the lighthouse shining again?</p>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#B9C3CC">The storm broke three things: the lens, the generator, and the radio. Each room has a math puzzle that fixes one of them. There’s no rush, and hints are there whenever you want them.</p>
+          <button type="button" onClick="{{ goNext }}" style="align-self:flex-start;cursor:pointer;padding:12px 22px;border-radius:999px;border:0;background:#FFC965;color:#0B1622;font-size:15px;font-weight:700;box-shadow:0 4px 0 #A9741F;transition:transform .08s,box-shadow .08s" style-active="transform:translateY(3px);box-shadow:0 1px 0 #A9741F">Enter the lens room →</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ q1 }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;font-weight:600;color:#E3A64B">Room 1 · Lens room</span><h2 style="margin:0;font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:26px">Match the colors</h2><p style="margin:0;font-size:15px;line-height:1.6;color:#DCE3E8">The storm cracked the lens. 4 gold panels made it through and are stuck in place. Your job: fill the other 16 spots so the whole lens has 2 blue lights for every 3 gold lights.</p></div>
+          <sc-if value="{{ s0 }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:14px;background:#0B1622"><span style="font-size:13px;color:#B9C3CC">The ratio</span><span style="display:flex;gap:4px"><span style="width:14px;height:14px;border-radius:50%;background:#4A90C9"></span><span style="width:14px;height:14px;border-radius:50%;background:#4A90C9"></span><span style="width:14px;height:14px;border-radius:50%;background:#FFC965"></span><span style="width:14px;height:14px;border-radius:50%;background:#FFC965"></span><span style="width:14px;height:14px;border-radius:50%;background:#FFC965"></span></span><span style="font-size:15px;font-weight:600">2 blue : 3 gold</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><span style="font-size:14px;color:#B9C3CC">Pick a color, then tap a spot on the lens:</span><button type="button" onClick="{{ pickB }}" aria-pressed="{{ pickBOn }}" style="cursor:pointer;display:flex;align-items:center;gap:6px;padding:7px 13px;border-radius:999px;font-size:14px;font-weight:600;background:{{ pickBBg }};color:{{ pickBFg }};border:1.5px solid #4A90C9"><span style="width:12px;height:12px;border-radius:50%;background:#4A90C9;border:1px solid #fff"></span>Blue</button><button type="button" onClick="{{ pickG }}" aria-pressed="{{ pickGOn }}" style="cursor:pointer;display:flex;align-items:center;gap:6px;padding:7px 13px;border-radius:999px;font-size:14px;font-weight:600;background:{{ pickGBg }};color:{{ pickGFg }};border:1.5px solid #FFC965"><span style="width:12px;height:12px;border-radius:50%;background:#FFC965;border:1px solid #fff"></span>Gold</button></div>
+          <span style="font-size:13.5px;color:#B9C3CC">Tap a spot again to empty it. The brass-ringed panels can’t move. {{ lensCount }}</span>
+          <sc-if value="{{ lensCompare }}" hint-placeholder-val="{{ false }}"><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px"><div style="padding:10px 12px;border-radius:12px;background:#0B1622;display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;color:#B9C3CC">Each group of 5 needs</span><span style="font-weight:600">2 blue : 3 gold</span></div><div style="padding:10px 12px;border-radius:12px;background:#0B1622;display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;color:#B9C3CC">Your lens</span><span style="font-weight:600">{{ lensYours }}</span></div></div></sc-if>
+          <div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" onClick="{{ checkLens }}" style="cursor:pointer;padding:11px 20px;border-radius:999px;border:0;background:#FFC965;color:#0B1622;font-size:15px;font-weight:700;box-shadow:0 4px 0 #A9741F;transition:transform .08s,box-shadow .08s" style-active="transform:translateY(3px);box-shadow:0 1px 0 #A9741F">Check the lens</button><button type="button" onClick="{{ openPrac }}" style="cursor:pointer;display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:999px;border:0;background:#7FD1C4;color:#0B1622;font-size:15px;font-weight:700;box-shadow:0 4px 0 #3E8F84;transition:transform .08s,box-shadow .08s" style-active="transform:translateY(3px);box-shadow:0 1px 0 #3E8F84"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle></svg>Practice first</button><button type="button" onClick="{{ clearLens }}" style="cursor:pointer;padding:10px 18px;border-radius:999px;border:1px solid #3A4E63;background:transparent;color:#F4EEE2;font-size:14px;font-weight:600">Clear</button></div>
+          <sc-if value="{{ lensShow }}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin:0;padding:11px 14px;border-radius:14px;font-size:15px;line-height:1.55;background:{{ lensBg }};color:{{ lensFg }}">{{ lensMsg }}</p></sc-if>
+          </sc-if>
+          <sc-if value="{{ s1 }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:16px;background:#0B1622">
+              <span style="font-size:15px;font-weight:600">Check the groups</span><span style="font-size:14px;color:#B9C3CC">One group is 2 blue and 3 gold, or 5 spots. How many groups fit in the 20 spots?</span>
+              <div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ lgOpts }}" as="o" hint-placeholder-count="3"><button type="button" aria-pressed="{{ o.on }}" onClick="{{ o.pick }}" style="cursor:pointer;padding:8px 14px;border-radius:999px;font-size:14px;font-weight:600;background:{{ o.bg }};color:{{ o.fg }};border:1.5px solid {{ o.bd }}">{{ o.t }}</button></sc-for></div>
+              <sc-if value="{{ lgFbShow }}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin:0;padding:11px 14px;border-radius:14px;font-size:15px;line-height:1.55;background:{{ lgBg }};color:{{ lgFg }}">{{ lgFbText }}</p></sc-if>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ q2 }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;font-weight:600;color:#E3A64B">Room 2 · Generator room</span><h2 style="margin:0;font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:26px">Power packs and flashes</h2><p style="margin:0;font-size:15px;line-height:1.6;color:#DCE3E8">The generator runs on power packs, and 4 power packs make 6 flashes. Find the missing number to get it running again.</p></div>
+          <sc-if value="{{ s0 }}" hint-placeholder-val="{{ true }}">
+          <div style="display:grid;grid-template-columns:auto repeat(3,minmax(0,1fr));border-radius:14px;overflow:hidden;border:1px solid #3A4E63;font-size:16px">
+            <span style="padding:10px 12px;background:#0B1622;font-size:13px;font-weight:600;color:#B9C3CC">Power packs</span><span style="padding:10px;text-align:center;background:#0B1622">4</span><span style="padding:10px;text-align:center;background:#0B1622">8</span><span style="padding:10px;text-align:center;background:#0B1622">10</span>
+            <span style="padding:10px 12px;font-size:13px;font-weight:600;color:#B9C3CC;border-top:1px solid #3A4E63">Flashes</span><span style="padding:10px;text-align:center;border-top:1px solid #3A4E63">6</span><span style="padding:10px;text-align:center;border-top:1px solid #3A4E63">12</span><span style="padding:6px;border-top:1px solid #3A4E63;display:grid"><input aria-label="Flashes for 10 power packs" inputmode="numeric" value="{{ genVal }}" onChange="{{ onGen }}" style="width:100%;box-sizing:border-box;text-align:center;padding:6px;border-radius:8px;border:1.5px solid #FFC965;background:#0B1622;color:#F4EEE2;font-size:16px"></span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:13.5px;color:#B9C3CC">Want a way to start? (optional)</span><div style="display:flex;flex-wrap:wrap;gap:6px"><button type="button" onClick="{{ stratRow }}" style="cursor:pointer;padding:7px 13px;border-radius:999px;font-size:14px;font-weight:600;background:{{ srBg }};color:{{ srFg }};border:1px solid #3A4E63">Start from a row you know</button><button type="button" onClick="{{ stratUnit }}" style="cursor:pointer;padding:7px 13px;border-radius:999px;font-size:14px;font-weight:600;background:{{ suBg }};color:{{ suFg }};border:1px solid #3A4E63">Find flashes for 1 pack</button></div><sc-if value="{{ stratShow }}" hint-placeholder-val="{{ false }}"><span style="font-size:14px;line-height:1.55;color:#DCE3E8">{{ stratText }}</span></sc-if></div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><button type="button" onClick="{{ checkGen }}" style="cursor:pointer;padding:11px 20px;border-radius:999px;border:0;background:#FFC965;color:#0B1622;font-size:15px;font-weight:700;box-shadow:0 4px 0 #A9741F;transition:transform .08s,box-shadow .08s" style-active="transform:translateY(3px);box-shadow:0 1px 0 #A9741F">Start the generator</button><button type="button" onClick="{{ openPrac }}" style="cursor:pointer;display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:999px;border:0;background:#7FD1C4;color:#0B1622;font-size:15px;font-weight:700;box-shadow:0 4px 0 #3E8F84;transition:transform .08s,box-shadow .08s" style-active="transform:translateY(3px);box-shadow:0 1px 0 #3E8F84"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle></svg>Practice first</button></div>
+          <sc-if value="{{ genShow }}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin:0;padding:11px 14px;border-radius:14px;font-size:15px;line-height:1.55;background:{{ genBg }};color:{{ genFg }}">{{ genMsg }}</p></sc-if>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ q3 }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;font-weight:600;color:#E3A64B">Room 3 · Radio room</span><h2 style="margin:0;font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:26px">How fast is the radio?</h2><p style="margin:0;font-size:15px;line-height:1.6;color:#DCE3E8">The radio sent 18 beeps in 3 minutes. First, figure out how many beeps it sends each minute. Then find how long it will take to send all 42 beeps of the rescue message.</p></div>
+          <sc-if value="{{ s0 }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><label style="display:flex;align-items:center;gap:8px;font-size:15px">Beeps in 1 minute <input inputmode="numeric" value="{{ r1Val }}" onChange="{{ onR1 }}" style="width:70px;text-align:center;padding:8px;border-radius:10px;border:1.5px solid #7FD1C4;background:#0B1622;color:#F4EEE2;font-size:16px"></label><button type="button" onClick="{{ checkR1 }}" style="cursor:pointer;padding:10px 18px;border-radius:999px;border:0;background:#7FD1C4;color:#0B1622;font-size:14px;font-weight:700;box-shadow:0 4px 0 #3E8F84;transition:transform .08s,box-shadow .08s" style-active="transform:translateY(3px);box-shadow:0 1px 0 #3E8F84">Check rate</button><button type="button" onClick="{{ openPrac }}" style="cursor:pointer;display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:999px;border:0;background:#7FD1C4;color:#0B1622;font-size:15px;font-weight:700;box-shadow:0 4px 0 #3E8F84;transition:transform .08s,box-shadow .08s" style-active="transform:translateY(3px);box-shadow:0 1px 0 #3E8F84"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle></svg>Practice first</button></div>
+          <sc-if value="{{ raShow }}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin:0;padding:11px 14px;border-radius:14px;font-size:15px;line-height:1.55;background:{{ raBg }};color:{{ raFg }}">{{ raMsg }}</p></sc-if>
+          </sc-if>
+          <sc-if value="{{ s1 }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><label style="display:flex;align-items:center;gap:8px;font-size:15px">Minutes to send 42 beeps <input inputmode="numeric" value="{{ r2Val }}" onChange="{{ onR2 }}" style="width:70px;text-align:center;padding:8px;border-radius:10px;border:1.5px solid #7FD1C4;background:#0B1622;color:#F4EEE2;font-size:16px"></label><button type="button" onClick="{{ checkR2 }}" style="cursor:pointer;padding:10px 18px;border-radius:999px;border:0;background:#7FD1C4;color:#0B1622;font-size:14px;font-weight:700;box-shadow:0 4px 0 #3E8F84;transition:transform .08s,box-shadow .08s" style-active="transform:translateY(3px);box-shadow:0 1px 0 #3E8F84">Set the radio</button></div></sc-if>
+          <sc-if value="{{ rbShow }}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin:0;padding:11px 14px;border-radius:14px;font-size:15px;line-height:1.55;background:{{ rbBg }};color:{{ rbFg }}">{{ rbMsg }}</p></sc-if>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ showStrat }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:12px;padding:14px;border-radius:16px;background:#0B1622;border:1px solid #3A4E63">
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:15px;font-weight:600">How did you solve it?</span><span style="font-size:14px;color:#B9C3CC">Pick the way that matches your thinking.</span>
+            <div style="display:flex;flex-direction:column;gap:6px"><sc-for list="{{ sgOpts }}" as="o" hint-placeholder-count="3"><button type="button" aria-pressed="{{ o.on }}" onClick="{{ o.pick }}" style="cursor:pointer;text-align:left;padding:8px 12px;border-radius:12px;font-size:14px;line-height:1.45;background:{{ o.bg }};color:{{ o.fg }};border:1.5px solid {{ o.bd }}">{{ o.t }}</button></sc-for></div>
+            <sc-if value="{{ sgFbShow }}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin:0;padding:11px 14px;border-radius:14px;font-size:15px;line-height:1.55;background:#FFE2A8;color:#3D2A00">{{ sgFbText }}</p></sc-if>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ q4 }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;font-weight:600;color:#E3A64B">Room 4 · Signal gallery</span><h2 style="margin:0;font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:26px">Set the signal</h2><p style="margin:0;font-size:15px;line-height:1.6;color:#DCE3E8">This is it! You have 10 power packs, and the ship gets close in 7.5 minutes. Use the clues in your logbook to set each dial, then test your signal.</p></div>
+          <div style="border-radius:16px;background:#0B1622;border:1px solid #3A4E63;overflow:hidden">
+            <button type="button" onClick="{{ toggleLog }}" aria-expanded="{{ logOpen }}" style="cursor:pointer;width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 14px;border:0;background:transparent;color:#F4EEE2;text-align:left"><span style="display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#FFC965" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"></path><path d="M9 8h6M9 12h6"></path></svg>Your logbook</span><span style="font-size:13px;font-weight:600;color:#B9C3CC">{{ logBtn }}</span></button>
+            <sc-if value="{{ logOpen }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;flex-direction:column;padding:0 14px 6px">
+                <sc-for list="{{ logbook }}" as="l" hint-placeholder-count="3"><div style="display:grid;grid-template-columns:24px minmax(0,1fr);gap:10px;padding:10px 0;border-top:1px solid #24364A"><span style="width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;background:#FFC965;color:#0B1622">{{ l.glyph }}</span><span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:13px;font-weight:600;color:#B9C3CC">{{ l.room }}</span><span style="font-size:15px;font-weight:600">{{ l.clue }}</span><span style="font-size:13.5px;line-height:1.45;color:#DCE3E8">{{ l.strat }}</span></span></div></sc-for>
+                <span style="padding:10px 0;border-top:1px solid #24364A;font-size:14px;color:#DCE3E8">Supplies: <strong>10 power packs</strong> · Ship arrives in <strong>7.5 minutes</strong></span>
+              </div>
+            </sc-if>
+          </div>
+          <sc-if value="{{ s0 }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><span style="font-size:14px;color:#B9C3CC">{{ ctlHelp }}</span><button type="button" onClick="{{ toggleType }}" aria-pressed="{{ typeMode }}" style="cursor:pointer;padding:6px 12px;border-radius:999px;border:1px solid #3A4E63;background:transparent;color:#F4EEE2;font-size:13.5px;font-weight:600">{{ typeBtn }}</button></div>
+          <sc-if value="{{ dialMode }}" hint-placeholder-val="{{ true }}">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px">
+              <sc-for list="{{ dials }}" as="d" hint-placeholder-count="3">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 8px;border-radius:16px;background:#0B1622;border:1px solid #24364A">
+                  <span style="font-size:13px;font-weight:600;color:#B9C3CC">{{ d.name }}</span>
+                  <div style="position:relative;width:128px;height:118px">
+                    <sc-for list="{{ d.marks }}" as="m" hint-placeholder-count="4"><span style="position:absolute;left:{{ m.x }}px;top:{{ m.y }}px;transform:translate(-50%,-50%);font-size:12px;font-weight:700;white-space:nowrap;color:{{ m.c }}">{{ m.l }}</span></sc-for>
+                    <button type="button" role="slider" aria-label="{{ d.name }} dial" aria-valuetext="{{ d.valText }}" aria-valuemin="0" aria-valuemax="{{ d.max }}" aria-valuenow="{{ d.now }}" onClick="{{ d.turn }}" onKeyDown="{{ d.key }}" style="position:absolute;left:64px;top:68px;width:68px;height:68px;transform:translate(-50%,-50%);border-radius:50%;padding:0;cursor:pointer;border:3px solid #C08A3E;background:radial-gradient(circle at 35% 30%,#F3D49A,#B9852F 55%,#6E4A14);box-shadow:0 6px 16px rgba(0,0,0,.5)"><span aria-hidden="true" style="position:absolute;inset:0;transform:rotate({{ d.ang }}deg);transition:transform .35s cubic-bezier(.3,1.4,.5,1)"><span style="position:absolute;left:50%;top:5px;width:5px;height:22px;margin-left:-2.5px;border-radius:3px;background:#0B1622"></span></span></button>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:6px"><button type="button" onClick="{{ d.down }}" aria-label="Turn {{ d.name }} left" style="cursor:pointer;width:30px;height:30px;border-radius:50%;border:1px solid #3A4E63;background:transparent;color:#F4EEE2;font-size:15px;padding:0">‹</button><span style="min-width:88px;text-align:center;font-size:14px;font-weight:700;color:{{ d.vc }}">{{ d.valText }}</span><button type="button" onClick="{{ d.up }}" aria-label="Turn {{ d.name }} right" style="cursor:pointer;width:30px;height:30px;border-radius:50%;border:1px solid #3A4E63;background:transparent;color:#F4EEE2;font-size:15px;padding:0">›</button></div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ typeMode }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:16px;background:#0B1622;border:1px solid #24364A">
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:15px"><span style="min-width:110px;font-weight:600">Lens pattern</span><label style="display:flex;align-items:center;gap:6px"><input inputmode="numeric" aria-label="Blue lights" value="{{ tB }}" onChange="{{ onTB }}" style="width:56px;text-align:center;padding:8px;border-radius:10px;border:1.5px solid #4A90C9;background:#13212F;color:#F4EEE2;font-size:16px">blue</label><span>:</span><label style="display:flex;align-items:center;gap:6px"><input inputmode="numeric" aria-label="Gold lights" value="{{ tG }}" onChange="{{ onTG }}" style="width:56px;text-align:center;padding:8px;border-radius:10px;border:1.5px solid #FFC965;background:#13212F;color:#F4EEE2;font-size:16px">gold</label></div>
+              <label style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:15px"><span style="min-width:110px;font-weight:600">Flashes</span><input inputmode="numeric" value="{{ tF }}" onChange="{{ onTF }}" style="width:70px;text-align:center;padding:8px;border-radius:10px;border:1.5px solid #FFC965;background:#13212F;color:#F4EEE2;font-size:16px"></label>
+              <label style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:15px"><span style="min-width:110px;font-weight:600">Radio time</span><input inputmode="numeric" value="{{ tD }}" onChange="{{ onTD }}" style="width:70px;text-align:center;padding:8px;border-radius:10px;border:1.5px solid #7FD1C4;background:#13212F;color:#F4EEE2;font-size:16px">minutes</label>
+            </div>
+          </sc-if>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><button type="button" onClick="{{ checkFin }}" style="cursor:pointer;padding:11px 20px;border-radius:999px;border:0;background:#FFC965;color:#0B1622;font-size:15px;font-weight:700;box-shadow:0 4px 0 #A9741F;transition:transform .08s,box-shadow .08s" style-active="transform:translateY(3px);box-shadow:0 1px 0 #A9741F">Test the signal</button><button type="button" onClick="{{ openPrac }}" style="cursor:pointer;display:flex;align-items:center;gap:7px;padding:11px 20px;border-radius:999px;border:0;background:#7FD1C4;color:#0B1622;font-size:15px;font-weight:700;box-shadow:0 4px 0 #3E8F84;transition:transform .08s,box-shadow .08s" style-active="transform:translateY(3px);box-shadow:0 1px 0 #3E8F84"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle></svg>Practice first</button></div>
+          <sc-if value="{{ finShow }}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin:0;padding:11px 14px;border-radius:14px;font-size:15px;line-height:1.55;background:{{ finBg }};color:{{ finFg }}">{{ finMsg }}</p></sc-if>
+          <sc-if value="{{ finFalter }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ finRetry }}" style="align-self:flex-start;cursor:pointer;padding:9px 16px;border-radius:999px;border:1px solid #3A4E63;background:transparent;color:#F4EEE2;font-size:14px;font-weight:600">Reset the dials</button></sc-if>
+          </sc-if>
+          <sc-if value="{{ s1 }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:8px;padding:14px;border-radius:16px;background:#0B1622">
+              <span style="font-size:15px;font-weight:600">Why will this signal work? Pick two reasons.</span>
+              <sc-for list="{{ whys }}" as="w" hint-placeholder-count="4"><button type="button" aria-pressed="{{ w.on }}" onClick="{{ w.pick }}" style="cursor:pointer;text-align:left;padding:9px 13px;border-radius:12px;font-size:14px;line-height:1.5;background:{{ w.bg }};color:#F4EEE2;border:1.5px solid {{ w.bd }}">{{ w.t }}</button></sc-for>
+              <sc-if value="{{ whyFbShow }}" hint-placeholder-val="{{ false }}"><p aria-live="polite" style="margin:0;padding:11px 14px;border-radius:14px;font-size:15px;line-height:1.55;background:#FFE2A8;color:#3D2A00">{{ whyFbText }}</p></sc-if>
+              <sc-if value="{{ whyOk }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ goNext }}" style="align-self:flex-start;cursor:pointer;padding:12px 22px;border-radius:999px;border:0;background:#FFC965;color:#0B1622;font-size:15px;font-weight:700;box-shadow:0 0 24px rgba(255,201,101,.55)">Send the signal →</button></sc-if>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ showNext }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ goStepNext }}" style="align-self:flex-start;cursor:pointer;padding:11px 20px;border-radius:999px;border:1.5px solid #7FD1C4;background:transparent;color:#7FD1C4;font-size:15px;font-weight:700">Next: {{ nextName }} →</button></sc-if>
+      <sc-if value="{{ showDoorCue }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:14px;background:#FFE2A8;color:#3D2A00"><span style="font-size:15px;font-weight:600;line-height:1.5">Nice work! You solved this room, and the door is ready to unlock.</span><span style="font-size:14px;line-height:1.5">Look for the glowing padlock on the picture, or unlock it from here.</span><button type="button" onClick="{{ toggleDoor }}" style="align-self:flex-start;cursor:pointer;display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;border:0;background:#0B1622;color:#FFC965;font-size:15px;font-weight:700"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Unlock the door</button></div></sc-if>
+      <sc-if value="{{ r5 }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <h2 style="margin:0;font-family:'Young Serif',Georgia,serif;font-weight:400;font-size:28px;color:#FFC965">Nice work! The beacon is lit.</h2>
+          <p style="margin:0;font-size:15.5px;line-height:1.6;color:#DCE3E8">The rescue ship made it safely to the harbor, and you’re the reason why. You used ratios and rates, found every clue, and solved each room. Here’s what you figured out along the way.</p>
+          <sc-for list="{{ recap }}" as="r" hint-placeholder-count="4"><div style="display:grid;grid-template-columns:120px minmax(0,1fr);gap:10px;padding:10px 0;border-top:1px solid #24364A;font-size:14.5px;line-height:1.5"><strong style="color:#FFC965;font-weight:600">{{ r.room }}</strong><span>{{ r.t }}</span></div></sc-for>
+          <button type="button" onClick="{{ restart }}" style="align-self:flex-start;cursor:pointer;padding:10px 18px;border-radius:999px;border:1px solid #3A4E63;background:transparent;color:#F4EEE2;font-size:14px;font-weight:600">Play again</button>
+        </div>
+      </sc-if>
+
+    </div>
+  </div>
+  
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  init() { return { door: '', doorErr: false, doorNeed: '', room: 0, slots: ['g','g','g','g'].concat(Array(16).fill(null)), pick: 'b', lens: null, genVal: '', strat: null, gen: null, r1Val: '', ra: null, r2Val: '', rb: null, plan: null, pat: null, fl: null, du: null, fin: null, why: null, lg: null, sg: [null, null, null, null], h: [0, 0, 0, 0, 0], step: 0, pop: null, logOpen: true, typeMode: false, prac: false, pv: '', pf: null, ps: Array(10).fill(null), pp: 0, pq: [null, null, null], pgr: null, ppick: 'b', travel: null, tPhase: 0, tD: 0, toast: null }; }
+  state = this.init();
+  H = [[], ['What is the ratio of blue to gold? How many lights are in one group of that ratio?', 'The lens has 20 spots. How many groups of 5 is that?', 'Four groups of 2 blue and 3 gold is how many of each? The 4 stuck gold panels count too.'],
+    ['Look at each row. How do packs and flashes change together?', '4 packs make 6 flashes. What would 2 packs make?', '10 packs is 8 packs plus 2 packs. Add those flashes together.'],
+    ['18 beeps over 3 minutes. Split them evenly.', 'Find 1 minute on the number line. How many beeps go with it?', 'Count up by that number until you reach 42.'],
+    ['Open your logbook. Which clue matches each dial?', 'You have 10 power packs. How many flashes do 10 packs make?', 'At 6 beeps a minute, how long do 42 beeps take? Is that less than 7.5 minutes?']];
+  componentDidMount() { this._k = e => { if (e.key === 'Escape' && this.state.pop) this.setState({ pop: null }); }; document.addEventListener('keydown', this._k); this.heroKick(); }
+  componentDidUpdate() { this.heroKick(); }
+  heroKick() { if (this.state.room === 0 && !this.state.heroIn && !this._hT) this._hT = setTimeout(() => { this._hT = null; this.setState({ heroIn: true }); }, 350); }
+  componentWillUnmount() { clearTimeout(this._hT); document.removeEventListener('keydown', this._k); clearTimeout(this._t1); clearInterval(this._t2); clearTimeout(this._t3); clearTimeout(this._t4); }
+  finish(to) { this.setState({ travel: null, mPhase: 0, room: to, step: 0, pop: null, prac: false, pf: null, pv: '', ps: Array(10).fill(null), pp: 0, pq: [null, null, null], pgr: null, pin: {}, pinChk: false, door: '', dB: null, dG: null, bG: 1, bS: 1, xA: null, xB: null }); }
+  toast(t, s, g) { clearTimeout(this._t3); this.setState({ toast: { t, s, g } }); this._t3 = setTimeout(() => this.setState({ toast: null }), 2800); }
+  travelTo(from, to, intro) {
+    const D = [3.0, 3.0, 2.4, 1.8, 1.2, 0];
+    clearTimeout(this._t1); clearInterval(this._t2);
+    this.setState({ travel: { from, to, intro: !!intro }, tPhase: 0, tD: D[from] });
+    this._t1 = setTimeout(() => this.setState({ tPhase: 1 }), 80);
+    let k = 0; const a = D[from], b = D[to];
+    this._t2 = setInterval(() => { k++; this.setState({ tD: a + (b - a) * Math.min(1, k / 16) }); if (k >= 16) clearInterval(this._t2); }, 100);
+  }
+  patOk(p) { if (!p) return false; const [a, b] = String(p).split(':').map(Number); return a > 0 && b > 0 && a * 3 === b * 2; }
+  num(v) { const n = parseFloat(String(v).trim()); return isNaN(n) ? null : n; }
+  renderVals() {
+    const st = this.state, set = o => this.setState(o), room = st.room, done = room === 5;
+    const b = st.slots.filter(x => x === 'b').length, g = st.slots.filter(x => x === 'g').length, n = b + g;
+    const lensOk = !!(st.lens && st.lens.ok), genOk = !!(st.gen && st.gen.ok), raOk = !!(st.ra && st.ra.ok), rbOk = !!(st.rb && st.rb.ok), finOk = !!(st.fin && st.fin.ok);
+    const wy = Array.isArray(st.why) ? st.why : [], whyOk = wy.length === 2 && wy.includes(0) && wy.includes(1);
+    const fb = (k, r) => ({ [k + 'Show']: !!r, [k + 'Msg']: r ? r.m : '', [k + 'Bg']: r && r.ok ? '#BDEBC8' : '#FFE2A8', [k + 'Fg']: r && r.ok ? '#0E3A1E' : '#3D2A00' });
+    const chip = on => ({ bg: on ? '#FFC965' : 'transparent', fg: on ? '#0B1622' : '#F4EEE2' });
+    const slots = st.slots.map((s, i) => { const a = i / 20 * Math.PI * 2 - Math.PI / 2;
+      return { x: 50 + 31 * Math.cos(a), y: 46 + 31 * Math.sin(a), cur: lensOk || i < 4 ? 'default' : 'pointer',
+        label: 'Spot ' + (i + 1) + ': ' + (i < 4 ? 'gold, stuck in place' : s === 'b' ? 'blue' : s === 'g' ? 'gold' : 'empty'),
+        bg: s === 'b' ? '#4A90C9' : s === 'g' ? '#FFC965' : 'rgba(11,22,34,.55)', bd: i < 4 ? '3px double #C08A3E' : s ? '2px solid #F4EEE2' : '2px dashed #DCE3E8',
+        sh: lensOk ? '0 0 18px 4px ' + (s === 'b' ? 'rgba(74,144,201,.9)' : 'rgba(255,201,101,.9)') : '0 2px 6px rgba(0,0,0,.5)',
+        set: () => { if (lensOk || i < 4) return; const x = st.slots.slice(); x[i] = x[i] === st.pick ? null : st.pick; set({ slots: x, lens: null }); } }; });
+    const checkLens = () => { let r;
+      if (n === 20 && b === 8) r = { ok: true, m: 'The lens lights up! 8 blue and 12 gold is four groups of 2 blue and 3 gold.' };
+      else if (n === 20 && b === 12) r = { cmp: true, m: 'So close, but the colors are switched. You have 3 blue for every 2 gold.' };
+      else if (n === 20 && b === g) r = { cmp: true, m: 'Half and half keeps the colors even, but the ratio needs more gold than blue: 2 blue for every 3 gold.' };
+      else if (n < 20 && b > 0 && b * 3 === g * 2) r = { m: 'The ratio is right so far, but only ' + n + ' of 20 spots are full. How many more groups of 5 will fit?' };
+      else if (n === 20) r = { cmp: true, m: 'The lens is full, but the colors don’t match the ratio yet. Compare your lens with 2 blue for every 3 gold.' };
+      else r = { m: 'Good start! Keep going, and use 2 blue for every 3 gold.' };
+      set({ lens: r }); if (r.ok) this.toast('Lens repaired!', 'Clue found: Lens shard', '◆'); };
+    const checkGen = () => { const v = this.num(st.genVal); let r;
+      if (v === 15) r = { ok: true, m: 'The generator is on! 10 packs make 15 flashes. You’ll need this later.' };
+      else if (v === 14) r = { m: 'Close. When the packs doubled from 4 to 8, the flashes doubled too. Did your answer grow the same way?' };
+      else if (v === 12) r = { m: '10 packs is more than 8, so it should make more flashes than 12.' };
+      else r = { m: 'Not quite yet. Look at how the packs and flashes change together in the rows you have.' };
+      set({ gen: r }); if (r.ok) this.toast('Generator running!', 'Clue found: Generator fuse', 'ϟ'); };
+    const checkR1 = () => { const v = this.num(st.r1Val); let r;
+      if (v === 6) r = { ok: true, m: 'Yes! 6 beeps every minute. Now set the radio.' };
+      else if (v === 3) r = { m: 'That’s 18 beeps over 3 minutes. How many in just 1 minute?' };
+      else r = { m: 'Not quite yet. Try splitting 18 beeps evenly over 3 minutes.' };
+      set({ ra: r, rb: null }); };
+    const checkR2 = () => { const v = this.num(st.r2Val); let r;
+      if (v === 7) r = { ok: true, m: 'The radio is on! It can send 42 beeps in 7 minutes.' };
+      else if (v === 14) r = { m: 'Check your thinking. Should you divide 42 by 6, or multiply?' };
+      else r = { m: 'Almost there! The radio sends 6 beeps every minute. How many minutes until it reaches 42?' };
+      set({ rb: r }); if (r.ok) this.toast('Radio online!', 'Clue found: Radio code card', '≋'); };
+    const checkFin = () => { let r;
+      if (!st.pat || st.fl == null || st.du == null) r = { m: 'Turn on all three dials first.' };
+      else if (!this.patOk(st.pat)) r = { m: 'The lens pattern isn’t quite right. Check your logbook: how many blue lights for every gold light?' };
+      else if (st.fl > 15) r = { falter: true, m: 'The beacon flickers and dims. ' + st.fl + ' flashes would need more than the 10 power packs you have. Try a lower setting.' };
+      else if (st.fl !== 15) r = { m: 'The beam is a little weak. How many flashes can your 10 packs make? Check your logbook.' };
+      else if (st.du > 7.5) r = { m: st.du + ' minutes is too long. The ship will be here in 7.5 minutes.' };
+      else if (st.du !== 7) r = { m: 'At 6 beeps a minute, ' + st.du + ' minutes isn’t enough time for all 42 beeps.' };
+      else r = { ok: true, m: 'Your signal works! 10 packs make 15 flashes, and 42 beeps take 7 minutes, before the ship arrives.' };
+      set({ fin: r, why: null }); if (r.ok) this.toast('Signal ready!', 'Now explain why it works', '★'); };
+    const opt = (list, key, fmt) => list.map(v => ({ name: fmt(v), on: st[key] === v, ...chip(st[key] === v), pick: () => set({ [key]: v, fin: null, why: null }) }));
+    const W = ['It uses the 10 packs you have, and 10 packs make 15 flashes, the same ratio as 4 packs to 6 flashes.', 'At 6 beeps a minute, 42 beeps take 7 minutes, which is less than the 7.5 minutes before the ship arrives.', 'More flashes always make a stronger signal, so the flash dial should be set as high as it goes.', 'It leaves some power packs in reserve, so the lens still has power if the radio message takes longer.'];
+    const whyFbText = wy.includes(3) ? 'Check your supplies. This signal uses all 10 of your packs, so none are left over.' : wy.includes(2) ? 'Check your supplies. 18 flashes would need 12 power packs, and you have 10.' : wy.length === 1 ? 'Good thinking! That’s one reason. The signal also has to fit one more limit. Which one?' : '';
+    const lit = [lensOk || room > 1, genOk || room > 2, rbOk || room > 3];
+    const solved = [true, lensOk, genOk, rbOk, finOk && whyOk, true][room];
+    const IMG = [['storm', 'A dark lighthouse on rocks in a storm, with a rescue ship in rough water.'], ['lens', 'Inside the lantern room: a large glass lens behind brass frames, with stormy sea beyond.'], ['generator', 'A brass and iron generator in a stone basement lit by lanterns.'], ['radio', 'A radio set with dials on a wooden desk by a rain-streaked window.'], ['gallery', 'The signal gallery: a brass wheel, a lamp, and a chart table above the sea.'], ['lit', 'The lighthouse beam shines across the water toward the rescue ship at sunset.']];
+    const scenes = IMG.map((m, i) => ({ src: 'assets/beacon/' + m[0] + '.png', alt: i === room ? m[1] : '', op: i === room ? 1 : 0, br: i === room && !solved ? 0.62 : 1, sat: i === room && !solved ? 0.75 : 1.05 }));
+    const D = [null, ['Door to the basement', 'The lens shows how many blue lights it needs. Enter that number.', 8], ['Door to the radio room', 'How many flashes do 10 power packs make?', 15], ['Door to the gallery', 'How many minutes does the radio need for 42 beeps?', 7]][room];
+    const J = [['Lens shard', '2 blue : 3 gold · 8 blue, 12 gold', lit[0], '◆'], ['Generator fuse', '10 packs → 15 flashes', lit[1], 'ϟ'], ['Radio code card', '6 beeps a minute · 42 in 7', lit[2], '≋']];
+    const SGO = [null, ['I made 4 groups of 2 blue and 3 gold.', 'I saw that 2 of every 5 spots are blue, so 8 of the 20 are blue.', 'I tried colors and checked until it worked.'], ['I found the flashes for 1 pack, then scaled to 10 packs.', 'I combined rows I knew: 8 packs make 12 flashes, and 2 packs make 3.', 'I tried numbers until one worked.'], ['I found the beeps per minute, then divided 42 by 6.', 'I counted up by 6 beeps a minute until I reached 42.', 'I tried numbers until one worked.']][room];
+    const sel = room >= 1 && room <= 3 ? st.sg[room] : null;
+    const ost = on => ({ bg: on ? '#FFC965' : 'transparent', fg: on ? '#0B1622' : '#F4EEE2', bd: on ? '#FFC965' : '#3A4E63' });
+    const LGF = { 2: '2 groups of 5 fill only 10 spots. How many fill 20?', 4: 'Yes. 4 groups × 2 blue = 8 blue, and 4 groups × 3 gold = 12 gold. The 4 stuck gold panels are part of those 12.', 5: '5 groups of 5 would need 25 spots. The lens has 20.' };
+    const SGS = [null, ['4 groups of 2 blue and 3 gold', '2 of every 5 spots are blue', 'guess and check'], ['rate for 1 pack, then scaled', 'combined known rows', 'guess and check'], ['beeps per minute, then divided', 'counted up by 6', 'guess and check']], sgr = i => st.sg[i] != null ? ' Your strategy: ' + SGS[i][st.sg[i]] + '.' : '';
+    const hc = room >= 1 && room <= 4 ? st.h[room] : 0;
+    const SD = ({ 1: [['Fill the lens', lensOk], ['Check the groups', st.lg === 4], ['Share your strategy', st.sg[1] != null]], 2: [['Start the generator', genOk], ['Share your strategy', st.sg[2] != null]], 3: [['Find the rate', raOk], ['Set the radio', rbOk], ['Share your strategy', st.sg[3] != null]], 4: [['Set the dials', finOk], ['Explain your signal', whyOk]] })[room] || [];
+    const step = Math.min(st.step, Math.max(0, SD.length - 1)), last = SD.length - 1;
+    const reach = i => SD.slice(0, i).every(x => x[1]);
+    const doorReady = room >= 1 && room <= 3 && step === last && !!SD[last] && SD[last][1];
+    return {
+      toastOn: !!st.toast && !st.travel, toastT: st.toast ? st.toast.t : '', toastS: st.toast ? st.toast.s : '', toastGlyph: st.toast ? st.toast.g : '', hintCt: hc + '/3',
+      scenes, sc0: scenes[0], sc1: scenes[1], sc2: scenes[2], sc3: scenes[3], sc4: scenes[4], sc5: scenes[5], place: ['Outside · the storm', 'Top floor · the lantern', 'Basement · the generator', 'Middle floor · the radio', 'Gallery · signal controls', 'Outside · the beacon'][room],
+      prog: [1, 2, 3, 4].map(i => ({ bg: room > i || done ? '#FFC965' : room === i ? '#7FD1C4' : 'rgba(244,238,226,.18)' })),
+      progLabel: done ? 'All rooms complete' : room ? 'Room ' + room + ' of 4' : 'Not started',
+      shipText: done ? 'Ship safe in the harbor' : 'Ship: ' + ['3.0', '3.0', '2.4', '1.8', '1.2'][room] + ' miles from the reef',
+      sys: [['Lens', lit[0]], ['Generator', lit[1]], ['Radio', lit[2]], ['Signal', done]].map(([name, on], i) => ({ name, fg: on ? '#FFC965' : room === i + 1 ? '#F4EEE2' : '#B9C3CC', dot: on ? '#FFC965' : room === i + 1 ? '#7FD1C4' : '#4A5866', glow: on ? '0 0 8px #FFC965' : 'none', bar: on || room > i + 1 ? '#FFC965' : room === i + 1 ? '#7FD1C4' : 'rgba(244,238,226,.18)' })),
+      journal: J.map(j => ({ name: j[2] ? j[0] : 'Not found yet', clue: j[2] ? j[1] : 'Solve a room to find it', glyph: j[2] ? j[3] : '?', bg: j[2] ? 'rgba(255,201,101,.14)' : 'transparent', fg: j[2] ? '#FFE2A8' : '#B9C3CC', bd: j[2] ? '1px solid rgba(255,201,101,.5)' : '1px dashed #4A5866', ibg: j[2] ? '#FFC965' : '#4A5866' })),
+      jCount: J.filter(j => j[2]).length + ' of 3',
+      r0: room === 0, r1: room === 1, r2: room === 2, r3: room === 3, r4: room === 4, r5: done,
+      goNext: () => { if (room === 4) { set({ pop: null }); this.travelTo(4, 5); } else if (room === 0) { set({ pop: null }); this.travelTo(0, 1, true); } else set({ room: Math.min(5, room + 1), door: '', doorErr: false, step: 0, pop: null, prac: false, pf: null, pv: '' }); },
+      q1: room === 1 && !st.prac, lensRing: room === 1 && !st.prac, q2: room === 2 && !st.prac, q3: room === 3 && !st.prac, q4: room === 4 && !st.prac,
+      ...(() => {
+        const P = { 1: { tap: true }, 2: {}, 3: {}, 4: {} }[room];
+        const pb = st.ps.filter(x => x === 'b').length, pg = st.ps.filter(x => x === 'g').length;
+        const checkPrac = () => { let r;
+          if (!P) return;
+          if (P.tap) { const n2 = pb + pg, gOk = [0, 5].every(k => st.ps.slice(k, k + 5).filter(x => x === 'b').length === 1 && st.ps.slice(k, k + 5).filter(x => x === 'g').length === 4);
+            if (gOk) r = { ok: true, m: 'The lamp lights up! 2 blue : 8 gold is 2 groups of 1 : 4, an equivalent ratio. The lens room works the same way, with groups of 2 blue and 3 gold.' };
+            else if (n2 < 10) r = { m: 'Nice start! Keep going and fill both groups.' };
+            else if (pb === 8) r = { m: 'The colors are switched. That’s 4 blue : 1 gold in each group. Blue comes first: 1 blue for every 4 gold.' };
+            else r = { m: 'Check each group. Does every group have exactly 1 blue and 4 gold?' }; }
+          else { const all = (GR.ins || []).every((x, k) => this.num((st.pin || {})[k]) === x[1]); r = all ? { ok: true, m: GR.ok } : { m: 'So close! Check the boxes marked in yellow, then try again.' }; set({ pf: r, pinChk: true }); return; }
+          set({ pf: r }); };
+        const B = '#4A90C9', Gd = '#FFC965', ok = '#BDEBC8', okF = '#0E3A1E', tr = '#FFE2A8', trF = '#3D2A00';
+        const GD = {
+          1: { names: ['What is a ratio?', 'Try a few', 'The signal lamp'], qs: [
+          { text: 'What is the ratio of blue to gold in this group?', groups: [['b', 'b', 'g', 'g', 'g']], opts: [['2 : 3', 1, 'Yes! 2 blue for every 3 gold is 2 : 3. That’s the ratio you’ll use in the lens room.'], ['3 : 2', 0, 'That’s gold to blue. In this ratio, blue comes first.'], ['2 : 5', 0, '5 is all the lights. This ratio compares blue to gold, not blue to the total.']] },
+          { text: 'Here are 3 groups of 1 blue : 4 gold. How many blue and how many gold in all?', groups: [G1(), G1(), G1()], opts: [['1 blue, 4 gold', 0, 'That’s one group. Count all 3 groups.'], ['3 blue, 12 gold', 1, 'Yes! 3 groups × 1 blue = 3 blue, and 3 groups × 4 gold = 12 gold.'], ['3 blue, 4 gold', 0, 'Each group has 4 gold, so 3 groups have more than 4.']] },
+          { text: 'Which ratio is equivalent to 1 blue : 4 gold?', groups: [], opts: [['4 : 1', 0, 'The order switched. That’s 4 blue for every 1 gold.'], ['2 : 5', 0, 'Adding 1 to each number changes the ratio. Try multiplying both numbers by the same amount.'], ['2 : 8', 1, 'Yes! 2 : 8 is 2 groups of 1 : 4, so it’s the same ratio.']] }] },
+          2: { names: ['What is a ratio table?', 'Try a few', 'The practice generator'],
+            intro: 'A ratio table lists equivalent ratios. Every column keeps the same “for every” relationship: here, 2 cups of water for every 1 scoop of cocoa.',
+            ex: [{ title: 'Example: 2 cups of water for every 1 scoop of cocoa', rows: [['Scoops', ['1', '2', '3']], ['Cups', ['2', '4', '6']]], big: '1 : 2  =  2 : 4  =  3 : 6', cap: 'Each column is the same ratio. Multiply both rows by the same number to make a new column.' },
+              { title: 'Another move: add two columns', rows: [['Scoops', ['1', '2', '1 + 2 = 3']], ['Cups', ['2', '4', '2 + 4 = 6']]], big: '3 scoops need 6 cups', cap: 'Adding two columns you already know also gives an equivalent ratio.' }],
+            qs: [{ text: 'Scoops 1, 2, 3 and cups 2, 4, ?. What goes in the blank?', groups: [], opts: [['5', 0, 'Adding 1 each time doesn’t keep the ratio. Each scoop needs 2 cups.'], ['6', 1, 'Yes! 3 scoops × 2 cups = 6 cups.'], ['8', 0, 'That skips ahead. Each scoop needs 2 cups, so 3 scoops need fewer than 8.']] },
+              { text: '3 bikes have 6 wheels. How many wheels do 9 bikes have?', groups: [], opts: [['12', 0, 'That adds 6. 9 bikes is 3 times as many as 3 bikes, so multiply.'], ['18', 1, 'Yes! 9 is 3 × 3, so multiply the 6 wheels by 3 too.'], ['27', 0, 'Multiply both amounts by the same number. 9 bikes is 3 × 3 bikes.']] },
+              { text: '2 packs make 5 flashes, and 4 packs make 10. How many flashes do 6 packs make?', groups: [], opts: [['11', 0, 'Adding 1 doesn’t keep the ratio. Try adding the two columns you know.'], ['15', 1, 'Yes! 6 packs is 2 packs + 4 packs, so 5 + 10 = 15 flashes.'], ['20', 0, 'That doubles 10, but 6 packs isn’t double 4 packs.']] }],
+            task: 'A practice generator runs on a different ratio: 2 power packs make 5 flashes. Fill in the rest of its table.',
+            ins: [['Flashes for 4 packs', 10, 'flashes', 'Double the packs, double the flashes.'], ['Flashes for 6 packs', 15, 'flashes', 'Add the 2-pack and 4-pack columns.'], ['Flashes for 8 packs', 20, 'flashes', '8 packs is 4 groups of 2 packs.']],
+            ok: 'The practice generator hums! Every column keeps 2 packs for 5 flashes. In the generator room, 4 packs make 6 flashes. Use the same moves to reach 10 packs.' },
+          3: { names: ['What is a unit rate?', 'Try a few', 'The practice buoy'],
+            intro: 'A rate compares two different kinds of amounts, like beeps and minutes. A unit rate tells you the amount for every 1 of something, like 5 beeps for every 1 minute.',
+            ex: [{ title: 'Example: 12 pages in 3 days', rows: [['Days', ['3', '1']], ['Pages', ['12', '?']]], big: '12 ÷ 3 = 4 pages per day', cap: 'Divide to find the amount for 1 day. That’s the unit rate.' },
+              { title: 'Use the unit rate', rows: [['Days', ['1', '?']], ['Pages', ['4', '20']]], big: '20 ÷ 4 = 5 days', cap: 'Once you know the amount for 1, you can find any amount. Divide the total by the unit rate.' }],
+            qs: [{ text: 'A faucet fills 10 liters in 2 minutes. What’s the unit rate?', groups: [], opts: [['5 liters per minute', 1, 'Yes! 10 ÷ 2 = 5 liters for each minute.'], ['20 liters per minute', 0, 'That multiplies. Split the 10 liters across 2 minutes.'], ['2 liters per minute', 0, '2 is the number of minutes. Divide liters by minutes.']] },
+              { text: 'A printer prints 8 pages per minute. How long does it take to print 24 pages?', groups: [], opts: [['3 minutes', 1, 'Yes! 24 ÷ 8 = 3 minutes.'], ['16 minutes', 0, 'That subtracts. Divide the 24 pages by 8 pages per minute.'], ['32 minutes', 0, 'That adds. Divide the 24 pages by 8 pages per minute.']] },
+              { text: 'Which of these is a unit rate?', groups: [], opts: [['15 beeps in 3 minutes', 0, 'That’s a rate, but for 3 minutes. A unit rate is for 1 minute.'], ['5 beeps per minute', 1, 'Yes! It tells you the beeps for exactly 1 minute.'], ['3 minutes', 0, 'That’s only one amount. A rate compares two amounts.']] }],
+            task: 'A practice buoy sends 20 beeps in 4 minutes. Find its unit rate, then use it.',
+            ins: [['Beeps in 1 minute', 5, 'beeps', 'Split 20 beeps evenly across 4 minutes.'], ['Minutes to send 45 beeps', 9, 'minutes', 'Divide 45 beeps by the beeps in 1 minute.']],
+            ok: 'The practice buoy is set! 5 beeps a minute, so 45 beeps take 9 minutes. In the radio room, find the beeps for 1 minute first, then use it.' },
+          4: { names: ['Checking a plan', 'Try a few', 'The practice signal'],
+            intro: 'Real decisions have limits, like how many supplies you have and how much time is left. A plan only works if it fits every limit.',
+            ex: [{ title: 'Example: you have 6 eggs, and each batch of cookies uses 2', rows: [['Batches', ['3', '4']], ['Eggs needed', ['6 ✓', '8 ✗']]], big: '3 batches fit your supplies', cap: 'Check supplies: does the plan use more than you have?' },
+              { title: 'The sale starts in 50 minutes, and each batch bakes for 15', rows: [['Batches', ['3', '4']], ['Minutes', ['45 ✓', '60 ✗']]], big: '3 batches finish in time', cap: 'Check time: does the plan finish before the deadline?' }],
+            qs: [{ text: 'You have 8 batteries, and each lamp uses 2. How many lamps can you light?', groups: [], opts: [['4', 1, 'Yes! 8 ÷ 2 = 4 lamps.'], ['6', 0, 'That subtracts. Divide 8 batteries by 2 per lamp.'], ['16', 0, 'That multiplies. Each lamp uses 2 batteries, so divide.']] },
+              { text: 'A bus ride takes 25 minutes, and class starts in 20 minutes. Will you be on time?', groups: [], opts: [['Yes', 0, 'Compare the two times. Is 25 minutes shorter than 20?'], ['No', 1, 'Right. 25 minutes is longer than 20, so the plan misses the deadline.']] },
+              { text: 'A plan needs 12 packs and takes 6 minutes. You have 10 packs and 8 minutes. Does it work?', groups: [], opts: [['Yes, it fits both limits', 0, 'Check the packs. Does 12 fit in the 10 you have?'], ['No, not enough packs', 1, 'Yes! The time fits, but 12 packs is more than your 10.'], ['No, not enough time', 0, '6 minutes fits inside 8. Check the packs instead.']] }],
+            task: 'A practice beacon: you have 6 power packs, and 3 packs make 2 flashes. Its radio sends 4 beeps a minute, needs to send 20 beeps, and the boat arrives in 6 minutes.',
+            ins: [['Flashes from 6 packs', 4, 'flashes', '6 packs is 2 groups of 3 packs. Each group makes 2 flashes.'], ['Minutes to send 20 beeps', 5, 'minutes', 'Divide 20 beeps by 4 beeps a minute. Is it under 6?']],
+            ok: 'The practice signal works: 4 flashes from your 6 packs, and 20 beeps in 5 minutes, before the boat arrives in 6. Set each dial in the gallery the same way, using your logbook.' } };
+        const GR = GD[room] || GD[1];
+        const QS = GR.qs;;
+        function G1() { return ['b', 'g', 'g', 'g', 'g']; }
+        const qsDone = QS.every((q, i) => st.pq[i] != null && q.opts[st.pq[i]][1]);
+        const PN = GR.names;
+        const reachP = i => i === 0 || (i === 1) || (i === 2 && qsDone);
+        const pgOk = st.pgr === 2;
+        const pGroups = [0, 5].map((k, gi) => { const sl = st.ps.slice(k, k + 5), gb = sl.filter(x => x === 'b').length, gg = sl.filter(x => x === 'g').length, good = gb === 1 && gg === 4;
+          return { name: 'Group ' + (gi + 1), count: gb + ' : ' + gg + (good ? ' ✓' : ''), c: good ? '#BDEBC8' : '#B9C3CC',
+            slots: sl.map((x, j) => ({ label: 'Group ' + (gi + 1) + ', spot ' + (j + 1) + ': ' + (x === 'b' ? 'blue' : x === 'g' ? 'gold' : 'empty'), bg: x === 'b' ? B : x === 'g' ? Gd : 'transparent', bd: x ? '2px solid #F4EEE2' : '2px dashed #8C99A6',
+              set: () => { const a = st.ps.slice(); a[k + j] = a[k + j] === st.ppick ? null : st.ppick; set({ ps: a, pf: null }); } })) }; });
+        const r1g = {
+          pR1: !!(P && P.tap) && st.prac, pGd: !!(P && !P.tap) && st.prac,
+          ...(() => { const okB = '#BDEBC8', okF2 = '#0E3A1E', tB = '#FFE2A8', tF = '#3D2A00', neu = '#13212F', neuF = '#DCE3E8';
+            const mk = (vals, key, good) => vals.map(v => { const on = st[key] === v; return { t: String(v), on, bg: on ? (v === good ? okB : tB) : 'transparent', fg: on ? (v === good ? okF2 : tF) : '#F4EEE2', bd: on ? (v === good ? okB : tB) : '#3A4E63', pick: () => set({ [key]: v }) }; });
+            const dRight = st.dB === 2 && st.dG === 3, dBoth = st.dB != null && st.dG != null;
+            const dFb = !dBoth ? '' : dRight ? 'Yes! 2 blue lights for every 3 gold lights. We write it 2 : 3, naming blue first because the sentence names blue first.' : (st.dB === 3 && st.dG === 2) ? 'That’s switched. Count the blue lights first, then the gold.' : (st.dB === 5 || st.dG === 5) ? '5 is every light in the group. “For every” compares blue to gold.' : 'Count each color in the group again.';
+            const n = Math.max(1, Math.min(6, st.bG || 1)), sN = Math.max(1, Math.min(6, st.bS || 1));
+            const tapeFb = n === 3 ? 'Yes! 3 groups make 6 packs for every 15 flashes. 6 : 15 is equivalent to 2 : 5 because you repeated the same group.' : n < 3 ? 'Keep adding groups. Each one adds 2 packs and 5 flashes.' : 'That’s more than 6 packs. Remove a group.';
+            const per = 20 / sN, even = 20 % sN === 0, splitOk = sN === 4;
+            const splitFb = splitOk ? 'Yes! 4 equal parts, one for each minute, with 5 beeps in each. That’s the unit rate: 5 beeps for every 1 minute.' : !even ? sN + ' parts don’t split 20 beeps evenly. You need one part for each of the 4 minutes.' : sN + ' equal parts give ' + per + ' beeps each, but there are 4 minutes. How many parts do you need?';
+            const C = ['#7FD1C4', '#FFC965', '#9CC7EA', '#F2B28C', '#BDEBC8', '#E3A64B'];
+            const xRight = st.xA === 0 && st.xB === 0, xBoth = st.xA != null && st.xB != null;
+            const XA = ['4 flashes uses all 6 of my packs', 'more flashes always make a better signal'], XB = ['20 beeps take 5 minutes, less than the 6 before the boat arrives', '4 beeps a minute is fast'];
+            const xo = (arr, key) => arr.map((t, i) => { const on = st[key] === i; return { t, on, bg: on ? (i === 0 ? okB : tB) : 'transparent', fg: on ? (i === 0 ? okF2 : tF) : '#F4EEE2', bd: on ? (i === 0 ? okB : tB) : '#3A4E63', pick: () => set({ [key]: i }) }; });
+            const hasX = room === 4, pfOk2 = !!(st.pf && st.pf.ok);
+            return { dBv: st.dB == null ? '?' : st.dB, dGv: st.dG == null ? '?' : st.dG, dBOpts: mk([2, 3, 5], 'dB', 2), dGOpts: mk([2, 3, 5], 'dG', 3), dFbShow: dBoth, dFb, dFbBg: dRight ? okB : tB, dFbFg: dRight ? okF2 : tF,
+              gTape: room === 2, tapeSegs: Array.from({ length: n }, (_, i) => ({ i })), tapeN: n + (n === 1 ? ' group' : ' groups'), tapeSum: (n * 2) + ' packs for every ' + (n * 5) + ' flashes',
+              tapeLess: () => set({ bG: Math.max(1, n - 1) }), tapeMore: () => set({ bG: Math.min(6, n + 1) }), tapeFb, tapeBg: n === 3 ? okB : neu, tapeFg: n === 3 ? okF2 : neuF,
+              gSplit: room === 3, splitN: sN + (sN === 1 ? ' part' : ' parts'), splitLess: () => set({ bS: Math.max(1, sN - 1) }), splitMore: () => set({ bS: Math.min(6, sN + 1) }),
+              splitCells: Array.from({ length: 20 }, (_, i) => { const p = Math.min(sN - 1, Math.floor(i / per)); const edge = i > 0 && Math.floor(i / per) !== Math.floor((i - 1) / per); return { bg: C[p % C.length], edge: edge ? '3px solid #0B1622' : '0' }; }),
+              splitLabels: even ? Array.from({ length: sN }, (_, i) => ({ t: 'Part ' + (i + 1) + ': ' + per + ' beeps', bg: C[i % C.length] })) : [{ t: 'Uneven parts', bg: '#FFE2A8' }],
+              splitFb, splitBg: splitOk ? okB : neu, splitFg: splitOk ? okF2 : neuF,
+              xShow: hasX && pfOk2, xAv: st.xA == null ? '____' : XA[st.xA], xBv: st.xB == null ? '____' : XB[st.xB], xAOpts: xo(XA, 'xA'), xBOpts: xo(XB, 'xB'),
+              xFbShow: xBoth, xFb: xRight ? 'That’s a strong explanation. It checks both limits: supplies and time.' : st.xA === 1 ? 'More flashes need more packs, and you only have 6. Pick the reason about your supplies.' : 'Speed alone doesn’t show it arrives in time. Pick the reason that compares the time to the 6-minute deadline.', xFbBg: xRight ? okB : tB, xFbFg: xRight ? okF2 : tF,
+              gReady: pfOk2 && (!hasX || xRight) }; })(),
+          gIntro: GR.intro || '', gLastName: (GR.names[2] || '').replace(/^The /, 'the '), gTask: GR.task || '',
+          gEx: (GR.ex || []).map(x => ({ title: x.title, big: x.big, cap: x.cap, hasRows: !!x.rows, cols: x.rows ? x.rows[0][1].length : 1, rows: (x.rows || []).map((r, ri) => ({ label: r[0], bg: ri ? 'transparent' : 'rgba(244,238,226,.05)', cells: r[1].map(v => ({ v, c: /✗/.test(v) ? '#F2B28C' : /✓|\?/.test(v) ? '#FFC965' : '#F4EEE2' })) })) })),
+          gIns: (GR.ins || []).map((x, k) => { const v = (st.pin || {})[k] == null ? '' : st.pin[k], right = this.num(v) === x[1], show = !!st.pinChk && v !== '';
+            return { label: x[0], unit: x[2], v, bd: show ? (right ? '#BDEBC8' : '#FFE2A8') : '#7FD1C4', fbShow: show, fb: right ? 'Yes!' : x[3], fbBg: right ? '#BDEBC8' : '#FFE2A8', fbFg: right ? '#0E3A1E' : '#3D2A00',
+              on: e => { const p = Object.assign({}, st.pin || {}); p[k] = e.target.value; set({ pin: p, pinChk: false, pf: null }); } }; }), ppN: st.pp + 1, ppName: PN[st.pp], pp0: st.pp === 0, pp1: st.pp === 1, pp2: st.pp === 2,
+          ppNext: () => set({ pp: Math.min(2, st.pp + 1) }),
+          ppDots: PN.map((n3, i) => ({ label: 'Part ' + (i + 1) + ': ' + n3, cur: i === st.pp ? 'step' : undefined, locked: !reachP(i), cursor: reachP(i) ? 'pointer' : 'default', w: i === st.pp ? 26 : 10, bg: i === st.pp ? '#7FD1C4' : i < st.pp ? '#FFC965' : '#3A4E63', go: () => { if (reachP(i)) set({ pp: i }); } })),
+          pQs: QS.map((q, i) => { const a = st.pq[i], right = a != null && q.opts[a][1];
+            return { n: 'Question ' + (i + 1) + ' of 3', text: q.text, groups: q.groups.map(g => g.map(c => c === 'b' ? B : Gd)),
+              opts: q.opts.map((o, j) => ({ t: o[0], on: a === j, bg: a === j ? (o[1] ? ok : tr) : 'transparent', fg: a === j ? (o[1] ? okF : trF) : '#F4EEE2', bd: a === j ? (o[1] ? ok : tr) : '#3A4E63', pick: () => { const x = st.pq.slice(); x[i] = j; set({ pq: x }); } })),
+              fbShow: a != null, fb: a != null ? q.opts[a][2] : '', fbBg: right ? ok : tr, fbFg: right ? okF : trF }; }),
+          pQsDone: qsDone,
+          pgOpts: [1, 2, 5].map(v => ({ t: v + (v === 1 ? ' group' : ' groups'), on: st.pgr === v, bg: st.pgr === v ? (v === 2 ? ok : tr) : 'transparent', fg: st.pgr === v ? (v === 2 ? okF : trF) : '#F4EEE2', bd: st.pgr === v ? (v === 2 ? ok : tr) : '#3A4E63', pick: () => set({ pgr: v }) })),
+          pgFbShow: st.pgr != null, pgOk, pgBg: pgOk ? ok : tr, pgFg: pgOk ? okF : trF,
+          pgFb: st.pgr === 2 ? 'Yes! 2 groups × 5 spots = 10 spots. So the lamp needs 2 groups of 1 blue : 4 gold.' : st.pgr === 1 ? 'One group only fills 5 spots. The lamp has 10.' : st.pgr === 5 ? '5 groups of 5 would need 25 spots. The lamp has 10.' : '',
+          pGroups, ppB: () => set({ ppick: 'b' }), ppG: () => set({ ppick: 'g' }), ppBOn: st.ppick === 'b', ppGOn: st.ppick === 'g', ppBBg: st.ppick === 'b' ? B : 'transparent', ppGBg: st.ppick === 'g' ? Gd : 'transparent', ppGFg: st.ppick === 'g' ? '#0B1622' : '#F4EEE2' };
+        return { ...r1g, hasPrac: !!P && !st.prac && !st.travel, prac: !!P && st.prac, openPrac: () => set({ prac: true, pf: null, pop: null }), closePrac: () => set({ prac: false }),
+          pQ: P ? P.q : '', pTap: !!(P && P.tap), pNum: !!(P && !P.tap), pv: st.pv, onPv: e => set({ pv: e.target.value, pf: null }), checkPrac,
+          pSlots: st.ps.map((x, i) => ({ label: 'Practice spot ' + (i + 1) + ': ' + (x === 'b' ? 'blue' : x === 'g' ? 'gold' : 'empty'), bg: x === 'b' ? '#4A90C9' : x === 'g' ? '#FFC965' : 'transparent', bd: x ? '2px solid #F4EEE2' : '2px dashed #8C99A6',
+            set: () => { const a = st.ps.slice(); a[i] = a[i] == null ? 'b' : a[i] === 'b' ? 'g' : null; set({ ps: a, pf: null }); } })),
+          pCount: pb + ' blue : ' + pg + ' gold.', pfShow: !!st.pf, pfOk: !!(st.pf && st.pf.ok), pfMsg: st.pf ? st.pf.m : '', pfBg: st.pf && st.pf.ok ? '#BDEBC8' : '#FFE2A8', pfFg: st.pf && st.pf.ok ? '#0E3A1E' : '#3D2A00' };
+      })(),
+      ...(() => {
+        const tv = st.travel, D = [3.0, 3.0, 2.4, 1.8, 1.2, 0], x = d => 24 + d / 3 * 64;
+        if (!tv || tv.stage === 'map') return { tChip: '', tInside: false, tLbl: '', traveling: false, trailL: 0, trailW: 0, shipX: 0, shipY: 0, shipRot: 0, shipW: 0, shipFlip: 1, miles: [], tHarbor: false, tTitle: '', tMsg: '', tBtn: '', endTravel: () => {} };
+        const harbor = tv.to === 5, cur = st.tPhase ? tv.to : tv.from;
+        const intro = !!tv.intro, sx = intro ? (st.tPhase ? x(3) : 104) : harbor && st.tPhase ? 88 : x(D[cur]), sy = harbor && st.tPhase ? 56 : 80;
+        const NEXT = ['', '', 'Next, start the generator in the basement.', 'Next, get the radio working.', 'Last stop: the signal gallery.'];
+        return { traveling: true, tHarbor: harbor, shipX: sx, shipY: sy, shipRot: 0, shipW: harbor && st.tPhase ? 8 : 15, tChip: harbor ? 'Ship: safe' : 'Ship: ' + st.tD.toFixed(1) + ' miles from the reef', shipFlip: harbor ? -1 : 1,
+          trailL: intro ? x(3) : harbor ? Math.min(x(D[4]), sx) : x(D[cur]), trailW: intro ? 0 : harbor ? Math.abs(sx - x(D[4])) : Math.max(0, x(D[tv.from]) - x(D[cur])),
+          miles: [0, 1, 2, 3].map(m => ({ x: x(m), l: m + ' mi' })),
+          tTitle: intro ? 'A ship is 3.0 miles from the reef' : harbor ? 'The ship turns for the harbor' : 'Ship: ' + st.tD.toFixed(1) + ' miles from the reef',
+          tMsg: intro ? 'A rescue ship is sailing through the storm, straight toward the rocks. The lighthouse is dark, so the crew can’t see the danger. It’s up to you!' : harbor ? 'The crew spotted your beacon and steered safely away from the reef. You did it!' : 'The ship moved ' + (D[tv.from] - D[tv.to]).toFixed(1) + ' miles closer to the reef. Keep going, you’re doing great! ' + NEXT[tv.to],
+          tBtn: 'See what you did →', tInside: !harbor, tLbl: 'Tap the lighthouse to head back inside', endTravel: () => { clearInterval(this._t2); if (tv.to < 5) { this.setState({ travel: Object.assign({}, tv, { stage: 'map' }), mPhase: 0 }); clearTimeout(this._t4); this._t4 = setTimeout(() => this.setState({ mPhase: 1 }), 700); } else this.finish(tv.to); } };
+      })(),
+      ...(() => {
+        const tv = st.travel;
+        const BX = { 0: { l: 33, t: 86, w: 27, h: 6, name: 'Front door' }, 1: { l: 34.5, t: 9, w: 20, h: 13.5, name: 'Lens room' }, 2: { l: 31, t: 69, w: 29.5, h: 18.5, name: 'Generator room' }, 3: { l: 32, t: 47, w: 27.5, h: 20.5, name: 'Radio room' }, 4: { l: 33.5, t: 25.5, w: 24.5, h: 20.5, name: 'Signal gallery' } };
+        if (!tv || tv.stage !== 'map') return { mLbl: '', mDoneOp: 0, mapOn: false, mDone: BX[1], mCur: BX[1], mNext: BX[1], mNextOp: 0, mTitle: '', mMsg: '', mBtn: '', mapAlt: '', finishTravel: () => {} };
+        const M = { 1: ['First stop: the lens room', 'Climb all the way to the top of the tower. The storm cracked the lens, and the ship needs its light.', 'Enter the lens room →'], 2: ['Lens fixed! Next: the basement', 'The lens is ready, but it needs power to shine. Head all the way down to the generator room.', 'Enter the generator room →'], 3: ['Generator running! Next: the radio room', 'Power is flowing up the tower. Climb up to the radio room to call for help.', 'Enter the radio room →'], 4: ['Radio online! Last stop: the signal gallery', 'Everything is working. Climb up to the signal gallery to put it all together.', 'Enter the signal gallery →'] }[tv.to];
+        return { mapOn: true, mDone: BX[tv.from], mCur: st.mPhase ? BX[tv.to] : BX[tv.from], mNext: BX[tv.to], mNextOp: st.mPhase ? 1 : 0, mDoneOp: tv.intro ? 0 : 1, mTitle: M[0], mMsg: M[1], mBtn: M[2], mLbl: M[2].replace(' →', ''), mIc1: tv.to === 1, mIc2: tv.to === 2, mIc3: tv.to === 3, mIc4: tv.to === 4,
+          mapAlt: tv.intro ? 'Cutaway of the lighthouse showing each floor. The lens room at the top is marked as next.' : 'Cutaway of the lighthouse showing each floor. The ' + BX[tv.from].name.toLowerCase() + ' is marked done, and the ' + BX[tv.to].name.toLowerCase() + ' is marked as next.',
+          finishTravel: () => { clearTimeout(this._t4); this.finish(tv.to); } };
+      })(),
+      hasSteps: SD.length > 0 && !st.prac, stepN: step + 1, stepT: SD.length, stepName: SD[step] ? SD[step][0] : '',
+      stepDots: SD.map((d, i) => { const ok = reach(i); return { label: 'Step ' + (i + 1) + ': ' + d[0], cur: i === step ? 'step' : undefined, locked: !ok, cursor: ok ? 'pointer' : 'default', w: i === step ? 26 : 10, bg: i === step ? '#FFC965' : d[1] ? '#7FD1C4' : '#3A4E63', go: () => { if (ok) set({ step: i, pop: null }); } }; }),
+      s0: step === 0, s1: step === 1, s2: step === 2, showStrat: room >= 1 && room <= 3 && step === last && !st.prac,
+      showNext: SD.length > 0 && step < last && SD[step][1] && !st.prac, nextName: SD[step + 1] ? SD[step + 1][0].toLowerCase() : '', goStepNext: () => set({ step: step + 1, pop: null }),
+      showDoorCue: doorReady && st.pop !== 'door' && !st.prac, doorReady, doorOpen: st.pop === 'door', hintOpen: st.pop === 'hint',
+      toggleDoor: () => set({ pop: st.pop === 'door' ? null : 'door' }), toggleHint: () => set({ pop: st.pop === 'hint' ? null : 'hint' }), closePop: () => set({ pop: null }),
+      doorBtnBg: st.pop === 'door' ? '#0B1622' : '#FFC965', doorBtnFg: st.pop === 'door' ? '#FFC965' : '#0B1622',
+      hintBtnBg: st.pop === 'hint' ? '#FFC965' : 'rgba(11,22,34,.85)', hintBtnFg: st.pop === 'hint' ? '#0B1622' : '#FFC965', hintsAll: hc >= 3, hintOp: hc >= 3 ? 0.5 : 1,
+      slots, lensCountBig: b + ' · ' + g, lensCount: b + ' blue, ' + g + ' gold, ' + (20 - n) + ' empty.',
+      pickB: () => set({ pick: 'b' }), pickG: () => set({ pick: 'g' }), pickBOn: st.pick === 'b', pickGOn: st.pick === 'g',
+      pickBBg: st.pick === 'b' ? '#4A90C9' : 'transparent', pickBFg: '#F4EEE2', pickGBg: st.pick === 'g' ? '#FFC965' : 'transparent', pickGFg: st.pick === 'g' ? '#0B1622' : '#F4EEE2',
+      checkLens, clearLens: () => { if (!lensOk) set({ slots: ['g','g','g','g'].concat(Array(16).fill(null)), lens: null }); },
+      lensCompare: !!(st.lens && st.lens.cmp), lensYours: b + ' blue : ' + g + ' gold', lensOk, ...fb('lens', st.lens),
+      lgOpts: [2, 4, 5].map(v => ({ t: v + ' groups', on: st.lg === v, ...ost(st.lg === v), pick: () => set({ lg: v, doorErr: false }) })), lgFbShow: st.lg != null, lgBg: st.lg === 4 ? '#BDEBC8' : '#FFE2A8', lgFg: st.lg === 4 ? '#0E3A1E' : '#3D2A00', lgFbText: st.lg != null ? LGF[st.lg] : '',
+      genVal: st.genVal, onGen: e => set({ genVal: e.target.value, gen: null }), checkGen, ...fb('gen', st.gen),
+      genRead: genOk ? '15 flashes' : 'Offline', genReadC: genOk ? '#FFC965' : '#B9C3CC', gaugeGlow: genOk ? '0 0 26px 10px rgba(255,201,101,.75)' : 'none',
+      stratRow: () => set({ strat: 'row' }), stratUnit: () => set({ strat: 'unit' }), srBg: chip(st.strat === 'row').bg, srFg: chip(st.strat === 'row').fg, suBg: chip(st.strat === 'unit').bg, suFg: chip(st.strat === 'unit').fg, stratShow: !!st.strat,
+      stratText: st.strat === 'row' ? '8 packs make 12 flashes. 2 more packs is half of 4 packs.' : 'Share 6 flashes across 4 packs to find flashes for 1 pack. That’s 1.5 flashes per pack. It’s an average: no single pack makes half a flash, but every 2 packs make 3. Then multiply by 10.',
+      r1Val: st.r1Val, onR1: e => set({ r1Val: e.target.value, ra: null }), checkR1, raOk, ...fb('ra', st.ra),
+      r2Val: st.r2Val, onR2: e => set({ r2Val: e.target.value, rb: null }), checkR2, ...fb('rb', st.rb), rbShow: !!st.rb && step === 1,
+      nlTicks: [0, 1, 2, 3, 4, 5, 6, 7].map(m => ({ x: 2 + m / 7 * 96, l: m + ' min', c: (m === 1 && raOk) || (m === 7 && rbOk) ? '#FFC965' : m === 3 ? '#7FD1C4' : '#5D6E7C' })),
+      nl1: raOk ? '6' : '?', nl1c: raOk ? '#FFC965' : '#F2B28C', nl2: rbOk ? '7' : '?', nl2c: rbOk ? '#FFC965' : '#F2B28C',
+      showDoor: (room === 1 && lensOk) || (room === 2 && genOk) || (room === 3 && rbOk),
+      sgOpts: SGO ? SGO.map((t, i) => ({ on: sel === i, t: (sel === i ? '✓ ' : '') + t, ...ost(sel === i), pick: () => { const a = st.sg.slice(); a[room] = i; set({ sg: a, doorErr: false }); } })) : [],
+      sgFbShow: sel === 2, sgFbText: 'Guess and check can get you there! Before you move on, try one of the other ways to see why your answer works.',
+      doorTitle: D ? D[0] : '', doorPrompt: D ? D[1] : '', doorVal: st.door, doorErr: st.doorErr, doorMsg: st.doorNeed || 'The lock won’t turn yet. Look back at your answer in this room and try again.',
+      onDoor: e => set({ door: e.target.value, doorErr: false }),
+      unlockDoor: () => { if (room === 1 && st.lg !== 4) set({ doorErr: true, doorNeed: 'First, answer how many groups fit in the 20 spots.' }); else if (st.sg[room] == null) set({ doorErr: true, doorNeed: 'First, share how you solved it.' }); else if (D && this.num(st.door) === D[2]) { set({ door: '', doorErr: false, doorNeed: '', pop: null }); this.travelTo(room, room + 1); } else set({ doorErr: true, doorNeed: '' }); },
+      plans: [['A', 10, 15, 42, 7], ['B', 12, 18, 48, 8]].map(p => ({ id: p[0], packs: p[1], flashes: p[2], pulses: p[3], time: p[4], on: st.plan === p[0], bd: st.plan === p[0] ? '#FFC965' : '#3A4E63', bg: st.plan === p[0] ? 'rgba(255,201,101,.12)' : 'transparent', pick: () => set({ plan: p[0], fin: null, why: null }) })),
+      patOpts: opt(['2:3', '1:1', '3:2'], 'pat', v => v.replace(':', ' blue : ') + ' gold'), flOpts: opt([12, 15, 18], 'fl', v => v + ' flashes'), duOpts: opt([6, 7, 8], 'du', v => v + ' minutes'),
+      ...(() => {
+        const DL = [['Lens pattern', 'pat', ['1:1', '2:3', '3:2'], v => v.replace(':', ' : ')], ['Flashes', 'fl', [12, 15, 18], v => v + ' flashes'], ['Radio time', 'du', [6, 7, 8], v => v + ' min']];
+        const A = [-120, -50, 0, 50], pos = a => ({ x: 64 + 56 * Math.sin(a * Math.PI / 180), y: 68 - 56 * Math.cos(a * Math.PI / 180) });
+        const dials = DL.map(([name, key, opts, fmt]) => {
+          const idx = opts.indexOf(st[key]), cur = idx + 1, custom = st[key] != null && idx < 0;
+          const to = i => set({ [key]: i === 0 ? null : opts[i - 1], fin: null, why: null });
+          const up = () => to(Math.min(3, cur + 1)), down = () => to(Math.max(0, cur - 1));
+          return { name, max: 3, now: cur, ang: custom ? 0 : A[cur], valText: st[key] == null ? 'Off' : fmt(st[key]), vc: st[key] == null ? '#B9C3CC' : '#FFC965',
+            marks: ['Off'].concat(opts.map(o => key === 'pat' ? o.replace(':', ':') : String(o))).map((l, i) => ({ l, ...pos(A[i]), c: i === cur ? '#FFC965' : '#8C99A6' })),
+            turn: () => to(cur >= 3 ? 1 : cur + 1), up, down,
+            key: e => { if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { e.preventDefault(); up(); } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { e.preventDefault(); down(); } } };
+        });
+        const [pb, pg] = st.pat ? String(st.pat).split(':') : ['', ''];
+        const setPat = (b2, g2) => set({ pat: b2 !== '' && g2 !== '' ? b2 + ':' + g2 : null, tPB: b2, tPG: g2, fin: null, why: null });
+        const tb = st.tPB != null ? st.tPB : pb, tg = st.tPG != null ? st.tPG : pg;
+        return { dials, dialMode: !st.typeMode, typeMode: st.typeMode, typeBtn: st.typeMode ? 'Use the dials' : 'Type values instead', toggleType: () => set({ typeMode: !st.typeMode }),
+          ctlHelp: st.typeMode ? 'Enter each value.' : 'Tap a dial or use the arrows to turn it.',
+          tB: tb, tG: tg, onTB: e => setPat(e.target.value.trim(), tg), onTG: e => setPat(tb, e.target.value.trim()),
+          tF: st.fl == null ? '' : st.fl, tD: st.du == null ? '' : st.du,
+          onTF: e => set({ fl: this.num(e.target.value), fin: null, why: null }), onTD: e => set({ du: this.num(e.target.value), fin: null, why: null }) };
+      })(),
+      logOpen: st.logOpen, toggleLog: () => set({ logOpen: !st.logOpen }), logBtn: st.logOpen ? 'Hide' : 'Show',
+      logbook: [['Lens room', '2 blue : 3 gold · 8 blue, 12 gold', '◆', 1], ['Generator room', '10 packs → 15 flashes', 'ϟ', 2], ['Radio room', '6 beeps a minute · 42 beeps in 7 minutes', '≋', 3]].map(([r, c, g, i]) => ({ room: r, clue: c, glyph: g, strat: st.sg[i] != null ? 'Your strategy: ' + SGS[i][st.sg[i]] + '.' : 'No strategy recorded.' })),
+      lockAnim: st.pop === 'door' ? 'none' : 'bcRing 1.6s ease-out infinite',
+      patShow: st.pat ? st.pat.replace(':', ' : ') : 'not set', flShow: st.fl || 'not set', duShow: st.du ? st.du + ' min' : 'not set',
+      checkFin, finOk, finFalter: !!(st.fin && st.fin.falter), finRetry: () => set({ fin: null, fl: null, why: null, step: 0 }), ...fb('fin', st.fin),
+      whys: W.map((t, i) => { const on = wy.includes(i); return { on, t: (on ? '✓ ' : '') + t, bg: on ? 'rgba(127,209,196,.16)' : 'transparent', bd: on ? '#7FD1C4' : '#3A4E63', pick: () => set({ why: on ? wy.filter(x => x !== i) : wy.concat(i) }) }; }),
+      whyOk, whyFbShow: !!whyFbText, whyFbText,
+      recap: [['Lens room', 'You used 8 blue and 12 gold, which keeps 2 blue for every 3 gold.' + sgr(1)], ['Generator room', 'You found that 10 packs make 15 flashes.' + sgr(2)], ['Radio room', 'You found 6 beeps a minute, so 42 beeps take 7 minutes.' + sgr(3)], ['Signal gallery', 'You set the lens to 2 : 3, used your 10 packs for 15 flashes, and sent 42 beeps in 7 minutes, just in time.']].map(([r, t]) => ({ room: r, t })),
+      restart: () => this.setState(this.init()),
+      heroX: st.heroIn ? 60 : 108, gridDisp: room === 0 ? 'none' : 'grid',
+      startGame: () => { clearTimeout(this._t4); this.setState({ room: 1, pop: null, travel: { from: 0, to: 1, intro: true, stage: 'map' }, mPhase: 0 }); this._t4 = setTimeout(() => this.setState({ mPhase: 1 }), 700); },
+      jumps: ['Start', 'Room 1', 'Room 2', 'Room 3', 'Room 4', 'Finish'].map((t, i) => ({ t, on: room === i, bg: room === i ? '#F4EEE2' : 'transparent', fg: room === i ? '#0B1622' : '#DCE3E8', go: () => { clearTimeout(this._t1); clearInterval(this._t2); this.setState(Object.assign(this.init(), { room: i })); } })),
+      hasHints: room >= 1 && room <= 4, hints: room >= 1 && room <= 4 ? this.H[room].slice(0, hc).map((t, j) => ({ n: j + 1, t })) : [],
+      hint: () => { if (hc >= 3) return; const h = st.h.slice(); h[room] = hc + 1; set({ h }); }, hintLabel: hc === 0 ? 'Get a hint' : hc < 3 ? 'Another hint' : 'All hints shown'
+    };
+  }
+}
+</script>
+</body>
+</html>

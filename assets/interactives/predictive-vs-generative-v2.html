@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Predictive AI vs. Generative AI</title>
+<style>/* Self-hosted fonts (assets/fonts) */
+@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400 600;font-display:swap;src:url('../fonts/source-serif-4-latin.woff2') format('woff2')}
+@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:400 700;font-display:swap;src:url('../fonts/source-sans-3-latin.woff2') format('woff2')}</style>
+<style>
+:root{--navy:#012169;--royal:#00539B;--copper:#C84E00;--persimmon:#E89923;--dandelion:#FFD960;--magnolia:#1D6363;--whisper:#F3F2F1;--iron:#262626;--graphite:#666;--lime:#E5E5E5;--fbg:#E8F0FA;--gbg:#FEF0E6;--gtext:#7A2F00}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Sans 3',sans-serif;background:var(--whisper);color:var(--iron);padding:24px;max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:14px;font-size:15px}
+button{font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
+.k{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--royal)}
+.goal{font-family:'Source Serif 4',serif;font-size:20px;line-height:1.35;color:var(--navy)}
+.steps{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.steps li{display:flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;border-radius:999px;font-size:14px;font-weight:600;background:#fff;color:var(--graphite)}
+.steps li b{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;background:var(--lime);color:var(--iron)}
+.steps li.on{background:var(--navy);color:#fff}.steps li.on b{background:var(--dandelion)}
+.steps li.done{background:#E6F4F4;color:var(--magnolia)}.steps li.done b{background:var(--magnolia);color:#fff}
+.card{background:#fff;border-radius:12px;border:1px solid var(--lime)}
+.choice{font-size:15px;font-weight:600;border-radius:8px;padding:8px 14px;background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
+.choice[aria-pressed="true"]{background:var(--navy);color:#fff}
+.choice:disabled{cursor:default}
+.primary{font-weight:600;font-size:15px;border:0;border-radius:8px;padding:10px 18px;background:var(--navy);color:#fff}
+.primary:disabled{background:#B5B5B5;cursor:default}
+.hint{font-size:14px;color:var(--graphite)}
+.take{background:var(--navy);color:#fff;border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.55}
+.take .k{color:var(--dandelion)}
+[hidden]{display:none!important}
+</style>
+<style>
+.duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px}
+.tool{background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--lime);display:flex;flex-direction:column}
+.bar{color:#fff;padding:10px 14px;display:flex;justify-content:space-between;font-size:14px;font-weight:600}
+.bar span+span{font-weight:400}
+.dim{opacity:.5}
+.score{display:flex;align-items:baseline;gap:10px}.score b{font-size:40px;color:var(--magnolia);line-height:1}.score span{font-size:16px;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px;font-size:13px}.chips span{padding:3px 9px;border-radius:999px;background:var(--fbg);color:var(--navy)}
+.doc{padding:14px;font-family:'Source Serif 4',serif;font-size:15px;line-height:1.6}
+mark{background:var(--gbg);border-bottom:2px solid var(--copper);color:inherit;padding:1px 0;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.note{margin:0 14px 14px;font-size:14px;color:var(--gtext)}
+.log{overflow-x:auto}.log>div{min-width:600px}
+.row{display:grid;grid-template-columns:56px 120px minmax(0,1fr) 130px;gap:10px;padding:10px 14px;font-size:14px;border-bottom:1px solid var(--whisper);align-items:baseline}
+.row.h{font-size:13px;font-weight:700;color:var(--graphite);border-bottom:1px solid var(--lime)}
+.row.latest{background:#FFF8E6}
+.row .s{font-family:'Source Serif 4',serif}
+.duo2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px 20px}
+.duo2 div{display:flex;flex-direction:column;gap:4px}
+</style>
+</head>
+<body>
+<div style="display:flex;flex-direction:column;gap:6px"><span class="k">Goal</span><span class="goal">See what changes (and what doesn’t) when two AI tools run again on the same patient.</span></div>
+<ol class="steps" id="steps"><li><b>1</b>Predict</li><li><b>2</b>Run both 3 times</li><li><b>3</b>Read the takeaway</li></ol>
+<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px">
+<span style="font-size:16px;font-weight:600;color:var(--navy)">If you run each tool three times on Mrs. Okafor, what do you think will change?</span>
+<div style="display:flex;flex-wrap:wrap;gap:8px" id="choices"><button type="button" class="choice" data-p="score" aria-pressed="false">Only the score</button><button type="button" class="choice" data-p="summary" aria-pressed="false">Only the summary</button><button type="button" class="choice" data-p="both" aria-pressed="false">Both</button></div>
+</div>
+<div class="duo">
+<div class="tool"><div class="bar" style="background:var(--magnolia)"><span>Fall risk model</span><span class="tag">Not run yet</span></div>
+<div style="padding:14px;display:flex;flex-direction:column;gap:10px" class="dim" id="predBody"><div class="score"><b id="score">–</b><span id="band"></span></div><div class="chips"><span>Age 76</span><span>6 medications</span><span>Ambulatory</span></div><span id="same" hidden style="font-size:14px;font-weight:600;color:var(--magnolia)">Same inputs, same score as last run.</span></div></div>
+<div class="tool"><div class="bar" style="background:var(--copper)"><span>Draft discharge summary</span><span class="tag">Not run yet</span></div>
+<p class="doc dim" id="doc">Not run yet.</p><p class="note" id="diff" hidden></p></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><button type="button" class="primary" id="run" disabled>Run both tools (0 of 3)</button><span class="hint" id="hint">Make a prediction first</span></div>
+<div class="card log" id="log" hidden><div><div class="row h"><span>Run</span><span style="color:var(--magnolia)">Fall risk score</span><span style="color:var(--copper)">Summary: follow-up sentence</span><span>In the record?</span></div><div id="rows"></div></div></div>
+<div class="take" role="status" id="take" hidden><span style="font-weight:700;color:var(--dandelion)" id="verdict"></span><div class="duo2"><div><span class="k">Predictive AI</span><span>Same inputs give the same Fall Risk score. It estimates a number from patterns in past patients, and doesn’t show its reasoning.</span></div><div><span class="k">Generative AI</span><span>New text can be generated each run. It can add details that aren’t in the record, in the same confident voice, so every draft needs a check.</span></div></div></div>
+<script>
+var BASE=['Mrs. Okafor was admitted for decompensated heart failure and responded well to diuresis.','She remains ambulatory with a steady gait.','She was started on a new diuretic and should be monitored for dizziness on standing.'];
+var INV=['Her cardiology follow-up is scheduled for July 22 at the Duke Heart Clinic.','Home health will visit twice weekly starting Monday.','She reported no dizziness at any point during her stay.'];
+var pred=null,run=0,$=function(i){return document.getElementById(i)};
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function render(){
+ var done=run>=3;
+ document.querySelectorAll('.choice').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.p===pred?'true':'false');b.disabled=run>0});
+ var st=document.querySelectorAll('#steps li');st.forEach(function(l){l.className=''});
+ if(!pred)st[0].className='on';else{st[0].className='done';if(!done)st[1].className='on';else{st[1].className='done';st[2].className='on'}}
+ document.querySelectorAll('.tag').forEach(function(t){t.textContent=run?'Run '+run:'Not run yet'});
+ $('predBody').className=run?'':'dim';$('doc').className='doc'+(run?'':' dim');
+ $('score').textContent=run?'22':'–';$('band').textContent=run?'Low risk':'';
+ $('same').hidden=run<2;
+ if(run){$('doc').innerHTML=esc(BASE[0])+' '+esc(BASE[1])+' <mark>'+esc(INV[run-1])+'</mark> '+esc(BASE[2]);
+  $('diff').hidden=false;$('diff').innerHTML=run>1?'<strong>Changed since last run.</strong> This sentence is new, and it isn’t in the record. It sounds as confident as the rest.':'<strong>Not in the record.</strong> This sentence didn’t come from the chart. It sounds as confident as the rest.';}
+ var lock=!pred||done;$('run').disabled=lock;$('run').textContent=done?'Ran 3 times':run?'Run both again ('+run+' of 3)':'Run both tools (0 of 3)';
+ $('hint').textContent=!pred?'Make a prediction first':done?'':'Changes from the last run are highlighted';
+ $('log').hidden=!run;var h='';for(var i=0;i<run;i++)h+='<div class="row'+(i===run-1?' latest':'')+'"><span style="font-weight:600">'+(i+1)+'</span><span>22 · Low</span><span class="s"><mark>'+esc(INV[i])+'</mark></span><span style="font-weight:600;color:var(--copper)">No, invented</span></div>';$('rows').innerHTML=h;
+ $('take').hidden=!done;$('verdict').textContent=pred==='summary'?'Your prediction held: only the summary changed.':'Not quite what you predicted: only the summary changed.';
+ reportHeight&&reportHeight();
+}
+$('choices').addEventListener('click',function(e){var b=e.target.closest('.choice');if(!b||run>0)return;pred=b.dataset.p;render()});
+$('run').addEventListener('click',function(){if(!pred||run>=3)return;run++;render()});
+render();
+</script>
+<script>
+function reportHeight(){if(window.parent!==window)window.parent.postMessage({type:'embed-resize',height:document.body.scrollHeight},'*')}
+if('ResizeObserver' in window)new ResizeObserver(reportHeight).observe(document.body);
+window.addEventListener('load',reportHeight);reportHeight();
+</script>
+</body>
+</html>

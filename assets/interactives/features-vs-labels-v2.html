@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What the model used and what the nurse knows</title>
+<style>/* Self-hosted fonts (assets/fonts) */
+@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400 600;font-display:swap;src:url('../fonts/source-serif-4-latin.woff2') format('woff2')}
+@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:400 700;font-display:swap;src:url('../fonts/source-sans-3-latin.woff2') format('woff2')}</style>
+<style>
+:root{--navy:#012169;--royal:#00539B;--copper:#C84E00;--persimmon:#E89923;--dandelion:#FFD960;--magnolia:#1D6363;--whisper:#F3F2F1;--iron:#262626;--graphite:#666;--lime:#E5E5E5;--fbg:#E8F0FA;--gbg:#FEF0E6;--gtext:#7A2F00}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Sans 3',sans-serif;background:var(--whisper);color:var(--iron);padding:24px;max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:14px;font-size:15px}
+button{font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
+.k{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--royal)}
+.goal{font-family:'Source Serif 4',serif;font-size:20px;line-height:1.35;color:var(--navy)}
+.steps{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.steps li{display:flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;border-radius:999px;font-size:14px;font-weight:600;background:#fff;color:var(--graphite)}
+.steps li b{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;background:var(--lime);color:var(--iron)}
+.steps li.on{background:var(--navy);color:#fff}.steps li.on b{background:var(--dandelion)}
+.steps li.done{background:#E6F4F4;color:var(--magnolia)}.steps li.done b{background:var(--magnolia);color:#fff}
+.card{background:#fff;border-radius:12px;border:1px solid var(--lime)}
+.choice{font-size:15px;font-weight:600;border-radius:8px;padding:8px 14px;background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
+.choice[aria-pressed="true"]{background:var(--navy);color:#fff}
+.choice:disabled{cursor:default}
+.primary{font-weight:600;font-size:15px;border:0;border-radius:8px;padding:10px 18px;background:var(--navy);color:#fff}
+.primary:disabled{background:#B5B5B5;cursor:default}
+.hint{font-size:14px;color:var(--graphite)}
+.take{background:var(--navy);color:#fff;border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.55}
+.take .k{color:var(--dandelion)}
+[hidden]{display:none!important}
+</style>
+<style>
+.flow{display:grid;grid-template-columns:minmax(0,1.5fr) 32px minmax(0,1fr) 32px minmax(0,1fr);align-items:stretch}
+.arrow{display:grid;place-items:center;font-size:22px;color:var(--royal)}
+@media (max-width:720px){.flow{grid-template-columns:1fr}.arrow{transform:rotate(90deg);height:32px}}
+.feat{background:#fff;border-radius:12px;border:1.5px solid var(--royal);padding:14px;display:flex;flex-direction:column;gap:12px}
+.frow{display:flex;flex-direction:column;gap:5px}
+.ftop{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 8px;font-size:14px}
+.ftop .n{font-weight:600;white-space:nowrap}.ftop .n span{font-weight:400}.ftop .p{font-weight:700;color:var(--royal)}
+input[type=range]{width:100%;accent-color:var(--royal)}
+.pills{display:flex;flex-wrap:wrap;gap:5px}
+.pill{font-size:13px;font-weight:600;border-radius:999px;padding:4px 10px;background:#fff;color:var(--navy);border:1px solid var(--royal)}
+.pill[aria-pressed="true"]{background:var(--royal);color:#fff}
+.model{background:var(--magnolia);color:#fff;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px;position:relative}
+.model .sub{font-size:13px;font-weight:600;color:#DDF1EB}
+.ftags{display:grid;grid-template-columns:repeat(2,1fr);gap:4px}.ftags span{font-size:13px;font-weight:700;text-align:center;padding:3px 4px;border-radius:4px;background:var(--fbg);color:var(--navy)}
+.ppl{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;background:rgba(255,255,255,.08);border-radius:8px;padding:6px}.ppl svg{width:100%;height:auto;display:block}
+.key{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:13px}.key span{display:flex;align-items:center;gap:4px}.key i{width:9px;height:9px;border-radius:50%}
+.wall{position:absolute;left:0;right:0;bottom:-8px;height:8px;background:repeating-linear-gradient(90deg,var(--copper) 0 8px,transparent 8px 14px)}
+.chart{background:#fff;border-radius:8px;border:1px solid #B5B5B5;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.08);font-size:13px}
+.chart .top{background:#4A5560;color:#fff;padding:6px 10px;display:flex;justify-content:space-between;gap:6px;font-weight:600}
+.chart .mid{padding:8px 10px;display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--lime)}
+.chart .ft{padding:6px 10px;color:var(--graphite);display:flex;justify-content:space-between;gap:6px;flex-wrap:wrap}
+.flag{display:inline-flex;align-items:center;gap:4px;font-weight:700;padding:3px 8px;border-radius:4px;white-space:nowrap}
+.track{height:6px;border-radius:3px;background:var(--lime);position:relative;overflow:hidden}.track span{position:absolute;left:0;top:0;bottom:0}
+.obsbox{background:var(--gbg);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;border:1.5px dashed var(--copper)}
+.obs{text-align:left;font-size:14px;line-height:1.35;padding:8px 10px;border-radius:8px;background:#fff;color:var(--iron);border:1px solid #E8B894;max-width:280px}
+.obs[aria-pressed="true"]{background:#FFE0C7}
+.out{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:start;background:#fff;border-radius:10px;padding:10px 12px;border:1px solid #E8B894}
+.out .x{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--copper);color:#fff;font-weight:700}
+</style>
+</head>
+<body>
+<div style="display:flex;flex-direction:column;gap:6px"><span class="k">Goal</span><span class="goal">A model can only respond to what it was given. Find out what this one can’t see.</span></div>
+<ol class="steps" id="steps"><li><b>1</b>Change the features</li><li><b>2</b>Send an observation</li><li><b>3</b>Read the takeaway</li></ol>
+<div class="flow">
+ <div class="feat">
+  <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:13px;font-weight:700;color:var(--royal)">Step 1 · Change the features</span><span style="font-size:14px;color:#4B6468">These four inputs are all the model was trained on.</span></div>
+  <div class="frow"><div class="ftop"><span class="n">Age <span id="ageV">76</span></span><span class="p" id="ageP">+6</span></div><input type="range" id="age" min="18" max="95" value="76" aria-label="Patient age"></div>
+  <div class="frow"><div class="ftop"><span class="n">Medications <span id="medsV">6</span></span><span class="p" id="medsP">+15</span></div><input type="range" id="meds" min="0" max="15" value="6" aria-label="Number of medications"></div>
+  <div class="frow"><div class="ftop"><span class="n">Prior fall history</span><span class="p" id="fallP">+0</span></div><div class="pills" data-k="fall" role="group" aria-label="Prior fall history"><button type="button" class="pill" data-v="0" aria-pressed="true">None on record</button><button type="button" class="pill" data-v="1" aria-pressed="false">One fall</button><button type="button" class="pill" data-v="2" aria-pressed="false">Multiple</button></div></div>
+  <div class="frow"><div class="ftop"><span class="n">Mobility status</span><span class="p" id="mobP">+0</span></div><div class="pills" data-k="mob" role="group" aria-label="Mobility status"><button type="button" class="pill" data-v="0" aria-pressed="true">Ambulatory</button><button type="button" class="pill" data-v="1" aria-pressed="false">Assistive device</button><button type="button" class="pill" data-v="2" aria-pressed="false">Dependent</button></div></div>
+ </div>
+ <div class="arrow" aria-hidden="true">→</div>
+ <div class="model">
+  <span style="font-size:13px;font-weight:700;color:#BFE5DA">Fall risk model</span>
+  <div style="display:flex;flex-direction:column;gap:4px"><span class="sub">Takes in 4 features</span><div class="ftags" aria-hidden="true"><span>Age</span><span>Meds</span><span>Falls</span><span>Mobility</span></div></div>
+  <div style="display:flex;flex-direction:column;gap:4px"><span class="sub">Learned from past patients</span><div class="ppl" role="img" aria-label="Grid of 20 past patients: 5 fell, 15 did not fall"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM8.5 20v-6.2a3.5 3.5 0 0 1 7 0V20z" fill="#BFE5DA"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM8.5 20v-6.2a3.5 3.5 0 0 1 7 0V20z" fill="#E89923"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM8.5 20v-6.2a3.5 3.5 0 0 1 7 0V20z" fill="#BFE5DA"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM8.5 20v-6.2a3.5 3.5 0 0 1 7 0V20z" fill="#BFE5DA"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM8.5 20v-6.2a3.5 3.5 0 0 1 7 0V20z" fill="#BFE5DA"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM8.5 20v-6.2a3.5 3.5 0 0 1 7 0V20z" fill="#BFE5DA"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM8.5 20v-6.2a3.5 3.5 0 0 1 7 0V20z" fill="#E89923"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM8.5 20v-6.2a3.5 3.5 0 0 1 7 0V20z" fill="#BFE5DA"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM8.5 20v-6.2a3.5 3.5 0 0 1 7 0V20z" fill="#BFE5DA"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM8.5 20v-6.2a3.5 3.5 0 0 1 7 0V20z" fill="#E89923"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM8.5 20v-6.2a3.5 3.5 0 0 1 7 0V20z" fill="#BFE5DA"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM8.5 20v-6.2a3.5 3.5 0 0 1 7 0V20z" fill="#BFE5DA"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM8.5 20v-6.2a3.5 3.5 0 0 1 7 0V20z" fill="#BFE5DA"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM8.5 20v-6.2a3.5 3.5 0 0 1 7 0V20z" fill="#BFE5DA"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM8.5 20v-6.2a3.5 3.5 0 0 1 7 0V20z" fill="#E89923"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM8.5 20v-6.2a3.5 3.5 0 0 1 7 0V20z" fill="#BFE5DA"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM8.5 20v-6.2a3.5 3.5 0 0 1 7 0V20z" fill="#BFE5DA"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM8.5 20v-6.2a3.5 3.5 0 0 1 7 0V20z" fill="#E89923"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM8.5 20v-6.2a3.5 3.5 0 0 1 7 0V20z" fill="#BFE5DA"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM8.5 20v-6.2a3.5 3.5 0 0 1 7 0V20z" fill="#BFE5DA"/></svg></div><div class="key"><span><i style="background:#E89923"></i>Fell</span><span><i style="background:#BFE5DA"></i>Did not fall</span></div></div>
+  <span style="font-size:13px;line-height:1.4;color:#DDF1EB">Gives a score for how much this patient resembles those who fell.</span>
+  <span class="wall" aria-hidden="true"></span>
+ </div>
+ <div class="arrow" aria-hidden="true" style="color:var(--magnolia)">→</div>
+ <div style="display:flex;flex-direction:column;gap:6px;min-width:0"><span style="font-size:13px;font-weight:700;color:var(--magnolia)">Output · in the patient chart</span>
+  <div class="chart"><div class="top"><span style="white-space:nowrap">OKAFOR, M</span><span style="font-weight:400;white-space:nowrap">76 F · 4B-12</span></div>
+   <div class="mid"><span style="font-weight:600;color:var(--graphite)">Fall Risk Score</span><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span id="score" style="font-size:28px;font-weight:700;line-height:1">22</span><span class="flag" id="flag"><svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><path d="M5 3h2v18H5zM8 4h11l-2.5 4L19 12H8z"/></svg><span id="band">Low risk</span></span></div><span class="track" aria-hidden="true"><span id="fill"></span></span></div>
+   <div class="ft"><span>Auto-calculated</span><span>Today 07:00</span></div></div>
+  <span aria-live="polite" id="moved" style="font-size:13px;line-height:1.35;color:#4B6468">Move a slider or pick an option to see the score respond.</span>
+ </div>
+</div>
+<div class="obsbox"><div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:13px;font-weight:700;color:var(--gtext)">Step 2 · What you noticed this shift</span><span style="font-size:14px;color:var(--gtext)">Select an observation to see whether the model can use it.</span></div>
+ <div style="display:flex;flex-wrap:wrap;gap:8px" id="obs"><button type="button" class="obs" aria-pressed="false">Tried to get up without calling for help, twice</button><button type="button" class="obs" aria-pressed="false">Dizzy when standing during morning care</button><button type="button" class="obs" aria-pressed="false">Lives alone, no help at home after discharge</button></div>
+ <div class="out" role="status" id="out" hidden><span class="x" aria-hidden="true">✕</span><div style="display:flex;flex-direction:column;gap:3px;font-size:14px;line-height:1.5"><strong style="color:var(--gtext)">Outside the model’s view.</strong><span>The model can’t take in new information. It wasn’t trained on this, so the score stays at <strong id="outScore">22</strong> no matter what you add.</span><span>Only you can weigh it. That’s why the score informs your clinical judgment and doesn’t replace it.</span></div></div>
+</div>
+<div class="take" id="take" hidden><span class="k">Takeaway</span><span>The score moved every time you changed a <strong>feature</strong>, and not at all for what you saw at the bedside. The model doesn’t adapt to new context: it reflects only its features and the <strong>label</strong> it learned to predict. Every decision still needs your clinical judgment.</span></div>
+<script>
+var S={age:76,meds:6,fall:0,mob:0},moved=false,sent=false,$=function(i){return document.getElementById(i)};
+var NM={age:'age',meds:'medications',fall:'prior falls',mob:'mobility'};
+function pts(s){return{age:Math.round((s.age-60)*.4),meds:Math.round(s.meds*2.5),fall:[0,18,32][s.fall],mob:[0,10,20][s.mob]}}
+function sg(n){return(n>=0?'+':'')+n}
+function render(last,prev){
+ var p=pts(S),sc=Math.max(0,Math.min(100,-3+p.age+p.meds+p.fall+p.mob));
+ $('ageV').textContent=S.age;$('medsV').textContent=S.meds;$('ageP').textContent=sg(p.age);$('medsP').textContent=sg(p.meds);$('fallP').textContent=sg(p.fall);$('mobP').textContent=sg(p.mob);
+ var ink=sc<30?'#1D6363':sc<60?'#B36B00':'#C84E00',bg=sc<30?'#E6F4F4':sc<60?'#FFF3D6':'#FEF0E6',fi=sc<30?'#1D6363':sc<60?'#8A5300':'#9A3A00';
+ $('score').textContent=sc;$('score').style.color=ink;$('band').textContent=sc<30?'Low risk':sc<60?'Moderate risk':'High risk';$('flag').style.background=bg;$('flag').style.color=fi;$('fill').style.width=sc+'%';$('fill').style.background=ink;$('outScore').textContent=sc;
+ if(last){var d=p[last]-pts(prev)[last];$('moved').textContent=d===0?'No change from '+NM[last]+'.':sg(d)+' from '+NM[last]+'.'}
+ var st=document.querySelectorAll('#steps li');st.forEach(function(l){l.className=''});
+ if(!moved)st[0].className='on';else{st[0].className='done';if(!sent)st[1].className='on';else{st[1].className='done';st[2].className='on'}}
+ $('take').hidden=!(moved&&sent);reportHeight&&reportHeight();
+}
+function upd(k,v){var prev=Object.assign({},S);S[k]=v;moved=true;render(k,prev)}
+$('age').addEventListener('input',function(e){upd('age',+e.target.value)});
+$('meds').addEventListener('input',function(e){upd('meds',+e.target.value)});
+document.querySelectorAll('.pills').forEach(function(g){g.addEventListener('click',function(e){var b=e.target.closest('.pill');if(!b)return;g.querySelectorAll('.pill').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});upd(g.dataset.k,+b.dataset.v)})});
+$('obs').addEventListener('click',function(e){var b=e.target.closest('.obs');if(!b)return;document.querySelectorAll('.obs').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});sent=true;$('out').hidden=false;render()});
+render();
+</script>
+<script>
+function reportHeight(){if(window.parent!==window)window.parent.postMessage({type:'embed-resize',height:document.body.scrollHeight},'*')}
+if('ResizeObserver' in window)new ResizeObserver(reportHeight).observe(document.body);
+window.addEventListener('load',reportHeight);reportHeight();
+</script>
+</body>
+</html>
