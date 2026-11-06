@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interactivity Generator demo</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;background:#F6F7F9}
+body{font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#1B2430}
+button{font:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid #2E5BBA;outline-offset:2px}
+a{color:#2E5BBA}
+.app{max-width:900px;margin:0 auto;padding:14px}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:4px 2px 14px}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:30px;height:30px;border-radius:8px;background:#1B2430;display:grid;place-items:center}
+.brand b{font-size:15px}
+.brand span{font-size:13px;color:#5B6675}
+.steps{display:flex;gap:4px;flex-wrap:wrap}
+.st{border:1px solid #E3E7EC;background:#fff;border-radius:999px;padding:5px 11px;font-size:13px;color:#5B6675;display:flex;gap:6px;align-items:center}
+.st i{font-style:normal;width:18px;height:18px;border-radius:50%;background:#EEF1F5;display:grid;place-items:center;font-size:11.5px;font-weight:600}
+.st[aria-current="step"]{border-color:#1B2430;color:#1B2430;font-weight:600}
+.st[aria-current="step"] i{background:#1B2430;color:#fff}
+.st:disabled{cursor:default;opacity:.55}
+.panel{background:#fff;border:1px solid #E3E7EC;border-radius:16px;padding:clamp(16px,3vw,26px);display:flex;flex-direction:column;gap:18px}
+h1,h2{margin:0;font-size:22px;font-weight:650;letter-spacing:-.01em}
+.sub{margin:0;color:#5B6675}
+.grp{border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px}.grp-rec{background:#F4F8F6;border:1px solid #DCEAE2}.grp-warn{background:#FCF6F0;border:1px dashed #E8C9AC}.gh{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}.gt{font-weight:650;font-size:15px}.gs{font-size:13.5px;color:#5B6675}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:10px}
+.sc{text-align:left;background:#fff;border:1px solid #E3E7EC;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:7px;color:inherit}
+.sc:hover{border-color:#9AA6B5}
+.sc[aria-pressed="true"]{border-color:#2E5BBA;box-shadow:0 0 0 2px #2E5BBA}
+.tag{align-self:flex-start;font-size:12px;font-weight:650;border-radius:999px;padding:2px 9px}
+.t-rec{background:#EAF3EE;color:#1F6B4E}
+.t-warn{background:#FDF0E4;color:#9A4510}
+.sc .tt{font-weight:600;font-size:15.5px;line-height:1.35}
+.sc .rq{font-size:13.5px;color:#5B6675;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.lbl{font-size:13px;font-weight:650;color:#2A3442}
+.req{width:100%;min-height:96px;border:1px solid #D5DBE3;border-radius:10px;padding:12px;font:inherit;color:#1B2430;background:#FAFBFC;resize:none}
+.btn{border:1px solid #1B2430;background:#1B2430;color:#fff;border-radius:999px;padding:10px 18px;font-weight:600}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.s{background:#fff;color:#1B2430;border-color:#C9D0D9}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.load{display:flex;flex-direction:column;gap:10px;padding:8px 0}
+.load li{display:flex;gap:10px;align-items:center;color:#5B6675;transition:color .2s}
+.load li.done{color:#1B2430}
+.load ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.dot{width:20px;height:20px;border-radius:50%;border:2px solid #C9D0D9;flex:none;display:grid;place-items:center;font-size:12px}
+.done .dot{background:#1F7A5A;border-color:#1F7A5A;color:#fff}
+.model{font-size:12.5px;color:#5B6675}
+.flag{border-radius:12px;padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;background:#FFF4EE;border:2px solid #D9622B}.flag-h{display:flex;align-items:center;gap:8px;margin-bottom:2px}.flag-i{width:28px;height:28px;border-radius:50%;background:#B4401A;display:grid;place-items:center;flex:none}.flag-l{font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#9A3412}.flag strong{font-size:16px;color:#7A2E0E}.flag p{margin:0;color:#3A2A1E;font-size:14.5px}
+.banner{border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;background:#FDF3E9;border:1px solid #F1D2B5}
+.banner strong{color:#7E3A0E}
+.banner p{margin:0;color:#3A2A1E;font-size:14.5px}
+.ok-note{background:#EEF6F1;border-color:#C7E3D3}
+.ok-note strong{color:#1F6B4E}
+.rec{display:flex;flex-direction:column;gap:6px}
+.badge{align-self:flex-start;font-size:13px;font-weight:650;background:#1B2430;color:#fff;border-radius:999px;padding:4px 12px}
+.frame{border:1px solid #E3E7EC;border-radius:12px;overflow:hidden;background:#fff}
+.fhead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 12px;background:#F6F7F9;border-bottom:1px solid #E3E7EC;font-size:13px;color:#5B6675}
+.fhead b{color:#1B2430}
+.parts{display:flex;gap:4px}
+.parts button{border:1px solid #D5DBE3;background:#fff;border-radius:999px;padding:3px 10px;font-size:12.5px}
+.parts button[aria-pressed="true"]{background:#1B2430;color:#fff;border-color:#1B2430}
+iframe.pv{display:block;width:100%;height:320px;border:0;transition:opacity .2s}
+iframe.pv.busy{opacity:.35}
+.fmts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:8px}
+.fm{text-align:left;background:#fff;border:1px solid #E3E7EC;border-radius:12px;padding:11px 13px;display:flex;flex-direction:column;gap:4px;color:inherit}
+.fm[aria-pressed="true"]{border-color:#2E5BBA;box-shadow:0 0 0 2px #2E5BBA}
+.fm .top{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.fm .nm{font-weight:600}
+.fit{font-size:11.5px;font-weight:650;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.f-best{background:#EAF3EE;color:#1F6B4E}
+.f-good{background:#EEF1F5;color:#3A4757}
+.f-weak{background:#FDF0E4;color:#9A4510}
+.fm .gl{font-size:12.5px;font-weight:600;color:#5B6675}
+.fm .nt{font-size:13.5px;color:#3A4757}
+.qs{display:flex;flex-direction:column;gap:14px}
+.q{display:flex;flex-direction:column;gap:8px}
+.ch{display:flex;gap:8px;flex-wrap:wrap}
+.ch button{border:1px solid #C9D0D9;background:#fff;border-radius:999px;padding:7px 14px}
+.ch button[aria-pressed="true"]{background:#1B2430;color:#fff;border-color:#1B2430}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:18px;align-items:start}
+@media (max-width:760px){.two{grid-template-columns:minmax(0,1fr)}}
+.fields{display:flex;flex-direction:column;gap:12px}
+.fg{display:flex;flex-direction:column;gap:5px;border-top:1px solid #EEF1F5;padding-top:10px}
+.fg:first-child{border-top:0;padding-top:0}
+.fg h3{margin:0;font-size:13px;font-weight:650;color:#5B6675}
+.field{display:flex;flex-direction:column;gap:3px}
+.field span{font-size:12.5px;color:#5B6675}
+.field textarea{border:1px solid #D5DBE3;border-radius:8px;padding:8px 10px;font:inherit;font-size:14px;resize:vertical;min-height:38px;color:#1B2430}
+.field textarea.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px}
+.sticky{position:sticky;top:10px;display:flex;flex-direction:column;gap:12px}
+.txt{white-space:pre-wrap;background:#FAFBFC;border:1px solid #E3E7EC;border-radius:10px;padding:12px 14px;font-size:14px;margin:0;color:#2A3442}
+pre.code{margin:0;background:#1B2430;color:#DDE4EC;border-radius:10px;padding:14px;font:12.5px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word;max-height:340px;overflow:auto}
+.linkbtn{border:0;background:none;color:#2E5BBA;padding:4px 0;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.copied{font-size:13px;color:#1F7A5A}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app" id="app"></div>
+<script>
+(function () {
+'use strict';
+var FMT = { tabs: 'Tabbed explorer', reveal: 'Click-to-reveal', quiz: 'Inline quiz', seq: 'Sequencing', sort: 'Drag-to-classify', annot: 'Annotated text' };
+var ORDER = ['tabs', 'reveal', 'quiz', 'seq', 'sort', 'annot'];
+var LEVEL = { best: 'Best fit', good: 'Good fit', weak: 'Weak fit' };
+
+var SC = [
+ { id: 'py', kind: 'rec', tag: 'Recommendation', title: 'Python: put code lines in order', course: 'Intro to Python',
+   request: 'In my intro Python course, learners can write single lines but mix up the order of a short program. I want them to practice putting the lines of a program that averages test scores into a working order.',
+   rec: 'seq', rationale: 'The goal is putting steps into a working order, so Sequencing fits. The app works out the true order first: a value has to exist before a later line can use it.',
+   fit: { seq: ['best', 'Procedural understanding', 'Learners rebuild a working order, which is exactly the skill they’re missing.'], quiz: ['good', 'Checking reasoning', 'Tests why the order matters, without building it.'], annot: ['good', 'Code reading', 'Explains each line, but learners only read. Good as a follow-up.'], sort: ['weak', 'Categorizing', 'Sorting lines by role is possible, but it doesn’t practice order.'], reveal: ['weak', 'Recall', 'Hides each line’s purpose. Better for terms than for order.'], tabs: ['weak', 'Comparison', 'Tabs show one line at a time, which hides the order.'] },
+   content: { title: 'Put the program in order', intro: 'This program averages three test scores. Put the lines in an order that would run.', code: true,
+     cats: ['Creates a value', 'Uses values to make a new one', 'Shows a result'],
+     items: [
+       { label: 'scores = [88, 92, 79]', detail: 'Creates a list of three scores. Everything else depends on it, so it comes first.', cat: 0 },
+       { label: 'total = sum(scores)', detail: 'Adds the scores. It needs the list to exist already.', cat: 1 },
+       { label: 'average = total / len(scores)', detail: 'Divides the total by the number of scores. It needs total.', cat: 1 },
+       { label: 'print(round(average, 1))', detail: 'Shows the result, rounded to one decimal place. It runs last because it needs average.', cat: 2 } ],
+     quiz: [
+       { q: 'Why does total = sum(scores) have to come before the average line?', options: ['The average line uses total, so total has to exist first', 'Python always runs sum() first', 'Lines with sum() must come second'], answer: 0, feedback: 'Each line can only use values created above it.' },
+       { q: 'What would happen if print(round(average, 1)) ran first?', options: ['It would print 0', 'Python would show an error, because average doesn’t exist yet', 'It would wait until average exists'], answer: 1, feedback: 'Python runs top to bottom, so a name has to be created before it’s used.' } ],
+     annot: [ { t: 'scores = [88, 92, 79]', note: 'A list: one name holding several values.' }, '\n', { t: 'total = sum(scores)', note: 'sum() adds every value in the list.' }, '\n', { t: 'average = total / len(scores)', note: 'len() counts the items, so this works for any number of scores.' }, '\n', { t: 'print(round(average, 1))', note: 'round(x, 1) keeps one decimal place before printing.' } ] } },
+ { id: 'rock', kind: 'rec', tag: 'Recommendation', title: 'Earth science: how sedimentary rock forms', course: 'Earth Science',
+   request: 'My earth science reading explains how sedimentary rock forms, but learners lose track of the steps. They need to understand the process from weathering all the way to solid rock.',
+   rec: 'seq', rationale: 'Learners need to follow a process from start to finish, so Sequencing fits best. Each step depends on the one before it.',
+   fit: { seq: ['best', 'Procedural understanding', 'Learners rebuild the process, so the cause-and-effect chain sticks.'], sort: ['good', 'Seeing the big picture', 'Grouping steps as breaking, moving, or building shows the shape of the process.'], quiz: ['good', 'Checking reasoning', 'Checks cause and effect between steps.'], annot: ['good', 'Reading in context', 'Defines each term inside a short passage, but doesn’t check the order.'], reveal: ['good', 'Recall', 'Good for remembering what each step means, not where it falls.'], tabs: ['weak', 'Comparison', 'The steps aren’t parallel options, so tabs hide how they connect.'] },
+   content: { title: 'How sedimentary rock forms', intro: 'Put the steps in order, from exposed rock to new sedimentary rock.',
+     cats: ['Breaks rock down', 'Moves material', 'Builds new rock'],
+     items: [
+       { label: 'Weathering', detail: 'Wind, water, and ice break exposed rock into smaller pieces.', cat: 0 },
+       { label: 'Erosion', detail: 'Water, wind, and ice carry the pieces away.', cat: 1 },
+       { label: 'Deposition', detail: 'The pieces settle in layers, often at the bottom of lakes and oceans.', cat: 1 },
+       { label: 'Compaction', detail: 'The weight of new layers presses older layers together.', cat: 2 },
+       { label: 'Cementation', detail: 'Dissolved minerals glue the pieces into solid rock.', cat: 2 } ],
+     quiz: [
+       { q: 'Which step has to happen before erosion?', options: ['Cementation', 'Weathering', 'Compaction'], answer: 1, feedback: 'Rock has to break into pieces before water, wind, or ice can carry it away.' },
+       { q: 'What turns loose layers into solid rock?', options: ['Deposition alone', 'Compaction and cementation', 'Weathering'], answer: 1, feedback: 'Pressure packs the layers, then minerals glue them together.' } ],
+     annot: [ 'Over thousands of years, ', { t: 'weathering', note: 'Breaking rock into smaller pieces without moving it.' }, ' turns cliffs into sand. ', { t: 'Erosion', note: 'Moving those pieces to a new place.' }, ' carries the sand to the sea, where ', { t: 'deposition', note: 'Material settling out of water, wind, or ice.' }, ' builds layer after layer. Then ', { t: 'compaction', note: 'Pressure from the layers above squeezes out water and air.' }, ' and ', { t: 'cementation', note: 'Dissolved minerals crystallize between grains and glue them together.' }, ' turn the layers into sandstone.' ] } },
+ { id: 'stats', kind: 'rec', tag: 'Recommendation', title: 'Statistics: choosing the right test', course: 'Intro to Statistics',
+   request: 'Learners in my intro statistics course can define each test, but they freeze when they have to choose one. I want them to practice picking the right test for a research question.',
+   rec: 'sort', rationale: 'The goal is deciding which category a new case belongs to, so Drag-to-classify fits. Learners apply the rules to fresh questions instead of rereading definitions.',
+   fit: { sort: ['best', 'Applying a framework', 'Learners choose a test for new questions, which is exactly where they freeze.'], quiz: ['good', 'Checking application', 'Works well for a few quick checks after the reading.'], annot: ['good', 'Decision rules', 'Walks through the choosing logic, but learners don’t practice choosing.'], tabs: ['good', 'Comparison', 'Lets learners compare tests side by side, but they still don’t choose one.'], reveal: ['weak', 'Recall', 'Learners can already define the tests, so recall isn’t the gap.'], seq: ['weak', 'Procedural understanding', 'The tests have no fixed order, so sequencing would be forced.'] },
+   content: { title: 'Which test fits?', intro: 'Sort each research question under the test you would use.',
+     cats: ['Two-sample t-test', 'ANOVA', 'Chi-square test', 'Correlation'],
+     items: [
+       { label: 'Two-sample t-test', detail: 'Compares the means of two groups when the outcome is a number, like a score or a time.' },
+       { label: 'ANOVA', detail: 'Compares the means of three or more groups.' },
+       { label: 'Chi-square test', detail: 'Checks whether two categorical variables are related, like major and preferred study method.' },
+       { label: 'Correlation', detail: 'Measures how strongly two numeric variables move together.' } ],
+     sortCards: [
+       { text: 'Do online and in-person students differ in average exam score?', cat: 0 },
+       { text: 'Does average sleep differ across first-, second-, and third-year students?', cat: 1 },
+       { text: 'Is major related to whether students prefer morning or evening classes?', cat: 2 },
+       { text: 'Do hours studied and exam score rise together?', cat: 3 },
+       { text: 'Do three teaching methods produce different average quiz scores?', cat: 1 },
+       { text: 'Is owning a car (yes or no) related to where students live?', cat: 2 } ],
+     quiz: [
+       { q: 'A researcher compares average reaction time for two groups. Which test fits?', options: ['Chi-square test', 'Two-sample t-test', 'Correlation'], answer: 1, feedback: 'Two groups and a numeric outcome point to a t-test.' },
+       { q: 'Both variables are categories, such as major and housing type. Which test fits?', options: ['ANOVA', 'Correlation', 'Chi-square test'], answer: 2, feedback: 'A chi-square test checks whether two categorical variables are related.' } ],
+     annot: [ 'Start with the outcome. If it’s a ', { t: 'number', note: 'Scores, times, and amounts. Points to a t-test, ANOVA, or correlation.' }, ', count the groups: two groups means a ', { t: 't-test', note: 'Compares two group means.' }, ', and three or more means ', { t: 'ANOVA', note: 'Compares three or more group means at once.' }, '. If both variables are numbers, use a ', { t: 'correlation', note: 'Measures how two numeric variables move together.' }, '. If both are ', { t: 'categories', note: 'Labels like major or yes/no. Points to a chi-square test.' }, ', use a chi-square test.' ] } },
+ { id: 'live', kind: 'out', tag: 'Out of scope', title: 'Out of scope: a live coding environment', course: 'Intro to Python',
+   request: 'Our sponsor wants learners to write and run their own Python loops right inside the reading, and see the output.',
+   banner: ['This request is outside what the app can build.', 'A live coding environment has to run learner code, which an activity inside a reading can’t do. Here’s the closest format that serves the same goal.'],
+   rec: 'annot', rationale: 'Annotated code is the closest fit. Learners read a working loop part by part, and a short quiz could then ask them to predict its output.',
+   fit: { annot: ['best', 'Code reading', 'Explains real code in place. Closest to the goal without running code.'], quiz: ['good', 'Predicting output', 'Asking learners to predict the output is a strong second step.'], seq: ['good', 'Procedural understanding', 'Rebuilding the loop line by line checks its structure.'], sort: ['weak', 'Categorizing', 'Three lines are too few to sort in a meaningful way.'], reveal: ['weak', 'Recall', 'Hiding each line’s purpose doesn’t build reading skill.'], tabs: ['weak', 'Comparison', 'Splitting a loop into tabs breaks it apart.'] },
+   content: { title: 'Read the loop', intro: 'Select each highlighted part of the loop to see what it does.', code: true,
+     cats: ['Controls the loop', 'Runs each time'],
+     items: [
+       { label: 'for n in range(1, 4):', detail: 'Repeats the indented lines once for each number: 1, 2, then 3.', cat: 0 },
+       { label: 'square = n * n', detail: 'Multiplies the current number by itself.', cat: 1 },
+       { label: 'print(n, square)', detail: 'Prints the number and its square on one line.', cat: 1 } ],
+     quiz: [
+       { q: 'What is the last line this loop prints?', options: ['3 9', '4 16', '2 4'], answer: 0, feedback: 'range(1, 4) stops before 4, so the last value of n is 3.' },
+       { q: 'How many times does print run?', options: ['Once', 'Three times', 'Four times'], answer: 1, feedback: 'Once for each value of n: 1, 2, and 3.' } ],
+     annot: [ { t: 'for', note: 'Starts a loop that repeats the indented lines.' }, ' n ', { t: 'in range(1, 4)', note: 'Gives n the values 1, 2, and 3. The stop value, 4, isn’t included.' }, ':\n    square = ', { t: 'n * n', note: 'Multiplies the current number by itself.' }, '\n    ', { t: 'print(n, square)', note: 'Prints both values each time through: 1 1, then 2 4, then 3 9.' } ] } },
+ { id: 'much', kind: 'much', tag: 'Too much content', title: 'Too much: all 12 cranial nerves', course: 'Anatomy',
+   request: 'I want reveal cards for all 12 cranial nerves, each with its name, number, and function, so learners can memorize them.',
+   banner: ['This is too much for one activity.', 'Click-to-reveal has a six-card limit, and you asked for 12. That’s a lot for learners to hold at once. Try splitting them into two activities of six, in nerve order.'],
+   rec: 'reveal', rationale: 'Recall of names and functions is the goal, so Click-to-reveal fits. Two sets of six keep each activity manageable.',
+   fit: { reveal: ['best', 'Recall', 'Learners try to remember each nerve’s function before revealing it.'], sort: ['good', 'Categorizing', 'Sorting nerves as sensory, motor, or both builds a useful pattern.'], quiz: ['good', 'Retrieval practice', 'A few quick checks work well after the cards.'], annot: ['good', 'Clinical context', 'Ties nerves to a quick exam, which helps the meaning stick.'], tabs: ['weak', 'Comparison', 'Six tabs is past the five-tab limit, and recall is the goal, not comparison.'], seq: ['weak', 'Procedural understanding', 'The nerves are numbered, but memorizing the order isn’t the goal.'] },
+   parts: [
+     { title: 'Cranial nerves I to VI', intro: 'Name each nerve’s job, then select the card to check.', cats: ['Sensory', 'Motor', 'Both'],
+       items: [
+         { label: 'I · Olfactory', detail: 'Carries the sense of smell.', cat: 0 },
+         { label: 'II · Optic', detail: 'Carries vision from the eye to the brain.', cat: 0 },
+         { label: 'III · Oculomotor', detail: 'Moves most eye muscles and narrows the pupil.', cat: 1 },
+         { label: 'IV · Trochlear', detail: 'Moves the eye down and inward.', cat: 1 },
+         { label: 'V · Trigeminal', detail: 'Senses touch on the face and controls chewing.', cat: 2 },
+         { label: 'VI · Abducens', detail: 'Moves the eye outward.', cat: 1 } ],
+       quiz: [
+         { q: 'Which nerve narrows the pupil?', options: ['Optic (II)', 'Oculomotor (III)', 'Abducens (VI)'], answer: 1, feedback: 'The optic nerve senses the light, and the oculomotor nerve narrows the pupil.' },
+         { q: 'Which of these nerves is both sensory and motor?', options: ['Trigeminal (V)', 'Olfactory (I)', 'Trochlear (IV)'], answer: 0, feedback: 'The trigeminal nerve senses touch on the face and controls chewing.' } ],
+       annot: [ 'When a doctor shines a light in your eye, the ', { t: 'optic nerve', note: 'Cranial nerve II. Carries what the eye sees to the brain.' }, ' carries the signal in, and the ', { t: 'oculomotor nerve', note: 'Cranial nerve III. Narrows the pupil and moves most eye muscles.' }, ' narrows the pupil. Following a moving finger also tests the ', { t: 'trochlear', note: 'Cranial nerve IV. Moves the eye down and inward.' }, ' and ', { t: 'abducens', note: 'Cranial nerve VI. Moves the eye outward.' }, ' nerves.' ] },
+     { title: 'Cranial nerves VII to XII', intro: 'Name each nerve’s job, then select the card to check.', cats: ['Sensory', 'Motor', 'Both'],
+       items: [
+         { label: 'VII · Facial', detail: 'Controls facial expression and carries taste from the front of the tongue.', cat: 2 },
+         { label: 'VIII · Vestibulocochlear', detail: 'Carries hearing and balance.', cat: 0 },
+         { label: 'IX · Glossopharyngeal', detail: 'Carries taste from the back of the tongue and helps with swallowing.', cat: 2 },
+         { label: 'X · Vagus', detail: 'Helps control the heart, lungs, and digestion.', cat: 2 },
+         { label: 'XI · Accessory', detail: 'Moves the neck and shoulders.', cat: 1 },
+         { label: 'XII · Hypoglossal', detail: 'Moves the tongue.', cat: 1 } ],
+       quiz: [
+         { q: 'Which nerve carries hearing and balance?', options: ['Facial (VII)', 'Vestibulocochlear (VIII)', 'Hypoglossal (XII)'], answer: 1, feedback: 'Its name joins vestibular (balance) and cochlear (hearing).' },
+         { q: 'Which nerve moves the tongue?', options: ['Hypoglossal (XII)', 'Vagus (X)', 'Accessory (XI)'], answer: 0, feedback: 'Hypoglossal means “under the tongue.”' } ],
+       annot: [ 'Asking a patient to smile tests the ', { t: 'facial nerve', note: 'Cranial nerve VII. Controls facial expression.' }, '. Saying “ah” tests the ', { t: 'glossopharyngeal', note: 'Cranial nerve IX. Helps with swallowing and taste.' }, ' and ', { t: 'vagus', note: 'Cranial nerve X. Raises the soft palate and helps control the heart, lungs, and digestion.' }, ' nerves, and sticking out the tongue tests the ', { t: 'hypoglossal nerve', note: 'Cranial nerve XII. Moves the tongue.' }, '.' ] } ] },
+ { id: 'vague', kind: 'vague', tag: 'Too vague', title: 'Too vague: “make it interactive”', course: 'Any course',
+   request: 'Can you make this reading more interactive?',
+   banner: ['The app needs a little more to go on.', 'It can’t tell the topic or what learners should be able to do, so let’s explore two quick questions instead of guessing.'] }
+];
+var TOPICS = [['rock', 'How sedimentary rock forms'], ['stats', 'Choosing a statistical test']];
+var GOALS = [['seq', 'Put steps in order'], ['sort', 'Tell similar options apart'], ['reveal', 'Remember key terms']];
+
+
+var S = { step: 1, pick: null, sc: null, analyzing: false, fmt: null, rec: null, recText: '', fit: null, split: false, part: 0, contents: null, vq: { topic: null, goal: null }, resolved: false, showCode: false, visited: 1 };
+var app = document.getElementById('app');
+
+function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+function clone(o) { return JSON.parse(JSON.stringify(o)); }
+function byId(id) { for (var i = 0; i < SC.length; i++) if (SC[i].id === id) return SC[i]; }
+function C() { return S.contents[S.part]; }
+function shuffle(n) { var a = []; for (var i = 0; i < n; i++) a.push(i); a.sort(function (x, y) { return ((x * 7 + 3) % 11) - ((y * 7 + 3) % 11); }); var same = a.every(function (v, i) { return v === i; }); return same ? a.reverse() : a; }
+function cards(c) { return c.sortCards ? c.sortCards.map(function (k) { return { o: k, key: 'text', text: k.text, cat: k.cat }; }) : c.items.map(function (k) { return { o: k, key: 'label', text: k.label, cat: k.cat }; }); }
+
+/* ---------- activity runtimes (shipped inside the export) ---------- */
+function rtTabs(d) {
+  var tabs = [].slice.call(d.querySelectorAll('[role="tab"]'));
+  function pick(k, focus) { tabs.forEach(function (t, i) { var on = i === k; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; d.getElementById(t.getAttribute('aria-controls')).hidden = !on; }); if (focus) tabs[k].focus(); }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { pick(i); });
+    t.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') { e.preventDefault(); pick((i + 1) % tabs.length, true); } if (e.key === 'ArrowLeft') { e.preventDefault(); pick((i - 1 + tabs.length) % tabs.length, true); } });
+  });
+}
+function rtReveal(d) {
+  [].forEach.call(d.querySelectorAll('.card'), function (c) {
+    c.addEventListener('click', function () { var open = c.getAttribute('aria-expanded') !== 'true'; c.setAttribute('aria-expanded', open); c.querySelector('.b').hidden = !open; c.querySelector('.hint').textContent = open ? 'Hide' : 'Show answer'; });
+  });
+}
+function rtQuiz(d) {
+  [].forEach.call(d.querySelectorAll('.q'), function (q) {
+    var fb = q.querySelector('.fb');
+    q.querySelector('.chk').addEventListener('click', function () {
+      var c = q.querySelector('input:checked');
+      if (!c) { fb.textContent = 'Choose an answer first.'; fb.className = 'fb'; return; }
+      var ok = c.value === q.getAttribute('data-a');
+      fb.textContent = (ok ? 'Correct. ' : 'Not quite. ') + q.getAttribute('data-fb');
+      fb.className = 'fb ' + (ok ? 'ok' : 'no');
+    });
+  });
+}
+function rtSeq(d) {
+  var slots = [].slice.call(d.querySelectorAll('.slot')), pool = d.querySelector('.pool'), fb = d.querySelector('.fb');
+  function reset() { fb.textContent = ''; fb.className = 'fb'; slots.forEach(function (s) { s.classList.remove('ok', 'no'); }); }
+  [].forEach.call(pool.querySelectorAll('.chip'), function (b) {
+    b.addEventListener('click', function () {
+      var s = slots.filter(function (x) { return !x.getAttribute('data-i'); })[0]; if (!s) return;
+      s.setAttribute('data-i', b.getAttribute('data-i')); s.textContent = b.textContent; s.classList.add('full'); b.hidden = true; reset();
+    });
+  });
+  slots.forEach(function (s) {
+    s.addEventListener('click', function () {
+      var i = s.getAttribute('data-i'); if (!i) return;
+      pool.querySelector('[data-i="' + i + '"]').hidden = false; s.removeAttribute('data-i'); s.textContent = 'Empty'; s.classList.remove('full'); reset();
+    });
+  });
+  d.querySelector('.chk').addEventListener('click', function () {
+    if (!slots.every(function (s) { return s.getAttribute('data-i'); })) { fb.textContent = 'Place every step first.'; fb.className = 'fb'; return; }
+    var n = 0; slots.forEach(function (s, k) { var ok = +s.getAttribute('data-i') === k; s.classList.add(ok ? 'ok' : 'no'); if (ok) n++; });
+    fb.textContent = n === slots.length ? 'All in the right order.' : n + ' of ' + slots.length + ' in the right place. Select a step to move it back, then try again.';
+    fb.className = 'fb ' + (n === slots.length ? 'ok' : 'no');
+  });
+  d.querySelector('.rst').addEventListener('click', function () { slots.forEach(function (s) { if (s.getAttribute('data-i')) s.click(); }); });
+}
+function rtSort(d) {
+  var sel = null, fb = d.querySelector('.fb'), pool = d.querySelector('.pool');
+  function reset() { fb.textContent = ''; fb.className = 'fb'; [].forEach.call(d.querySelectorAll('.chip'), function (c) { c.classList.remove('ok', 'no'); }); }
+  [].forEach.call(d.querySelectorAll('.chip'), function (c) {
+    c.addEventListener('click', function () {
+      if (c.parentNode !== pool) { pool.appendChild(c); reset(); return; }
+      if (sel) sel.setAttribute('aria-pressed', 'false');
+      sel = sel === c ? null : c; if (sel) sel.setAttribute('aria-pressed', 'true');
+    });
+  });
+  [].forEach.call(d.querySelectorAll('.bin-h'), function (h) {
+    h.addEventListener('click', function () {
+      if (!sel) { fb.textContent = 'Select a card first, then a category.'; fb.className = 'fb'; return; }
+      h.parentNode.querySelector('.drop').appendChild(sel); sel.setAttribute('aria-pressed', 'false'); sel = null; reset();
+    });
+  });
+  d.querySelector('.chk').addEventListener('click', function () {
+    var all = d.querySelectorAll('.chip'), n = 0, placed = 0;
+    [].forEach.call(all, function (c) { var bin = c.closest('.bin'); if (!bin) return; placed++; var ok = bin.getAttribute('data-c') === c.getAttribute('data-c'); c.classList.add(ok ? 'ok' : 'no'); if (ok) n++; });
+    if (placed < all.length) { fb.textContent = 'Place every card first.'; fb.className = 'fb'; return; }
+    fb.textContent = n === all.length ? 'All sorted correctly.' : n + ' of ' + all.length + ' correct. Select a card to move it back.';
+    fb.className = 'fb ' + (n === all.length ? 'ok' : 'no');
+  });
+}
+function rtAnnot(d) {
+  var note = d.querySelector('.note'), terms = d.querySelectorAll('.term');
+  [].forEach.call(terms, function (t) {
+    t.addEventListener('click', function () {
+      [].forEach.call(terms, function (o) { o.setAttribute('aria-expanded', o === t); });
+      note.textContent = ''; var b = d.createElement('strong'); b.textContent = t.textContent.trim() + ': '; note.appendChild(b); note.appendChild(d.createTextNode(t.getAttribute('data-note')));
+    });
+  });
+}
+var RT = { tabs: rtTabs, reveal: rtReveal, quiz: rtQuiz, seq: rtSeq, sort: rtSort, annot: rtAnnot };
+
+var CSS = '.ig{font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#1F2A37;max-width:720px}' +
+ '.ig h3{margin:0 0 4px;font-size:19px;font-weight:650}.ig .i{margin:0 0 14px;color:#4A5565}' +
+ '.ig button{font:inherit;cursor:pointer;color:inherit}.ig button:focus-visible,.ig input:focus-visible{outline:3px solid #2E5BBA;outline-offset:2px}' +
+ '.ig .m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px}' +
+ '.ig .btn{border:1px solid #2E5BBA;background:#2E5BBA;color:#fff;border-radius:8px;padding:8px 14px}.ig .btn.s{background:#fff;color:#2E5BBA}' +
+ '.ig .row{display:flex;gap:8px;flex-wrap:wrap}.ig .fb{margin:10px 0 0;font-size:14px;min-height:1.2em}.ig .fb.ok{color:#1F7A5A}.ig .fb.no{color:#A8431A}' +
+ '.ig .tabs{display:flex;flex-wrap:wrap;gap:2px;border-bottom:1px solid #D5DBE3}.ig [role=tab]{border:0;background:none;padding:9px 12px;color:#4A5565;border-bottom:3px solid transparent;margin-bottom:-1px}.ig [role=tab][aria-selected=true]{color:#1F2A37;border-bottom-color:#2E5BBA;font-weight:600}.ig [role=tabpanel]{padding:14px 2px}.ig [role=tabpanel] p{margin:0}' +
+ '.ig .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}.ig .card{text-align:left;border:1px solid #D5DBE3;background:#fff;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;min-height:100px}.ig .card[aria-expanded=true]{background:#F2F5FB;border-color:#2E5BBA}.ig .card .f{font-weight:600}.ig .card .hint{font-size:13px;color:#2E5BBA;margin-top:auto}' +
+ '.ig .q{border:1px solid #D5DBE3;border-radius:10px;padding:12px 14px;margin:0 0 12px}.ig legend{font-weight:600;padding:0 4px}.ig label{display:flex;gap:8px;align-items:flex-start;padding:4px 0}.ig label input{margin-top:5px}' +
+ '.ig .slots{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:6px}.ig .slots li{display:flex;gap:10px;align-items:center}.ig .n{width:26px;height:26px;border-radius:50%;background:#EEF1F5;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex:none}' +
+ '.ig .slot{flex:1;text-align:left;border:1px dashed #B8C1CC;background:#FAFBFC;border-radius:8px;padding:9px 12px;color:#7A8594}.ig .slot.full{border-style:solid;color:#1F2A37;background:#fff}.ig .slot.ok,.ig .chip.ok{border-color:#1F7A5A;background:#EDF7F2}.ig .slot.no,.ig .chip.no{border-color:#A8431A;background:#FDF1EA}' +
+ '.ig .pool{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;min-height:40px}.ig .chip{border:1px solid #B8C1CC;background:#fff;border-radius:8px;padding:8px 12px;text-align:left}.ig .chip[aria-pressed=true]{border-color:#2E5BBA;box-shadow:0 0 0 2px #2E5BBA}' +
+ '.ig .bins{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 12px}.ig .bin{border:1px solid #D5DBE3;border-radius:10px;padding:8px;display:flex;flex-direction:column;gap:8px;min-height:110px;background:#FAFBFC}.ig .bin-h{border:1px dashed #9AA6B5;background:#fff;border-radius:6px;padding:7px 9px;font-weight:600;text-align:left}.ig .drop{display:flex;flex-direction:column;gap:6px}.ig .lab{font-size:13px;font-weight:600;color:#4A5565;margin:0 0 6px}' +
+ '.ig .txt{line-height:1.9;margin:0}.ig pre.code{background:#F6F7F9;border:1px solid #D5DBE3;border-radius:10px;padding:14px;white-space:pre-wrap;line-height:2;margin:0}.ig .term{border:0;background:#FFF1C7;border-bottom:2px solid #D9A400;padding:0 3px;border-radius:3px}.ig .term[aria-expanded=true]{background:#FFE08A}.ig .note{border:1px solid #D5DBE3;border-radius:10px;padding:12px 14px;background:#fff;margin-top:12px}';
+
+function lab(c, t) { return c.code ? '<span class="m">' + esc(t) + '</span>' : esc(t); }
+function build(fmt, c) {
+  var h = '<style>' + CSS + '</style><div class="ig"><h3>' + esc(c.title) + '</h3><p class="i">' + esc(c.intro) + '</p>';
+  if (fmt === 'tabs') {
+    h += '<div class="tabs" role="tablist" aria-label="' + esc(c.title) + '">' + c.items.map(function (it, k) { return '<button role="tab" id="t' + k + '" aria-controls="p' + k + '" aria-selected="' + (k === 0) + '" tabindex="' + (k ? -1 : 0) + '">' + lab(c, it.label) + '</button>'; }).join('') + '</div>' +
+      c.items.map(function (it, k) { return '<div role="tabpanel" id="p' + k + '" aria-labelledby="t' + k + '"' + (k ? ' hidden' : '') + '><p>' + esc(it.detail) + '</p></div>'; }).join('');
+  } else if (fmt === 'reveal') {
+    h += '<div class="grid">' + c.items.map(function (it) { return '<button class="card" aria-expanded="false"><span class="f">' + lab(c, it.label) + '</span><span class="b" hidden>' + esc(it.detail) + '</span><span class="hint">Show answer</span></button>'; }).join('') + '</div>';
+  } else if (fmt === 'quiz') {
+    h += c.quiz.map(function (q, k) { return '<fieldset class="q" data-a="' + q.answer + '" data-fb="' + esc(q.feedback) + '"><legend>' + esc(q.q) + '</legend>' + q.options.map(function (o, j) { return '<label><input type="radio" name="q' + k + '" value="' + j + '"> <span>' + esc(o) + '</span></label>'; }).join('') + '<div class="row" style="margin-top:8px"><button class="btn chk" type="button">Check</button></div><p class="fb" aria-live="polite"></p></fieldset>'; }).join('');
+  } else if (fmt === 'seq') {
+    var o = shuffle(c.items.length);
+    h += '<ol class="slots" aria-label="Your order">' + c.items.map(function (_, k) { return '<li><span class="n">' + (k + 1) + '</span><button class="slot" type="button">Empty</button></li>'; }).join('') + '</ol>' +
+      '<p class="lab">Select a step to place it in the next open spot</p><div class="pool">' + o.map(function (i) { return '<button class="chip' + (c.code ? ' m' : '') + '" type="button" data-i="' + i + '">' + esc(c.items[i].label) + '</button>'; }).join('') + '</div>' +
+      '<div class="row"><button class="btn chk" type="button">Check order</button><button class="btn s rst" type="button">Start over</button></div><p class="fb" aria-live="polite"></p>';
+  } else if (fmt === 'sort') {
+    var cs = cards(c), o2 = shuffle(cs.length);
+    h += '<p class="lab">Select a card, then select its category</p><div class="pool">' + o2.map(function (i) { return '<button class="chip' + (c.code ? ' m' : '') + '" type="button" aria-pressed="false" data-c="' + cs[i].cat + '">' + esc(cs[i].text) + '</button>'; }).join('') + '</div>' +
+      '<div class="bins">' + c.cats.map(function (cat, k) { return '<div class="bin" data-c="' + k + '"><button class="bin-h" type="button">' + esc(cat) + '</button><div class="drop"></div></div>'; }).join('') + '</div>' +
+      '<div class="row"><button class="btn chk" type="button">Check</button></div><p class="fb" aria-live="polite"></p>';
+  } else if (fmt === 'annot') {
+    var body = c.annot.map(function (p) { return typeof p === 'string' ? esc(p) : '<button class="term" type="button" aria-expanded="false" data-note="' + esc(p.note) + '">' + esc(p.t) + '</button>'; }).join('');
+    h += (c.code ? '<pre class="code m">' + body + '</pre>' : '<p class="txt">' + body + '</p>') + '<div class="note" aria-live="polite">Select a highlighted part to see a note.</div>';
+  }
+  h += '</div>';
+  var script = 'window.addEventListener(\'load\', function () {\n  (' + RT[fmt].toString() + ')(document);\n});';
+  return { html: h, script: script };
+}
+function plain(fmt, c) {
+  var t = c.title + '\n\n';
+  if (fmt === 'tabs' || fmt === 'reveal') t += c.items.map(function (i) { return i.label + ': ' + i.detail; }).join('\n\n');
+  else if (fmt === 'seq') t += 'The correct order:\n' + c.items.map(function (i, k) { return (k + 1) + '. ' + i.label + '. ' + i.detail; }).join('\n');
+  else if (fmt === 'sort') { var cs = cards(c); t += c.cats.map(function (cat, k) { return cat + ': ' + cs.filter(function (x) { return x.cat === k; }).map(function (x) { return x.text; }).join('; '); }).join('\n\n'); }
+  else if (fmt === 'quiz') t += c.quiz.map(function (q, k) { return 'Question ' + (k + 1) + ': ' + q.q + '\nAnswer: ' + q.options[q.answer] + '. ' + q.feedback; }).join('\n\n');
+  else if (fmt === 'annot') t += c.annot.map(function (p) { return typeof p === 'string' ? p : p.t; }).join('') + '\n\nKey terms:\n' + c.annot.filter(function (p) { return typeof p !== 'string'; }).map(function (p) { return p.t + ': ' + p.note; }).join('\n');
+  return t;
+}
+function srcdoc(b) {
+  return '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"></head><body style="margin:0;padding:18px;background:#fff">' + b.html +
+    '<script>' + b.script + '<\/script><script>(function(){function p(){parent.postMessage({type:"ig-preview",h:document.documentElement.scrollHeight},"*")}addEventListener("load",p);new ResizeObserver(p).observe(document.body)})()<\/script></body></html>';
+}
+
+/* ---------- fit list ---------- */
+function fitFor(sc) {
+  var f = clone(sc.fit);
+  if (S.resolved && S.rec !== sc.rec) { f[sc.rec][0] = 'good'; f[S.rec][0] = 'best'; }
+  return ORDER.map(function (k) { return { k: k, lv: f[k][0], goal: f[k][1], note: f[k][2] }; }).sort(function (a, b) { var r = { best: 0, good: 1, weak: 2 }; return r[a.lv] - r[b.lv]; });
+}
+
+/* ---------- render ---------- */
+function flag(sc) {
+  var lbl = { out: 'Out of scope', much: 'Too much content', vague: 'Too vague to build' }[sc.kind];
+  return '<div class="flag" role="alert"><div class="flag-h"><span class="flag-i" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 20 20"><path d="M10 2.5 18.5 17h-17z" fill="#fff"/><path d="M10 8v4" stroke="#B4401A" stroke-width="2" stroke-linecap="round"/><circle cx="10" cy="14.6" r="1.1" fill="#B4401A"/></svg></span><span class="flag-l">Flagged · ' + lbl + '</span></div><strong>' + esc(sc.banner[0]) + '</strong><p>' + esc(sc.banner[1]) + '</p></div>';
+}
+function groupHTML(title, sub, kind, list) {
+  return '<section class="grp grp-' + kind + '" aria-label="' + esc(title) + '"><div class="gh"><span class="gt">' + esc(title) + '</span><span class="gs">' + esc(sub) + '</span></div><div class="cards">' +
+    list.map(function (s) { return '<button class="sc" data-act="pick" data-k="' + s.id + '" aria-pressed="' + (S.pick === s.id) + '"><span class="tag ' + (s.kind === 'rec' ? 't-rec' : 't-warn') + '">' + (s.kind === 'rec' ? s.course : s.tag) + '</span><span class="tt">' + esc((function (t) { return t.replace(/[A-Za-z]/, function (c) { return c.toUpperCase(); }); })(s.title.replace(/^[^:]+:\s*/, ''))) + '</span><span class="rq">' + esc(s.request) + '</span></button>'; }).join('') + '</div></section>';
+}
+function why() { return ''; }
+function stepper() {
+  var names = ['Describe', 'Recommend', 'Refine', 'Export'];
+  return '<nav class="steps" aria-label="Steps">' + names.map(function (n, i) { var k = i + 1; return '<button class="st" data-act="go" data-k="' + k + '"' + (k === S.step ? ' aria-current="step"' : '') + (k > S.visited ? ' disabled' : '') + '><i>' + k + '</i>' + n + '</button>'; }).join('') + '</nav>';
+}
+function head() {
+  return '<div class="bar"><div class="brand"><span class="logo" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 1.5l1.6 4.4 4.4 1.6-4.4 1.6L8 13.5 6.4 9.1 2 7.5l4.4-1.6z" fill="#FFD84A"/></svg></span><span><b>Interactivity Generator</b><br><span>Portfolio demo · saved responses</span></span></div>' + stepper() + '</div>';
+}
+function previewBlock(title) {
+  var parts = S.sc && S.sc.kind === 'much' ? '<div class="parts" role="group" aria-label="Which activity">' + [0, 1].map(function (p) { return '<button data-act="part" data-k="' + p + '" aria-pressed="' + (S.part === p) + '">Activity ' + (p + 1) + ' of 2</button>'; }).join('') + '</div>' : '';
+  return '<div class="frame"><div class="fhead"><span>' + title + ' · <b>' + FMT[S.fmt] + '</b></span>' + parts + '</div><iframe class="pv" title="Live preview of the activity" sandbox="allow-scripts"></iframe></div>';
+}
+function render() {
+  var h = head() + '<div class="panel">';
+  if (S.step === 1) {
+    h += '<div><h1>Describe the learning design challenge</h1></div><p class="sub">Pick a saved request to see how the app responds.</p>' + why('s1') +
+      groupHTML('Real course examples', 'The app recommends a format and builds it.', 'rec', SC.filter(function (s) { return s.kind === 'rec'; })) + groupHTML('Guardrail tests', 'Requests written to see how the app pushes back.', 'warn', SC.filter(function (s) { return s.kind !== 'rec'; }));
+    if (S.pick) {
+      var p = byId(S.pick);
+      h += '<div style="display:flex;flex-direction:column;gap:6px"><label class="lbl" for="req">The designer’s request</label><textarea id="req" class="req" readonly>' + esc(p.request) + '</textarea></div>';
+    }
+    if (S.analyzing) {
+      var lines = S.pick === 'vague' ? ['Reading the request', 'Looking for a topic and a learning goal', 'Deciding what to ask'] : ['Reading the request', 'Checking scope and size', 'Ranking all six formats'];
+      h += why('load') + '<div class="load"><ul>' + lines.map(function (l, i) { return '<li data-line="' + i + '"><span class="dot" aria-hidden="true"></span>' + l + '</li>'; }).join('') + '</ul><span class="model">Claude Haiku · saved response</span></div>';
+    } else {
+      h += '<div class="row"><button class="btn" data-act="analyze"' + (S.pick ? '' : ' disabled') + '>Analyze challenge</button></div>';
+    }
+  } else if (S.step === 2) {
+    var sc = S.sc;
+    h += '<div class="row" style="justify-content:space-between"><h2>Recommendation</h2><button class="linkbtn" data-act="restart">Try another request</button></div>';
+    if (sc.kind === 'vague' && !S.resolved) {
+      h += why('vague') + flag(sc) + '<div class="qs">' +
+        '<div class="q"><span class="lbl">What is the reading about?</span><div class="ch">' + TOPICS.map(function (t) { return '<button data-act="vq" data-q="topic" data-k="' + t[0] + '" aria-pressed="' + (S.vq.topic === t[0]) + '">' + t[1] + '</button>'; }).join('') + '</div></div>' +
+        '<div class="q"><span class="lbl">What should learners be able to do afterward?</span><div class="ch">' + GOALS.map(function (t) { return '<button data-act="vq" data-q="goal" data-k="' + t[0] + '" aria-pressed="' + (S.vq.goal === t[0]) + '">' + t[1] + '</button>'; }).join('') + '</div></div></div>' +
+        '<div class="row"><button class="btn" data-act="resolve"' + (S.vq.topic && S.vq.goal ? '' : ' disabled') + '>Get a recommendation</button></div>';
+    } else if (sc.kind === 'much' && !S.split) {
+      h += why('much') + flag(sc) + '<div class="row"><button class="btn" data-act="split">Split into two activities</button></div>';
+    } else {
+      var fl = fitFor(sc), cur = fl.filter(function (x) { return x.k === S.fmt; })[0];
+      if (cur.lv === 'weak') h += why('weak'); else h += why(sc.kind === 'out' ? 'out' : sc.kind === 'much' ? 'much' : 'rec');
+      if (sc.kind === 'out') h += flag(sc);
+      if (sc.kind === 'much') h += '<div class="banner ok-note"><strong>Split into two activities of six.</strong><p>Switch between them above the preview to review each one.</p></div>';
+      h += '<div class="rec"><span class="badge">Recommended: ' + FMT[S.rec] + '</span><p class="sub" style="color:#2A3442">' + esc(S.recText) + '</p></div>';
+      if (cur.lv === 'weak') h += '<div class="banner"><strong>Built as you asked. Fit note:</strong><p>' + esc(cur.note) + '</p></div>';
+      h += previewBlock('Live preview') + '<div style="display:flex;flex-direction:column;gap:8px"><span class="lbl">Explore other approaches for this content</span><div class="fmts" role="group" aria-label="Activity formats">' +
+        fl.map(function (f) { return '<button class="fm" data-act="fmt" data-k="' + f.k + '" aria-pressed="' + (f.k === S.fmt) + '"><span class="top"><span class="nm">' + FMT[f.k] + '</span><span class="fit f-' + f.lv + '">' + (f.k === S.rec ? 'Recommended' : LEVEL[f.lv]) + '</span></span><span class="gl">' + esc(f.goal) + '</span><span class="nt">' + esc(f.note) + '</span></button>'; }).join('') + '</div></div>' +
+        '<div class="row"><button class="btn" data-act="go" data-k="3">Use this format and refine →</button></div>';
+    }
+  } else if (S.step === 3) {
+    h += '<div class="row" style="justify-content:space-between"><h2>Refine the wording</h2><button class="linkbtn" data-act="go" data-k="2">← Back to formats</button></div>' + why('s3') +
+      '<div class="two"><div class="fields" id="fields">' + fieldsHTML() + '</div><div class="sticky">' + previewBlock('Preview') +
+      '<div style="display:flex;flex-direction:column;gap:6px"><span class="lbl">Plain-text version · updates as you edit</span><pre class="txt" id="plain"></pre></div>' +
+      '<button class="linkbtn" data-act="code" aria-expanded="' + S.showCode + '">' + (S.showCode ? 'Hide code' : 'Show code') + '</button>' + (S.showCode ? '<pre class="code" id="codebox"></pre>' : '') + '</div></div>' +
+      '<div class="row"><button class="btn" data-act="go" data-k="4">Continue to export →</button></div>';
+  } else if (S.step === 4) {
+    h += '<div class="row" style="justify-content:space-between"><h2>Export for Coursera</h2><button class="linkbtn" data-act="go" data-k="3">← Back to edit</button></div>' + why('s4') +
+      '<span class="badge">' + FMT[S.fmt] + (S.sc.kind === 'much' ? ' · Activity ' + (S.part + 1) + ' of 2' : '') + '</span>' +
+      '<div style="display:flex;flex-direction:column;gap:8px"><span class="lbl">Plugin configuration</span><p class="sub" style="font-size:14px">Paste this into Coursera’s plugin configuration editor.</p><pre class="code" id="json"></pre><div class="row"><button class="btn s" data-act="copy" data-k="json">Copy configuration</button><span class="copied" id="c-json" aria-live="polite"></span></div></div>' +
+      '<div style="display:flex;flex-direction:column;gap:8px"><span class="lbl">Plain-text version</span><p class="sub" style="font-size:14px">Add this to the reading so every learner can get the same content.</p><pre class="txt" id="plain"></pre><div class="row"><button class="btn s" data-act="copy" data-k="plain">Copy text</button><span class="copied" id="c-plain" aria-live="polite"></span></div></div>' +
+      '<div class="row"><button class="btn" data-act="restart">Try another request</button></div>';
+  }
+  h += '</div>';
+  app.innerHTML = h;
+  refresh();
+}
+
+/* ---------- edit fields ---------- */
+var FIELDS = [];
+function fieldsHTML() {
+  var c = C(), f = S.fmt; FIELDS = [];
+  function add(group, label, obj, key, mono) { FIELDS.push({ g: group, l: label, o: obj, k: key, m: mono }); }
+  add('Heading', 'Title', c, 'title'); add('Heading', 'Instructions', c, 'intro');
+  if (f === 'tabs' || f === 'reveal' || f === 'seq') c.items.forEach(function (it, i) { var n = f === 'seq' ? 'Step ' + (i + 1) : (f === 'tabs' ? 'Tab ' : 'Card ') + (i + 1); add(n, f === 'tabs' ? 'Tab label' : f === 'reveal' ? 'Front' : 'Step text (correct position ' + (i + 1) + ')', it, 'label', c.code); if (f !== 'seq') add(n, f === 'tabs' ? 'Panel text' : 'Back', it, 'detail'); });
+  if (f === 'sort') { c.cats.forEach(function (_, i) { add('Categories', 'Category ' + (i + 1), c.cats, i); }); cards(c).forEach(function (x, i) { add('Cards', 'Card ' + (i + 1) + ' · belongs in ' + c.cats[x.cat], x.o, x.key, c.code); }); }
+  if (f === 'quiz') c.quiz.forEach(function (q, i) { var g = 'Question ' + (i + 1); add(g, 'Question', q, 'q'); q.options.forEach(function (_, j) { add(g, 'Option ' + (j + 1) + (j === q.answer ? ' (correct)' : ''), q.options, j); }); add(g, 'Feedback', q, 'feedback'); });
+  if (f === 'annot') c.annot.forEach(function (p) { if (typeof p !== 'string') { add('Notes', 'Note for “' + p.t + '”', p, 'note'); } });
+  var out = '', last = null;
+  FIELDS.forEach(function (fd, i) {
+    if (fd.g !== last) { if (last !== null) out += '</div>'; out += '<div class="fg"><h3>' + esc(fd.g) + '</h3>'; last = fd.g; }
+    var v = fd.o[fd.k];
+    out += '<label class="field"><span>' + esc(fd.l) + '</span><textarea rows="' + (String(v).length > 60 ? 2 : 1) + '" data-f="' + i + '"' + (fd.m ? ' class="mono"' : '') + '>' + esc(v) + '</textarea></label>';
+  });
+  return out + (last !== null ? '</div>' : '');
+}
+
+/* ---------- live bits ---------- */
+var tmr = null;
+function refresh() {
+  var b = S.fmt && S.contents ? build(S.fmt, C()) : null;
+  var pv = app.querySelector('iframe.pv');
+  if (pv && b) { pv.srcdoc = srcdoc(b); }
+  var pl = document.getElementById('plain'); if (pl && b) pl.textContent = plain(S.fmt, C());
+  var cb = document.getElementById('codebox'); if (cb && b) cb.textContent = '<!-- HTML and CSS -->\n' + b.html + '\n\n// JavaScript\n' + b.script;
+  var js = document.getElementById('json'); if (js && b) js.textContent = JSON.stringify({ html: b.html, script: b.script }, null, 2);
+  if (S.analyzing) runLoad();
+  postSize();
+}
+function runLoad() {
+  var lis = app.querySelectorAll('[data-line]'), fast = matchMedia('(prefers-reduced-motion: reduce)').matches, d = fast ? 80 : 520;
+  [].forEach.call(lis, function (li, i) { setTimeout(function () { li.classList.add('done'); li.querySelector('.dot').textContent = '✓'; }, d * (i + 1)); });
+  setTimeout(function () {
+    var sc = byId(S.pick);
+    S.analyzing = false; S.sc = sc; S.resolved = false; S.split = false; S.part = 0; S.vq = { topic: null, goal: null }; S.showCode = false;
+    if (sc.kind !== 'vague') { S.contents = sc.parts ? clone(sc.parts) : [clone(sc.content)]; S.rec = sc.rec; S.fmt = sc.rec; S.recText = sc.rationale; }
+    else { S.contents = null; S.fmt = null; }
+    S.step = 2; S.visited = 2; render();
+  }, d * (lis.length + 1));
+}
+
+/* ---------- events ---------- */
+app.addEventListener('click', function (e) {
+  var t = e.target.closest('[data-act]'); if (!t || t.disabled) return;
+  var a = t.getAttribute('data-act'), k = t.getAttribute('data-k');
+  if (a === 'pick') { S.pick = k; render(); var r = document.getElementById('req'); if (r) r.scrollTop = 0; }
+  else if (a === 'analyze') { S.analyzing = true; render(); }
+  else if (a === 'go') { k = +k; if (k <= S.visited || k === S.step + 1) { S.step = k; S.visited = Math.max(S.visited, k); render(); } }
+  else if (a === 'fmt') { S.fmt = k; render(); }
+  else if (a === 'part') { S.part = +k; render(); }
+  else if (a === 'split') { S.split = true; render(); }
+  else if (a === 'vq') { S.vq[t.getAttribute('data-q')] = k; render(); }
+  else if (a === 'resolve') {
+    var sc = byId(S.vq.topic), g = GOALS.filter(function (x) { return x[0] === S.vq.goal; })[0];
+    S.sc = sc; S.resolved = true; S.contents = [clone(sc.content)]; S.rec = g[0]; S.fmt = g[0];
+    S.recText = 'You said learners need to ' + g[1].toLowerCase() + '. ' + FMT[g[0]] + ' fits that goal best for this topic, and the other five formats are still here to compare.';
+    render();
+  }
+  else if (a === 'restart') { S.step = 1; S.visited = 1; S.analyzing = false; S.sc = null; S.fmt = null; S.contents = null; render(); }
+  else if (a === 'code') { S.showCode = !S.showCode; render(); }
+  else if (a === 'copy') {
+    var txt = document.getElementById(k).textContent, msg = document.getElementById('c-' + k);
+    function done() { msg.textContent = 'Copied'; setTimeout(function () { msg.textContent = ''; }, 1800); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, function () { msg.textContent = 'Select the text to copy it.'; });
+    else msg.textContent = 'Select the text to copy it.';
+  }
+});
+app.addEventListener('input', function (e) {
+  var i = e.target.getAttribute('data-f'); if (i === null) return;
+  var fd = FIELDS[+i]; fd.o[fd.k] = e.target.value;
+  var pl = document.getElementById('plain'); if (pl) pl.textContent = plain(S.fmt, C());
+  clearTimeout(tmr); tmr = setTimeout(function () { var pv = app.querySelector('iframe.pv'); if (pv) { var b = build(S.fmt, C()); pv.srcdoc = srcdoc(b); var cb = document.getElementById('codebox'); if (cb) cb.textContent = '<!-- HTML and CSS -->\n' + b.html + '\n\n// JavaScript\n' + b.script; } }, 300);
+});
+window.addEventListener('message', function (e) {
+  if (!e.data || e.data.type !== 'ig-preview') return;
+  [].forEach.call(document.querySelectorAll('iframe.pv'), function (f) { if (f.contentWindow === e.source) f.style.height = Math.max(200, Math.min(e.data.h, 1400)) + 'px'; });
+  postSize();
+});
+function postSize() { if (parent !== window) parent.postMessage({ type: 'embed-resize', height: document.documentElement.scrollHeight }, '*'); }
+if (window.ResizeObserver) new ResizeObserver(postSize).observe(document.body);
+render();
+})();
+</script>
+</body>
+</html>

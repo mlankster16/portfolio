@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Design a Water Filter</title>
+<style>
+@font-face{font-family:'Plus Jakarta Sans';src:url('../fonts/plus-jakarta-sans-latin.woff2') format('woff2');font-weight:200 800;font-display:swap}
+:root{--navy:#13263A;--ink:#0F2E33;--muted:#4B6468;--line:#DCE8E3;--mint:#BFE5DA;--mint2:#EEF7F4;--teal:#0A6A67;--teal2:#0F8A86;--coral:#FF8A6B;--coral2:#FFF1EC;--sun:#FFD84A;--paper:#F3F7F5}
+*{box-sizing:border-box}
+html,body{margin:0;background:#fff;color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.55}
+button{font:inherit;cursor:pointer;color:inherit}
+button:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+h3{margin:0;font-size:20px;font-weight:500;letter-spacing:-.02em}
+h4{margin:0;font-size:15px;font-weight:600}
+p{margin:0}
+.wrap{padding:clamp(14px,2.5vw,22px);display:grid;grid-template-columns:268px minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:760px){.wrap{grid-template-columns:minmax(0,1fr)}.side{position:static!important}}
+.side{position:sticky;top:12px;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:4px}
+.side .stitle{padding:10px 12px}
+.side .st{display:flex;flex-direction:column;gap:1px}
+.side .st .k{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--teal)}
+.side .st b{font-size:14px;font-weight:600;line-height:1.3}
+.sbody{display:flex;flex-direction:column;gap:14px;padding:4px 8px 10px}
+.cycle{position:relative;width:100%;max-width:268px;aspect-ratio:1;margin:0 auto}
+.cycle svg{position:absolute;inset:0;width:100%;height:100%}
+.node{position:absolute;transform:translate(-50%,-50%);width:27%;aspect-ratio:1;border-radius:50%;border:2px solid var(--line);background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;padding:0;font-size:12.5px;font-weight:600;line-height:1.1;transition:transform .2s,background .2s}
+.node i{font-style:normal;font-size:11px;font-weight:700;color:var(--muted)}
+.node[aria-current="step"]{background:var(--navy);border-color:var(--navy);color:#fff;transform:translate(-50%,-50%) scale(1.08)}
+.node[aria-current="step"] i{color:var(--sun)}
+.node.done{border-color:var(--teal2)}
+.node:disabled{opacity:.4;cursor:not-allowed}
+.hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;width:38%;font-size:12px;color:var(--muted);line-height:1.3}
+.hub b{display:block;font-size:15px;color:var(--ink);font-weight:600}
+.note{background:#fff;border-radius:16px;padding:14px 15px;display:flex;flex-direction:column;gap:9px;font-size:13.5px;line-height:1.55}
+.note .k{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--teal)}
+.note .lb{font-weight:600;color:var(--ink);display:block}
+.note p{color:#2F4A4E}
+.main:focus{outline:none}
+.main{display:flex;flex-direction:column;gap:16px;min-width:0}
+.lead{color:var(--muted)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{border:1px solid var(--navy);background:var(--navy);color:#fff;border-radius:999px;padding:10px 18px;font-weight:600;font-size:14.5px}
+.btn.sec{background:#fff;color:var(--navy);border-color:#C9D6D2}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.hint{font-size:13.5px;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,128px),1fr));gap:8px}
+.pick{border:1px solid var(--line);background:#fff;border-radius:14px;padding:10px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;font-size:13.5px;font-weight:600}
+.pick small{font-weight:400;color:var(--muted);font-size:13px;line-height:1.35}
+.pick[aria-pressed="true"]{border-color:var(--teal);box-shadow:0 0 0 2px var(--teal);background:var(--mint2)}
+.pick:disabled{opacity:.45;cursor:not-allowed}
+.sw{width:100%;height:30px;border-radius:8px;border:1px solid rgba(0,0,0,.08)}
+.bench{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:14px;align-items:end;background:var(--paper);border-radius:16px;padding:14px}
+@media (max-width:520px){.bench{grid-template-columns:auto auto}.bench .read{grid-column:1/-1}}
+.read{display:flex;flex-direction:column;gap:6px;font-size:14px;align-self:center}
+.read b{font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+th{font-weight:600;color:var(--muted);font-size:13px}
+td.c{text-align:center}
+.mini{display:inline-flex;align-items:center;gap:5px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;padding:2px 8px}
+.stack{display:flex;flex-direction:column;gap:6px}
+.layer{display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:7px 9px;background:#fff;font-size:14px}
+.layer .chip{width:14px;height:14px;border-radius:4px;border:1px solid rgba(0,0,0,.12)}
+.ic{border:1px solid var(--line);background:#fff;border-radius:8px;width:30px;height:30px;padding:0;font-size:14px}
+.ic:disabled{opacity:.35;cursor:not-allowed}
+.two{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:start}
+@media (max-width:560px){.two{grid-template-columns:minmax(0,1fr)}}
+.crit{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:8px}
+.opts{display:flex;flex-direction:column;gap:6px}
+.opt{width:100%;border:1px solid #C9D6D2;background:#fff;border-radius:12px;padding:9px 13px;font-size:14px;line-height:1.35;text-align:left}
+.opt:hover{border-color:var(--teal2)}
+.chd{display:flex;align-items:center;gap:10px}
+.chd .ci{flex:none;width:34px;height:34px;border-radius:10px;background:var(--mint2);color:var(--teal);display:flex;align-items:center;justify-content:center}
+.chd .ci svg{width:20px;height:20px}
+.chd .cn{display:flex;flex-direction:column;line-height:1.3}
+.chd .cn small{font-size:13px;font-weight:400;color:var(--muted)}
+.opt[aria-pressed="true"].ok{background:var(--mint2);border-color:var(--teal);box-shadow:0 0 0 1px var(--teal)}
+.opt[aria-pressed="true"].no{background:var(--coral2);border-color:#C2553A}
+.fbk{font-size:13.5px;line-height:1.5}
+.fbk.ok{color:var(--teal)}
+.fbk.no{color:#8A3A22}
+.score{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:8px}
+.sc{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff;display:flex;flex-direction:column;gap:2px}
+.sc b{font-size:24px;font-weight:300;letter-spacing:-.02em}
+.sc span{font-size:13px;color:var(--muted)}
+.sc.total{background:var(--navy);border-color:var(--navy);color:#fff}
+.sc.total span{color:var(--mint)}
+.strip{display:flex;gap:6px;align-items:flex-end;flex-wrap:wrap}
+.strip .cupw{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;font-weight:700;color:var(--muted);border-radius:10px;padding:3px 3px 2px;border:2px solid transparent}
+.strip .cupw.m{border-color:var(--coral);color:var(--ink)}
+.why{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px;font-size:14px}
+.card{border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.tag{align-self:flex-start;display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:2px 8px;background:var(--sun);color:var(--navy)}
+.toggle{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:999px;padding:6px 12px 6px 6px;background:#fff;font-size:14px}
+.toggle .t{width:34px;height:20px;border-radius:999px;background:#C9D6D2;position:relative;transition:background .2s}
+.toggle .t::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .2s}
+.toggle[aria-pressed="true"] .t{background:var(--teal)}
+.toggle[aria-pressed="true"] .t::after{left:16px}
+.best{background:var(--mint2)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.disc{grid-column:1/-1;font-size:13px;color:var(--muted);margin:0}
+.drop{animation:fall .7s linear infinite}
+@keyframes fall{0%{transform:translateY(0);opacity:0}15%{opacity:1}100%{transform:translateY(34px);opacity:0}}
+.fill{transition:transform 1.6s ease-out;transform-origin:bottom}
+@media (prefers-reduced-motion:reduce){.drop{animation:none;opacity:0}.fill,.node,.toggle .t,.toggle .t::after{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <aside class="side" id="side">
+    <div class="stitle"><span class="st"><span class="k">Behind the scenes</span><b>Design wheel and institute notes</b></span></div>
+    <div class="sbody">
+      <div class="cycle" id="cycle"></div>
+      <div class="note" id="note" aria-live="polite"></div>
+    </div>
+  </aside>
+  <section class="main" id="main" tabindex="-1" aria-live="polite"></section>
+  <p class="disc">A simplified model built for this portfolio, inspired by the Engineering is Elementary water filter unit. It isn’t EiE material or real test data.</p>
+</div>
+<div class="sr" id="live" aria-live="polite"></div>
+<script>
+(function () {
+'use strict';
+var STEPS = ['Ask', 'Imagine', 'Plan', 'Create', 'Improve'];
+var HUB = ['Agree on the problem', 'Test materials', 'Layer a design', 'Build and test', 'Compare and redesign'];
+var NOTES = [
+ ['Teachers approached the challenge as their students would: design a filter to clean dirty water. Together, they agreed on how to judge each design: how well it removed particles and color, how quickly water passed through, and how much the materials cost.', 'Taking time to understand the problem before building. The design process was new for most teachers, so we explored the challenge and its requirements before moving on to solutions.'],
+ ['Groups tested each material on its own, recording what it caught, what passed through, and how quickly the water flowed.', 'Backing up claims with evidence. I kept returning to the question, “What did your test show?”'],
+ ['Groups used their test results to choose materials and decide how to layer them. They explained why they expected their design to work, using evidence from their tests.', 'Making the group’s reasoning visible, including disagreements. Working through different ideas is a normal part of engineering.'],
+ ['Groups built their filters and tested them by pouring dirty water through.', 'Giving teachers room to experiment with the materials. Many of their best ideas, and later their students’ ideas, came from trying things out.'],
+ ['Groups tested each design against the same criteria, compared results, and discussed what to change.', 'Treating a filter that didn’t work as something to learn from, not a failure. Teachers could then model that approach for their students.']
+];
+/* Simplified model. big/fine/color = share caught; sec = seconds to collect 1/4 cup; cost in points. */
+var M = {
+ screen: { n: 'Screen', d: 'Fine nylon mesh', c: '#9FB2BC', pat: 'mesh', big: .7, fine: .05, color: 0, sec: 6, cost: 1, fineLayer: false },
+ cheese: { n: 'Cheesecloth', d: 'Loose cotton weave', c: '#EFE6CF', pat: 'weave', big: .75, fine: .2, color: 0, sec: 10, cost: 1, fineLayer: false },
+ coffee: { n: 'Coffee filter', d: 'Thin paper', c: '#E9D3AE', pat: 'paper', big: .95, fine: .7, color: .05, sec: 40, cost: 2, fineLayer: true },
+ cotton: { n: 'Cotton ball', d: 'Fluffy fibers', c: '#FFFFFF', pat: 'fluff', big: .9, fine: .6, color: .15, sec: 55, cost: 2, fineLayer: true },
+ sand: { n: 'Sand and gravel', d: 'Sand on top of gravel', c: '#E2CB8C', pat: 'grain', big: .95, fine: .8, color: .25, sec: 35, cost: 3, fineLayer: false }
+};
+var MK = ['screen', 'cheese', 'coffee', 'cotton', 'sand'];
+var W = {
+ tea: { n: 'Tea water', d: 'Mostly color', big: .35, fine: .15, color: 1 },
+ soil: { n: 'Soil water', d: 'Mostly particles', big: 1, fine: .45, color: .3 },
+ corn: { n: 'Cornstarch water', d: 'Mostly cloudiness', big: 0, fine: 1, color: 0 },
+ mystery: { n: 'Mystery water', d: 'All three mixed', big: .7, fine: .7, color: .8 }
+};
+var WK = ['tea', 'soil', 'corn'];
+var CRIT = [['particles', 'Particles', 'How much dirt is left?'], ['color', 'Color', 'How much color is left?'], ['time', 'Time', 'How fast does water get through?'], ['cost', 'Cost', 'How much do the materials cost?']];
+var CIC = { particles: '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="7" cy="8" r="2"/><circle cx="15" cy="6" r="1.5"/><circle cx="12" cy="13" r="2.4"/><circle cx="6" cy="17" r="1.5"/><circle cx="17" cy="16" r="2"/></svg>', color: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3C9 8 6 11 6 14.5a6 6 0 0 0 12 0C18 11 15 8 12 3Z"/><path d="M6.3 15h11.4" stroke-linecap="round"/></svg>', time: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M10 2h4"/></svg>', cost: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12V4h8l10 10-8 8L3 12Z"/><circle cx="7.5" cy="8.5" r="1.3" fill="currentColor"/></svg>' };
+var MEAS = { particles: [['Compare it to five sample cups', 1, 'Everyone matches against the same cups, so every group’s score means the same thing.'], ['Look at it and describe it', 0, 'Descriptions change from person to person, so groups can’t compare results fairly.']], color: [['Look at it and describe it', 0, 'One person’s “a little brown” is another’s “pretty clear.” A shared reference keeps it fair.'], ['Hold it next to the sample cups', 1, 'Matching to the same cups turns an opinion into a score every group can compare.']], time: [['Time how long it takes to collect ¼ cup', 1, 'Measuring the same amount for every filter makes the times comparable.'], ['Wait until all the water drains', 0, 'Some filters hold water for minutes, so you’d be timing different things. Collect a set amount instead.']], cost: [['Count only the priciest material', 0, 'Every layer costs something. Leaving some out hides the real price of a design.'], ['Add up every material you use', 1, 'A total shows the true cost and lets you weigh a cheaper layer against a better one.']] };
+var S = { step: 0, max: 0, agreed: {}, selM: 'screen', selW: 'soil', tests: {}, bench: null, pouring: false, layers: [], designs: [], cur: null, town: false };
+var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+var $ = function (id) { return document.getElementById(id); };
+
+function filter(keys, w) {
+  var big = w.big, fine = w.fine, color = w.color, sec = 0;
+  keys.forEach(function (k, i) {
+    var m = M[k]; big *= 1 - m.big; fine *= 1 - m.fine; color *= 1 - m.color;
+    var s = m.sec;
+    if (m.fineLayer) { var above = keys.slice(0, i).some(function (x) { return !M[x].fineLayer && x !== 'sand' || x === 'sand'; }); if (!above && (w.big > .2)) s *= 1.7; }
+    sec += s;
+  });
+  return { big: big, fine: fine, color: color, sec: Math.round(sec) };
+}
+function scoreOf(keys) {
+  var w = W.mystery, r = filter(keys, w);
+  var p = (r.big + r.fine) / (w.big + w.fine), c = r.color / w.color;
+  var cost = keys.reduce(function (a, k) { return a + M[k].cost; }, 0);
+  var s = { particles: 1 + Math.round(4 * p), color: 1 + Math.round(4 * c), time: r.sec <= 20 ? 1 : r.sec <= 45 ? 2 : r.sec <= 75 ? 3 : r.sec <= 115 ? 4 : 5, cost: cost <= 2 ? 1 : cost <= 4 ? 2 : cost <= 6 ? 3 : cost <= 8 ? 4 : 5 };
+  s.total = s.particles + s.color + s.time + s.cost; s.sec = r.sec; s.costPts = cost; s.r = r; s.p = p; s.c = c;
+  return s;
+}
+function why(keys, s) {
+  var out = [], top = M[keys[0]];
+  if (s.particles <= 2) out.push('Particles: a fine layer caught most of the dirt and cloudiness.'); else out.push('Particles: nothing here is fine enough to catch the cloudiness. Your tests showed which materials can.');
+  if (s.color >= 4) out.push('Color: the tea color mostly came through. In your tests, only sand and cotton lightened it, and only a little.'); else out.push('Color: stacking materials that lighten color made the water noticeably clearer.');
+  if (top.fineLayer) out.push('Time: a fine material sits on top, so the big bits land on it first and slow it to a drip. A coarse layer above it would help.');
+  else if (s.time >= 4) out.push('Time: several slow layers add up. Each one you remove speeds things up, but may let more through.');
+  if (s.cost >= 4) out.push('Cost: this design uses a lot of materials. Is every layer earning its place?');
+  return out;
+}
+
+/* ---------- drawing ---------- */
+var NS = 'http://www.w3.org/2000/svg';
+function rgbFor(r, w) {
+  var tint = r ? r.color : w.color, cloud = r ? r.fine : w.fine, base = [244, 250, 252];
+  var am = [176, 118, 48], wh = [205, 208, 204];
+  var col = base.map(function (b, i) { var v = b + (am[i] - b) * Math.min(1, tint * .85); return v + (wh[i] - v) * Math.min(1, cloud * .9); });
+  return 'rgb(' + col.map(Math.round).join(',') + ')';
+}
+function specks(n, x0, y0, wd, ht, seed) { var s = ''; for (var i = 0; i < n; i++) { var x = x0 + ((i * 37 + seed * 11) % 100) / 100 * wd, y = y0 + ((i * 53 + seed * 7) % 100) / 100 * ht; s += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + (1.3 + (i % 3) * .5) + '" fill="#6B4E2E" opacity=".7"/>'; } return s; }
+function cup(r, w, size, label, fillPct) {
+  var col = rgbFor(r, w), big = r ? r.big : w.big, sp = Math.round(big * 16), f = fillPct == null ? 1 : fillPct;
+  var top = 40 + (1 - f) * 64;
+  return '<svg viewBox="0 0 80 112" width="' + size + '" role="img" aria-label="' + label + '"><defs><clipPath id="cp' + size + label.length + '"><path d="M14 10 L66 10 L59 106 L21 106 Z"/></clipPath></defs>' +
+    '<g clip-path="url(#cp' + size + label.length + ')"><rect class="fill" x="0" y="' + top.toFixed(1) + '" width="80" height="80" fill="' + col + '"/>' + (f > 0 ? specks(sp, 24, Math.max(top, 46) + 4, 32, 100 - Math.max(top, 46), 3) : '') + '</g>' +
+    '<path d="M14 10 L66 10 L59 106 L21 106 Z" fill="none" stroke="#13263A" stroke-width="2" stroke-linejoin="round"/><path d="M15.5 30 H64.6" stroke="#13263A" stroke-width="1" opacity=".25" stroke-dasharray="3 3"/></svg>';
+}
+function bottle(w, size, label) {
+  var col = rgbFor(null, w), sp = Math.round(w.big * 14);
+  return '<svg viewBox="0 0 70 120" width="' + size + '" role="img" aria-label="' + label + '"><defs><clipPath id="bt' + label.length + '"><path d="M26 6 h18 v14 c0 6 14 10 14 22 v66 a6 6 0 0 1 -6 6 h-34 a6 6 0 0 1 -6 -6 v-66 c0 -12 14 -16 14 -22 z"/></clipPath></defs>' +
+    '<g clip-path="url(#bt' + label.length + ')"><rect x="0" y="36" width="70" height="90" fill="' + col + '"/>' + specks(sp, 18, 48, 34, 58, 5) + '</g>' +
+    '<path d="M26 6 h18 v14 c0 6 14 10 14 22 v66 a6 6 0 0 1 -6 6 h-34 a6 6 0 0 1 -6 -6 v-66 c0 -12 14 -16 14 -22 z" fill="none" stroke="#13263A" stroke-width="2" stroke-linejoin="round"/><rect x="24" y="2" width="22" height="7" rx="2" fill="#13263A"/></svg>';
+}
+function pattern(m, x, y, w, h) {
+  var s = '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + m.c + '"/>';
+  if (m.pat === 'mesh') for (var i = x; i < x + w; i += 4) s += '<path d="M' + i + ' ' + y + ' v' + h + '" stroke="#6E8592" stroke-width=".6"/>';
+  if (m.pat === 'weave') for (var j = y + 2; j < y + h; j += 4) s += '<path d="M' + x + ' ' + j + ' h' + w + '" stroke="#C9B98F" stroke-width=".8" stroke-dasharray="3 2"/>';
+  if (m.pat === 'paper') s += '<path d="M' + x + ' ' + (y + h / 2) + ' q' + w / 4 + ' -3 ' + w / 2 + ' 0 t' + w / 2 + ' 0" stroke="#C8AA78" fill="none" stroke-width=".8"/>';
+  if (m.pat === 'fluff') for (var k = 0; k < 7; k++) s += '<circle cx="' + (x + 6 + k * (w - 12) / 6) + '" cy="' + (y + h / 2 + (k % 2 ? -2 : 2)) + '" r="' + Math.min(5, h / 2 - 1) + '" fill="#fff" stroke="#DADADA" stroke-width=".6"/>';
+  if (m.pat === 'grain') { for (var g = 0; g < 26; g++) s += '<circle cx="' + (x + 3 + (g * 17 % (w - 6))) + '" cy="' + (y + 2 + (g * 7 % Math.max(2, h / 2 - 2))) + '" r=".8" fill="#B79A50"/>'; for (var q = 0; q < 8; q++) s += '<ellipse cx="' + (x + 5 + q * (w - 10) / 7) + '" cy="' + (y + h - 4) + '" rx="3.4" ry="2.6" fill="#9AA1A6" stroke="#6F777C" stroke-width=".5"/>'; }
+  return s;
+}
+function filterRig(keys, w, state) {
+  /* inverted bottle filter holder (cap down) with layers, drops, and a collecting cup below */
+  var n = keys.length, inner = 'M14 10 H86 V70 C86 86 62 92 58 104 V112 H42 V104 C38 92 14 86 14 70 Z';
+  var s = '<svg viewBox="0 0 100 210" width="130" role="img" aria-label="Filter holder with ' + (n ? keys.map(function (k) { return M[k].n; }).join(', ') : 'no layers yet') + (state === 'done' ? ', water collected below' : '') + '"><defs><clipPath id="hold"><path d="' + inner + '"/></clipPath></defs>';
+  if (state === 'pour' || state === 'done') s += '<rect x="16" y="10" width="68" height="' + (state === 'pour' ? 10 : 4) + '" fill="' + rgbFor(null, w) + '" clip-path="url(#hold)"/>';
+  var band = n ? Math.min(14, 54 / n) : 0, y = 70 - n * band;
+  s += '<g clip-path="url(#hold)">';
+  keys.forEach(function (k, i) { s += pattern(M[k], 14, y + i * band, 72, band); s += '<path d="M14 ' + (y + i * band) + ' H86" stroke="#13263A" stroke-opacity=".25" stroke-width=".6"/>'; });
+  s += '</g><path d="' + inner + '" fill="none" stroke="#13263A" stroke-width="2" stroke-linejoin="round"/><path d="M8 10 H92" stroke="#13263A" stroke-width="2" stroke-linecap="round" opacity=".5"/>';
+  if (state === 'pour') { var r = filter(keys, w); s += '<g><circle class="drop" cx="50" cy="118" r="2.6" fill="' + rgbFor(r, w) + '" stroke="#13263A" stroke-width=".6"/><circle class="drop" style="animation-delay:-.35s" cx="50" cy="118" r="2.6" fill="' + rgbFor(r, w) + '" stroke="#13263A" stroke-width=".6"/></g>'; }
+  s += '<g transform="translate(25 150)">' + cupInner(state === 'idle' ? null : filter(keys, w), w, state === 'pour' ? .45 : state === 'done' ? 1 : 0) + '</g></svg>';
+  return s;
+}
+function cupInner(r, w, f) {
+  var col = rgbFor(r, w), top = 6 + (1 - f) * 50, sp = r ? Math.round(r.big * 14) : 0;
+  return '<clipPath id="cup2"><path d="M2 2 L48 2 L42 56 L8 56 Z"/></clipPath><g clip-path="url(#cup2)">' + (f > 0 ? '<rect class="fill" x="0" y="' + top + '" width="50" height="60" fill="' + col + '"/>' + specks(sp, 12, top + 3, 26, 52 - top, 2) : '') + '</g><path d="M2 2 L48 2 L42 56 L8 56 Z" fill="none" stroke="#13263A" stroke-width="2" stroke-linejoin="round"/>';
+}
+function swatch(k) { var m = M[k]; return '<svg class="sw" viewBox="0 0 120 30" preserveAspectRatio="none" aria-hidden="true">' + pattern(m, 0, 0, 120, 30) + '</svg>'; }
+
+/* ---------- cycle ---------- */
+function drawCycle() {
+  var c = $('cycle'), R = 36, pts = STEPS.map(function (_, i) { var a = (-90 + i * 72) * Math.PI / 180; return [50 + R * Math.cos(a), 50 + R * Math.sin(a)]; });
+  var arcs = '';
+  for (var i = 0; i < 5; i++) {
+    var a0 = (-90 + i * 72 + 21) * Math.PI / 180, a1 = (-90 + (i + 1) * 72 - 21) * Math.PI / 180;
+    var x0 = 50 + R * Math.cos(a0), y0 = 50 + R * Math.sin(a0), x1 = 50 + R * Math.cos(a1), y1 = 50 + R * Math.sin(a1);
+    var on = i < S.max || (i === 4 && S.designs.length > 0);
+    arcs += '<path d="M' + x0.toFixed(2) + ' ' + y0.toFixed(2) + ' A' + R + ' ' + R + ' 0 0 1 ' + x1.toFixed(2) + ' ' + y1.toFixed(2) + '" fill="none" stroke="' + (on ? '#0F8A86' : '#C9D6D2') + '" stroke-width="1.6" stroke-linecap="round" marker-end="url(#ah' + (on ? 'on' : '') + ')"' + (i === 4 ? ' stroke-dasharray="2 2.5"' : '') + '/>';
+  }
+  var h = '<svg viewBox="0 0 100 100" aria-hidden="true"><defs><marker id="ah" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#C9D6D2" stroke-width="2"/></marker><marker id="ahon" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#0F8A86" stroke-width="2"/></marker></defs><circle cx="50" cy="50" r="' + R + '" fill="none" stroke="#EEF3F1" stroke-width="9"/>' + arcs + '</svg>';
+  h += '<nav aria-label="Engineering design process">' + STEPS.map(function (n, i) { var cur = i === S.step; return '<button class="node' + (i < S.max ? ' done' : '') + '" data-go="' + i + '" style="left:' + pts[i][0] + '%;top:' + pts[i][1] + '%"' + (cur ? ' aria-current="step"' : '') + (i > S.max ? ' disabled' : '') + '><i>' + (i + 1) + '</i>' + n + '</button>'; }).join('') + '</nav>';
+  h += '<div class="hub"><b>' + HUB[S.step] + '</b>' + (S.designs.length ? 'Design #' + (S.designs.length + (S.step >= 2 && S.step < 4 ? 1 : 0)) : 'Go around as many times as you like') + '</div>';
+  c.innerHTML = h;
+  var nt = NOTES[S.step];
+  $('note').innerHTML = '<span class="k">In the institute · ' + STEPS[S.step] + '</span><p><span class="lb">What teachers did</span>' + nt[0] + '</p><p><span class="lb">What I coached for</span>' + nt[1] + '</p>';
+}
+
+/* ---------- views ---------- */
+function vAsk() {
+  var all = CRIT.every(function (c) { var p = S.agreed[c[0]]; return p != null && MEAS[c[0]][p][1]; });
+  return '<h3>Ask: what problem are we solving?</h3><p class="lead">A town’s water supply is dirty. Your team’s job is to design a filter that cleans it, using simple materials.</p>' +
+   '<div class="row" style="align-items:flex-end;gap:18px;background:var(--paper);border-radius:16px;padding:14px">' + WK.concat('mystery').map(function (k) { return '<div style="display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;min-width:86px">' + bottle(W[k], k === 'mystery' ? 62 : 52, W[k].n) + '<b style="font-size:13.5px">' + W[k].n + '</b><span class="hint" style="font-size:13px">' + W[k].d + '</span></div>'; }).join('') + '</div>' +
+   '<h4>First, agree on how you’ll measure each criterion</h4><p class="hint">Fair tests let every group compare results. For each criterion, choose how your team will measure it.</p><div class="crit">' + CRIT.map(function (c) { var pick = S.agreed[c[0]], opts = MEAS[c[0]]; return '<div class="card" role="group" aria-label="' + c[1] + '"><div class="chd"><span class="ci" aria-hidden="true">' + CIC[c[0]] + '</span><h4 class="cn">' + c[1] + '<small>' + c[2] + '</small></h4></div><div class="opts">' + opts.map(function (o, j) { return '<button class="opt' + (pick === j ? (o[1] ? ' ok' : ' no') : '') + '" data-meas="' + c[0] + '" data-j="' + j + '" aria-pressed="' + (pick === j) + '">' + o[0] + '</button>'; }).join('') + '</div>' + (pick != null ? '<p class="fbk ' + (opts[pick][1] ? 'ok' : 'no') + '">' + (opts[pick][1] ? '✓ ' : 'Try again. ') + opts[pick][2] + '</p>' : '') + '</div>'; }).join('') + '</div>' +
+   '<div class="card"><h4>How scoring works</h4><p class="hint">Each criterion gets a score from 1 to 5. For particles and color, you match your filtered water to five sample cups, from clean (1) to as dirty as the start (5). <b>Lower is better</b>, so the lowest total wins.</p><div class="strip">' + [0, .25, .5, .75, 1].map(function (f, i) { var w = W.mystery, r = { big: w.big * f, fine: w.fine * f, color: w.color * f }; return '<div class="cupw">' + cup(r, w, 34, 'Sample ' + (i + 1)) + (i + 1) + '</div>'; }).join('') + '</div></div>' +
+   '<div class="row"><button class="btn" data-next="1"' + (all ? '' : ' disabled') + '>Next: test materials →</button>' + (all ? '' : '<span class="hint">Choose a fair measure for all four criteria to continue.</span>') + '</div>';
+}
+function vImagine() {
+  var n = Object.keys(S.tests).length, b = S.bench;
+  var rig = b ? filterRig([b.m], W[b.w], S.pouring ? 'pour' : 'done') : filterRig([S.selM], W[S.selW], 'idle');
+  var read = b && !S.pouring ? (function () { var r = S.tests[b.m + '|' + b.w], w = W[b.w]; var caught = 1 - (r.big + r.fine) / Math.max(.01, w.big + w.fine), col = w.color ? 1 - r.color / w.color : null; return '<span class="tag">Test result</span><b>' + M[b.m].n + ' + ' + w.n + '</b><span>Particles caught: <b>' + Math.round(caught * 100) + '%</b></span>' + (col === null ? '' : '<span>Color removed: <b>' + Math.round(col * 100) + '%</b></span>') + '<span>Time for ¼ cup: <b>' + r.sec + ' sec</b></span>'; })() : '<span class="hint">' + (S.pouring ? 'Pouring…' : 'Choose a material and a water, then pour.') + '</span>';
+  var tbl = '<div class="tablewrap"><table><thead><tr><th scope="col">Material</th>' + WK.map(function (k) { return '<th scope="col" class="c">' + W[k].n + '</th>'; }).join('') + '</tr></thead><tbody>' + MK.map(function (m) { return '<tr><th scope="row" style="color:var(--ink)">' + M[m].n + '</th>' + WK.map(function (k) { var r = S.tests[m + '|' + k]; return '<td class="c">' + (r ? '<span class="mini">' + cup(r, W[k], 22, M[m].n + ' with ' + W[k].n + ' result') + '<span>' + r.sec + 's</span></span>' : '<span class="hint">–</span>') + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>';
+  return '<h3>Imagine: what can each material do?</h3><p class="lead">Before designing, test each material on its own. Record what it catches, what gets through, and how fast the water flows.</p>' +
+   '<div><h4 style="margin-bottom:8px">Material</h4><div class="cards">' + MK.map(function (k) { return '<button class="pick" data-m="' + k + '" aria-pressed="' + (S.selM === k) + '">' + swatch(k) + M[k].n + '<small>' + M[k].d + '</small></button>'; }).join('') + '</div></div>' +
+   '<div><h4 style="margin-bottom:8px">Dirty water</h4><div class="cards">' + WK.map(function (k) { return '<button class="pick" data-w="' + k + '" aria-pressed="' + (S.selW === k) + '">' + W[k].n + '<small>' + W[k].d + '</small></button>'; }).join('') + '</div></div>' +
+   '<div class="bench">' + rig + '<div></div><div class="read">' + read + '<div class="row" style="margin-top:4px"><button class="btn" data-pour="test"' + (S.pouring ? ' disabled' : '') + '>Pour 1 cup</button></div></div></div>' +
+   '<h4>Data chart</h4>' + tbl +
+   '<div class="row"><button class="btn" data-next="2"' + (n >= 3 ? '' : ' disabled') + '>Next: plan a design →</button><span class="hint">' + (n >= 3 ? 'What did your tests show? Use that evidence next.' : 'Run at least ' + (3 - n) + ' more test' + (3 - n === 1 ? '' : 's') + ' to continue.') + '</span></div>';
+}
+function vPlan() {
+  var L = S.layers, cost = L.reduce(function (a, k) { return a + M[k].cost; }, 0);
+  return '<h3>Plan: choose and layer your materials</h3><p class="lead">Water is poured in at the top and drips out the bottom. Pick up to four materials and put them in order. Use your data chart to explain your choices.</p>' +
+   '<div class="two"><div style="display:flex;flex-direction:column;gap:12px;min-width:0"><div class="cards">' + MK.map(function (k) { var inL = L.indexOf(k) > -1; return '<button class="pick" data-add="' + k + '"' + (inL || L.length >= 4 ? ' disabled' : '') + '>' + swatch(k) + M[k].n + '<small>' + (inL ? 'In your design' : '+ Add layer') + '</small></button>'; }).join('') + '</div>' +
+   '<div><h4 style="margin-bottom:8px">Your layers, top to bottom</h4><div class="stack">' + (L.length ? L.map(function (k, i) { return '<div class="layer"><span class="chip" style="background:' + M[k].c + '"></span><span>' + (i + 1) + '. ' + M[k].n + '</span><span class="row" style="gap:4px"><button class="ic" data-up="' + i + '" aria-label="Move ' + M[k].n + ' up"' + (i ? '' : ' disabled') + '>↑</button><button class="ic" data-dn="' + i + '" aria-label="Move ' + M[k].n + ' down"' + (i < L.length - 1 ? '' : ' disabled') + '>↓</button><button class="ic" data-rm="' + i + '" aria-label="Remove ' + M[k].n + '">×</button></span></div>'; }).join('') : '<p class="hint">No layers yet. Add a material above.</p>') + '</div></div>' +
+   '<p class="hint">Cost: <b>' + cost + ' points</b></p></div><div style="justify-self:center">' + filterRig(L, W.mystery, 'idle') + '</div></div>' +
+   '<div class="row"><button class="btn" data-next="3"' + (L.length ? '' : ' disabled') + '>Build design #' + (S.designs.length + 1) + ' →</button></div>';
+}
+function vCreate() {
+  var d = S.cur, built = d && d.done;
+  var res = '';
+  if (built) {
+    var s = d.s, w = W.mystery;
+    var strip = function (key, val) { return '<div class="strip" aria-label="' + key + ' score ' + val + '">' + [0, .25, .5, .75, 1].map(function (f, i) { var r = key === 'Color' ? { big: 0, fine: 0, color: w.color * f } : { big: w.big * f, fine: w.fine * f, color: 0 }; return '<div class="cupw' + (i + 1 === val ? ' m' : '') + '">' + cup(r, w, 26, key + ' sample ' + (i + 1)) + (i + 1) + '</div>'; }).join('') + '</div>'; };
+    res = '<div class="card"><h4>Match your cup to the samples</h4><div class="two" style="grid-template-columns:auto minmax(0,1fr)"><div style="text-align:center">' + cup(s.r, w, 70, 'Your filtered water') + '<div class="hint">Your cup</div></div><div style="display:flex;flex-direction:column;gap:8px"><span class="hint">Particles</span>' + strip('Particles', s.particles) + '<span class="hint">Color</span>' + strip('Color', s.color) + '</div></div></div>' +
+     '<div class="score"><div class="sc"><b>' + s.particles + '</b><span>Particles</span></div><div class="sc"><b>' + s.color + '</b><span>Color</span></div><div class="sc"><b>' + s.time + '</b><span>Time · ' + s.sec + ' sec</span></div><div class="sc"><b>' + s.cost + '</b><span>Cost · ' + s.costPts + ' points</span></div><div class="sc total"><b>' + s.total + '</b><span>Total (lower is better)</span></div></div>' +
+     '<div class="row"><button class="btn" data-next="4">Next: improve →</button></div>';
+  }
+  return '<h3>Create: build and test design #' + (S.designs.length + (built ? 0 : 1)) + '</h3><p class="lead">Pour one cup of Mystery water through your filter, time how long it takes to collect ¼ cup, then score the result.</p>' +
+   '<div class="bench">' + filterRig(S.layers, W.mystery, S.pouring ? 'pour' : built ? 'done' : 'idle') + '<div></div><div class="read"><b>Your layers</b><span>' + S.layers.map(function (k) { return M[k].n; }).join(' → ') + '</span>' + (built ? '' : '<div class="row" style="margin-top:6px"><button class="btn" data-pour="design"' + (S.pouring ? ' disabled' : '') + '>' + (S.pouring ? 'Pouring…' : 'Pour Mystery water') + '</button></div>') + '</div></div>' + res;
+}
+function vImprove() {
+  var ds = S.designs, wt = S.town ? 2 : 1;
+  var tot = function (s) { return s.particles * wt + s.color * wt + s.time + s.cost; };
+  var best = ds.reduce(function (b, d, i) { return tot(d.s) < tot(ds[b].s) ? i : b; }, 0), last = ds[ds.length - 1];
+  return '<h3>Improve: compare and redesign</h3><p class="lead">No filter wins on every criterion. Change one or two things at a time, test again, and compare the evidence.</p>' +
+   '<div class="tablewrap"><table><thead><tr><th scope="col">Design</th><th scope="col">Layers, top to bottom</th><th scope="col" class="c">Particles</th><th scope="col" class="c">Color</th><th scope="col" class="c">Time</th><th scope="col" class="c">Cost</th><th scope="col" class="c">Total</th></tr></thead><tbody>' +
+   ds.map(function (d, i) { return '<tr' + (i === best ? ' class="best"' : '') + '><th scope="row" style="color:var(--ink)">#' + (i + 1) + (i === best ? ' <span class="tag">Best</span>' : '') + '</th><td>' + d.layers.map(function (k) { return M[k].n; }).join(' → ') + '</td><td class="c">' + d.s.particles + (S.town ? '×2' : '') + '</td><td class="c">' + d.s.color + (S.town ? '×2' : '') + '</td><td class="c">' + d.s.time + '</td><td class="c">' + d.s.cost + '</td><td class="c"><b>' + tot(d.s) + '</b></td></tr>'; }).join('') + '</tbody></table></div>' +
+   '<div class="card"><h4>What the test of design #' + ds.length + ' showed</h4><ul class="why">' + why(last.layers, last.s).map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul></div>' +
+   '<div class="card" style="background:var(--coral2);border-color:#F6CDBE"><h4>What if the town cared most about clean water?</h4><p class="hint" style="color:#3A2A1E">In our classroom research, one student worried that a cheap filter could make people sick. Count particles and color double and see if your best design changes.</p><div class="row"><button class="toggle" data-town aria-pressed="' + S.town + '"><span class="t" aria-hidden="true"></span>Clean water counts double</button></div></div>' +
+   '<div class="row"><button class="btn" data-redesign>↺ Redesign: back to Plan</button><button class="btn sec" data-reset>Start over</button></div>';
+}
+
+/* ---------- render ---------- */
+function render(focus) {
+  drawCycle();
+  $('main').innerHTML = [vAsk, vImagine, vPlan, vCreate, vImprove][S.step]();
+  if (focus) $('main').focus({ preventScroll: false });
+  report();
+}
+function say(t) { $('live').textContent = ''; setTimeout(function () { $('live').textContent = t; }, 30); }
+function go(i) { S.step = i; S.max = Math.max(S.max, i); if (i === 3 && (!S.cur || S.cur.done)) S.cur = { layers: S.layers.slice(), done: false }; render(true); say('Step ' + (i + 1) + ': ' + STEPS[i]); }
+function pour(kind) {
+  S.pouring = true;
+  if (kind === 'test') S.bench = { m: S.selM, w: S.selW };
+  render();
+  setTimeout(function () {
+    S.pouring = false;
+    if (kind === 'test') { var r = filter([S.selM], W[S.selW]); S.tests[S.selM + '|' + S.selW] = r; say(M[S.selM].n + ' with ' + W[S.selW].n + ': ' + r.sec + ' seconds.'); }
+    else { var s = scoreOf(S.layers); S.cur = { layers: S.layers.slice(), done: true, s: s }; S.designs.push(S.cur); say('Design ' + S.designs.length + ' total score ' + s.total + '.'); }
+    render();
+  }, reduce ? 150 : 1700);
+}
+document.addEventListener('click', function (e) {
+  var t = e.target.closest('button'); if (!t || t.disabled) return;
+  var d = t.dataset;
+  if (d.go != null) go(+d.go);
+  else if (d.next != null) go(+d.next);
+  else if (d.meas) { S.agreed[d.meas] = +d.j; render(); }
+  else if (d.m) { S.selM = d.m; S.bench = null; render(); }
+  else if (d.w) { S.selW = d.w; S.bench = null; render(); }
+  else if (d.pour) pour(d.pour);
+  else if (d.add) { S.layers.push(d.add); render(); }
+  else if (d.up != null) { var i = +d.up, L = S.layers; L.splice(i - 1, 0, L.splice(i, 1)[0]); render(); }
+  else if (d.dn != null) { var j = +d.dn, L2 = S.layers; L2.splice(j + 1, 0, L2.splice(j, 1)[0]); render(); }
+  else if (d.rm != null) { S.layers.splice(+d.rm, 1); render(); }
+  else if ('town' in d) { S.town = !S.town; render(); }
+  else if ('redesign' in d) { S.cur = null; go(2); }
+  else if ('reset' in d) { S = { step: 0, max: 0, agreed: {}, selM: 'screen', selW: 'soil', tests: {}, bench: null, pouring: false, layers: [], designs: [], cur: null, town: false }; render(true); say('Started over.'); }
+});
+function report() { if (window.parent !== window) window.parent.postMessage({ type: 'embed-resize', height: document.documentElement.scrollHeight }, '*'); }
+if (window.ResizeObserver) new ResizeObserver(report).observe(document.body);
+window.addEventListener('load', report);
+render();
+})();
+</script>
+</body>
+</html>
