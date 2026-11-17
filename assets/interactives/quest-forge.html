@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quest Forge: an Interactivity Generator adventure</title>
+<meta name="description" content="A whimsical fantasy remake of the Interactivity Generator demo. Pick a quest, hear the owl's counsel, enchant the wording, and bestow a working activity.">
+<style>
+:root{--ink:#16254a;--blue:#2779a7;--blue-d:#1c5a82;--gold:#ECD06F;--gold-d:#b8922e;--parch:#fbf3dc;--parch2:#f3e6bf;--line:#d9c48c;--text:#2a2438;--mute:#5a5068;--ember:#b4401a;--moss:#1f6b4e;
+--serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;background:#122040}
+body{font:16px/1.6 var(--serif);color:var(--text)}
+button{font:inherit;cursor:pointer;color:inherit}
+button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid #f0a23a;outline-offset:2px}
+.defs{position:absolute;width:0;height:0}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:clamp(440px,58vw,700px);overflow:hidden;background:#2779a7}
+.hero svg.art{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(transparent,#122040)}
+.hero-txt{position:absolute;left:0;right:0;top:15%;text-align:center;padding:0 16px;z-index:2}
+.hero-txt::before{content:"";position:absolute;left:50%;top:-8%;width:min(820px,96%);height:125%;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(255,250,228,.78),rgba(255,250,228,.35) 60%,rgba(255,250,228,0));z-index:-1}
+.sigil{width:46px;height:46px;margin:0 auto 4px;display:block}
+.hero h1{margin:0;font-weight:400;font-size:clamp(40px,9.2vw,118px);line-height:1;letter-spacing:.07em;text-transform:uppercase;color:var(--ink)}
+.hero h1 span{font-size:.62em;letter-spacing:.1em}
+.rule{display:flex;align-items:center;justify-content:center;gap:10px;margin:8px auto 6px;color:var(--ink)}
+.rule i{display:block;width:clamp(50px,9vw,110px);height:1px;background:currentColor}
+.rule b{width:8px;height:8px;border:1px solid currentColor;transform:rotate(45deg)}
+.tagline{margin:0;font-size:clamp(13px,1.9vw,21px);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+.tagline small{font-size:.72em}
+.hnav{display:flex;justify-content:center;flex-wrap:wrap;gap:4px clamp(8px,2.4vw,30px);margin:clamp(14px,3.4vw,40px) auto 0;padding:8px 0;border-top:1px solid rgba(22,37,74,.35);border-bottom:1px solid rgba(22,37,74,.35);width:min(560px,92%)}
+.hnav button{border:0;background:none;padding:4px 6px;font-weight:700;font-size:clamp(12px,1.5vw,15px);letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
+.hnav button:hover{color:#8a2f10}
+.fly{animation:tw 3.6s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.15}50%{opacity:1}}
+.leaf{animation:fall 11s linear infinite}
+@keyframes fall{0%{transform:translate(0,-40px) rotate(0)}100%{transform:translate(-260px,760px) rotate(540deg)}}
+.glow{animation:gl 4s ease-in-out infinite}
+@keyframes gl{0%,100%{opacity:.55}50%{opacity:1}}
+.drag{animation:bob 9s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+/* ---------- forge (the app) ---------- */
+.forge{background:radial-gradient(1200px 500px at 50% 0,#24507a,transparent),linear-gradient(#122040,#1a3358 60%,#16284a);padding:10px 14px 60px}
+.app{max-width:940px;margin:0 auto}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:8px 2px 14px;color:#f4ead0}
+.rank{display:flex;align-items:center;gap:10px}
+.rank svg{width:44px;height:48px;flex:none}
+.rank b{display:block;font-size:17px;letter-spacing:.05em}
+.rank span{font-size:13.5px;color:#cdd8e6}
+.seals{display:flex;gap:5px;align-items:center}
+.seals svg{width:26px;height:26px}
+.steps{display:flex;gap:6px;flex-wrap:wrap}
+.st{border:1px solid rgba(236,208,111,.45);background:rgba(10,20,40,.35);border-radius:4px;padding:5px 12px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#e6dcc0;display:flex;gap:7px;align-items:center}
+.st i{font-style:normal;font-size:12px;color:var(--gold)}
+.st span{display:flex;flex-direction:column;align-items:flex-start;line-height:1.2}
+.st small{font-size:11.5px;letter-spacing:.02em;text-transform:none;font-weight:400;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;opacity:.85}
+.st[aria-current="step"]{background:var(--gold);color:var(--ink);border-color:var(--gold);font-weight:700}
+.st[aria-current="step"] i{color:var(--ink)}
+.st:disabled{cursor:default;opacity:.5}
+.panel{position:relative;background:linear-gradient(#fbf3dc,#f5e9c6);border:1px solid var(--gold-d);box-shadow:0 0 0 5px #fbf3dc,0 0 0 6px var(--gold-d),0 24px 60px rgba(0,0,0,.45);border-radius:4px;display:flex;flex-direction:column;gap:18px;overflow:hidden}
+.banner-art{display:block;width:100%;height:clamp(96px,15vw,140px);border-bottom:1px solid var(--gold-d)}
+.body{padding:4px clamp(16px,3vw,28px) clamp(18px,3vw,28px);display:flex;flex-direction:column;gap:18px}
+h2{margin:0;font-size:clamp(22px,3vw,28px);font-weight:400;letter-spacing:.05em;color:var(--ink)}
+.sub{margin:0;color:var(--mute)}
+.grp{border-radius:4px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.grp-rec{background:rgba(39,121,167,.09);border:1px solid rgba(39,121,167,.35)}
+.grp-warn{background:rgba(180,64,26,.07);border:1px dashed rgba(180,64,26,.5)}
+.gh{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.gt{font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+.gs{font-size:14px;color:var(--mute)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px}
+.sc{position:relative;text-align:left;background:#fffaf0;border:1px solid var(--line);border-radius:3px;padding:14px;display:flex;flex-direction:column;gap:7px;box-shadow:0 2px 0 rgba(120,90,30,.18);transition:transform .15s}
+.sc:nth-child(odd){transform:rotate(-.5deg)}.sc:nth-child(even){transform:rotate(.5deg)}
+.sc:hover{transform:translateY(-3px);border-color:var(--gold-d)}
+.sc[aria-pressed="true"]{border-color:var(--blue);box-shadow:0 0 0 2px var(--blue);transform:none}
+.sc-top{display:flex;align-items:center;gap:10px}
+.sc-top svg{width:46px;height:46px;flex:none}
+.tag{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.t-rec{color:var(--blue-d)}.t-warn{color:var(--ember)}
+.sc .tt{font-weight:700;font-size:16.5px;line-height:1.3;color:var(--ink)}
+.sc .rq{font-size:14px;color:var(--mute);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.kind{align-self:flex-start;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:2px;padding:1px 8px}
+.k-fun{background:var(--gold);color:var(--ink)}
+.k-real{background:#e6edf7;color:#24457f;border-radius:999px;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:.02em;text-transform:none;font-size:12px}
+.sc.real{background:#fff;border-color:#cfd6df;border-radius:12px;transform:none;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;box-shadow:0 1px 3px rgba(27,36,48,.12)}
+.sc.real:hover{transform:translateY(-3px);border-color:#9aa6b5}
+.sc.real .tag{letter-spacing:.01em;text-transform:none;font-size:13px;font-weight:600;color:#3a4757}
+.sc.real .tt{font-weight:600;font-size:15.5px;color:#1b2430}
+.sc.real .rq{font-size:13.5px;color:#5b6675}
+.done-rib{position:absolute;top:8px;right:8px;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--moss);padding:1px 8px;border-radius:2px}
+.lbl{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+.req{width:100%;min-height:104px;border:1px solid var(--line);border-radius:3px;padding:12px;font:inherit;font-style:italic;color:var(--text);background:#fffaf0;resize:none}
+.btn{border:1px solid var(--gold-d);background:linear-gradient(#2a7fae,#1c5a82);color:#fff;border-radius:3px;padding:10px 20px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 2px 0 #123b57}
+.btn:hover{filter:brightness(1.08)}
+.btn:disabled{opacity:.45;cursor:not-allowed;filter:none}
+.btn.s{background:#fffaf0;color:var(--blue-d);box-shadow:0 2px 0 rgba(120,90,30,.25)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.load ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.load li{display:flex;gap:10px;align-items:center;color:var(--mute);transition:color .2s}
+.load li.done{color:var(--text)}
+.dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);flex:none;display:grid;place-items:center;font-size:12px}
+.done .dot{background:var(--moss);border-color:var(--moss);color:#fff}
+.model{display:block;margin-top:8px;font-size:13px;color:var(--mute);font-style:italic}
+.owl-say{display:flex;gap:12px;align-items:flex-start}
+.owl-say>svg{width:54px;height:58px;flex:none}
+.bubble{position:relative;flex:1;background:#fffaf0;border:1px solid var(--line);border-radius:4px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.bubble::before{content:"";position:absolute;left:-7px;top:20px;width:12px;height:12px;background:#fffaf0;border-left:1px solid var(--line);border-bottom:1px solid var(--line);transform:rotate(45deg)}
+.bubble p{margin:0}
+.badge{align-self:flex-start;font-size:13px;font-weight:700;letter-spacing:.06em;background:var(--ink);color:var(--gold);border-radius:2px;padding:3px 12px}
+.flag .bubble{background:#fff1e6;border:2px solid var(--ember)}
+.flag .bubble::before{background:#fff1e6;border-color:var(--ember);border-width:2px;left:-8px}
+.flag-l{font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8f3210}
+.flag strong{font-size:17px;color:#6f2709}
+.note-box{border-radius:4px;padding:12px 16px;background:#fdf0dc;border:1px solid #e3b98a}
+.note-box strong{color:#7a340c}.note-box p{margin:4px 0 0}
+.ok-note{background:#eaf4ea;border-color:#b5d6bf}.ok-note strong{color:var(--moss)}
+.frame{border:1px solid var(--gold-d);border-radius:3px;overflow:hidden;background:#fffaf0}
+.fhead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 12px;background:var(--ink);font-size:13.5px;color:#d6dcec}
+.fhead b{color:var(--gold)}
+.parts{display:flex;gap:4px}
+.parts button{border:1px solid rgba(236,208,111,.6);background:none;color:#f4ead0;border-radius:2px;padding:3px 10px;font-size:13px}
+.parts button[aria-pressed="true"]{background:var(--gold);color:var(--ink);font-weight:700}
+iframe.pv{display:block;width:100%;height:320px;border:0}
+.fmts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:10px}
+.fm{text-align:left;background:#fffaf0;border:1px solid var(--line);border-radius:3px;padding:11px 13px;display:flex;flex-direction:column;gap:4px}
+.fm:hover{border-color:var(--gold-d)}
+.fm[aria-pressed="true"]{border-color:var(--blue);box-shadow:0 0 0 2px var(--blue)}
+.fm .top{display:flex;gap:9px;align-items:center}
+.fm .top svg{width:34px;height:34px;flex:none}
+.fm .nm{font-weight:700;color:var(--ink);line-height:1.2}
+.fm .pl{display:block;font-size:12.5px;font-weight:400;color:var(--mute)}
+.fit{margin-left:auto;font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:2px;padding:2px 8px;white-space:nowrap}
+.f-best{background:var(--moss);color:#fff}.f-good{background:#e4e9f0;color:#2c3b52}.f-weak{background:#fbe3cf;color:#8a3a0c}
+.fm .gl{font-size:13px;font-weight:700;color:var(--blue-d)}
+.fm .nt{font-size:14px;color:#453d55}
+.qs{display:flex;flex-direction:column;gap:14px}
+.q{display:flex;flex-direction:column;gap:8px}
+.ch{display:flex;gap:8px;flex-wrap:wrap}
+.ch button{border:1px solid var(--gold-d);background:#fffaf0;border-radius:3px;padding:7px 14px}
+.ch button[aria-pressed="true"]{background:var(--ink);color:var(--gold);border-color:var(--ink)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:18px;align-items:start}
+@media (max-width:760px){.two{grid-template-columns:minmax(0,1fr)}}
+.fields{display:flex;flex-direction:column;gap:12px}
+.fg{display:flex;flex-direction:column;gap:5px;border-top:1px solid var(--line);padding-top:10px}
+.fg:first-child{border-top:0;padding-top:0}
+.fg h3{margin:0;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-d)}
+.field{display:flex;flex-direction:column;gap:3px}
+.field span{font-size:13px;color:var(--mute)}
+.field textarea{border:1px solid var(--line);border-radius:3px;padding:8px 10px;font:inherit;font-size:15px;resize:vertical;min-height:38px;color:var(--text);background:#fffaf0}
+.sticky{position:sticky;top:10px;display:flex;flex-direction:column;gap:12px}
+.txt{white-space:pre-wrap;background:#fffaf0;border:1px solid var(--line);border-radius:3px;padding:12px 14px;font:inherit;font-size:14.5px;margin:0}
+pre.code{margin:0;background:#101c36;color:#dbe4f2;border-radius:3px;padding:14px;font:12.5px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word;max-height:340px;overflow:auto}
+.linkbtn{border:0;background:none;color:var(--blue-d);padding:4px 0;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.copied{font-size:14px;color:var(--moss)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:9;display:flex;align-items:center;gap:10px;background:var(--ink);color:var(--gold);border:1px solid var(--gold);border-radius:4px;padding:10px 18px;box-shadow:0 10px 30px rgba(0,0,0,.5);animation:pop .4s ease-out}
+.toast svg{width:30px;height:30px}
+@keyframes pop{from{transform:translate(-50%,24px);opacity:0}}
+.foot{max-width:940px;margin:22px auto 0;text-align:center;font-size:13.5px;color:#b9c6d8}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<svg class="defs" aria-hidden="true"><defs>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d4a80"/><stop offset=".26" stop-color="#2779a7"/><stop offset=".5" stop-color="#a5cbd3"/><stop offset=".66" stop-color="#f6e6a6"/><stop offset=".8" stop-color="#f3b566"/><stop offset="1" stop-color="#d9764a"/></linearGradient>
+<linearGradient id="sky2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2779a7"/><stop offset=".45" stop-color="#a5cbd3"/><stop offset=".75" stop-color="#f6e6a6"/><stop offset="1" stop-color="#f3b566"/></linearGradient>
+<radialGradient id="sun"><stop offset="0" stop-color="#fffbe0"/><stop offset=".25" stop-color="#ffe9a0" stop-opacity=".85"/><stop offset="1" stop-color="#ffd67a" stop-opacity="0"/></radialGradient>
+<radialGradient id="lamp"><stop offset="0" stop-color="#fff6c8"/><stop offset=".3" stop-color="#ffd870" stop-opacity=".8"/><stop offset="1" stop-color="#ffb84a" stop-opacity="0"/></radialGradient>
+<radialGradient id="orb" cx=".38" cy=".32"><stop offset="0" stop-color="#f1fdff"/><stop offset=".45" stop-color="#58b6d6"/><stop offset="1" stop-color="#1d2f6a"/></radialGradient>
+<linearGradient id="rock" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7d7896"/><stop offset="1" stop-color="#39405f"/></linearGradient>
+<linearGradient id="fallw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<filter id="brush" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".016" numOctaves="3" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="30" xChannelSelector="R" yChannelSelector="G"/></filter>
+<filter id="brush2" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G"/></filter>
+<filter id="mist" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="16"/></filter>
+<filter id="haze"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs></svg>
+
+<header class="hero">
+  <svg class="art" id="heroArt" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="A painted sunset above a sea of clouds. A friendly dragon glides through the mist toward a floating tower, while a small wizard with a lantern watches from a cliff under a golden tree."></svg>
+  <div class="hero-txt">
+    <svg class="sigil" viewBox="0 0 48 48" aria-hidden="true" id="sigil"></svg>
+    <h1>Quest <span>Forge</span></h1>
+    <div class="rule" aria-hidden="true"><i></i><b></b><i></i></div>
+    <p class="tagline">Where lessons <small>become</small> adventures</p>
+    <nav class="hnav" aria-label="Chapters" id="hnav">
+      <button data-k="1">Begin</button><button data-k="2">Scry</button><button data-k="3">Enchant</button><button data-k="4">Bestow</button>
+    </nav>
+  </div>
+</header>
+
+<main class="forge" id="forge">
+  <div class="app" id="app"></div>
+  <p class="foot">A fantasy retelling of the Interactivity Generator demo. Every illustration here was drawn for this game. Responses are saved, so no dragons (or APIs) are disturbed.</p>
+</main>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+'use strict';
+/* =====================================================================
+   ART: every picture below is original SVG drawn for Quest Forge
+   ===================================================================== */
+function rng(s) { return function () { s |= 0; s = s + 0x6D2B79F5 | 0; var t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function star(x, y, s, f, cls) { return '<path' + (cls ? ' class="' + cls + '"' : '') + ' d="M' + x + ' ' + (y - s) + 'Q' + x + ' ' + y + ' ' + (x + s) + ' ' + y + 'Q' + x + ' ' + y + ' ' + x + ' ' + (y + s) + 'Q' + x + ' ' + y + ' ' + (x - s) + ' ' + y + 'Q' + x + ' ' + y + ' ' + x + ' ' + (y - s) + 'Z" fill="' + f + '"/>'; }
+function clouds(seed, y0, rows, n, w, cols) {
+  var r = rng(seed), h = '';
+  for (var j = 0; j < rows; j++) for (var i = 0; i < n; i++) h += '<ellipse cx="' + Math.round(r() * w) + '" cy="' + Math.round(y0 + j * 52 + r() * 30) + '" rx="' + Math.round(110 + r() * 170) + '" ry="' + Math.round(26 + r() * 34) + '" fill="' + cols[(i + j) % cols.length] + '" opacity="' + (0.55 + r() * 0.4).toFixed(2) + '"/>';
+  return h;
+}
+var SIGIL = '<circle cx="24" cy="24" r="22" fill="#16254a" stroke="#ECD06F" stroke-width="2"/><path d="M12 27h24l-4 5h-4v4h5v3H15v-3h5v-4h-4z" fill="#ECD06F"/><path d="M12 27c2-4 6-5 10-5h14v5z" fill="#ECD06F"/>' + star(24, 13, 7, '#fff6c8');
+
+function heroArt() {
+  var r = rng(11), h = '<rect width="1600" height="900" fill="url(#sky)"/>';
+  for (var i = 0; i < 46; i++) h += '<circle cx="' + Math.round(r() * 1600) + '" cy="' + Math.round(r() * 230) + '" r="' + (0.6 + r() * 1.5).toFixed(1) + '" fill="#fff" opacity="' + (0.25 + r() * 0.6).toFixed(2) + '"/>';
+  h += '<circle cx="880" cy="640" r="330" fill="url(#sun)"/>';
+  // far peaks
+  h += '<g filter="url(#brush)"><path d="M-40 660 120 520 210 585 340 430 455 565 565 500 700 615 850 548 1000 630 1180 575 1320 640 1460 560 1640 640V900H-40Z" fill="#6f97b6" opacity=".55"/><path d="M-40 700 80 620 200 668 300 590 420 675 600 640 760 690 1640 690V900H-40Z" fill="#8fb0c4" opacity=".6"/></g>';
+  // small far islands
+  h += '<g opacity=".7" transform="translate(-100 120)"><path d="M700 470q50-10 100 0q-14 30-40 44q-10 24-18 34q-8-22-20-36q-16-16-22-42z" fill="#55618a"/><ellipse cx="750" cy="470" rx="50" ry="7" fill="#7fa37b"/><path d="M742 470v-34l10-16 10 16v34z" fill="#e6d5b0"/><path d="M738 438l14-26 14 26z" fill="#a8452e"/></g>';
+  // dragon gliding in the mist (original design: long whiskers, leaf-shaped tail, reading spectacles glint)
+  h += '<g class="drag"><g filter="url(#haze)" opacity=".62" fill="#2b4d78" stroke="#2b4d78" stroke-linecap="round" stroke-linejoin="round">' +
+    '<path d="M330 372 250 200 352 268 400 150 440 276 540 190 498 352Z" stroke-width="6" fill="#3a6190"/>' +
+    '<path d="M250 200 330 372M400 150 372 368M540 190 440 372" stroke="#234268" stroke-width="5" fill="none"/>' +
+    '<path d="M96 468C150 520 232 500 286 440" stroke-width="13" fill="none"/><path d="M60 440q20 6 40 30q-30 2-52 22q8-28 12-52z" stroke-width="2"/>' +
+    '<path d="M276 448C330 392 410 372 470 388" stroke-width="50" fill="none"/>' +
+    '<path d="M462 386C520 380 548 344 566 306" stroke-width="27" fill="none"/>' +
+    '<path d="M548 316 578 268 664 290 622 306 654 322 596 334Z" stroke-width="8"/>' +
+    '<path d="M574 274 540 236M588 272 566 228" stroke-width="7" fill="none"/>' +
+    '<path d="M656 296q30 0 44-22M650 312q26 12 46 4" stroke-width="3" fill="none"/>' +
+    '<path d="M330 452l-12 46 22-8M430 420l-4 50 24-12" stroke-width="12" fill="none"/>' +
+    '<path d="M300 420l14-26 12 22 16-28 12 24 18-28 10 24 20-26 10 24" stroke-width="5" fill="none"/></g>' +
+    '<circle cx="606" cy="292" r="5" fill="#ffe9a0"/></g>';
+  // the floating Forge
+  h += '<g transform="translate(330 190) scale(.8)"><path d="M1010 420Q1135 398 1262 420 1234 470 1192 500 1172 560 1140 596 1120 540 1090 510 1040 480 1010 420Z" fill="url(#rock)"/><path d="M1140 596q-10-60-6-170l40 0q14 60-34 170z" fill="#2c3352" opacity=".5"/>' +
+    '<ellipse cx="1136" cy="420" rx="128" ry="15" fill="#7da577"/><ellipse cx="1110" cy="416" rx="70" ry="8" fill="#a9c98a"/>' +
+    '<rect x="1218" y="424" width="9" height="230" fill="url(#fallw)"/>' +
+    '<path d="M1106 418V296h56v122z" fill="#efe1bf"/><path d="M1140 418V296h22v122z" fill="#c9b28c"/><path d="M1094 300l40-84 40 84z" fill="#b8482e"/><path d="M1134 216l40 84h-22z" fill="#8f3320"/>' +
+    '<path d="M1166 418v-66h32v66z" fill="#e3d2ad"/><path d="M1160 354l22-44 22 44z" fill="#b8482e"/>' +
+    '<path d="M1070 418v-48h30v48z" fill="#efe1bf"/><path d="M1064 372l21-36 21 36z" fill="#1d4a80"/>' +
+    '<path d="M1134 216v-34" stroke="#3a2a24" stroke-width="2"/><path d="M1134 182l26 8-26 9z" fill="#ECD06F"/>' +
+    '<g fill="#ffe9a0" class="glow"><rect x="1118" y="322" width="9" height="15" rx="4"/><rect x="1118" y="366" width="9" height="15" rx="4"/><rect x="1144" y="344" width="8" height="14" rx="4"/><rect x="1178" y="372" width="8" height="13" rx="4"/><rect x="1081" y="386" width="8" height="12" rx="4"/></g>' +
+    '<path d="M1124 418v-20a10 10 0 0 1 20 0v20z" fill="#4a3324"/></g>';
+  // sea of clouds
+  h += '<g filter="url(#mist)">' + clouds(5, 600, 4, 12, 1600, ['#dfeaf0', '#fbeccb', '#ffffff', '#fde0bd']) + '</g>';
+  h += '<g filter="url(#mist)" opacity=".8"><ellipse cx="330" cy="520" rx="260" ry="40" fill="#e8f1f4"/><ellipse cx="1130" cy="640" rx="200" ry="34" fill="#fff"/></g>';
+  // foreground cliffs
+  h += '<g filter="url(#brush2)"><path d="M-20 920V742C110 706 250 728 372 786 470 830 548 866 640 920Z" fill="#17243a"/><path d="M-20 742C110 706 250 728 372 786" stroke="#f0a23a" stroke-width="3" fill="none" opacity=".55"/>' +
+    '<path d="M1620 920V676C1500 668 1392 700 1304 748 1200 800 1100 860 1040 920Z" fill="#17243a"/><path d="M1620 676C1500 668 1392 700 1304 748" stroke="#f6c75a" stroke-width="3" fill="none" opacity=".6"/></g>';
+  var g = '';
+  for (i = 0; i < 60; i++) { var gx = i < 26 ? r() * 380 : 1290 + r() * 320, gy = i < 26 ? 742 + (gx / 380) * 44 - Math.sin(gx / 120) * 20 : 748 - ((gx - 1290) / 320) * 70; g += '<path d="M' + gx.toFixed(0) + ' ' + (gy + 6).toFixed(0) + 'q' + (r() * 10 - 5).toFixed(0) + ' -' + (14 + r() * 16).toFixed(0) + ' ' + (r() * 16 - 8).toFixed(0) + ' -' + (20 + r() * 18).toFixed(0) + '" stroke="#1c2d44" stroke-width="3" fill="none"/>'; }
+  h += g;
+  // little wizard with lantern staff, and owl friend
+  h += '<g transform="translate(1392 618)"><circle cx="34" cy="-2" r="46" fill="url(#lamp)" class="glow"/>' +
+    '<path d="M-22 84 0 22 24 84Z" fill="#1a2440"/><path d="M-22 84 0 22 4 84Z" fill="#26365c"/><path d="M-8 30q-26 8-40 30q22-4 36-14z" fill="#b8482e"/>' +
+    '<circle cx="0" cy="16" r="10" fill="#1a2440"/><path d="M-20 14h40l-12-30q2-18 18-24q-22-4-30 22z" fill="#1d4a80"/><path d="M-24 14h48" stroke="#ECD06F" stroke-width="3"/>' + star(2, -6, 5, '#ECD06F') +
+    '<path d="M34 86V6" stroke="#3a2a24" stroke-width="4" stroke-linecap="round"/><path d="M14 44l20 -6" stroke="#1a2440" stroke-width="5" stroke-linecap="round"/><circle cx="34" cy="-2" r="8" fill="#fff3b8"/><path d="M26 -2a8 8 0 0 1 16 0" stroke="#3a2a24" stroke-width="2" fill="none"/>' +
+    '<g transform="translate(-74 -40)"><path d="M0 0q-18 -14 -34 -4q16 2 24 12zM0 0q18 -14 34 -4q-16 2 -24 12z" fill="#1a2440"/><ellipse cx="0" cy="6" rx="7" ry="9" fill="#1a2440"/><circle cx="-3" cy="3" r="1.6" fill="#ffe9a0"/><circle cx="3" cy="3" r="1.6" fill="#ffe9a0"/></g></g>';
+  // golden tree
+  h += '<g filter="url(#brush2)" fill="none" stroke="#35241f" stroke-linecap="round"><path d="M1660 640C1548 500 1530 320 1424 190" stroke-width="64"/><path d="M1508 340C1404 256 1300 226 1176 150" stroke-width="27"/><path d="M1440 208C1380 126 1300 84 1216 40" stroke-width="19"/><path d="M1304 222C1240 204 1180 220 1116 192" stroke-width="10"/><path d="M1560 420C1500 430 1470 470 1440 520" stroke-width="12"/>' +
+    '<path d="M1648 628C1560 500 1548 330 1450 206" stroke="#6b4a36" stroke-width="10" opacity=".7"/></g>';
+  var cols = ['#8f3320', '#c9482a', '#e2742f', '#f0a23a', '#f6c75a'], f = ['', '', '', '', ''];
+  for (i = 0; i < 150; i++) { var x = 860 + r() * 780, ymax = 70 + (x - 860) / 780 * 300, y = -30 + r() * r() * ymax + (x > 1380 ? r() * 140 : 0), c = Math.min(4, Math.floor(r() * 5 * (0.6 + 0.4 * (1 - y / 400)))); f[c] += '<circle cx="' + x.toFixed(0) + '" cy="' + y.toFixed(0) + '" r="' + (20 + r() * (56 - c * 8)).toFixed(0) + '"/>'; }
+  h += '<g filter="url(#brush)">' + f.map(function (s, k) { return '<g fill="' + cols[k] + '" opacity="' + (k < 2 ? 1 : 0.92) + '">' + s + '</g>'; }).join('') + '</g>';
+  // lanterns hanging in the tree
+  [[1180, 170, 70], [1300, 240, 54], [1010, 150, 60], [1470, 400, 80]].forEach(function (l, k) { h += '<path d="M' + l[0] + ' ' + l[1] + 'v' + l[2] + '" stroke="#35241f" stroke-width="2"/><circle class="glow" style="animation-delay:-' + k + 's" cx="' + l[0] + '" cy="' + (l[1] + l[2] + 8) + '" r="34" fill="url(#lamp)"/><rect x="' + (l[0] - 6) + '" y="' + (l[1] + l[2]) + '" width="12" height="16" rx="4" fill="#fff0b0" stroke="#35241f" stroke-width="2"/>'; });
+  // falling leaves and fireflies
+  for (i = 0; i < 9; i++) h += '<g class="leaf" style="animation-delay:-' + (i * 1.3).toFixed(1) + 's;animation-duration:' + (9 + r() * 6).toFixed(1) + 's;transform-origin:' + (1000 + r() * 560).toFixed(0) + 'px 200px"><path d="M' + (1000 + r() * 560).toFixed(0) + ' ' + (150 + r() * 120).toFixed(0) + 'q10 -10 20 0q-10 10 -20 0z" fill="' + cols[2 + i % 3] + '"/></g>';
+  for (i = 0; i < 26; i++) h += '<circle class="fly" style="animation-delay:-' + (r() * 4).toFixed(1) + 's" cx="' + Math.round(r() * 1600) + '" cy="' + Math.round(520 + r() * 340) + '" r="' + (1.5 + r() * 2).toFixed(1) + '" fill="#fff3b0"/>';
+  return h;
+}
+
+var OWL = '<svg viewBox="0 -6 48 54" aria-hidden="true"><ellipse cx="24" cy="29" rx="14" ry="16" fill="#5b4a6e"/><path d="M10 30q-6 6-2 14q6-4 6-12zM38 30q6 6 2 14q-6-4-6-12z" fill="#463857"/><ellipse cx="24" cy="34" rx="9" ry="10" fill="#efe1bf"/><path d="M19 32q2.5 2 5 0q2.5 2 5 0M19 37q2.5 2 5 0q2.5 2 5 0" stroke="#b9a06e" stroke-width="1.2" fill="none"/><circle cx="18" cy="23" r="6.2" fill="#fff"/><circle cx="30" cy="23" r="6.2" fill="#fff"/><circle cx="18" cy="23" r="3.3" fill="#e0a92e"/><circle cx="30" cy="23" r="3.3" fill="#e0a92e"/><circle cx="18" cy="23" r="1.6" fill="#1b2430"/><circle cx="30" cy="23" r="1.6" fill="#1b2430"/><path d="M24 25l-2.6 4.2h5.2z" fill="#f0a23a"/><ellipse cx="24" cy="13.5" rx="14" ry="3" fill="#163a66"/><path d="M14 13 34 13 27 -4q4 3 8 1q-6-6-13-2z" fill="#1d4a80"/>' + star(24, 6, 3.4, '#ECD06F') + '<path d="M19 45h4M25 45h4" stroke="#f0a23a" stroke-width="2.4" stroke-linecap="round"/></svg>';
+
+function ring(inner) { return '<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#1d3557" stroke="#ECD06F" stroke-width="3"/><circle cx="32" cy="32" r="25" fill="none" stroke="#ECD06F" stroke-width=".8" stroke-dasharray="2 3"/>' + inner + '</svg>'; }
+function sq(inner) { return '<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="2" y="2" width="60" height="60" rx="12" fill="#eef3f8" stroke="#c5d0dc" stroke-width="2"/>' + inner + '</svg>'; }
+var EMB = {
+  py: sq('<path d="M24 22 14 32l10 10M40 22l10 10-10 10M35 18 29 46" stroke="#2E5BBA" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'),
+  live: sq('<rect x="11" y="15" width="42" height="34" rx="5" fill="#1b2430"/><path d="M19 26l7 6-7 6M31 39h13" stroke="#7fe0c4" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'),
+  vague: ring('<g fill="#cfe0ea" opacity=".9"><circle cx="24" cy="34" r="9"/><circle cx="36" cy="30" r="12"/><circle cx="44" cy="38" r="7"/><rect x="18" y="34" width="30" height="10" rx="5"/></g><text x="33" y="41" text-anchor="middle" font-family="Georgia,serif" font-size="22" font-weight="700" fill="#16254a">?</text>'),
+  stats: sq('<rect x="15" y="34" width="9" height="16" rx="1.5" fill="#9db7e6"/><rect x="27.5" y="18" width="9" height="32" rx="1.5" fill="#2E5BBA"/><rect x="40" y="27" width="9" height="23" rx="1.5" fill="#9db7e6"/><path d="M11 51h42" stroke="#5d6b80" stroke-width="2.5" stroke-linecap="round"/>'),
+  much: sq('<rect x="12" y="20" width="28" height="32" rx="4" fill="#c5d0dc"/><rect x="18" y="15" width="28" height="32" rx="4" fill="#9db7e6"/><rect x="24" y="10" width="28" height="32" rx="4" fill="#2E5BBA"/><text x="38" y="32" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#fff">12</text>'),
+  dragons: ring('<path d="M16 46q6-10 16-4q10-6 16 4q-16 8-32 0z" fill="#8a5a36"/><path d="M32 12c9 0 13 14 13 21s-6 12-13 12-13-5-13-12 4-21 13-21z" fill="#6fb38a"/><path d="M24 26l4-4 4 4 4-4 4 4M22 34l5-4 5 4 5-4 5 4" stroke="#2f6b4c" stroke-width="2" fill="none"/><path d="M33 12l-3 7 5 3-3 6" stroke="#fff6c8" stroke-width="1.600" fill="none"/>'),
+};
+function fic(inner) { return '<svg viewBox="0 0 40 40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="4" fill="#16254a"/>' + inner + '</svg>'; }
+var FIC = {
+  tabs: fic('<path d="M8 12h24v20H8z" fill="#fbf3dc"/><path d="M10 6h6v6h-6z" fill="#ECD06F"/><path d="M17 6h6v6h-6z" fill="#e2742f"/><path d="M24 6h6v6h-6z" fill="#58b6d6"/><path d="M12 18h16M12 23h16M12 28h10" stroke="#9b8a66" stroke-width="1.600"/>'),
+  reveal: fic('<rect x="6" y="9" width="13" height="22" rx="2" fill="#2779a7" stroke="#ECD06F" stroke-width="1.500"/>' + star(12.5, 20, 4.5, '#ECD06F') + '<rect x="21" y="9" width="13" height="22" rx="2" fill="#fbf3dc"/><path d="M24 16h7M24 20h7M24 24h5" stroke="#9b8a66" stroke-width="1.500"/>'),
+  quiz: fic('<path d="M8 33V17a12 12 0 0 1 24 0v16z" fill="#8e94aa"/><path d="M12 33V18a8 8 0 0 1 16 0v15z" fill="#1d4a80"/><text x="20" y="29" text-anchor="middle" font-family="Georgia,serif" font-size="15" font-weight="700" fill="#ECD06F">?</text>'),
+  seq: fic('<ellipse cx="10" cy="30" rx="6" ry="3.200" fill="#a9aec2"/><ellipse cx="20" cy="22" rx="6" ry="3.200" fill="#c3c7d6"/><ellipse cx="30" cy="14" rx="6" ry="3.200" fill="#ECD06F"/><path d="M4 35q8 2 16 0t16 0" stroke="#58b6d6" stroke-width="1.600" fill="none"/>'),
+  sort: fic('<path d="M5 30q-1-9 3-12h4q4 3 3 12z" fill="#e2742f"/><path d="M15 30q-1-9 3-12h4q4 3 3 12z" fill="#58b6d6"/><path d="M25 30q-1-9 3-12h4q4 3 3 12z" fill="#6fb38a"/><path d="M7 18h6M17 18h6M27 18h6" stroke="#fbf3dc" stroke-width="2" stroke-linecap="round"/>' + star(20, 9, 4, '#ECD06F')),
+  annot: fic('<rect x="8" y="8" width="24" height="24" fill="#fbf3dc"/><rect x="11" y="17" width="12" height="4" fill="#ECD06F"/><path d="M11 13h18M11 19h18M11 25h18M11 29h10" stroke="#9b8a66" stroke-width="1.400"/><path d="M30 6l4 4-9 11-5 2 1-5z" fill="#e2742f"/>')
+};
+function seal(on, k) { return '<svg viewBox="0 0 26 26" aria-hidden="true">' + (on ? '<path d="M13 1l2.600 2.300 3.400-.500 1.200 3.200 3.200 1.200-.500 3.400L25 13l-2.300 2.600.500 3.400-3.200 1.200-1.200 3.200-3.400-.500L13 25l-2.600-2.300-3.400.500-1.200-3.200-3.200-1.200.500-3.400L1 13l2.300-2.600-.500-3.400 3.200-1.200 1.200-3.200 3.400.500z" fill="#c2452a"/><circle cx="13" cy="13" r="7" fill="#d9603f"/>' + star(13, 13, 5, '#ffe9a0') : '<circle cx="13" cy="13" r="10" fill="none" stroke="#8fa3bf" stroke-width="1.500" stroke-dasharray="3 3"/>') + '</svg>'; }
+
+function bannerArt(step) {
+  var r = rng(step * 9 + 2), h = '<svg class="banner-art" viewBox="0 0 900 150" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"><rect width="900" height="150" fill="url(#sky2)"/>';
+  for (var i = 0; i < 14; i++) h += '<circle cx="' + Math.round(r() * 420) + '" cy="' + Math.round(r() * 70) + '" r="' + (0.6 + r()).toFixed(1) + '" fill="#fff" opacity=".7"/>';
+  h += '<circle cx="760" cy="120" r="150" fill="url(#sun)"/><path d="M0 120 90 84 150 104 240 66 330 108 430 88 520 118 900 110V150H0Z" fill="#6f97b6" opacity=".5"/>';
+  h += '<g filter="url(#mist)" opacity=".85">' + clouds(step + 20, 112, 1, 9, 900, ['#fff', '#fbeccb', '#dfeaf0']) + '</g>';
+  var p = '';
+  if (step === 1) p = '<rect x="-80" y="-34" width="9" height="100" fill="#4a3324"/><rect x="71" y="-34" width="9" height="100" fill="#4a3324"/><rect x="-94" y="-46" width="188" height="74" rx="4" fill="#7a5235" stroke="#3a2618" stroke-width="3"/><path d="M-104 -46 0 -74 104 -46Z" fill="#b8482e"/>' +
+    [[-62, -8], [-10, 5], [42, -6]].map(function (n, k) { return '<g transform="translate(' + n[0] + ' -8) rotate(' + n[1] + ')"><rect x="-20" y="-26" width="40" height="46" fill="#fbf3dc"/><path d="M-14 -14h28M-14 -6h28M-14 2h18" stroke="#9b8a66" stroke-width="2"/><circle cx="0" cy="-26" r="3.500" fill="' + ['#d9622b', '#2779a7', '#1f6b4e'][k] + '"/>' + (k === 1 ? star(10, 12, 6, '#e0a92e') : '') + '</g>'; }).join('') +
+    '<path d="M104 -46v22" stroke="#3a2618" stroke-width="2"/><circle cx="104" cy="-14" r="26" fill="url(#lamp)" class="glow"/><rect x="98" y="-24" width="12" height="16" rx="4" fill="#fff0b0" stroke="#3a2618" stroke-width="2"/>';
+  if (step === 2) p = '<circle cx="0" cy="-10" r="70" fill="url(#lamp)" class="glow"/><path d="M-34 62h68l-12-26h-44z" fill="#4a3324"/><path d="M-26 38q26 12 52 0l-6-10h-40z" fill="#b8922e"/><circle cx="0" cy="-6" r="38" fill="url(#orb)" stroke="#ECD06F" stroke-width="2"/><path d="M-22 -18q8-14 24-16" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" opacity=".8"/>' + star(-64, -34, 9, '#fff6c8', 'fly') + star(62, -44, 7, '#fff6c8', 'fly') + star(78, 8, 5, '#fff6c8', 'fly') + star(-80, 14, 5, '#fff6c8', 'fly') + star(6, 0, 10, '#fff');
+  if (step === 3) p = '<path d="M-84 56q42-18 84 0q42-18 84 0V-12q-42-18-84 0q-42-18-84 0z" fill="#7a2f20"/><path d="M-76 46q38-16 76 0V-16q-38-16-76 0z" fill="#fbf3dc"/><path d="M76 46q-38-16-76 0V-16q38-16 76 0z" fill="#f3e6bf"/><path d="M-64 -4q26-8 52 0M-64 10q26-8 52 0M-64 24q26-8 52 0M12 -4q26-8 52 0M12 10q26-8 52 0" stroke="#9b8a66" stroke-width="2" fill="none"/><path d="M28 26q30-50 66-84q-4 44-52 88z" fill="#58b6d6" stroke="#16254a" stroke-width="1.500"/><path d="M28 30 92 -56" stroke="#16254a" stroke-width="1.500"/>' + star(-30, -44, 8, '#ECD06F', 'fly') + star(8, -58, 6, '#fff6c8', 'fly') + star(-66, -36, 5, '#fff6c8', 'fly');
+  if (step === 4) p = '<path d="M-40 -6 0 -90 40 -6Z" fill="url(#lamp)" opacity=".9" class="glow"/><path d="M-62 -4h124v64H-62z" fill="#7a5235" stroke="#3a2618" stroke-width="3"/><path d="M-62 14h124M-30 -4v64M30 -4v64" stroke="#b8922e" stroke-width="5"/><path d="M-62 -4q8-40 62-46q54 6 62 46z" fill="#5d3d27" stroke="#3a2618" stroke-width="3" transform="rotate(-32 -62 -4)"/><rect x="-8" y="8" width="16" height="14" rx="2" fill="#ECD06F"/><g transform="translate(26 -44) rotate(14)"><rect x="-22" y="-12" width="44" height="26" fill="#fbf3dc"/><ellipse cx="-22" cy="1" rx="4" ry="13" fill="#d9c48c"/><ellipse cx="22" cy="1" rx="4" ry="13" fill="#d9c48c"/><circle cx="0" cy="2" r="7" fill="#c2452a"/></g>' + star(-30, -60, 7, '#fff6c8', 'fly') + star(64, -66, 6, '#fff6c8', 'fly');
+  return h + '<g transform="translate(740 78)">' + p + '</g></svg>';
+}
+
+/* =====================================================================
+   THE GENERATOR (same engine as the original demo, new world)
+   ===================================================================== */
+var FMT = { tabs: ['Tome of Tabs', 'Tabbed explorer'], reveal: ['Reveal Runes', 'Click-to-reveal'], quiz: ['Riddle Gate', 'Inline quiz'], seq: ['Stepping Stones', 'Sequencing'], sort: ['Sorting Satchels', 'Drag-to-classify'], annot: ['Glossed Scroll', 'Annotated text'] };
+var ORDER = ['tabs', 'reveal', 'quiz', 'seq', 'sort', 'annot'];
+var LEVEL = { best: 'Best fit', good: 'Good fit', weak: 'Weak fit' };
+var RANKS = ['Apprentice', 'Apprentice', 'Journeyman', 'Journeyman', 'Artisan', 'Artisan', 'Loremaster'];
+
+var SC = [
+ { id: 'py', kind: 'rec', tag: 'Recommendation', title: 'Python: put code lines in order', course: 'Intro to Python',
+   request: 'In my intro Python course, learners can write single lines but mix up the order of a short program. I want them to practice putting the lines of a program that averages test scores into a working order.',
+   rec: 'seq', rationale: 'The goal is putting steps into a working order, so Sequencing fits. The app works out the true order first: a value has to exist before a later line can use it.',
+   fit: { seq: ['best', 'Procedural understanding', 'Learners rebuild a working order, which is exactly the skill they’re missing.'], quiz: ['good', 'Checking reasoning', 'Tests why the order matters, without building it.'], annot: ['good', 'Code reading', 'Explains each line, but learners only read. Good as a follow-up.'], sort: ['weak', 'Categorizing', 'Sorting lines by role is possible, but it doesn’t practice order.'], reveal: ['weak', 'Recall', 'Hides each line’s purpose. Better for terms than for order.'], tabs: ['weak', 'Comparison', 'Tabs show one line at a time, which hides the order.'] },
+   content: { title: 'Put the program in order', intro: 'This program averages three test scores. Put the lines in an order that would run.', code: true,
+     cats: ['Creates a value', 'Uses values to make a new one', 'Shows a result'],
+     items: [
+       { label: 'scores = [88, 92, 79]', detail: 'Creates a list of three scores. Everything else depends on it, so it comes first.', cat: 0 },
+       { label: 'total = sum(scores)', detail: 'Adds the scores. It needs the list to exist already.', cat: 1 },
+       { label: 'average = total / len(scores)', detail: 'Divides the total by the number of scores. It needs total.', cat: 1 },
+       { label: 'print(round(average, 1))', detail: 'Shows the result, rounded to one decimal place. It runs last because it needs average.', cat: 2 } ],
+     quiz: [
+       { q: 'Why does total = sum(scores) have to come before the average line?', options: ['The average line uses total, so total has to exist first', 'Python always runs sum() first', 'Lines with sum() must come second'], answer: 0, feedback: 'Each line can only use values created above it.' },
+       { q: 'What would happen if print(round(average, 1)) ran first?', options: ['It would print 0', 'Python would show an error, because average doesn’t exist yet', 'It would wait until average exists'], answer: 1, feedback: 'Python runs top to bottom, so a name has to be created before it’s used.' } ],
+     annot: [ { t: 'scores = [88, 92, 79]', note: 'A list: one name holding several values.' }, '\n', { t: 'total = sum(scores)', note: 'sum() adds every value in the list.' }, '\n', { t: 'average = total / len(scores)', note: 'len() counts the items, so this works for any number of scores.' }, '\n', { t: 'print(round(average, 1))', note: 'round(x, 1) keeps one decimal place before printing.' } ] } },
+ { id: 'stats', kind: 'rec', tag: 'Recommendation', title: 'Statistics: choosing the right test', course: 'Intro to Statistics',
+   request: 'Learners in my intro statistics course can define each test, but they freeze when they have to choose one. I want them to practice picking the right test for a research question.',
+   rec: 'sort', rationale: 'The goal is deciding which category a new case belongs to, so Drag-to-classify fits. Learners apply the rules to fresh questions instead of rereading definitions.',
+   fit: { sort: ['best', 'Applying a framework', 'Learners choose a test for new questions, which is exactly where they freeze.'], quiz: ['good', 'Checking application', 'Works well for a few quick checks after the reading.'], annot: ['good', 'Decision rules', 'Walks through the choosing logic, but learners don’t practice choosing.'], tabs: ['good', 'Comparison', 'Lets learners compare tests side by side, but they still don’t choose one.'], reveal: ['weak', 'Recall', 'Learners can already define the tests, so recall isn’t the gap.'], seq: ['weak', 'Procedural understanding', 'The tests have no fixed order, so sequencing would be forced.'] },
+   content: { title: 'Which test fits?', intro: 'Sort each research question under the test you would use.',
+     cats: ['Two-sample t-test', 'ANOVA', 'Chi-square test', 'Correlation'],
+     items: [
+       { label: 'Two-sample t-test', detail: 'Compares the means of two groups when the outcome is a number, like a score or a time.' },
+       { label: 'ANOVA', detail: 'Compares the means of three or more groups.' },
+       { label: 'Chi-square test', detail: 'Checks whether two categorical variables are related, like major and preferred study method.' },
+       { label: 'Correlation', detail: 'Measures how strongly two numeric variables move together.' } ],
+     sortCards: [
+       { text: 'Do online and in-person students differ in average exam score?', cat: 0 },
+       { text: 'Does average sleep differ across first-, second-, and third-year students?', cat: 1 },
+       { text: 'Is major related to whether students prefer morning or evening classes?', cat: 2 },
+       { text: 'Do hours studied and exam score rise together?', cat: 3 },
+       { text: 'Do three teaching methods produce different average quiz scores?', cat: 1 },
+       { text: 'Is owning a car (yes or no) related to where students live?', cat: 2 } ],
+     quiz: [
+       { q: 'A researcher compares average reaction time for two groups. Which test fits?', options: ['Chi-square test', 'Two-sample t-test', 'Correlation'], answer: 1, feedback: 'Two groups and a numeric outcome point to a t-test.' },
+       { q: 'Both variables are categories, such as major and housing type. Which test fits?', options: ['ANOVA', 'Correlation', 'Chi-square test'], answer: 2, feedback: 'A chi-square test checks whether two categorical variables are related.' } ],
+     annot: [ 'Start with the outcome. If it’s a ', { t: 'number', note: 'Scores, times, and amounts. Points to a t-test, ANOVA, or correlation.' }, ', count the groups: two groups means a ', { t: 't-test', note: 'Compares two group means.' }, ', and three or more means ', { t: 'ANOVA', note: 'Compares three or more group means at once.' }, '. If both variables are numbers, use a ', { t: 'correlation', note: 'Measures how two numeric variables move together.' }, '. If both are ', { t: 'categories', note: 'Labels like major or yes/no. Points to a chi-square test.' }, ', use a chi-square test.' ] } },
+ { id: 'dragons', kind: 'rec', fun: true, tag: 'Quest', title: 'Tell four dragons apart', course: 'Dragon Studies',
+   request: 'My dragon studies scroll describes four kinds of dragon in one long paragraph, and my students keep mixing them up. I want them to compare the four side by side: where each one lives, what it breathes, and how to stay on its good side.',
+   rec: 'tabs', rationale: 'The goal is comparing things of the same kind, so Tome of Tabs fits. Each dragon gets the same three facts in the same order, so the differences stand out.',
+   fit: { tabs: ['best', 'Comparison', 'Each dragon gets the same facts in the same order, so differences are easy to spot.'], reveal: ['good', 'Recall', 'Good for practice once students have compared the four.'], sort: ['good', 'Grouping', 'Sorting dragons by lair shows one pattern, but leaves out the rest.'], quiz: ['good', 'Checking understanding', 'A few quick checks work well after the comparison.'], annot: ['good', 'Reading in context', 'Defines each dragon inside a short passage, but they’re harder to compare.'], seq: ['weak', 'Doing steps in order', 'The dragons have no order, so stepping stones would be forced. Dragons also dislike queues.'] },
+   content: { title: 'Four dragons, side by side', intro: 'Open each tab to compare where a dragon lives, what it breathes, and how to stay on its good side.',
+     cats: ['Hot lairs', 'High, cold lairs', 'Damp lairs'],
+     items: [
+       { label: 'Ember drake', detail: 'Lives in volcano vents. Breathes fire. Offer it a warm rock and it will purr like a kettle.', cat: 0 },
+       { label: 'Frost wyrm', detail: 'Lives on glacier peaks. Breathes freezing mist. Never wake it before noon.', cat: 1 },
+       { label: 'Marsh wyvern', detail: 'Lives in foggy bogs. Breathes stinging spores. Bring a shiny button and it will let you pass.', cat: 2 },
+       { label: 'Storm serpent', detail: 'Lives in thunderclouds. Breathes lightning. Compliment its scales, loudly, over the thunder.', cat: 1 } ],
+     quiz: [
+       { q: 'Which dragon would you expect to meet inside a thundercloud?', options: ['Marsh wyvern', 'Storm serpent', 'Ember drake'], answer: 1, feedback: 'Storm serpents nest in thunderclouds and breathe lightning.' },
+       { q: 'You have a shiny button. Which dragon will it win over?', options: ['Marsh wyvern', 'Frost wyrm', 'Storm serpent'], answer: 0, feedback: 'Marsh wyverns collect shiny things and will let you pass for one.' } ],
+     annot: ['If the air smells of smoke, look for an ', { t: 'ember drake', note: 'Lives in volcano vents and breathes fire. Fond of warm rocks.' }, '. On a glacier, tiptoe past the ', { t: 'frost wyrm', note: 'Breathes freezing mist. Grumpy before noon.' }, '. In a foggy bog, a ', { t: 'marsh wyvern', note: 'Breathes stinging spores. Loves shiny buttons.' }, ' may be watching, and when thunder rolls, a ', { t: 'storm serpent', note: 'Lives in thunderclouds and breathes lightning. Enjoys compliments.' }, ' is probably showing off.'] } },
+ { id: 'live', kind: 'out', tag: 'Out of scope', title: 'Out of scope: a live coding environment', course: 'Intro to Python',
+   request: 'Our sponsor wants learners to write and run their own Python loops right inside the reading, and see the output.',
+   banner: ['This request is outside what the app can build.', 'A live coding environment has to run learner code, which an activity inside a reading can’t do. Here’s the closest format that serves the same goal.'],
+   rec: 'annot', rationale: 'Annotated code is the closest fit. Learners read a working loop part by part, and a short quiz could then ask them to predict its output.',
+   fit: { annot: ['best', 'Code reading', 'Explains real code in place. Closest to the goal without running code.'], quiz: ['good', 'Predicting output', 'Asking learners to predict the output is a strong second step.'], seq: ['good', 'Procedural understanding', 'Rebuilding the loop line by line checks its structure.'], sort: ['weak', 'Categorizing', 'Three lines are too few to sort in a meaningful way.'], reveal: ['weak', 'Recall', 'Hiding each line’s purpose doesn’t build reading skill.'], tabs: ['weak', 'Comparison', 'Splitting a loop into tabs breaks it apart.'] },
+   content: { title: 'Read the loop', intro: 'Select each highlighted part of the loop to see what it does.', code: true,
+     cats: ['Controls the loop', 'Runs each time'],
+     items: [
+       { label: 'for n in range(1, 4):', detail: 'Repeats the indented lines once for each number: 1, 2, then 3.', cat: 0 },
+       { label: 'square = n * n', detail: 'Multiplies the current number by itself.', cat: 1 },
+       { label: 'print(n, square)', detail: 'Prints the number and its square on one line.', cat: 1 } ],
+     quiz: [
+       { q: 'What is the last line this loop prints?', options: ['3 9', '4 16', '2 4'], answer: 0, feedback: 'range(1, 4) stops before 4, so the last value of n is 3.' },
+       { q: 'How many times does print run?', options: ['Once', 'Three times', 'Four times'], answer: 1, feedback: 'Once for each value of n: 1, 2, and 3.' } ],
+     annot: [ { t: 'for', note: 'Starts a loop that repeats the indented lines.' }, ' n ', { t: 'in range(1, 4)', note: 'Gives n the values 1, 2, and 3. The stop value, 4, isn’t included.' }, ':\n    square = ', { t: 'n * n', note: 'Multiplies the current number by itself.' }, '\n    ', { t: 'print(n, square)', note: 'Prints both values each time through: 1 1, then 2 4, then 3 9.' } ] } },
+ { id: 'much', kind: 'much', tag: 'Too much content', title: 'Too much: all 12 cranial nerves', course: 'Anatomy',
+   request: 'I want reveal cards for all 12 cranial nerves, each with its name, number, and function, so learners can memorize them.',
+   banner: ['This is too much for one activity.', 'Click-to-reveal has a six-card limit, and you asked for 12. That’s a lot for learners to hold at once. Try splitting them into two activities of six, in nerve order.'],
+   rec: 'reveal', rationale: 'Recall of names and functions is the goal, so Click-to-reveal fits. Two sets of six keep each activity manageable.',
+   fit: { reveal: ['best', 'Recall', 'Learners try to remember each nerve’s function before revealing it.'], sort: ['good', 'Categorizing', 'Sorting nerves as sensory, motor, or both builds a useful pattern.'], quiz: ['good', 'Retrieval practice', 'A few quick checks work well after the cards.'], annot: ['good', 'Clinical context', 'Ties nerves to a quick exam, which helps the meaning stick.'], tabs: ['weak', 'Comparison', 'Six tabs is past the five-tab limit, and recall is the goal, not comparison.'], seq: ['weak', 'Procedural understanding', 'The nerves are numbered, but memorizing the order isn’t the goal.'] },
+   parts: [
+     { title: 'Cranial nerves I to VI', intro: 'Name each nerve’s job, then select the card to check.', cats: ['Sensory', 'Motor', 'Both'],
+       items: [
+         { label: 'I. Olfactory', detail: 'Carries the sense of smell.', cat: 0 },
+         { label: 'II. Optic', detail: 'Carries vision from the eye to the brain.', cat: 0 },
+         { label: 'III. Oculomotor', detail: 'Moves most eye muscles and narrows the pupil.', cat: 1 },
+         { label: 'IV. Trochlear', detail: 'Moves the eye down and inward.', cat: 1 },
+         { label: 'V. Trigeminal', detail: 'Senses touch on the face and controls chewing.', cat: 2 },
+         { label: 'VI. Abducens', detail: 'Moves the eye outward.', cat: 1 } ],
+       quiz: [
+         { q: 'Which nerve narrows the pupil?', options: ['Optic (II)', 'Oculomotor (III)', 'Abducens (VI)'], answer: 1, feedback: 'The optic nerve senses the light, and the oculomotor nerve narrows the pupil.' },
+         { q: 'Which of these nerves is both sensory and motor?', options: ['Trigeminal (V)', 'Olfactory (I)', 'Trochlear (IV)'], answer: 0, feedback: 'The trigeminal nerve senses touch on the face and controls chewing.' } ],
+       annot: [ 'When a doctor shines a light in your eye, the ', { t: 'optic nerve', note: 'Cranial nerve II. Carries what the eye sees to the brain.' }, ' carries the signal in, and the ', { t: 'oculomotor nerve', note: 'Cranial nerve III. Narrows the pupil and moves most eye muscles.' }, ' narrows the pupil. Following a moving finger also tests the ', { t: 'trochlear', note: 'Cranial nerve IV. Moves the eye down and inward.' }, ' and ', { t: 'abducens', note: 'Cranial nerve VI. Moves the eye outward.' }, ' nerves.' ] },
+     { title: 'Cranial nerves VII to XII', intro: 'Name each nerve’s job, then select the card to check.', cats: ['Sensory', 'Motor', 'Both'],
+       items: [
+         { label: 'VII. Facial', detail: 'Controls facial expression and carries taste from the front of the tongue.', cat: 2 },
+         { label: 'VIII. Vestibulocochlear', detail: 'Carries hearing and balance.', cat: 0 },
+         { label: 'IX. Glossopharyngeal', detail: 'Carries taste from the back of the tongue and helps with swallowing.', cat: 2 },
+         { label: 'X. Vagus', detail: 'Helps control the heart, lungs, and digestion.', cat: 2 },
+         { label: 'XI. Accessory', detail: 'Moves the neck and shoulders.', cat: 1 },
+         { label: 'XII. Hypoglossal', detail: 'Moves the tongue.', cat: 1 } ],
+       quiz: [
+         { q: 'Which nerve carries hearing and balance?', options: ['Facial (VII)', 'Vestibulocochlear (VIII)', 'Hypoglossal (XII)'], answer: 1, feedback: 'Its name joins vestibular (balance) and cochlear (hearing).' },
+         { q: 'Which nerve moves the tongue?', options: ['Hypoglossal (XII)', 'Vagus (X)', 'Accessory (XI)'], answer: 0, feedback: 'Hypoglossal means “under the tongue.”' } ],
+       annot: [ 'Asking a patient to smile tests the ', { t: 'facial nerve', note: 'Cranial nerve VII. Controls facial expression.' }, '. Saying “ah” tests the ', { t: 'glossopharyngeal', note: 'Cranial nerve IX. Helps with swallowing and taste.' }, ' and ', { t: 'vagus', note: 'Cranial nerve X. Raises the soft palate and helps control the heart, lungs, and digestion.' }, ' nerves, and sticking out the tongue tests the ', { t: 'hypoglossal nerve', note: 'Cranial nerve XII. Moves the tongue.' }, '.' ] } ] },
+ { id: 'vague', kind: 'vague', fun: true, tag: 'Too vague', title: '“Make it more magical”', course: 'Any course',
+   request: 'Can you make this scroll more magical?',
+   banner: ['The Forge needs a little more to go on.', 'I can’t tell the topic or what students should be able to do, so let me ask two quick questions instead of guessing.'] },
+ { id: 'potion', kind: 'rec', fun: true, hidden: true,
+   rec: 'seq', rationale: 'The goal is putting steps into a working order, so Stepping Stones fits.',
+   fit: { seq: ['best', 'Doing steps in order', 'Students rebuild the working order, which is exactly the skill they need.'], quiz: ['good', 'Checking reasoning', 'Tests why the order matters, without brewing anything.'], annot: ['good', 'Reading a recipe', 'Explains each step in place, but students only read.'], sort: ['good', 'Grouping', 'Sorting steps by purpose shows the shape of the recipe.'], reveal: ['good', 'Recall', 'Good for remembering what each step is for.'], tabs: ['weak', 'Comparison', 'Tabs show one step at a time, which hides the order.'] },
+   content: { title: 'Brew a mending potion', intro: 'Put the steps in an order that would brew a working potion.',
+     cats: ['Readies the cauldron', 'Adds the magic', 'Finishes the potion'],
+     items: [
+       { label: 'Light the fire under the cauldron', detail: 'Nothing steeps in cold water, so the fire comes first.', cat: 0 },
+       { label: 'Bring spring water to a simmer', detail: 'The water has to be hot before the herbs go in.', cat: 0 },
+       { label: 'Stir in three sprigs of silverleaf', detail: 'Silverleaf needs simmering water to release its glow.', cat: 1 },
+       { label: 'Add one drop of moonpetal dew', detail: 'The dew binds to the silverleaf, so it goes in after.', cat: 1 },
+       { label: 'Cool, then bottle and cork', detail: 'Bottling comes last. Hot potion cracks glass.', cat: 2 } ],
+     quiz: [
+       { q: 'Why does the silverleaf go in after the water simmers?', options: ['Silverleaf only releases its glow in simmering water', 'Silverleaf is always the third ingredient', 'The cauldron prefers it that way'], answer: 0, feedback: 'Each step sets up the one after it. In cold water, silverleaf is just salad.' },
+       { q: 'What could happen if you bottled the potion before cooling it?', options: ['Nothing at all', 'The hot potion could crack the glass', 'It would turn into soup'], answer: 1, feedback: 'Cooling comes before bottling, so the bottle survives.' } ],
+     annot: ['First, ', { t: 'light the fire', note: 'Heat comes first. Nothing steeps in cold water.' }, ' and bring spring water to ', { t: 'a simmer', note: 'Small, lazy bubbles. A rolling boil would scorch the leaves.' }, '. Stir in the ', { t: 'silverleaf', note: 'A glowing herb that gives the potion its mending power.' }, ', then add one drop of ', { t: 'moonpetal dew', note: 'Binds the magic to the water. One drop only. Two causes hiccups.' }, '. Let it cool before you ', { t: 'bottle and cork', note: 'Always last. Hot potion cracks glass.' }, ' it.'] } },
+ { id: 'soothe', kind: 'rec', fun: true, hidden: true,
+   rec: 'annot', rationale: 'A Glossed Scroll is the closest fit. Students read a real soothing routine part by part, and a short riddle could then ask what to do next.',
+   fit: { annot: ['best', 'Reading in context', 'Explains a real routine in place. Closest to the goal without a real dragon.'], quiz: ['good', 'Predicting what’s next', 'Asking students what to do next is a strong second step.'], seq: ['good', 'Doing steps in order', 'Rebuilding the routine checks that students know what comes first.'], sort: ['weak', 'Grouping', 'Four steps are too few to sort in a meaningful way.'], reveal: ['weak', 'Recall', 'Hiding each step doesn’t build the judgment students need.'], tabs: ['weak', 'Comparison', 'Splitting one routine across tabs breaks it apart.'] },
+   content: { title: 'Soothe a dragon, step by step', intro: 'Select each highlighted part of the field guide to see why it matters.',
+     cats: ['Before you approach', 'As you approach'],
+     items: [
+       { label: 'Check which way the wind is blowing', detail: 'Approach from downwind, so smoke and sparks blow away from you.', cat: 0 },
+       { label: 'Leave your shiny armor behind', detail: 'Glare makes a dragon squint, and a squinting dragon is a cranky dragon.', cat: 0 },
+       { label: 'Walk slowly and hum a low tune', detail: 'Low sounds calm dragons. High notes sound like a challenge.', cat: 1 },
+       { label: 'Offer a warm rock with both hands', detail: 'A gift shows you came in peace. Both hands show you hold no sword.', cat: 1 } ],
+     quiz: [
+       { q: 'Why approach a dragon from downwind?', options: ['So the dragon can’t smell you', 'So smoke and sparks blow away from you', 'So your hat stays on'], answer: 1, feedback: 'Downwind keeps anything the dragon breathes headed the other way.' },
+       { q: 'Which sound calms a dragon?', options: ['A low hum', 'A high whistle', 'A loud cheer'], answer: 0, feedback: 'Low sounds are calming. High notes sound like a challenge.' } ],
+     annot: ['Before you set out, ', { t: 'check the wind', note: 'Approach from downwind, so smoke and sparks blow away from you.' }, ' and ', { t: 'leave shiny armor behind', note: 'Glare makes a dragon squint, and squinting makes it cranky.' }, '. As you draw near, ', { t: 'walk slowly and hum low', note: 'Low sounds are calming. High notes sound like a challenge.' }, '. Then ', { t: 'offer a warm rock', note: 'Use both hands, so the dragon can see you hold no sword.' }, ' and wait for the purr.'] } }
+];
+var TOPICS = [['potion', 'Brewing a mending potion'], ['soothe', 'Soothing a grumpy dragon']];
+var GOALS = [['seq', 'Put steps in order'], ['sort', 'Tell similar things apart'], ['reveal', 'Remember key terms']];
+
+var S = { step: 1, pick: null, sc: null, analyzing: false, fmt: null, rec: null, recText: '', split: false, part: 0, contents: null, vq: { topic: null, goal: null }, resolved: false, showCode: false, visited: 1, seals: [] };
+try { S.seals = JSON.parse(localStorage.getItem('quest-forge-seals') || '[]').filter(function (id) { return !!byId(id); }); } catch (e) {}
+var app = document.getElementById('app');
+
+function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+function clone(o) { return JSON.parse(JSON.stringify(o)); }
+function byId(id) { for (var i = 0; i < SC.length; i++) if (SC[i].id === id) return SC[i]; }
+function C() { return S.contents[S.part]; }
+function shuffle(n) { var a = []; for (var i = 0; i < n; i++) a.push(i); a.sort(function (x, y) { return ((x * 7 + 3) % 11) - ((y * 7 + 3) % 11); }); var same = a.every(function (v, i) { return v === i; }); return same ? a.reverse() : a; }
+function cards(c) { return c.sortCards ? c.sortCards.map(function (k) { return { o: k, key: 'text', text: k.text, cat: k.cat }; }) : c.items.map(function (k) { return { o: k, key: 'label', text: k.label, cat: k.cat }; }); }
+
+/* ---------- activity runtimes (shipped inside the export) ---------- */
+function rtTabs(d) {
+  var tabs = [].slice.call(d.querySelectorAll('[role="tab"]'));
+  function pick(k, focus) { tabs.forEach(function (t, i) { var on = i === k; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; d.getElementById(t.getAttribute('aria-controls')).hidden = !on; }); if (focus) tabs[k].focus(); }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { pick(i); });
+    t.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') { e.preventDefault(); pick((i + 1) % tabs.length, true); } if (e.key === 'ArrowLeft') { e.preventDefault(); pick((i - 1 + tabs.length) % tabs.length, true); } });
+  });
+}
+function rtReveal(d) {
+  [].forEach.call(d.querySelectorAll('.card'), function (c) {
+    c.addEventListener('click', function () { var open = c.getAttribute('aria-expanded') !== 'true'; c.setAttribute('aria-expanded', open); c.querySelector('.b').hidden = !open; c.querySelector('.hint').textContent = open ? 'Hide' : 'Show answer'; });
+  });
+}
+function rtQuiz(d) {
+  [].forEach.call(d.querySelectorAll('.q'), function (q) {
+    var fb = q.querySelector('.fb');
+    q.querySelector('.chk').addEventListener('click', function () {
+      var c = q.querySelector('input:checked');
+      if (!c) { fb.textContent = 'Choose an answer first.'; fb.className = 'fb'; return; }
+      var ok = c.value === q.getAttribute('data-a');
+      fb.textContent = (ok ? 'Correct. ' : 'Not quite. ') + q.getAttribute('data-fb');
+      fb.className = 'fb ' + (ok ? 'ok' : 'no');
+    });
+  });
+}
+function rtSeq(d) {
+  var slots = [].slice.call(d.querySelectorAll('.slot')), pool = d.querySelector('.pool'), fb = d.querySelector('.fb');
+  function reset() { fb.textContent = ''; fb.className = 'fb'; slots.forEach(function (s) { s.classList.remove('ok', 'no'); }); }
+  [].forEach.call(pool.querySelectorAll('.chip'), function (b) {
+    b.addEventListener('click', function () {
+      var s = slots.filter(function (x) { return !x.getAttribute('data-i'); })[0]; if (!s) return;
+      s.setAttribute('data-i', b.getAttribute('data-i')); s.textContent = b.textContent; s.classList.add('full'); b.hidden = true; reset();
+    });
+  });
+  slots.forEach(function (s) {
+    s.addEventListener('click', function () {
+      var i = s.getAttribute('data-i'); if (!i) return;
+      pool.querySelector('[data-i="' + i + '"]').hidden = false; s.removeAttribute('data-i'); s.textContent = 'Empty'; s.classList.remove('full'); reset();
+    });
+  });
+  d.querySelector('.chk').addEventListener('click', function () {
+    if (!slots.every(function (s) { return s.getAttribute('data-i'); })) { fb.textContent = 'Place every step first.'; fb.className = 'fb'; return; }
+    var n = 0; slots.forEach(function (s, k) { var ok = +s.getAttribute('data-i') === k; s.classList.add(ok ? 'ok' : 'no'); if (ok) n++; });
+    fb.textContent = n === slots.length ? 'All in the right order.' : n + ' of ' + slots.length + ' in the right place. Select a step to move it back, then try again.';
+    fb.className = 'fb ' + (n === slots.length ? 'ok' : 'no');
+  });
+  d.querySelector('.rst').addEventListener('click', function () { slots.forEach(function (s) { if (s.getAttribute('data-i')) s.click(); }); });
+}
+function rtSort(d) {
+  var sel = null, fb = d.querySelector('.fb'), pool = d.querySelector('.pool');
+  function reset() { fb.textContent = ''; fb.className = 'fb'; [].forEach.call(d.querySelectorAll('.chip'), function (c) { c.classList.remove('ok', 'no'); }); }
+  [].forEach.call(d.querySelectorAll('.chip'), function (c) {
+    c.addEventListener('click', function () {
+      if (c.parentNode !== pool) { pool.appendChild(c); reset(); return; }
+      if (sel) sel.setAttribute('aria-pressed', 'false');
+      sel = sel === c ? null : c; if (sel) sel.setAttribute('aria-pressed', 'true');
+    });
+  });
+  [].forEach.call(d.querySelectorAll('.bin-h'), function (h) {
+    h.addEventListener('click', function () {
+      if (!sel) { fb.textContent = 'Select a card first, then a category.'; fb.className = 'fb'; return; }
+      h.parentNode.querySelector('.drop').appendChild(sel); sel.setAttribute('aria-pressed', 'false'); sel = null; reset();
+    });
+  });
+  d.querySelector('.chk').addEventListener('click', function () {
+    var all = d.querySelectorAll('.chip'), n = 0, placed = 0;
+    [].forEach.call(all, function (c) { var bin = c.closest('.bin'); if (!bin) return; placed++; var ok = bin.getAttribute('data-c') === c.getAttribute('data-c'); c.classList.add(ok ? 'ok' : 'no'); if (ok) n++; });
+    if (placed < all.length) { fb.textContent = 'Place every card first.'; fb.className = 'fb'; return; }
+    fb.textContent = n === all.length ? 'All sorted correctly.' : n + ' of ' + all.length + ' correct. Select a card to move it back.';
+    fb.className = 'fb ' + (n === all.length ? 'ok' : 'no');
+  });
+}
+function rtAnnot(d) {
+  var note = d.querySelector('.note'), terms = d.querySelectorAll('.term');
+  [].forEach.call(terms, function (t) {
+    t.addEventListener('click', function () {
+      [].forEach.call(terms, function (o) { o.setAttribute('aria-expanded', o === t); });
+      note.textContent = ''; var b = d.createElement('strong'); b.textContent = t.textContent.trim() + ': '; note.appendChild(b); note.appendChild(d.createTextNode(t.getAttribute('data-note')));
+    });
+  });
+}
+var RT = { tabs: rtTabs, reveal: rtReveal, quiz: rtQuiz, seq: rtSeq, sort: rtSort, annot: rtAnnot };
+
+var CSS_FUN = '.ig{font:16px/1.55 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;color:#2a2438;max-width:720px}' +
+ '.ig h3{margin:0 0 4px;font-size:21px;font-weight:700;color:#16254a}.ig .i{margin:0 0 14px;color:#5a5068}' +
+ '.ig button{font:inherit;cursor:pointer;color:inherit}.ig button:focus-visible,.ig input:focus-visible{outline:3px solid #d9622b;outline-offset:2px}' +
+ '.ig .btn{border:1px solid #1c5a82;background:#1c5a82;color:#fff;border-radius:4px;padding:8px 14px;font-weight:700}.ig .btn.s{background:#fffaf0;color:#1c5a82}' +
+ '.ig .row{display:flex;gap:8px;flex-wrap:wrap}.ig .fb{margin:10px 0 0;font-size:15px;min-height:1.2em;font-weight:700}.ig .fb.ok{color:#1f6b4e}.ig .fb.no{color:#a03a12}' +
+ '.ig .tabs{display:flex;flex-wrap:wrap;gap:2px;border-bottom:1px solid #d9c48c}.ig [role=tab]{border:0;background:none;padding:9px 12px;color:#5a5068;border-bottom:3px solid transparent;margin-bottom:-1px}.ig [role=tab][aria-selected=true]{color:#16254a;border-bottom-color:#b8922e;font-weight:700}.ig [role=tabpanel]{padding:14px 2px}.ig [role=tabpanel] p{margin:0}' +
+ '.ig .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}.ig .card{text-align:left;border:1px solid #d9c48c;background:#fffaf0;border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:6px;min-height:100px}.ig .card[aria-expanded=true]{background:#eef5f8;border-color:#2779a7}.ig .card .f{font-weight:700;color:#16254a}.ig .card .hint{font-size:14px;color:#1c5a82;margin-top:auto}' +
+ '.ig .q{border:1px solid #d9c48c;border-radius:6px;padding:12px 14px;margin:0 0 12px;background:#fffaf0}.ig legend{font-weight:700;padding:0 4px;color:#16254a}.ig label{display:flex;gap:8px;align-items:flex-start;padding:4px 0}.ig label input{margin-top:6px}' +
+ '.ig .slots{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:6px}.ig .slots li{display:flex;gap:10px;align-items:center}.ig .n{width:28px;height:28px;border-radius:50%;background:#16254a;color:#ECD06F;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex:none}' +
+ '.ig .slot{flex:1;text-align:left;border:1px dashed #b9a06e;background:#fffaf0;border-radius:4px;padding:9px 12px;color:#6f6680}.ig .slot.full{border-style:solid;color:#2a2438;background:#fff}.ig .slot.ok,.ig .chip.ok{border-color:#1f6b4e;background:#e8f4ea}.ig .slot.no,.ig .chip.no{border-color:#a03a12;background:#fdeee2}' +
+ '.ig .pool{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;min-height:40px}.ig .chip{border:1px solid #b9a06e;background:#fff;border-radius:4px;padding:8px 12px;text-align:left}.ig .chip[aria-pressed=true]{border-color:#2779a7;box-shadow:0 0 0 2px #2779a7}' +
+ '.ig .bins{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 12px}.ig .bin{border:1px solid #d9c48c;border-radius:6px;padding:8px;display:flex;flex-direction:column;gap:8px;min-height:110px;background:#fffaf0}.ig .bin-h{border:1px dashed #b8922e;background:#fbf3dc;border-radius:4px;padding:7px 9px;font-weight:700;text-align:left;color:#16254a}.ig .drop{display:flex;flex-direction:column;gap:6px}.ig .lab{font-size:14px;font-weight:700;color:#5a5068;margin:0 0 6px}' +
+ '.ig .txt{line-height:2;margin:0}.ig .term{border:0;background:#fbe7a4;border-bottom:2px solid #b8922e;padding:0 3px;border-radius:3px}.ig .term[aria-expanded=true]{background:#ECD06F}.ig .note{border:1px solid #d9c48c;border-radius:6px;padding:12px 14px;background:#fffaf0;margin-top:12px}';
+
+var CSS_REAL = '.ig{font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#1F2A37;max-width:720px}' +
+ '.ig h3{margin:0 0 4px;font-size:19px;font-weight:650}.ig .i{margin:0 0 14px;color:#4A5565}' +
+ '.ig button{font:inherit;cursor:pointer;color:inherit}.ig button:focus-visible,.ig input:focus-visible{outline:3px solid #2E5BBA;outline-offset:2px}' +
+ '.ig .m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px}' +
+ '.ig .btn{border:1px solid #2E5BBA;background:#2E5BBA;color:#fff;border-radius:8px;padding:8px 14px}.ig .btn.s{background:#fff;color:#2E5BBA}' +
+ '.ig .row{display:flex;gap:8px;flex-wrap:wrap}.ig .fb{margin:10px 0 0;font-size:14px;min-height:1.2em}.ig .fb.ok{color:#1F7A5A}.ig .fb.no{color:#A8431A}' +
+ '.ig .tabs{display:flex;flex-wrap:wrap;gap:2px;border-bottom:1px solid #D5DBE3}.ig [role=tab]{border:0;background:none;padding:9px 12px;color:#4A5565;border-bottom:3px solid transparent;margin-bottom:-1px}.ig [role=tab][aria-selected=true]{color:#1F2A37;border-bottom-color:#2E5BBA;font-weight:600}.ig [role=tabpanel]{padding:14px 2px}.ig [role=tabpanel] p{margin:0}' +
+ '.ig .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}.ig .card{text-align:left;border:1px solid #D5DBE3;background:#fff;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px;min-height:100px}.ig .card[aria-expanded=true]{background:#F2F5FB;border-color:#2E5BBA}.ig .card .f{font-weight:600}.ig .card .hint{font-size:13px;color:#2E5BBA;margin-top:auto}' +
+ '.ig .q{border:1px solid #D5DBE3;border-radius:10px;padding:12px 14px;margin:0 0 12px}.ig legend{font-weight:600;padding:0 4px}.ig label{display:flex;gap:8px;align-items:flex-start;padding:4px 0}.ig label input{margin-top:5px}' +
+ '.ig .slots{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:6px}.ig .slots li{display:flex;gap:10px;align-items:center}.ig .n{width:26px;height:26px;border-radius:50%;background:#EEF1F5;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex:none}' +
+ '.ig .slot{flex:1;text-align:left;border:1px dashed #B8C1CC;background:#FAFBFC;border-radius:8px;padding:9px 12px;color:#7A8594}.ig .slot.full{border-style:solid;color:#1F2A37;background:#fff}.ig .slot.ok,.ig .chip.ok{border-color:#1F7A5A;background:#EDF7F2}.ig .slot.no,.ig .chip.no{border-color:#A8431A;background:#FDF1EA}' +
+ '.ig .pool{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;min-height:40px}.ig .chip{border:1px solid #B8C1CC;background:#fff;border-radius:8px;padding:8px 12px;text-align:left}.ig .chip[aria-pressed=true]{border-color:#2E5BBA;box-shadow:0 0 0 2px #2E5BBA}' +
+ '.ig .bins{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 12px}.ig .bin{border:1px solid #D5DBE3;border-radius:10px;padding:8px;display:flex;flex-direction:column;gap:8px;min-height:110px;background:#FAFBFC}.ig .bin-h{border:1px dashed #9AA6B5;background:#fff;border-radius:6px;padding:7px 9px;font-weight:600;text-align:left}.ig .drop{display:flex;flex-direction:column;gap:6px}.ig .lab{font-size:13px;font-weight:600;color:#4A5565;margin:0 0 6px}' +
+ '.ig .txt{line-height:1.9;margin:0}.ig pre.code{background:#F6F7F9;border:1px solid #D5DBE3;border-radius:10px;padding:14px;white-space:pre-wrap;line-height:2;margin:0}.ig .term{border:0;background:#FFF1C7;border-bottom:2px solid #D9A400;padding:0 3px;border-radius:3px}.ig .term[aria-expanded=true]{background:#FFE08A}.ig .note{border:1px solid #D5DBE3;border-radius:10px;padding:12px 14px;background:#fff;margin-top:12px}';
+function isFun() { return !!(S.sc && S.sc.fun); }
+function fn(k, alt) { return FMT[k][(isFun() ? 0 : 1) ^ (alt ? 1 : 0)]; }
+function lab(c, t) { return c.code ? '<span class="m">' + esc(t) + '</span>' : esc(t); }
+function build(fmt, c) {
+  var h = '<style>' + (isFun() ? CSS_FUN : CSS_REAL) + '</style><div class="ig"><h3>' + esc(c.title) + '</h3><p class="i">' + esc(c.intro) + '</p>';
+  if (fmt === 'tabs') {
+    h += '<div class="tabs" role="tablist" aria-label="' + esc(c.title) + '">' + c.items.map(function (it, k) { return '<button role="tab" id="t' + k + '" aria-controls="p' + k + '" aria-selected="' + (k === 0) + '" tabindex="' + (k ? -1 : 0) + '">' + lab(c, it.label) + '</button>'; }).join('') + '</div>' +
+      c.items.map(function (it, k) { return '<div role="tabpanel" id="p' + k + '" aria-labelledby="t' + k + '"' + (k ? ' hidden' : '') + '><p>' + esc(it.detail) + '</p></div>'; }).join('');
+  } else if (fmt === 'reveal') {
+    h += '<div class="grid">' + c.items.map(function (it) { return '<button class="card" aria-expanded="false"><span class="f">' + lab(c, it.label) + '</span><span class="b" hidden>' + esc(it.detail) + '</span><span class="hint">Show answer</span></button>'; }).join('') + '</div>';
+  } else if (fmt === 'quiz') {
+    h += c.quiz.map(function (q, k) { return '<fieldset class="q" data-a="' + q.answer + '" data-fb="' + esc(q.feedback) + '"><legend>' + esc(q.q) + '</legend>' + q.options.map(function (o, j) { return '<label><input type="radio" name="q' + k + '" value="' + j + '"> <span>' + esc(o) + '</span></label>'; }).join('') + '<div class="row" style="margin-top:8px"><button class="btn chk" type="button">Check</button></div><p class="fb" aria-live="polite"></p></fieldset>'; }).join('');
+  } else if (fmt === 'seq') {
+    var o = shuffle(c.items.length);
+    h += '<ol class="slots" aria-label="Your order">' + c.items.map(function (_, k) { return '<li><span class="n">' + (k + 1) + '</span><button class="slot" type="button">Empty</button></li>'; }).join('') + '</ol>' +
+      '<p class="lab">Select a step to place it in the next open spot</p><div class="pool">' + o.map(function (i) { return '<button class="chip' + (c.code ? ' m' : '') + '" type="button" data-i="' + i + '">' + esc(c.items[i].label) + '</button>'; }).join('') + '</div>' +
+      '<div class="row"><button class="btn chk" type="button">Check order</button><button class="btn s rst" type="button">Start over</button></div><p class="fb" aria-live="polite"></p>';
+  } else if (fmt === 'sort') {
+    var cs = cards(c), o2 = shuffle(cs.length);
+    h += '<p class="lab">Select a card, then select its category</p><div class="pool">' + o2.map(function (i) { return '<button class="chip' + (c.code ? ' m' : '') + '" type="button" aria-pressed="false" data-c="' + cs[i].cat + '">' + esc(cs[i].text) + '</button>'; }).join('') + '</div>' +
+      '<div class="bins">' + c.cats.map(function (cat, k) { return '<div class="bin" data-c="' + k + '"><button class="bin-h" type="button">' + esc(cat) + '</button><div class="drop"></div></div>'; }).join('') + '</div>' +
+      '<div class="row"><button class="btn chk" type="button">Check</button></div><p class="fb" aria-live="polite"></p>';
+  } else if (fmt === 'annot') {
+    var body = c.annot.map(function (p) { return typeof p === 'string' ? esc(p) : '<button class="term" type="button" aria-expanded="false" data-note="' + esc(p.note) + '">' + esc(p.t) + '</button>'; }).join('');
+    h += (c.code ? '<pre class="code m">' + body + '</pre>' : '<p class="txt">' + body + '</p>') + '<div class="note" aria-live="polite">Select a highlighted part to see a note.</div>';
+  }
+  h += '</div>';
+  var script = 'window.addEventListener(\'load\', function () {\n  (' + RT[fmt].toString() + ')(document);\n});';
+  return { html: h, script: script };
+}
+function plain(fmt, c) {
+  var t = c.title + '\n\n';
+  if (fmt === 'tabs' || fmt === 'reveal') t += c.items.map(function (i) { return i.label + ': ' + i.detail; }).join('\n\n');
+  else if (fmt === 'seq') t += 'The correct order:\n' + c.items.map(function (i, k) { return (k + 1) + '. ' + i.label + '. ' + i.detail; }).join('\n');
+  else if (fmt === 'sort') { var cs = cards(c); t += c.cats.map(function (cat, k) { return cat + ': ' + cs.filter(function (x) { return x.cat === k; }).map(function (x) { return x.text; }).join('; '); }).join('\n\n'); }
+  else if (fmt === 'quiz') t += c.quiz.map(function (q, k) { return 'Question ' + (k + 1) + ': ' + q.q + '\nAnswer: ' + q.options[q.answer] + '. ' + q.feedback; }).join('\n\n');
+  else if (fmt === 'annot') t += c.annot.map(function (p) { return typeof p === 'string' ? p : p.t; }).join('') + '\n\nKey terms:\n' + c.annot.filter(function (p) { return typeof p !== 'string'; }).map(function (p) { return p.t + ': ' + p.note; }).join('\n');
+  return t;
+}
+function srcdoc(b) {
+  return '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"></head><body style="margin:0;padding:18px;background:' + (isFun() ? '#fbf3dc' : '#fff') + '">' + b.html +
+    '<script>' + b.script + '<\/script><script>(function(){function p(){parent.postMessage({type:"ig-preview",h:document.documentElement.scrollHeight},"*")}addEventListener("load",p);new ResizeObserver(p).observe(document.body)})()<\/script></body></html>';
+}
+function fitFor(sc) {
+  var f = clone(sc.fit);
+  if (S.resolved && S.rec !== sc.rec) { f[sc.rec][0] = 'good'; f[S.rec][0] = 'best'; }
+  return ORDER.map(function (k) { return { k: k, lv: f[k][0], goal: f[k][1], note: f[k][2] }; }).sort(function (a, b) { var r = { best: 0, good: 1, weak: 2 }; return r[a.lv] - r[b.lv]; });
+}
+
+/* ---------- render ---------- */
+function owlSays(inner, cls) { return '<div class="owl-say' + (cls ? ' ' + cls : '') + '"' + (cls ? ' role="alert"' : '') + '>' + OWL + '<div class="bubble">' + inner + '</div></div>'; }
+function flag(sc) {
+  var lbl = { out: 'Out of scope', much: 'Too much content', vague: 'Too vague to build' }[sc.kind];
+  return owlSays('<span class="flag-l">' + (sc.fun ? 'The owl raises a wing: ' : 'Flagged: ') + lbl + '</span><strong>' + esc(sc.banner[0]) + '</strong><p>' + esc(sc.banner[1]) + '</p>', 'flag');
+}
+function groupHTML(title, sub, kind, list) {
+  return '<section class="grp grp-' + kind + '" aria-label="' + esc(title) + '"><div class="gh"><span class="gt">' + esc(title) + '</span><span class="gs">' + esc(sub) + '</span></div><div class="cards">' +
+    list.map(function (s) { var d = S.seals.indexOf(s.id) > -1; return '<button class="sc' + (s.fun ? '' : ' real') + '" data-act="pick" data-k="' + s.id + '" aria-pressed="' + (S.pick === s.id) + '">' + (d ? '<span class="done-rib">Sealed</span>' : '') + '<span class="sc-top">' + EMB[s.id] + '<span class="tag ' + (s.kind === 'rec' ? 't-rec' : 't-warn') + '">' + (s.kind === 'rec' ? s.course : s.tag) + '</span></span><span class="kind ' + (s.fun ? 'k-fun">Just for fun' : 'k-real">Real course') + '</span><span class="tt">' + esc(s.fun ? s.title : s.title.replace(/^[^:]+:\s*/, '').replace(/[A-Za-z]/, function (c) { return c.toUpperCase(); })) + '</span><span class="rq">' + esc(s.request) + '</span></button>'; }).join('') + '</div></section>';
+}
+function head() {
+  var n = S.seals.length, names = ['Begin', 'Scry', 'Enchant', 'Bestow'], real = ['Describe', 'Recommend', 'Refine', 'Export'], num = ['I', 'II', 'III', 'IV'];
+  return '<div class="bar"><div class="rank">' + OWL + '<span><b>' + RANKS[n] + ' of the Forge</b><span class="seals" role="img" aria-label="' + n + ' of 6 quest seals earned">' + SC.filter(function (s) { return !s.hidden; }).map(function (s) { return seal(S.seals.indexOf(s.id) > -1); }).join('') + '</span></span></div>' +
+    '<nav class="steps" aria-label="Steps">' + names.map(function (nm, i) { var k = i + 1; return '<button class="st" data-act="go" data-k="' + k + '"' + (k === S.step ? ' aria-current="step"' : '') + (k > S.visited ? ' disabled' : '') + '><i>' + num[i] + '</i><span>' + nm + '<small>' + real[i] + '</small></span></button>'; }).join('') + '</nav></div>';
+}
+function previewBlock(title) {
+  var parts = S.sc && S.sc.kind === 'much' ? '<div class="parts" role="group" aria-label="Which activity">' + [0, 1].map(function (p) { return '<button data-act="part" data-k="' + p + '" aria-pressed="' + (S.part === p) + '">Activity ' + (p + 1) + ' of 2</button>'; }).join('') + '</div>' : '';
+  return '<div class="frame"><div class="fhead"><span>' + title + ': <b>' + fn(S.fmt) + '</b> (' + fn(S.fmt, 1) + ')</span>' + parts + '</div><iframe class="pv" title="Live preview of the activity" sandbox="allow-scripts"></iframe></div>';
+}
+function render() {
+  var h = head() + '<div class="panel">' + bannerArt(S.step) + '<div class="body">';
+  if (S.step === 1) {
+    h += '<div><h2>Choose a quest from the board</h2><p class="sub">Learning designers pin their requests here. Pick one to see how the Forge responds. In each group, two requests come from real courses and one is just for fun.</p></div>' +
+      groupHTML('Quests', 'The Forge recommends a format and builds it.', 'rec', SC.filter(function (s) { return s.kind === 'rec' && !s.hidden; })) +
+      groupHTML('Cursed scrolls', 'Requests written to see how the Forge pushes back.', 'warn', SC.filter(function (s) { return s.kind !== 'rec'; }));
+    if (S.pick) h += '<div style="display:flex;flex-direction:column;gap:6px"><label class="lbl" for="req">' + (byId(S.pick).fun ? 'The teacher’s request' : 'The designer’s request') + '</label><textarea id="req" class="req" readonly>' + esc(byId(S.pick).request) + '</textarea></div>';
+    if (S.analyzing) {
+      var lines = S.pick === 'vague' ? ['Unrolling the scroll', 'Looking for a topic and a learning goal', 'Deciding what to ask'] : byId(S.pick).fun ? ['Unrolling the scroll', 'Checking the wards for scope and size', 'Weighing all six forms'] : ['Reading the request', 'Checking scope and size', 'Ranking all six formats'];
+      h += '<div class="load"><ul>' + lines.map(function (l, i) { return '<li data-line="' + i + '"><span class="dot" aria-hidden="true"></span>' + l + '</li>'; }).join('') + '</ul><span class="model">The owl is reading from a saved response</span></div>';
+    } else h += '<div class="row"><button class="btn" data-act="analyze"' + (S.pick ? '' : ' disabled') + '>Consult the owl</button></div>';
+  } else if (S.step === 2) {
+    var sc = S.sc;
+    h += '<div class="row" style="justify-content:space-between"><h2>The owl’s counsel</h2><button class="linkbtn" data-act="restart">Back to the quest board</button></div>';
+    if (sc.kind === 'vague' && !S.resolved) {
+      h += flag(sc) + '<div class="qs">' +
+        '<div class="q"><span class="lbl">What is the scroll about?</span><div class="ch">' + TOPICS.map(function (t) { return '<button data-act="vq" data-q="topic" data-k="' + t[0] + '" aria-pressed="' + (S.vq.topic === t[0]) + '">' + t[1] + '</button>'; }).join('') + '</div></div>' +
+        '<div class="q"><span class="lbl">What should students be able to do afterward?</span><div class="ch">' + GOALS.map(function (t) { return '<button data-act="vq" data-q="goal" data-k="' + t[0] + '" aria-pressed="' + (S.vq.goal === t[0]) + '">' + t[1] + '</button>'; }).join('') + '</div></div></div>' +
+        '<div class="row"><button class="btn" data-act="resolve"' + (S.vq.topic && S.vq.goal ? '' : ' disabled') + '>Get a recommendation</button></div>';
+    } else if (sc.kind === 'much' && !S.split) {
+      h += flag(sc) + '<div class="row"><button class="btn" data-act="split">Split into two activities</button></div>';
+    } else {
+      var fl = fitFor(sc), cur = fl.filter(function (x) { return x.k === S.fmt; })[0];
+      if (sc.kind === 'out') h += flag(sc);
+      if (sc.kind === 'much') h += '<div class="note-box ok-note"><strong>Split into two activities of six.</strong><p>Switch between them above the preview to review each one.</p></div>';
+      h += owlSays('<span class="badge">Recommended: ' + fn(S.rec) + '</span><p>' + esc(S.recText) + '</p>');
+      if (cur.lv === 'weak') h += '<div class="note-box"><strong>Built as you asked. Fit note:</strong><p>' + esc(cur.note) + '</p></div>';
+      h += previewBlock('Live preview') + '<div style="display:flex;flex-direction:column;gap:8px"><span class="lbl">Explore other approaches for this content</span><div class="fmts" role="group" aria-label="Activity formats">' +
+        fl.map(function (f) { return '<button class="fm" data-act="fmt" data-k="' + f.k + '" aria-pressed="' + (f.k === S.fmt) + '"><span class="top">' + FIC[f.k] + '<span class="nm">' + fn(f.k) + '<span class="pl">' + fn(f.k, 1) + '</span></span><span class="fit f-' + f.lv + '">' + (f.k === S.rec ? 'Recommended' : LEVEL[f.lv]) + '</span></span><span class="gl">' + esc(f.goal) + '</span><span class="nt">' + esc(f.note) + '</span></button>'; }).join('') + '</div></div>' +
+        '<div class="row"><button class="btn" data-act="go" data-k="3">Use this format and refine →</button></div>';
+    }
+  } else if (S.step === 3) {
+    h += '<div class="row" style="justify-content:space-between"><h2>Enchant the wording</h2><button class="linkbtn" data-act="go" data-k="2">← Back to formats</button></div><p class="sub">Every word is yours to change. The preview updates as you write.</p>' +
+      '<div class="two"><div class="fields" id="fields">' + fieldsHTML() + '</div><div class="sticky">' + previewBlock('Preview') +
+      '<div style="display:flex;flex-direction:column;gap:6px"><span class="lbl">Plain-text version, updates as you edit</span><pre class="txt" id="plain"></pre></div>' +
+      '<button class="linkbtn" data-act="code" aria-expanded="' + S.showCode + '">' + (S.showCode ? 'Hide the spellwork (code)' : 'Show the spellwork (code)') + '</button>' + (S.showCode ? '<pre class="code" id="codebox"></pre>' : '') + '</div></div>' +
+      '<div class="row"><button class="btn" data-act="go" data-k="4">Continue to bestow →</button></div>';
+  } else if (S.step === 4) {
+    h += '<div class="row" style="justify-content:space-between"><h2>Bestow it upon the realm</h2><button class="linkbtn" data-act="go" data-k="3">← Back to enchanting</button></div>' +
+      owlSays('<span class="badge">' + fn(S.fmt) + (S.sc.kind === 'much' ? ', Activity ' + (S.part + 1) + ' of 2' : '') + '</span><p>Quest complete! Your seal is on the board. Here is everything a course needs to carry this activity.</p>') +
+      '<div style="display:flex;flex-direction:column;gap:8px"><span class="lbl">Scroll of binding (plugin configuration)</span><p class="sub" style="font-size:15px">Paste this into Coursera’s plugin configuration editor.</p><pre class="code" id="json"></pre><div class="row"><button class="btn s" data-act="copy" data-k="json">Copy configuration</button><span class="copied" id="c-json" aria-live="polite"></span></div></div>' +
+      '<div style="display:flex;flex-direction:column;gap:8px"><span class="lbl">Plain-text version</span><p class="sub" style="font-size:15px">Add this to the reading so every learner can get the same content.</p><pre class="txt" id="plain"></pre><div class="row"><button class="btn s" data-act="copy" data-k="plain">Copy text</button><span class="copied" id="c-plain" aria-live="polite"></span></div></div>' +
+      '<div class="row"><button class="btn" data-act="restart">Take another quest</button></div>';
+  }
+  app.innerHTML = h + '</div></div>';
+  refresh();
+}
+
+/* ---------- edit fields ---------- */
+var FIELDS = [];
+function fieldsHTML() {
+  var c = C(), f = S.fmt; FIELDS = [];
+  function add(group, label, obj, key) { FIELDS.push({ g: group, l: label, o: obj, k: key }); }
+  add('Heading', 'Title', c, 'title'); add('Heading', 'Instructions', c, 'intro');
+  if (f === 'tabs' || f === 'reveal' || f === 'seq') c.items.forEach(function (it, i) { var n = f === 'seq' ? 'Step ' + (i + 1) : (f === 'tabs' ? 'Tab ' : 'Card ') + (i + 1); add(n, f === 'tabs' ? 'Tab label' : f === 'reveal' ? 'Front' : 'Step text (correct position ' + (i + 1) + ')', it, 'label'); if (f !== 'seq') add(n, f === 'tabs' ? 'Panel text' : 'Back', it, 'detail'); });
+  if (f === 'sort') { c.cats.forEach(function (_, i) { add('Categories', 'Category ' + (i + 1), c.cats, i); }); cards(c).forEach(function (x, i) { add('Cards', 'Card ' + (i + 1) + ', belongs in ' + c.cats[x.cat], x.o, x.key); }); }
+  if (f === 'quiz') c.quiz.forEach(function (q, i) { var g = 'Question ' + (i + 1); add(g, 'Question', q, 'q'); q.options.forEach(function (_, j) { add(g, 'Option ' + (j + 1) + (j === q.answer ? ' (correct)' : ''), q.options, j); }); add(g, 'Feedback', q, 'feedback'); });
+  if (f === 'annot') c.annot.forEach(function (p) { if (typeof p !== 'string') add('Notes', 'Note for “' + p.t + '”', p, 'note'); });
+  var out = '', last = null;
+  FIELDS.forEach(function (fd, i) {
+    if (fd.g !== last) { if (last !== null) out += '</div>'; out += '<div class="fg"><h3>' + esc(fd.g) + '</h3>'; last = fd.g; }
+    var v = fd.o[fd.k];
+    out += '<label class="field"><span>' + esc(fd.l) + '</span><textarea rows="' + (String(v).length > 44 ? 2 : 1) + '" data-f="' + i + '">' + esc(v) + '</textarea></label>';
+  });
+  return out + (last !== null ? '</div>' : '');
+}
+
+/* ---------- live bits ---------- */
+var tmr = null;
+function codeText(b) { return '<!-- HTML and CSS -->\n' + b.html + '\n\n// JavaScript\n' + b.script; }
+function refresh() {
+  var b = S.fmt && S.contents ? build(S.fmt, C()) : null;
+  var pv = app.querySelector('iframe.pv'); if (pv && b) pv.srcdoc = srcdoc(b);
+  var pl = document.getElementById('plain'); if (pl && b) pl.textContent = plain(S.fmt, C());
+  var cb = document.getElementById('codebox'); if (cb && b) cb.textContent = codeText(b);
+  var js = document.getElementById('json'); if (js && b) js.textContent = JSON.stringify({ html: b.html, script: b.script }, null, 2);
+  if (S.analyzing) runLoad();
+  postSize();
+}
+function runLoad() {
+  var lis = app.querySelectorAll('[data-line]'), fast = matchMedia('(prefers-reduced-motion: reduce)').matches, d = fast ? 80 : 520;
+  [].forEach.call(lis, function (li, i) { setTimeout(function () { li.classList.add('done'); li.querySelector('.dot').textContent = '✓'; }, d * (i + 1)); });
+  setTimeout(function () {
+    var sc = byId(S.pick);
+    S.analyzing = false; S.sc = sc; S.resolved = false; S.split = false; S.part = 0; S.vq = { topic: null, goal: null }; S.showCode = false;
+    if (sc.kind !== 'vague') { S.contents = sc.parts ? clone(sc.parts) : [clone(sc.content)]; S.rec = sc.rec; S.fmt = sc.rec; S.recText = sc.rationale; }
+    else { S.contents = null; S.fmt = null; }
+    S.step = 2; S.visited = 2; render();
+  }, d * (lis.length + 1));
+}
+function award(id) {
+  if (!id || S.seals.indexOf(id) > -1) return;
+  S.seals.push(id);
+  try { localStorage.setItem('quest-forge-seals', JSON.stringify(S.seals)); } catch (e) {}
+  var n = S.seals.length, t = document.getElementById('toast'), up = RANKS[n] !== RANKS[n - 1];
+  t.innerHTML = '<div class="toast">' + seal(true) + '<span>Seal earned: ' + n + ' of 6.' + (n === 6 ? ' You are a Loremaster of the Forge!' : up ? ' You are now a ' + RANKS[n] + '.' : '') + '</span></div>';
+  setTimeout(function () { t.innerHTML = ''; }, 4200);
+}
+function go(k) { if (k <= S.visited || k === S.step + 1) { S.step = k; S.visited = Math.max(S.visited, k); if (k === 4) award(S.pick); render(); return true; } return false; }
+
+/* ---------- events ---------- */
+app.addEventListener('click', function (e) {
+  var t = e.target.closest('[data-act]'); if (!t || t.disabled) return;
+  var a = t.getAttribute('data-act'), k = t.getAttribute('data-k');
+  if (a === 'pick') { S.pick = k; render(); }
+  else if (a === 'analyze') { S.analyzing = true; render(); }
+  else if (a === 'go') go(+k);
+  else if (a === 'fmt') { S.fmt = k; render(); }
+  else if (a === 'part') { S.part = +k; render(); }
+  else if (a === 'split') { S.split = true; render(); }
+  else if (a === 'vq') { S.vq[t.getAttribute('data-q')] = k; render(); }
+  else if (a === 'resolve') {
+    var sc = clone(byId(S.vq.topic)), g = GOALS.filter(function (x) { return x[0] === S.vq.goal; })[0];
+    sc.kind = 'rec'; S.sc = sc; S.resolved = true; S.contents = [clone(sc.content)]; S.rec = g[0]; S.fmt = g[0];
+    S.recText = 'You said students need to ' + g[1].toLowerCase() + '. ' + fn(g[0]) + ' fits that goal best for this topic, and the other five formats are still here to compare.';
+    render();
+  }
+  else if (a === 'restart') { S.step = 1; S.visited = 1; S.analyzing = false; S.sc = null; S.fmt = null; S.contents = null; S.pick = null; render(); }
+  else if (a === 'code') { S.showCode = !S.showCode; render(); }
+  else if (a === 'copy') {
+    var txt = document.getElementById(k).textContent, msg = document.getElementById('c-' + k);
+    var done = function () { msg.textContent = 'Copied'; setTimeout(function () { msg.textContent = ''; }, 1800); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, function () { msg.textContent = 'Select the text to copy it.'; });
+    else msg.textContent = 'Select the text to copy it.';
+  }
+});
+app.addEventListener('input', function (e) {
+  var i = e.target.getAttribute('data-f'); if (i === null) return;
+  var fd = FIELDS[+i]; fd.o[fd.k] = e.target.value;
+  var pl = document.getElementById('plain'); if (pl) pl.textContent = plain(S.fmt, C());
+  clearTimeout(tmr); tmr = setTimeout(function () { var pv = app.querySelector('iframe.pv'); if (pv) { var b = build(S.fmt, C()); pv.srcdoc = srcdoc(b); var cb = document.getElementById('codebox'); if (cb) cb.textContent = codeText(b); } }, 300);
+});
+document.getElementById('hnav').addEventListener('click', function (e) {
+  var b = e.target.closest('button'); if (!b) return;
+  var k = +b.getAttribute('data-k'); if (k <= S.visited && k !== S.step) go(k);
+  document.getElementById('forge').scrollIntoView();
+});
+window.addEventListener('message', function (e) {
+  if (!e.data || e.data.type !== 'ig-preview') return;
+  [].forEach.call(document.querySelectorAll('iframe.pv'), function (f) { if (f.contentWindow === e.source) f.style.height = Math.max(200, Math.min(e.data.h, 1400)) + 'px'; });
+  postSize();
+});
+function postSize() { if (parent !== window) parent.postMessage({ type: 'embed-resize', height: document.documentElement.scrollHeight }, '*'); }
+if (window.ResizeObserver) new ResizeObserver(postSize).observe(document.body);
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && parent !== window) parent.postMessage({ type: 'quest-forge-close' }, '*'); });
+
+document.getElementById('heroArt').innerHTML = heroArt();
+document.getElementById('sigil').innerHTML = SIGIL;
+render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>The Score and the Bedside</title>
+<style>
+@font-face{font-family:'Plus Jakarta Sans';src:url('../fonts/plus-jakarta-sans-latin.woff2') format('woff2');font-weight:200 800;font-display:swap}
+:root{--ink:#14222E;--muted:#5B6B77;--line:#E4E9ED;--paper:#F5F7F9;--blue:#1F5F7A;--bluebg:#E9F2F6;--gold:#B8860B;--goldbg:#FFF4D2;--sun:#FFD54A;--ok:#2F7D57;--okbg:#E7F4EC;--no:#B4472B;--nobg:#FDEEE9;--sh:0 10px 34px rgba(20,34,46,.10),0 1px 3px rgba(20,34,46,.06)}
+*{box-sizing:border-box}
+html,body{margin:0;background:#fff;color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.5}
+button{font:inherit;cursor:pointer;color:inherit}
+button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+p,h1,h2,h3,ul{margin:0}
+ul{padding:0;list-style:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.lab{max-width:1100px;margin:0 auto;padding:clamp(12px,2.2vw,20px);display:flex;flex-direction:column;gap:16px;position:relative}
+:fullscreen .lab{padding-top:28px}
+
+.top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.top h1{font-size:15px;font-weight:700;letter-spacing:-.01em;margin-right:auto;color:var(--muted)}
+.tool{border:0;background:var(--paper);border-radius:999px;padding:7px 14px;font-size:13.5px;font-weight:600;display:inline-flex;align-items:center;gap:7px;position:relative}
+.tool svg{width:16px;height:16px}
+.tool:hover{background:#E9EEF2}
+.tool .dot{position:absolute;top:-2px;right:-2px;width:10px;height:10px;border-radius:50%;background:var(--blue);border:2px solid #fff}
+@media (max-width:520px){.tool .lbl{display:none}.tool{padding:9px 11px}}
+
+.guide{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 20px;align-items:end}
+.guide:focus{outline:none}
+.guide h2{font-size:clamp(20px,2.6vw,26px);font-weight:600;letter-spacing:-.025em;line-height:1.2;text-wrap:balance}
+.guide p{color:var(--muted);margin-top:4px;text-wrap:pretty}
+.btn{border:0;background:var(--ink);color:#fff;border-radius:999px;padding:10px 18px;font-weight:600;font-size:14.5px}
+.btn:hover{background:#243746}
+@media (max-width:620px){.guide{grid-template-columns:minmax(0,1fr)}.btn{justify-self:start}}
+
+.bed{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:20px;align-items:start}
+@media (max-width:880px){.bed{grid-template-columns:minmax(0,1fr)}}
+.room{position:relative;border-radius:20px;overflow:hidden;box-shadow:var(--sh);background:#E9E8E3}
+.room>svg{display:block;width:100%;height:auto}
+.rl{position:absolute;left:14px;bottom:12px;font-size:12.5px;font-weight:600;color:#fff;background:rgba(20,34,46,.62);padding:3px 10px;border-radius:999px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.hs{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;border:0;background:rgba(255,255,255,.3);display:grid;place-items:center;padding:0;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)}
+.hs i{width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(20,34,46,.35);display:grid;place-items:center;transition:transform .15s}
+.hs i::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.hs svg{width:13px;height:13px;display:none}
+.hs::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #fff;opacity:0;animation:ping 2.4s ease-out infinite}
+.hs:hover i{transform:scale(1.15)}
+.hs.cur{background:rgba(255,255,255,.55)}
+.hs.cur i{transform:scale(1.2);box-shadow:0 0 0 3px var(--ink),0 2px 8px rgba(20,34,46,.35)}
+.hs.done i::before{display:none}
+.hs.done svg{display:block}
+.hs.done.model i{background:var(--blue);color:#fff}
+.hs.done.only i{background:var(--sun);color:var(--ink)}
+.hs.done::after,.hs.cur::after{animation:none}
+.hs:focus-visible{outline:3px solid #fff;outline-offset:0;box-shadow:0 0 0 6px var(--ink)}
+@keyframes ping{0%{transform:scale(.6);opacity:.9}70%,100%{transform:scale(1.25);opacity:0}}
+.bubble{position:absolute;top:5%;right:4%;max-width:min(300px,46%);background:rgba(255,255,255,.96);border-radius:14px 14px 4px 14px;padding:10px 14px;font-size:14px;font-weight:500;line-height:1.4;box-shadow:0 8px 24px rgba(20,34,46,.22);animation:pop .2s ease-out}
+.bubble[hidden]{display:none}
+@keyframes pop{from{transform:translateY(6px)}}
+@media (max-width:520px){.bubble{display:none}.hs{width:36px;height:36px;margin:-18px 0 0 -18px}}
+
+.side{display:flex;flex-direction:column;gap:20px;min-width:0}
+.card{border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px;background:#fff;box-shadow:var(--sh)}
+.card.idle{box-shadow:none;background:var(--paper);color:var(--muted)}
+.card h3{font-size:18px;font-weight:600;letter-spacing:-.015em;line-height:1.25}
+.card h3:focus,.fb:focus{outline:none}
+.card q{quotes:none;display:block;border-left:3px solid var(--line);padding-left:11px;font-weight:500}
+.ask{font-weight:600;margin-top:2px}
+.ch{display:grid;gap:8px}
+.ch button{border:1px solid #CFD8DE;background:#fff;border-radius:12px;padding:10px 13px;text-align:left;font-weight:600;font-size:14.5px;display:flex;gap:10px;align-items:center}
+.ch button:hover{border-color:var(--ink);background:var(--paper)}
+.ch button span{flex:none;width:12px;height:12px;border-radius:50%}
+.fb{border-radius:12px;padding:10px 13px;font-size:14.5px}
+.fb b{display:block}
+.fb.good{background:var(--okbg)}
+.fb.good b{color:var(--ok)}
+.fb.retry{background:var(--nobg)}
+.fb.retry b{color:var(--no)}
+.btn2{align-self:flex-start;border:0;background:var(--ink);color:#fff;border-radius:999px;padding:8px 16px;font-weight:600;font-size:14px}
+
+.info{display:flex;flex-direction:column;gap:14px}
+.lbl2{font-size:13px;font-weight:600;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+.score{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 14px;align-items:center;font-variant-numeric:tabular-nums}
+.score .n{grid-row:span 2;font-size:54px;font-weight:300;letter-spacing:-.05em;line-height:.9}
+.score .n small{font-size:14px;font-weight:500;letter-spacing:0;color:var(--muted)}
+.score .c{justify-self:start;font-weight:700;font-size:13px;color:var(--ok);background:var(--okbg);border-radius:999px;padding:2px 10px}
+.meter{height:6px;border-radius:999px;background:linear-gradient(90deg,#A8D8BD 0 34%,#F2D680 34% 67%,#EBA18C 67%);position:relative}
+.meter::after{content:"";position:absolute;left:18%;top:-4px;width:4px;height:14px;margin-left:-2px;border-radius:2px;background:var(--ink);box-shadow:0 0 0 2px #fff}
+.feat li{display:grid;grid-template-columns:minmax(0,1fr) auto 16px;gap:8px;align-items:center;padding:6px 0;border-top:1px solid var(--line);font-size:14px;font-variant-numeric:tabular-nums}
+.feat b{font-weight:600;text-align:right}
+.feat svg{width:16px;height:16px;visibility:hidden}
+.feat li.hit{color:var(--blue)}
+.feat li.hit svg{visibility:visible}
+.only li{display:grid;grid-template-columns:10px minmax(0,1fr);gap:10px;align-items:baseline;padding:6px 0;border-top:1px solid var(--line);font-size:14px;font-weight:600}
+.only li::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--sun);box-shadow:0 0 0 1.5px var(--gold)}
+.only .none{display:block;font-weight:400;color:var(--muted)}
+.only .none::before{display:none}
+.sum{background:var(--ink);color:#fff;border-radius:14px;padding:13px 15px;font-size:14.5px}
+.sum b{color:var(--sun)}
+.disc{font-size:12.5px;color:var(--muted);text-wrap:pretty}
+
+.notes{position:absolute;z-index:20;top:58px;right:clamp(12px,2.2vw,20px);width:min(350px,calc(100% - 24px));background:#fff;border-radius:18px;box-shadow:0 18px 50px rgba(20,34,46,.25),0 0 0 1px var(--line);padding:18px;display:flex;flex-direction:column;gap:12px;font-size:14px;line-height:1.55}
+.notes[hidden]{display:none}
+.notes h2{font-size:18px;font-weight:600;letter-spacing:-.015em}
+.notes h2:focus{outline:none}
+.notes h3{font-size:13px;font-weight:600;color:var(--muted);margin-bottom:2px}
+.notes .mis{background:var(--paper);border-radius:12px;padding:10px 12px;font-weight:600}
+.notes .mis span{display:block;font-size:13px;font-weight:600;color:var(--muted)}
+.notes .x{position:absolute;top:10px;right:10px;border:0;background:none;width:34px;height:34px;border-radius:50%;font-size:19px;line-height:1}
+.notes .x:hover{background:var(--paper)}
+.notes .small{font-size:13px;color:var(--muted)}
+@media (max-width:560px){.notes{position:static;width:auto}}
+/* integrated stage */
+.stage{position:relative;border-radius:22px;overflow:hidden;box-shadow:var(--sh);background:#E6DDCB}
+.room{border-radius:0;box-shadow:none;overflow:visible}
+.bubble{display:none}
+.tab{position:absolute;left:14px;top:14px;bottom:14px;width:calc(32.2% - 24px);min-width:256px;background:#16222D;border-radius:20px;padding:7px;box-shadow:0 16px 40px rgba(20,34,46,.38),inset 0 0 0 1px rgba(255,255,255,.08);display:flex}
+.scr{flex:1;min-width:0;background:#fff;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;font-size:13px;line-height:1.4;overflow:auto}
+.who{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 8px;align-items:center;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.who i{font-style:normal;grid-row:span 2;font-size:12px;font-weight:600;color:var(--blue);background:var(--bluebg);border-radius:999px;padding:2px 9px;white-space:nowrap}
+.who b{font-size:14.5px;letter-spacing:-.01em}
+.who span{color:var(--muted);font-size:12.5px}
+.scr .lbl2{font-size:12px;margin-bottom:2px}
+.scr .lbl2 span+span{color:var(--blue)}
+.scr .score .n{font-size:40px}
+.scr .lbl2{margin-top:2px}
+.scr .feat li{display:flex;justify-content:space-between;gap:8px;padding:2px 0;border-top:1px solid var(--line);font-size:13px}
+.scr .feat small{font-size:13px;color:var(--muted)}
+.scr .feat b{display:flex;gap:4px;align-items:center;white-space:nowrap}
+.scr .feat svg{width:13px;height:13px}
+.scr .only li{padding:2px 0;font-size:13px}
+.pop{position:absolute;z-index:3;bottom:14px;width:310px;max-height:calc(100% - 28px);overflow:auto;box-shadow:0 18px 50px rgba(20,34,46,.3),0 1px 3px rgba(20,34,46,.1);font-size:14px}
+.pop[hidden]{display:none}
+.pop.l{left:calc(32.2% + 4px)}
+.pop.r{right:14px}
+.pop .x{position:absolute;top:8px;right:8px;border:0;background:none;width:32px;height:32px;border-radius:50%;font-size:18px;line-height:1;color:var(--muted)}
+.pop .x:hover{background:var(--paper)}
+.pop{position:absolute}
+.card h3{padding-right:28px}
+@media (max-width:899px){
+ .stage{background:none;box-shadow:none;overflow:visible;border-radius:0;display:flex;flex-direction:column;gap:14px}
+ .room{border-radius:20px;overflow:hidden;box-shadow:var(--sh)}
+ .pop{position:relative;bottom:auto;left:auto!important;right:auto!important;width:auto;max-height:none}
+ .tab{position:static;width:auto;min-width:0}
+ .bubble{max-width:46%}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="lab">
+  <header class="top">
+    <h1>The Score and the Bedside</h1>
+    <button class="tool" id="notesBtn" aria-expanded="false" aria-controls="notes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14v12H9l-4 4z"/><path d="M9 9h6M9 12h4"/></svg><span class="lbl">Designer’s notes</span><span class="sr">Designer’s notes</span><span class="dot" id="notesDot" aria-hidden="true"></span></button>
+    <button class="tool" id="fsBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span class="lbl" id="fsLbl">Full screen</span></button>
+  </header>
+
+  <aside class="notes" id="notes" hidden aria-labelledby="notesH">
+    <button class="x" id="notesX" aria-label="Close designer’s notes">×</button>
+    <h2 id="notesH" tabindex="-1">Designer’s notes</h2>
+    <p class="mis"><span>Misconception this activity addresses</span>“The score sees the whole patient.”</p>
+    <div><h3>Why I built it this way</h3><p>In our co-design session, nurses described things they notice at the bedside that never make it into the data behind a risk score. Here students sort each thing they notice, so they find the gap between the chart and the room on their own instead of reading about it.</p></div>
+    <div><h3>Where it comes from</h3><p>Based on a Course 2 example that shows what the model used next to what the nurse knows. Course 3 cases ask nurses to sort things the same way before they act.</p></div>
+    <p class="small">The activity is written for students, the nurses taking these courses. These notes are for you.</p>
+  </aside>
+
+  <section class="guide" id="guide" tabindex="-1" aria-live="polite" aria-label="Guide"></section>
+
+  <main class="stage" id="stage">
+    <div class="room" id="room">
+      <svg id="scene" viewBox="-380 -60 1180 640" role="img" aria-label="A hospital room in morning light. Mrs. Calloway rests in a raised bed with a call light on the bed rail. A whiteboard is on the wall, a medication cup sits on the bedside cabinet, and a framed family photo is on the windowsill.">
+        <image x="-380" y="-60" width="1180" height="640" preserveAspectRatio="none" href="../img/ai-for-nurses/bedside-room.webp?v=1"/>
+        <rect x="682" y="383.4" width="26" height="9.6" rx="3" fill="#CFC6B3"/>
+        <!-- whiteboard: cover the baked-in lettering and redraw it as marker strokes -->
+        <defs><filter id="soft" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation=".7"/></filter><linearGradient id="gBoard" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3F3F1"/><stop offset="1" stop-color="#E8E8E6"/></linearGradient></defs>
+        <rect x="301" y="97" width="160.4" height="100.6" fill="url(#gBoard)" filter="url(#soft)"/>
+        <circle cx="446.2" cy="108" r="4.3" fill="#000" opacity=".18" filter="url(#soft)"/><circle cx="445.8" cy="107.1" r="4.1" fill="#1F66C4"/><circle cx="444.6" cy="105.8" r="1.4" fill="#6FA6EE" opacity=".8"/>
+        <g transform="translate(314 111) rotate(-0.8) scale(1.5)" fill="none" stroke="#1D2E45" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity=".93"><path transform="translate(0.00 0.00)" d="M1 10V0H4.2Q7 0 7 2.6T4.2 5.2H1M4 5.2L7.2 10"/><path transform="translate(7.60 0.18)" d="M3.3 4Q.8 4 .8 7T3.3 10T5.8 7T3.3 4Z"/><path transform="translate(14.20 -0.14)" d="M3.3 4Q.8 4 .8 7T3.3 10T5.8 7T3.3 4Z"/><path transform="translate(20.80 0.10)" d="M1 10V4.2M1 5.8Q2 4 3.4 4T4.9 5.8V10M4.9 5.8Q5.9 4 7.3 4T8.8 5.8V10"/><path transform="translate(33.80 0.12)" d="M5 10V0L.8 6.8H6.6"/><path transform="translate(41.00 0.00)" d="M1 2L3 0V10"/><path transform="translate(45.40 0.18)" d="M1 2.4Q1.2 0 3.4 0T5.8 2.4Q5.8 4 3.6 6.2L.9 10H6.2"/></g>
+        <g transform="translate(314 137.5) rotate(-0.5) scale(1.1)" fill="none" stroke="#1E7A4C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity=".93"><path transform="translate(0.00 0.00)" d="M.8 10L4 0L7.2 10M2 6.6H6"/><path transform="translate(8.00 0.18)" d="M5.4 5.2Q4.6 4 3.3 4Q.8 4 .8 7T3.3 10Q4.6 10 5.4 8.8"/><path transform="translate(14.00 -0.14)" d="M2.2 1V8.6Q2.2 10 3.8 9.8M.6 4H4"/><path transform="translate(18.60 0.10)" d="M1.4 4.4V10M1.4 1.7V1.9"/><path transform="translate(21.40 -0.20)" d="M.7 4L3 10L5.3 4"/><path transform="translate(27.40 0.12)" d="M1.4 4.4V10M1.4 1.7V1.9"/><path transform="translate(30.20 0.00)" d="M2.2 1V8.6Q2.2 10 3.8 9.8M.6 4H4"/><path transform="translate(34.80 0.18)" d="M.7 4L3.1 9.6M5.5 4L3.1 9.6Q2.2 12.6 .8 12.8"/><path transform="translate(40.80 -0.14)" d="M1.4 5V5.2M1.4 9.5V9.7"/><path transform="translate(47.00 -0.20)" d="M1 4V7.6Q1 10 3.2 10T5.6 7.6M5.6 4V10"/><path transform="translate(53.60 0.12)" d="M1 4V13.2M1 6Q1.8 4 3.4 4Q5.9 4 5.9 7T3.4 10Q1.8 10 1 8.2"/><path transform="translate(63.60 0.18)" d="M3.3 4Q.8 4 .8 7T3.3 10T5.8 7T3.3 4Z"/><path transform="translate(70.20 -0.14)" d="M1 10V4.2M1 6Q1.9 4 3.5 4T5.6 6.2V10"/><path transform="translate(80.20 -0.20)" d="M3.3 4Q.8 4 .8 7T3.3 10T5.8 7T3.3 4Z"/><path transform="translate(86.80 0.12)" d="M.7 4L2.5 10L4.3 5L6.1 10L7.9 4"/><path transform="translate(95.40 0.00)" d="M1 10V4.2M1 6Q1.9 4 3.5 4T5.6 6.2V10"/></g>
+        <g transform="translate(314 158) rotate(0.4) scale(1.1)" fill="none" stroke="#B53E28" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity=".93"><path transform="translate(0.00 0.00)" d="M1 0V10M6.6 0V10M1 5H6.6"/><path transform="translate(7.60 0.18)" d="M3.3 4Q.8 4 .8 7T3.3 10T5.8 7T3.3 4Z"/><path transform="translate(14.20 -0.14)" d="M1 10V4.2M1 5.8Q2 4 3.4 4T4.9 5.8V10M4.9 5.8Q5.9 4 7.3 4T8.8 5.8V10"/><path transform="translate(23.80 0.10)" d="M.9 7H5.6Q5.6 4 3.3 4Q.8 4 .8 7T3.4 10Q4.8 10 5.5 8.8"/><path transform="translate(30.20 -0.20)" d="M1.4 5V5.2M1.4 9.5V9.7"/><path transform="translate(36.40 0.00)" d="M2.2 1V8.6Q2.2 10 3.8 9.8M.6 4H4"/><path transform="translate(41.00 0.18)" d="M3.3 4Q.8 4 .8 7T3.3 10T5.8 7T3.3 4Z"/><path transform="translate(47.60 -0.14)" d="M1 10V4.2M1 5.8Q2 4 3.4 4T4.9 5.8V10M4.9 5.8Q5.9 4 7.3 4T8.8 5.8V10"/><path transform="translate(57.20 0.10)" d="M3.3 4Q.8 4 .8 7T3.3 10T5.8 7T3.3 4Z"/><path transform="translate(63.80 -0.20)" d="M1 4.2V10M1 6.2Q1.8 4 4 4.2"/><path transform="translate(68.40 0.12)" d="M1 4.2V10M1 6.2Q1.8 4 4 4.2"/><path transform="translate(73.00 0.00)" d="M3.3 4Q.8 4 .8 7T3.3 10T5.8 7T3.3 4Z"/><path transform="translate(79.60 0.18)" d="M.7 4L2.5 10L4.3 5L6.1 10L7.9 4"/></g>
+      </svg>
+      <div id="hsWrap"></div>
+      <div class="bubble" id="bubble" aria-hidden="true" hidden></div>
+    </div>
+    <section id="card" class="pop" aria-label="Closer look" hidden></section>
+    <aside class="tab" aria-labelledby="scH"><div class="scr">
+      <p class="who"><b>Calloway, Ruth</b><i id="prog"></i><span>79 · Room 412</span></p>
+      <p class="lbl2"><span id="scH">Fall risk score</span></p>
+      <div class="score"><span class="n">18<small> / 100</small></span><span class="c">Low risk</span><div class="meter" role="img" aria-label="18 out of 100, in the low range."></div></div>
+      <div><p class="lbl2" id="ftH">Included in her score</p><ul class="feat" id="feat" aria-labelledby="ftH"></ul></div>
+      <div><p class="lbl2" id="onH">What you noticed</p><ul class="only" id="only" aria-labelledby="onH"></ul></div>
+    </div></aside>
+  </main>
+
+  <p class="disc">A practice activity built for this portfolio, based on an example from the AI in Nursing Practice Specialization (Duke University School of Nursing on Coursera). The patient, the score and the chart are made up. It isn’t part of the course and it isn’t clinical advice.</p>
+</div>
+<div class="sr" id="live" aria-live="assertive"></div>
+
+<script>
+(function () {
+'use strict';
+function $(id) { return document.getElementById(id); }
+function focusSel(sel) { var el = document.querySelector(sel); if (el) el.focus(); }
+
+var FEATS = [['age', 'Age', '79'], ['falls', 'Falls on record', 'None'], ['meds', 'Active medications', '7'], ['mob', 'Mobility', 'Walks without help'], ['los', 'Days in hospital', '2'], ['dx', 'Diagnosis', 'Heart failure']];
+var OBS = [
+  { k: 'board', x: 470, y: 196, label: 'Read the whiteboard', title: 'The whiteboard',
+    see: 'It says “Activity: up on own.” Her admission assessment in the chart says the same thing, “walks without help.”',
+    ans: 'model', feat: ['mob'],
+    ok: 'Mobility is one of the six things her score uses. The score is going by what was charted when she was admitted two days ago, so it could be out of date.',
+    no: 'Mobility is one of the six things her score uses. It comes from her admission assessment two days ago.' },
+  { k: 'band', x: 588, y: 280, label: 'Check her wristband', title: 'Her wristband',
+    see: 'Ruth Calloway, age 79. Admitted two days ago with heart failure.',
+    ans: 'model', feat: ['age', 'los', 'dx'],
+    ok: 'Age, days in hospital and diagnosis are three of the six things her score uses. It reads them straight from the chart.',
+    no: 'Age, days in hospital and diagnosis are three of the six things her score uses.' },
+  { k: 'talk', x: 676, y: 206, label: 'Talk with Mrs. Calloway', title: 'How she feels on her feet',
+    see: 'You ask how she feels when she gets up.', quote: '“I get a little swimmy when I first stand. It passes.”',
+    more: 'There’s nothing about dizziness in her chart yet.',
+    ans: 'only', short: 'Dizzy when she first stands',
+    ok: 'Feeling dizzy on standing matters for falls, and so far she has only told you. The score can’t use it until someone charts it.',
+    no: 'The score reads the chart, and nobody has charted this yet. So far she has only told you.' },
+  { k: 'call', x: 748, y: 354, label: 'Look at the call light', title: 'The call light',
+    see: 'It’s clipped to the rail where she can reach it. She hasn’t pressed it today.', quote: '“I didn’t want to bother anybody. I’ve been to the bathroom twice on my own this morning.”',
+    ans: 'only', short: 'Got up twice without calling',
+    ok: 'Nobody saw her get up, so nobody charted it. “Falls on record: none” is still true, but it doesn’t cover this morning.',
+    no: 'The score has “Falls on record: none,” and that’s true. But nobody saw her get up this morning, so it isn’t in the chart.' },
+  { k: 'meds', x: 312, y: 264, label: 'Look at the medication cup', title: 'The medication cup',
+    see: 'One of her morning pills is a water pill (a diuretic) that she started last evening. No one has checked her blood pressure while she’s standing since then.',
+    ans: 'only', short: 'New water pill, no standing BP', feat: [],
+    ok: 'The score counts her medications and gets seven. It doesn’t know that one of them is new. And her standing blood pressure was never taken, so there’s no number for the score to use.',
+    no: 'The score does count her medications and gets seven. But it doesn’t know that one of them is new, and her standing blood pressure was never taken.' },
+  { k: 'photo', x: 212, y: 226, label: 'Look at the photo on the windowsill', title: 'The photo on the windowsill',
+    see: 'You ask about the photo. The whiteboard says she goes home tomorrow.', quote: '“That’s my Dana. She’s out in Oregon. It’s just me at the house.”',
+    ans: 'only', short: 'Lives alone, home tomorrow',
+    ok: 'Living alone isn’t one of the six things her score uses. If anyone charted it, it’s in a written note, and this score doesn’t read notes.',
+    no: 'Living alone isn’t one of the six things her score uses. It might be in a written note, but this score doesn’t read notes.' }
+];
+var N_ONLY = OBS.filter(function (o) { return o.ans === 'only'; }).length;
+var ICON_OK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+
+var S = { cur: null, sorted: {}, seen: false };
+function count() { return Object.keys(S.sorted).length; }
+function allDone() { return count() === OBS.length; }
+function ob(k) { return OBS.filter(function (o) { return o.k === k; })[0]; }
+
+$('hsWrap').innerHTML = OBS.map(function (o) { return '<button class="hs" data-o="' + o.k + '"><i>' + ICON_OK + '</i></button>'; }).join('');
+var mq = window.matchMedia('(max-width:899px)');
+function layout() {
+  var wide = !mq.matches;
+  $('scene').setAttribute('viewBox', wide ? '-380 -60 1180 640' : '0 0 800 500');
+  OBS.forEach(function (o) { var b = document.querySelector('.hs[data-o="' + o.k + '"]'); b.style.left = (wide ? (380 + o.x) / 11.8 : o.x / 8) + '%'; b.style.top = (wide ? (60 + o.y) / 6.4 : o.y / 5) + '%'; });
+  report();
+}
+if (mq.addEventListener) mq.addEventListener('change', layout); else mq.addListener(layout);
+
+function card() {
+  var o = S.cur && ob(S.cur), el = $('card'), st = o && S.sorted[o.k], h;
+  $('bubble').hidden = !(o && o.quote); if (o && o.quote) $('bubble').textContent = o.quote;
+  if (!o) { el.hidden = true; el.innerHTML = ''; return; }
+  el.hidden = false; el.className = 'card pop ' + (o.x < 400 ? 'r' : 'l');
+  h = '<button class="x" data-act="close" aria-label="Close">×</button><h3 id="cardH" tabindex="-1">' + o.title + '</h3><p>' + o.see + '</p>' + (o.quote ? '<q>' + o.quote + '</q>' : '') + (o.more ? '<p>' + o.more + '</p>' : '');
+  if (!st) {
+    h += '<p class="ask" id="askQ">Was this included in her score?</p><div class="ch" role="group" aria-labelledby="askQ">' +
+     '<button data-a="model"><span style="background:var(--blue)"></span>Yes, it’s in her score</button>' +
+     '<button data-a="only"><span style="background:var(--sun);box-shadow:0 0 0 1.5px var(--gold)"></span>No, it’s something I noticed</button></div>';
+  } else {
+    h += '<div class="fb ' + (st.first ? 'good' : 'retry') + '" id="fb" tabindex="-1"><b>' + (st.first ? (o.ans === 'model' ? 'Yes, this is in her score.' : 'Yes, this is something only you noticed.') : (o.ans === 'model' ? 'Take another look. This one is in her score.' : 'Take another look. This one isn’t in her score.')) + '</b>' + (st.first ? o.ok : o.no) + '</div>' +
+     (allDone() ? '<button class="btn2" data-act="wrap">See what you noticed</button>' : '<button class="btn2" data-act="next">Keep exploring</button>');
+  }
+  el.innerHTML = h;
+}
+var gCache = '';
+function guide() {
+  var h;
+  if (!allDone()) h = '<div><h2>Mrs. Calloway’s fall risk score is 18, which is low. What do you notice at the bedside?</h2><p>Explore the markers in the room. For each observation, decide whether it was included in her score.</p></div>';
+  else h = '<div><h2>Her score is still low. You noticed ' + N_ONLY + ' things it doesn’t include.</h2><p>Everything in her score is accurate. It just can’t include what you saw this morning.</p></div><button class="btn" data-act="reset">Start over</button>';
+  if (h !== gCache) { gCache = h; $('guide').innerHTML = h; }
+}
+function ui() {
+  var hit = {}, only = [], n = count();
+  OBS.forEach(function (o) {
+    var st = S.sorted[o.k], b = document.querySelector('.hs[data-o="' + o.k + '"]');
+    b.className = 'hs' + (st ? ' done ' + o.ans : '') + (S.cur === o.k ? ' cur' : '');
+    b.setAttribute('aria-label', o.label + (st ? (o.ans === 'model' ? '. In her score.' : '. Something only you noticed.') : ''));
+    if (st && o.ans === 'model') o.feat.forEach(function (f) { hit[f] = 1; });
+    if (st && o.ans === 'only') only.push(o.short);
+  });
+  $('prog').textContent = n + ' of ' + OBS.length + ' checked';
+  $('feat').innerHTML = FEATS.map(function (f) { return '<li class="' + (hit[f[0]] ? 'hit' : '') + '"><small>' + f[1] + '</small><b>' + f[2] + ICON_OK + (hit[f[0]] ? '<span class="sr">, seen at the bedside</span>' : '') + '</b></li>'; }).join('');
+  $('only').innerHTML = only.length ? only.map(function (t) { return '<li>' + t + '</li>'; }).join('') : '<li class="none">Your observations will appear here.</li>';
+  $('notesDot').hidden = S.seen;
+  card(); guide(); report();
+}
+function notes(open) { $('notesBtn').setAttribute('aria-expanded', open); $('notes').hidden = !open; if (open) { S.seen = true; $('notesDot').hidden = true; $('notesH').focus({ preventScroll: true }); } report(); }
+function say(t) { $('live').textContent = ''; setTimeout(function () { $('live').textContent = t; }, 40); }
+function report() { if (window.parent !== window && !document.fullscreenElement) window.parent.postMessage({ type: 'embed-resize', height: document.documentElement.scrollHeight }, '*'); }
+
+document.addEventListener('click', function (e) {
+  var t = e.target.closest('button'); if (!t || t.disabled) return;
+  var d = t.dataset, o, nx;
+  if (d.o) { S.cur = d.o; ui(); focusSel('#cardH'); }
+  else if (d.a) {
+    o = ob(S.cur); S.sorted[o.k] = { first: d.a === o.ans }; ui(); focusSel('#fb');
+    if (allDone()) say('You’ve explored all six. Her score is still low. You noticed ' + N_ONLY + ' things it doesn’t include.');
+  }
+  else if (d.act === 'next') { nx = OBS.filter(function (x) { return !S.sorted[x.k]; })[0]; S.cur = null; ui(); if (nx) focusSel('.hs[data-o="' + nx.k + '"]'); }
+  else if (d.act === 'close') { o = S.cur; S.cur = null; ui(); focusSel('.hs[data-o="' + o + '"]'); }
+  else if (d.act === 'wrap') { S.cur = null; ui(); $('guide').focus(); }
+  else if (d.act === 'reset') { S = { cur: null, sorted: {}, seen: S.seen }; gCache = ''; ui(); $('guide').focus(); }
+  else if (t.id === 'notesBtn') notes($('notes').hidden);
+  else if (t.id === 'notesX') { notes(false); $('notesBtn').focus(); }
+  else if (t.id === 'fsBtn') { if (document.fullscreenElement) document.exitFullscreen(); else if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(function () { window.open(location.href, '_blank', 'noopener'); }); else window.open(location.href, '_blank', 'noopener'); }
+});
+document.addEventListener('keydown', function (e) { if (e.key !== 'Escape') return; if (!$('notes').hidden) { notes(false); $('notesBtn').focus(); } else if (S.cur) { var k = S.cur; S.cur = null; ui(); focusSel('.hs[data-o="' + k + '"]'); } });
+document.addEventListener('fullscreenchange', function () { $('fsLbl').textContent = document.fullscreenElement ? 'Exit full screen' : 'Full screen'; report(); });
+if (window.ResizeObserver) new ResizeObserver(report).observe(document.body);
+window.addEventListener('load', report);
+layout(); ui();
+})();
+</script>
+<script>if(window.parent!==window){var fb=document.getElementById('fsBtn');if(fb)fb.hidden=true;}</script>
+</body>
+</html>

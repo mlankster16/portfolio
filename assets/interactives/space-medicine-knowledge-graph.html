@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Space Medicine Week 2: how the ideas fit together</title>
+<style>
+@font-face{font-family:'Plus Jakarta Sans';src:url('../fonts/plus-jakarta-sans-latin.woff2') format('woff2');font-weight:200 800;font-display:swap}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;background:#F3F7F5;color:#0F2E33;font-family:'Plus Jakarta Sans',system-ui,sans-serif}
+a{color:#0A6A67}a:hover{color:#0F2E33}
+button{font:inherit;color:inherit}
+button:focus-visible{outline:2px solid #0F2E33;outline-offset:2px}
+.wrap{padding:16px;display:flex;flex-direction:column;gap:14px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:#4B6468}
+.legend span{display:flex;align-items:center;gap:6px}
+.sw{width:22px;height:0;border-top:2px solid}
+.tog{cursor:pointer;padding:7px 13px;border-radius:999px;border:1px solid #C9D9D3;background:#fff;font-size:13px;font-weight:600}
+.tog[aria-pressed="true"]{background:#13263A;border-color:#13263A;color:#fff}
+.panel{min-height:132px;padding:16px 18px;border-radius:16px;background:#fff;border:1px solid #DCE8E3;display:flex;flex-direction:column;gap:8px}
+.k{font-size:13px;font-weight:600;color:#0A6A67}
+.t{font-size:19px;font-weight:500;letter-spacing:-.01em;line-height:1.3}
+.d{font-size:14.5px;font-weight:300;line-height:1.6;color:#4B6468;max-width:70ch}
+.rel{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px 18px;font-size:13.5px;line-height:1.5}
+.rel b{display:block;font-size:12px;font-weight:600;color:#4B6468;letter-spacing:.02em}
+.box{padding:10px 12px;border-radius:12px;font-size:14px;line-height:1.55}
+.box b{display:block;font-size:12px}
+#graph{position:relative}
+#wires{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.cols{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px 26px;position:relative}
+.col{display:flex;flex-direction:column;gap:8px;min-width:0}
+.ch{display:flex;flex-direction:column;gap:2px;padding-bottom:6px;border-bottom:2px solid;margin-bottom:2px}
+.ch span:first-child{font-size:13px;font-weight:600}
+.ch span:last-child{font-size:12.5px;color:#4B6468}
+.n{cursor:pointer;text-align:left;padding:9px 11px;border-radius:12px;border:1.5px solid transparent;font-size:13.5px;font-weight:500;line-height:1.3;transition:opacity .2s,box-shadow .2s,background .2s;position:relative;z-index:1;color:#0F2E33}
+.n.dim{opacity:.32}
+.n.sel{background:#13263A!important;color:#fff!important;border-color:#13263A!important}
+.n.sel small{color:#DCE8E3!important}
+.n.rel1{box-shadow:0 0 0 2px #0F2E33}
+.n small{display:block;font-size:12px;font-weight:600;margin-bottom:3px}
+.row{display:flex;flex-direction:column;gap:8px;margin-top:22px;position:relative}
+.rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+pre{margin:0;max-height:420px;overflow:auto;padding:14px;border-radius:14px;background:#13263A;color:#DCE8E3;font-size:12.5px;line-height:1.5}
+.note{font-size:13px;line-height:1.5;color:#4B6468}
+@media (max-width:820px){.cols{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 12px}}
+@media (max-width:440px){.cols{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){.n{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bar">
+    <div class="legend" aria-hidden="true">
+      <span><i class="sw" style="border-color:#6B7F86"></i>builds toward</span>
+      <span><i class="sw" style="border-color:#E0704F;border-top-style:dashed"></i>addressed by</span>
+      <span><i class="sw" style="border-color:#2E7DA6;border-top-style:dotted"></i>comes back in</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px">
+      <button type="button" class="tog" id="misT" aria-pressed="true">Misconceptions</button>
+      <button type="button" class="tog" id="latT" aria-pressed="true">Later weeks</button>
+      <button type="button" class="tog" id="dataT" aria-pressed="false">View as data</button>
+    </div>
+  </div>
+  <div class="panel" id="panel" aria-live="polite"></div>
+  <div id="graphWrap">
+    <div id="graph">
+      <svg id="wires" aria-hidden="true"></svg>
+      <div class="cols" id="cols"></div>
+      <div class="row" id="misRow"></div>
+      <div class="row" id="latRow"></div>
+    </div>
+  </div>
+  <div id="dataWrap" hidden style="display:flex;flex-direction:column;gap:8px">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span class="note">The same map as structured data: typed nodes and labeled edges.</span><button type="button" class="tog" id="copy">Copy JSON</button></div>
+    <pre id="json"></pre>
+  </div>
+</div>
+<script>
+const COLS=[
+ {id:'case',t:'Case study',s:'The 1862 balloon flight',bd:'#13263A',bg:'#fff'},
+ {id:'phys',t:'Physiology',s:'How the body uses oxygen',bd:'#0F8A86',bg:'#DDF1EB'},
+ {id:'path',t:'Pathophysiology',s:'What breaks down',bd:'#E0704F',bg:'#FFE6DD'},
+ {id:'phy2',t:'Physics',s:'Why altitude matters',bd:'#C9A200',bg:'#FFF0B3'},
+ {id:'eng',t:'Engineering',s:'How people stay safe',bd:'#2E7DA6',bg:'#D6E7EE'}];
+const ACT={flight:'Rebuild the Flight',trace:'Trace the Oxygen',crew:'Watch Your Crew',pie:'The Oxygen Pie Chart',atmos:'Design the Atmosphere',cabin:'Cabin Pressure Lost (graded scenario)'};
+const N=[
+ {id:'flight',col:'case',type:'concept',t:'The record-setting climb',d:'In 1862, James Glaisher and Henry Coxwell rose in a gas balloon to about 29,000 feet, nearly the height of Everest. Glaisher lost consciousness. Coxwell, unable to use his hands, pulled the valve cord with his teeth to start their descent.',act:['flight'],rev:'The storyboard review asked for consistent units on screen, since the animation switched between miles and feet.'},
+ {id:'symptoms',col:'case',type:'concept',t:'Symptoms before vocabulary',d:'Trouble breathing, tunnel vision, confusion, and losing the use of their hands. Learners meet the symptoms in the story before they learn the word hypoxia.',act:['flight']},
+ {id:'airway',col:'phys',type:'concept',t:'From nose to alveoli',d:'Air travels through the pharynx, trachea, bronchi, and bronchioles to the alveoli, where oxygen passes into the blood.',act:['trace']},
+ {id:'blood',col:'phys',type:'concept',t:'Red blood cells and circulation',d:'Red blood cells carry oxygen from the lungs to the heart and out through arteries to tiny capillaries next to every cell.',act:['trace'],rev:'The storyboard review caught a red blood cell animated leaving the aorta toward the legs instead of the head. It also noted that oxygen should ride on red blood cells while carbon dioxide travels free in the blood.'},
+ {id:'mito',col:'phys',type:'concept',t:'Mitochondria and ATP',d:'Like a candle, cells need oxygen to burn fuel. Mitochondria use oxygen to turn sugars and fats into ATP, the energy cells run on.',act:['trace']},
+ {id:'hypoxia',col:'path',type:'concept',t:'Hypoxia',d:'Too little oxygen reaching the cells. The tissues that use the most energy, like the eyes, brain, muscles, and heart, struggle first.'},
+ {id:'signs',col:'path',type:'concept',t:'Signs that get worse',d:'Tunnel vision can become loss of vision, and confusion can become unconsciousness. Watch for blue lips and fingertips (cyanosis) and changes in breathing and heart rate.',act:['crew','cabin']},
+ {id:'types',col:'path',type:'concept',t:'Four types of hypoxia',d:'Histotoxic (cells can’t use oxygen), stagnant (blood isn’t flowing), anemic (blood can’t carry enough), and hypoxic (not enough oxygen gets into the lungs). Ruling them out points to hypoxic hypoxia for the balloonists.',act:['crew']},
+ {id:'solub',col:'phy2',type:'concept',t:'Gases dissolve in liquids',d:'Oxygen dissolves into blood the way air dissolves into water. How much dissolves depends on pressure and temperature.'},
+ {id:'pressure',col:'phy2',type:'concept',t:'Pressure',d:'Pressure comes from gas molecules colliding with a surface. The ideal gas law (PV = nRT) shows how pressure, volume, amount of gas, and temperature affect each other.'},
+ {id:'partial',col:'phy2',type:'concept',t:'Altitude and the oxygen pie',d:'Oxygen stays about 21% of the air as you climb, but the total pressure drops. The slice stays the same size while the whole pie shrinks, so each breath pushes less oxygen into the blood.',act:['pie'],x:'Above about 26,000 feet, the “dead zone,” people can’t survive long without extra oxygen.'},
+ {id:'cabin',col:'eng',type:'concept',t:'Cabin pressure',d:'Airliners pump in outside air to keep the cabin at the pressure of 8,000 feet or lower, even when cruising at 35,000 feet.',act:['atmos','cabin']},
+ {id:'o2',col:'eng',type:'concept',t:'Supplemental oxygen',d:'If cabin pressure drops, masks give extra oxygen. Put yours on first, because hypoxia affects your judgment within moments.',act:['cabin']},
+ {id:'acclim',col:'eng',type:'concept',t:'Acclimatization',d:'Over a few days at high altitude, the body makes more red blood cells and mitochondria to make the most of the oxygen it gets.'},
+ {id:'space',col:'eng',type:'concept',t:'Atmospheres in space',d:'Spacesuits use pure oxygen at about one-third of sea-level pressure so they don’t balloon outward. The space station keeps ordinary air at full pressure, partly to avoid oxygen toxicity.',act:['atmos']},
+ {id:'m1',col:'mis',type:'misconception',t:'“There’s less oxygen in the air up high.”',fix:'The percentage of oxygen stays the same. The pressure drops, so less oxygen is pushed into the blood with each breath.'},
+ {id:'m2',col:'mis',type:'misconception',t:'“Planes fly higher than 29,000 feet, so it must be safe.”',fix:'Passengers are fine because the cabin is pressurized. Outside air at cruising altitude couldn’t keep anyone conscious for long.'},
+ {id:'m3',col:'mis',type:'misconception',t:'“You’d know right away if you weren’t getting enough oxygen.”',fix:'Hypoxia affects the brain early, so judgment slips before people realize something is wrong. The balloonists kept climbing after trouble began.'},
+ {id:'m4',col:'mis',type:'misconception',t:'“More oxygen is always better.”',fix:'Too much oxygen at high pressure damages cells. That’s one reason the space station uses ordinary air at full pressure.'},
+ {id:'m5',col:'mis',type:'misconception',t:'“The mitochondria is the powerhouse of the cell.”',fix:'Learners know the phrase but often can’t explain it. The candle shows what “powerhouse” means: burning fuel with oxygen to release energy.'},
+ {id:'w3a',col:'lat',type:'later',t:'Week 3: Decompression sickness',d:'The same physics of gases dissolving returns. When pressure drops too fast, nitrogen bubbles out of the blood, the way bubbles appear when you open a soda.'},
+ {id:'w3b',col:'lat',type:'later',t:'Week 3: Hyperoxia',d:'Breathing oxygen at high partial pressure creates reactive molecules that damage cells, starting in the lungs.'},
+ {id:'w4',col:'lat',type:'later',t:'Week 4: g-LOC',d:'Strong g-forces pull blood away from a pilot’s brain. It’s hypoxia again, this time because blood isn’t reaching the brain, and it can cause loss of consciousness.'}];
+const E=[
+ ['flight','symptoms','builds'],['symptoms','hypoxia','builds'],['flight','partial','builds'],
+ ['airway','blood','builds'],['blood','mito','builds'],['mito','hypoxia','builds'],['blood','types','builds'],
+ ['hypoxia','signs','builds'],['hypoxia','types','builds'],
+ ['solub','partial','builds'],['pressure','partial','builds'],['partial','types','builds'],
+ ['partial','cabin','builds'],['partial','o2','builds'],['signs','o2','builds'],['blood','acclim','builds'],['pressure','space','builds'],['partial','space','builds'],
+ ['m1','partial','fix'],['m2','cabin','fix'],['m3','signs','fix'],['m4','space','fix'],['m5','mito','fix'],
+ ['solub','w3a','later'],['pressure','w3a','later'],['space','w3b','later'],['partial','w3b','later'],['types','w4','later'],['signs','w4','later']];
+const VERB={builds:'builds toward',fix:'addressed by',later:'comes back in'};
+const STROKE={builds:'#6B7F86',fix:'#E0704F',later:'#2E7DA6'};
+const DASH={fix:'5 5',later:'2 4'};
+const byId=Object.fromEntries(N.map(n=>[n.id,n]));
+let sel=null,show={fix:true,later:true};
+const colsEl=document.getElementById('cols'),panel=document.getElementById('panel'),svg=document.getElementById('wires'),graph=document.getElementById('graph');
+const btn={};
+const mk=(n,bg,bd,label,lc)=>{const b=document.createElement('button');b.type='button';b.className='n';b.innerHTML=(label?'<small style="color:'+lc+'">'+label+'</small>':'')+n.t;b.style.background=bg;b.style.border=bd;b.setAttribute('aria-pressed','false');b.onclick=()=>pick(n.id);btn[n.id]=b;return b;};
+COLS.forEach(c=>{const col=document.createElement('div');col.className='col';col.innerHTML='<div class="ch" style="border-color:'+c.bd+'"><span>'+c.t+'</span><span>'+c.s+'</span></div>';
+  N.filter(n=>n.col===c.id).forEach(n=>col.appendChild(mk(n,c.bg,c.id==='case'?'1.5px solid #13263A':'1.5px solid transparent')));colsEl.appendChild(col);});
+const row=(id,title,sub,bd,filter,style)=>{const el=document.getElementById(id);el.innerHTML='<div class="ch" style="border-color:'+bd+'"><span>'+title+'</span><span>'+sub+'</span></div>';const g=document.createElement('div');g.className='rg';N.filter(filter).forEach(n=>g.appendChild(mk(n,...style)));el.appendChild(g);return el;};
+const misEl=row('misRow','Misconceptions the week addresses','Drawn from the course scripts','#E0704F',n=>n.type==='misconception',['#FFF1EC','1.5px dashed #E0704F','Misconception','#A8401F']);
+const latEl=row('latRow','Where these ideas come back','Later weeks of the course','#2E7DA6',n=>n.type==='later',['#fff','1.5px dotted #2E7DA6','Comes back in','#1F5F7A']);
+const nm=id=>byId[id].t;
+const related=id=>E.filter(e=>(e[0]===id||e[1]===id)&&(e[2]==='builds'||show[e[2]]));
+const list=ids=>ids.map(nm).join(', ');
+function renderPanel(){
+  if(!sel){panel.innerHTML='<span class="k">How to read this map</span><span class="t">Select any card</span><span class="d">Week 2 starts with a real 1862 balloon flight, then explains it through four lenses. Select a card to see what it builds on, what it leads to, and which new activity uses it. Coral cards are common misconceptions, and blue cards show where the ideas return later in the course.</span>';return;}
+  const n=byId[sel],r=related(sel),inn=t=>r.filter(e=>e[1]===sel&&e[2]===t).map(e=>e[0]),out=t=>r.filter(e=>e[0]===sel&&e[2]===t).map(e=>e[1]);
+  const col=COLS.find(c=>c.id===n.col);
+  let h='<span class="k">'+(n.type==='misconception'?'Misconception':n.type==='later'?'Later in the course':col.t)+'</span><span class="t">'+n.t+'</span>';
+  if(n.type==='misconception')h+='<div class="box" style="background:#FFF1EC"><b style="color:#A8401F">What the week shows instead</b>'+n.fix+'</div><div class="rel"><span><b>Addressed by</b>'+list(out('fix'))+'</span></div>';
+  else{h+='<span class="d">'+n.d+'</span>';if(n.x)h+='<span class="d">'+n.x+'</span>';h+='<div class="rel">';
+    const b=inn('builds'),o=out('builds'),m=inn('fix'),l=out('later'),li=inn('later');
+    if(b.length)h+='<span><b>Builds on</b>'+list(b)+'</span>';if(o.length)h+='<span><b>Builds toward</b>'+list(o)+'</span>';
+    if(li.length)h+='<span><b>Comes from Week 2</b>'+list(li)+'</span>';if(l.length)h+='<span><b>Comes back in</b>'+list(l)+'</span>';
+    if(m.length)h+='<span><b>Addresses</b>'+list(m)+'</span>';
+    if(n.act)h+='<span><b>New activity</b>'+n.act.map(a=>ACT[a]).join(', ')+'</span>';
+    h+='</div>';if(n.rev)h+='<div class="box" style="background:#EEF7F4"><b style="color:#0A6A67">From the storyboard review</b>'+n.rev+'</div>';}
+  panel.innerHTML=h;}
+function pick(id){sel=sel===id?null:id;update();}
+function update(){
+  const r=sel?related(sel):[],near=new Set(r.flatMap(e=>[e[0],e[1]]));
+  Object.entries(btn).forEach(([id,b])=>{b.classList.toggle('sel',id===sel);b.classList.toggle('rel1',!!sel&&id!==sel&&near.has(id));b.classList.toggle('dim',!!sel&&!near.has(id));b.setAttribute('aria-pressed',String(id===sel));});
+  misEl.style.display=show.fix?'':'none';latEl.style.display=show.later?'':'none';
+  renderPanel();draw();post();}
+function draw(){
+  svg.innerHTML='';const g=graph.getBoundingClientRect();
+  const tops=[...colsEl.children].map(c=>Math.round(c.getBoundingClientRect().top)),wide=tops.every(t=>t===tops[0]);
+  svg.setAttribute('viewBox','0 0 '+g.width+' '+g.height);
+  if(!wide&&!sel)return;
+  const edges=sel?related(sel):E.filter(e=>e[2]==='builds');
+  edges.forEach(([a,b,t])=>{const A=btn[a].getBoundingClientRect(),B=btn[b].getBoundingClientRect();
+    const ax=A.left-g.left,ay=A.top-g.top,bx=B.left-g.left,by=B.top-g.top;let d;
+    const vertical=t!=='builds'||!wide;
+    if(vertical){const x1=ax+A.width/2,x2=bx+B.width/2;
+      if(by<ay){d='M'+x1+' '+ay+' C'+x1+' '+(ay-40)+' '+x2+' '+(by+B.height+40)+' '+x2+' '+(by+B.height);}
+      else{d='M'+x1+' '+(ay+A.height)+' C'+x1+' '+(ay+A.height+40)+' '+x2+' '+(by-40)+' '+x2+' '+by;}}
+    else if(Math.abs(ax-bx)<4){const x=ax+A.width,y1=ay+A.height/2,y2=by+B.height/2;d='M'+x+' '+y1+' C'+(x+22)+' '+y1+' '+(x+22)+' '+y2+' '+x+' '+y2;}
+    else if(bx>ax){const x1=ax+A.width,y1=ay+A.height/2,x2=bx,y2=by+B.height/2,m=(x2-x1)/2;d='M'+x1+' '+y1+' C'+(x1+m)+' '+y1+' '+(x2-m)+' '+y2+' '+x2+' '+y2;}
+    else{const x1=ax,y1=ay+A.height/2,x2=bx+B.width,y2=by+B.height/2,m=(x1-x2)/2;d='M'+x1+' '+y1+' C'+(x1-m)+' '+y1+' '+(x2+m)+' '+y2+' '+x2+' '+y2;}
+    const p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('d',d);p.setAttribute('fill','none');p.setAttribute('stroke',STROKE[t]);p.setAttribute('stroke-width',sel?2.4:1.4);p.setAttribute('opacity',sel?.95:.28);if(DASH[t])p.setAttribute('stroke-dasharray',DASH[t]);svg.appendChild(p);});}
+function post(){try{parent.postMessage({type:'embed-resize',height:document.documentElement.scrollHeight},'*');}catch(e){}}
+const tg=(id,key,type)=>{document.getElementById(id).onclick=e=>{show[key]=!show[key];e.currentTarget.setAttribute('aria-pressed',String(show[key]));if(!show[key]&&sel&&byId[sel].type===type)sel=null;update();};};
+tg('misT','fix','misconception');tg('latT','later','later');
+const dataT=document.getElementById('dataT'),dataWrap=document.getElementById('dataWrap'),gw=document.getElementById('graphWrap');
+const json={nodes:N.map(n=>Object.assign({id:n.id,type:n.type,label:n.t.replace(/[“”]/g,'')},COLS.some(c=>c.id===n.col)?{lens:COLS.find(c=>c.id===n.col).t}:{},n.d?{description:n.d}:{},n.fix?{correction:n.fix}:{},n.act?{activities:n.act.map(a=>ACT[a])}:{},n.rev?{reviewNote:n.rev}:{})),edges:E.map(([s,t,k])=>({source:s,target:t,relation:VERB[k]}))};
+document.getElementById('json').textContent=JSON.stringify(json,null,2);
+dataT.onclick=()=>{const on=dataWrap.hidden;dataWrap.hidden=!on;gw.hidden=on;panel.hidden=on;dataT.setAttribute('aria-pressed',String(on));dataT.textContent=on?'View as map':'View as data';if(!on)draw();post();};
+document.getElementById('copy').onclick=e=>{navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('json').textContent).then(()=>{e.target.textContent='Copied';setTimeout(()=>e.target.textContent='Copy JSON',1500);});};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&sel){sel=null;update();}});
+new ResizeObserver(()=>{draw();post();}).observe(document.body);
+document.fonts&&document.fonts.ready.then(()=>{draw();post();});
+update();
+</script>
+</body>
+</html>
